@@ -7,7 +7,7 @@ interface ICustomerFamilyCrud
 {
     public function addFamilyMember();
 
-    public function EditFamilyMember();
+    public function editFamilyMember();
 
     public function getFamilyMember();
 

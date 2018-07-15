@@ -13,7 +13,7 @@ abstract class CustomerFamilyCrud implements ICustomerFamilyCrud
         // TODO: Implement addFamilyMember() method.
     }
 
-    public function EditFamilyMember()
+    public function editFamilyMember()
     {
         // TODO: Implement EditFamilyMember() method.
     }

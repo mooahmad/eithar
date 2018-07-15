@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersRolesTable extends Migration
+class CreateNotificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,23 +13,23 @@ class CreateUsersRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('users_roles', function (Blueprint $table) {
+        Schema::create('notifications', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->nullable();
-            $table->unsignedInteger('role_id')->nullable();
+            $table->string('title')->nullable();
+            $table->string('description')->nullable();
+            $table->integer('type')->default(0);
+            $table->integer('is_read')->default(0);
+            $table->integer('language')->default(0);
+            $table->dateTime('send_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
         // relations
-        Schema::table('users_roles', function (Blueprint $table) {
+        Schema::table('notifications', function (Blueprint $table) {
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->onUpdate('set null')
-                ->onDelete('set null');
-            $table->foreign('role_id')
-                ->references('id')
-                ->on('roles')
                 ->onUpdate('set null')
                 ->onDelete('set null');
         });
@@ -42,11 +42,10 @@ class CreateUsersRolesTable extends Migration
      */
     public function down()
     {
-        // drop relations first
-        Schema::table('users_roles', function (Blueprint $table) {
+        // relations
+        Schema::table('notifications', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
-            $table->dropForeign(['role_id']);
         });
-        Schema::dropIfExists('users_roles');
+        Schema::dropIfExists('notifications');
     }
 }

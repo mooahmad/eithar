@@ -11,9 +11,9 @@ class CustomerFamilyCrudWeb extends CustomerFamilyCrud
         $data = parent::addFamilyMember();
     }
 
-    public function EditFamilyMember()
+    public function editFamilyMember()
     {
-        $data = parent::EditFamilyMember();
+        $data = parent::editFamilyMember();
     }
 
     public function getFamilyMember()
