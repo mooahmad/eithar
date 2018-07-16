@@ -2,7 +2,8 @@
 
 Auth::routes();
 
-Route::get('/', function () {
-    return view('welcome');
+Route::prefix('{locale}')->group(function ($locale = 'en') {
+    App::setLocale($locale);
+
 });
 

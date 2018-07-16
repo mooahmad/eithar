@@ -125,8 +125,41 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'first_name' => [
+            'required' => 'first name is required',
+        ],
+        'middle_name' => [
+            'required' => 'middle name is required',
+        ],
+        'last_name' => [
+            'required' => 'last name is required',
+        ],
+        'email' => [
+            'required' => 'email is required',
+        ],
+        'mobile' => [
+            'required' => 'mobile is required',
+        ],
+        'password' => [
+            'required' => 'password is required',
+        ],
+        'gender' => [
+            'required' => 'gender is required',
+        ],
+        'national_id' => [
+            'required' => 'national ID is required',
+        ],
+        'country_id' => [
+            'required' => 'country ID is required',
+        ],
+        'city_id' => [
+            'required' => 'city ID is required',
+        ],
+        'position' => [
+            'required' => 'position is required',
+        ],
+        'address' => [
+            'required' => 'address is required',
         ],
     ],
 
@@ -142,5 +175,9 @@ return [
     */
 
     'attributes' => [],
+
+    // our custom translations
+    'missingInput' => 'input is missing',
+    'operationFailed' => 'something went wrong!',
 
 ];

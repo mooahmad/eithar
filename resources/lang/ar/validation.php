@@ -125,9 +125,43 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'first_name' => [
+            'required' => 'الاسم الاول مطلوب',
         ],
+        'middle_name' => [
+            'required' => 'الاسم الوسط مطلوب',
+        ],
+        'last_name' => [
+            'required' => 'الاسم الاخير مطلوب',
+        ],
+        'email' => [
+            'required' => 'البريد مطلوب',
+        ],
+        'mobile' => [
+            'required' => 'الهاتف مطلوب',
+        ],
+        'password' => [
+            'required' => 'الرقم السرى مطلوب',
+        ],
+        'gender' => [
+            'required' => 'الجنس مطلوب',
+        ],
+        'national_id' => [
+            'required' => 'الرقم القومى مطلوب',
+        ],
+        'country_id' => [
+            'required' => 'الدوله مطلوب',
+        ],
+        'city_id' => [
+            'required' => 'المدينه مطلوب',
+        ],
+        'position' => [
+            'required' => 'الاحداثيات مطلوب',
+        ],
+        'address' => [
+            'required' => 'العنوان مطلوب',
+        ],
+
     ],
 
     /*
@@ -143,4 +177,7 @@ return [
 
     'attributes' => [],
 
+    // our custom translations
+    'missingInput' => 'عنصر مفقود',
+    'operationFailed' => 'حدث خطأ!',
 ];
