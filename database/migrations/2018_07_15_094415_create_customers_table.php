@@ -33,6 +33,8 @@ class CreateCustomersTable extends Migration
             $table->integer('is_active')->default(0);
             $table->integer('is_saudi_nationality')->default(1);
             $table->longText('about')->nullable();
+            $table->point('position')->nullable();
+            $table->longText('address')->nullable();
             $table->rememberToken();
             $table->softDeletes();
             $table->dateTime('last_login_date')->nullable();

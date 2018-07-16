@@ -69,4 +69,12 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    /**
+     * @param Request $request
+     */
+    public function registerCustomer(Request $request)
+    {
+
+    }
 }
