@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Helpers\ApiHelpers;
 use App\Http\Controllers\Controller;
+use App\Http\Services\Auth\ClassesAuth\LoginStrategy;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -35,5 +37,15 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function loginCustomer(Request $request)
+    {
+        // instantiate login strategy object using request type detection helper method
+        $loginStrategy = new LoginStrategy(ApiHelpers::requestType($request));
+        return $loginStrategy->loginCustomer($request);
     }
 }

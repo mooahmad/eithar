@@ -55,7 +55,10 @@ Abstract class Registration implements IRegistration
                                                                         "message" => __('errors.errorUploadNationalID')
                                                                     ]));
         }
-        return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag());
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+                                             new MessageBag([
+                                                                "user" => $newCustomer
+                                                            ]));
     }
 
     /**
