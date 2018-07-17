@@ -15,20 +15,20 @@ class CreateCustomersTable extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('first_name');
-            $table->string('middle_name')->nullable();
-            $table->string('last_name');
-            $table->string('email')->unique();
+            $table->string('first_name',100);
+            $table->string('middle_name',100)->nullable();
+            $table->string('last_name',100);
+            $table->string('email')->nullable();
             $table->integer('email_verified')->default(0);
-            $table->string('mobile_number')->unique();
+            $table->string('mobile_number')->nullable();
             $table->integer('mobile_verified')->default(0);
             $table->string('password');
             $table->integer('registration_source')->nullable();
-            $table->string('registration_source_desc')->nullable();
+            $table->string('registration_source_desc',100)->nullable();
             $table->integer('gender')->default(0);
             $table->integer('default_language')->nullable();
-            $table->string('profile_picture_path')->nullable();
-            $table->string('nationality_id_picture')->nullable();
+            $table->string('profile_picture_path',255)->nullable();
+            $table->string('nationality_id_picture',255)->nullable();
             $table->date('birthdate')->nullable();
             $table->string('national_id')->nullable();
             $table->integer('nationality_id')->nullable();
@@ -37,11 +37,12 @@ class CreateCustomersTable extends Migration
             $table->longText('about')->nullable();
             $table->unsignedInteger('country_id')->nullable();
             $table->unsignedInteger('city_id')->nullable();
-            $table->string('position')->nullable();
+            $table->string('position',255)->nullable();
             $table->longText('address')->nullable();
             $table->rememberToken();
             $table->softDeletes();
             $table->dateTime('last_login_date')->nullable();
+            $table->unique('email', 'mobile_number');
             $table->timestamps();
         });
     }

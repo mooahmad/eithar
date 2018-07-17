@@ -16,7 +16,7 @@ class CreateTokenTable extends Migration
         Schema::create('tokens', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->nullable();
-            $table->string('token');
+            $table->string('token',255);
             $table->longText('sms_text');
             $table->integer('is_used')->default(1);
             $table->integer('sent_status');
