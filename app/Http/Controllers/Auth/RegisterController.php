@@ -76,6 +76,7 @@ class RegisterController extends Controller
 
     /**
      * @param Request $request
+     * @return \App\Helpers\ValidationError|string
      */
     public function registerCustomer(Request $request)
     {

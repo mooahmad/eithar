@@ -16,18 +16,19 @@ class CreateFamilyMembersTable extends Migration
         Schema::create('family_members', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_parent_id')->nullable();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('mobile_number')->unique();
+            $table->string('first_name',255);
+            $table->string('last_name',255);
+            $table->string('mobile_number')->nullable();
             $table->integer('relation_type')->nullable();
             $table->integer('gender')->default(0);
-            $table->string('profile_picture_path')->nullable();
+            $table->string('profile_picture_path',255)->nullable();
             $table->date('birthdate');
             $table->string('national_id')->nullable();
             $table->integer('nationality_id')->nullable();
             $table->integer('is_active')->default(0);
             $table->integer('is_saudi_nationality')->default(1);
             $table->softDeletes();
+            $table->unique('mobile_number');
             $table->timestamps();
         });
         // relations
