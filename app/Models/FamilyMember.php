@@ -9,6 +9,7 @@ class FamilyMember extends Model
 {
     use SoftDeletes;
 
+    public $timestamps = false;
     protected $table = 'family_members';
     protected $dateFormat = 'U';
 }

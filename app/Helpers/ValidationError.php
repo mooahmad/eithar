@@ -6,7 +6,7 @@ namespace App\Helpers;
 class ValidationError
 {
     public $error         = null;
-    public $errorMessages = [];
+    public $errorMessages = null;
 
     public function __construct($error, $errorMessages)
     {

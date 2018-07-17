@@ -9,6 +9,7 @@ class Users_Roles extends Pivot
 {
     use SoftDeletes;
 
+    public $timestamps = false;
     protected $table = 'users_roles';
     protected $dateFormat = 'U';
 

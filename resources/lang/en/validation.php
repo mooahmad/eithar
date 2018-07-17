@@ -136,9 +136,12 @@ return [
         ],
         'email' => [
             'required' => 'email is required',
+            'unique'   => 'email already exists',
+            'email'    => 'wrong email format'
         ],
         'mobile' => [
             'required' => 'mobile is required',
+            'unique'   => 'mobile already exists'
         ],
         'password' => [
             'required' => 'password is required',
@@ -148,6 +151,7 @@ return [
         ],
         'national_id' => [
             'required' => 'national ID is required',
+            'unique'   => 'national ID already exists'
         ],
         'country_id' => [
             'required' => 'country ID is required',
@@ -175,9 +179,5 @@ return [
     */
 
     'attributes' => [],
-
-    // our custom translations
-    'missingInput' => 'input is missing',
-    'operationFailed' => 'something went wrong!',
 
 ];

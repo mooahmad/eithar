@@ -135,10 +135,13 @@ return [
             'required' => 'الاسم الاخير مطلوب',
         ],
         'email' => [
-            'required' => 'البريد مطلوب',
+            'required' => 'البريد الاليكترونى مطلوب',
+            'unique'   => 'البريد الاليكترونى موجود بالفعل',
+            'email'    => 'ادخل البريد الاليكترونى بشكل صحيح'
         ],
         'mobile' => [
             'required' => 'الهاتف مطلوب',
+            'unique'   => 'الهاتف موجود بالفعل'
         ],
         'password' => [
             'required' => 'الرقم السرى مطلوب',
@@ -148,6 +151,7 @@ return [
         ],
         'national_id' => [
             'required' => 'الرقم القومى مطلوب',
+            'unique'   => 'الرقم القومى موجود بالفعل'
         ],
         'country_id' => [
             'required' => 'الدوله مطلوب',
@@ -177,7 +181,4 @@ return [
 
     'attributes' => [],
 
-    // our custom translations
-    'missingInput' => 'عنصر مفقود',
-    'operationFailed' => 'حدث خطأ!',
 ];

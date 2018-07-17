@@ -3,6 +3,7 @@
 namespace App\Http\Services\Auth\ClassesAuth;
 
 
+use App\Helpers\ApiHelpers;
 use App\Http\Services\Auth\AbstractAuth\Registration;
 use Illuminate\Http\Request;
 
@@ -10,16 +11,17 @@ class RegistrationApi extends Registration
 {
     public function registerCustomer(Request $customerData)
     {
+        // calls register customer logic from parent class
         $validationObject = parent::registerCustomer($customerData);
         switch ($validationObject->error) {
-            case Config::getConfig('constants.responseStatus.missingInput'):
-                return ApiHelpers::fail(Config::getConfig('constants.responseStatus.missingInput'), $validationObject->errorMessages->errors());
+            case config('constants.responseStatus.missingInput'):
+                return ApiHelpers::fail(config('constants.responseStatus.missingInput'), $validationObject->errorMessages);
                 break;
-            case Config::getConfig('constants.responseStatus.operationFailed'):
-                return ApiHelpers::fail(Config::getConfig('constants.responseStatus.operationFailed'), __('validation.operationFailed'));
+            case config('constants.responseStatus.operationFailed'):
+                return ApiHelpers::fail(config('constants.responseStatus.operationFailed'), $validationObject->errorMessages);
                 break;
             default:
-                return ApiHelpers::success(Config::getConfig('constants.responseStatus.success'), json_encode([]));
+                return ApiHelpers::success(config('constants.responseStatus.success'), $validationObject->errorMessages);
         }
     }
 

@@ -9,6 +9,7 @@ class Token extends Model
 {
     use SoftDeletes;
 
+    public $timestamps = false;
     protected $table = 'tokens';
     protected $dateFormat = 'U';
 }

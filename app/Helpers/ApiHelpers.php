@@ -2,27 +2,48 @@
 
 namespace App\Helpers;
 
-use App\config\Config;
 use Illuminate\Http\Request;
-use phpDocumentor\Reflection\Types\Integer;
+use Illuminate\Support\MessageBag;
 
+/**
+ * Class ApiHelpers
+ * @package App\Helpers
+ */
 class ApiHelpers
 {
-    public static function success(Integer $status = 0, object $data = (object)[])
+
+    /**
+     * this function for returning success response with a unified structure
+     * @param int $status
+     * @param $data json object
+     * @return string
+     */
+    public static function success($status = 0, $data)
     {
         return json_encode(array("status" => $status, "data" => $data));
     }
 
-    public static function fail(Integer $status = 1, Array $message = [])
+    /**
+     * this function for returning fail response with object of errors
+     * @param int $status
+     * MessageBag $message
+     * @return string
+     */
+    public static function fail($status = 1,MessageBag $message)
     {
         return json_encode(array("status" => $status, "message" => $message));
     }
 
+    /**
+     * to classify request type whether it's web or api
+     * @param Request $request
+     * @return \Illuminate\Config\Repository|mixed
+     */
     public static function requestType(Request $request)
     {
         $uri = $request->path();
-        if(str_contains($uri, '/api/'))
-            return Config::getConfig('constants.requestTypes.api');
-        return Config::getConfig('constants.requestTypes.web');
+        if(str_contains($uri, 'api'))
+            return config('constants.requestTypes.api');
+        return config('constants.requestTypes.web');
     }
 }

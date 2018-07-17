@@ -3,19 +3,19 @@
 namespace App\Http\Services\Auth\ClassesAuth;
 
 
-use App\config\Config;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class RegistrationStrategy
 {
     private $strategy = NULL;
 
+    // creates instance of registration class depends on strategy type and saves it to strategy variable
     public function __construct($strategyType) {
         switch ($strategyType) {
-            case Config::getConfig('constants.requestTypes.web'):
+            case config('constants.requestTypes.web'):
                 $this->strategy = new RegistrationWeb();
                 break;
-            case Config::getConfig('constants.requestTypes.api'):
+            case config('constants.requestTypes.api'):
                 $this->strategy = new RegistrationApi();
                 break;
         }

@@ -27,7 +27,8 @@ class CreateUsersTable extends Migration
             $table->integer('gender')->default(0);
             $table->integer('default_language')->nullable();
             $table->string('profile_picture_path')->nullable();
-            $table->date('birthdate');
+            $table->string('nationality_id_picture')->nullable();
+            $table->date('birthdate')->nullable();
             $table->string('national_id')->nullable();
             $table->integer('nationality_id')->nullable();
             $table->integer('is_active')->default(0);

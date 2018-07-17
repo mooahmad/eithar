@@ -17,7 +17,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('{locale}')->group(function ($locale = 'en') {
-    App::setLocale($locale);
+
+Route::namespace('Auth')->group(function () {
     Route::post('registerCustomer', 'RegisterController@registerCustomer');
 });
+
+
+

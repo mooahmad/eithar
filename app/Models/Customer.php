@@ -9,6 +9,7 @@ class Customer extends Model
 {
     use SoftDeletes;
 
+    public $timestamps = false;
     protected $table = 'customers';
     protected $dateFormat = 'U';
 }

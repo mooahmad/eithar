@@ -2,7 +2,7 @@
 
 namespace App\Http\Services\WebApi\ClassesUsers;
 
-use App\config\Config;
+
 
 class CustomerFamilyCrudStrategy
 {
@@ -10,10 +10,10 @@ class CustomerFamilyCrudStrategy
 
     public function __construct($strategyType) {
         switch ($strategyType) {
-            case Config::getConfig('constants.requestTypes.web'):
+            case config('constants.requestTypes.web'):
                 $this->strategy = new CustomerFamilyCrudWeb();
                 break;
-            case Config::getConfig('constants.requestTypes.api'):
+            case config('constants.requestTypes.api'):
                 $this->strategy = new CustomerFamilyCrudApi();
                 break;
         }

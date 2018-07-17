@@ -6,6 +6,7 @@ use App\Helpers\ApiHelpers;
 use App\Http\Services\Auth\ClassesAuth\RegistrationStrategy;
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -39,6 +40,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
+        parent::__construct();
         $this->middleware('guest');
     }
 
@@ -77,6 +79,7 @@ class RegisterController extends Controller
      */
     public function registerCustomer(Request $request)
     {
+        // instantiate registration strategy object using request type detection helper method
         $registrationStrategy = new RegistrationStrategy(ApiHelpers::requestType($request));
         return $registrationStrategy->registerCustomer($request);
     }

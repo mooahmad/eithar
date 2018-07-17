@@ -9,5 +9,6 @@ return [
         "success" => 0,
         "operationFailed" => 1,
         "missingInput" => 2,
+        "errorUploadImage" => 3,
     ]
 ];

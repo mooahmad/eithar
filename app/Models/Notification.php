@@ -9,6 +9,7 @@ class Notification extends Model
 {
     use SoftDeletes;
 
+    public $timestamps = false;
     protected $table = 'notifications';
     protected $dateFormat = 'U';
 }
