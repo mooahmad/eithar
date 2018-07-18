@@ -2,7 +2,9 @@
 
 namespace App\Helpers;
 
+use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\MessageBag;
 
 /**
@@ -45,5 +47,15 @@ class ApiHelpers
         if(str_contains($uri, 'api'))
             return config('constants.requestTypes.api');
         return config('constants.requestTypes.web');
+    }
+
+    public static function getCustomerWithToken($customerID, $scopes = []){
+        $customer = Customer::find($customerID);
+        DB::table('oauth_access_tokens')->where('user_id', $customerID)->delete();
+        if(empty($scopes))
+        $customer->access_token = $customer->createToken('customer')->accessToken;
+        else
+            $customer->access_token = $customer->createToken('customer', [])->accessToken;
+        return $customer;
     }
 }

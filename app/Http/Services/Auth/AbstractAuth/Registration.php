@@ -3,6 +3,7 @@
 namespace App\Http\Services\Auth\AbstractAuth;
 
 
+use App\Helpers\ApiHelpers;
 use App\Helpers\Utilities;
 use App\Http\Requests\RegisterCustomer;
 use App\Http\Services\Auth\IAuth\IRegistration;
@@ -31,9 +32,6 @@ Abstract class Registration implements IRegistration
                                                  new MessageBag([
                                                                     "message" => __('errors.operationFailed')
                                                                 ]));
-//        $c = Customer::find($newCustomer->id);
-//        $token = $c->createToken('public')->accessToken;
-//        dd($token);
         // uploading customer avatar
         if ($customerData->hasFile('avatar')) {
             $isUploaded = $this->uploadCustomerAvatar($customerData->file('avatar'), $newCustomer);
@@ -60,7 +58,7 @@ Abstract class Registration implements IRegistration
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'),
                                              new MessageBag([
-                                                                "user" => Customer::find($newCustomer->id)
+                                                                "user" => ApiHelpers::getCustomerWithToken($newCustomer->id)
                                                             ]));
     }
 
@@ -87,7 +85,7 @@ Abstract class Registration implements IRegistration
     {
         $newCustomer->first_name = $customerData->input('first_name');
         $newCustomer->middle_name = $customerData->input('middle_name');
-        $newCustomer->last_name = $customerData->input('middle_name');
+        $newCustomer->last_name = $customerData->input('last_name');
         $newCustomer->email = $customerData->input('email');
         $newCustomer->mobile_number = $customerData->input('mobile');
         $newCustomer->password = Hash::make($customerData->input('password'));
