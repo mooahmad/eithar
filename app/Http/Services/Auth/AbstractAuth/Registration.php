@@ -31,9 +31,9 @@ Abstract class Registration implements IRegistration
                                                  new MessageBag([
                                                                     "message" => __('errors.operationFailed')
                                                                 ]));
-        $c = Customer::find($newCustomer->id);
-        $token = $c->createToken('public')->accessToken;
-        dd($token);
+//        $c = Customer::find($newCustomer->id);
+//        $token = $c->createToken('public')->accessToken;
+//        dd($token);
         // uploading customer avatar
         if ($customerData->hasFile('avatar')) {
             $isUploaded = $this->uploadCustomerAvatar($customerData->file('avatar'), $newCustomer);
