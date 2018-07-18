@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
-class Customer extends Model
+class Customer extends Authenticatable
 {
-    use SoftDeletes;
+    use HasApiTokens, Notifiable, SoftDeletes;
 
     public $timestamps = false;
     protected $table = 'customers';
