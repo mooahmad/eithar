@@ -161,8 +161,6 @@ return [
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Kozz\Laravel\Providers\Guzzle::class,
-        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
-
     ],
 
     /*
@@ -214,8 +212,6 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Guzzle' => Kozz\Laravel\Facades\Guzzle::class,
-        'JWTAuth'   => Tymon\JWTAuth\Facades\JWTAuth::class,
-        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
     ],
 
 ];
