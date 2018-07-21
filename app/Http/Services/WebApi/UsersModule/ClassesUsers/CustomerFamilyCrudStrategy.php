@@ -4,6 +4,8 @@ namespace App\Http\Services\WebApi\ClassesUsers;
 
 
 
+use Illuminate\Http\Request;
+
 class CustomerFamilyCrudStrategy
 {
     private $strategy = NULL;
@@ -19,23 +21,23 @@ class CustomerFamilyCrudStrategy
         }
     }
 
-    public function addFamilyMember()
+    public function addFamilyMember(Request $request)
     {
-        return $this->strategy->addFamilyMember();
+        return $this->strategy->addFamilyMember($request);
     }
 
-    public function editFamilyMember()
+    public function editFamilyMember(Request $request)
     {
-        return $this->strategy->editFamilyMember();
+        return $this->strategy->editFamilyMember($request);
     }
 
-    public function getFamilyMember()
+    public function getFamilyMember(Request $request)
     {
-        return $this->strategy->getFamilyMember();
+        return $this->strategy->getFamilyMember($request);
     }
 
-    public function deleteFamilyMember()
+    public function deleteFamilyMember(Request $request)
     {
-        return $this->strategy->deleteFamilyMember();
+        return $this->strategy->deleteFamilyMember($request);
     }
 }

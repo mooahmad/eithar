@@ -2,27 +2,41 @@
 
 namespace App\Http\Services\WebApi\ClassesUsers;
 
+use App\Helpers\ApiHelpers;
 use App\Http\Services\WebApi\AbstractUsers\CustomerFamilyCrud;
+use Illuminate\Http\Request;
 
 class CustomerFamilyCrudApi extends CustomerFamilyCrud
 {
-    public function addFamilyMember()
+    public function addFamilyMember(Request $request)
     {
-        $data = parent::addFamilyMember();
+        $validationObject = parent::addFamilyMember($request);
+        if ($validationObject->error == config('constants.responseStatus.success'))
+            return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
     }
 
-    public function editFamilyMember()
+    public function editFamilyMember(Request $request)
     {
-        $data = parent::editFamilyMember();
+        $validationObject = parent::editFamilyMember($request);
+        if ($validationObject->error == config('constants.responseStatus.success'))
+            return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
     }
 
-    public function getFamilyMember()
+    public function getFamilyMember(Request $request)
     {
-        $data = parent::getFamilyMember();
+        $validationObject = parent::getFamilyMember($request);
+        if ($validationObject->error == config('constants.responseStatus.success'))
+            return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
     }
 
-    public function deleteFamilyMember()
+    public function deleteFamilyMember(Request $request)
     {
-        $data = parent::deleteFamilyMember();
+        $validationObject = parent::deleteFamilyMember($request);
+        if ($validationObject->error == config('constants.responseStatus.success'))
+            return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
     }
 }

@@ -17,16 +17,18 @@ class CreateFamilyMembersTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_parent_id')->nullable();
             $table->string('first_name',255);
+            $table->string('middle_name',100)->nullable();
             $table->string('last_name',255);
             $table->string('mobile_number')->nullable();
             $table->integer('relation_type')->nullable();
             $table->integer('gender')->default(0);
             $table->string('profile_picture_path',255)->nullable();
-            $table->date('birthdate');
+            $table->date('birthdate')->nullable();
             $table->string('national_id')->nullable();
             $table->integer('nationality_id')->nullable();
             $table->integer('is_active')->default(0);
             $table->integer('is_saudi_nationality')->default(1);
+            $table->longText('address')->nullable();
             $table->softDeletes();
             $table->unique('mobile_number');
             $table->timestamps();
@@ -35,7 +37,7 @@ class CreateFamilyMembersTable extends Migration
         Schema::table('family_members', function (Blueprint $table) {
             $table->foreign('user_parent_id')
                 ->references('id')
-                ->on('users')
+                ->on('customers')
                 ->onUpdate('set null')
                 ->onDelete('set null');
         });

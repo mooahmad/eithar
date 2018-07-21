@@ -4,7 +4,7 @@ namespace App\Http\Services\Auth\AbstractAuth;
 
 use App\Helpers\ApiHelpers;
 use App\Helpers\Utilities;
-use App\Http\Requests\LoginCustomer;
+use App\Http\Requests\Auth\LoginCustomer;
 use App\Http\Services\Auth\IAuth\ILogin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -14,20 +14,14 @@ use Illuminate\Support\MessageBag;
 Abstract class Login implements ILogin
 {
 
-    public $customer = null;
-
-    public function __construct()
-    {
-        $this->customer = new \App\Http\Services\WebApi\UsersModule\ClassesUsers\Customer();
-    }
-
     public function loginCustomer(Request $request)
     {
+        $customerInstance = new \App\Http\Services\WebApi\UsersModule\ClassesUsers\Customer();
         // verifies customer credentials
         $isVerified = $this->verifyCredentials($request);
         if ($isVerified !== true)
             return Utilities::getValidationError(config('constants.responseStatus.missingInput'), $isVerified->errors());
-        $customer = $this->customer->isCustomerExists($request);
+        $customer = $customerInstance->isCustomerExists($request);
         if (!$customer)
             return Utilities::getValidationError(config('constants.responseStatus.userNotFound'),
                                                  new MessageBag([
@@ -36,7 +30,7 @@ Abstract class Login implements ILogin
         $customerData = clone $customer;
         $customerData = ApiHelpers::getCustomerImages($customerData);
         $customerData = ApiHelpers::getCustomerWithToken($customerData);
-        $this->customer->updateLastLoginDate($customer);
+        $customerInstance->updateLastLoginDate($customer);
         return Utilities::getValidationError(config('constants.responseStatus.success'),
                                              new MessageBag([
                                                                 "user" => $customerData

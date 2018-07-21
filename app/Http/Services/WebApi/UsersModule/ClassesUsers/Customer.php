@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Customer as CustomerModel;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\MessageBag;
 
 class Customer
 {
@@ -21,16 +22,26 @@ class Customer
         if ($request->hasFile($fileName)) {
             $isValidImage = Utilities::validateImage($request, $fileName);
             if (!$isValidImage)
-                return false;
+                return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
+                                                     new MessageBag([
+                                                                        "message" => __('errors.errorUploadAvatar')
+                                                                    ]));
             $isUploaded = Utilities::UploadImage($request->file($fileName), 'public/images/avatars');
             if (!$isUploaded)
-                return false;
+                return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
+                                                     new MessageBag([
+                                                                        "message" => __('errors.errorUploadAvatar')
+                                                                    ]));
+            Utilities::DeleteImage($customer->profile_picture_path);
             $customer->profile_picture_path = $isUploaded;
             if (!$customer->save())
-                return false;
-            return true;
+                return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
+                                                     new MessageBag([
+                                                                        "message" => __('errors.errorUploadAvatar')
+                                                                    ]));
+            return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
         }
-        return true;
+        return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
     }
 
     /**
@@ -43,16 +54,26 @@ class Customer
         if ($request->hasFile($fileName)) {
             $isValidImage = Utilities::validateImage($request, $fileName);
             if (!$isValidImage)
-                return false;
+                return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
+                                                     new MessageBag([
+                                                                        "message" => __('errors.errorUploadNationalID')
+                                                                    ]));
             $isUploaded = Utilities::UploadImage($request->file($fileName), 'public/images/nationalities');
             if (!$isUploaded)
-                return false;
+                return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
+                                                     new MessageBag([
+                                                                        "message" => __('errors.errorUploadNationalID')
+                                                                    ]));
+            Utilities::DeleteImage($customer->nationality_id_picture);
             $customer->nationality_id_picture = $isUploaded;
             if (!$customer->save())
-                return false;
-            return true;
+                return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
+                                                     new MessageBag([
+                                                                        "message" => __('errors.errorUploadNationalID')
+                                                                    ]));
+            return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
         }
-        return true;
+        return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
     }
 
     /**
@@ -73,7 +94,7 @@ class Customer
      */
     public function isCustomerExists(Request $request)
     {
-        $customer = CustomerModel::where('email', $request->input('email'))->first();
+        $customer = CustomerModel::where('mobile_number', $request->input('mobile'))->first();
         if (!$customer)
             return false;
         if (!Hash::check($request->input('password'), $customer->password))

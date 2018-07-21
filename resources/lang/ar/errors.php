@@ -8,4 +8,5 @@ return [
     'invalidAvatarImage' => 'امتداد صوره شخصيه خاطىء',
     'invalidNationalityImage' => 'امتداد صوره البطاقه خاطىء',
     'userNotFound' => 'مستخدم غير موجود',
+    'errorUploadMember' => 'خطأ رفع الصوره',
 ];
