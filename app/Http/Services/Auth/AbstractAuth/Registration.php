@@ -105,7 +105,7 @@ Abstract class Registration implements IRegistration
             $isValidImage = Utilities::validateImage($request, $fileName);
             if (!$isValidImage)
                 return false;
-            $isUploaded = Utilities::UploadImage($request->hasFile($fileName), 'public/images/avatars');
+            $isUploaded = Utilities::UploadImage($request->file($fileName), 'public/images/avatars');
             if (!$isUploaded)
                 return false;
             $customer->profile_picture_path = $isUploaded;
