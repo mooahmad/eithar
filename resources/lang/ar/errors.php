@@ -7,4 +7,5 @@ return [
     'errorUploadNationalID' => 'خطأ رفع صوره البطاقه',
     'invalidAvatarImage' => 'امتداد صوره شخصيه خاطىء',
     'invalidNationalityImage' => 'امتداد صوره البطاقه خاطىء',
+    'userNotFound' => 'مستخدم غير موجود',
 ];

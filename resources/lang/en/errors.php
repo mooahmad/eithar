@@ -7,4 +7,5 @@ return [
     'errorUploadNationalID' => 'error in uploading nationality image',
     'invalidAvatarImage' => 'invalid avatar image extension',
     'invalidNationalityImage' => 'invalid nationality image extension',
+    'userNotFound' => 'user not found!'
 ];

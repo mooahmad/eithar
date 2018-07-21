@@ -8,6 +8,7 @@ use App\Helpers\Utilities;
 use App\Http\Requests\RegisterCustomer;
 use App\Http\Services\Auth\IAuth\IRegistration;
 use App\Models\Customer;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -33,32 +34,27 @@ Abstract class Registration implements IRegistration
                                                                     "message" => __('errors.operationFailed')
                                                                 ]));
         // uploading customer avatar
-        if ($customerData->hasFile('avatar')) {
-            $isUploaded = $this->uploadCustomerAvatar($customerData->file('avatar'), $newCustomer);
-            if (!$isUploaded)
-                return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
-                                                     new MessageBag([
-                                                                        "message" => __('errors.errorUploadAvatar')
-                                                                    ]));
-        }
+        $isUploaded = $this->uploadCustomerAvatar($customerData, 'avatar', $newCustomer);
+        if (!$isUploaded)
+            return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
+                                                 new MessageBag([
+                                                                    "message" => __('errors.errorUploadAvatar')
+                                                                ]));
         // uploading customer national id image
-        if ($customerData->hasFile('nationality_id_picture')) {
-            $isValidImage = Utilities::validateImage($customerData, 'nationality_id_picture');
-            if (!$isValidImage)
-                return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
-                                                     new MessageBag([
-                                                                        "message" => __('errors.invalidNationalityImage')
-                                                                    ]));
-            $isUploaded = $this->uploadCustomerNationalIDImage($customerData->file('nationality_id_picture'), $newCustomer);
+            $isUploaded = $this->uploadCustomerNationalIDImage($customerData,'nationality_id_picture', $newCustomer);
             if (!$isUploaded)
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
                                                      new MessageBag([
                                                                         "message" => __('errors.errorUploadNationalID')
                                                                     ]));
-        }
+        $customer = Customer::find($newCustomer->id);
+        $customerData = clone $customer;
+        $customerData = ApiHelpers::getCustomerImages($customerData);
+        $customerData = ApiHelpers::getCustomerWithToken($customerData);
+        $this->updateLastLoginDate($customer);
         return Utilities::getValidationError(config('constants.responseStatus.success'),
                                              new MessageBag([
-                                                                "user" => ApiHelpers::getCustomerWithToken(Customer::find($newCustomer->id))
+                                                                "user" => $customerData
                                                             ]));
     }
 
@@ -103,14 +99,20 @@ Abstract class Registration implements IRegistration
      * @param Customer $customer
      * @return bool
      */
-    private function uploadCustomerAvatar($customerAvatar, Customer $customer)
+    private function uploadCustomerAvatar(Request $request, $fileName, Customer $customer)
     {
-        $isUploaded = Utilities::UploadImage($customerAvatar, 'public/images/avatars');
-        if (!$isUploaded)
-            return false;
-        $customer->profile_picture_path = $isUploaded;
-        if (!$customer->save())
-            return false;
+        if ($request->hasFile($fileName)) {
+            $isValidImage = Utilities::validateImage($request, $fileName);
+            if (!$isValidImage)
+                return false;
+            $isUploaded = Utilities::UploadImage($request->hasFile($fileName), 'public/images/avatars');
+            if (!$isUploaded)
+                return false;
+            $customer->profile_picture_path = $isUploaded;
+            if (!$customer->save())
+                return false;
+            return true;
+        }
         return true;
     }
 
@@ -119,13 +121,26 @@ Abstract class Registration implements IRegistration
      * @param Customer $customer
      * @return bool
      */
-    private function uploadCustomerNationalIDImage($nationalIDImage, Customer $customer)
+    private function uploadCustomerNationalIDImage(Request $request, $fileName, Customer $customer)
     {
-        $isUploaded = Utilities::UploadImage($nationalIDImage, 'public/images/nationalities');
-        if (!$isUploaded)
-            return false;
-        $customer->nationality_id_picture = $isUploaded;
-        if (!$customer->save())
+        if ($request->hasFile($fileName)) {
+            $isValidImage = Utilities::validateImage($request, $fileName);
+            if (!$isValidImage)
+                return false;
+            $isUploaded = Utilities::UploadImage($request->file($fileName), 'public/images/nationalities');
+            if (!$isUploaded)
+                return false;
+            $customer->nationality_id_picture = $isUploaded;
+            if (!$customer->save())
+                return false;
+            return true;
+        }
+        return true;
+    }
+
+    private function updateLastLoginDate(Customer $customer){
+        $customer->last_login_date = Carbon::now();
+        if(!$customer->save())
             return false;
         return true;
     }

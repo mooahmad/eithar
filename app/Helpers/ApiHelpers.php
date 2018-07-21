@@ -57,4 +57,10 @@ class ApiHelpers
             $customer->access_token = $customer->createToken('customer', [])->accessToken;
         return $customer;
     }
+
+    public static function getCustomerImages(Customer $customer){
+        $customer->profile_picture_path = Utilities::getFileUrl($customer->profile_picture_path);
+        $customer->nationality_id_picture = Utilities::getFileUrl($customer->nationality_id_picture);
+        return $customer;
+    }
 }

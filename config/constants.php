@@ -10,5 +10,6 @@ return [
         "operationFailed" => 1,
         "missingInput" => 2,
         "errorUploadImage" => 3,
+        "userNotFound" => 4,
     ]
 ];

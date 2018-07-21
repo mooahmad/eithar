@@ -6,6 +6,7 @@ use App\Helpers\ApiHelpers;
 use App\Http\Controllers\Controller;
 use App\Http\Services\Auth\ClassesAuth\LoginStrategy;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\http\Request;
 
 class LoginController extends Controller
 {
