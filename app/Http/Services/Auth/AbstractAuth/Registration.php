@@ -58,7 +58,7 @@ Abstract class Registration implements IRegistration
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'),
                                              new MessageBag([
-                                                                "user" => ApiHelpers::getCustomerWithToken($newCustomer->id)
+                                                                "user" => ApiHelpers::getCustomerWithToken(Customer::find($newCustomer->id))
                                                             ]));
     }
 

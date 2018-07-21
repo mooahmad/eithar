@@ -13,16 +13,7 @@ class RegistrationApi extends Registration
     {
         // calls register customer logic from parent class
         $validationObject = parent::registerCustomer($customerData);
-        switch ($validationObject->error) {
-            case config('constants.responseStatus.missingInput'):
-                return ApiHelpers::fail(config('constants.responseStatus.missingInput'), $validationObject->errorMessages);
-                break;
-            case config('constants.responseStatus.operationFailed'):
-                return ApiHelpers::fail(config('constants.responseStatus.operationFailed'), $validationObject->errorMessages);
-                break;
-            default:
-                return ApiHelpers::success(config('constants.responseStatus.success'), $validationObject->errorMessages);
-        }
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
     }
 
 }

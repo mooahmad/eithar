@@ -49,9 +49,8 @@ class ApiHelpers
         return config('constants.requestTypes.web');
     }
 
-    public static function getCustomerWithToken($customerID, $scopes = []){
-        $customer = Customer::find($customerID);
-        DB::table('oauth_access_tokens')->where('user_id', $customerID)->delete();
+    public static function getCustomerWithToken(Customer $customer, $scopes = []){
+        DB::table('oauth_access_tokens')->where('user_id', $customer->id)->delete();
         if(empty($scopes))
         $customer->access_token = $customer->createToken('customer')->accessToken;
         else
