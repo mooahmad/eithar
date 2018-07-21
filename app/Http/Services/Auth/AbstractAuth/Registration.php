@@ -8,7 +8,6 @@ use App\Helpers\Utilities;
 use App\Http\Requests\RegisterCustomer;
 use App\Http\Services\Auth\IAuth\IRegistration;
 use App\Models\Customer;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -16,6 +15,13 @@ use Illuminate\Support\MessageBag;
 
 Abstract class Registration implements IRegistration
 {
+    public $customer = null;
+
+    public function __construct()
+    {
+        $this->customer = new \App\Http\Services\WebApi\UsersModule\ClassesUsers\Customer();
+    }
+
     /**
      * @param Request $customerData
      * @return \App\Helpers\ValidationError
@@ -34,24 +40,24 @@ Abstract class Registration implements IRegistration
                                                                     "message" => __('errors.operationFailed')
                                                                 ]));
         // uploading customer avatar
-        $isUploaded = $this->uploadCustomerAvatar($customerData, 'avatar', $newCustomer);
+        $isUploaded = $this->customer->uploadCustomerAvatar($customerData, 'avatar', $newCustomer);
         if (!$isUploaded)
             return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
                                                  new MessageBag([
                                                                     "message" => __('errors.errorUploadAvatar')
                                                                 ]));
         // uploading customer national id image
-            $isUploaded = $this->uploadCustomerNationalIDImage($customerData,'nationality_id_picture', $newCustomer);
-            if (!$isUploaded)
-                return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
-                                                     new MessageBag([
-                                                                        "message" => __('errors.errorUploadNationalID')
-                                                                    ]));
+        $isUploaded = $this->customer->uploadCustomerNationalIDImage($customerData, 'nationality_id_picture', $newCustomer);
+        if (!$isUploaded)
+            return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
+                                                 new MessageBag([
+                                                                    "message" => __('errors.errorUploadNationalID')
+                                                                ]));
         $customer = Customer::find($newCustomer->id);
         $customerData = clone $customer;
         $customerData = ApiHelpers::getCustomerImages($customerData);
         $customerData = ApiHelpers::getCustomerWithToken($customerData);
-        $this->updateLastLoginDate($customer);
+        $this->customer->updateLastLoginDate($customer);
         return Utilities::getValidationError(config('constants.responseStatus.success'),
                                              new MessageBag([
                                                                 "user" => $customerData
@@ -94,54 +100,4 @@ Abstract class Registration implements IRegistration
         return $newCustomer;
     }
 
-    /**
-     * @param $customerAvatar
-     * @param Customer $customer
-     * @return bool
-     */
-    private function uploadCustomerAvatar(Request $request, $fileName, Customer $customer)
-    {
-        if ($request->hasFile($fileName)) {
-            $isValidImage = Utilities::validateImage($request, $fileName);
-            if (!$isValidImage)
-                return false;
-            $isUploaded = Utilities::UploadImage($request->file($fileName), 'public/images/avatars');
-            if (!$isUploaded)
-                return false;
-            $customer->profile_picture_path = $isUploaded;
-            if (!$customer->save())
-                return false;
-            return true;
-        }
-        return true;
-    }
-
-    /**
-     * @param $nationalIDImage
-     * @param Customer $customer
-     * @return bool
-     */
-    private function uploadCustomerNationalIDImage(Request $request, $fileName, Customer $customer)
-    {
-        if ($request->hasFile($fileName)) {
-            $isValidImage = Utilities::validateImage($request, $fileName);
-            if (!$isValidImage)
-                return false;
-            $isUploaded = Utilities::UploadImage($request->file($fileName), 'public/images/nationalities');
-            if (!$isUploaded)
-                return false;
-            $customer->nationality_id_picture = $isUploaded;
-            if (!$customer->save())
-                return false;
-            return true;
-        }
-        return true;
-    }
-
-    private function updateLastLoginDate(Customer $customer){
-        $customer->last_login_date = Carbon::now();
-        if(!$customer->save())
-            return false;
-        return true;
-    }
 }
