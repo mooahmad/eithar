@@ -53,6 +53,11 @@ Abstract class Registration implements IRegistration
         $customerData = clone $customer;
         $customerData = ApiHelpers::getCustomerImages($customerData);
         $customerData = ApiHelpers::getCustomerWithToken($customerData);
+        $customerData = Utilities::forgetModelItems($customerData->get(), [
+            'registration_source',
+            'registration_source_desc',
+            'birthdate'
+        ]);
         $customerInstance->updateLastLoginDate($customer);
         Mail::to($customer->email)->send(new VerifyEmailCode($customer));
         return Utilities::getValidationError(config('constants.responseStatus.success'),

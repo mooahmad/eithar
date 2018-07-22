@@ -1,4 +1,4 @@
-@extends('vendor.mail.layouts.layoutv1.blade')
+@extends('vendor.mail.layouts.layoutv1')
 
 @section('title', 'Eithar')
 

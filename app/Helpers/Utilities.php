@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 
+use App\dataModel\model\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
@@ -58,7 +59,7 @@ class Utilities
 
     public static function getFileUrl($fullFilePath, $temporaryTimeMinutes = null, $disk = 'local')
     {
-        if(empty($fullFilePath))
+        if (empty($fullFilePath))
             return $fullFilePath;
         $exists = Storage::disk($disk)->exists($fullFilePath);
         if (!$exists)
@@ -77,13 +78,26 @@ class Utilities
      *
      * Should not be considered sufficient for cryptography, etc.
      *
-     * @param  int  $length
+     * @param  int $length
      * @return string
      */
-    public static function quickRandom($length = 6)
+    public static function quickRandom($length = 6, $onlyDigits = false)
     {
         $pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        if ($onlyDigits)
+            $pool = '0123456789';
 
         return substr(str_shuffle(str_repeat($pool, $length)), 0, $length);
     }
+
+    public static function forgetModelItems($model, Array $items = [])
+    {
+        foreach ($items as $item) {
+            if ($model->has($item))
+                $model->forget($item);
+        }
+        return $model;
+    }
+
+
 }
