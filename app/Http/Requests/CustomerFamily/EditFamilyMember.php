@@ -4,7 +4,7 @@ namespace App\Http\Requests\CustomerFamily;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddFamilyMember extends FormRequest
+class EditFamilyMember extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,13 @@ class AddFamilyMember extends FormRequest
     public function rules()
     {
         return [
+            'member_id'     => 'required',
             'first_name'    => 'required',
             'middle_name'   => 'required',
             'last_name'     => 'required',
             'relation_type' => 'required',
-            'mobile'        => 'required|unique:family_members,mobile_number',
-            'national_id'   => 'required|unique:family_members,national_id',
+            'mobile'        => 'required',
+            'national_id'   => 'required',
             'address'       => 'required'
         ];
     }

@@ -167,6 +167,12 @@ return [
         ],
         'email_code' => [
             'required' => 'code is required'
+        ],
+        'customer_id' => [
+            'required' => 'customer id is required'
+        ],
+        'member_id' => [
+            'required' => 'member id is required'
         ]
     ],
 

@@ -13,7 +13,8 @@ class Customer extends Authenticatable
 
     public $timestamps = false;
     protected $table = 'customers';
-    protected $dateFormat = 'U';
+    protected $dateFormat = 'Y-m-d H:m:s';
+    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     /**
      * The attributes that are mass assignable.

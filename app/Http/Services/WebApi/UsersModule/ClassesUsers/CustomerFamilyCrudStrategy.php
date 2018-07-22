@@ -40,4 +40,9 @@ class CustomerFamilyCrudStrategy
     {
         return $this->strategy->deleteFamilyMember($request);
     }
+
+    public function getFamilyMembers(Request $request)
+    {
+        return $this->strategy->getFamilyMembers($request);
+    }
 }

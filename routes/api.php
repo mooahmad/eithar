@@ -24,6 +24,10 @@ Route::middleware('auth:api')->group(function () {
         Route::post('updateCustomerNationalId', 'CustomerController@updateCustomerNationalId');
         Route::post('verifyCustomerEmail', 'CustomerController@verifyCustomerEmail');
         Route::post('addCustomerFamilyMember', 'CustomerController@addCustomerFamilyMember');
+        Route::post('editCustomerFamilyMember', 'CustomerController@editCustomerFamilyMember');
+        Route::post('getCustomerFamilyMember', 'CustomerController@getCustomerFamilyMember');
+        Route::post('deleteCustomerFamilyMember', 'CustomerController@deleteCustomerFamilyMember');
+        Route::get('getCustomerFamilyMembers', 'CustomerController@getCustomerFamilyMembers');
     });
 });
 

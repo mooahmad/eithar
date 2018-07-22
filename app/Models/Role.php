@@ -12,7 +12,8 @@ class Role extends Model
 
     public $timestamps = false;
     protected $table = 'roles';
-    protected $dateFormat = 'U';
+    protected $dateFormat = 'Y-m-d H:m:s';
+    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     public function users()
     {

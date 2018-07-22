@@ -11,5 +11,7 @@ class Token extends Model
 
     public $timestamps = false;
     protected $table = 'tokens';
-    protected $dateFormat = 'U';
+    protected $dateFormat = 'Y-m-d H:m:s';
+    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+
 }

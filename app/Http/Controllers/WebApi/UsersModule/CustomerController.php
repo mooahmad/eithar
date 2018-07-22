@@ -7,7 +7,9 @@ use App\Helpers\Utilities;
 use App\Http\Services\WebApi\ClassesUsers\CustomerFamilyCrudStrategy;
 use App\Http\Services\WebApi\ClassesUsers\CustomerStrategy;
 use App\Models\Customer;
+use App\Models\FamilyMember;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\MessageBag;
 use App\Http\Controllers\Controller;
 
@@ -22,13 +24,13 @@ class CustomerController extends Controller
     public function updateCustomerAvatar(Request $request)
     {
         $customer = new CustomerStrategy(ApiHelpers::requestType($request));
-        return $customer->uploadCustomerAvatar($request, 'avatar', Customer::find($request->input('customer_id')));
+        return $customer->uploadCustomerAvatar($request, 'avatar', Customer::find(Auth::user()->id));
     }
 
     public function updateCustomerNationalId(Request $request)
     {
         $customer = new CustomerStrategy(ApiHelpers::requestType($request));
-        return $customer->uploadCustomerNationalIDImage($request, 'nationality_id_picture', Customer::find($request->input('customer_id')));
+        return $customer->uploadCustomerNationalIDImage($request, 'nationality_id_picture', Customer::find(Auth::user()->id));
     }
 
     public function verifyCustomerEmail(Request $request)
@@ -59,5 +61,11 @@ class CustomerController extends Controller
     {
         $customerFamily = new CustomerFamilyCrudStrategy(ApiHelpers::requestType($request));
         return $customerFamily->deleteFamilyMember($request);
+    }
+
+    public function getCustomerFamilyMembers(Request $request)
+    {
+        $customerFamily = new CustomerFamilyCrudStrategy(ApiHelpers::requestType($request));
+        return $customerFamily->getFamilyMembers($request);
     }
 }

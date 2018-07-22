@@ -99,8 +99,8 @@ Abstract class Registration implements IRegistration
         $newCustomer->city_id = $request->input('city_id');
         $newCustomer->position = $request->input('position');
         $newCustomer->address = $request->input('address');
-        $newCustomer->email_code = Utilities::quickRandom(6);
-        $newCustomer->mobile_code = Utilities::quickRandom(6);
+        $newCustomer->email_code = Utilities::quickRandom(4, true);
+        $newCustomer->mobile_code = Utilities::quickRandom(4, true);
         return $newCustomer;
     }
 

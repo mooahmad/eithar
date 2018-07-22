@@ -11,6 +11,6 @@ class Users_Roles extends Pivot
 
     public $timestamps = false;
     protected $table = 'users_roles';
-    protected $dateFormat = 'U';
+    protected $dateFormat = 'Y-m-d H:m:s';
 
 }

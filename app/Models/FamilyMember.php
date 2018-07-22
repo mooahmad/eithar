@@ -11,5 +11,6 @@ class FamilyMember extends Model
 
     public $timestamps = false;
     protected $table = 'family_members';
-    protected $dateFormat = 'U';
+    protected $dateFormat = 'Y-m-d H:m:s';
+    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 }
