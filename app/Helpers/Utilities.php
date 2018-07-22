@@ -93,8 +93,8 @@ class Utilities
     public static function forgetModelItems($model, Array $items = [])
     {
         foreach ($items as $item) {
-            if ($model->has($item))
-                $model->forget($item);
+            if (isset($model->{$item}) || $model->{$item} == null || empty($model->{$item}))
+                unset($model->{$item});
         }
         return $model;
     }

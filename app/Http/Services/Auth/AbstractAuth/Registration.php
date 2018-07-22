@@ -53,7 +53,7 @@ Abstract class Registration implements IRegistration
         $customerData = clone $customer;
         $customerData = ApiHelpers::getCustomerImages($customerData);
         $customerData = ApiHelpers::getCustomerWithToken($customerData);
-        $customerData = Utilities::forgetModelItems($customerData->get(), [
+        $customerData = Utilities::forgetModelItems($customerData, [
             'registration_source',
             'registration_source_desc',
             'birthdate'
