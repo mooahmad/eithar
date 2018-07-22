@@ -20,8 +20,10 @@ class CreateCustomersTable extends Migration
             $table->string('last_name',100);
             $table->string('email')->nullable();
             $table->integer('email_verified')->default(0);
+            $table->string('email_code', 8)->nullable();
             $table->string('mobile_number')->nullable();
             $table->integer('mobile_verified')->default(0);
+            $table->string('mobile_code', 8)->nullable();
             $table->string('password');
             $table->integer('registration_source')->nullable();
             $table->string('registration_source_desc',100)->nullable();

@@ -39,4 +39,9 @@ class CustomerStrategy
     {
         return $this->strategy->isCustomerExists($request);
     }
+
+    public function verifyCustomerEmail(Request $request)
+    {
+        return $this->strategy->verifyCustomerEmail($request);
+    }
 }

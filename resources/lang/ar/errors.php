@@ -9,4 +9,5 @@ return [
     'invalidNationalityImage' => 'امتداد صوره البطاقه خاطىء',
     'userNotFound' => 'مستخدم غير موجود',
     'errorUploadMember' => 'خطأ رفع الصوره',
+    'wrongCode' => 'كود خاطىء'
 ];

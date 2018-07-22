@@ -22,6 +22,7 @@ Route::middleware('auth:api')->group(function () {
     Route::namespace('WebApi\UsersModule')->group(function () {
         Route::post('updateCustomerAvatar', 'CustomerController@updateCustomerAvatar');
         Route::post('updateCustomerNationalId', 'CustomerController@updateCustomerNationalId');
+        Route::post('verifyCustomerEmail', 'CustomerController@verifyCustomerEmail');
         Route::post('addCustomerFamilyMember', 'CustomerController@addCustomerFamilyMember');
     });
 });

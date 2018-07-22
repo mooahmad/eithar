@@ -31,6 +31,12 @@ class CustomerController extends Controller
         return $customer->uploadCustomerNationalIDImage($request, 'nationality_id_picture', Customer::find($request->input('customer_id')));
     }
 
+    public function verifyCustomerEmail(Request $request)
+    {
+        $customer = new CustomerStrategy(ApiHelpers::requestType($request));
+        return $customer->verifyCustomerEmail($request);
+    }
+
     public function addCustomerFamilyMember(Request $request)
     {
         $customerFamily = new CustomerFamilyCrudStrategy(ApiHelpers::requestType($request));

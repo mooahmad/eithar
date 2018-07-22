@@ -30,6 +30,6 @@ class Customer extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'deleted_at', 'created_at', 'updated_at'
+        'password', 'remember_token', 'email_code', 'mobile_code', 'deleted_at', 'created_at', 'updated_at'
     ];
 }

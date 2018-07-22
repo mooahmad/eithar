@@ -165,6 +165,9 @@ return [
         'address' => [
             'required' => 'العنوان مطلوب',
         ],
+        'email_code' => [
+            'required' => 'الكود مطلوب'
+        ]
 
     ],
 

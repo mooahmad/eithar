@@ -4,11 +4,13 @@ namespace App\Http\Services\WebApi\UsersModule\ClassesUsers;
 
 
 use App\Helpers\Utilities;
+use App\Http\Requests\Auth\VerifyCustomerEmail;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Customer as CustomerModel;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\MessageBag;
+use Illuminate\Support\Facades\Validator;
 
 class Customer
 {
@@ -101,4 +103,30 @@ class Customer
             return false;
         return $customer;
     }
+
+    public function verifyCustomerEmail(Request $request)
+    {
+        $isVerified = $this->validateVerifyCustomerEmail($request);
+        if ($isVerified !== true)
+            return Utilities::getValidationError(config('constants.responseStatus.missingInput'), $isVerified->errors());
+        $customer = CustomerModel::where([['email', $request->input('email')], ['email_code', $request->input('email_code')]])->first();
+        if (!$customer)
+            return Utilities::getValidationError(config('constants.responseStatus.operationFailed'),
+                                                 new MessageBag([
+                                                                    "message" => __('errors.wrongCode')
+                                                                ]));
+        $customer->email_verified = 1;
+        $customer->save();
+        return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
+    }
+
+    private function validateVerifyCustomerEmail(Request $request){
+        $validator = Validator::make($request->all(), (new VerifyCustomerEmail())->rules());
+        if ($validator->fails()) {
+            return $validator;
+        }
+        return true;
+    }
+
+
 }

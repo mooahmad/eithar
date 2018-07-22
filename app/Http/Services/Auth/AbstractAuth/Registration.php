@@ -7,9 +7,11 @@ use App\Helpers\ApiHelpers;
 use App\Helpers\Utilities;
 use App\Http\Requests\Auth\RegisterCustomer;
 use App\Http\Services\Auth\IAuth\IRegistration;
+use App\Mail\Auth\VerifyEmailCode;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\MessageBag;
 
@@ -52,6 +54,7 @@ Abstract class Registration implements IRegistration
         $customerData = ApiHelpers::getCustomerImages($customerData);
         $customerData = ApiHelpers::getCustomerWithToken($customerData);
         $customerInstance->updateLastLoginDate($customer);
+        Mail::to($customer->email)->send(new VerifyEmailCode($customer));
         return Utilities::getValidationError(config('constants.responseStatus.success'),
                                              new MessageBag([
                                                                 "user" => $customerData
@@ -91,6 +94,8 @@ Abstract class Registration implements IRegistration
         $newCustomer->city_id = $request->input('city_id');
         $newCustomer->position = $request->input('position');
         $newCustomer->address = $request->input('address');
+        $newCustomer->email_code = Utilities::quickRandom(6);
+        $newCustomer->mobile_code = Utilities::quickRandom(6);
         return $newCustomer;
     }
 

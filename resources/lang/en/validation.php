@@ -165,6 +165,9 @@ return [
         'address' => [
             'required' => 'address is required',
         ],
+        'email_code' => [
+            'required' => 'code is required'
+        ]
     ],
 
     /*

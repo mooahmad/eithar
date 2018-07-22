@@ -71,4 +71,19 @@ class Utilities
             $url = Storage::url($fullFilePath);
         return URL::to('/') . $url;
     }
+
+    /**
+     * Generate a "random" alpha-numeric string.
+     *
+     * Should not be considered sufficient for cryptography, etc.
+     *
+     * @param  int  $length
+     * @return string
+     */
+    public static function quickRandom($length = 6)
+    {
+        $pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        return substr(str_shuffle(str_repeat($pool, $length)), 0, $length);
+    }
 }

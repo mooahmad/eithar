@@ -9,4 +9,5 @@ return [
     'invalidNationalityImage' => 'invalid nationality image extension',
     'userNotFound' => 'user not found!',
     'errorUploadMember' => 'error in uploading image',
+    'wrongCode' => 'wrong code'
 ];
