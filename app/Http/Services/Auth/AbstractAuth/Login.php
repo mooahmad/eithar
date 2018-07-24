@@ -14,7 +14,7 @@ Abstract class Login implements ILogin
 
     public function loginCustomer(Request $request)
     {
-        $customerInstance = new \App\Http\Services\WebApi\UsersModule\AbstractUsers\customer();
+        $customerInstance = new \App\Http\Services\WebApi\UsersModule\AbstractUsers\Customer();
         // verifies customer credentials
         $isVerified = $customerInstance->verifyCustomerCredentials($request);
         if ($isVerified !== true)

@@ -6,6 +6,7 @@ namespace App\Http\Services\Auth\AbstractAuth;
 use App\Helpers\ApiHelpers;
 use App\Helpers\Utilities;
 use App\Http\Services\Auth\IAuth\IRegistration;
+use App\Http\Services\WebApi\ClassesUsers\CustomerFamilyCrudStrategy;
 use App\Mail\Auth\VerifyEmailCode;
 use App\Models\Customer;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class Registration implements IRegistration
      */
     public function registerCustomer(Request $request)
     {
-        $customerInstance = new \App\Http\Services\WebApi\UsersModule\AbstractUsers\customer();
+        $customerInstance = new \App\Http\Services\WebApi\UsersModule\AbstractUsers\Customer();
         // verifies customer data
         $isVerified = $customerInstance->verifyRegisterCustomerData($request);
         if ($isVerified !== true)
