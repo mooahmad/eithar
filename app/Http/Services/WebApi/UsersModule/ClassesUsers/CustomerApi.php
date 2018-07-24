@@ -3,7 +3,7 @@
 namespace App\Http\Services\WebApi\ClassesUsers;
 
 use App\Helpers\ApiHelpers;
-use App\Http\Services\WebApi\UsersModule\AbstractUsers\customer;
+use App\Http\Services\WebApi\UsersModule\AbstractUsers\Customer;
 use Illuminate\Http\Request;
 use App\Models\Customer as CustomerModel;
 

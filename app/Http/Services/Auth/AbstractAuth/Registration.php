@@ -62,7 +62,7 @@ class Registration implements IRegistration
             'birthdate'
         ]);
         $customerInstance->updateLastLoginDate($customer);
-        if(Auth::check())
+        if(!Auth::check())
         Mail::to($customer->email)->send(new VerifyEmailCode($customer));
         return Utilities::getValidationError(config('constants.responseStatus.success'),
                                              new MessageBag([
