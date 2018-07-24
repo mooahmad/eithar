@@ -2,7 +2,7 @@
 
 namespace App\Http\Services\WebApi\ClassesUsers;
 
-use App\Http\Services\WebApi\UsersModule\ClassesUsers\Customer;
+use App\Http\Services\WebApi\UsersModule\AbstractUsers\customer;
 use Illuminate\Http\Request;
 use App\Models\Customer as CustomerModel;
 

@@ -30,6 +30,11 @@ class CustomerStrategy
         return $this->strategy->uploadCustomerNationalIDImage($request, $fileName, $customer);
     }
 
+    public function editCustomer(Request $request)
+    {
+        return $this->strategy->editCustomer($request);
+    }
+
     public function updateLastLoginDate(Customer $customer)
     {
         return $this->strategy->updateLastLoginDate($customer);

@@ -4,10 +4,8 @@ namespace App\Http\Services\Auth\AbstractAuth;
 
 use App\Helpers\ApiHelpers;
 use App\Helpers\Utilities;
-use App\Http\Requests\Auth\LoginCustomer;
 use App\Http\Services\Auth\IAuth\ILogin;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\MessageBag;
 
 
@@ -16,9 +14,9 @@ Abstract class Login implements ILogin
 
     public function loginCustomer(Request $request)
     {
-        $customerInstance = new \App\Http\Services\WebApi\UsersModule\ClassesUsers\Customer();
+        $customerInstance = new \App\Http\Services\WebApi\UsersModule\AbstractUsers\customer();
         // verifies customer credentials
-        $isVerified = $this->verifyCredentials($request);
+        $isVerified = $customerInstance->verifyCustomerCredentials($request);
         if ($isVerified !== true)
             return Utilities::getValidationError(config('constants.responseStatus.missingInput'), $isVerified->errors());
         $customer = $customerInstance->isCustomerExists($request);
@@ -40,20 +38,6 @@ Abstract class Login implements ILogin
                                              new MessageBag([
                                                                 "user" => $customerData
                                                             ]));
-    }
-
-    /**
-     * verifies customer data using validator with rules
-     * @param Request $request
-     * @return bool|\Illuminate\Contracts\Validation\Validator
-     */
-    private function verifyCredentials(Request $request)
-    {
-        $validator = Validator::make($request->all(), (new LoginCustomer())->rules());
-        if ($validator->fails()) {
-            return $validator;
-        }
-        return true;
     }
 
 }

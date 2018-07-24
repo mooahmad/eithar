@@ -29,6 +29,7 @@ abstract class CustomerFamilyCrud implements ICustomerFamilyCrud
                                                  new MessageBag([
                                                                     "message" => __('errors.operationFailed')
                                                                 ]));
+        $newMember->save();
         $validationObject = $this->uploadMemberImage($request, 'member_picture', $newMember);
         if ($validationObject->error != config('constants.responseStatus.success'))
             return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
@@ -36,7 +37,11 @@ abstract class CustomerFamilyCrud implements ICustomerFamilyCrud
                                                                     "message" => __('errors.errorUploadMember')
                                                                 ]));
         $newMember->profile_picture_path = Utilities::getFileUrl($newMember->profile_picture_path);
-        $newMember->save();
+        $newMember = Utilities::forgetModelItems($newMember, [
+            'nationality_id',
+            'birthdate',
+            'deleted_at'
+        ]);
         return Utilities::getValidationError(config('constants.responseStatus.success'),
                                              new MessageBag([
                                                                 "member" => $newMember
@@ -103,18 +108,23 @@ abstract class CustomerFamilyCrud implements ICustomerFamilyCrud
             return Utilities::getValidationError(config('constants.responseStatus.missingInput'), $isVerified->errors());
         $member = FamilyMember::find($request->input('member_id'));
         $member = $this->createOrUpdateFamilyMember($member, $request, false);
+        if (!$member->save())
+            return Utilities::getValidationError(config('constants.responseStatus.operationFailed'),
+                                                 new MessageBag([
+                                                                    "message" => __('errors.operationFailed')
+                                                                ]));
         $validationObject = $this->uploadMemberImage($request, 'member_picture', $member);
         if ($validationObject->error != config('constants.responseStatus.success'))
             return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
                                                  new MessageBag([
                                                                     "message" => __('errors.errorUploadMember')
                                                                 ]));
-        if (!$member->save())
-            return Utilities::getValidationError(config('constants.responseStatus.operationFailed'),
-                                                 new MessageBag([
-                                                                    "message" => __('errors.operationFailed')
-                                                                ]));
         $member->profile_picture_path = Utilities::getFileUrl($member->profile_picture_path);
+        $member = Utilities::forgetModelItems($member, [
+            'nationality_id',
+            'birthdate',
+            'deleted_at'
+        ]);
         return Utilities::getValidationError(config('constants.responseStatus.success'),
                                              new MessageBag([
                                                                 "member" => $member
@@ -137,6 +147,11 @@ abstract class CustomerFamilyCrud implements ICustomerFamilyCrud
             return Utilities::getValidationError(config('constants.responseStatus.missingInput'), $isVerified->errors());
         $member = FamilyMember::find($request->input('member_id'));
         $member->profile_picture_path = Utilities::getFileUrl($member->profile_picture_path);
+        $member = Utilities::forgetModelItems($member, [
+            'nationality_id',
+            'birthdate',
+            'deleted_at'
+        ]);
         return Utilities::getValidationError(config('constants.responseStatus.success'),
                                              new MessageBag([
                                                                 "member" => $member
@@ -169,8 +184,14 @@ abstract class CustomerFamilyCrud implements ICustomerFamilyCrud
     public function getFamilyMembers(Request $request)
     {
         $members = FamilyMember::where('user_parent_id', Auth::user()->id)->get();
-        foreach ($members as $member)
-            $member->profile_picture_path = Utilities::getFileUrl($member->profile_picture_path);
+        for ($i = 0; $i < count($members); $i++) {
+            $members[$i]->profile_picture_path = Utilities::getFileUrl($members[$i]->profile_picture_path);
+            $members[$i] = Utilities::forgetModelItems($members[$i], [
+                'nationality_id',
+                'birthdate',
+                'deleted_at'
+            ]);
+        }
         return Utilities::getValidationError(config('constants.responseStatus.success'),
                                              new MessageBag([
                                                                 "members" => $members

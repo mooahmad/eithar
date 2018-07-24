@@ -1,16 +1,20 @@
 <?php
 
-namespace App\Http\Services\WebApi\UsersModule\ClassesUsers;
+namespace App\Http\Services\WebApi\UsersModule\AbstractUsers;
 
 
 use App\Helpers\Utilities;
+use App\Http\Requests\Auth\RegisterCustomer;
 use App\Http\Requests\Auth\VerifyCustomerEmail;
+use App\Http\Services\Auth\AbstractAuth\Registration;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Customer as CustomerModel;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\Auth\LoginCustomer;
 
 class Customer
 {
@@ -76,6 +80,69 @@ class Customer
             return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
+    }
+
+    /**
+     * verifies customer data using validator with rules
+     * @param Request $request
+     * @return bool|\Illuminate\Contracts\Validation\Validator
+     */
+    public function verifyRegisterCustomerData(Request $request)
+    {
+        $customerID = null;
+        if(Auth::check())
+            $customerID = Auth::user()->id;
+        $validator = Validator::make($request->all(), (new RegisterCustomer())->rules($customerID));
+        if ($validator->fails()) {
+            return $validator;
+        }
+        return true;
+    }
+
+    /**
+     * verifies customer data using validator with rules
+     * @param Request $request
+     * @return bool|\Illuminate\Contracts\Validation\Validator
+     */
+    public function verifyCustomerCredentials(Request $request)
+    {
+        $validator = Validator::make($request->all(), (new LoginCustomer())->rules());
+        if ($validator->fails()) {
+            return $validator;
+        }
+        return true;
+    }
+
+    /**
+     * @param Customer $newCustomer
+     * @param Request $request
+     * @return Customer
+     */
+    public function updateORCreateCustomer(CustomerModel $customer, Request $request, $isCreate = true)
+    {
+        $customer->first_name = $request->input('first_name');
+        $customer->middle_name = $request->input('middle_name');
+        $customer->last_name = $request->input('last_name');
+        $customer->email = $request->input('email');
+        $customer->mobile_number = $request->input('mobile');
+        $customer->password = Hash::make($request->input('password'));
+        $customer->gender = $request->input('gender');
+        $customer->national_id = $request->input('national_id');
+        $customer->country_id = $request->input('country_id');
+        $customer->city_id = $request->input('city_id');
+        $customer->position = $request->input('position');
+        $customer->address = $request->input('address');
+        if($isCreate) {
+            $customer->email_code = Utilities::quickRandom(4, true);
+            $customer->mobile_code = Utilities::quickRandom(4, true);
+        }
+        return $customer;
+    }
+
+    public function editCustomer(Request $request)
+    {
+        return (new Registration())->registerCustomer($request);
+
     }
 
     /**

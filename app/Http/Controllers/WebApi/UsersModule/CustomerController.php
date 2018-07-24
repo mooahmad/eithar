@@ -3,14 +3,11 @@
 namespace App\Http\Controllers\WebApi\UsersModule;
 
 use App\Helpers\ApiHelpers;
-use App\Helpers\Utilities;
 use App\Http\Services\WebApi\ClassesUsers\CustomerFamilyCrudStrategy;
 use App\Http\Services\WebApi\ClassesUsers\CustomerStrategy;
 use App\Models\Customer;
-use App\Models\FamilyMember;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\MessageBag;
 use App\Http\Controllers\Controller;
 
 class CustomerController extends Controller
@@ -31,6 +28,12 @@ class CustomerController extends Controller
     {
         $customer = new CustomerStrategy(ApiHelpers::requestType($request));
         return $customer->uploadCustomerNationalIDImage($request, 'nationality_id_picture', Customer::find(Auth::user()->id));
+    }
+
+    public function editCustomer(Request $request)
+    {
+        $customer = new CustomerStrategy(ApiHelpers::requestType($request));
+        return $customer->editCustomer($request);
     }
 
     public function verifyCustomerEmail(Request $request)

@@ -11,6 +11,6 @@ class LoginWeb extends Login
     public function loginCustomer(Request $request)
     {
         $validationObject = parent::loginCustomer($request);
-        return;
+        return $validationObject;
     }
 }
