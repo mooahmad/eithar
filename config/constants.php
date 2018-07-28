@@ -13,11 +13,11 @@ return [
         "userNotFound" => 4,
     ],
     "customerMemberRelations" => [
-        1 => "father",
-        2 => "mother",
-        3 => "brother",
-        4 => "sister",
-        5 => "son",
-        6 => "daughter"
+        0 => "father",
+        1 => "mother",
+        2 => "brother",
+        3 => "sister",
+        4 => "son",
+        5 => "daughter"
     ]
 ];
