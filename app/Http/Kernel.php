@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AdminsMiddleware;
 use App\Http\Middleware\SetLang;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Laravel\Passport\Http\Middleware\CheckClientCredentials;
@@ -65,5 +66,6 @@ class Kernel extends HttpKernel
         'setLang' => SetLang::class,
         'scopes' => \Laravel\Passport\Http\Middleware\CheckScopes::class,
         'scope' => \Laravel\Passport\Http\Middleware\CheckForAnyScope::class,
+        'AdminAuth' => AdminsMiddleware::class,
     ];
 }

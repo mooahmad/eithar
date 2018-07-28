@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -27,14 +28,43 @@ class Handler extends ExceptionHandler
     ];
 
     /**
-     * Report or log an exception.
-     *
-     * @param  \Exception  $exception
-     * @return void
+     * @param Exception $exception
+     * @return \Illuminate\Http\Response|mixed
+     * @throws Exception
      */
     public function report(Exception $exception)
     {
-        parent::report($exception);
+//        parent::report($exception);
+
+        if ($exception instanceof ModelNotFoundException) {
+            return response()->view('errors.404', [], 404);
+        }
+
+        if ($exception instanceof HttpException) {
+            return response()->view('errors.404', [], 404);
+        }
+
+        if ($exception instanceof AuthenticationException) {
+            return response()->view('errors.401', [], 401);
+        }
+
+        if ($exception instanceof AuthorizationException) {
+            return response()->view('errors.403', [], 403);
+        }
+
+        if ($exception instanceof TokenMismatchException) {
+            return response()->view('errors.400', [], 400);
+        }
+
+        if ($exception instanceof ValidationException) {
+            return response()->view('errors.404', [], 404);
+        }
+
+        if ($exception instanceof QueryException) {
+            return response()->view('errors.404', [], 404);
+        }
+
+        return parent::report($exception);
     }
 
     /**
@@ -46,11 +76,34 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if($exception instanceof \Illuminate\Auth\AuthenticationException ){
-
-            return response('unauthorized', 401);
-
+        if ($exception instanceof ModelNotFoundException) {
+            return response()->view('errors.404', [], 404);
         }
+
+        if ($exception instanceof HttpException) {
+            return response()->view('errors.404', [], 404);
+        }
+
+        if ($exception instanceof AuthenticationException) {
+            return response()->view('errors.401', [], 401);
+        }
+
+        if ($exception instanceof AuthorizationException) {
+            return response()->view('errors.403', [], 403);
+        }
+
+        if ($exception instanceof TokenMismatchException) {
+            return response()->view('errors.400', [], 400);
+        }
+
+        if ($exception instanceof ValidationException) {
+            return response()->view('errors.404', [], 404);
+        }
+
+        if ($exception instanceof QueryException) {
+            return response()->view('errors.404', [], 404);
+        }
+
         return parent::render($request, $exception);
     }
 }
