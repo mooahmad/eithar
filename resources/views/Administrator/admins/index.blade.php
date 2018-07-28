@@ -58,7 +58,7 @@
 						            <td>{{ $admin->name }}</td>
 						            <td>{{ $admin->email }}</td>
 						            <td>
-						                @if($admin->status == 1)
+						                @if($admin->is_active == 1)
 						                	<span class="label label-sm label-success label-mini">{{ trans('admin.on') }}</span>
 						                  @else
 						                  <span class="label label-sm label-danger label-mini">{{ trans('admin.off') }}</span>
