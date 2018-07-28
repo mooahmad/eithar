@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Administrator;
+namespace App\Http\Controllers\Administrator\UsersModule;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ChangePassAdminRequest;
