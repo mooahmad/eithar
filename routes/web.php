@@ -2,7 +2,6 @@
 
 Auth::routes();
 
-
 define('ADL','Administrator/layouts');
 define('AD','Administrator');
 define('FEL','Frontend/layouts');
