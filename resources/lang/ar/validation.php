@@ -173,6 +173,9 @@ return [
         ],
         'member_id' => [
             'required' => 'رقم العضو مطلوب'
+        ],
+        'code' => [
+            'required' => 'الرمز مطلوب'
         ]
 
     ],

@@ -173,6 +173,9 @@ return [
         ],
         'member_id' => [
             'required' => 'member id is required'
+        ],
+        'code' => [
+            'required' => 'code is required'
         ]
     ],
 

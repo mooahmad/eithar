@@ -42,6 +42,24 @@ class CustomerController extends Controller
         return $customer->verifyCustomerEmail($request);
     }
 
+    public function resendEmailVerificationCode(Request $request)
+    {
+        $customer = new CustomerStrategy(ApiHelpers::requestType($request));
+        return $customer->resendEmailVerificationCode($request);
+    }
+
+    public function forgetPassword(Request $request)
+    {
+        $customer = new CustomerStrategy(ApiHelpers::requestType($request));
+        return $customer->forgetPassword($request);
+    }
+
+    public function updateForgottenPassword(Request $request)
+    {
+        $customer = new CustomerStrategy(ApiHelpers::requestType($request));
+        return $customer->updateForgottenPassword($request);
+    }
+
     public function addCustomerFamilyMember(Request $request)
     {
         $customerFamily = new CustomerFamilyCrudStrategy(ApiHelpers::requestType($request));

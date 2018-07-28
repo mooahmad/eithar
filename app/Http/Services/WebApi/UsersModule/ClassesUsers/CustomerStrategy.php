@@ -49,4 +49,19 @@ class CustomerStrategy
     {
         return $this->strategy->verifyCustomerEmail($request);
     }
+
+    public function forgetPassword(Request $request)
+    {
+        return $this->strategy->forgetPassword($request);
+    }
+
+    public function updateForgottenPassword(Request $request)
+    {
+        return $this->strategy->updateForgottenPassword($request);
+    }
+
+    public function resendEmailVerificationCode(Request $request)
+    {
+        return $this->strategy->resendEmailVerificationCode($request);
+    }
 }
