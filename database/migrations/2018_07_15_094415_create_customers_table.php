@@ -25,6 +25,7 @@ class CreateCustomersTable extends Migration
             $table->integer('mobile_verified')->default(0);
             $table->string('mobile_code', 8)->nullable();
             $table->string('password');
+            $table->string('forget_password_code')->nullable();
             $table->integer('registration_source')->nullable();
             $table->string('registration_source_desc',100)->nullable();
             $table->integer('gender')->default(0);

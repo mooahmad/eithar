@@ -3,13 +3,14 @@
 namespace App;
 
 use App\Models\Role;
+use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements CanResetPassword
 {
-    use Notifiable, HasApiTokens;
+    use Notifiable, HasApiTokens, \Illuminate\Auth\Passwords\CanResetPassword;
 
     /**
      * The attributes that are mass assignable.

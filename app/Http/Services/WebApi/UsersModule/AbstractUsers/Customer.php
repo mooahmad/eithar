@@ -5,13 +5,18 @@ namespace App\Http\Services\WebApi\UsersModule\AbstractUsers;
 
 use App\Helpers\Utilities;
 use App\Http\Requests\Auth\RegisterCustomer;
+use App\Http\Requests\Auth\UpdateForgetPasswordRequest;
 use App\Http\Requests\Auth\VerifyCustomerEmail;
 use App\Http\Services\Auth\AbstractAuth\Registration;
+use App\Mail\Auth\VerifyEmailCode;
+use App\Mail\Customer\ForgetPasswordMail;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Customer as CustomerModel;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\Auth\LoginCustomer;
@@ -90,7 +95,7 @@ class Customer
     public function verifyRegisterCustomerData(Request $request)
     {
         $customerID = null;
-        if(Auth::check())
+        if (Auth::check())
             $customerID = Auth::user()->id;
         $validator = Validator::make($request->all(), (new RegisterCustomer())->rules($customerID));
         if ($validator->fails()) {
@@ -132,7 +137,7 @@ class Customer
         $customer->city_id = $request->input('city_id');
         $customer->position = $request->input('position');
         $customer->address = $request->input('address');
-        if($isCreate) {
+        if ($isCreate) {
             $customer->email_code = Utilities::quickRandom(4, true);
             $customer->mobile_code = Utilities::quickRandom(4, true);
         }
@@ -187,8 +192,68 @@ class Customer
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
     }
 
-    private function validateVerifyCustomerEmail(Request $request){
+    private function validateVerifyCustomerEmail(Request $request)
+    {
         $validator = Validator::make($request->all(), (new VerifyCustomerEmail())->rules());
+        if ($validator->fails()) {
+            return $validator;
+        }
+        return true;
+    }
+
+    public function resendEmailVerificationCode(Request $request)
+    {
+        Mail::to(Auth::user()->email)->send(new VerifyEmailCode(CustomerModel::find(Auth::user()->id)));
+        return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
+    }
+
+    public function forgetPassword(Request $request)
+    {
+        $isVerified = $this->validateForgetPassword($request);
+        if ($isVerified !== true)
+            return Utilities::getValidationError(config('constants.responseStatus.missingInput'), $isVerified->errors());
+        $customer = CustomerModel::where('mobile_number', $request->input('mobile'))->first();
+        if (!$customer)
+            return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
+        $encrytedCode = Utilities::quickRandom(6, true);
+        $customer->forget_password_code = $encrytedCode;
+        $customer->save();
+        Mail::to($customer->email)->send(new ForgetPasswordMail($customer));
+        return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
+
+    }
+
+    private function validateForgetPassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'mobile' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return $validator;
+        }
+        return true;
+    }
+
+    public function updateForgottenPassword(Request $request)
+    {
+        $isVerified = $this->validateUpdateForgetPassword($request);
+        if ($isVerified !== true)
+            return Utilities::getValidationError(config('constants.responseStatus.missingInput'), $isVerified->errors());
+        $customer = CustomerModel::where([['mobile_number', $request->input('mobile')], ['forget_password_code', $request->input('code')]])->first();
+        if (!$customer)
+            return Utilities::getValidationError(config('constants.responseStatus.userNotFound'),
+                                                 new MessageBag([
+                                                                    'message' => __('errors.userNotFound')
+                                                                ]));
+        $customer->password  = Hash::make($request->input('password'));
+        $customer->save();
+        return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
+
+    }
+
+    private function validateUpdateForgetPassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), (new UpdateForgetPasswordRequest())->rules());
         if ($validator->fails()) {
             return $validator;
         }

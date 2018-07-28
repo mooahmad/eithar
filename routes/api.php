@@ -23,12 +23,19 @@ Route::middleware('auth:api')->group(function () {
         Route::post('updateCustomerAvatar', 'CustomerController@updateCustomerAvatar');
         Route::post('updateCustomerNationalId', 'CustomerController@updateCustomerNationalId');
         Route::post('verifyCustomerEmail', 'CustomerController@verifyCustomerEmail');
+        Route::get('resendEmailVerificationCode', 'CustomerController@resendEmailVerificationCode');
+        Route::post('editCustomer', 'CustomerController@editCustomer');
         Route::post('addCustomerFamilyMember', 'CustomerController@addCustomerFamilyMember');
         Route::post('editCustomerFamilyMember', 'CustomerController@editCustomerFamilyMember');
         Route::post('getCustomerFamilyMember', 'CustomerController@getCustomerFamilyMember');
         Route::post('deleteCustomerFamilyMember', 'CustomerController@deleteCustomerFamilyMember');
         Route::get('getCustomerFamilyMembers', 'CustomerController@getCustomerFamilyMembers');
     });
+});
+
+Route::namespace('WebApi\UsersModule')->group(function () {
+    Route::post('forgetPassword', 'CustomerController@forgetPassword');
+    Route::post('updateForgottenPassword', 'CustomerController@updateForgottenPassword');
 });
 
 
