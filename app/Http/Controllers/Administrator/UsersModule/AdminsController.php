@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Administrator\UsersModule;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ChangePassAdminRequest;
-use App\Http\Requests\CreateAdminRequest;
-use App\Http\Requests\UpdateAdminRequest;
+use App\Http\Requests\Admin\ChangePassAdminRequest;
+use App\Http\Requests\Admin\CreateAdminRequest;
+use App\Http\Requests\Admin\UpdateAdminRequest;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminsController extends Controller
 {
@@ -28,9 +29,9 @@ class AdminsController extends Controller
     public function index()
     {
         $data = [
-            'all'=>User::all(),
+            'all' => User::all(),
         ];
-        return view(AD.'.admins.index')->with($data);
+        return view(AD . '.admins.index')->with($data);
     }
 
     /**
@@ -41,9 +42,9 @@ class AdminsController extends Controller
     public function create()
     {
         $data = [
-            'tab'=>'new_user'
+            'tab' => 'new_user'
         ];
-        return view(AD.'.admins.form_new')->with($data);
+        return view(AD . '.admins.form_new')->with($data);
     }
 
     /**
@@ -55,20 +56,26 @@ class AdminsController extends Controller
     public function store(CreateAdminRequest $request)
     {
         $user = new User();
-        $user->name     = $request->input('name');
-        $user->email    = $request->input('email');
-        $user->password = bcrypt($request->input('password'));
-        $user->status   = $request->input('status');
+        $user->first_name = $request->input('first_name');
+        $user->middle_name = $request->input('middle_name');
+        $user->last_name = $request->input('last_name');
+        $user->email = $request->input('email');
+        $user->mobile_number = $request->input('mobile');
+        $user->password = Hash::make($request->input('password'));
+        $user->user_type = $request->input('user_type');
+        $user->gender = $request->input('gender');
+        $user->default_language = $request->input('default_language');
+
         $user->save();
 
-        session()->flash('success_msg',trans('admin.success_message'));
-        return redirect(AD.'/admins');
+        session()->flash('success_msg', trans('admin.success_message'));
+        return redirect(AD . '/admins');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -79,7 +86,7 @@ class AdminsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -87,10 +94,10 @@ class AdminsController extends Controller
         $user = User::FindOrFail($id);
 //        return $user;
         $data = [
-            'form_data'=>$user,
-            'tab'=>'personal_information'
+            'form_data' => $user,
+            'tab'       => 'personal_information'
         ];
-        return view(AD.'.admins.form_new')->with($data);
+        return view(AD . '.admins.form_new')->with($data);
     }
 
     /**
@@ -102,30 +109,16 @@ class AdminsController extends Controller
      */
     public function update(UpdateAdminRequest $request, $id)
     {
-        $inputs = $request->except('_token','_method');
+        $inputs = $request->except('_token', '_method');
         User::FindOrFail($id)->update($inputs);
-        session()->flash('success_msg',trans('admin.success_message'));
-        return redirect(AD.'/admins');
-    }
-
-    /**
-     * @param ChangePassAdminRequest $request
-     * @param $id
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    protected function userUpdatePassword(ChangePassAdminRequest $request,$id)
-    {
-        $user = User::FindOrFail($id);
-        $user->password = bcrypt($request->input('password'));
-        $user->save();
-        session()->flash('success_msg',trans('admin.success_message'));
-        return redirect(AD.'/admins');
+        session()->flash('success_msg', trans('admin.success_message'));
+        return redirect(AD . '/admins');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -143,5 +136,19 @@ class AdminsController extends Controller
         Auth::logout();
         session()->flush();
         return redirect('login');
+    }
+
+    /**
+     * @param ChangePassAdminRequest $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    protected function userUpdatePassword(ChangePassAdminRequest $request, $id)
+    {
+        $user = User::FindOrFail($id);
+        $user->password = bcrypt($request->input('password'));
+        $user->save();
+        session()->flash('success_msg', trans('admin.success_message'));
+        return redirect(AD . '/admins');
     }
 }
