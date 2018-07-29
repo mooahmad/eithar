@@ -142,6 +142,6 @@ class AdminsController extends Controller
     {
         Auth::logout();
         session()->flush();
-        return redirect('admins/login');
+        return redirect('login');
     }
 }
