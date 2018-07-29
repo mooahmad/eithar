@@ -121,7 +121,7 @@
                         <li>
                             <a href="#">
                                 <span class="photo">
-                                    <img src="{{ asset('assets/layouts/layout/img/avatar2.jpg') }}" class="img-circle" alt="">
+                                    <img src="{{ asset('public/assets/layouts/layout/img/avatar2.jpg') }}" class="img-circle" alt="">
                                 </span>
                                 <span class="subject">
                                     <span class="from"> Lisa Wong </span>
@@ -133,7 +133,7 @@
                         <li>
                             <a href="#">
                                 <span class="photo">
-                                    <img src="{{ asset('assets/layouts/layout/img/avatar3.jpg') }}" class="img-circle" alt="">
+                                    <img src="{{ asset('public/assets/layouts/layout/img/avatar3.jpg') }}" class="img-circle" alt="">
                                 </span>
                                 <span class="subject">
                                     <span class="from"> Richard Doe </span>
@@ -145,7 +145,7 @@
                         <li>
                             <a href="#">
                                 <span class="photo">
-                                    <img src="{{ asset('assets/layouts/layout/img/avatar1.jpg') }}" class="img-circle" alt="">
+                                    <img src="{{ asset('public/assets/layouts/layout/img/avatar1.jpg') }}" class="img-circle" alt="">
                                 </span>
                                 <span class="subject">
                                     <span class="from"> Bob Nilson </span>
@@ -157,7 +157,7 @@
                         <li>
                             <a href="#">
                                 <span class="photo">
-                                    <img src="{{ asset('assets/layouts/layout/img/avatar2.jpg') }}" class="img-circle" alt="">
+                                    <img src="{{ asset('public/assets/layouts/layout/img/avatar2.jpg') }}" class="img-circle" alt="">
                                 </span>
                                 <span class="subject">
                                     <span class="from"> Lisa Wong </span>
@@ -169,7 +169,7 @@
                         <li>
                             <a href="#">
                                 <span class="photo">
-                                    <img src="{{ asset('assets/layouts/layout/img/avatar3.jpg') }}" class="img-circle" alt="">
+                                    <img src="{{ asset('public/assets/layouts/layout/img/avatar3.jpg') }}" class="img-circle" alt="">
                                 </span>
                                 <span class="subject">
                                     <span class="from"> Richard Doe </span>
@@ -298,7 +298,7 @@
         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
         <li class="dropdown dropdown-user">
             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                <img alt="{{ config('app.name') }}" width="90px" class="img-circle" src="{{ asset('assets/layouts/layout/img/logo.png') }}" />
+                <img alt="{{ config('app.name') }}" width="90px" class="img-circle" src="{{ asset('public/assets/layouts/layout/img/logo.png') }}" />
                 <span class="username username-hide-on-mobile"> {{ config('app.name') }} -  </span>
                 <span class="username username-hide-on-mobile"> {{ auth()->user()->name }} </span>
                 <i class="fa fa-angle-down"></i>
