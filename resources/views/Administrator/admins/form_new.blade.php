@@ -38,11 +38,31 @@
 
                                         <div class="form-group">
                                             <label for="name" class="control-label">
-                                                {{ trans('admin.name') }} <span class="required"> * </span>
+                                                {{ trans('admin.fname') }} <span class="required"> * </span>
                                             </label>
-                                            {!! Form::text('name',old('name'), array('id'=>'name', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.name'))) !!}
-                                            @if($errors->has('name'))
-                                                <span class="help-block text-danger">{{ $errors->first('name') }}</span>
+                                            {!! Form::text('first_name',old('first_name'), array('id'=>'first_name', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.fname'))) !!}
+                                            @if($errors->has('first_name'))
+                                                <span class="help-block text-danger">{{ $errors->first('first_name') }}</span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="name" class="control-label">
+                                                {{ trans('admin.mname') }} <span class="required"> * </span>
+                                            </label>
+                                            {!! Form::text('middle_name',old('middle_name'), array('id'=>'middle_name', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.mname'))) !!}
+                                            @if($errors->has('middle_name'))
+                                                <span class="help-block text-danger">{{ $errors->first('middle_name') }}</span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="name" class="control-label">
+                                                {{ trans('admin.lname') }} <span class="required"> * </span>
+                                            </label>
+                                            {!! Form::text('last_name',old('last_name'), array('id'=>'last_name', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.lname'))) !!}
+                                            @if($errors->has('last_name'))
+                                                <span class="help-block text-danger">{{ $errors->first('last_name') }}</span>
                                             @endif
                                         </div>
 
@@ -53,6 +73,16 @@
                                             {!! Form::email('email',old('email'), array('id'=>'email', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.email'))) !!}
                                             @if($errors->has('email'))
                                                 <span class="help-block text-danger">{{ $errors->first('email') }}</span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="mobile" class="control-label">
+                                                {{ trans('admin.mobile') }} <span class="required"> * </span>
+                                            </label>
+                                            {!! Form::text('mobile',old('mobile'), array('id'=>'mobile', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.mobile'))) !!}
+                                            @if($errors->has('mobile'))
+                                                <span class="help-block text-danger">{{ $errors->first('mobile') }}</span>
                                             @endif
                                         </div>
 
@@ -78,17 +108,22 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="on" class="control-label">{{ trans('admin.status') }} <span
+                                            <label for="on" class="control-label">{{ trans('admin.userType') }} <span
                                                         class="required"> * </span></label>
                                             <div class="mt-radio-inline">
                                                 <label class="mt-radio">
-                                                    {!! Form::radio('status', 1,'true',array('id'=>'on')) !!}
-                                                    {{ trans('admin.on') }}
+                                                    {!! Form::radio('user_type', config('constants.userTypes.superAdmin'),'true',array('id'=>'superAdmin')) !!}
+                                                    {{ trans('admin.superAdmin') }}
                                                     <span></span>
                                                 </label>
                                                 <label class="mt-radio">
-                                                    {!! Form::radio('status', 0,'',array('id'=>'off')) !!}
-                                                    {{ trans('admin.off') }}
+                                                    {!! Form::radio('user_type', config('constants.userTypes.serviceProvider'),'',array('id'=>'serviceProvider')) !!}
+                                                    {{ trans('admin.serviceProvider') }}
+                                                    <span></span>
+                                                </label>
+                                                <label class="mt-radio">
+                                                    {!! Form::radio('user_type', config('constants.userTypes.customerService'),'',array('id'=>'customerService')) !!}
+                                                    {{ trans('admin.customerService') }}
                                                     <span></span>
                                                 </label>
                                             </div>

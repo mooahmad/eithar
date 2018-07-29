@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ChangePassAdminRequest;
 use App\Http\Requests\Admin\CreateAdminRequest;
 use App\Http\Requests\Admin\UpdateAdminRequest;
+use App\Http\Services\Adminstrator\UsersModule\ClassesUsers\AdminClass;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -56,18 +57,7 @@ class AdminsController extends Controller
     public function store(CreateAdminRequest $request)
     {
         $user = new User();
-        $user->first_name = $request->input('first_name');
-        $user->middle_name = $request->input('middle_name');
-        $user->last_name = $request->input('last_name');
-        $user->email = $request->input('email');
-        $user->mobile_number = $request->input('mobile');
-        $user->password = Hash::make($request->input('password'));
-        $user->user_type = $request->input('user_type');
-        $user->gender = $request->input('gender');
-        $user->default_language = $request->input('default_language');
-
-        $user->save();
-
+        AdminClass::createOrUpdateAdmin($user, $request);
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/admins');
     }
