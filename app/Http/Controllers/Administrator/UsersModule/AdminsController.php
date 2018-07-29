@@ -113,7 +113,7 @@ class AdminsController extends Controller
      * @param $id
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    protected function user_update_password(ChangePassAdminRequest $request,$id)
+    protected function userUpdatePassword(ChangePassAdminRequest $request,$id)
     {
         $user = User::FindOrFail($id);
         $user->password = bcrypt($request->input('password'));

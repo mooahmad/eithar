@@ -24,11 +24,25 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
+     * lockoutTime
+     *
+     * @var
+     */
+    protected $lockoutTime = 1;
+
+    /**
+     * maxLoginAttempts
+     *
+     * @var
+     */
+    protected $maxLoginAttempts = 5;
+
+    /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = AD.'/home';
 
     /**
      * Create a new controller instance.
@@ -49,4 +63,5 @@ class LoginController extends Controller
         $loginStrategy = new LoginStrategy(ApiHelpers::requestType($request));
         return $loginStrategy->loginCustomer($request);
     }
+
 }

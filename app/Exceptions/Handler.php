@@ -2,9 +2,15 @@
 
 namespace App\Exceptions;
 
+use Dotenv\Exception\ValidationException;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Session\TokenMismatchException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -34,8 +40,6 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
-//        parent::report($exception);
-
         if ($exception instanceof ModelNotFoundException) {
             return response()->view('errors.404', [], 404);
         }
@@ -64,7 +68,7 @@ class Handler extends ExceptionHandler
             return response()->view('errors.404', [], 404);
         }
 
-        return parent::report($exception);
+        parent::report($exception);
     }
 
     /**
@@ -76,6 +80,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+
         if ($exception instanceof ModelNotFoundException) {
             return response()->view('errors.404', [], 404);
         }
