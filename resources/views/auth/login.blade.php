@@ -44,7 +44,7 @@
 <!-- BEGIN LOGIN -->
 <div class="content">
     <!-- BEGIN LOGIN FORM -->
-    {!! Form::open(['url'=>'admins/login', 'class'=>'login-form']) !!}
+    {!! Form::open(['url'=>'login', 'class'=>'login-form']) !!}
     <h3 class="form-title font-green">{{ trans('admin.signin') }}</h3>
     @if(Session::has('error_login'))
         <div class="alert alert-danger">
