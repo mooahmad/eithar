@@ -12,7 +12,8 @@ return [
     | Admin Language Lines
     |--------------------------------------------------------------------------
     */
-
+    'id'                    => 'ID',
+    'actions'               => 'Actions',
     'admins'                => 'Admins',
     'add_admin'             => 'Add Admin',
     'show_admin'            => 'Show Admin',

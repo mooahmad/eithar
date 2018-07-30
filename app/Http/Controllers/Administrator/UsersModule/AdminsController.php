@@ -12,6 +12,8 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\View;
+use Yajra\DataTables\Facades\DataTables;
 
 class AdminsController extends Controller
 {
@@ -30,11 +32,7 @@ class AdminsController extends Controller
      */
     public function index()
     {
-        $data = [
-            'all' => User::all(),
-
-        ];
-        return view(AD . '.admins.index')->with($data);
+        return view(AD . '.admins.index');
     }
 
     /**
@@ -152,5 +150,17 @@ class AdminsController extends Controller
         $user->save();
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/admins');
+    }
+
+    public function getAdminsDataTable(){
+        $admins = User::where('id', '<>', 0);
+        $dataTable = DataTables::of($admins)
+            ->addColumn('actions', function ($admin) {
+                $editURL = url('Administrator/admins/'.$admin->id.'/edit');
+                return View::make('Administrator.widgets.dataTablesActions', [ 'editURL' => $editURL]);
+            })
+            ->rawColumns(['actions'])
+            ->make(true);
+        return $dataTable;
     }
 }

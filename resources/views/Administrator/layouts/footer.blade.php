@@ -90,6 +90,12 @@
     <script src="{{ asset('public/assets/layouts/global/scripts/quick-sidebar.min.js')}}" type="text/javascript"></script>
     <script src="{{ asset('public/assets/layouts/global/scripts/quick-nav.min.js')}}" type="text/javascript"></script>
     <!-- END THEME LAYOUT SCRIPTS -->
+    <!-- DataTables SCRIPTS -->
+    <script src="{{ asset('public/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/DataTables/Buttons-1.5.2/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('public/DataTables/Buttons-1.5.2/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js') }}"></script>
 
     <!-- Delete All Selected Items -->
     <!-- Modal -->
