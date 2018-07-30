@@ -69,7 +69,7 @@ class Utilities
             );
         else
             $url = Storage::url($fullFilePath);
-        return URL::to('/') . $url;
+        return URL::to('/public/') . $url;
     }
 
     /**

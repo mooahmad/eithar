@@ -2,6 +2,8 @@
 
 @section('style')
     <link href="{{ asset('public/assets/pages/css/profile.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('public/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css') }}"
+          rel="stylesheet" type="text/css"/>
 @stop
 
 @section('content')
@@ -18,23 +20,12 @@
                                     <i class="icon-globe theme-font hide"></i>
                                     <span class="caption-subject font-blue-madison bold uppercase">Profile Account</span>
                                 </div>
-                                <ul class="nav nav-tabs">
-                                    <li class="{{ ($tab=='new_user') ? 'active' : '' }}">
-                                        <a href="#new_user" data-toggle="tab">Create New User</a>
-                                    </li>
-                                    <li class="{{ ($tab=='personal_information' && empty(session()->get('tab'))) ? 'active' : '' }}">
-                                        <a href="#personal_information" data-toggle="tab">Personal Info</a>
-                                    </li>
-                                    <li class="{{ (session()->get('tab')=='change_password') ? 'active' : '' }}">
-                                        <a href="#change_password" data-toggle="tab">Change Password</a>
-                                    </li>
-                                </ul>
                             </div>
                             <div class="portlet-body">
                                 <div class="tab-content">
                                     <!-- Create New User TAB -->
-                                    <div class="tab-pane {{ ($tab=='new_user') ? 'active' : '' }}" id="new_user">
-                                        {!! Form::open(['method'=>'POST','route'=>'admins.store', 'role'=>'form']) !!}
+                                    <div class="tab-pane active" id="new_user">
+                                        {!! Form::open(['method'=>'POST','route'=>'admins.store', 'role'=>'form', 'enctype' => "multipart/form-data"]) !!}
 
                                         <div class="form-group">
                                             <label for="name" class="control-label">
@@ -127,8 +118,140 @@
                                                     <span></span>
                                                 </label>
                                             </div>
-                                            @if($errors->has('status'))
-                                                <span class="help-block text-danger">{{ $errors->first('status') }}</span>
+                                            @if($errors->has('user_type'))
+                                                <span class="help-block text-danger">{{ $errors->first('user_type') }}</span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="on" class="control-label">{{ trans('admin.gender') }} <span
+                                                        class="required"> * </span></label>
+                                            <div class="mt-radio-inline">
+                                                <label class="mt-radio">
+                                                    {!! Form::radio('gender', config('constants.gender.male'),'true',array('id'=>'male')) !!}
+                                                    {{ trans('admin.male') }}
+                                                    <span></span>
+                                                </label>
+                                                <label class="mt-radio">
+                                                    {!! Form::radio('gender', config('constants.gender.female'),'',array('id'=>'female')) !!}
+                                                    {{ trans('admin.female') }}
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                            @if($errors->has('gender'))
+                                                <span class="help-block text-danger">{{ $errors->first('gender') }}</span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="on"
+                                                   class="control-label">{{ trans('admin.is_saudi_nationality') }} <span
+                                                        class="required"> * </span></label>
+                                            <div class="mt-radio-inline">
+                                                <label class="mt-radio">
+                                                    {!! Form::radio('is_saudi_nationality', 1,'true',array('id'=>'yes')) !!}
+                                                    {{ trans('admin.yes') }}
+                                                    <span></span>
+                                                </label>
+                                                <label class="mt-radio">
+                                                    {!! Form::radio('is_saudi_nationality', 0,'',array('id'=>'no')) !!}
+                                                    {{ trans('admin.no') }}
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                            @if($errors->has('is_saudi_nationality'))
+                                                <span class="help-block text-danger">{{ $errors->first('is_saudi_nationality') }}</span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label">
+                                                {{ trans('admin.select_avatar') }}
+                                            </label>
+                                            <div>
+                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                            <span class="btn green btn-file">
+                                                                <span class="fileinput-new"> Select file </span>
+                                                                <span class="fileinput-exists"> Change </span>
+                                                                <input type="file" name="avatar"> </span>
+                                                    <span class="fileinput-filename"> </span> &nbsp;
+                                                    <a href="javascript:;" class="close fileinput-exists"
+                                                       data-dismiss="fileinput"> </a>
+                                                </div>
+                                            </div>
+                                            @if($errors->has('avatar'))
+                                                <span class="help-block text-danger">{{ $errors->first('avatar') }}</span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label">
+                                                {{ trans('admin.select_nationality') }}
+                                            </label>
+                                            <div>
+                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                            <span class="btn green btn-file">
+                                                                <span class="fileinput-new"> Select file </span>
+                                                                <span class="fileinput-exists"> Change </span>
+                                                                <input type="file" name="national_id_picture"> </span>
+                                                    <span class="fileinput-filename"> </span> &nbsp;
+                                                    <a href="javascript:;" class="close fileinput-exists"
+                                                       data-dismiss="fileinput"> </a>
+                                                </div>
+                                            </div>
+                                            @if($errors->has('national_id_picture'))
+                                                <span class="help-block text-danger">{{ $errors->first('national_id_picture') }}</span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="default_language" class="control-label">
+                                                {{ trans('admin.default_language') }} <span class="required"> * </span>
+                                            </label>
+                                            {!! Form::select('default_language', $languages, 0, array('id'=>'default_language', 'class'=>'form-control','required'=>'required')) !!}
+                                            @if($errors->has('default_language'))
+                                                <span class="help-block text-danger">{{ $errors->first('default_language') }}</span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label">
+                                                {{ trans('admin.birthdate') }} <span class="required"> * </span>
+                                            </label>
+                                            {!! Form::text('birthdate',old('birthdate'), array('id'=>'birthdate', 'class'=>'form-control form-control-inline input-medium date-picker','required'=>'required', 'size' => 16, 'type' => 'text')) !!}
+                                            @if($errors->has('birthdate'))
+                                                <span class="help-block text-danger">{{ $errors->first('birthdate') }}</span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="name" class="control-label">
+                                                {{ trans('admin.national_id') }} <span class="required"> * </span>
+                                            </label>
+                                            {!! Form::text('national_id',old('national_id'), array('id'=>'national_id', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.national_id'))) !!}
+                                            @if($errors->has('national_id'))
+                                                <span class="help-block text-danger">{{ $errors->first('national_id') }}</span>
+                                            @endif
+                                        </div>
+
+                                            <div class="form-group">
+                                                <label for="name" class="control-label">
+                                                    {{ trans('admin.nationality_id') }} <span class="required"> * </span>
+                                                </label>
+                                                {!! Form::select('nationality_id', $nationalities, 0, array('id'=>'nationality_id', 'class'=>'form-control','required'=>'required')) !!}
+
+                                                @if($errors->has('nationality_id'))
+                                                    <span class="help-block text-danger">{{ $errors->first('nationality_id') }}</span>
+                                                @endif
+                                            </div>
+
+                                        <div class="form-group">
+                                            <label for="name" class="control-label">
+                                                {{ trans('admin.about') }}
+                                            </label>
+                                            {!! Form::textarea('about',old('about'), array('id'=>'about', 'class'=>'form-control','rows' => 2)) !!}
+                                            @if($errors->has('about'))
+                                                <span class="help-block text-danger">{{ $errors->first('about') }}</span>
                                             @endif
                                         </div>
 
@@ -140,101 +263,6 @@
                                         {!! Form::close() !!}
                                     </div>
                                     <!-- END Create New User TAB -->
-
-                                    <!-- PERSONAL INFO TAB -->
-                                    <div class="tab-pane {{ ($tab=='personal_information' && empty(session()->get('tab'))) ? 'active' : '' }}"
-                                         id="personal_information">
-                                        @if(!empty($form_data))
-                                            {!! Form::model($form_data,['method'=>'PATCH','url'=>AD.'/admins/'.$form_data->id, 'role'=>'from']) !!}
-                                        @endif
-
-                                        <div class="form-group">
-                                            <label for="name_edit" class="control-label">
-                                                {{ trans('admin.name') }} <span class="required"> * </span>
-                                            </label>
-                                            {!! Form::text('name',old('name'), array('id'=>'name_edit', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.name'))) !!}
-                                            @if($errors->has('name'))
-                                                <span class="help-block text-danger">{{ $errors->first('name') }}</span>
-                                            @endif
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="email_edit" class="control-label">
-                                                {{ trans('admin.email') }} <span class="required"> * </span>
-                                            </label>
-                                            {!! Form::email('email',old('email'), array('id'=>'email_edit', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.email'))) !!}
-                                            @if($errors->has('email'))
-                                                <span class="help-block text-danger">{{ $errors->first('email') }}</span>
-                                            @endif
-                                        </div>
-
-                                        @if(!empty($form_data) && auth()->user()->id != $form_data->id)
-                                            <div class="form-group">
-                                                <label for="on_edit" class="control-label">{{ trans('admin.status') }}
-                                                    <span class="required"> * </span></label>
-                                                <div class="mt-radio-inline">
-                                                    <label class="mt-radio">
-                                                        {!! Form::radio('status', 1,'true',array('id'=>'on_edit')) !!}
-                                                        {{ trans('admin.on') }}
-                                                        <span></span>
-                                                    </label>
-                                                    <label class="mt-radio">
-                                                        {!! Form::radio('status', 0,'',array('id'=>'off_edit')) !!}
-                                                        {{ trans('admin.off') }}
-                                                        <span></span>
-                                                    </label>
-                                                </div>
-                                                @if($errors->has('status'))
-                                                    <span class="help-block text-danger">{{ $errors->first('status') }}</span>
-                                                @endif
-                                            </div>
-                                        @endif
-
-                                        <div class="margiv-top-10">
-                                            {!! Form::submit(trans('admin.save'), array('class'=>'btn green')) !!}
-                                            <a href="{{ url(AD.'/admins') }}"
-                                               class="btn red">{{ trans('admin.cancel') }}</a>
-                                        </div>
-                                        {!! Form::close() !!}
-                                    </div>
-                                    <!-- END PERSONAL INFO TAB -->
-
-                                    <!-- CHANGE PASSWORD TAB -->
-                                    <div class="tab-pane {{ (session()->get('tab')=='change_password') ? 'active' : '' }}"
-                                         id="change_password">
-                                        @if(!empty($form_data))
-                                            {!! Form::model($form_data,['method'=>'PATCH','url'=>AD.'/change-password/'.$form_data->id, 'role'=>'form']) !!}
-                                        @endif
-
-                                        <div class="form-group">
-                                            <label for="password_edit" class="control-label">
-                                                {{ trans('admin.password') }} <span class="required"> * </span>
-                                            </label>
-                                            {!! Form::password('password', array('id'=>'password_edit', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.password'))) !!}
-                                            @if($errors->has('password'))
-                                                <span class="help-block text-danger">{{ $errors->first('password') }}</span>
-                                            @endif
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="password_confirmation_edit" class="control-label">
-                                                {{ trans('admin.password_confirmation') }} <span
-                                                        class="required"> * </span>
-                                            </label>
-                                            {!! Form::password('password_confirmation', array('id'=>'password_confirmation_edit', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.password_confirmation'))) !!}
-                                            @if($errors->has('password_confirmation'))
-                                                <span class="help-block text-danger">{{ $errors->first('password_confirmation') }}</span>
-                                            @endif
-                                        </div>
-
-                                        <div class="margiv-top-10">
-                                            {!! Form::submit(trans('admin.change_password'), array('class'=>'btn green')) !!}
-                                            <a href="{{ url(AD.'/admins') }}"
-                                               class="btn red">{{ trans('admin.cancel') }}</a>
-                                        </div>
-                                        {!! Form::close() !!}
-                                    </div>
-                                    <!-- END CHANGE PASSWORD TAB -->
                                 </div>
                             </div>
                         </div>
@@ -248,4 +276,6 @@
 
 @section('script')
     <script src="{{ asset('public/assets/pages/scripts/profile.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js') }}"
+            type="text/javascript"></script>
 @stop

@@ -74,5 +74,9 @@ return [
             "trackMedicalTeam"      => config('constants.roles.trackMedicalTeam'),
             "appointmentsPurchased" => config('constants.roles.appointmentsPurchased'),
         ]
+    ],
+    "languages" => [
+        'en' => "english",
+        'ar' => "arabic"
     ]
 ];

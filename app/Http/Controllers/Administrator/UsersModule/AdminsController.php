@@ -7,10 +7,11 @@ use App\Http\Requests\Admin\ChangePassAdminRequest;
 use App\Http\Requests\Admin\CreateAdminRequest;
 use App\Http\Requests\Admin\UpdateAdminRequest;
 use App\Http\Services\Adminstrator\UsersModule\ClassesUsers\AdminClass;
+use App\Mail\Auth\VerifyEmailCode;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class AdminsController extends Controller
 {
@@ -31,6 +32,7 @@ class AdminsController extends Controller
     {
         $data = [
             'all' => User::all(),
+
         ];
         return view(AD . '.admins.index')->with($data);
     }
@@ -43,7 +45,14 @@ class AdminsController extends Controller
     public function create()
     {
         $data = [
-            'tab' => 'new_user'
+            'languages' => array(
+                 'english',
+                 'arabic'
+            ),
+            'nationalities' => array(
+                'Egyption',
+                'Saudian'
+            )
         ];
         return view(AD . '.admins.form_new')->with($data);
     }
@@ -58,6 +67,9 @@ class AdminsController extends Controller
     {
         $user = new User();
         AdminClass::createOrUpdateAdmin($user, $request);
+        AdminClass::uploadAdminImage($request, 'avatar', 'public/images/avatars', $user, 'profile_picture_path');
+        AdminClass::uploadAdminImage($request, 'national_id_picture', 'public/images/nationalities', $user, 'nationality_id_picture');
+        Mail::to($user->email)->send(new VerifyEmailCode($user));
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/admins');
     }

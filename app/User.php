@@ -30,6 +30,11 @@ class User extends Authenticatable implements CanResetPassword
         'password', 'remember_token', 'deleted_at', 'created_at', 'updated_at'
     ];
 
+    public function getFullNameAttribute()
+    {
+        return $this->first_name . " " . $this->middle_name . " " . $this->last_name;
+    }
+
     public function roles()
     {
         return $this->belongsToMany(Role::class,  'users_roles', 'user_id', 'role_id');

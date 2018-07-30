@@ -11,7 +11,7 @@ define('FE','Frontend');
 Route::group(['middleware'=>'AdminAuth','namespace'=>ADN,'prefix'=>AD],function (){
     Route::get('logout','AdminsController@logout')->name('Logout');
     Route::get('home','AdminsController@index')->name('Home');
-    Route::resource('admins','AdminsController',['names'=>['index'=>'Show Admins','create'=>'Create New Admin','edit'=>'Edit Admin','show'=>'Show Admin']]);
+    Route::resource('admins','AdminsController');
     Route::patch('change-password/{id}','AdminsController@userUpdatePassword');
 });
 

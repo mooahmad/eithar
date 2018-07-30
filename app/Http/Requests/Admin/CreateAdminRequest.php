@@ -13,7 +13,7 @@ class CreateAdminRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,19 +24,19 @@ class CreateAdminRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name'           => 'require',
-            'middle_name'          => 'require',
-            'last_name'            => 'require',
+            'first_name'           => 'required',
+            'middle_name'          => 'required',
+            'last_name'            => 'required',
             'email'                => 'required|unique:customers,email|email',
             'mobile'               => 'required|unique:customers,mobile_number',
-            'password'             => 'require',
-            'user_type'            => 'require',
-            'gender'               => 'require',
-            'default_language'     => 'require',
-            'birthdate'            => 'require',
+            'password'             => 'required',
+            'user_type'            => 'required',
+            'gender'               => 'required',
+            'default_language'     => 'required',
+            'birthdate'            => 'required',
             'national_id'          => 'required|unique:users,national_id',
-            'nationality_id'       => 'require',
-            'is_saudi_nationality' => 'require'
+            'nationality_id'       => 'required',
+            'is_saudi_nationality' => 'required'
         ];
     }
 }
