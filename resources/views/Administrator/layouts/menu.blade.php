@@ -45,6 +45,7 @@
                 <h3 class="uppercase">Dashboard</h3>
             </li>
             <!-- Start Admins Area -->
+            @can('admins.view', \Illuminate\Support\Facades\Auth::user())
             <li class="nav-item start {{ (Request::segment(2)=='admins') ? 'active' :'' }}">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-user-secret"></i>
@@ -67,6 +68,7 @@
                     </li>
                 </ul>
             </li>
+            @endcan
             <!-- End Admins Area -->
         </ul>
         <!-- END SIDEBAR MENU -->

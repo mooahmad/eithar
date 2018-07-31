@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Policies\AdminPolicy;
+use App\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laravel\Passport\Passport;
@@ -14,7 +16,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Model' => 'App\Policies\ModelPolicy',
+        User::class => AdminPolicy::class,
     ];
 
     /**
@@ -26,6 +28,13 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        // policies
+        Gate::define('admins.view', 'App\Policies\AdminPolicy@view');
+        Gate::define('admins.create', 'App\Policies\AdminPolicy@create');
+        Gate::define('admins.update', 'App\Policies\AdminPolicy@update');
+        Gate::define('admins.delete', 'App\Policies\AdminPolicy@delete');
+
+        // passport
         Passport::routes();
 
         Passport::enableImplicitGrant();

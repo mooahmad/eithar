@@ -11,6 +11,7 @@ use App\Mail\Auth\VerifyEmailCode;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\View;
 use Symfony\Component\Routing\Route;
@@ -33,6 +34,9 @@ class AdminsController extends Controller
      */
     public function index()
     {
+        if (Gate::denies('admins.view', Auth::user())) {
+            return response()->view('errors.403', [], 403);
+        }
         return view(AD . '.admins.index');
     }
 
@@ -43,6 +47,9 @@ class AdminsController extends Controller
      */
     public function create()
     {
+        if (Gate::denies('admins.create', Auth::user())) {
+            return response()->view('errors.403', [], 403);
+        }
         $data = [
             'languages'     => array(
                 'english',
@@ -66,6 +73,9 @@ class AdminsController extends Controller
      */
     public function store(CreateAdminRequest $request)
     {
+        if (Gate::denies('admins.create', Auth::user())) {
+            return response()->view('errors.403', [], 403);
+        }
         $user = new User();
         AdminClass::createOrUpdateAdmin($user, $request);
         AdminClass::uploadAdminImage($request, 'avatar', 'public/images/avatars', $user, 'profile_picture_path');
@@ -94,6 +104,9 @@ class AdminsController extends Controller
      */
     public function edit($id)
     {
+        if (Gate::denies('admins.update', Auth::user())) {
+            return response()->view('errors.403', [], 403);
+        }
         $user = User::FindOrFail($id);
         $data = [
             'user'          => $user,
@@ -120,6 +133,9 @@ class AdminsController extends Controller
      */
     public function update(UpdateAdminRequest $request, $id)
     {
+        if (Gate::denies('admins.update', Auth::user())) {
+            return response()->view('errors.403', [], 403);
+        }
         AdminClass::createOrUpdateAdmin(User::findOrFail($id), $request, false);
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/admins');
@@ -164,6 +180,9 @@ class AdminsController extends Controller
 
     public function deleteAdmins(Request $request)
     {
+        if (Gate::denies('admins.delete', Auth::user())) {
+            return response()->view('errors.403', [], 403);
+        }
         $ids = $request->input('ids');
         if (($key = array_search(1, $ids)) !== false) {
             unset($ids[$key]);
