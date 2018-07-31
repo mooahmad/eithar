@@ -37,7 +37,6 @@ class CreateUsersTable extends Migration
             $table->integer('is_saudi_nationality')->default(1);
             $table->longText('about')->nullable();
             $table->rememberToken();
-            $table->softDeletes();
             $table->dateTime('last_login_date')->nullable();
             $table->unique('email', 'mobile_number');
             $table->softDeletes();
