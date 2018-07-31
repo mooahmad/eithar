@@ -4,13 +4,17 @@ namespace App;
 
 use App\Models\Role;
 use Illuminate\Contracts\Auth\CanResetPassword;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable implements CanResetPassword
 {
-    use Notifiable, HasApiTokens, \Illuminate\Auth\Passwords\CanResetPassword;
+    use Notifiable, HasApiTokens, SoftDeletes, \Illuminate\Auth\Passwords\CanResetPassword;
+
+    protected $dateFormat = 'Y-m-d H:m:s';
+    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     /**
      * The attributes that are mass assignable.

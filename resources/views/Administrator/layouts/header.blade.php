@@ -74,12 +74,6 @@ Like: https://www.facebook.com/consultrust/
     {{--lightbox--}}
     <link href="{{ asset('public/assets/global/css/lightbox.min.css')}}" rel="stylesheet" type="text/css"/>
 
-    <!-- Datatables -->
-    <link href="{{ asset('public/assets/global/plugins/datatables/datatables.min.css')}}" rel="stylesheet"
-          type="text/css"/>
-    <link href="{{ asset('public/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css')}}"
-          rel="stylesheet" type="text/css"/>
-
     {{----}}
     <link href="{{ asset('public/assets/global/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css') }}"
           rel="stylesheet" type="text/css"/>
@@ -100,7 +94,16 @@ Like: https://www.facebook.com/consultrust/
     <!-- END THEME LAYOUT STYLES -->
     <link rel="shortcut icon" href="{{ asset('public/assets/layouts/layout/img/logo_icon.ico') }}"/>
     <!-- DataTables STYLES -->
+    <link href="{{ asset('public/DataTables/datatables.min.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('public/DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('public/DataTables/Buttons-1.5.2/css/buttons.jqueryui.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('public/DataTables/Select-1.2.6/css/select.jqueryui.min.css') }}" rel="stylesheet" type="text/css"/>
+    <!-- Modals STYLES -->
+    <link href="{{ asset('public/assets/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('public/assets/global/plugins/bootstrap-modal/css/bootstrap-modal.css') }}" rel="stylesheet" type="text/css" />
+
+    <!-- For All App STYLES keep it last file -->
+    <link href="{{ asset('public/css/custom/app.css') }}" rel="stylesheet" type="text/css"/>
 
 </head>
 

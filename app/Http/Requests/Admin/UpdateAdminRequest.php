@@ -13,7 +13,7 @@ class UpdateAdminRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,19 @@ class UpdateAdminRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'first_name'           => 'required',
+            'middle_name'          => 'required',
+            'last_name'            => 'required',
+            'email'                => 'required|unique:users,email, ' . $this->route()->parameters()['admin'] . '|email',
+            'mobile'               => 'required|unique:users,mobile_number, ' . $this->route()->parameters()['admin'],
+            'password'             => 'sometimes|nullable|max:15',
+            'user_type'            => 'required',
+            'gender'               => 'required',
+            'default_language'     => 'required',
+            'birthdate'            => 'required',
+            'national_id'          => 'required|unique:users,national_id, ' . $this->route()->parameters()['admin'],
+            'nationality_id'       => 'required',
+            'is_saudi_nationality' => 'required'
         ];
     }
 }

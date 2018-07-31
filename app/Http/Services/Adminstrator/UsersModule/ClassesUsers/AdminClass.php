@@ -13,12 +13,13 @@ use Illuminate\Support\MessageBag;
 class AdminClass
 {
 
-    public static function createOrUpdateAdmin(User $user, $request){
+    public static function createOrUpdateAdmin(User $user, $request, $isCreate = true){
         $user->first_name = $request->input('first_name');
         $user->middle_name = $request->input('middle_name');
         $user->last_name = $request->input('last_name');
         $user->email = $request->input('email');
         $user->mobile_number = $request->input('mobile');
+        if($isCreate || (!$isCreate && !empty($request->input('password'))))
         $user->password = Hash::make($request->input('password'));
         $user->user_type = $request->input('user_type');
         $user->gender = $request->input('gender');
@@ -28,8 +29,10 @@ class AdminClass
         $user->nationality_id = $request->input('nationality_id');
         $user->is_saudi_nationality = $request->input('is_saudi_nationality');
         $user->about = $request->input('about');
-        $user->email_code = Utilities::quickRandom(4, true);
-        $user->mobile_code = Utilities::quickRandom(4, true);
+        if($isCreate) {
+            $user->email_code = Utilities::quickRandom(4, true);
+            $user->mobile_code = Utilities::quickRandom(4, true);
+        }
         return $user->save();
     }
 

@@ -40,6 +40,7 @@ class CreateUsersTable extends Migration
             $table->softDeletes();
             $table->dateTime('last_login_date')->nullable();
             $table->unique('email', 'mobile_number');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -66,5 +66,7 @@ return [
     'about'                 => 'About',
     'select_avatar'         => 'Select Avatar',
     'select_nationality'    => 'Select Nationality',
+    'update'                => 'Update',
+    'select'                => 'Select'
 
 ];

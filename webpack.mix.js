@@ -11,5 +11,5 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/Administrator/newAdmin.js', 'public/js')
-   .sass('resources/assets/sass/Administrator/newAdmin.scss', 'public/css');
+mix.js('resources/assets/js/Administrator/newAdmin.js', 'public/js/preprocessor')
+   .sass('resources/assets/sass/Administrator/newAdmin.scss', 'public/css/preprocessor');

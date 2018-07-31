@@ -59,12 +59,6 @@
     <!-- Select 2 -->
     <script src="{{ asset('public/assets/global/plugins/select2/js/select2.full.min.js')}}" type="text/javascript"></script>
 
-    <!-- Datatable -->
-    <script src="{{ asset('public/assets/global/scripts/datatable.js')}}" type="text/javascript"></script>
-    <script src="{{ asset('public/assets/global/plugins/datatables/datatables.min.js')}}" type="text/javascript"></script>
-    <script src="{{ asset('public/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js')}}" type="text/javascript"></script>
-    <script src="{{ asset('public/assets/pages/scripts/table-datatables-buttons.min.js')}}" type="text/javascript"></script>
-
     {{--markdown--}}
     <script src="{{ asset('public/assets/global/plugins/bootstrap-markdown/lib/markdown.js') }}" type="text/javascript"></script>
     <script src="{{ asset('public/assets/global/plugins/bootstrap-markdown/js/bootstrap-markdown.js') }}" type="text/javascript"></script>
@@ -91,12 +85,19 @@
     <script src="{{ asset('public/assets/layouts/global/scripts/quick-nav.min.js')}}" type="text/javascript"></script>
     <!-- END THEME LAYOUT SCRIPTS -->
     <!-- DataTables SCRIPTS -->
+    <script src="{{ asset('public/DataTables/datatables.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('public/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/DataTables/Select-1.2.6/js/select.jqueryui.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('public/DataTables/Buttons-1.5.2/js/dataTables.buttons.min.js') }}"></script>
     <script src="{{ asset('public/DataTables/Buttons-1.5.2/js/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
 
+    <!-- Modals SCRIPTS -->
+    <script src="{{ asset('public/assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js') }}" type="text/javascript"></script>
+
+    <script src="{{ asset('public/js/custom/app.js') }}"></script>
     <!-- Delete All Selected Items -->
     <!-- Modal -->
     <div class="modal fade" id="myModalSelected" role="dialog">

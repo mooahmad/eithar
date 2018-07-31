@@ -10,7 +10,9 @@
                         <a href="{{ url(AD.'/admins/create') }}" class="btn sbold green"> Add New <i
                                     class="fa fa-plus"></i></a>
                     </div>
-                    <div class="tools"></div>
+                    <div id="dataTable-buttons" class="tools">
+
+                    </div>
                 </div>
                 <div class="portlet-body">
                     <div class="table-responsive">
@@ -35,12 +37,15 @@
             <!-- END EXAMPLE TABLE PORTLET-->
         </div>
     </div>
+    @include('Administrator.widgets.deleteModal', ['message' => 'are you sure you want to delete?'])
 @stop
 
 @section('script')
     // declaring used variables
     <script>
         var adminsDataTableURL = "{!! route('getAdminsDatatable') !!}";
+        var deleteAdminsURL    = "{!! route('deleteAdmins') !!}";
+        var csrfToken          = "{!! csrf_token() !!}";
     </script>
     <script src="{{ asset('public/js/custom/adminsDataTable.js') }}" type="text/javascript"></script>
 @stop

@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\View;
+use Symfony\Component\Routing\Route;
 use Yajra\DataTables\Facades\DataTables;
 
 class AdminsController extends Controller
@@ -43,16 +44,18 @@ class AdminsController extends Controller
     public function create()
     {
         $data = [
-            'languages' => array(
-                 'english',
-                 'arabic'
+            'languages'     => array(
+                'english',
+                'arabic'
             ),
             'nationalities' => array(
                 'Egyption',
                 'Saudian'
-            )
+            ),
+            'formRoute'     => route('admins.store'),
+            'submitBtn'     => trans('admin.update')
         ];
-        return view(AD . '.admins.form_new')->with($data);
+        return view(AD . '.admins.form')->with($data);
     }
 
     /**
@@ -92,12 +95,20 @@ class AdminsController extends Controller
     public function edit($id)
     {
         $user = User::FindOrFail($id);
-//        return $user;
         $data = [
-            'form_data' => $user,
-            'tab'       => 'personal_information'
+            'user'          => $user,
+            'languages'     => array(
+                'english',
+                'arabic'
+            ),
+            'nationalities' => array(
+                'Egyption',
+                'Saudian'
+            ),
+            'formRoute'     => route('admins.update', ['admin' => $id]),
+            'submitBtn'     => trans('admin.update')
         ];
-        return view(AD . '.admins.form_new')->with($data);
+        return view(AD . '.admins.form')->with($data);
     }
 
     /**
@@ -109,8 +120,7 @@ class AdminsController extends Controller
      */
     public function update(UpdateAdminRequest $request, $id)
     {
-        $inputs = $request->except('_token', '_method');
-        User::FindOrFail($id)->update($inputs);
+        AdminClass::createOrUpdateAdmin(User::findOrFail($id), $request, false);
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/admins');
     }
@@ -138,29 +148,26 @@ class AdminsController extends Controller
         return redirect('login');
     }
 
-    /**
-     * @param ChangePassAdminRequest $request
-     * @param $id
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    protected function userUpdatePassword(ChangePassAdminRequest $request, $id)
-    {
-        $user = User::FindOrFail($id);
-        $user->password = bcrypt($request->input('password'));
-        $user->save();
-        session()->flash('success_msg', trans('admin.success_message'));
-        return redirect(AD . '/admins');
-    }
 
-    public function getAdminsDataTable(){
+    public function getAdminsDataTable()
+    {
         $admins = User::where('id', '<>', 0);
         $dataTable = DataTables::of($admins)
-            ->addColumn('actions', function ($admin) {
-                $editURL = url('Administrator/admins/'.$admin->id.'/edit');
-                return View::make('Administrator.widgets.dataTablesActions', [ 'editURL' => $editURL]);
-            })
-            ->rawColumns(['actions'])
-            ->make(true);
+                               ->addColumn('actions', function ($admin) {
+                                   $editURL = url('Administrator/admins/' . $admin->id . '/edit');
+                                   return View::make('Administrator.widgets.dataTablesActions', ['editURL' => $editURL]);
+                               })
+                               ->rawColumns(['actions'])
+                               ->make(true);
         return $dataTable;
+    }
+
+    public function deleteAdmins(Request $request)
+    {
+        $ids = $request->input('ids');
+        if (($key = array_search(1, $ids)) !== false) {
+            unset($ids[$key]);
+        }
+        return User::whereIn('id', $ids)->delete();
     }
 }
