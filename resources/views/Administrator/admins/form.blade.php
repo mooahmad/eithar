@@ -96,6 +96,30 @@
                                             @endif
                                         </div>
 
+                                        @if(isset($user) && \Illuminate\Support\Facades\Auth::user()->user_type === config('constants.userTypes.superAdmin'))
+                                            <div class="form-group">
+                                                <label for="on"
+                                                       class="control-label">{{ trans('admin.is_active') }} </label>
+                                                @php
+                                                    $is_active = null;
+                                                    if(isset($user)){
+                                                    $is_active = $user->is_active;
+                                                    }
+                                                @endphp
+                                                <div class="mt-radio-inline">
+                                                    <label class="mt-radio">
+                                                        {!! Form::radio('is_active', 1, ($is_active === 1 || empty($is_active))? 'true' : '',array('id'=>'yes-active')) !!}
+                                                        {{ trans('admin.yes') }}
+                                                        <span></span>
+                                                    </label>
+                                                    <label class="mt-radio">
+                                                        {!! Form::radio('is_active', 0, ($is_active === 0 )? 'true' : '',array('id'=>'no-active')) !!}
+                                                        {{ trans('admin.no') }}
+                                                        <span></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        @endif
                                         <div class="form-group">
                                             <label for="on" class="control-label">{{ trans('admin.userType') }} <span
                                                         class="required"> * </span></label>

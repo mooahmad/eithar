@@ -69,5 +69,7 @@ return [
     'update'                => 'Update',
     'select'                => 'Select',
     'reset_password'        => 'Reset password',
-    'code'                  => 'code'
+    'code'                  => 'code',
+    'is_active'             => 'Is active',
+
 ];

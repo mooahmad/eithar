@@ -27,7 +27,6 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => ADN, 'prefix' => AD], 
                         'create'  => 'create admin',
                         'show'    => 'show admin',
                         'edit'    => 'edit admin',
-                        'update'  => 'edit admin',
                         'destroy' => 'delete admin'
                     ]]);
     Route::get('getadminsdatatable', 'AdminsController@getAdminsDataTable')->name('getAdminsDatatable');
