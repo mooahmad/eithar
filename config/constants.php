@@ -75,8 +75,15 @@ return [
             "appointmentsPurchased" => config('constants.roles.appointmentsPurchased'),
         ]
     ],
-    "languages" => [
+    "languages"               => [
         'en' => "english",
         'ar' => "arabic"
+    ],
+    "categories"              => [
+        "Doctor"        => 1,
+        "Lap"           => 2,
+        "Physiotherapy" => 3,
+        "Nursing"       => 4,
+        "WomanAndChild" => 5
     ]
 ];

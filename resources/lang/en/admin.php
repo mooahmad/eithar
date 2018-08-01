@@ -71,5 +71,10 @@ return [
     'reset_password'        => 'Reset password',
     'code'                  => 'code',
     'is_active'             => 'Is active',
+    'categories'            => 'Categories',
+    'add_category'          => 'Add category',
+    'show_category'         => 'Show category',
+    'name_en'               => 'English name',
+    'name_ar'               => 'Arabic name'
 
 ];

@@ -28,11 +28,17 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        // policies
+        // policies admins
         Gate::define('admins.view', 'App\Policies\AdminPolicy@view');
         Gate::define('admins.create', 'App\Policies\AdminPolicy@create');
         Gate::define('admins.update', 'App\Policies\AdminPolicy@update');
         Gate::define('admins.delete', 'App\Policies\AdminPolicy@delete');
+
+        // policies categories
+        Gate::define('category.view', 'App\Policies\CategoryPolicy@view');
+        Gate::define('category.create', 'App\Policies\CategoryPolicy@create');
+        Gate::define('category.update', 'App\Policies\CategoryPolicy@update');
+        Gate::define('category.delete', 'App\Policies\CategoryPolicy@delete');
 
         // passport
         Passport::routes();
