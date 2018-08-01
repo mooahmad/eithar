@@ -67,6 +67,7 @@ return [
     'select_avatar'         => 'Select Avatar',
     'select_nationality'    => 'Select Nationality',
     'update'                => 'Update',
-    'select'                => 'Select'
-
+    'select'                => 'Select',
+    'reset_password'        => 'Reset password',
+    'code'                  => 'code'
 ];

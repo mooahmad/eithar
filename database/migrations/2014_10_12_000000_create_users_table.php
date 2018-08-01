@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('mobile_code', 8)->nullable();
             $table->integer('mobile_verified')->default(0);
             $table->string('password',255);
+            $table->string('forget_password_code', 8)->nullable();
             $table->integer('user_type')->nullable();
             $table->integer('gender')->default(0);
             $table->integer('default_language')->nullable();

@@ -12,16 +12,16 @@ class ForgetPasswordMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $customer;
+    public $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Customer $customer)
+    public function __construct($user)
     {
-        $this->customer = $customer;
+        $this->user = $user;
     }
 
     /**
@@ -33,8 +33,8 @@ class ForgetPasswordMail extends Mailable
     {
         return $this->view('vendor.mail.forgetpassword.template')
                     ->with([
-                               'customerName'  => $this->customer->first_name . ' ' .$this->customer->last_name,
-                               'customerCode' => $this->customer->forget_password_code,
+                               'customerName'  => $this->user->first_name . ' ' .$this->user->last_name,
+                               'customerCode' => $this->user->forget_password_code,
                            ]);
     }
 }
