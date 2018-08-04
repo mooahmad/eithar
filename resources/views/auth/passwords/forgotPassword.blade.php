@@ -55,16 +55,8 @@
 <!-- END LOGO -->
 <!-- BEGIN LOGIN -->
 <div class="content">
-    <!-- BEGIN LOGIN FORM -->
-    {!! Form::open(['url'=>'login', 'class'=>'login-form']) !!}
-    <h3 class="form-title font-green">{{ trans('admin.signin') }}</h3>
-    @if(Session::has('error_login'))
-        <div class="alert alert-danger">
-            <button class="close" data-close="alert"></button>
-            <span>{{ session()->get('error_login') }}</span>
-        </div>
-    @endif
-
+    {!! Form::open(['route'=> 'adminForget', 'class'=>'login-form']) !!}
+    <h3 class="form-title font-green">{{ trans('admin.forgot_password') }}</h3>
     @if(count($errors))
         <div class="alert alert-danger">
             <button class="close" data-close="alert"></button>
@@ -75,31 +67,15 @@
             </ul>
         </div>
     @endif
-
-
     <div class="form-group">
         <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
         <label class="control-label visible-ie8 visible-ie9">{{ trans('admin.email') }}</label>
-        {!! Form::email('email', old('email'), array('class'=>'form-control form-control-solid placeholder-no-fix','placeholder'=>trans('admin.enter_email'),'required'=>'required', 'autocomplete'=>'off')) !!}
-    </div>
-
-    <div class="form-group">
-        <label class="control-label visible-ie8 visible-ie9">{{ trans('admin.password') }}</label>
-        {!! Form::password('password', array('class'=>'form-control form-control-solid placeholder-no-fix','placeholder'=>trans('admin.enter_password'),'required'=>'required', 'autocomplete'=>'off')) !!}
-    </div>
-
-    <div class="form-actions">
-        {!! Form::submit(trans('admin.login'), array('class'=>'btn green uppercase')) !!}
-        <label class="rememberme check mt-checkbox mt-checkbox-outline">
-            <input type="checkbox" name="remember" value="1"/>{{ trans('admin.remember') }}
-            <span></span>
-        </label>
+        {!! Form::email('email', old('email'), array('class'=>'form-control form-control-solid placeholder-no-fix','placeholder'=>trans('admin.enter_email'), 'autocomplete'=>'off')) !!}
     </div>
     <div class="form-actions">
-        <a href="{{ route('forgotPassword') }}" id="forget-password" class="" >{{ trans('admin.forgot_password') }}</a>
-        <a href="{{ url('/password/reset') }}" id="reset-password" class="">{{ trans('admin.reset_password') }}</a>
+        {!! Form::submit(trans('admin.submit'), array('class'=>'btn green uppercase')) !!}
     </div>
-    {!! Form::close() !!}
+{!! Form::close() !!}
 <!-- END LOGIN FORM -->
 </div>
 <div class="copyright">

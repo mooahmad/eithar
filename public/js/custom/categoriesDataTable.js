@@ -1,9 +1,9 @@
 var mainTable = null;
 
 function datatable() {
-    $('#data-table-admins').dataTable().fnDestroy();
+    $('#data-table-categories').dataTable().fnDestroy();
     $.fn.dataTable.ext.errMode = 'throw';
-    mainTable = $('#data-table-admins').DataTable({
+    mainTable = $('#data-table-categories').DataTable({
         "bfilter": false,
         "dom": 'B f l t p r i',
         "paging": true,
@@ -21,7 +21,7 @@ function datatable() {
             title: 'Customers report',
             messageTop: 'Search result data',
             exportOptions: {
-                columns: [0, 2, 3, 4, 4]
+                columns: [0, 2, 3]
             },
             bom: true,
             charset: 'UTF-8'
@@ -38,7 +38,7 @@ function datatable() {
                     });
                     $('#btn-modal-delete').unbind('click');
                     $('#btn-modal-delete').on('click', function () {
-                        deleteAdminsRecords(ids)
+                        deleteCategoriesRecords(ids)
                     });
                     $('#staticDeleteModal').modal();
                 }
@@ -47,17 +47,12 @@ function datatable() {
         processing: true,
         serverSide: true,
         ajax: {
-            url: adminsDataTableURL
+            url: categoriesDataTableURL
         },
         columns: [
-            {data: 'id', name: 'users.id'},
-            {
-                data: 'full_name', name: 'users.first_name', "render": function (data, type, full, meta) {
-                    return data;
-                }
-            },
-            {data: 'mobile_number', name: 'users.mobile_number'},
-            {data: 'email', name: 'users.email'},
+            {data: 'id', name: 'categories.id'},
+            {data: 'category_name_ar', name: 'categories.category_name_ar'},
+            {data: 'category_name_en', name: 'categories.category_name_en'},
             {
                 searchable: false,
                 orderable: false,
@@ -94,9 +89,9 @@ function datatable() {
         });
 }
 
-function deleteAdminsRecords(ids) {
+function deleteCategoriesRecords(ids) {
     $.ajax({
-        url: deleteAdminsURL,
+        url: deleteCategoriesURL,
         type: "Post",
         data: {
             "_token": csrfToken,

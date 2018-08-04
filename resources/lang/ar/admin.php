@@ -67,6 +67,17 @@ return [
     'select_avatar'         => 'Select Avatar',
     'select_nationality'    => 'Select Nationality',
     'update'                => 'Update',
-    'select'                => 'Select'
-
+    'select'                => 'Select',
+    'reset_password'        => 'Reset password',
+    'code'                  => 'code',
+    'is_active'             => 'Is active',
+    'categories'            => 'Categories',
+    'add_category'          => 'Add category',
+    'show_category'         => 'Show category',
+    'name_en'               => 'English name',
+    'name_ar'               => 'Arabic name',
+    'desc_en'               => 'English description',
+    'desc_ar'               => 'Arabic description',
+    'parent_cat'            => 'Parent category',
+    'cat_name_col'          => 'category_name_ar',
 ];

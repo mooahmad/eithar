@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('mobile_code', 8)->nullable();
             $table->integer('mobile_verified')->default(0);
             $table->string('password',255);
+            $table->string('forget_password_code', 8)->nullable();
             $table->integer('user_type')->nullable();
             $table->integer('gender')->default(0);
             $table->integer('default_language')->nullable();
@@ -37,6 +38,7 @@ class CreateUsersTable extends Migration
             $table->integer('is_saudi_nationality')->default(1);
             $table->longText('about')->nullable();
             $table->rememberToken();
+            $table->integer('added_by')->nullable();
             $table->dateTime('last_login_date')->nullable();
             $table->unique('email', 'mobile_number');
             $table->softDeletes();

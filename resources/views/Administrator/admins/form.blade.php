@@ -78,7 +78,7 @@
 
                                         <div class="form-group">
                                             <label for="password" class="control-label">
-                                                {{ trans('admin.password') }}  {{  (isset($user))? '' : '<span class="required"> * </span>' }}
+                                                {{ trans('admin.password') }}  {!! (isset($user))? '' : '<span class="required"> * </span>' !!}
                                             </label>
                                             {!! Form::password('password', array('id'=>'password', 'class'=>'form-control', (isset($user))? '' : 'required'=>'required','placeholder'=>trans('admin.password'))) !!}
                                             @if($errors->has('password'))
@@ -88,7 +88,7 @@
 
                                         <div class="form-group">
                                             <label for="password_confirmation" class="control-label">
-                                                {{ trans('admin.password_confirmation') }} {{  (isset($user))? '' : '<span class="required"> * </span>' }}
+                                                {{ trans('admin.password_confirmation') }} {!!  (isset($user))? '' : '<span class="required"> * </span>'  !!}
                                             </label>
                                             {!! Form::password('password_confirmation', array('id'=>'password_confirmation', 'class'=>'form-control', (isset($user))? '' : 'required'=>'required','placeholder'=>trans('admin.password_confirmation'))) !!}
                                             @if($errors->has('password_confirmation'))
@@ -96,6 +96,30 @@
                                             @endif
                                         </div>
 
+                                        @if(isset($user) && \Illuminate\Support\Facades\Auth::user()->user_type === config('constants.userTypes.superAdmin'))
+                                            <div class="form-group">
+                                                <label for="on"
+                                                       class="control-label">{{ trans('admin.is_active') }} </label>
+                                                @php
+                                                    $is_active = null;
+                                                    if(isset($user)){
+                                                    $is_active = $user->is_active;
+                                                    }
+                                                @endphp
+                                                <div class="mt-radio-inline">
+                                                    <label class="mt-radio">
+                                                        {!! Form::radio('is_active', 1, ($is_active === 1 || empty($is_active))? 'true' : '',array('id'=>'yes-active')) !!}
+                                                        {{ trans('admin.yes') }}
+                                                        <span></span>
+                                                    </label>
+                                                    <label class="mt-radio">
+                                                        {!! Form::radio('is_active', 0, ($is_active === 0 )? 'true' : '',array('id'=>'no-active')) !!}
+                                                        {{ trans('admin.no') }}
+                                                        <span></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        @endif
                                         <div class="form-group">
                                             <label for="on" class="control-label">{{ trans('admin.userType') }} <span
                                                         class="required"> * </span></label>
@@ -138,12 +162,12 @@
                                             @endphp
                                             <div class="mt-radio-inline">
                                                 <label class="mt-radio">
-                                                    {!! Form::radio('gender', config('constants.gender.male'), ($userGender == config('constants.gender.male') || empty($userGender))? 'true' : '',array('id'=>'male')) !!}
+                                                    {!! Form::radio('gender', config('constants.gender.male'), ($userGender === config('constants.gender.male') || empty($userGender))? 'true' : '',array('id'=>'male')) !!}
                                                     {{ trans('admin.male') }}
                                                     <span></span>
                                                 </label>
                                                 <label class="mt-radio">
-                                                    {!! Form::radio('gender', config('constants.gender.female'), ($userGender == config('constants.gender.female'))? 'true' : '',array('id'=>'female')) !!}
+                                                    {!! Form::radio('gender', config('constants.gender.female'), ($userGender === config('constants.gender.female'))? 'true' : '', array('id'=>'female')) !!}
                                                     {{ trans('admin.female') }}
                                                     <span></span>
                                                 </label>
@@ -165,12 +189,12 @@
                                             @endphp
                                             <div class="mt-radio-inline">
                                                 <label class="mt-radio">
-                                                    {!! Form::radio('is_saudi_nationality', 1, ($is_saudi == 1 || empty($is_saudi))? 'true' : '',array('id'=>'yes')) !!}
+                                                    {!! Form::radio('is_saudi_nationality', 1, ($is_saudi === 1 || empty($is_saudi))? 'true' : '',array('id'=>'yes')) !!}
                                                     {{ trans('admin.yes') }}
                                                     <span></span>
                                                 </label>
                                                 <label class="mt-radio">
-                                                    {!! Form::radio('is_saudi_nationality', 0, ($is_saudi == 0 )? 'true' : '',array('id'=>'no')) !!}
+                                                    {!! Form::radio('is_saudi_nationality', 0, ($is_saudi === 0 )? 'true' : '',array('id'=>'no')) !!}
                                                     {{ trans('admin.no') }}
                                                     <span></span>
                                                 </label>
