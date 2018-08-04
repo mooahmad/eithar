@@ -107,6 +107,7 @@ function deleteAdminsRecords(ids) {
                 .order( [[ 0, 'asc' ]] )
                 .draw( false );
             $('#staticDeleteModal').modal('hide');
+            $('.deleteSelected').addClass('hidden');
         },
         error: function (response, status, xhr) {
 
