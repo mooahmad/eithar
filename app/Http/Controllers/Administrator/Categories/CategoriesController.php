@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Administrator\Categories;
 
+use App\Http\Requests\Categories\CreateCategoryRequest;
+use App\Http\Requests\Categories\UpdateCategoryRequest;
+use App\Http\Services\Adminstrator\CategoryModule\ClassesCategory\CategoryClass;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -36,15 +39,30 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-
+        if (Gate::denies('category.create', new Category())) {
+            return response()->view('errors.403', [], 403);
+        }
+        $categories = Category::all()->take(5)->pluck(__('admin.cat_name_col'), 'id')->toArray();
+        $data = [
+            'categories' => $categories,
+            'formRoute'  => route('categories.store'),
+            'submitBtn'  => trans('admin.create')
+        ];
+        return view(AD . '.categories.form')->with($data);
     }
 
     /**
      * @param Request $request
      */
-    public function store(Request $request)
+    public function store(CreateCategoryRequest $request)
     {
-
+        if (Gate::denies('category.create', new Category())) {
+            return response()->view('errors.403', [], 403);
+        }
+        $category = new Category();
+        CategoryClass::createOrUpdate($category, $request);
+        session()->flash('success_msg', trans('admin.success_message'));
+        return redirect(CAT . '/categories');
     }
 
     /**
@@ -60,16 +78,32 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-
+        if (Gate::denies('category.update', new Category())) {
+            return response()->view('errors.403', [], 403);
+        }
+        $category = Category::FindOrFail($id);
+        $categories = Category::all()->take(5)->pluck(__('admin.cat_name_col'), 'id')->toArray();
+        $data = [
+            'category'   => $category,
+            'categories' => $categories,
+            'formRoute'  => route('categories.update', ['category' => $id]),
+            'submitBtn'  => trans('admin.update')
+        ];
+        return view(AD . '.categories.form')->with($data);
     }
 
     /**
      * @param Request $request
      * @param $id
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCategoryRequest $request, $id)
     {
-
+        if (Gate::denies('category.update', new Category())) {
+            return response()->view('errors.403', [], 403);
+        }
+        CategoryClass::createOrUpdate(Category::findOrFail($id), $request, false);
+        session()->flash('success_msg', trans('admin.success_message'));
+        return redirect(CAT . '/categories');
     }
 
     /**
@@ -85,8 +119,10 @@ class CategoriesController extends Controller
         $categories = Category::where('id', '<>', 0);
         $dataTable = DataTables::of($categories)
                                ->addColumn('actions', function ($category) {
-                                   $editURL = url('Administrator/categories/' . $category->id . '/edit');
-                                   return View::make('Administrator.widgets.dataTablesActions', ['editURL' => $editURL]);
+                                   if (!in_array($category->id, [1, 2, 3, 4, 5])) {
+                                       $editURL = url('Categories/categories/' . $category->id . '/edit');
+                                       return View::make('Administrator.widgets.dataTablesActions', ['editURL' => $editURL]);
+                                   }
                                })
                                ->rawColumns(['actions'])
                                ->make(true);
@@ -99,9 +135,10 @@ class CategoriesController extends Controller
             return response()->view('errors.403', [], 403);
         }
         $ids = $request->input('ids');
-        if (($key = array_search(-1, $ids)) !== false) {
-            unset($ids[$key]);
-        }
+        for ($i = 1; $i <= 5; $i++)
+            if (($key = array_search($i, $ids)) !== false) {
+                unset($ids[$key]);
+            }
         return Category::whereIn('id', $ids)->delete();
     }
 

@@ -75,5 +75,9 @@ return [
     'add_category'          => 'Add category',
     'show_category'         => 'Show category',
     'name_en'               => 'English name',
-    'name_ar'               => 'Arabic name'
+    'name_ar'               => 'Arabic name',
+    'desc_en'               => 'English description',
+    'desc_ar'               => 'Arabic description',
+    'parent_cat'            => 'Parent category',
+    'cat_name_col'          => 'category_name_ar',
 ];
