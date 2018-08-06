@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\WebApi\CitiesModule;
 
 use App\Helpers\ApiHelpers;
-use App\Http\Services\WebApi\CategoriesModule\ClassesCities\CitiesStrategy;
+use App\Http\Services\WebApi\CitiesModule\ClassesCities\CitiesStrategy;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

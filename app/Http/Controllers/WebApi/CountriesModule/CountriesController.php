@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\WebApi\CountriesModule;
 
 use App\Helpers\ApiHelpers;
-use App\Http\Services\WebApi\CategoriesModule\ClassesCountries\CountriesStrategy;
+use App\Http\Services\WebApi\CountriesModule\ClassesCountries\CountriesStrategy;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

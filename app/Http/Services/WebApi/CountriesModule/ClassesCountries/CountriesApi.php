@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Services\WebApi\CategoriesModule\ClassesCountries;
+namespace App\Http\Services\WebApi\CountriesModule\ClassesCountries;
 
 use App\Helpers\ApiHelpers;
-use App\Http\Services\WebApi\CategoriesModule\AbstractCountries\Countries;
+use App\Http\Services\WebApi\CountriesModule\AbstractCountries\Countries;
 use Illuminate\Http\Request;
 
 class CountriesApi extends Countries

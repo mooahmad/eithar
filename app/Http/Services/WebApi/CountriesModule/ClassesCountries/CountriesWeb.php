@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Services\WebApi\CategoriesModule\ClassesCountries;
+namespace App\Http\Services\WebApi\CountriesModule\ClassesCountries;
 
-use App\Http\Services\WebApi\CategoriesModule\AbstractCountries\Countries;
+use App\Http\Services\WebApi\CountriesModule\AbstractCountries\Countries;
 use Illuminate\Http\Request;
 
 class CountriesWeb extends Countries

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Services\WebApi\CategoriesModule\AbstractCountries;
+namespace App\Http\Services\WebApi\CountriesModule\AbstractCountries;
 
 
 use App\Helpers\Utilities;
-use App\Http\Services\WebApi\CategoriesModule\ICountries\ICountry;
+use App\Http\Services\WebApi\CountriesModule\ICountries\ICountry;
 use App\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Support\MessageBag;

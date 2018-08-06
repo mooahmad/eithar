@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Services\WebApi\CategoriesModule\ICities;
+namespace App\Http\Services\WebApi\CitiesModule\ICities;
 
 
 use Illuminate\Http\Request;

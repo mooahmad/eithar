@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Services\WebApi\CategoriesModule\AbstractCities;
+namespace App\Http\Services\WebApi\CitiesModule\AbstractCities;
 
 
 use App\Helpers\Utilities;
-use App\Http\Services\WebApi\CategoriesModule\ICities\ICity;
+use App\Http\Services\WebApi\CitiesModule\ICities\ICity;
 use App\Models\City;
 use Illuminate\Http\Request;
 use Illuminate\Support\MessageBag;

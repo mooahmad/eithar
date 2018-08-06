@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Services\WebApi\CategoriesModule\ClassesCities;
+namespace App\Http\Services\WebApi\CitiesModule\ClassesCities;
 
 use App\Helpers\ApiHelpers;
-use App\Http\Services\WebApi\CategoriesModule\AbstractCities\Cities;
+use App\Http\Services\WebApi\CitiesModule\AbstractCities\Cities;
 use Illuminate\Http\Request;
 
 class CitiesApi extends Cities

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Services\WebApi\CategoriesModule\ICountries;
+namespace App\Http\Services\WebApi\CountriesModule\ICountries;
 
 
 use Illuminate\Http\Request;
