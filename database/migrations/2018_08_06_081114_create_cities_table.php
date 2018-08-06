@@ -19,6 +19,7 @@ class CreateCitiesTable extends Migration
             $table->string('city_name_ara',100)->nullable();
             $table->string('city_name_eng',100)->nullable();
             $table->string('city_code',100)->nullable();
+            $table->integer('added_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

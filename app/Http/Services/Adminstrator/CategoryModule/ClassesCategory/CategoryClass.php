@@ -6,6 +6,7 @@ namespace App\Http\Services\Adminstrator\CategoryModule\ClassesCategory;
 use App\Helpers\Utilities;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\MessageBag;
 
 class CategoryClass
@@ -18,6 +19,8 @@ class CategoryClass
         $category->category_name_ar = $request->input('name_ar');
         $category->description_en = $request->input('desc_en');
         $category->description_ar = $request->input('desc_ar');
+        if($isCreate)
+            $category->added_by = Auth::id();
         return $category->save();
     }
 

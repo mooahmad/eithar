@@ -21,6 +21,7 @@ class CreateCategoryTable extends Migration
             $table->longText('description_ar')->nullable();
             $table->longText('description_en')->nullable();
             $table->longText('profile_picture_path')->nullable();
+            $table->integer('added_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

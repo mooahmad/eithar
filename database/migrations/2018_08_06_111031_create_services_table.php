@@ -40,6 +40,7 @@ class CreateServicesTable extends Migration
             $table->integer('no_of_ratings')->nullable();
             $table->integer('no_of_reviews')->nullable();
             $table->integer('appear_on_website')->nullable();
+            $table->integer('added_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

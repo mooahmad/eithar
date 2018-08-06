@@ -19,6 +19,7 @@ class CreateCurrenciesTable extends Migration
             $table->string('name_eng',100)->nullable();
             $table->string('currency_code',100)->nullable();
             $table->string('currency_short_code',100)->nullable();
+            $table->integer('added_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
