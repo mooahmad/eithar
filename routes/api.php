@@ -31,6 +31,10 @@ Route::middleware('auth:api')->group(function () {
         Route::post('deleteCustomerFamilyMember', 'CustomerController@deleteCustomerFamilyMember');
         Route::get('getCustomerFamilyMembers', 'CustomerController@getCustomerFamilyMembers');
     });
+    Route::namespace('WebApi\CategoriesModule')->group(function () {
+        Route::get('getMainCategories', 'CategoriesController@getMainCategories');
+        Route::get('getChildCategories/{id}', 'CategoriesController@getChildCategories');
+    });
 });
 
 Route::namespace('WebApi\UsersModule')->group(function () {
