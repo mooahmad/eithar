@@ -61,6 +61,7 @@ class CategoriesController extends Controller
         }
         $category = new Category();
         CategoryClass::createOrUpdate($category, $request);
+        CategoryClass::uploadImage($request, 'avatar', 'public/images/categories', $category,'profile_picture_path');
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(CAT . '/categories');
     }

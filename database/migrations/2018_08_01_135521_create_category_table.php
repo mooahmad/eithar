@@ -21,6 +21,7 @@ class CreateCategoryTable extends Migration
             $table->longText('description_ar')->nullable();
             $table->longText('description_en')->nullable();
             $table->longText('profile_picture_path')->nullable();
+            $table->integer('added_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -45,6 +46,6 @@ class CreateCategoryTable extends Migration
         Schema::table('categories', function (Blueprint $table) {
             $table->dropForeign(['category_parent_id']);
         });
-        Schema::dropIfExists('category');
+        Schema::dropIfExists('categories');
     }
 }

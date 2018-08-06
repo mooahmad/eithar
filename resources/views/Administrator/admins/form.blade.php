@@ -25,7 +25,7 @@
                                 <div class="tab-content">
                                     <!-- Create New User TAB -->
                                     <div class="tab-pane active" id="new_user">
-                                        {!! Form::open(['method'=>(isset($user))? 'PUT' : 'POST','url'=> $formRoute, 'role'=>'form', 'enctype' => "multipart/form-data"]) !!}
+                                        {!! Form::open(['method'=>(isset($user))? 'PUT' : 'POST','url'=> $formRoute, 'role'=>'form', 'files' => true]) !!}
                                         <div class="form-group">
                                             <label for="name" class="control-label">
                                                 {{ trans('admin.fname') }} <span class="required"> * </span>

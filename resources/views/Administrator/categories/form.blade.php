@@ -25,7 +25,7 @@
                                 <div class="tab-content">
                                     <!-- Create New User TAB -->
                                     <div class="tab-pane active" id="new_user">
-                                        {!! Form::open(['method'=>(isset($category))? 'PUT' : 'POST','url'=> $formRoute, 'role'=>'form', 'enctype' => "multipart/form-data"]) !!}
+                                        {!! Form::open(['method'=>(isset($category))? 'PUT' : 'POST','url'=> $formRoute, 'role'=>'form', 'files' => true]) !!}
 
                                         <div class="form-group">
                                             <label for="default_language" class="control-label">
@@ -74,6 +74,26 @@
                                             {!! Form::textarea('desc_en', (isset($category))? $category->description_en : old('desc_en'), array('id'=>'desc_en', 'class'=>'form-control','rows' => 2)) !!}
                                             @if($errors->has('desc_en'))
                                                 <span class="help-block text-danger">{{ $errors->first('desc_en') }}</span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label">
+                                                {{ trans('admin.select_avatar') }}
+                                            </label>
+                                            <div>
+                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                            <span class="btn green btn-file">
+                                                                <span class="fileinput-new"> Select file </span>
+                                                                <span class="fileinput-exists"> Change </span>
+                                                                <input type="file" name="avatar"> </span>
+                                                    <span class="fileinput-filename"> </span> &nbsp;
+                                                    <a href="javascript:;" class="close fileinput-exists"
+                                                       data-dismiss="fileinput"> </a>
+                                                </div>
+                                            </div>
+                                            @if($errors->has('avatar'))
+                                                <span class="help-block text-danger">{{ $errors->first('avatar') }}</span>
                                             @endif
                                         </div>
 

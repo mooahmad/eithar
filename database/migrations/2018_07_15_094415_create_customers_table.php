@@ -42,6 +42,7 @@ class CreateCustomersTable extends Migration
             $table->unsignedInteger('city_id')->nullable();
             $table->string('position',255)->nullable();
             $table->longText('address')->nullable();
+            $table->integer('added_by')->nullable();
             $table->rememberToken();
             $table->softDeletes();
             $table->dateTime('last_login_date')->nullable();

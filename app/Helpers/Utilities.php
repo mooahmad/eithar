@@ -56,9 +56,9 @@ class Utilities
         return true;
     }
 
-    public static function getFileUrl($fullFilePath, $temporaryTimeMinutes = null, $disk = 'local')
+    public static function getFileUrl($fullFilePath = null, $temporaryTimeMinutes = null, $disk = 'local', $isStatic = false)
     {
-        if (empty($fullFilePath))
+        if (empty($fullFilePath) || $isStatic)
             return $fullFilePath;
         $exists = Storage::disk($disk)->exists($fullFilePath);
         if (!$exists)
