@@ -42,5 +42,12 @@ Route::namespace('WebApi\UsersModule')->group(function () {
     Route::post('updateForgottenPassword', 'CustomerController@updateForgottenPassword');
 });
 
+Route::namespace('WebApi\CountriesModule')->group(function () {
+    Route::get('getCountries', 'CountriesController@getCountries');
+});
+Route::namespace('WebApi\CitiesModule')->group(function () {
+    Route::get('getCities/{countryID}', 'CitiesController@getCities');
+});
+
 
 
