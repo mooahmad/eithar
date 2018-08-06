@@ -14,7 +14,9 @@ class DatabaseSeeder extends Seeder
          $this->call([
              OAuthSeeder::class,
              UsersSeeder::class,
-             CategoriesSeeder::class
+             CategoriesSeeder::class,
+             CountriesSeeder::class,
+             CitiesSeeder::class,
          ]);
     }
 }
