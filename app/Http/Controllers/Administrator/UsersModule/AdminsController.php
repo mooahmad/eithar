@@ -56,7 +56,7 @@ class AdminsController extends Controller
                 'arabic'
             ),
             'nationalities' => array(
-                'Egyption',
+                'Egyptian',
                 'Saudian'
             ),
             'formRoute'     => route('admins.store'),
@@ -115,7 +115,7 @@ class AdminsController extends Controller
                 'arabic'
             ),
             'nationalities' => array(
-                'Egyption',
+                'Egyptian',
                 'Saudian'
             ),
             'formRoute'     => route('admins.update', ['admin' => $id]),

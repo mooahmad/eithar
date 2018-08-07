@@ -85,5 +85,12 @@ return [
         "Physiotherapy" => 3,
         "Nursing"       => 4,
         "WomanAndChild" => 5
+    ],
+    "serviceTypes" => [
+        "One time visit with Calendar",
+        "Package",
+        "Items sold part of visit",
+        "Lab Service",
+        "Provider Service"
     ]
 ];

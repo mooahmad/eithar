@@ -27,6 +27,7 @@ class CreateCategoryRequest extends FormRequest
             'parent_cat' => 'required',
             'name_en'    => 'required',
             'name_ar'    => 'required',
+            'avatar'     => 'required',
         ];
     }
 }

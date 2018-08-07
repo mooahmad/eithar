@@ -15,6 +15,8 @@ abstract class Cities implements ICity
     public function getCities(Request $request, $countryID)
     {
         $cities = City::where('country_id', $countryID)->get();
+        foreach ($cities as $city)
+            Utilities::forgetModelItems($city, ["city_name_eng", "city_name_ara"]);
         return Utilities::getValidationError(config('constants.responseStatus.success'),
                                              new MessageBag([
                                                                 "cities" => $cities
