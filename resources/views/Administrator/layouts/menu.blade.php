@@ -96,6 +96,32 @@
                 </li>
         @endcan
         <!-- End Categories Area -->
+            <!-- Start Services Area -->
+            @can('service.view', new \App\Models\Service())
+                <li class="nav-item start {{ (Request::segment(2)=='services') ? 'active' :'' }}">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-user-secret"></i>
+                        <span class="title">{{ trans('admin.services') }}</span>
+                        <span class="selected"></span>
+                        <span class="arrow {{ (Request::segment(2)=='services') ? 'open' :'' }}"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item start {{ (Request::segment(2)=='services' && Request::segment(3)=='create') ? 'active' :'' }}">
+                            <a href="{{ url(SRV.'/services/create') }}" class="nav-link ">
+                                <i class="fa fa-plus-circle"></i>
+                                <span class="title">{{ trans('admin.add_service') }}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item start {{ (Request::is(SRV.'/services')) ? 'active' :'' }}">
+                            <a href="{{ url(SRV.'/services') }}" class="nav-link ">
+                                <i class="icon-user"></i>
+                                <span class="title">{{ trans('admin.show_service') }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+        @endcan
+        <!-- End Services Area -->
         </ul>
         <!-- END SIDEBAR MENU -->
     </div>

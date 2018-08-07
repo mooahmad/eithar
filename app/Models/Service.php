@@ -10,7 +10,7 @@ class Service extends Model
     use SoftDeletes;
 
     public $timestamps = false;
-    protected $table = 'family_members';
+    protected $table = 'services';
     protected $dateFormat = 'Y-m-d H:m:s';
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 }

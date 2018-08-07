@@ -9,6 +9,8 @@ define('FEL', 'Frontend/layouts');
 define('FE', 'Frontend');
 define('CAT', 'Categories');
 define('CATN', 'Administrator\Categories');
+define('SRV', 'Services');
+define('SRVN', 'Administrator\Services');
 
 Route::group(['prefix' => 'password'], function () {
     Route::view('forgotpassword', 'auth.passwords.forgotPassword')->name('forgotPassword');
@@ -49,6 +51,19 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => CATN, 'prefix' => CAT]
                     ]]);
     Route::get('getcategoriesdatatable', 'CategoriesController@getCategoriesDataTable')->name('getCategoriesDatatable');
     Route::post('deletecategories', 'CategoriesController@deleteCategories')->name('deleteCategories');
+});
+
+Route::group(['middleware' => 'AdminAuth', 'namespace' => SRVN, 'prefix' => SRV], function () {
+    Route::resource('services', 'ServicesController',
+                    ['names' => [
+                        'index'   => 'show service',
+                        'create'  => 'create service',
+                        'show'    => 'show service',
+                        'edit'    => 'edit service',
+                        'destroy' => 'delete service'
+                    ]]);
+    Route::get('getservicesdatatable', 'ServicesController@getServicesDataTable')->name('getServicesDatatable');
+    Route::post('deleteservices', 'ServicesController@deleteServices')->name('deleteServices');
 });
 
 
