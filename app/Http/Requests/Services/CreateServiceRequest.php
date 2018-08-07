@@ -41,6 +41,7 @@ class CreateServiceRequest extends FormRequest
             'expire_date'            => 'required',
             'is_active'              => 'required',
             'appear_on_website'      => 'required',
+            'avatar'     => 'required',
         ];
     }
 }

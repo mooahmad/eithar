@@ -36,7 +36,8 @@ class CreateAdminRequest extends FormRequest
             'birthdate'            => 'required',
             'national_id'          => 'required|unique:users,national_id',
             'nationality_id'       => 'required',
-            'is_saudi_nationality' => 'required'
+            'is_saudi_nationality' => 'required',
+            'avatar'     => 'required',
         ];
     }
 }

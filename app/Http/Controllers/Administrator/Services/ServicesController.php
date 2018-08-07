@@ -71,6 +71,7 @@ class ServicesController extends Controller
         $service = new Service();
         ServiceClass::createOrUpdate($service, $request);
         ServiceClass::uploadImage($request, 'avatar', 'public/images/services', $service, 'profile_picture_path');
+        ServiceClass::uploadVideo($request, 'video', 'public/images/services/videos', $service, 'profile_video_path');
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(SRV . '/services');
     }
@@ -117,7 +118,10 @@ class ServicesController extends Controller
         if (Gate::denies('service.update', new Service())) {
             return response()->view('errors.403', [], 403);
         }
-        ServiceClass::createOrUpdate(Service::findOrFail($id), $request, false);
+        $service = Service::findOrFail($id);
+        ServiceClass::createOrUpdate($service, $request, false);
+        ServiceClass::uploadImage($request, 'avatar', 'public/images/services', $service, 'profile_picture_path');
+        ServiceClass::uploadVideo($request, 'video', 'public/images/services/videos', $service, 'profile_video_path');
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(SRV . '/services');
     }

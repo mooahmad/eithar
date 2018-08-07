@@ -71,4 +71,32 @@ class ServiceClass
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
     }
 
+    /**
+     * @param Request $request
+     * @param $fileName
+     * @param $path
+     * @param service $service
+     * @return mixed
+     */
+    public static function uploadVideo(Request $request, $fileName, $path, Service $service, $fieldName)
+    {
+        if ($request->hasFile($fileName)) {
+            $isUploaded = Utilities::UploadImage($request->file($fileName), $path);
+            if (!$isUploaded)
+                return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
+                                                     new MessageBag([
+                                                                        "message" => __('errors.errorUploadAvatar')
+                                                                    ]));
+            Utilities::DeleteImage($service->{$fieldName});
+            $service->{$fieldName} = $isUploaded;
+            if (!$service->save())
+                return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
+                                                     new MessageBag([
+                                                                        "message" => __('errors.errorUploadAvatar')
+                                                                    ]));
+            return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
+        }
+        return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
+    }
+
 }
