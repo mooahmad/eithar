@@ -28,7 +28,7 @@ Abstract class Login implements ILogin
         $customerData = clone $customer;
         $customerData = ApiHelpers::getCustomerImages($customerData);
         $customerData = ApiHelpers::getCustomerWithToken($customerData);
-        $customerData = Utilities::forgetModelItems($customerData, [
+        Utilities::forgetModelItems($customerData, [
             'registration_source',
             'registration_source_desc',
             'birthdate'

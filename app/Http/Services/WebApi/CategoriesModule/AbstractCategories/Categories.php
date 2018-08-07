@@ -16,6 +16,13 @@ abstract class Categories implements ICategory
     public function getMainCategories(Request $request)
     {
         $categories = Category::all()->take(5);
+        foreach ($categories as $category)
+            Utilities::forgetModelItems($category,
+                                        ["category_name_en",
+                                         "category_name_ar",
+                                         "description_en",
+                                         "description_ar"
+                                        ]);
         return Utilities::getValidationError(config('constants.responseStatus.success'),
                                              new MessageBag([
                                                                 "categories" => $categories
@@ -25,9 +32,23 @@ abstract class Categories implements ICategory
     public function getChildCategories($id)
     {
         $services = Service::where('category_id', $id)->get();
+        foreach ($services as $service)
+            Utilities::forgetModelItems($service,
+                                        ["name_en",
+                                         "name_ar",
+                                         "desc_en",
+                                         "desc_ar"
+                                        ]);
         $categories = [];
-        if(!$services)
-        $categories = Category::where('category_parent_id', $id)->get();
+        if (!$services)
+            $categories = Category::where('category_parent_id', $id)->get();
+        foreach ($categories as $category)
+            Utilities::forgetModelItems($category,
+                                        ["category_name_en",
+                                         "category_name_ar",
+                                         "description_en",
+                                         "description_ar"
+                                        ]);
         return Utilities::getValidationError(config('constants.responseStatus.success'),
                                              new MessageBag([
                                                                 "categories" => $categories,
