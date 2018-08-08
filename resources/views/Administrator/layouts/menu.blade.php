@@ -81,13 +81,13 @@
                     </a>
                     <ul class="sub-menu">
                         <li class="nav-item start {{ (Request::segment(2)=='categories' && Request::segment(3)=='create') ? 'active' :'' }}">
-                            <a href="{{ url(CAT.'/categories/create') }}" class="nav-link ">
+                            <a href="{{ url(AD.'/categories/create') }}" class="nav-link ">
                                 <i class="fa fa-plus-circle"></i>
                                 <span class="title">{{ trans('admin.add_category') }}</span>
                             </a>
                         </li>
-                        <li class="nav-item start {{ (Request::is(CAT.'/categories')) ? 'active' :'' }}">
-                            <a href="{{ url(CAT.'/categories') }}" class="nav-link ">
+                        <li class="nav-item start {{ (Request::is(AD.'/categories')) ? 'active' :'' }}">
+                            <a href="{{ url(AD.'/categories') }}" class="nav-link ">
                                 <i class="icon-user"></i>
                                 <span class="title">{{ trans('admin.show_category') }}</span>
                             </a>
@@ -107,13 +107,13 @@
                     </a>
                     <ul class="sub-menu">
                         <li class="nav-item start {{ (Request::segment(2)=='services' && Request::segment(3)=='create') ? 'active' :'' }}">
-                            <a href="{{ url(SRV.'/services/create') }}" class="nav-link ">
+                            <a href="{{ url(AD.'/services/create') }}" class="nav-link ">
                                 <i class="fa fa-plus-circle"></i>
                                 <span class="title">{{ trans('admin.add_service') }}</span>
                             </a>
                         </li>
-                        <li class="nav-item start {{ (Request::is(SRV.'/services')) ? 'active' :'' }}">
-                            <a href="{{ url(SRV.'/services') }}" class="nav-link ">
+                        <li class="nav-item start {{ (Request::is(AD.'/services')) ? 'active' :'' }}">
+                            <a href="{{ url(AD.'/services') }}" class="nav-link ">
                                 <i class="icon-user"></i>
                                 <span class="title">{{ trans('admin.show_service') }}</span>
                             </a>

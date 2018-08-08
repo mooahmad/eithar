@@ -57,6 +57,15 @@ function datatable() {
             {
                 searchable: false,
                 orderable: false,
+                data: 'image',
+                name: 'image',
+                "render": function (data, type, full, meta) {
+                    return data;
+                }
+            },
+            {
+                searchable: false,
+                orderable: false,
                 data: 'actions',
                 name: 'actions',
                 "render": function (data, type, full, meta) {

@@ -7,7 +7,7 @@
             <div class="portlet light bordered">
                 <div class="portlet-title">
                     <div class="btn-group">
-                        <a href="{{ url(CAT.'/categories/create') }}" class="btn sbold green"> Add New <i
+                        <a href="{{ url(AD.'/categories/create') }}" class="btn sbold green"> Add New <i
                                     class="fa fa-plus"></i></a>
                     </div>
                     <div id="dataTable-buttons" class="tools">
@@ -23,6 +23,7 @@
                                 <th>{{ __('admin.id') }}</th>
                                 <th>{{ __('admin.name_en') }}</th>
                                 <th>{{ __('admin.name_ar') }}</th>
+                                <th>{{ __('admin.image') }}</th>
                                 <th>{{ __('admin.actions') }}</th>
                             </tr>
                             </thead>

@@ -27,6 +27,7 @@ class UpdateCategoryRequest extends FormRequest
             'parent_cat' => 'required',
             'name_en'    => 'required',
             'name_ar'    => 'required',
+            'avatar'     => 'dimensions:min_width=100,min_height=200'
         ];
     }
 }

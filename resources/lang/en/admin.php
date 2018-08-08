@@ -90,7 +90,7 @@ return [
     'currency_name_col'     => 'name_eng',
     'service_type'          => 'service type',
     'type_desc'             => 'type description',
-    'select_video'          => 'select video',
+    'video'           => 'youtube ID',
     'benefits_en'           => 'English benefits',
     'benefits_ar'           => 'Arabic benefits',
     'price'                 => 'price',
@@ -98,5 +98,6 @@ return [
     'time_before_next_visit' => 'time before next visit',
     'appear_on_website' => 'appear on website',
     'expire_date'            => 'expire date',
+    'image'                  => 'image'
 
 ];

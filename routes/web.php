@@ -7,7 +7,6 @@ define('AD', 'Administrator');
 define('ADN', 'Administrator\UsersModule');
 define('FEL', 'Frontend/layouts');
 define('FE', 'Frontend');
-define('CAT', 'Categories');
 define('CATN', 'Administrator\Categories');
 define('SRV', 'Services');
 define('SRVN', 'Administrator\Services');
@@ -40,7 +39,7 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => ADN, 'prefix' => AD], 
     Route::post('deleteadmins', 'AdminsController@deleteAdmins')->name('deleteAdmins');
 });
 
-Route::group(['middleware' => 'AdminAuth', 'namespace' => CATN, 'prefix' => CAT], function () {
+Route::group(['middleware' => 'AdminAuth', 'namespace' => CATN, 'prefix' => AD], function () {
     Route::resource('categories', 'CategoriesController',
                     ['names' => [
                         'index'   => 'show category',
@@ -53,7 +52,7 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => CATN, 'prefix' => CAT]
     Route::post('deletecategories', 'CategoriesController@deleteCategories')->name('deleteCategories');
 });
 
-Route::group(['middleware' => 'AdminAuth', 'namespace' => SRVN, 'prefix' => SRV], function () {
+Route::group(['middleware' => 'AdminAuth', 'namespace' => SRVN, 'prefix' => AD], function () {
     Route::resource('services', 'ServicesController',
                     ['names' => [
                         'index'   => 'show service',
