@@ -63,7 +63,7 @@
         <script src="{{ asset('public/Frontend/js/popper.min.js') }}"></script>
         <script src="{{ asset('public/Frontend/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('public/Frontend/js/slick.js') }}"></script>
-        @if(session()->get('lang') =='en')
+        @if(session()->get('lang') =='ar')
             <script src="{{ asset('public/Frontend/js/script-rtl.js') }}"></script>
         @endif
         @yield('js')

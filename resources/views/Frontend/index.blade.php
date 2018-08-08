@@ -130,7 +130,7 @@
                             <img alt="{{ trans('main.site_name') }}" src="{{ asset('public/Frontend/img/icon/services-lab.png') }}">
                         </aside>
                         <aside class="services_block-paragraph">
-                            <h3> الاطباء</h3>
+                            <h3> المعامل</h3>
                             <p class="paragraph_global">
                                 وريم إيبسوم(Lorem Ipsum) هو ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر. كان لوريم إيبسوم ولايزال المعيار
                             </p>
@@ -147,7 +147,7 @@
                             <img alt="{{ trans('main.site_name') }}" src="{{ asset('public/Frontend/img/icon/services-nurse.png') }}">
                         </aside>
                         <aside class="services_block-paragraph">
-                            <h3> الاطباء</h3>
+                            <h3> الممرضات</h3>
                             <p class="paragraph_global">
                                 وريم إيبسوم(Lorem Ipsum) هو ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر. كان لوريم إيبسوم ولايزال المعيار
                             </p>
@@ -164,7 +164,7 @@
                             <img alt="{{ trans('main.site_name') }}" src="{{ asset('public/Frontend/img/icon/services-therapy.png') }}">
                         </aside>
                         <aside class="services_block-paragraph">
-                            <h3> الاطباء</h3>
+                            <h3> علاج طبيعي</h3>
                             <p class="paragraph_global">
                                 وريم إيبسوم(Lorem Ipsum) هو ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر. كان لوريم إيبسوم ولايزال المعيار
                             </p>
@@ -182,7 +182,7 @@
                             <img alt="{{ trans('main.site_name') }}" src="{{ asset('public/Frontend/img/icon/services-childern.png') }}">
                         </aside>
                         <aside class="services_block-paragraph">
-                            <h3> الاطباء</h3>
+                            <h3> رعاية الأطفال</h3>
                             <p class="paragraph_global">
                                 وريم إيبسوم(Lorem Ipsum) هو ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر. كان لوريم إيبسوم ولايزال المعيار
                             </p>

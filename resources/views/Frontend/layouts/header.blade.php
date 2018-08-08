@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {{ trans('main.'.Route::currentRouteName()) }} | {{ trans('main.site_name') }}
+    <title>{{ trans('main.'.Route::currentRouteName()) }} | {{ trans('main.site_name') }}</title>
 
     {{--Meta tags for sharing on social media--}}
     <meta property="og:url"           content="{{ url()->current() }}" />
