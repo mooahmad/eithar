@@ -8,8 +8,8 @@ define('ADN', 'Administrator\UsersModule');
 define('FEL', 'Frontend/layouts');
 define('FE', 'Frontend');
 define('CATN', 'Administrator\Categories');
-define('SRV', 'Services');
 define('SRVN', 'Administrator\Services');
+define('PRON', 'Administrator\Providers');
 
 Route::group(['prefix' => 'password'], function () {
     Route::view('forgotpassword', 'auth.passwords.forgotPassword')->name('forgotPassword');
@@ -63,6 +63,19 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => SRVN, 'prefix' => AD],
                     ]]);
     Route::get('getservicesdatatable', 'ServicesController@getServicesDataTable')->name('getServicesDatatable');
     Route::post('deleteservices', 'ServicesController@deleteServices')->name('deleteServices');
+});
+
+Route::group(['middleware' => 'AdminAuth', 'namespace' => PRON, 'prefix' => AD], function () {
+    Route::resource('providers', 'ProvidersController',
+                    ['names' => [
+                        'index'   => 'show provider',
+                        'create'  => 'create provider',
+                        'show'    => 'show provider',
+                        'edit'    => 'edit provider',
+                        'destroy' => 'delete provider'
+                    ]]);
+    Route::get('getprovidersdatatable', 'ProvidersController@getProvidersDataTable')->name('getProvidersDatatable');
+    Route::post('deleteproviders', 'ProvidersController@deleteProviders')->name('deleteProviders');
 });
 
 

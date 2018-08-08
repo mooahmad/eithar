@@ -77,8 +77,6 @@
                                             @endif
                                         </div>
 
-                                        @if(!empty($category))
-
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-xs-3">
@@ -102,17 +100,17 @@
                                                         @endif
                                                     </div>
                                                     <div class="col-xs-2">
+                                                        @if(!empty($category))
 
                                                         @if(!empty($category->profile_picture_path))
                                                             <img src="{{ $category->profile_picture_path }}"
                                                                  class="img-thumbnail" style="max-height: 120px">
                                                         @endif
+                                                        @endif
 
                                                     </div>
                                                 </div>
                                             </div>
-
-                                        @endif
 
                                         <div class="margiv-top-10">
                                             {!! Form::submit($submitBtn, array('class'=>'btn green')) !!}
