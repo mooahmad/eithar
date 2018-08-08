@@ -56,7 +56,7 @@ class Registration implements IRegistration
         $customerData = ApiHelpers::getCustomerImages($customerData);
         if(!Auth::check())
             $customerData = ApiHelpers::getCustomerWithToken($customerData);
-        $customerData = Utilities::forgetModelItems($customerData, [
+        Utilities::forgetModelItems($customerData, [
             'registration_source',
             'registration_source_desc',
             'birthdate'

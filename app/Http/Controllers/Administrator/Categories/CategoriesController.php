@@ -102,7 +102,9 @@ class CategoriesController extends Controller
         if (Gate::denies('category.update', new Category())) {
             return response()->view('errors.403', [], 403);
         }
-        CategoryClass::createOrUpdate(Category::findOrFail($id), $request, false);
+        $category = Category::findOrFail($id);
+        CategoryClass::createOrUpdate($category, $request, false);
+        CategoryClass::uploadImage($request, 'avatar', 'public/images/categories', $category,'profile_picture_path');
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(CAT . '/categories');
     }

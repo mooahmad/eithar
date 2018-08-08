@@ -2,7 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
+use App\Models\Service;
 use App\Policies\AdminPolicy;
+use App\Policies\CategoryPolicy;
+use App\Policies\ServicePolicy;
 use App\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -17,6 +21,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         User::class => AdminPolicy::class,
+        Category::class => CategoryPolicy::class,
+        Service::class => ServicePolicy::class,
     ];
 
     /**
@@ -39,6 +45,12 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('category.create', 'App\Policies\CategoryPolicy@create');
         Gate::define('category.update', 'App\Policies\CategoryPolicy@update');
         Gate::define('category.delete', 'App\Policies\CategoryPolicy@delete');
+
+        // policies services
+        Gate::define('service.view', 'App\Policies\ServicePolicy@view');
+        Gate::define('service.create', 'App\Policies\ServicePolicy@create');
+        Gate::define('service.update', 'App\Policies\ServicePolicy@update');
+        Gate::define('service.delete', 'App\Policies\ServicePolicy@delete');
 
         // passport
         Passport::routes();

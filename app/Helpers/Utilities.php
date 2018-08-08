@@ -89,13 +89,12 @@ class Utilities
         return substr(str_shuffle(str_repeat($pool, $length)), 0, $length);
     }
 
-    public static function forgetModelItems($model, Array $items = [])
+    public static function forgetModelItems(&$model, Array $items = [])
     {
         foreach ($items as $item) {
             if (isset($model->{$item}) || $model->{$item} == null || empty($model->{$item}))
                 unset($model->{$item});
         }
-        return $model;
     }
 
 

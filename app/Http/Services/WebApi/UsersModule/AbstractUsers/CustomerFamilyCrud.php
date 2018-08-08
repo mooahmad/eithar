@@ -37,7 +37,7 @@ abstract class CustomerFamilyCrud implements ICustomerFamilyCrud
                                                                     "message" => __('errors.errorUploadMember')
                                                                 ]));
         $newMember->profile_picture_path = Utilities::getFileUrl($newMember->profile_picture_path);
-        $newMember = Utilities::forgetModelItems($newMember, [
+        Utilities::forgetModelItems($newMember, [
             'nationality_id',
             'birthdate',
             'deleted_at'
@@ -120,7 +120,7 @@ abstract class CustomerFamilyCrud implements ICustomerFamilyCrud
                                                                     "message" => __('errors.errorUploadMember')
                                                                 ]));
         $member->profile_picture_path = Utilities::getFileUrl($member->profile_picture_path);
-        $member = Utilities::forgetModelItems($member, [
+        Utilities::forgetModelItems($member, [
             'nationality_id',
             'birthdate',
             'deleted_at'
@@ -147,7 +147,7 @@ abstract class CustomerFamilyCrud implements ICustomerFamilyCrud
             return Utilities::getValidationError(config('constants.responseStatus.missingInput'), $isVerified->errors());
         $member = FamilyMember::find($request->input('member_id'));
         $member->profile_picture_path = Utilities::getFileUrl($member->profile_picture_path);
-        $member = Utilities::forgetModelItems($member, [
+        Utilities::forgetModelItems($member, [
             'nationality_id',
             'birthdate',
             'deleted_at'
@@ -186,7 +186,7 @@ abstract class CustomerFamilyCrud implements ICustomerFamilyCrud
         $members = FamilyMember::where('user_parent_id', Auth::user()->id)->get();
         for ($i = 0; $i < count($members); $i++) {
             $members[$i]->profile_picture_path = Utilities::getFileUrl($members[$i]->profile_picture_path);
-            $members[$i] = Utilities::forgetModelItems($members[$i], [
+            Utilities::forgetModelItems($members[$i], [
                 'nationality_id',
                 'birthdate',
                 'deleted_at'
