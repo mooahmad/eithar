@@ -1,0 +1,120 @@
+@import "helpers/variables.scss";
+.button:focus {
+    outline: none !important;
+}
+
+.button {
+    display: inline-block;
+
+    padding: 12px 50px;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: $mainColor;
+    @extend %transition;
+    border-radius: $borderRadius;
+    color: #fff;
+    &:hover {
+        background-color: $secondColor;
+        color: #fff;
+    }
+}
+
+.button-blue {
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: 500;
+    @extend %transition;
+    background-color: $secondColor;
+
+    border-radius: $borderRadius;
+    color: #fff;
+    &:hover {
+        color: #fff;
+        background-color: $mainColor;
+
+    }
+}
+
+
+.advanced_search-button,
+.our_student-button {
+    background-color: $secondColor;
+    @extend %transition;
+    padding-right: 40px;
+    position: relative;
+    margin: 0 auto;
+    display: inline-block;
+    margin-top: 20px;
+    &:hover {
+        background-color: $mainColor;
+    }
+
+    &:before {
+        @extend %pseudo;
+        content: "\f101";
+        color: #fff;
+        right: 15px;
+
+    }
+}
+
+.glopal_form-button {
+
+    background-color: $secondColor;
+    @extend %transition;
+    padding-right: 40px;
+    position: relative;
+    margin: 0 auto;
+    display: inline-block;
+    margin-top: 20px;
+    &:hover {
+        background-color: $mainColor;
+    }
+
+    &:before {
+        @extend %pseudo;
+        content: "\f1d8";
+        color: #fff;
+        right: 15px;
+
+    }
+}
+
+
+/*****Blog Button****/
+
+#menu_blog {
+    @media (min-width: $lg) {
+        position: relative;
+        z-index: 9;
+        text-align: center;
+        color: #fff;
+    }
+
+    &:before {
+        @media (min-width: $lg) {
+            content: "";
+            top: -9px;
+            bottom: -9px;
+            right: 0;
+            left: 0;
+            position: absolute;
+            width: 100%;
+            z-index: -1;
+            border-radius: $borderRadius;
+            background-color: $secondColor;
+        }
+
+    }
+    &:hover {
+        &:before {
+            @media (min-width: $lg) {
+                background-color: $mainColor;
+
+            }
+
+        }
+
+    }
+
+}
