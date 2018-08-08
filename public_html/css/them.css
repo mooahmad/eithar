@@ -1662,16 +1662,12 @@ footer {
   display: inline-block;
   padding: 0 3px; }
   .social_media li a {
-    height: 40px;
-    width: 40px;
-    line-height: 40px;
     text-align: center;
     border-radius: 100%;
-    background-color: #093550;
-    font-size: 14px; }
+    font-size: 14px;
+    font-size: 18px; }
     .social_media li a:hover {
-      background-color: #07A7E3;
-      color: #fff; }
+      color: #07A7E3; }
 
 /***Start Button Go Up**/
 .go_up {
@@ -1716,6 +1712,14 @@ footer {
       @extent %transition; }
       .copyright .copyright_content a:hover {
         color: #07A7E3; }
+
+.copyright_new {
+  margin-top: 30px;
+  text-align: center; }
+  .copyright_new span {
+    color: #fff;
+    margin-top: 30px;
+    display: inline-block; }
 
 /**End Copyright Section**/
 
