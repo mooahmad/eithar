@@ -12,6 +12,15 @@ define('CATN', 'Administrator\Categories');
 define('SRV', 'Services');
 define('SRVN', 'Administrator\Services');
 
+//Frontend Routes
+Route::group(['namespace'=>FE],function (){
+    Route::group(['middleware'=>'Language','prefix'=>Request::segment(1)],function (){
+        Route::group(['prefix'=>session()->get('lang')],function (){
+            Route::get('/','FrontendController@index')->name('home');
+        });
+    });
+});
+
 Route::group(['prefix' => 'password'], function () {
     Route::view('forgotpassword', 'auth.passwords.forgotPassword')->name('forgotPassword');
     Route::view('resetpassword', 'auth.passwords.reset')->name('adminReset');

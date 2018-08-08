@@ -1,0 +1,75 @@
+@import "helpers/variables.scss";
+@import "componants/buttons.scss";
+/*Start Navigation*/
+
+.navigation {
+    justify-content: space-between;
+    background-color: $mainColor;
+    color: #fff;
+    font-size: 14px;
+    padding: 4px 0;
+    .navigation_content {
+        justify-content: space-between;
+        @media (max-width: $sm) {
+            justify-content: center;
+        }
+        li {
+            a {
+                color: #fff;
+                @extnd %transition;
+                @media (max-width: $sm) {
+                    font-size: 11px;
+                }
+
+            }
+        }
+        .language {
+            height: 28px;
+            line-height: 28px;
+            padding: 0 5px;
+            border-radius: $borderRadius;
+            background-color: $secondColor;
+            color: #fff;
+            font-weight: 500;
+            @extend %transition;
+            font-size: 18px;
+            &:hover {
+                box-shadow: 0 0 10px #fff;
+            }
+        }
+
+        .contact_button {
+            background-color: $secondColor;
+            border-radius: $borderRadius;
+            padding: 0 8px;
+            line-height: 30px;
+            color: #fff;
+            font-size: 14px;
+            &:hover {
+                box-shadow: 0 0 10px #fff;
+            }
+        }
+
+
+    }
+}
+
+
+
+.info {
+    line-height: 30px;
+    margin: 0 10px;
+    @media (max-width: $sm) {
+        margin: 0;
+    }
+
+    li {
+        margin: 0 4px;
+        i {
+            margin: 0 8px;
+
+        }
+    }
+}
+
+/*End Navigation*/
