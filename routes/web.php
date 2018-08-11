@@ -1,7 +1,5 @@
 <?php
 
-Auth::routes();
-
 define('ADL', 'Administrator/layouts');
 define('AD', 'Administrator');
 define('ADN', 'Administrator\UsersModule');
@@ -19,6 +17,8 @@ Route::group(['namespace'=>FE],function (){
         });
     });
 });
+
+Auth::routes();
 
 Route::group(['prefix' => 'password'], function () {
     Route::view('forgotpassword', 'auth.passwords.forgotPassword')->name('forgotPassword');
