@@ -32,6 +32,7 @@ class ServiceClass
         $service->expiry_date = Carbon::parse($request->input('expire_date'))->format('Y-m-d H:m:s');
         $service->is_active_service = $request->input('is_active');
         $service->appear_on_website = $request->input('appear_on_website');
+        $service->profile_video_path = $request->input('video');
         if ($isCreate)
             $service->added_by = Auth::id();
         return $service->save();
@@ -53,34 +54,6 @@ class ServiceClass
                                                      new MessageBag([
                                                                         "message" => __('errors.errorUploadAvatar')
                                                                     ]));
-            $isUploaded = Utilities::UploadImage($request->file($fileName), $path);
-            if (!$isUploaded)
-                return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
-                                                     new MessageBag([
-                                                                        "message" => __('errors.errorUploadAvatar')
-                                                                    ]));
-            Utilities::DeleteImage($service->{$fieldName});
-            $service->{$fieldName} = $isUploaded;
-            if (!$service->save())
-                return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
-                                                     new MessageBag([
-                                                                        "message" => __('errors.errorUploadAvatar')
-                                                                    ]));
-            return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
-        }
-        return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
-    }
-
-    /**
-     * @param Request $request
-     * @param $fileName
-     * @param $path
-     * @param service $service
-     * @return mixed
-     */
-    public static function uploadVideo(Request $request, $fileName, $path, Service $service, $fieldName)
-    {
-        if ($request->hasFile($fileName)) {
             $isUploaded = Utilities::UploadImage($request->file($fileName), $path);
             if (!$isUploaded)
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),

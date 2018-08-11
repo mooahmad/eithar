@@ -81,13 +81,13 @@
                     </a>
                     <ul class="sub-menu">
                         <li class="nav-item start {{ (Request::segment(2)=='categories' && Request::segment(3)=='create') ? 'active' :'' }}">
-                            <a href="{{ url(CAT.'/categories/create') }}" class="nav-link ">
+                            <a href="{{ url(AD.'/categories/create') }}" class="nav-link ">
                                 <i class="fa fa-plus-circle"></i>
                                 <span class="title">{{ trans('admin.add_category') }}</span>
                             </a>
                         </li>
-                        <li class="nav-item start {{ (Request::is(CAT.'/categories')) ? 'active' :'' }}">
-                            <a href="{{ url(CAT.'/categories') }}" class="nav-link ">
+                        <li class="nav-item start {{ (Request::is(AD.'/categories')) ? 'active' :'' }}">
+                            <a href="{{ url(AD.'/categories') }}" class="nav-link ">
                                 <i class="icon-user"></i>
                                 <span class="title">{{ trans('admin.show_category') }}</span>
                             </a>
@@ -107,13 +107,13 @@
                     </a>
                     <ul class="sub-menu">
                         <li class="nav-item start {{ (Request::segment(2)=='services' && Request::segment(3)=='create') ? 'active' :'' }}">
-                            <a href="{{ url(SRV.'/services/create') }}" class="nav-link ">
+                            <a href="{{ url(AD.'/services/create') }}" class="nav-link ">
                                 <i class="fa fa-plus-circle"></i>
                                 <span class="title">{{ trans('admin.add_service') }}</span>
                             </a>
                         </li>
-                        <li class="nav-item start {{ (Request::is(SRV.'/services')) ? 'active' :'' }}">
-                            <a href="{{ url(SRV.'/services') }}" class="nav-link ">
+                        <li class="nav-item start {{ (Request::is(AD.'/services')) ? 'active' :'' }}">
+                            <a href="{{ url(AD.'/services') }}" class="nav-link ">
                                 <i class="icon-user"></i>
                                 <span class="title">{{ trans('admin.show_service') }}</span>
                             </a>
@@ -122,6 +122,32 @@
                 </li>
         @endcan
         <!-- End Services Area -->
+            <!-- Start Providers Area -->
+            @can('provider.view', new \App\Models\Provider())
+                <li class="nav-item start {{ (Request::segment(2)=='providers') ? 'active' :'' }}">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-user-secret"></i>
+                        <span class="title">{{ trans('admin.providers') }}</span>
+                        <span class="selected"></span>
+                        <span class="arrow {{ (Request::segment(2)=='providers') ? 'open' :'' }}"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item start {{ (Request::segment(2)=='providers' && Request::segment(3)=='create') ? 'active' :'' }}">
+                            <a href="{{ url(AD.'/providers/create') }}" class="nav-link ">
+                                <i class="fa fa-plus-circle"></i>
+                                <span class="title">{{ trans('admin.add_provider') }}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item start {{ (Request::is(AD.'/providers')) ? 'active' :'' }}">
+                            <a href="{{ url(AD.'/providers') }}" class="nav-link ">
+                                <i class="icon-user"></i>
+                                <span class="title">{{ trans('admin.show_provider') }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+        @endcan
+        <!-- End Providers Area -->
         </ul>
         <!-- END SIDEBAR MENU -->
     </div>

@@ -51,8 +51,11 @@ class Utilities
 
     public static function validateImage(Request $request, $fileName)
     {
-        if (!$request->file($fileName)->isValid())
+        if (empty($request->file($fileName)) || !$request->file($fileName)->isValid())
             return false;
+        $request->validate([
+                               $fileName => 'image',
+                           ]);
         return true;
     }
 

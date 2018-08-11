@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Administrator\Categories;
 
+use App\Helpers\Utilities;
 use App\Http\Requests\Categories\CreateCategoryRequest;
 use App\Http\Requests\Categories\UpdateCategoryRequest;
 use App\Http\Services\Adminstrator\CategoryModule\ClassesCategory\CategoryClass;
@@ -61,9 +62,9 @@ class CategoriesController extends Controller
         }
         $category = new Category();
         CategoryClass::createOrUpdate($category, $request);
-        CategoryClass::uploadImage($request, 'avatar', 'public/images/categories', $category,'profile_picture_path');
+        CategoryClass::uploadImage($request, 'avatar', 'public/images/categories', $category, 'profile_picture_path');
         session()->flash('success_msg', trans('admin.success_message'));
-        return redirect(CAT . '/categories');
+        return redirect(AD . '/categories');
     }
 
     /**
@@ -104,9 +105,9 @@ class CategoriesController extends Controller
         }
         $category = Category::findOrFail($id);
         CategoryClass::createOrUpdate($category, $request, false);
-        CategoryClass::uploadImage($request, 'avatar', 'public/images/categories', $category,'profile_picture_path');
+        CategoryClass::uploadImage($request, 'avatar', 'public/images/categories', $category, 'profile_picture_path');
         session()->flash('success_msg', trans('admin.success_message'));
-        return redirect(CAT . '/categories');
+        return redirect(AD . '/categories');
     }
 
     /**
@@ -123,11 +124,18 @@ class CategoriesController extends Controller
         $dataTable = DataTables::of($categories)
                                ->addColumn('actions', function ($category) {
                                    if (!in_array($category->id, [1, 2, 3, 4, 5])) {
-                                       $editURL = url('Categories/categories/' . $category->id . '/edit');
+                                       $editURL = url(AD . '/categories/' . $category->id . '/edit');
                                        return View::make('Administrator.widgets.dataTablesActions', ['editURL' => $editURL]);
                                    }
                                })
-                               ->rawColumns(['actions'])
+                               ->addColumn('image', function ($category) {
+                                   if (!empty($category->profile_picture_path)) {
+                                       return '<td><a href="' . $category->profile_picture_path . '" data-lightbox="image-1" data-title="'.$category->id.'" class="text-success">Show <i class="fa fa-image"></a></i></a></td>';
+                                   }else {
+                                       return '<td><span class="text-danger">No Image</span></td>';
+                                   }
+                               })
+                               ->rawColumns(['image', 'actions'])
                                ->make(true);
         return $dataTable;
     }

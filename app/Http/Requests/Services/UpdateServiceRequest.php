@@ -35,12 +35,13 @@ class UpdateServiceRequest extends FormRequest
             'desc_en'                => 'required',
             'benefits_ar'            => 'required',
             'benefits_en'            => 'required',
-            'price'                  => 'required',
-            'visit_duration'         => 'required',
-            'time_before_next_visit' => 'required',
+            'price'                  => 'required|numeric',
+            'visit_duration'         => 'required|numeric',
+            'time_before_next_visit' => 'required|numeric',
             'expire_date'            => 'required',
             'is_active'              => 'required',
             'appear_on_website'      => 'required',
+            'avatar'                 => 'mimes:jpeg,bmp,png|dimensions:min_width=100,min_height=200'
         ];
     }
 }

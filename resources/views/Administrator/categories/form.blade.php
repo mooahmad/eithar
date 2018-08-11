@@ -77,25 +77,40 @@
                                             @endif
                                         </div>
 
-                                        <div class="form-group">
-                                            <label class="control-label">
-                                                {{ trans('admin.select_avatar') }}
-                                            </label>
-                                            <div>
-                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-xs-3">
+                                                        <label class="control-label">
+                                                            {{ trans('admin.select_avatar') }}
+                                                        </label>
+                                                        <div>
+                                                            <div class="fileinput fileinput-new"
+                                                                 data-provides="fileinput">
                                                             <span class="btn green btn-file">
                                                                 <span class="fileinput-new"> Select file </span>
                                                                 <span class="fileinput-exists"> Change </span>
                                                                 <input type="file" name="avatar"> </span>
-                                                    <span class="fileinput-filename"> </span> &nbsp;
-                                                    <a href="javascript:;" class="close fileinput-exists"
-                                                       data-dismiss="fileinput"> </a>
+                                                                <span class="fileinput-filename"> </span> &nbsp;
+                                                                <a href="javascript:;" class="close fileinput-exists"
+                                                                   data-dismiss="fileinput"> </a>
+                                                            </div>
+                                                        </div>
+                                                        @if($errors->has('avatar'))
+                                                            <span class="help-block text-danger">{{ $errors->first('avatar') }}</span>
+                                                        @endif
+                                                    </div>
+                                                    <div class="col-xs-2">
+                                                        @if(!empty($category))
+
+                                                        @if(!empty($category->profile_picture_path))
+                                                            <img src="{{ $category->profile_picture_path }}"
+                                                                 class="img-thumbnail" style="max-height: 120px">
+                                                        @endif
+                                                        @endif
+
+                                                    </div>
                                                 </div>
                                             </div>
-                                            @if($errors->has('avatar'))
-                                                <span class="help-block text-danger">{{ $errors->first('avatar') }}</span>
-                                            @endif
-                                        </div>
 
                                         <div class="margiv-top-10">
                                             {!! Form::submit($submitBtn, array('class'=>'btn green')) !!}
