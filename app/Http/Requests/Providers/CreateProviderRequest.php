@@ -25,9 +25,27 @@ class CreateProviderRequest extends FormRequest
     {
         return [
             'currency_id'            => 'required',
-            'price'                  => 'required|numeric',
-            'visit_duration'         => 'required|numeric',
-            'time_before_next_visit' => 'required|numeric',
+            'title_ar'               => 'required',
+            'title_en'               => 'required',
+            'first_name_ar'          => 'required',
+            'first_name_en'          => 'required',
+            'last_name_ar'           => 'required',
+            'last_name_en'           => 'required',
+            'speciality_area_ar'     => 'required',
+            'speciality_area_en'     => 'required',
+            'rating'                 => 'required|numeric|min:0|max:5',
+            'price'                  => 'required|numeric|min:0',
+            'about_ar'               => 'required',
+            'about_en'               => 'required',
+            'experience_ar'          => 'required',
+            'experience_en'          => 'required',
+            'education_ar'           => 'required',
+            'education_en'           => 'required',
+            'contract_start_date'    => 'required',
+            'contract_expiry_date'   => 'required',
+            'visit_duration'         => 'required|numeric|min:0',
+            'time_before_next_visit' => 'required|numeric|min:0',
+            'avatar'                 => 'required|mimes:jpeg,bmp,png|max:10240|dimensions:min_width=100,min_height=200',
         ];
     }
 }

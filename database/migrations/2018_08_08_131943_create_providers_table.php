@@ -16,7 +16,6 @@ class CreateProvidersTable extends Migration
         Schema::create('providers', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('currency_id')->nullable();
-            $table->unsignedInteger('user_id')->nullable();
             $table->string('title_ar', 255)->nullable();
             $table->string('title_en', 255)->nullable();
             $table->string('first_name_ar', 255)->nullable();
@@ -56,11 +55,6 @@ class CreateProvidersTable extends Migration
                   ->onUpdate('set null')
                   ->onDelete('set null');
 
-            $table->foreign('user_id')
-                  ->references('id')
-                  ->on('users')
-                  ->onUpdate('set null')
-                  ->onDelete('set null');
         });
     }
 
@@ -74,7 +68,6 @@ class CreateProvidersTable extends Migration
         // relations
         Schema::table('providers', function (Blueprint $table) {
             $table->dropForeign(['currency_id']);
-            $table->dropForeign(['user_id']);
         });
         Schema::dropIfExists('providers');
     }

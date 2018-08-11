@@ -106,7 +106,7 @@ class ProvidersController extends Controller
         }
         $provider = Provider::findOrFail($id);
         ProviderClass::createOrUpdate($provider, $request, false);
-        ProviderClass::uploadImage($request, 'avatar', 'public/images/provider', $provider, 'profile_picture_path');
+        ProviderClass::uploadImage($request, 'avatar', 'public/images/providers', $provider, 'profile_picture_path');
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/providers');
     }
@@ -129,8 +129,7 @@ class ProvidersController extends Controller
                                })
                                ->addColumn('image', function ($provider) {
                                    if (!empty($provider->profile_picture_path)) {
-                                       $providerImage = Utilities::getFileUrl($provider->profile_picture_path);
-                                       return '<td><a href="' . $providerImage . '" data-lightbox="image-1" data-title="' . $provider->id . '" class="text-success">Show <i class="fa fa-image"></a></i></a></td>';
+                                       return '<td><a href="' . $provider->profile_picture_path. '" data-lightbox="image-1" data-title="' . $provider->id . '" class="text-success">Show <i class="fa fa-image"></a></i></a></td>';
                                    } else {
                                        return '<td><span class="text-danger">No Image</span></td>';
                                    }

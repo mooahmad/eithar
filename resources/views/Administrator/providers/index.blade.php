@@ -7,7 +7,7 @@
             <div class="portlet light bordered">
                 <div class="portlet-title">
                     <div class="btn-group">
-                        <a href="{{ url(AD.'/services/create') }}" class="btn sbold green"> Add New <i
+                        <a href="{{ url(AD.'/providers/create') }}" class="btn sbold green"> Add New <i
                                     class="fa fa-plus"></i></a>
                     </div>
                     <div id="dataTable-buttons" class="tools">

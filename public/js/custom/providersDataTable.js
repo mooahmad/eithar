@@ -51,8 +51,8 @@ function datatable() {
         },
         columns: [
             {data: 'id', name: 'providers.id'},
-            {data: 'name_ar', name: 'providers.name_ar'},
-            {data: 'name_en', name: 'providers.name_en'},
+            {data: 'first_name_ar', name: 'providers.first_name_ar'},
+            {data: 'first_name_en', name: 'providers.first_name_en'},
             {data: 'price', name: 'providers.price'},
             {
                 searchable: false,
