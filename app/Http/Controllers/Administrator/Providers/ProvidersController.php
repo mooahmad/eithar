@@ -8,6 +8,8 @@ use App\Http\Requests\Providers\UpdateProviderRequest;
 use App\Http\Services\Adminstrator\ProviderModule\ClassesProvider\ProviderClass;
 use App\Models\Currency;
 use App\Models\Provider;
+use App\Models\ProviderService;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
@@ -45,10 +47,14 @@ class ProvidersController extends Controller
             return response()->view('errors.403', [], 403);
         }
         $currencies = Currency::all()->pluck(__('admin.currency_name_col'), 'id')->toArray();
+        $allServices = Service::all()->pluck('name_en', 'id')->toArray();
+        $selectedServices = [];
         $data = [
-            'currencies' => $currencies,
-            'formRoute'  => route('providers.store'),
-            'submitBtn'  => trans('admin.create')
+            'currencies'       => $currencies,
+            'allServices'      => $allServices,
+            'selectedServices' => $selectedServices,
+            'formRoute'        => route('providers.store'),
+            'submitBtn'        => trans('admin.create')
         ];
         return view(AD . '.providers.form')->with($data);
     }
@@ -86,9 +92,13 @@ class ProvidersController extends Controller
         }
         $provider = Provider::FindOrFail($id);
         $currencies = Currency::all()->pluck(__('admin.currency_name_col'), 'id')->toArray();
+        $allServices = Service::all()->pluck('name_en', 'id')->toArray();
+        $selectedServices = $provider->services->pluck('id')->toArray();
         $data = [
             'currencies' => $currencies,
-            'provider'    => $provider,
+            'provider'   => $provider,
+            'allServices'      => $allServices,
+            'selectedServices' => $selectedServices,
             'formRoute'  => route('providers.update', ['provider' => $id]),
             'submitBtn'  => trans('admin.update')
         ];
@@ -129,7 +139,7 @@ class ProvidersController extends Controller
                                })
                                ->addColumn('image', function ($provider) {
                                    if (!empty($provider->profile_picture_path)) {
-                                       return '<td><a href="' . $provider->profile_picture_path. '" data-lightbox="image-1" data-title="' . $provider->id . '" class="text-success">Show <i class="fa fa-image"></a></i></a></td>';
+                                       return '<td><a href="' . $provider->profile_picture_path . '" data-lightbox="image-1" data-title="' . $provider->id . '" class="text-success">Show <i class="fa fa-image"></a></i></a></td>';
                                    } else {
                                        return '<td><span class="text-danger">No Image</span></td>';
                                    }

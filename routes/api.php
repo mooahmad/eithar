@@ -19,35 +19,37 @@ Route::namespace('Auth')->group(function () {
 });
 
 Route::middleware('auth:api')->group(function () {
-    Route::namespace('WebApi\UsersModule')->group(function () {
-        Route::post('updateCustomerAvatar', 'CustomerController@updateCustomerAvatar');
-        Route::post('updateCustomerNationalId', 'CustomerController@updateCustomerNationalId');
-        Route::post('verifyCustomerEmail', 'CustomerController@verifyCustomerEmail');
+    Route::group(['namespace' => 'WebApi\UsersModule', 'prefix' => 'customers'], (function () {
+        Route::post('updateAvatar', 'CustomerController@updateCustomerAvatar');
+        Route::post('updateNationalId', 'CustomerController@updateCustomerNationalId');
+        Route::post('verifyEmail', 'CustomerController@verifyCustomerEmail');
         Route::get('resendEmailVerificationCode', 'CustomerController@resendEmailVerificationCode');
-        Route::post('editCustomer', 'CustomerController@editCustomer');
-        Route::post('addCustomerFamilyMember', 'CustomerController@addCustomerFamilyMember');
-        Route::post('editCustomerFamilyMember', 'CustomerController@editCustomerFamilyMember');
-        Route::post('getCustomerFamilyMember', 'CustomerController@getCustomerFamilyMember');
-        Route::post('deleteCustomerFamilyMember', 'CustomerController@deleteCustomerFamilyMember');
-        Route::get('getCustomerFamilyMembers', 'CustomerController@getCustomerFamilyMembers');
-    });
-    Route::namespace('WebApi\CategoriesModule')->group(function () {
-        Route::get('getMainCategories', 'CategoriesController@getMainCategories');
-        Route::get('getChildCategories/{id}', 'CategoriesController@getChildCategories');
-    });
+        Route::post('edit', 'CustomerController@editCustomer');
+        Route::post('addFamilyMember', 'CustomerController@addCustomerFamilyMember');
+        Route::post('editFamilyMember', 'CustomerController@editCustomerFamilyMember');
+        Route::post('getFamilyMember', 'CustomerController@getCustomerFamilyMember');
+        Route::post('deleteFamilyMember', 'CustomerController@deleteCustomerFamilyMember');
+        Route::get('getFamilyMembers', 'CustomerController@getCustomerFamilyMembers');
+    }));
+
+    Route::group(['namespace' => 'WebApi\CategoriesModule', 'prefix' => 'categories'], (function () {
+        Route::get('/', 'CategoriesController@getMainCategories');
+        Route::get('/{id}', 'CategoriesController@getChildCategories');
+    }));
 });
 
-Route::namespace('WebApi\UsersModule')->group(function () {
+Route::group(['namespace' => 'WebApi\UsersModule', 'prefix' => 'customers'], (function () {
     Route::post('forgetPassword', 'CustomerController@forgetPassword');
     Route::post('updateForgottenPassword', 'CustomerController@updateForgottenPassword');
-});
+}));
 
-Route::namespace('WebApi\CountriesModule')->group(function () {
-    Route::get('getCountries', 'CountriesController@getCountries');
-});
-Route::namespace('WebApi\CitiesModule')->group(function () {
-    Route::get('getCities/{countryID}', 'CitiesController@getCities');
-});
+Route::group(['namespace' => 'WebApi\CountriesModule', 'prefix' => 'countries'], (function () {
+    Route::get('/', 'CountriesController@getCountries');
+}));
+
+Route::group(['namespace' => 'WebApi\CitiesModule', 'prefix' => 'cities'], (function () {
+    Route::get('/{countryID}', 'CitiesController@getCities');
+}));
 
 
 

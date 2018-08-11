@@ -38,6 +38,16 @@
                                         </div>
 
                                         <div class="form-group">
+                                            <label for="default_language" class="control-label">
+                                                {{ trans('admin.services') }} <span class="required"> * </span>
+                                            </label>
+                                            {!! Form::select('services[]', $allServices, $selectedServices, array('id'=>'services', 'class'=>'form-control select2-multiple','required'=>'required', 'multiple' => 'multiple')) !!}
+                                            @if($errors->has('services'))
+                                                <span class="help-block text-danger">{{ $errors->first('services') }}</span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
                                             <label class="control-label">
                                                 {{ trans('admin.title_ar') }} <span class="required"> * </span>
                                             </label>
