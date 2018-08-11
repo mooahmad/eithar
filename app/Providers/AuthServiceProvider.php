@@ -52,6 +52,12 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('service.update', 'App\Policies\ServicePolicy@update');
         Gate::define('service.delete', 'App\Policies\ServicePolicy@delete');
 
+        // policies providers
+        Gate::define('provider.view', 'App\Policies\ProviderPolicy@view');
+        Gate::define('provider.create', 'App\Policies\ProviderPolicy@create');
+        Gate::define('provider.update', 'App\Policies\ProviderPolicy@update');
+        Gate::define('provider.delete', 'App\Policies\ProviderPolicy@delete');
+
         // passport
         Passport::routes();
 

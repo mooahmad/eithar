@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Administrator\Services;
 
+use App\Helpers\Utilities;
 use App\Http\Requests\Services\CreateServiceRequest;
 use App\Http\Requests\Services\UpdateServiceRequest;
 use App\Http\Services\Adminstrator\ServiceModule\ClassesService\ServiceClass;
@@ -71,9 +72,8 @@ class ServicesController extends Controller
         $service = new Service();
         ServiceClass::createOrUpdate($service, $request);
         ServiceClass::uploadImage($request, 'avatar', 'public/images/services', $service, 'profile_picture_path');
-        ServiceClass::uploadVideo($request, 'video', 'public/images/services/videos', $service, 'profile_video_path');
         session()->flash('success_msg', trans('admin.success_message'));
-        return redirect(SRV . '/services');
+        return redirect(AD . '/services');
     }
 
     /**
@@ -121,9 +121,8 @@ class ServicesController extends Controller
         $service = Service::findOrFail($id);
         ServiceClass::createOrUpdate($service, $request, false);
         ServiceClass::uploadImage($request, 'avatar', 'public/images/services', $service, 'profile_picture_path');
-        ServiceClass::uploadVideo($request, 'video', 'public/images/services/videos', $service, 'profile_video_path');
         session()->flash('success_msg', trans('admin.success_message'));
-        return redirect(SRV . '/services');
+        return redirect(AD . '/services');
     }
 
     /**
@@ -139,10 +138,18 @@ class ServicesController extends Controller
         $services = Service::where('id', '<>', 0);
         $dataTable = DataTables::of($services)
                                ->addColumn('actions', function ($service) {
-                                   $editURL = url('Services/services/' . $service->id . '/edit');
+                                   $editURL = url(AD . '/services/' . $service->id . '/edit');
                                    return View::make('Administrator.widgets.dataTablesActions', ['editURL' => $editURL]);
                                })
-                               ->rawColumns(['actions'])
+                               ->addColumn('image', function ($service) {
+                                   if (!empty($service->profile_picture_path)) {
+                                       $serviceImage = Utilities::getFileUrl($service->profile_picture_path);
+                                       return '<td><a href="' . $serviceImage . '" data-lightbox="image-1" data-title="' . $service->id . '" class="text-success">Show <i class="fa fa-image"></a></i></a></td>';
+                                   } else {
+                                       return '<td><span class="text-danger">No Image</span></td>';
+                                   }
+                               })
+                               ->rawColumns(['image', 'actions'])
                                ->make(true);
         return $dataTable;
     }
