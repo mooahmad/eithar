@@ -19,4 +19,9 @@ class Provider extends Model
     {
      return Utilities::getFileUrl($value, null, 'local', false);
     }
+
+    public function services()
+    {
+        return $this->belongsToMany('App\Models\Service', 'provider_services', 'provider_id', 'service_id');
+    }
 }
