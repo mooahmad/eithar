@@ -5,6 +5,7 @@ namespace App\Http\Services\Adminstrator\ProviderModule\ClassesProvider;
 
 use App\Helpers\Utilities;
 use App\Models\Provider;
+use App\Models\ProviderService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\MessageBag;
@@ -38,7 +39,19 @@ class ProviderClass
         $provider->time_before_next_visit = $request->input('time_before_next_visit');
         if ($isCreate)
             $provider->added_by = Auth::id();
-        return $provider->save();
+        $provider->save();
+        return self::linkServices($provider, $request);
+
+    }
+
+    public static function linkServices(Provider $provider, $request)
+    {
+     $services = $request->input('services');
+     $providerServices = [];
+     foreach ($services as $service)
+         $providerServices[]=["provider_id" => $provider->id, "service_id" => $service];
+     ProviderService::where("provider_id", $provider->id)->forceDelete();
+     return ProviderService::insert($providerServices);
     }
 
     /**

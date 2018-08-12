@@ -10,29 +10,25 @@ class Service extends Model
 {
     use SoftDeletes;
 
-    public $timestamps = false;
-    protected $table = 'services';
+    public    $timestamps = false;
+    protected $table      = 'services';
     protected $dateFormat = 'Y-m-d H:m:s';
-    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+    protected $dates      = ['created_at', 'updated_at', 'deleted_at'];
 
     public function attributesToArray()
     {
         $attributes = parent::attributesToArray();
 
-        foreach ($this->getMutatedAttributes() as $key)
-        {
-            if ($this->hidden)
-            {
+        foreach ($this->getMutatedAttributes() as $key) {
+            if ($this->hidden) {
                 if (in_array($key, $this->hidden)) continue;
             }
 
-            if($this->visible)
-            {
+            if ($this->visible) {
                 if (!in_array($key, $this->visible)) continue;
             }
 
-            if (!array_key_exists($key, $attributes))
-            {
+            if (!array_key_exists($key, $attributes)) {
                 $attributes[$key] = $this->mutateAttribute($key, null);
             }
         }
@@ -42,7 +38,7 @@ class Service extends Model
 
     public function getNameAttribute()
     {
-        if(App::isLocale('en'))
+        if (App::isLocale('en'))
             return $this->name_en;
         else
             return $this->name_ar;
@@ -50,9 +46,14 @@ class Service extends Model
 
     public function getDescriptionAttribute()
     {
-        if(App::isLocale('en'))
+        if (App::isLocale('en'))
             return $this->description_en;
         else
             return $this->description_ar;
+    }
+
+    public function providers()
+    {
+        return $this->belongsToMany('App\Models\Service', 'provider_services', 'service_id', 'provider_id');
     }
 }
