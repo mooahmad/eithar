@@ -46,9 +46,9 @@ class ServicesController extends Controller
         if (Gate::denies('service.create', new Service())) {
             return response()->view('errors.403', [], 403);
         }
-        $categories = Category::all()->pluck(__('admin.cat_name_col'), 'id')->toArray();
-        $countries = Country::all()->pluck(__('admin.country_name_col'), 'id')->toArray();
-        $currencies = Currency::all()->pluck(__('admin.currency_name_col'), 'id')->toArray();
+        $categories = Category::all()->pluck(trans('admin.cat_name_col'), 'id')->toArray();
+        $countries = Country::all()->pluck(trans('admin.country_name_col'), 'id')->toArray();
+        $currencies = Currency::all()->pluck(trans('admin.currency_name_col'), 'id')->toArray();
         $types = config('constants.serviceTypes');
         $data = [
             'categories' => $categories,
@@ -93,9 +93,9 @@ class ServicesController extends Controller
             return response()->view('errors.403', [], 403);
         }
         $service = Service::FindOrFail($id);
-        $categories = Category::all()->pluck(__('admin.cat_name_col'), 'id')->toArray();
-        $countries = Country::all()->pluck(__('admin.country_name_col'), 'id')->toArray();
-        $currencies = Currency::all()->pluck(__('admin.currency_name_col'), 'id')->toArray();
+        $categories = Category::all()->pluck(trans('admin.cat_name_col'), 'id')->toArray();
+        $countries = Country::all()->pluck(trans('admin.country_name_col'), 'id')->toArray();
+        $currencies = Currency::all()->pluck(trans('admin.currency_name_col'), 'id')->toArray();
         $types = config('constants.serviceTypes');
         $data = [
             'categories' => $categories,

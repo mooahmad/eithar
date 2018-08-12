@@ -55,20 +55,20 @@ class AdminClass
             if (!$isValidImage)
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
                                                      new MessageBag([
-                                                                        "message" => __('errors.errorUploadAvatar')
+                                                                        "message" => trans('errors.errorUploadAvatar')
                                                                     ]));
             $isUploaded = Utilities::UploadImage($request->file($fileName), $path);
             if (!$isUploaded)
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
                                                      new MessageBag([
-                                                                        "message" => __('errors.errorUploadAvatar')
+                                                                        "message" => trans('errors.errorUploadAvatar')
                                                                     ]));
             Utilities::DeleteImage($user->{$fieldName});
             $user->{$fieldName} = $isUploaded;
             if (!$user->save())
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
                                                      new MessageBag([
-                                                                        "message" => __('errors.errorUploadAvatar')
+                                                                        "message" => trans('errors.errorUploadAvatar')
                                                                     ]));
             return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
         }

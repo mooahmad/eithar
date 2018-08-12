@@ -15,8 +15,11 @@ abstract class Countries implements ICountry
     public function getCountries(Request $request)
     {
         $countries = Country::all();
-        foreach ($countries as $country)
-            Utilities::forgetModelItems($country, ["country_name_eng", "country_name_ara"]);
+        $countries = $countries->each(function ($country) {
+            $country->addHidden([
+                                    'country_name_eng', 'country_name_ara'
+                                 ]);
+        });
         return Utilities::getValidationError(config('constants.responseStatus.success'),
                                              new MessageBag([
                                                                 "countries" => $countries

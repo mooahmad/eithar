@@ -74,6 +74,8 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => PRON, 'prefix' => AD],
                         'edit'    => 'edit provider',
                         'destroy' => 'delete provider'
                     ]]);
+    Route::get('providers/{id}/calendar', 'ProvidersController@getProviderCalendar')->name('getProviderCalendar');
+    Route::post('providers/{id}/calendar', 'ProvidersController@updateProviderCalendar')->name('updateProviderCalendar');
     Route::get('getprovidersdatatable', 'ProvidersController@getProvidersDataTable')->name('getProvidersDatatable');
     Route::post('deleteproviders', 'ProvidersController@deleteProviders')->name('deleteProviders');
 });

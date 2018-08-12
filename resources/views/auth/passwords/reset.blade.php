@@ -56,7 +56,7 @@
 <!-- BEGIN LOGIN -->
 <div class="content">
     {!! Form::open(['route'=> 'adminResetPassword', 'class'=>'login-form']) !!}
-    <h3 class="form-title font-green">{{ __('Reset Password') }}</h3>
+    <h3 class="form-title font-green">{{ trans('Reset Password') }}</h3>
     @if(count($errors))
         <div class="alert alert-danger">
             <button class="close" data-close="alert"></button>
@@ -80,7 +80,7 @@
         {!! Form::password('password_confirmation', array('id'=>'password_confirmation', 'class'=>'form-control','placeholder'=>trans('admin.password_confirmation'))) !!}
     </div>
     <div class="form-actions">
-        {!! Form::submit( __('Reset Password') , array('class'=>'btn green uppercase')) !!}
+        {!! Form::submit( trans('Reset Password') , array('class'=>'btn green uppercase')) !!}
     </div>
 {!! Form::close() !!}
 <!-- END LOGIN FORM -->
