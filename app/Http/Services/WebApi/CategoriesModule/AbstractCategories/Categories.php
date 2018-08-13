@@ -38,7 +38,7 @@ abstract class Categories implements ICategory
                                 ]);
         });
         $categories = [];
-        if (!$services) {
+        if (empty($services)) {
             $categories = Category::where('category_parent_id', $id)->get();
             $categories = $categories->each(function ($category) {
                 $category->addHidden([
