@@ -8,6 +8,7 @@ use App\Http\Requests\Providers\UpdateProviderRequest;
 use App\Http\Services\Adminstrator\ProviderModule\ClassesProvider\ProviderClass;
 use App\Models\Currency;
 use App\Models\Provider;
+use App\Models\ProvidersCalendar;
 use App\Models\ProviderService;
 use App\Models\Service;
 use Illuminate\Http\Request;
@@ -46,7 +47,7 @@ class ProvidersController extends Controller
         if (Gate::denies('provider.create', new Provider())) {
             return response()->view('errors.403', [], 403);
         }
-        $currencies = Currency::all()->pluck(__('admin.currency_name_col'), 'id')->toArray();
+        $currencies = Currency::all()->pluck(trans('admin.currency_name_col'), 'id')->toArray();
         $allServices = Service::all()->pluck('name_en', 'id')->toArray();
         $selectedServices = [];
         $data = [
@@ -91,16 +92,16 @@ class ProvidersController extends Controller
             return response()->view('errors.403', [], 403);
         }
         $provider = Provider::FindOrFail($id);
-        $currencies = Currency::all()->pluck(__('admin.currency_name_col'), 'id')->toArray();
+        $currencies = Currency::all()->pluck(trans('admin.currency_name_col'), 'id')->toArray();
         $allServices = Service::all()->pluck('name_en', 'id')->toArray();
         $selectedServices = $provider->services->pluck('id')->toArray();
         $data = [
-            'currencies' => $currencies,
-            'provider'   => $provider,
+            'currencies'       => $currencies,
+            'provider'         => $provider,
             'allServices'      => $allServices,
             'selectedServices' => $selectedServices,
-            'formRoute'  => route('providers.update', ['provider' => $id]),
-            'submitBtn'  => trans('admin.update')
+            'formRoute'        => route('providers.update', ['provider' => $id]),
+            'submitBtn'        => trans('admin.update')
         ];
         return view(AD . '.providers.form')->with($data);
     }
@@ -135,7 +136,8 @@ class ProvidersController extends Controller
         $dataTable = DataTables::of($providers)
                                ->addColumn('actions', function ($provider) {
                                    $editURL = url(AD . '/providers/' . $provider->id . '/edit');
-                                   return View::make('Administrator.widgets.dataTablesActions', ['editURL' => $editURL]);
+                                   $calendarURL = url(AD . '/providers/' . $provider->id . '/calendar');
+                                   return View::make('Administrator.providers.widgets.dataTableCalendarAction', ['editURL' => $editURL, 'actionURL' => $calendarURL]);
                                })
                                ->addColumn('image', function ($provider) {
                                    if (!empty($provider->profile_picture_path)) {
@@ -156,6 +158,27 @@ class ProvidersController extends Controller
         }
         $ids = $request->input('ids');
         return Provider::whereIn('id', $ids)->delete();
+    }
+
+    public function getProviderCalendar($id)
+    {
+        $calendars = ProvidersCalendar::where('provider_id', $id)->get();
+        $data = [
+            'calendars' => $calendars,
+            'formRoute' => route('updateProviderCalendar', ['provider' => $id]),
+            'submitBtn' => trans('admin.update')
+        ];
+        return view(AD . '.providers.calendar')->with($data);
+    }
+
+    public function updateProviderCalendar(Request $request, $providerId)
+    {
+        $calenders = ProviderClass::collectCalendar($request, $providerId);
+        foreach ($calenders as $calender) {
+            $id = array_pull($calender, 'id');
+            ProvidersCalendar::updateOrCreate(['id' => $id], $calender);
+        }
+        return redirect()->route('getProviderCalendar', ['id' => $providerId]);
     }
 
 }

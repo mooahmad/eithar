@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProviderServicesTable extends Migration
+class CreateProvidersCalendarsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,26 +13,21 @@ class CreateProviderServicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('provider_services', function (Blueprint $table) {
+        Schema::create('providers_calendars', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('provider_id')->nullable();
-            $table->unsignedInteger('service_id')->nullable();
+            $table->dateTime('start_date')->nullable();
+            $table->dateTime('end_date')->nullable();
+            $table->integer('number_of_booking')->nullable();
+            $table->integer('is_available')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
         // relations
-        Schema::table('provider_services', function (Blueprint $table) {
+        Schema::table('providers_calendars', function (Blueprint $table) {
             $table->foreign('provider_id')
                   ->references('id')
                   ->on('providers')
-                  ->onUpdate('set null')
-                  ->onDelete('set null');
-
-        });
-        Schema::table('provider_services', function (Blueprint $table) {
-            $table->foreign('service_id')
-                  ->references('id')
-                  ->on('services')
                   ->onUpdate('set null')
                   ->onDelete('set null');
 
@@ -49,8 +44,7 @@ class CreateProviderServicesTable extends Migration
         // relations
         Schema::table('provider_services', function (Blueprint $table) {
             $table->dropForeign(['provider_id']);
-            $table->dropForeign(['service_id']);
         });
-        Schema::dropIfExists('provider_services');
+        Schema::dropIfExists('providers_calendars');
     }
 }

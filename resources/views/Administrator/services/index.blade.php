@@ -20,12 +20,12 @@
                                width="100%">
                             <thead>
                             <tr>
-                                <th>{{ __('admin.id') }}</th>
-                                <th>{{ __('admin.name_en') }}</th>
-                                <th>{{ __('admin.name_ar') }}</th>
-                                <th>{{ __('admin.price') }}</th>
-                                <th>{{ __('admin.image') }}</th>
-                                <th>{{ __('admin.actions') }}</th>
+                                <th>{{ trans('admin.id') }}</th>
+                                <th>{{ trans('admin.name_en') }}</th>
+                                <th>{{ trans('admin.name_ar') }}</th>
+                                <th>{{ trans('admin.price') }}</th>
+                                <th>{{ trans('admin.image') }}</th>
+                                <th>{{ trans('admin.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>

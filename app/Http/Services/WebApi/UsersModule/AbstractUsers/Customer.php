@@ -35,20 +35,20 @@ class Customer
             if (!$isValidImage)
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
                                                      new MessageBag([
-                                                                        "message" => __('errors.errorUploadAvatar')
+                                                                        "message" => trans('errors.errorUploadAvatar')
                                                                     ]));
             $isUploaded = Utilities::UploadImage($request->file($fileName), 'public/images/avatars');
             if (!$isUploaded)
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
                                                      new MessageBag([
-                                                                        "message" => __('errors.errorUploadAvatar')
+                                                                        "message" => trans('errors.errorUploadAvatar')
                                                                     ]));
             Utilities::DeleteImage($customer->profile_picture_path);
             $customer->profile_picture_path = $isUploaded;
             if (!$customer->save())
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
                                                      new MessageBag([
-                                                                        "message" => __('errors.errorUploadAvatar')
+                                                                        "message" => trans('errors.errorUploadAvatar')
                                                                     ]));
             return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
         }
@@ -67,20 +67,20 @@ class Customer
             if (!$isValidImage)
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
                                                      new MessageBag([
-                                                                        "message" => __('errors.errorUploadNationalID')
+                                                                        "message" => trans('errors.errorUploadNationalID')
                                                                     ]));
             $isUploaded = Utilities::UploadImage($request->file($fileName), 'public/images/nationalities');
             if (!$isUploaded)
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
                                                      new MessageBag([
-                                                                        "message" => __('errors.errorUploadNationalID')
+                                                                        "message" => trans('errors.errorUploadNationalID')
                                                                     ]));
             Utilities::DeleteImage($customer->nationality_id_picture);
             $customer->nationality_id_picture = $isUploaded;
             if (!$customer->save())
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
                                                      new MessageBag([
-                                                                        "message" => __('errors.errorUploadNationalID')
+                                                                        "message" => trans('errors.errorUploadNationalID')
                                                                     ]));
             return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
         }
@@ -185,7 +185,7 @@ class Customer
         if (!$customer)
             return Utilities::getValidationError(config('constants.responseStatus.operationFailed'),
                                                  new MessageBag([
-                                                                    "message" => __('errors.wrongCode')
+                                                                    "message" => trans('errors.wrongCode')
                                                                 ]));
         $customer->email_verified = 1;
         $customer->save();
@@ -243,7 +243,7 @@ class Customer
         if (!$customer)
             return Utilities::getValidationError(config('constants.responseStatus.userNotFound'),
                                                  new MessageBag([
-                                                                    'message' => __('errors.userNotFound')
+                                                                    'message' => trans('errors.userNotFound')
                                                                 ]));
         $customer->password  = Hash::make($request->input('password'));
         $customer->save();

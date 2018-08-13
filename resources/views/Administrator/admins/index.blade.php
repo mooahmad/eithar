@@ -20,11 +20,11 @@
                                width="100%">
                             <thead>
                             <tr>
-                                <th>{{ __('admin.id') }}</th>
-                                <th>{{ __('admin.name') }}</th>
-                                <th>{{ __('admin.mobile') }}</th>
-                                <th>{{ __('admin.email') }}</th>
-                                <th>{{ __('admin.actions') }}</th>
+                                <th>{{ trans('admin.id') }}</th>
+                                <th>{{ trans('admin.name') }}</th>
+                                <th>{{ trans('admin.mobile') }}</th>
+                                <th>{{ trans('admin.email') }}</th>
+                                <th>{{ trans('admin.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>

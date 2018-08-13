@@ -38,20 +38,20 @@ class CategoryClass
             if (!$isValidImage)
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
                                                      new MessageBag([
-                                                                        "message" => __('errors.errorUploadAvatar')
+                                                                        "message" => trans('errors.errorUploadAvatar')
                                                                     ]));
             $isUploaded = Utilities::UploadImage($request->file($fileName), $path);
             if (!$isUploaded)
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
                                                      new MessageBag([
-                                                                        "message" => __('errors.errorUploadAvatar')
+                                                                        "message" => trans('errors.errorUploadAvatar')
                                                                     ]));
             Utilities::DeleteImage($category->{$fieldName});
             $category->{$fieldName} = $isUploaded;
             if (!$category->save())
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
                                                      new MessageBag([
-                                                                        "message" => __('errors.errorUploadAvatar')
+                                                                        "message" => trans('errors.errorUploadAvatar')
                                                                     ]));
             return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
         }
