@@ -37,6 +37,7 @@ abstract class Categories implements ICategory
                                     'desc_en', 'desc_ar'
                                 ]);
         });
+        dd($services);
         $categories = [];
         if (!$services) {
             $categories = Category::where('category_parent_id', $id)->get();
