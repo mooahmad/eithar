@@ -46,12 +46,26 @@ class ProviderClass
 
     public static function linkServices(Provider $provider, $request)
     {
-     $services = $request->input('services');
-     $providerServices = [];
-     foreach ($services as $service)
-         $providerServices[]=["provider_id" => $provider->id, "service_id" => $service];
-     ProviderService::where("provider_id", $provider->id)->forceDelete();
-     return ProviderService::insert($providerServices);
+        $services = $request->input('services');
+        return $provider->services()->sync($services);
+    }
+
+    public static function collectCalendar($request, $providerId)
+    {
+        $ids = $request->input('id');
+        $startDates = $request->input('start_date');
+        $endDates = $request->input('end_date');
+        $isAvailable = $request->input('is_available');
+        $calendar = [];
+        for ($i = 0; $i < count($ids); $i++)
+            $calendar[] = [
+                'id'           => $ids[$i],
+                'provider_id'  => $providerId,
+                'start_date'   => $startDates[$i],
+                'end_date'     => $endDates[$i],
+                'is_available' => $isAvailable[$i]
+            ];
+        return $calendar;
     }
 
     /**
@@ -68,20 +82,20 @@ class ProviderClass
             if (!$isValidImage)
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
                                                      new MessageBag([
-                                                                        "message" => __('errors.errorUploadAvatar')
+                                                                        "message" => trans('errors.errorUploadAvatar')
                                                                     ]));
             $isUploaded = Utilities::UploadImage($request->file($fileName), $path);
             if (!$isUploaded)
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
                                                      new MessageBag([
-                                                                        "message" => __('errors.errorUploadAvatar')
+                                                                        "message" => trans('errors.errorUploadAvatar')
                                                                     ]));
             Utilities::DeleteImage($provider->{$fieldName});
             $provider->{$fieldName} = $isUploaded;
             if (!$provider->save())
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
                                                      new MessageBag([
-                                                                        "message" => __('errors.errorUploadAvatar')
+                                                                        "message" => trans('errors.errorUploadAvatar')
                                                                     ]));
             return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
         }

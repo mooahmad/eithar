@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProviderServicesTable extends Migration
+class CreateProviderCitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreateProviderServicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('provider_services', function (Blueprint $table) {
+        Schema::create('provider_cities', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('provider_id')->nullable();
-            $table->unsignedInteger('service_id')->nullable();
+            $table->unsignedInteger('city_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
         // relations
-        Schema::table('provider_services', function (Blueprint $table) {
+        Schema::table('provider_cities', function (Blueprint $table) {
             $table->foreign('provider_id')
                   ->references('id')
                   ->on('providers')
@@ -29,10 +29,10 @@ class CreateProviderServicesTable extends Migration
                   ->onDelete('set null');
 
         });
-        Schema::table('provider_services', function (Blueprint $table) {
-            $table->foreign('service_id')
+        Schema::table('provider_cities', function (Blueprint $table) {
+            $table->foreign('city_id')
                   ->references('id')
-                  ->on('services')
+                  ->on('cities')
                   ->onUpdate('set null')
                   ->onDelete('set null');
 
@@ -47,10 +47,10 @@ class CreateProviderServicesTable extends Migration
     public function down()
     {
         // relations
-        Schema::table('provider_services', function (Blueprint $table) {
+        Schema::table('provider_cities', function (Blueprint $table) {
             $table->dropForeign(['provider_id']);
-            $table->dropForeign(['service_id']);
+            $table->dropForeign(['city_id']);
         });
-        Schema::dropIfExists('provider_services');
+        Schema::dropIfExists('provider_cities');
     }
 }

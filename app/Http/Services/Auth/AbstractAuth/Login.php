@@ -23,7 +23,7 @@ Abstract class Login implements ILogin
         if (!$customer)
             return Utilities::getValidationError(config('constants.responseStatus.userNotFound'),
                                                  new MessageBag([
-                                                                    "message" => __('errors.userNotFound')
+                                                                    "message" => trans('errors.userNotFound')
                                                                 ]));
         $customerData = clone $customer;
         $customerData = ApiHelpers::getCustomerImages($customerData);

@@ -35,21 +35,21 @@ class Registration implements IRegistration
         if (!$newCustomer->save())
             return Utilities::getValidationError(config('constants.responseStatus.operationFailed'),
                                                  new MessageBag([
-                                                                    "message" => __('errors.operationFailed')
+                                                                    "message" => trans('errors.operationFailed')
                                                                 ]));
         // uploading customer avatar
         $validationObject = $customerInstance->uploadCustomerAvatar($request, 'avatar', $newCustomer);
         if ($validationObject->error != config('constants.responseStatus.success'))
             return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
                                                  new MessageBag([
-                                                                    "message" => __('errors.errorUploadAvatar')
+                                                                    "message" => trans('errors.errorUploadAvatar')
                                                                 ]));
         // uploading customer national id image
         $validationObject = $customerInstance->uploadCustomerNationalIDImage($request, 'nationality_id_picture', $newCustomer);
         if ($validationObject->error != config('constants.responseStatus.success'))
             return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
                                                  new MessageBag([
-                                                                    "message" => __('errors.errorUploadNationalID')
+                                                                    "message" => trans('errors.errorUploadNationalID')
                                                                 ]));
         $customer = Customer::find($newCustomer->id);
         $customerData = clone $customer;
