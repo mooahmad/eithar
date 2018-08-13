@@ -15,6 +15,12 @@
 
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="default_language" class="control-label">
+                        {{ trans('admin.date_section') }}
+                    </label>
+                    {!! Form::select('date_section', $calendarSections, 0, array('id'=>'date_section', 'class'=>'form-control')) !!}
+                </div>
                 <div class="portlet-body">
                     <div class="table-responsive">
                         <table id="data-table-calendar" class="dataTable table table-bordered table-hover"

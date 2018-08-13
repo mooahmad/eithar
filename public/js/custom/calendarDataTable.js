@@ -47,7 +47,11 @@ function datatable() {
         processing: true,
         serverSide: true,
         ajax: {
-            url: calendarDataTableURL
+            url: calendarDataTableURL,
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            }
         },
         columns: [
             {data: 'id', name: 'providers_calendars.id'},
@@ -74,6 +78,15 @@ function datatable() {
             $('.deleteSelected').addClass('hidden');
             $(".dt-buttons").appendTo("#dataTable-buttons");
             $(".dt-buttons").show();
+            // search by date section
+            var endDateCol = this.api().columns(1);
+            var selectDateSection = $('#date_section');
+            selectDateSection.on('change', function () {
+                var val = $.fn.dataTable.util.escapeRegex(
+                    $(this).val()
+                );
+                endDateCol.search(val).draw();
+            });
         }
     });
 
@@ -100,8 +113,8 @@ function deleteCalendarRecords(ids) {
         },
         success: function (response, status, xhr) {
             mainTable
-                .order( [[ 0, 'asc' ]] )
-                .draw( false );
+                .order([[0, 'asc']])
+                .draw(false);
             $('#staticDeleteModal').modal('hide');
             $('.deleteSelected').addClass('hidden');
         },
