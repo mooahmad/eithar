@@ -38,14 +38,15 @@ abstract class Categories implements ICategory
                                 ]);
         });
         $categories = [];
-        if (!$services)
+        if (!$services) {
             $categories = Category::where('category_parent_id', $id)->get();
-        $categories = $categories->each(function ($category) {
-            $category->addHidden([
-                                     'category_name_en', 'category_name_ar',
-                                     'description_en', 'description_ar'
-                                 ]);
-        });
+            $categories = $categories->each(function ($category) {
+                $category->addHidden([
+                                         'category_name_en', 'category_name_ar',
+                                         'description_en', 'description_ar'
+                                     ]);
+            });
+        }
         return Utilities::getValidationError(config('constants.responseStatus.success'),
                                              new MessageBag([
                                                                 "categories" => $categories,
