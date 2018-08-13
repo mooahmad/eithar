@@ -5,6 +5,7 @@ namespace App\Http\Services\Adminstrator\ProviderModule\ClassesProvider;
 
 use App\Helpers\Utilities;
 use App\Models\Provider;
+use App\Models\ProvidersCalendar;
 use App\Models\ProviderService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -50,6 +51,14 @@ class ProviderClass
         return $provider->services()->sync($services);
     }
 
+    public static function createOrUpdateCalendar(ProvidersCalendar $providerCalendar, $request, $providerId, $isCreate = true)
+    {
+        $providerCalendar->provider_id = $providerId;
+        $providerCalendar->start_date = $request->input('start_date');
+        $providerCalendar->end_date = $request->input('end_date');
+        $providerCalendar->is_available = $request->input('is_available');
+        return $providerCalendar->save();
+    }
 
     /**
      * @param Request $request

@@ -26,7 +26,7 @@
                                     <!-- Create New User TAB -->
                                     <div class="tab-pane active" id="new_user">
                                         {!! Form::open(['method'=> 'POST','url'=> $formRoute, 'role'=>'form', 'files' => true]) !!}
-                                            <input name="id[]" type="hidden" value="{{ isset($calendar)? $calendar->id: '' }}">
+                                            <input name="id" type="hidden" value="{{ isset($calendar)? $calendar->id: '' }}">
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-sm-4 col-md-4">
@@ -34,7 +34,7 @@
                                                             {{ trans('admin.start_date') }} <span
                                                                     class="required"> * </span>
                                                         </label>
-                                                        {!! Form::text('start_date[]', isset($calendar)? $calendar->start_date : '' , array('id'=>'', 'class'=>'form-control form-control-inline input-medium date_time_picker','required'=>'required', 'size' => 16, 'type' => 'text')) !!}
+                                                        {!! Form::text('start_date', isset($calendar)? $calendar->start_date : '' , array('id'=>'', 'class'=>'form-control form-control-inline input-medium date_time_picker','required'=>'required', 'size' => 16, 'type' => 'text')) !!}
                                                         @if($errors->has('start_date'))
                                                             <span class="help-block text-danger">{{ $errors->first('start_date') }}</span>
                                                         @endif
@@ -44,7 +44,7 @@
                                                             {{ trans('admin.end_date') }} <span
                                                                     class="required"> * </span>
                                                         </label>
-                                                        {!! Form::text('end_date[]', isset($calendar)? $calendar->end_date: '', array('id'=>'', 'class'=>'form-control form-control-inline input-medium date_time_picker','required'=>'required', 'size' => 16, 'type' => 'text')) !!}
+                                                        {!! Form::text('end_date', isset($calendar)? $calendar->end_date: '', array('id'=>'', 'class'=>'form-control form-control-inline input-medium date_time_picker','required'=>'required', 'size' => 16, 'type' => 'text')) !!}
                                                         @if($errors->has('end_date'))
                                                             <span class="help-block text-danger">{{ $errors->first('end_date') }}</span>
                                                         @endif
@@ -62,12 +62,12 @@
                                                         @endphp
                                                         <div class="mt-radio-inline">
                                                             <label class="mt-radio">
-                                                                {!! Form::radio('is_available[]', 1, ($is_available === 1 || empty($is_available))? 'true' : '',array('id'=>'yes-active')) !!}
+                                                                {!! Form::radio('is_available', 1, ($is_available === 1 || empty($is_available))? 'true' : '',array('id'=>'yes-active')) !!}
                                                                 {{ trans('admin.yes') }}
                                                                 <span></span>
                                                             </label>
                                                             <label class="mt-radio">
-                                                                {!! Form::radio('is_available[]', 0, ($is_available === 0 )? 'true' : '',array('id'=>'no-active')) !!}
+                                                                {!! Form::radio('is_available', 0, ($is_available === 0 )? 'true' : '',array('id'=>'no-active')) !!}
                                                                 {{ trans('admin.no') }}
                                                                 <span></span>
                                                             </label>
