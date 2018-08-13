@@ -74,10 +74,18 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => PRON, 'prefix' => AD],
                         'edit'    => 'edit provider',
                         'destroy' => 'delete provider'
                     ]]);
-    Route::get('providers/{id}/calendar', 'ProvidersController@getProviderCalendar')->name('getProviderCalendar');
-    Route::post('providers/{id}/calendar', 'ProvidersController@updateProviderCalendar')->name('updateProviderCalendar');
     Route::get('getprovidersdatatable', 'ProvidersController@getProvidersDataTable')->name('getProvidersDatatable');
     Route::post('deleteproviders', 'ProvidersController@deleteProviders')->name('deleteProviders');
+
+    // calendar section
+    Route::get('providers/{id}/calendar', 'ProvidersController@showProviderCalendar')->name('showProviderCalendar');
+    Route::get('providers/{id}/calendar/create', 'ProvidersController@createProviderCalendar')->name('createProviderCalendar');
+    Route::post('providers/{id}/calendar/store', 'ProvidersController@storeProviderCalendar')->name('storeProviderCalendar');
+    Route::get('providers/calendar/{id}/edit', 'ProvidersController@editProviderCalendar')->name('editProviderCalendar');
+
+    // calendar dataTable
+    Route::get('providers/{id}/calendar/datatable', 'ProvidersController@getCalendarDatatable')->name('getCalendarDatatable');
+    Route::post('deleteCalendar', 'ServicesController@deleteCalendar')->name('deleteCalendar');
 });
 
 

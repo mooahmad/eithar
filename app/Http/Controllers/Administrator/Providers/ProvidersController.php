@@ -137,7 +137,8 @@ class ProvidersController extends Controller
                                ->addColumn('actions', function ($provider) {
                                    $editURL = url(AD . '/providers/' . $provider->id . '/edit');
                                    $calendarURL = url(AD . '/providers/' . $provider->id . '/calendar');
-                                   return View::make('Administrator.providers.widgets.dataTableCalendarAction', ['editURL' => $editURL, 'actionURL' => $calendarURL]);
+                                   $addCalendarURL = url(AD . '/providers/' . $provider->id . '/calendar/create');
+                                   return View::make('Administrator.providers.widgets.dataTableCalendarAction', ['editURL' => $editURL, 'calendarURL' => $calendarURL, 'addCalendarURL' => $addCalendarURL]);
                                })
                                ->addColumn('image', function ($provider) {
                                    if (!empty($provider->profile_picture_path)) {
@@ -160,25 +161,50 @@ class ProvidersController extends Controller
         return Provider::whereIn('id', $ids)->delete();
     }
 
-    public function getProviderCalendar($id)
+    public function showProviderCalendar($id)
     {
-        $calendars = ProvidersCalendar::where('provider_id', $id)->get();
-        $data = [
-            'calendars' => $calendars,
-            'formRoute' => route('updateProviderCalendar', ['provider' => $id]),
-            'submitBtn' => trans('admin.update')
-        ];
-        return view(AD . '.providers.calendar')->with($data);
+        return view(AD . '.providers.calendar_index')->with(['providerID' => $id]);
     }
 
-    public function updateProviderCalendar(Request $request, $providerId)
+    public function createProviderCalendar(Request $request, $providerId)
     {
-        $calenders = ProviderClass::collectCalendar($request, $providerId);
-        foreach ($calenders as $calender) {
-            $id = array_pull($calender, 'id');
-            ProvidersCalendar::updateOrCreate(['id' => $id], $calender);
+        $data = [
+            'formRoute' => route('storeProviderCalendar', ['provider' => $providerId]),
+            'submitBtn' => trans('admin.update')
+        ];
+        return view(AD . '.providers.calendar_form')->with($data);
+    }
+
+    public function storeProviderCalendar(Request $request, $providerID)
+    {
+
+    }
+
+    public function editProviderCalendar(Request $request, $providerID)
+    {
+
+    }
+
+    public function getCalendarDatatable($id)
+    {
+        $providerCalendar = ProvidersCalendar::where('provider_id', $id);
+        $dataTable = DataTables::of($providerCalendar)
+                               ->addColumn('actions', function ($calendar) {
+                                   $editURL = url(AD . '/providers/calendar/' . $calendar->id . '/edit');
+                                   return View::make('Administrator.widgets.dataTablesActions', ['editURL' => $editURL]);
+                               })
+                               ->rawColumns(['actions'])
+                               ->make(true);
+        return $dataTable;
+    }
+
+    public function deleteCalendar(Request $request)
+    {
+        if (Gate::denies('provider.delete', new Provider())) {
+            return response()->view('errors.403', [], 403);
         }
-        return redirect()->route('getProviderCalendar', ['id' => $providerId]);
+        $ids = $request->input('ids');
+        return ProvidersCalendar::whereIn('id', $ids)->delete();
     }
 
 }

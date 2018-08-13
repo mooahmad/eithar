@@ -50,23 +50,6 @@ class ProviderClass
         return $provider->services()->sync($services);
     }
 
-    public static function collectCalendar($request, $providerId)
-    {
-        $ids = $request->input('id');
-        $startDates = $request->input('start_date');
-        $endDates = $request->input('end_date');
-        $isAvailable = $request->input('is_available');
-        $calendar = [];
-        for ($i = 0; $i < count($ids); $i++)
-            $calendar[] = [
-                'id'           => $ids[$i],
-                'provider_id'  => $providerId,
-                'start_date'   => $startDates[$i],
-                'end_date'     => $endDates[$i],
-                'is_available' => $isAvailable[$i]
-            ];
-        return $calendar;
-    }
 
     /**
      * @param Request $request
