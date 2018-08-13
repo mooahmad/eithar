@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Administrator\Providers;
 
 use App\Helpers\Utilities;
+use App\Http\Requests\Providers\CreateCalendarRequest;
 use App\Http\Requests\Providers\CreateProviderRequest;
+use App\Http\Requests\Providers\UpdateCalendarRequest;
 use App\Http\Requests\Providers\UpdateProviderRequest;
 use App\Http\Services\Adminstrator\ProviderModule\ClassesProvider\ProviderClass;
 use App\Models\Currency;
@@ -161,6 +163,8 @@ class ProvidersController extends Controller
         return Provider::whereIn('id', $ids)->delete();
     }
 
+    // calendar section
+
     public function showProviderCalendar($id)
     {
         return view(AD . '.providers.calendar_index')->with(['providerID' => $id]);
@@ -170,17 +174,29 @@ class ProvidersController extends Controller
     {
         $data = [
             'formRoute' => route('storeProviderCalendar', ['provider' => $providerId]),
+            'submitBtn' => trans('admin.create')
+        ];
+        return view(AD . '.providers.calendar_form')->with($data);
+    }
+
+    public function storeProviderCalendar(CreateCalendarRequest $request, $providerId)
+    {
+        $providerCalendar = new ProvidersCalendar();
+        ProviderClass::createOrUpdateCalendar($providerCalendar, $request, $providerId);
+        session()->flash('success_msg', trans('admin.success_message'));
+        return redirect(AD . '/providers/'. $providerId .'/calendar');
+    }
+
+    public function editProviderCalendar(Request $request, $providerId)
+    {
+        $data = [
+            'formRoute' => route('storeProviderCalendar', ['provider' => $providerId]),
             'submitBtn' => trans('admin.update')
         ];
         return view(AD . '.providers.calendar_form')->with($data);
     }
 
-    public function storeProviderCalendar(Request $request, $providerID)
-    {
-
-    }
-
-    public function editProviderCalendar(Request $request, $providerID)
+    public function updateProviderCalendar(UpdateCalendarRequest $request, $providerID)
     {
 
     }

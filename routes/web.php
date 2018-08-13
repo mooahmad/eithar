@@ -90,7 +90,8 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => PRON, 'prefix' => AD],
     Route::get('providers/{id}/calendar', 'ProvidersController@showProviderCalendar')->name('showProviderCalendar');
     Route::get('providers/{id}/calendar/create', 'ProvidersController@createProviderCalendar')->name('createProviderCalendar');
     Route::post('providers/{id}/calendar/store', 'ProvidersController@storeProviderCalendar')->name('storeProviderCalendar');
-    Route::get('providers/calendar/{id}/edit', 'ProvidersController@editProviderCalendar')->name('editProviderCalendar');
+    Route::get('providers/{id}/calendar/{calendarId}/edit', 'ProvidersController@editProviderCalendar')->name('editProviderCalendar');
+    Route::post('providers/{id}/calendar/{calendarId}/update', 'ProvidersController@updateProviderCalendar')->name('updateProviderCalendar');
 
     // calendar dataTable
     Route::get('providers/{id}/calendar/datatable', 'ProvidersController@getCalendarDatatable')->name('getCalendarDatatable');
