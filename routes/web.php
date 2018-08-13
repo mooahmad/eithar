@@ -1,7 +1,5 @@
 <?php
 
-Auth::routes();
-
 define('ADL', 'Administrator/layouts');
 define('AD', 'Administrator');
 define('ADN', 'Administrator\UsersModule');
@@ -10,6 +8,17 @@ define('FE', 'Frontend');
 define('CATN', 'Administrator\Categories');
 define('SRVN', 'Administrator\Services');
 define('PRON', 'Administrator\Providers');
+
+//Frontend Routes
+Route::group(['namespace'=>FE],function (){
+    Route::group(['middleware'=>'Language','prefix'=>Request::segment(1)],function (){
+        Route::group(['prefix'=>session()->get('lang')],function (){
+            Route::get('/','FrontendController@index')->name('home');
+        });
+    });
+});
+
+Auth::routes();
 
 Route::group(['prefix' => 'password'], function () {
     Route::view('forgotpassword', 'auth.passwords.forgotPassword')->name('forgotPassword');

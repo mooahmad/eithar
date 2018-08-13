@@ -1,0 +1,107 @@
+@import "helpers/variables.scss";
+
+/**Start Arabic Menu**/
+
+body {
+    text-align: right !important;
+}
+
+/*=03= Start Search Subheader*/
+
+.serach_subheader {
+    .serach_subheader-searsh {
+        button {
+            border-radius: $borderRadius 0 0 $borderRadius;
+            /*change*/
+            right: auto;
+            left: 4px;
+            /*Change*/
+        }
+        .serach_subheader-select {
+            right: auto;
+            left: 50px;
+            /*change*/
+        }
+
+    }
+}
+
+/*=03= Start Search Subheader*/
+
+/*05=Start Services*/
+
+.home_page-services {
+
+
+    .services_block {
+        margin-right: 50px;
+        margin-left: auto;
+        /*Change*/
+        padding-right: 60px;
+        padding-left: 20px;
+        /*Change*/
+    }
+}
+
+.services_block-icon {
+    right: -15%;
+    left: auto;
+    /*Change*/
+}
+
+/*05=End Services*/
+
+/*06= Start Services Oorder*/
+
+.services_order {
+
+    .location {
+        i {
+            position: absolute;
+            top: 8px;
+            right: auto;
+            left: 8px;
+            color: $mainColor;
+        }
+    }
+}
+
+/*06= Start Services Order*/
+
+/**Footer**/
+
+footer {
+    .footer_subscribe {
+        button {
+            right: auto;
+            left: 2px;
+            border-bottom-left-radius: $borderRadius;
+            /*Change*/
+            border-top-left-radius: $borderRadius;
+            /*Change*/
+        }
+    }
+}
+
+/*05=End Services*/
+
+/*****Font******/
+
+p,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+li,
+input,
+label,
+textarea,
+select,
+th,
+td {
+    font-family: 'Cairo', sans-serif;
+}
