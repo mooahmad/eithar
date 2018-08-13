@@ -38,7 +38,7 @@ abstract class Categories implements ICategory
                                 ]);
         });
         $categories = [];
-        if (!$services) {
+        if ($services->isEmpty()) {
             $categories = Category::where('category_parent_id', $id)->get();
             $categories = $categories->each(function ($category) {
                 $category->addHidden([
@@ -47,7 +47,6 @@ abstract class Categories implements ICategory
                                      ]);
             });
         }
-        dd($categories);
         return Utilities::getValidationError(config('constants.responseStatus.success'),
                                              new MessageBag([
                                                                 "categories" => $categories,
