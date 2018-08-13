@@ -123,4 +123,5 @@ return [
     'end_date'               => 'End date',
     'is_available'           => 'Is available',
     'date_section'           => 'Date section',
+    'cities'                 => 'Cities',
 ];

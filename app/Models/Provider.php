@@ -24,4 +24,9 @@ class Provider extends Model
     {
         return $this->belongsToMany('App\Models\Service', 'provider_services', 'provider_id', 'service_id');
     }
+
+    public function cities()
+    {
+        return $this->belongsToMany('App\Models\City', 'provider_cities', 'provider_id', 'city_id');
+    }
 }

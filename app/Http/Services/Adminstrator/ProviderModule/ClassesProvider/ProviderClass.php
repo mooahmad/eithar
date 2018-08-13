@@ -41,14 +41,20 @@ class ProviderClass
         if ($isCreate)
             $provider->added_by = Auth::id();
         $provider->save();
-        return self::linkServices($provider, $request);
-
+        self::linkServices($provider, $request);
+        return self::linkCities($provider, $request);
     }
 
     public static function linkServices(Provider $provider, $request)
     {
         $services = $request->input('services');
         return $provider->services()->sync($services);
+    }
+
+    public static function linkCities(Provider $provider, $request)
+    {
+        $cities = $request->input('cities');
+        return $provider->cities()->sync($cities);
     }
 
     public static function createOrUpdateCalendar(ProvidersCalendar $providerCalendar, $request, $providerId, $isCreate = true)

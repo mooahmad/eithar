@@ -8,6 +8,7 @@ use App\Http\Requests\Providers\CreateProviderRequest;
 use App\Http\Requests\Providers\UpdateCalendarRequest;
 use App\Http\Requests\Providers\UpdateProviderRequest;
 use App\Http\Services\Adminstrator\ProviderModule\ClassesProvider\ProviderClass;
+use App\Models\City;
 use App\Models\Currency;
 use App\Models\Provider;
 use App\Models\ProvidersCalendar;
@@ -53,10 +54,14 @@ class ProvidersController extends Controller
         $currencies = Currency::all()->pluck(trans('admin.currency_name_col'), 'id')->toArray();
         $allServices = Service::all()->pluck('name_en', 'id')->toArray();
         $selectedServices = [];
+        $allCities = City::all()->pluck('city_name_eng', 'id')->toArray();
+        $selectedCities = [];
         $data = [
             'currencies'       => $currencies,
             'allServices'      => $allServices,
             'selectedServices' => $selectedServices,
+            'allCities'        => $allCities,
+            'selectedCities'   => $selectedCities,
             'formRoute'        => route('providers.store'),
             'submitBtn'        => trans('admin.create')
         ];
@@ -98,11 +103,15 @@ class ProvidersController extends Controller
         $currencies = Currency::all()->pluck(trans('admin.currency_name_col'), 'id')->toArray();
         $allServices = Service::all()->pluck('name_en', 'id')->toArray();
         $selectedServices = $provider->services->pluck('id')->toArray();
+        $allCities = City::all()->pluck('city_name_eng', 'id')->toArray();
+        $selectedCities = $provider->cities->pluck('id')->toArray();
         $data = [
             'currencies'       => $currencies,
             'provider'         => $provider,
             'allServices'      => $allServices,
             'selectedServices' => $selectedServices,
+            'allCities'        => $allCities,
+            'selectedCities'   => $selectedCities,
             'formRoute'        => route('providers.update', ['provider' => $id]),
             'submitBtn'        => trans('admin.update')
         ];
