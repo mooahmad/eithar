@@ -18,6 +18,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -197,6 +198,11 @@ class ProvidersController extends Controller
     public function storeProviderCalendar(CreateCalendarRequest $request, $providerId)
     {
         $providerCalendar = new ProvidersCalendar();
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+        if(ProviderClass::isExistCalendar($startDate, $endDate, $providerId)){
+            return Redirect::back()->withErrors(['msg' => 'The slot you have picked conflicts with another one']);
+        }
         ProviderClass::createOrUpdateCalendar($providerCalendar, $request, $providerId);
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/providers/' . $providerId . '/calendar');
@@ -216,6 +222,11 @@ class ProvidersController extends Controller
     public function updateProviderCalendar(UpdateCalendarRequest $request, $providerId, $calendarId)
     {
         $providerCalendar = ProvidersCalendar::find($calendarId);
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+        if(ProviderClass::isExistCalendar($startDate, $endDate, $providerId, $calendarId)){
+            return Redirect::back()->withErrors(['msg' => 'The slot you have picked conflicts with another one']);
+        }
         ProviderClass::createOrUpdateCalendar($providerCalendar, $request, $providerId);
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/providers/' . $providerId . '/calendar');

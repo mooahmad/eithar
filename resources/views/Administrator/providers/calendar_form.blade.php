@@ -25,6 +25,13 @@
                                 <div class="tab-content">
                                     <!-- Create New User TAB -->
                                     <div class="tab-pane active" id="new_user">
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 text-center">
+                                                @if($errors->any())
+                                                    <h4 class="alert alert-danger">{{$errors->first()}}</h4>
+                                                @endif
+                                            </div>
+                                            </div>
                                         {!! Form::open(['method'=> 'POST','url'=> $formRoute, 'role'=>'form', 'files' => true]) !!}
                                             <input name="id" type="hidden" value="{{ isset($calendar)? $calendar->id: '' }}">
                                             <div class="form-group">
