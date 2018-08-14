@@ -68,4 +68,14 @@ class Category extends Model
         return $value;
     }
 
+    public function services()
+    {
+        return $this->hasMany('App\Models\Service', 'category_id', 'id');
+    }
+
+    public function categories()
+    {
+        return $this->hasMany('App\Models\Category', 'category_parent_id', 'id');
+    }
+
 }

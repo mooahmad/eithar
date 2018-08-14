@@ -43,7 +43,7 @@ class CategoriesController extends Controller
         if (Gate::denies('category.create', new Category())) {
             return response()->view('errors.403', [], 403);
         }
-        $categories = Category::all()->take(5)->pluck(trans('admin.cat_name_col'), 'id')->toArray();
+        $categories = Category::doesntHave('services')->where('category_parent_id', null)->pluck(trans('admin.cat_name_col'), 'id')->toArray();
         $data = [
             'categories' => $categories,
             'formRoute'  => route('categories.store'),
@@ -84,7 +84,7 @@ class CategoriesController extends Controller
             return response()->view('errors.403', [], 403);
         }
         $category = Category::FindOrFail($id);
-        $categories = Category::all()->take(5)->pluck(trans('admin.cat_name_col'), 'id')->toArray();
+        $categories = Category::doesntHave('services')->where('category_parent_id', null)->pluck(trans('admin.cat_name_col'), 'id')->toArray();
         $data = [
             'category'   => $category,
             'categories' => $categories,
