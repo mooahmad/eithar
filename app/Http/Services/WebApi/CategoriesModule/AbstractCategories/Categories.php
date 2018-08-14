@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Provider;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\MessageBag;
 
 abstract class Categories implements ICategory
@@ -31,6 +32,7 @@ abstract class Categories implements ICategory
 
     public function getChildCategories($id)
     {
+        $customerCity = Auth::user()->city_id;
         $services = Service::where('category_id', $id)->get();
         $services = $services->each(function ($service) {
             $service->addHidden([
@@ -51,7 +53,14 @@ abstract class Categories implements ICategory
         } else {
             foreach ($services as $service) {
                 if ($service->category && $service->category->category_parent_id == config('constants.categories.Doctor')) {
-                    $providers = $service->providers;
+                    $providers = $service->providers()->with(['cities' => function ($query) use ($customerCity) {
+                        $query->where('cities.id', $customerCity);
+                    }])->get();
+                    $providers = $providers->each(function ($provider) {
+                        $provider->addHidden([
+                                                 'pivot', 'cities'
+                                             ]);
+                    });
                     $services = [];
                     break;
                 }
