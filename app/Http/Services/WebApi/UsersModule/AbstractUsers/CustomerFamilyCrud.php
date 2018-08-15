@@ -133,7 +133,7 @@ abstract class CustomerFamilyCrud implements ICustomerFamilyCrud
 
     private function verifyEditMemberData(Request $request)
     {
-        $validator = Validator::make($request->all(), (new EditFamilyMember())->rules());
+        $validator = Validator::make($request->all(), (new EditFamilyMember())->rules($request->input('member_id')));
         if ($validator->fails()) {
             return $validator;
         }
