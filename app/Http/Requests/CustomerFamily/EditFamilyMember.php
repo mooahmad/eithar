@@ -21,7 +21,7 @@ class EditFamilyMember extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules($id)
     {
         return [
             'member_id'     => 'required',
@@ -29,8 +29,8 @@ class EditFamilyMember extends FormRequest
             'middle_name'   => 'required',
             'last_name'     => 'required',
             'relation_type' => 'required',
-            'mobile'        => 'required',
-            'national_id'   => 'required',
+            'mobile'        => 'required|unique:family_members,mobile_number,'.$id.'',
+            'national_id'   => 'required|unique:family_members,national_id, '.$id.'',
             'address'       => 'required'
         ];
     }
