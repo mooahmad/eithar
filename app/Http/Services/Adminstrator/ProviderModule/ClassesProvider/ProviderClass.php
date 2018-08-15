@@ -7,6 +7,7 @@ use App\Helpers\Utilities;
 use App\Models\Provider;
 use App\Models\ProvidersCalendar;
 use App\Models\ProviderService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\MessageBag;
@@ -41,14 +42,70 @@ class ProviderClass
         if ($isCreate)
             $provider->added_by = Auth::id();
         $provider->save();
-        return self::linkServices($provider, $request);
-
+        self::linkServices($provider, $request);
+        return self::linkCities($provider, $request);
     }
 
     public static function linkServices(Provider $provider, $request)
     {
         $services = $request->input('services');
         return $provider->services()->sync($services);
+    }
+
+    public static function linkCities(Provider $provider, $request)
+    {
+        $cities = $request->input('cities');
+        return $provider->cities()->sync($cities);
+    }
+
+    public static function isExistCalendar($startDate, $endDate, $providerId, $calendarId = false)
+    {
+        $day = Carbon::parse($startDate)->format('Y-m-d');
+        $calendar = ProvidersCalendar::where('provider_id', $providerId)
+                                     ->where('start_date', 'like', "%$day%")
+                                     ->where(function ($query) use ($startDate, $endDate) {
+                                         $query->where([
+                                                           ['start_date', '=', $startDate],
+                                                           ['end_date', '=', $endDate]
+                                                       ])
+                                               ->orWhere([
+                                                             ['start_date', '<', $startDate],
+                                                             ['end_date', '>', $endDate]
+                                                         ])
+                                               ->orWhere([
+                                                             ['start_date', '>', $startDate],
+                                                             ['end_date', '>', $endDate]
+                                                         ])
+                                               ->orWhere([
+                                                             ['start_date', '>', $startDate],
+                                                             ['end_date', '<', $endDate]
+                                                         ])
+                                               ->orWhere([
+                                                             ['start_date', '<', $startDate],
+                                                             ['end_date', '<', $endDate]
+                                                         ])
+                                               ->orWhere([
+                                                             ['start_date', '<', $startDate],
+                                                             ['end_date', '=', $endDate]
+                                                         ])
+                                               ->orWhere([
+                                                             ['start_date', '>', $startDate],
+                                                             ['end_date', '=', $endDate]
+                                                         ])
+                                               ->orWhere([
+                                                             ['start_date', '=', $startDate],
+                                                             ['end_date', '<', $endDate]
+                                                         ])
+                                               ->orWhere([
+                                                             ['start_date', '=', $startDate],
+                                                             ['end_date', '>', $endDate]
+                                                         ]);
+                                     });
+        if ($calendarId) {
+            $calendar = $calendar->where('id', '<>', $calendarId);
+        }
+        $calendar = $calendar->get();
+        return !$calendar->isEmpty();
     }
 
     public static function createOrUpdateCalendar(ProvidersCalendar $providerCalendar, $request, $providerId, $isCreate = true)

@@ -10,10 +10,10 @@ define('SRVN', 'Administrator\Services');
 define('PRON', 'Administrator\Providers');
 
 //Frontend Routes
-Route::group(['namespace'=>FE],function (){
-    Route::group(['middleware'=>'Language','prefix'=>Request::segment(1)],function (){
-        Route::group(['prefix'=>session()->get('lang')],function (){
-            Route::get('/','FrontendController@index')->name('home');
+Route::group(['namespace' => FE], function () {
+    Route::group(['middleware' => 'Language', 'prefix' => Request::segment(1)], function () {
+        Route::group(['prefix' => session()->get('lang')], function () {
+            Route::get('/', 'FrontendController@index')->name('home');
         });
     });
 });
@@ -94,8 +94,8 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => PRON, 'prefix' => AD],
     Route::post('providers/{id}/calendar/{calendarId}/update', 'ProvidersController@updateProviderCalendar')->name('updateProviderCalendar');
 
     // calendar dataTable
-    Route::get('providers/{id}/calendar/datatable', 'ProvidersController@getCalendarDatatable')->name('getCalendarDatatable');
-    Route::post('deleteCalendar', 'ServicesController@deleteCalendar')->name('deleteCalendar');
+    Route::post('providers/{id}/calendar/datatable', 'ProvidersController@getCalendarDatatable')->name('getCalendarDatatable');
+    Route::post('deleteCalendar', 'ProvidersController@deleteCalendar')->name('deleteCalendar');
 });
 
 

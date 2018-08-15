@@ -86,11 +86,17 @@ return [
         "Nursing"       => 4,
         "WomanAndChild" => 5
     ],
-    "serviceTypes" => [
+    "serviceTypes"            => [
         "One time visit with Calendar",
         "Package",
         "Items sold part of visit",
         "Lab Service",
         "Provider Service"
+    ],
+    "calendarSections"        => [
+        "all",
+        "old",
+        "inTime",
+        "upcoming"
     ]
 ];

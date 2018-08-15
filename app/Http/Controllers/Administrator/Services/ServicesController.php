@@ -46,7 +46,17 @@ class ServicesController extends Controller
         if (Gate::denies('service.create', new Service())) {
             return response()->view('errors.403', [], 403);
         }
-        $categories = Category::all()->pluck(trans('admin.cat_name_col'), 'id')->toArray();
+        $doctorID = config('constants.categories.Doctor');
+        $categories = Category::doesntHave('categories')->where('id', '<>', $doctorID)->get();
+        $categories = $categories->reject(function ($category, $key) use ($doctorID) {
+            if($category->category_parent_id == $doctorID){
+                if($category->services->isEmpty())
+                    return false;
+                return true;
+            }
+            return false;
+        });
+        $categories = $categories->pluck(trans('admin.cat_name_col'), 'id')->toArray();
         $countries = Country::all()->pluck(trans('admin.country_name_col'), 'id')->toArray();
         $currencies = Currency::all()->pluck(trans('admin.currency_name_col'), 'id')->toArray();
         $types = config('constants.serviceTypes');
@@ -93,7 +103,17 @@ class ServicesController extends Controller
             return response()->view('errors.403', [], 403);
         }
         $service = Service::FindOrFail($id);
-        $categories = Category::all()->pluck(trans('admin.cat_name_col'), 'id')->toArray();
+        $doctorID = config('constants.categories.Doctor');
+        $categories = Category::doesntHave('categories')->where('id', '<>', $doctorID)->get();
+        $categories = $categories->reject(function ($category, $key) use ($doctorID, $service) {
+            if($category->category_parent_id == $doctorID && $category->id != $service->category_id){
+                if($category->services->isEmpty())
+                    return false;
+                return true;
+            }
+            return false;
+        });
+        $categories = $categories->pluck(trans('admin.cat_name_col'), 'id')->toArray();
         $countries = Country::all()->pluck(trans('admin.country_name_col'), 'id')->toArray();
         $currencies = Currency::all()->pluck(trans('admin.currency_name_col'), 'id')->toArray();
         $types = config('constants.serviceTypes');
