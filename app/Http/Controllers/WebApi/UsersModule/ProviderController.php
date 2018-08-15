@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\WebApi\UsersModule;
 
 use App\Helpers\ApiHelpers;
+use App\Http\Services\WebApi\ClassesUsers\ProviderStrategy;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
 class ProviderController extends Controller
@@ -15,10 +15,10 @@ class ProviderController extends Controller
         parent::__construct();
     }
 
-    public function getProvider(Request $request)
+    public function getProvider(Request $request, $providerId)
     {
-        $customer = new CustomerStrategy(ApiHelpers::requestType($request));
-        return $customer->uploadCustomerAvatar($request, 'avatar', Customer::find(Auth::user()->id));
+        $provider = new ProviderStrategy(ApiHelpers::requestType($request));
+        return $provider->getProvider($providerId);
     }
 
 }

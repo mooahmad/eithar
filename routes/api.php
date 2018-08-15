@@ -36,6 +36,10 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/', 'CategoriesController@getMainCategories');
         Route::get('/{id}', 'CategoriesController@getChildCategories');
     }));
+
+    Route::group(['namespace' => 'WebApi\UsersModule', 'prefix' => 'providers'], (function () {
+        Route::get('/{id}', 'ProviderController@getProvider');
+    }));
 });
 
 Route::group(['namespace' => 'WebApi\UsersModule', 'prefix' => 'customers'], (function () {
