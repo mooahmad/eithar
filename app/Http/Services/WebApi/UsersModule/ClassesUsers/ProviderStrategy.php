@@ -19,9 +19,9 @@ class ProviderStrategy
         }
     }
 
-    public function getProvider($providerId)
+    public function getProvider($request, $providerId)
     {
-        return $this->strategy->getProvider($providerId);
+        return $this->strategy->getProvider($request, $providerId);
     }
 
 }

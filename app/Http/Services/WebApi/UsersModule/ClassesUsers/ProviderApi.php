@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class ProviderApi extends Provider
 {
-    public function getProvider($providerId)
+    public function getProvider($request, $providerId)
     {
-        $validationObject = parent::getProvider($providerId);
+        $validationObject = parent::getProvider($request, $providerId);
         if ($validationObject->error == config('constants.responseStatus.success'))
             return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
         return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);

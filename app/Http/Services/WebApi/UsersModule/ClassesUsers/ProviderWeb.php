@@ -6,9 +6,9 @@ use App\Http\Services\WebApi\UsersModule\AbstractUsers\Provider;
 
 class ProviderWeb extends Provider
 {
-    public function getProvider($providerId)
+    public function getProvider($request, $providerId)
     {
-        return parent::getProvider($providerId);
+        return parent::getProvider($request, $providerId);
     }
 
 }

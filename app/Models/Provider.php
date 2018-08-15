@@ -29,4 +29,9 @@ class Provider extends Model
     {
         return $this->belongsToMany('App\Models\City', 'provider_cities', 'provider_id', 'city_id');
     }
+
+    public function calendar()
+    {
+        return $this->hasMany('App\Models\ProvidersCalendar', 'provider_id', 'id');
+    }
 }

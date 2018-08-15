@@ -18,7 +18,7 @@ class ProviderController extends Controller
     public function getProvider(Request $request, $providerId)
     {
         $provider = new ProviderStrategy(ApiHelpers::requestType($request));
-        return $provider->getProvider($providerId);
+        return $provider->getProvider($request, $providerId);
     }
 
 }

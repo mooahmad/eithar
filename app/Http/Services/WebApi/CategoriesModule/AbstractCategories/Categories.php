@@ -53,14 +53,9 @@ abstract class Categories implements ICategory
         } else {
             foreach ($services as $service) {
                 if ($service->category && $service->category->category_parent_id == config('constants.categories.Doctor')) {
-                    $providers = $service->providers()->with(['cities' => function ($query) use ($customerCity) {
+                    $providers = $service->providers()->whereHas('cities', function ($query) use ($customerCity) {
                         $query->where('cities.id', $customerCity);
-                    }])->get();
-                    $providers = $providers->each(function ($provider) {
-                        $provider->addHidden([
-                                                 'pivot', 'cities'
-                                             ]);
-                    });
+                    })->get();
                     $services = [];
                     break;
                 }

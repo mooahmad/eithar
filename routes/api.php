@@ -38,7 +38,7 @@ Route::middleware('auth:api')->group(function () {
     }));
 
     Route::group(['namespace' => 'WebApi\UsersModule', 'prefix' => 'providers'], (function () {
-        Route::get('/{id}', 'ProviderController@getProvider');
+        Route::post('/{id}', 'ProviderController@getProvider');
     }));
 });
 
