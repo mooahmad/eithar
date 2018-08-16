@@ -124,4 +124,9 @@ return [
     'is_available'           => 'Is available',
     'date_section'           => 'Date section',
     'cities'                 => 'Cities',
+    'questionnaire'          => 'Questionnaire',
+    'add_questionnaire'      => 'Add questionnaire',
+    'show_questionnaire'     => 'Show questionnaire',
+    'service'                => 'Service',
+
 ];

@@ -1,5 +1,15 @@
 let mix = require('laravel-mix');
 
+const WebpackShellPlugin = require('webpack-shell-plugin');
+
+// Add shell command plugin configured to create JavaScript language file
+mix.webpackConfig({
+    plugins:
+        [
+            new WebpackShellPlugin({onBuildStart:['php artisan lang:js --quiet --no-lib'], onBuildEnd:[]})
+        ]
+});
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -11,5 +21,5 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/Administrator/newAdmin.js', 'public/js/preprocessor')
-   .sass('resources/assets/sass/Administrator/newAdmin.scss', 'public/css/preprocessor');
+mix.js('resources/assets/js/Questionnaire/questionnaire.js', 'public/js/preprocessor')
+   .sass('resources/assets/sass/Questionnaire/questionnaire.scss', 'public/css/preprocessor');

@@ -8,6 +8,7 @@ define('FE', 'Frontend');
 define('CATN', 'Administrator\Categories');
 define('SRVN', 'Administrator\Services');
 define('PRON', 'Administrator\Providers');
+define('QUN', 'Administrator\Questionnaire');
 
 //Frontend Routes
 Route::group(['namespace' => FE], function () {
@@ -98,4 +99,15 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => PRON, 'prefix' => AD],
     Route::post('deleteCalendar', 'ProvidersController@deleteCalendar')->name('deleteCalendar');
 });
 
-
+Route::group(['middleware' => 'AdminAuth', 'namespace' => QUN, 'prefix' => AD], function () {
+    Route::resource('questionnaire', 'QuestionnaireController',
+                    ['names' => [
+                        'index'   => 'show questionnaire',
+                        'create'  => 'create questionnaire',
+                        'show'    => 'show questionnaire',
+                        'edit'    => 'edit questionnaire',
+                        'destroy' => 'delete questionnaire'
+                    ]]);
+    Route::get('getquestionnairedatatable', 'QuestionnaireController@getQuestionnaireDataTable')->name('getQuestionnaireDatatable');
+    Route::post('deletequestionnaire', 'QuestionnaireController@deleteQuestionnaire')->name('deleteQuestionnaire');
+});
