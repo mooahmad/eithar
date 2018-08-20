@@ -110,7 +110,6 @@ return [
     'last_name_en'           => 'English last name',
     'speciality_area_ar'     => 'Arabic speciality',
     'speciality_area_en'     => 'English speciality',
-    'rating'                 => 'Rating',
     'about_ar'               => 'Arabic about',
     'about_en'               => 'English about',
     'experience_ar'          => 'Arabic experience',
@@ -128,5 +127,17 @@ return [
     'add_questionnaire'      => 'Add questionnaire',
     'show_questionnaire'     => 'Show questionnaire',
     'service'                => 'Service',
+    'type'                   => 'Type',
+    'multiple_answer'        => 'Multiple answers',
+    "single_answer"          => 'Single answer',
+    "text"                   => "Text",
+    "long_text"              => "Long Text",
+    "date_time"              => "Datetime",
+    'rating'                 => 'Rating',
+    'subtitle_ar'            => 'Arabic subtitle',
+    'subtitle_en'            => 'English subtitle',
+    'is_required'            => 'Is required',
+    'type_description'       => 'Type description',
+
 
 ];

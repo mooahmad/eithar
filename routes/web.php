@@ -73,6 +73,17 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => SRVN, 'prefix' => AD],
                     ]]);
     Route::get('getservicesdatatable', 'ServicesController@getServicesDataTable')->name('getServicesDatatable');
     Route::post('deleteservices', 'ServicesController@deleteServices')->name('deleteServices');
+
+    // questionnaires section
+    Route::get('services/{id}/questionnaire', 'ServicesController@showServiceQuestionnaire')->name('showServiceQuestionnaire');
+    Route::get('services/{id}/questionnaire/create', 'ServicesController@createServiceQuestionnaire')->name('createServiceQuestionnaire');
+    Route::post('services/{id}/questionnaire/store', 'ServicesController@storeServiceQuestionnaire')->name('storeServiceQuestionnaire');
+    Route::get('services/{id}/questionnaire/{questionnaireId}/edit', 'ServicesController@editServiceQuestionnaire')->name('editServiceQuestionnaire');
+    Route::post('services/{id}/questionnaire/{questionnaireId}/update', 'ServicesController@updateServiceQuestionnaire')->name('updateServiceQuestionnaire');
+
+    // questionnaires dataTable
+    Route::post('services/{id}/questionnaire/datatable', 'ServicesController@getQuestionnaireDatatable')->name('getQuestionnaireDatatable');
+    Route::post('deleteQuestionnaire', 'ServicesController@deleteQuestionnaire')->name('deleteQuestionnaire');
 });
 
 Route::group(['middleware' => 'AdminAuth', 'namespace' => PRON, 'prefix' => AD], function () {
@@ -99,15 +110,3 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => PRON, 'prefix' => AD],
     Route::post('deleteCalendar', 'ProvidersController@deleteCalendar')->name('deleteCalendar');
 });
 
-Route::group(['middleware' => 'AdminAuth', 'namespace' => QUN, 'prefix' => AD], function () {
-    Route::resource('questionnaire', 'QuestionnaireController',
-                    ['names' => [
-                        'index'   => 'show questionnaire',
-                        'create'  => 'create questionnaire',
-                        'show'    => 'show questionnaire',
-                        'edit'    => 'edit questionnaire',
-                        'destroy' => 'delete questionnaire'
-                    ]]);
-    Route::get('getquestionnairedatatable', 'QuestionnaireController@getQuestionnaireDataTable')->name('getQuestionnaireDatatable');
-    Route::post('deletequestionnaire', 'QuestionnaireController@deleteQuestionnaire')->name('deleteQuestionnaire');
-});

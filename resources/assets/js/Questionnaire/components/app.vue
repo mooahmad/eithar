@@ -1,6 +1,6 @@
 <template>
     <div>
-        <app-swapper></app-swapper>
+        <app-swapper ></app-swapper>
     </div>
 </template>
 
@@ -10,6 +10,9 @@
     export default {
         components: {
             'app-swapper': Swapper
+        },
+        methods: {
+
         }
     }
 </script>

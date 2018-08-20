@@ -47,7 +47,11 @@ function datatable() {
         processing: true,
         serverSide: true,
         ajax: {
-            url: questionnaireDataTableURL
+            url: questionnaireDataTableURL,
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            }
         },
         columns: [
             {data: 'id', name: 'questionnaires.id'},

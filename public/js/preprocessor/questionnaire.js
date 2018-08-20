@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 12);
+/******/ 	return __webpack_require__(__webpack_require__.s = 13);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -70,8 +70,8 @@
 "use strict";
 
 
-var bind = __webpack_require__(6);
-var isBuffer = __webpack_require__(24);
+var bind = __webpack_require__(7);
+var isBuffer = __webpack_require__(25);
 
 /*global toString:true*/
 
@@ -377,6 +377,115 @@ module.exports = {
 /* 1 */
 /***/ (function(module, exports) {
 
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file.
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
+
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
+
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
 var g;
 
 // This works in non-strict mode
@@ -401,14 +510,14 @@ module.exports = g;
 
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(0);
-var normalizeHeaderName = __webpack_require__(26);
+var normalizeHeaderName = __webpack_require__(27);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -424,10 +533,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(7);
+    adapter = __webpack_require__(8);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(7);
+    adapter = __webpack_require__(8);
   }
   return adapter;
 }
@@ -502,10 +611,10 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3031,10 +3140,10 @@ Popper.Defaults = Defaults;
 /* harmony default export */ __webpack_exports__["default"] = (Popper);
 //# sourceMappingURL=popper.js.map
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(2)))
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -3224,7 +3333,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -13595,7 +13704,7 @@ return jQuery;
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13613,19 +13722,19 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var settle = __webpack_require__(27);
-var buildURL = __webpack_require__(29);
-var parseHeaders = __webpack_require__(30);
-var isURLSameOrigin = __webpack_require__(31);
-var createError = __webpack_require__(8);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(32);
+var settle = __webpack_require__(28);
+var buildURL = __webpack_require__(30);
+var parseHeaders = __webpack_require__(31);
+var isURLSameOrigin = __webpack_require__(32);
+var createError = __webpack_require__(9);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(33);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -13722,7 +13831,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(33);
+      var cookies = __webpack_require__(34);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -13800,13 +13909,13 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var enhanceError = __webpack_require__(28);
+var enhanceError = __webpack_require__(29);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -13825,7 +13934,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13837,7 +13946,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13863,139 +13972,79 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 11 */
-/***/ (function(module, exports) {
-
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file.
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-module.exports = function normalizeComponent (
-  rawScriptExports,
-  compiledTemplate,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier /* server only */
-) {
-  var esModule
-  var scriptExports = rawScriptExports = rawScriptExports || {}
-
-  // ES6 modules interop
-  var type = typeof rawScriptExports.default
-  if (type === 'object' || type === 'function') {
-    esModule = rawScriptExports
-    scriptExports = rawScriptExports.default
-  }
-
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (compiledTemplate) {
-    options.render = compiledTemplate.render
-    options.staticRenderFns = compiledTemplate.staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = injectStyles
-  }
-
-  if (hook) {
-    var functional = options.functional
-    var existing = functional
-      ? options.render
-      : options.beforeCreate
-
-    if (!functional) {
-      // inject component registration as beforeCreate hook
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    } else {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return existing(h, context)
-      }
-    }
-  }
-
-  return {
-    esModule: esModule,
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(13);
-module.exports = __webpack_require__(48);
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(49)
+/* template */
+var __vue_template__ = __webpack_require__(50)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/Questionnaire/components/textInput.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-f04f6cbc", Component.options)
+  } else {
+    hotAPI.reload("data-v-f04f6cbc", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
 
 
 /***/ }),
 /* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(14);
+module.exports = __webpack_require__(69);
+
+
+/***/ }),
+/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__vue_translations_js__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__vue_translations_js__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__vue_translations_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__vue_translations_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_app_vue__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_app_vue__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_app_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_app_vue__);
-__webpack_require__(14);
+__webpack_require__(15);
 
 
 
 var lang = new Lang();
 
-lang.setLocale('en');
+var currentLang = document.head.querySelector('meta[name="lang"]').content;
+
+lang.setLocale(currentLang);
 
 lang.setMessages(__WEBPACK_IMPORTED_MODULE_0__vue_translations_js___default.a);
 
@@ -14013,13 +14062,13 @@ new Vue({
 });
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
-window._ = __webpack_require__(15);
-window.Popper = __webpack_require__(3).default;
-window.Lang = __webpack_require__(17);
-window.Vue = __webpack_require__(18);
+window._ = __webpack_require__(16);
+window.Popper = __webpack_require__(4).default;
+window.Lang = __webpack_require__(18);
+window.Vue = __webpack_require__(19);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -14028,9 +14077,9 @@ window.Vue = __webpack_require__(18);
  */
 
 try {
-  window.$$ = window.jQuery = __webpack_require__(5);
+  window.$$ = window.jQuery = __webpack_require__(6);
 
-  __webpack_require__(21);
+  __webpack_require__(22);
 } catch (e) {}
 
 /**
@@ -14039,7 +14088,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(22);
+window.axios = __webpack_require__(23);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -14075,7 +14124,7 @@ if (token) {
 // });
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -31185,10 +31234,10 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(16)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(17)(module)))
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -31216,7 +31265,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -31897,7 +31946,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42860,10 +42909,10 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(19).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(20).setImmediate))
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -42919,7 +42968,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(20);
+__webpack_require__(21);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -42930,10 +42979,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -43123,10 +43172,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(5)))
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -43135,7 +43184,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
 (function (global, factory) {
-   true ? factory(exports, __webpack_require__(5), __webpack_require__(3)) :
+   true ? factory(exports, __webpack_require__(6), __webpack_require__(4)) :
   typeof define === 'function' && define.amd ? define(['exports', 'jquery', 'popper.js'], factory) :
   (factory((global.bootstrap = {}),global.jQuery,global.Popper));
 }(this, (function (exports,$,Popper) { 'use strict';
@@ -47076,22 +47125,22 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(23);
+module.exports = __webpack_require__(24);
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var bind = __webpack_require__(6);
-var Axios = __webpack_require__(25);
-var defaults = __webpack_require__(2);
+var bind = __webpack_require__(7);
+var Axios = __webpack_require__(26);
+var defaults = __webpack_require__(3);
 
 /**
  * Create an instance of Axios
@@ -47124,15 +47173,15 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(10);
-axios.CancelToken = __webpack_require__(39);
-axios.isCancel = __webpack_require__(9);
+axios.Cancel = __webpack_require__(11);
+axios.CancelToken = __webpack_require__(40);
+axios.isCancel = __webpack_require__(10);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(40);
+axios.spread = __webpack_require__(41);
 
 module.exports = axios;
 
@@ -47141,7 +47190,7 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports) {
 
 /*!
@@ -47168,16 +47217,16 @@ function isSlowBuffer (obj) {
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var defaults = __webpack_require__(2);
+var defaults = __webpack_require__(3);
 var utils = __webpack_require__(0);
-var InterceptorManager = __webpack_require__(34);
-var dispatchRequest = __webpack_require__(35);
+var InterceptorManager = __webpack_require__(35);
+var dispatchRequest = __webpack_require__(36);
 
 /**
  * Create a new instance of Axios
@@ -47254,7 +47303,7 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47273,13 +47322,13 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var createError = __webpack_require__(8);
+var createError = __webpack_require__(9);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -47306,7 +47355,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47334,7 +47383,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47407,7 +47456,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47467,7 +47516,7 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47542,7 +47591,7 @@ module.exports = (
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47585,7 +47634,7 @@ module.exports = btoa;
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47645,7 +47694,7 @@ module.exports = (
 
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47704,18 +47753,18 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var transformData = __webpack_require__(36);
-var isCancel = __webpack_require__(9);
-var defaults = __webpack_require__(2);
-var isAbsoluteURL = __webpack_require__(37);
-var combineURLs = __webpack_require__(38);
+var transformData = __webpack_require__(37);
+var isCancel = __webpack_require__(10);
+var defaults = __webpack_require__(3);
+var isAbsoluteURL = __webpack_require__(38);
+var combineURLs = __webpack_require__(39);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -47797,7 +47846,7 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47824,7 +47873,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47845,7 +47894,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47866,13 +47915,13 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Cancel = __webpack_require__(10);
+var Cancel = __webpack_require__(11);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -47930,7 +47979,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47964,21 +48013,21 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports) {
 
-module.exports = { "ar.admin": { "about": "About", "about_ar": "Arabic about", "about_en": "English about", "action": "Action", "actions": "Actions", "add_admin": "Add Admin", "add_category": "Add category", "add_provider": "Add provider", "add_questionnaire": "Add questionnaire", "add_service": "Add service", "admins": "Admins", "appear_on_website": "Appear on website", "benefits_ar": "Arabic benefits", "benefits_en": "English benefits", "birthdate": "Birth date", "cancel": "Cancel", "cat_name_col": "category_name_ar", "categories": "Categories", "change_password": "Change Password", "cities": "Cities", "code": "code", "confirm_delete": "Are You Sure?!", "contract_expiry_date": "Contract expiry date", "contract_start_date": "Contract start date", "country": "Country", "country_name_col": "country_name_eng", "create": "Create", "currency": "Currency", "currency_name_col": "name_ara", "customerService": "Customer service", "date_section": "Date section", "default_language": "Default language", "delete": "Delete", "desc_ar": "Arabic description", "desc_en": "English description", "edit": "Edit", "education_ar": "Arabic education", "education_en": "English education", "email": "Email", "empty_data": "There is no data to show", "end_date": "End date", "enter_email": "Enter Admin Email", "enter_password": "Enter Admin Password", "error_login": "Please check your credentials", "error_message": "There is something went wrong", "experience_ar": "Arabic experience", "experience_en": "English experience", "expire_date": "Expire date", "female": "Female", "first_name_ar": "Arabic first name", "first_name_en": "English first name", "fname": "First Name", "forgot_password": "Forgot Password", "gender": "Gender", "id": "ID", "image": "Image", "is_active": "Is active", "is_available": "Is available", "is_saudi_nationality": "Saudi nationality", "last_name_ar": "Arabic last name", "last_name_en": "English last name", "lname": "Last Name", "login": "Login", "logout": "Log Out", "male": "Male", "mname": "Middle Name", "mobile": "Mobile", "name": "Name", "name_ar": "Arabic name", "name_en": "English name", "national_id": "National ID", "nationality_id": "Nationality ID", "no": "No", "off": "Off", "on": "On", "parent_cat": "Parent category", "password": "Password", "password_confirmation": "Confirm Password", "price": "Price", "providers": "Providers", "questionnaire": "Questionnaire", "rating": "Rating", "remember": "Remember me", "reset_password": "Reset password", "save": "Save", "select": "Select", "select_avatar": "Select Avatar", "select_date": "Select date", "select_nationality": "Select Nationality", "service": "Service", "serviceProvider": "Service provider", "service_type": "Service type", "services": "Services", "show_admin": "Show Admin", "show_category": "Show category", "show_provider": "Show provider", "show_questionnaire": "Show questionnaire", "show_service": "Show service", "signin": "Sign in", "speciality_area_ar": "Arabic speciality", "speciality_area_en": "English speciality", "srv_name_col": "name_ar", "start_date": "Start date", "status": "Status", "submit": "Submit", "success_message": "Everything is okay, you are on the right path", "superAdmin": "Super admin", "time_before_next_visit": "Time before next visit", "title_ar": "Arabic title", "title_en": "English title", "type_desc": "Type description", "update": "Update", "userType": "User type", "video": "Youtube ID", "visit_duration": "Visit duration", "yes": "Yes" }, "en.admin": { "about": "About", "about_ar": "Arabic about", "about_en": "English about", "action": "Action", "actions": "Actions", "add_admin": "Add Admin", "add_category": "Add category", "add_provider": "Add provider", "add_questionnaire": "Add questionnaire", "add_service": "Add service", "admins": "Admins", "appear_on_website": "Appear on website", "benefits_ar": "Arabic benefits", "benefits_en": "English benefits", "birthdate": "Birth date", "cancel": "Cancel", "cat_name_col": "category_name_en", "categories": "Categories", "change_password": "Change Password", "cities": "Cities", "code": "Code", "confirm_delete": "Are You Sure?!", "contract_expiry_date": "Contract expiry date", "contract_start_date": "Contract start date", "country": "Country", "country_name_col": "country_name_eng", "create": "create", "currency": "Currency", "currency_name_col": "name_eng", "customerService": "Customer service", "date_section": "Date section", "default_language": "Default language", "delete": "Delete", "desc_ar": "Arabic description", "desc_en": "English description", "edit": "Edit", "education_ar": "Arabic education", "education_en": "English education", "email": "Email", "empty_data": "There is no data to show", "end_date": "End date", "enter_email": "Enter Admin Email", "enter_password": "Enter Admin Password", "error_login": "Please check your credentials", "error_message": "There is something went wrong", "experience_ar": "Arabic experience", "experience_en": "English experience", "expire_date": "Expire date", "female": "Female", "first_name_ar": "Arabic first name", "first_name_en": "English first name", "fname": "First Name", "forgot_password": "Forgot Password", "gender": "Gender", "id": "ID", "image": "Image", "is_active": "Is active", "is_available": "Is available", "is_saudi_nationality": "Saudi nationality", "last_name_ar": "Arabic last name", "last_name_en": "English last name", "lname": "Last Name", "login": "Login", "logout": "Log Out", "male": "Male", "mname": "Middle Name", "mobile": "Mobile", "name": "Name", "name_ar": "Arabic name", "name_en": "English name", "national_id": "National ID", "nationality_id": "Nationality ID", "no": "No", "off": "Off", "on": "On", "parent_cat": "Parent category", "password": "Password", "password_confirmation": "Confirm Password", "price": "Price", "providers": "Providers", "questionnaire": "Questionnaire", "rating": "Rating", "remember": "Remember me", "reset_password": "Reset password", "save": "Save", "select": "Select", "select_avatar": "Select Avatar", "select_date": "Select date", "select_nationality": "Select Nationality", "service": "Service", "serviceProvider": "Service provider", "service_type": "Service type", "services": "Services", "show_admin": "Show Admin", "show_category": "Show category", "show_provider": "Show provider", "show_questionnaire": "Show questionnaire", "show_service": "Show service", "signin": "Sign in", "speciality_area_ar": "Arabic speciality", "speciality_area_en": "English speciality", "srv_name_col": "name_en", "start_date": "Start date", "status": "Status", "submit": "Submit", "success_message": "Everything is okay, you are on the right path", "superAdmin": "Super admin", "time_before_next_visit": "Time before next visit", "title_ar": "Arabic title", "title_en": "English title", "type_desc": "Type description", "update": "Update", "userType": "User type", "video": "Youtube ID", "visit_duration": "Visit duration", "yes": "Yes" } };
+module.exports = { "ar.admin": { "about": "About", "about_ar": "Arabic about", "about_en": "English about", "action": "Action", "actions": "Actions", "add_admin": "Add Admin", "add_category": "Add category", "add_provider": "Add provider", "add_questionnaire": "Add questionnaire", "add_service": "Add service", "admins": "Admins", "appear_on_website": "Appear on website", "benefits_ar": "Arabic benefits", "benefits_en": "English benefits", "birthdate": "Birth date", "cancel": "Cancel", "cat_name_col": "category_name_ar", "categories": "Categories", "change_password": "Change Password", "cities": "Cities", "code": "code", "confirm_delete": "Are You Sure?!", "contract_expiry_date": "Contract expiry date", "contract_start_date": "Contract start date", "country": "Country", "country_name_col": "country_name_eng", "create": "Create", "currency": "Currency", "currency_name_col": "name_ara", "customerService": "Customer service", "date_section": "Date section", "date_time": "Datetime", "default_language": "Default language", "delete": "Delete", "desc_ar": "Arabic description", "desc_en": "English description", "edit": "Edit", "education_ar": "Arabic education", "education_en": "English education", "email": "Email", "empty_data": "There is no data to show", "end_date": "End date", "enter_email": "Enter Admin Email", "enter_password": "Enter Admin Password", "error_login": "Please check your credentials", "error_message": "There is something went wrong", "experience_ar": "Arabic experience", "experience_en": "English experience", "expire_date": "Expire date", "female": "Female", "first_name_ar": "Arabic first name", "first_name_en": "English first name", "fname": "First Name", "forgot_password": "Forgot Password", "gender": "Gender", "id": "ID", "image": "Image", "is_active": "Is active", "is_available": "Is available", "is_required": "Is required", "is_saudi_nationality": "Saudi nationality", "last_name_ar": "Arabic last name", "last_name_en": "English last name", "lname": "Last Name", "login": "Login", "logout": "Log Out", "long_text": "Long Text", "male": "Male", "mname": "Middle Name", "mobile": "Mobile", "multiple_answer": "Multiple answers", "name": "Name", "name_ar": "Arabic name", "name_en": "English name", "national_id": "National ID", "nationality_id": "Nationality ID", "no": "No", "off": "Off", "on": "On", "parent_cat": "Parent category", "password": "Password", "password_confirmation": "Confirm Password", "price": "Price", "providers": "Providers", "questionnaire": "Questionnaire", "rating": "Rating", "remember": "Remember me", "reset_password": "Reset password", "save": "Save", "select": "Select", "select_avatar": "Select Avatar", "select_date": "Select date", "select_nationality": "Select Nationality", "service": "Service", "serviceProvider": "Service provider", "service_type": "Service type", "services": "Services", "show_admin": "Show Admin", "show_category": "Show category", "show_provider": "Show provider", "show_questionnaire": "Show questionnaire", "show_service": "Show service", "signin": "Sign in", "single_answer": "Single answer", "speciality_area_ar": "Arabic speciality", "speciality_area_en": "English speciality", "srv_name_col": "name_ar", "start_date": "Start date", "status": "Status", "submit": "Submit", "subtitle_ar": "Arabic subtitle", "subtitle_en": "English subtitle", "success_message": "Everything is okay, you are on the right path", "superAdmin": "Super admin", "text": "Text", "time_before_next_visit": "Time before next visit", "title_ar": "Arabic title", "title_en": "English title", "type": "Type", "type_desc": "Type description", "type_description": "Type description", "update": "Update", "userType": "User type", "video": "Youtube ID", "visit_duration": "Visit duration", "yes": "Yes" }, "en.admin": { "about": "About", "about_ar": "Arabic about", "about_en": "English about", "action": "Action", "actions": "Actions", "add_admin": "Add Admin", "add_category": "Add category", "add_provider": "Add provider", "add_questionnaire": "Add questionnaire", "add_service": "Add service", "admins": "Admins", "appear_on_website": "Appear on website", "benefits_ar": "Arabic benefits", "benefits_en": "English benefits", "birthdate": "Birth date", "cancel": "Cancel", "cat_name_col": "category_name_en", "categories": "Categories", "change_password": "Change Password", "cities": "Cities", "code": "Code", "confirm_delete": "Are You Sure?!", "contract_expiry_date": "Contract expiry date", "contract_start_date": "Contract start date", "country": "Country", "country_name_col": "country_name_eng", "create": "create", "currency": "Currency", "currency_name_col": "name_eng", "customerService": "Customer service", "date_section": "Date section", "date_time": "Datetime", "default_language": "Default language", "delete": "Delete", "desc_ar": "Arabic description", "desc_en": "English description", "edit": "Edit", "education_ar": "Arabic education", "education_en": "English education", "email": "Email", "empty_data": "There is no data to show", "end_date": "End date", "enter_email": "Enter Admin Email", "enter_password": "Enter Admin Password", "error_login": "Please check your credentials", "error_message": "There is something went wrong", "experience_ar": "Arabic experience", "experience_en": "English experience", "expire_date": "Expire date", "female": "Female", "first_name_ar": "Arabic first name", "first_name_en": "English first name", "fname": "First Name", "forgot_password": "Forgot Password", "gender": "Gender", "id": "ID", "image": "Image", "is_active": "Is active", "is_available": "Is available", "is_required": "Is required", "is_saudi_nationality": "Saudi nationality", "last_name_ar": "Arabic last name", "last_name_en": "English last name", "lname": "Last Name", "login": "Login", "logout": "Log Out", "long_text": "Long Text", "male": "Male", "mname": "Middle Name", "mobile": "Mobile", "multiple_answer": "Multiple answers", "name": "Name", "name_ar": "Arabic name", "name_en": "English name", "national_id": "National ID", "nationality_id": "Nationality ID", "no": "No", "off": "Off", "on": "On", "parent_cat": "Parent category", "password": "Password", "password_confirmation": "Confirm Password", "price": "Price", "providers": "Providers", "questionnaire": "Questionnaire", "rating": "Rating", "remember": "Remember me", "reset_password": "Reset password", "save": "Save", "select": "Select", "select_avatar": "Select Avatar", "select_date": "Select date", "select_nationality": "Select Nationality", "service": "Service", "serviceProvider": "Service provider", "service_type": "Service type", "services": "Services", "show_admin": "Show Admin", "show_category": "Show category", "show_provider": "Show provider", "show_questionnaire": "Show questionnaire", "show_service": "Show service", "signin": "Sign in", "single_answer": "Single answer", "speciality_area_ar": "Arabic speciality", "speciality_area_en": "English speciality", "srv_name_col": "name_en", "start_date": "Start date", "status": "Status", "submit": "Submit", "subtitle_ar": "Arabic subtitle", "subtitle_en": "English subtitle", "success_message": "Everything is okay, you are on the right path", "superAdmin": "Super admin", "text": "Text", "time_before_next_visit": "Time before next visit", "title_ar": "Arabic title", "title_en": "English title", "type": "Type", "type_desc": "Type description", "type_description": "Type description", "update": "Update", "userType": "User type", "video": "Youtube ID", "visit_duration": "Visit duration", "yes": "Yes" } };
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(11)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(43)
+var __vue_script__ = __webpack_require__(44)
 /* template */
-var __vue_template__ = __webpack_require__(47)
+var __vue_template__ = __webpack_require__(68)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48017,12 +48066,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__swapper_vue__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__swapper_vue__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__swapper_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__swapper_vue__);
 //
 //
@@ -48036,19 +48085,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
         'app-swapper': __WEBPACK_IMPORTED_MODULE_0__swapper_vue___default.a
-    }
+    },
+    methods: {}
 });
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(11)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(45)
+var __vue_script__ = __webpack_require__(46)
 /* template */
-var __vue_template__ = __webpack_require__(46)
+var __vue_template__ = __webpack_require__(67)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48087,7 +48137,184 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 45 */
+/* 46 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__single__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__single___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__single__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__multiple__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__multiple___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__multiple__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__text__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__text___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__text__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__longText__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__longText___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__longText__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dateTime__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dateTime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__dateTime__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rating__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__rating__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            data: {
+                currentView: "Single"
+            }
+        };
+    },
+    methods: {
+        swapTypeView: function swapTypeView(event) {
+            this.$set(this.data, "currentView", $(event.target).val());
+        }
+    },
+    components: {
+        Single: __WEBPACK_IMPORTED_MODULE_0__single___default.a,
+        Multiple: __WEBPACK_IMPORTED_MODULE_1__multiple___default.a,
+        TextData: __WEBPACK_IMPORTED_MODULE_2__text___default.a,
+        LongText: __WEBPACK_IMPORTED_MODULE_3__longText___default.a,
+        DateTime: __WEBPACK_IMPORTED_MODULE_4__dateTime___default.a,
+        Rating: __WEBPACK_IMPORTED_MODULE_5__rating___default.a
+    }
+});
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(48)
+/* template */
+var __vue_template__ = __webpack_require__(51)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/Questionnaire/components/single.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-12532b13", Component.options)
+  } else {
+    hotAPI.reload("data-v-12532b13", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 48 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__textInput__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__textInput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__textInput__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            data: {
+                optionsCount: [{
+                    num: 1
+                }],
+                maxOptionsCount: 5
+            }
+        };
+    },
+    methods: {
+        increamtOptions: function increamtOptions(event) {
+            if (this.data.optionsCount.length !== this.data.maxOptionsCount) this.data.optionsCount.push({ num: this.data.optionsCount.length + 1 });
+        }
+    },
+    components: {
+        TextOption: __WEBPACK_IMPORTED_MODULE_0__textInput___default.a
+    }
+});
+
+/***/ }),
+/* 49 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48101,8 +48328,151 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ["count"]
+
+});
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "form-group" }, [
+    _c("input", {
+      staticClass: "form-control",
+      attrs: {
+        name: "ar_text_option[]",
+        type: "text",
+        required: "required",
+        placeholder: "Enter arabic option " + _vm.count
+      }
+    }),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c("input", {
+      staticClass: "form-control",
+      attrs: {
+        name: "en_text_option[]",
+        type: "text",
+        required: "required",
+        placeholder: "Enter english option " + _vm.count
+      }
+    }),
+    _vm._v(" "),
+    _c("br")
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-f04f6cbc", module.exports)
+  }
+}
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _vm._l(_vm.data.optionsCount, function(count) {
+        return _c("TextOption", { key: count.num, attrs: { count: count.num } })
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c(
+          "a",
+          {
+            staticClass: "btn green",
+            attrs: { href: "javascript:void(0)" },
+            on: { click: _vm.increamtOptions }
+          },
+          [_vm._v("Add more")]
+        )
+      ])
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-12532b13", module.exports)
+  }
+}
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(53)
+/* template */
+var __vue_template__ = __webpack_require__(54)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/Questionnaire/components/multiple.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a6b02fca", Component.options)
+  } else {
+    hotAPI.reload("data-v-a6b02fca", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 53 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__textInput__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__textInput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__textInput__);
 //
 //
 //
@@ -48115,46 +48485,496 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    components: {}
+    data: function data() {
+        return {
+            data: {
+                optionsCount: [{
+                    num: 1
+                }],
+                maxOptionsCount: 5
+            }
+        };
+    },
+    methods: {
+        increamtOptions: function increamtOptions(event) {
+            if (this.data.optionsCount.length !== this.data.maxOptionsCount) this.data.optionsCount.push({ num: this.data.optionsCount.length + 1 });
+        }
+    },
+    components: {
+        TextOption: __WEBPACK_IMPORTED_MODULE_0__textInput___default.a
+    }
 });
 
 /***/ }),
-/* 46 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "form-group" }, [
-      _c("label", { staticClass: "control-label" }, [
-        _vm._v(_vm._s(_vm._f("trans")("admin.is_active")) + " ")
-      ]),
+  return _c(
+    "div",
+    [
+      _vm._l(_vm.data.optionsCount, function(count) {
+        return _c("TextOption", { key: count.num, attrs: { count: count.num } })
+      }),
       _vm._v(" "),
-      _c("div", { staticClass: "mt-radio-inline" }, [
-        _c("label", { staticClass: "mt-radio" }, [
-          _c("input", { attrs: { name: "is_active", type: "radio" } }),
-          _vm._v(
-            "\n                " +
-              _vm._s(_vm._f("trans")("admin.is_active")) +
-              "\n                "
-          ),
-          _c("span")
+      _c("div", { staticClass: "form-group" }, [
+        _c(
+          "a",
+          {
+            staticClass: "btn green",
+            attrs: { href: "javascript:void(0)" },
+            on: { click: _vm.increamtOptions }
+          },
+          [_vm._v("Add more")]
+        )
+      ])
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-a6b02fca", module.exports)
+  }
+}
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(56)
+/* template */
+var __vue_template__ = __webpack_require__(57)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/Questionnaire/components/text.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-8f4b3b90", Component.options)
+  } else {
+    hotAPI.reload("data-v-8f4b3b90", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 56 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "form-group" })
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-8f4b3b90", module.exports)
+  }
+}
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(59)
+/* template */
+var __vue_template__ = __webpack_require__(60)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/Questionnaire/components/longText.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5ab8c158", Component.options)
+  } else {
+    hotAPI.reload("data-v-5ab8c158", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 59 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "form-group" })
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5ab8c158", module.exports)
+  }
+}
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(62)
+/* template */
+var __vue_template__ = __webpack_require__(63)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/Questionnaire/components/dateTime.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7c7697b4", Component.options)
+  } else {
+    hotAPI.reload("data-v-7c7697b4", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 62 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "form-group" })
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7c7697b4", module.exports)
+  }
+}
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(65)
+/* template */
+var __vue_template__ = __webpack_require__(66)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/Questionnaire/components/rating.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-587fa5e8", Component.options)
+  } else {
+    hotAPI.reload("data-v-587fa5e8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 65 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "form-group" })
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-587fa5e8", module.exports)
+  }
+}
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { staticClass: "control-label" }, [
+          _vm._v(_vm._s(_vm._f("trans")("admin.type")) + " ")
         ]),
         _vm._v(" "),
-        _c("label", { staticClass: "mt-radio" }, [
-          _c("input", { attrs: { name: "is_active", type: "radio" } }),
-          _vm._v(
-            "\n                " +
-              _vm._s(_vm._f("trans")("admin.is_active")) +
-              "\n                "
-          ),
-          _c("span")
+        _c("div", { staticClass: "mt-radio-inline" }, [
+          _c("label", { staticClass: "mt-radio" }, [
+            _c("input", {
+              attrs: {
+                name: "type",
+                value: "Single",
+                type: "radio",
+                checked: ""
+              },
+              on: { click: _vm.swapTypeView }
+            }),
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm._f("trans")("admin.single_answer")) +
+                "\n                "
+            ),
+            _c("span")
+          ]),
+          _vm._v(" "),
+          _c("label", { staticClass: "mt-radio" }, [
+            _c("input", {
+              attrs: { name: "type", value: "Multiple", type: "radio" },
+              on: { click: _vm.swapTypeView }
+            }),
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm._f("trans")("admin.multiple_answer")) +
+                "\n                "
+            ),
+            _c("span")
+          ]),
+          _vm._v(" "),
+          _c("label", { staticClass: "mt-radio" }, [
+            _c("input", {
+              attrs: { name: "type", value: "TextData", type: "radio" },
+              on: { click: _vm.swapTypeView }
+            }),
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm._f("trans")("admin.text")) +
+                "\n                "
+            ),
+            _c("span")
+          ]),
+          _vm._v(" "),
+          _c("label", { staticClass: "mt-radio" }, [
+            _c("input", {
+              attrs: { name: "type", value: "LongText", type: "radio" },
+              on: { click: _vm.swapTypeView }
+            }),
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm._f("trans")("admin.long_text")) +
+                "\n                "
+            ),
+            _c("span")
+          ]),
+          _vm._v(" "),
+          _c("label", { staticClass: "mt-radio" }, [
+            _c("input", {
+              attrs: { name: "type", value: "DateTime", type: "radio" },
+              on: { click: _vm.swapTypeView }
+            }),
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm._f("trans")("admin.date_time")) +
+                "\n                "
+            ),
+            _c("span")
+          ]),
+          _vm._v(" "),
+          _c("label", { staticClass: "mt-radio" }, [
+            _c("input", {
+              attrs: { name: "type", value: "Rating", type: "radio" },
+              on: { click: _vm.swapTypeView }
+            }),
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm._f("trans")("admin.rating")) +
+                "\n                "
+            ),
+            _c("span")
+          ])
         ])
-      ])
-    ])
-  ])
+      ]),
+      _vm._v(" "),
+      _c(_vm.data.currentView, { tag: "component" })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -48167,7 +48987,7 @@ if (false) {
 }
 
 /***/ }),
-/* 47 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48187,7 +49007,7 @@ if (false) {
 }
 
 /***/ }),
-/* 48 */
+/* 69 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

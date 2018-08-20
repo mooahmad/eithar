@@ -1,23 +1,23 @@
 <?php
 
 return [
-    "requestTypes"            => [
+    "requestTypes"               => [
         "web" => "WEB",
         "api" => "API"
     ],
-    "responseStatus"          => [
+    "responseStatus"             => [
         "success"          => 0,
         "operationFailed"  => 1,
         "missingInput"     => 2,
         "errorUploadImage" => 3,
         "userNotFound"     => 4,
     ],
-    "gender"                  => [
+    "gender"                     => [
         "none"   => 0,
         "male"   => 1,
         "female" => 2
     ],
-    "customerMemberRelations" => [
+    "customerMemberRelations"    => [
         "father"   => 0,
         "mother"   => 1,
         "brother"  => 2,
@@ -25,12 +25,12 @@ return [
         "son"      => 4,
         "daughter" => 5
     ],
-    "userTypes"               => [
+    "userTypes"                  => [
         "superAdmin"      => 0,
         "serviceProvider" => 1,
         "customerService" => 2
     ],
-    "roles"                   => [
+    "roles"                      => [
         "customers"             => 1,
         "medicalServices"       => 2,
         "doctors"               => 3,
@@ -47,7 +47,7 @@ return [
         "appointmentsPurchased" => 14,
         "familyMembers"         => 15
     ],
-    "userRoles"               => [
+    "userRoles"                  => [
         "superAdmin"      => [
             "customers"        => config('constants.roles.customers'),
             "medicalServices"  => config('constants.roles.medicalServices'),
@@ -75,28 +75,38 @@ return [
             "appointmentsPurchased" => config('constants.roles.appointmentsPurchased'),
         ]
     ],
-    "languages"               => [
+    "languages"                  => [
         'en' => "english",
         'ar' => "arabic"
     ],
-    "categories"              => [
+    "categories"                 => [
         "Doctor"        => 1,
         "Lap"           => 2,
         "Physiotherapy" => 3,
         "Nursing"       => 4,
         "WomanAndChild" => 5
     ],
-    "serviceTypes"            => [
+    "serviceTypes"               => [
         "One time visit with Calendar",
         "Package",
         "Items sold part of visit",
         "Lab Service",
         "Provider Service"
     ],
-    "calendarSections"        => [
+    "calendarSections"           => [
         "all",
         "old",
         "inTime",
         "upcoming"
-    ]
+    ],
+    "questionnaireTypes"         => [
+        "checkbox" => "Multiple",
+        "radio"    => "Single",
+        "text"     => "Text",
+        "longText" => "LongText",
+        "dateTime" => "DateTime",
+        "rating"   => "Rating"
+    ],
+    "max_questionnaire_pages"    => 20,
+    "max_questionnaire_per_page" => 5,
 ];

@@ -4,7 +4,9 @@ import translations from './../vue-translations.js';
 
 var lang = new Lang();
 
-lang.setLocale('en');
+let currentLang = document.head.querySelector('meta[name="lang"]').content;
+
+lang.setLocale(currentLang);
 
 lang.setMessages(translations);
 

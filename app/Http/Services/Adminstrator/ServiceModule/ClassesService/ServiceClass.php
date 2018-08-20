@@ -4,6 +4,7 @@ namespace App\Http\Services\Adminstrator\ServiceModule\ClassesService;
 
 
 use App\Helpers\Utilities;
+use App\Models\Questionnaire;
 use App\Models\Service;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -36,6 +37,21 @@ class ServiceClass
         if ($isCreate)
             $service->added_by = Auth::id();
         return $service->save();
+    }
+
+    public static function createOrUpdateQuestionnaire(Questionnaire $questionnaire, $request, $serviceId, $isCreate = true)
+    {
+        $questionnaire->service_id = $serviceId;
+        $questionnaire->title_ar = $request->input('title_ar');
+        $questionnaire->title_en = $request->input('title_en');
+        $questionnaire->subtitle_ar = $request->input('subtitle_ar');
+        $questionnaire->subtitle_en = $request->input('subtitle_en');
+        $questionnaire->type = $request->input('type');
+        $questionnaire->type_description = $request->input('type_description');
+        $questionnaire->max_limit = $request->input('max_limit');
+        $questionnaire->options_ar = $request->input('options_ar');
+        $questionnaire->options_en = $request->input('options_en');
+        return $questionnaire->save();
     }
 
     /**

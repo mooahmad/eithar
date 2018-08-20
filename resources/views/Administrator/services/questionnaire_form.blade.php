@@ -26,17 +26,7 @@
                                     <!-- Create New User TAB -->
                                     <div class="tab-pane active" id="new_user">
                                         {!! Form::open(['method'=>(isset($questionnaire))? 'PUT' : 'POST','url'=> $formRoute, 'role'=>'form', 'files' => true]) !!}
-
-                                        <div class="form-group">
-                                            <label for="default_language" class="control-label">
-                                                {{ trans('admin.service') }} <span class="required"> * </span>
-                                            </label>
-                                            {!! Form::select('service_id', $services, (isset($questionnaire))? $questionnaire->service_id : old('service_id'), array('id'=>'service_id', 'class'=>'form-control','required'=>'required')) !!}
-                                            @if($errors->has('service_id'))
-                                                <span class="help-block text-danger">{{ $errors->first('service_id') }}</span>
-                                            @endif
-                                        </div>
-
+                                        <input name="id" type="hidden" value="{{ isset($questionnaire)? $questionnaire->id: '' }}">
                                         <div class="form-group">
                                             <label for="name" class="control-label">
                                                 {{ trans('admin.title_ar') }} <span class="required"> * </span>
@@ -78,6 +68,37 @@
                                         </div>
                                         <div id="app">
 
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name" class="control-label">
+                                                {{ trans('admin.type_description') }}
+                                            </label>
+                                            {!! Form::textarea('type_description', (isset($questionnaire))? $questionnaire->type_description : old('type_description'), array('id'=>'type_description', 'class'=>'form-control','rows' => 2)) !!}
+                                            @if($errors->has('type_description'))
+                                                <span class="help-block text-danger">{{ $errors->first('type_description') }}</span>
+                                            @endif
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="on"
+                                                   class="control-label">{{ trans('admin.is_required') }} </label>
+                                            @php
+                                                $is_required = null;
+                                                if(isset($questionnaire)){
+                                                $is_required = $questionnaire->is_required;
+                                                }
+                                            @endphp
+                                            <div class="mt-radio-inline">
+                                                <label class="mt-radio">
+                                                    {!! Form::radio('is_required', 1, ($is_required === 1 || empty($is_required))? 'true' : '',array('id'=>'yes-required')) !!}
+                                                    {{ trans('admin.yes') }}
+                                                    <span></span>
+                                                </label>
+                                                <label class="mt-radio">
+                                                    {!! Form::radio('is_required', 0, ($is_required === 0 )? 'true' : '',array('id'=>'no-required')) !!}
+                                                    {{ trans('admin.no') }}
+                                                    <span></span>
+                                                </label>
+                                            </div>
                                         </div>
                                         <div class="margiv-top-10">
                                             {!! Form::submit($submitBtn, array('class'=>'btn green')) !!}

@@ -25,7 +25,6 @@ class AuthServiceProvider extends ServiceProvider
         User::class => AdminPolicy::class,
         Category::class => CategoryPolicy::class,
         Service::class => ServicePolicy::class,
-        Questionnaire::class => QuestionnairePolicy::class,
     ];
 
     /**
@@ -60,12 +59,6 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('provider.create', 'App\Policies\ProviderPolicy@create');
         Gate::define('provider.update', 'App\Policies\ProviderPolicy@update');
         Gate::define('provider.delete', 'App\Policies\ProviderPolicy@delete');
-
-        // policies questionnaire
-        Gate::define('questionnaire.view', 'App\Policies\QuestionnairePolicy@view');
-        Gate::define('questionnaire.create', 'App\Policies\QuestionnairePolicy@create');
-        Gate::define('questionnaire.update', 'App\Policies\QuestionnairePolicy@update');
-        Gate::define('questionnaire.delete', 'App\Policies\QuestionnairePolicy@delete');
 
         // passport
         Passport::routes();
