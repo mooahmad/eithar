@@ -80,6 +80,7 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => SRVN, 'prefix' => AD],
     Route::post('services/{id}/questionnaire/store', 'ServicesController@storeServiceQuestionnaire')->name('storeServiceQuestionnaire');
     Route::get('services/{id}/questionnaire/{questionnaireId}/edit', 'ServicesController@editServiceQuestionnaire')->name('editServiceQuestionnaire');
     Route::post('services/{id}/questionnaire/{questionnaireId}/update', 'ServicesController@updateServiceQuestionnaire')->name('updateServiceQuestionnaire');
+    Route::get('services/{id}/questionnaire/{page}', 'ServicesController@getAvailablePageOrders')->name('getAvailablePageOrders');
 
     // questionnaires dataTable
     Route::post('services/{id}/questionnaire/datatable', 'ServicesController@getQuestionnaireDatatable')->name('getQuestionnaireDatatable');

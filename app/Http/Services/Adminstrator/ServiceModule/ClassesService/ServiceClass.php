@@ -49,9 +49,10 @@ class ServiceClass
         $questionnaire->type = $request->input('type');
         $questionnaire->type_description = $request->input('type_description');
         $questionnaire->is_required = $request->input('is_required');
-        $questionnaire->options_ar = $request->input('options_ar');
-        $questionnaire->options_en = $request->input('options_en');
+        $questionnaire->options_ar = serialize($request->input('options_ar', ''));
+        $questionnaire->options_en = serialize($request->input('options_en', ''));
         $questionnaire->pagination = $request->input('page');
+        $questionnaire->order = $request->input('order');
         return $questionnaire->save();
     }
 

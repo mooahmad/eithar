@@ -109,15 +109,15 @@
                                                 <span class="help-block text-danger">{{ $errors->first('page') }}</span>
                                             @endif
                                         </div>
-                                        {{--<div class="form-group">--}}
-                                            {{--<label for="default_language" class="control-label">--}}
-                                                {{--{{ trans('admin.order_on_page') }} <span class="required"> * </span>--}}
-                                            {{--</label>--}}
-                                            {{--{!! Form::select('order', [], (isset($questionnaire))? $questionnaire->order : old('order'), array('id'=>'order', 'class'=>'form-control','required'=>'required')) !!}--}}
-                                            {{--@if($errors->has('order'))--}}
-                                                {{--<span class="help-block text-danger">{{ $errors->first('order') }}</span>--}}
-                                            {{--@endif--}}
-                                        {{--</div>--}}
+                                        <div class="form-group">
+                                            <label for="default_language" class="control-label">
+                                                {{ trans('admin.order_on_page') }} <span class="required"> * </span>
+                                            </label>
+                                            {!! Form::select('order', [], (isset($questionnaire))? $questionnaire->order : old('order'), array('id'=>'order', 'class'=>'form-control','required'=>'required')) !!}
+                                            @if($errors->has('order'))
+                                                <span class="help-block text-danger">{{ $errors->first('order') }}</span>
+                                            @endif
+                                        </div>
                                         <div class="margiv-top-10">
                                             {!! Form::submit($submitBtn, array('class'=>'btn green')) !!}
                                             <a href="{{ url(AD.'/admins') }}"
@@ -138,6 +138,11 @@
 @stop
 
 @section('script')
+    <script>
+        var unAvailablePages = "{{json_encode($unAvailablePages)}}";
+        var baseUrl = "{{\Illuminate\Support\Facades\URL::to('/')}}";
+        var serviceId = "{{$serviceId}}";
+    </script>
     <script src="{{ asset('public/assets/pages/scripts/profile.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('public/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js') }}"
             type="text/javascript"></script>

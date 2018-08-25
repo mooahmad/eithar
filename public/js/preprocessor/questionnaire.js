@@ -48225,7 +48225,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         swapTypeView: function swapTypeView(event) {
-            this.$set(this.data, "currentView", $(event.target).val());
+            var currentView = "Single";
+            switch ($(event.target).val()) {
+                case "0":
+                    currentView = "Single";
+                    break;
+                case "1":
+                    currentView = "Multiple";
+                    break;
+                case "2":
+                    currentView = "TextData";
+                    break;
+                case "3":
+                    currentView = "LongText";
+                    break;
+                case "4":
+                    currentView = "DateTime";
+                    break;
+                case "5":
+                    currentView = "Rating";
+                    break;
+            }
+            this.$set(this.data, "currentView", currentView);
         }
     },
     components: {
@@ -48900,12 +48921,7 @@ var render = function() {
         _c("div", { staticClass: "mt-radio-inline" }, [
           _c("label", { staticClass: "mt-radio" }, [
             _c("input", {
-              attrs: {
-                name: "type",
-                value: "Single",
-                type: "radio",
-                checked: ""
-              },
+              attrs: { name: "type", value: "0", type: "radio", checked: "" },
               on: { click: _vm.swapTypeView }
             }),
             _vm._v(
@@ -48918,7 +48934,7 @@ var render = function() {
           _vm._v(" "),
           _c("label", { staticClass: "mt-radio" }, [
             _c("input", {
-              attrs: { name: "type", value: "Multiple", type: "radio" },
+              attrs: { name: "type", value: "1", type: "radio" },
               on: { click: _vm.swapTypeView }
             }),
             _vm._v(
@@ -48931,7 +48947,7 @@ var render = function() {
           _vm._v(" "),
           _c("label", { staticClass: "mt-radio" }, [
             _c("input", {
-              attrs: { name: "type", value: "TextData", type: "radio" },
+              attrs: { name: "type", value: "2", type: "radio" },
               on: { click: _vm.swapTypeView }
             }),
             _vm._v(
@@ -48944,7 +48960,7 @@ var render = function() {
           _vm._v(" "),
           _c("label", { staticClass: "mt-radio" }, [
             _c("input", {
-              attrs: { name: "type", value: "LongText", type: "radio" },
+              attrs: { name: "type", value: "3", type: "radio" },
               on: { click: _vm.swapTypeView }
             }),
             _vm._v(
@@ -48957,7 +48973,7 @@ var render = function() {
           _vm._v(" "),
           _c("label", { staticClass: "mt-radio" }, [
             _c("input", {
-              attrs: { name: "type", value: "DateTime", type: "radio" },
+              attrs: { name: "type", value: "4", type: "radio" },
               on: { click: _vm.swapTypeView }
             }),
             _vm._v(
@@ -48970,7 +48986,7 @@ var render = function() {
           _vm._v(" "),
           _c("label", { staticClass: "mt-radio" }, [
             _c("input", {
-              attrs: { name: "type", value: "Rating", type: "radio" },
+              attrs: { name: "type", value: "5", type: "radio" },
               on: { click: _vm.swapTypeView }
             }),
             _vm._v(

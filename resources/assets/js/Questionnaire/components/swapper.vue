@@ -4,32 +4,32 @@
             <label class="control-label">{{ 'admin.type' | trans }} </label>
             <div class="mt-radio-inline">
                 <label class="mt-radio">
-                    <input @click="swapTypeView" name="type" value="Single" type="radio" checked/>
+                    <input @click="swapTypeView" name="type" value="0" type="radio" checked/>
                     {{ 'admin.single_answer' | trans }}
                     <span></span>
                 </label>
                 <label class="mt-radio">
-                    <input @click="swapTypeView" name="type" value="Multiple" type="radio"/>
+                    <input @click="swapTypeView" name="type" value="1" type="radio"/>
                     {{ 'admin.multiple_answer' | trans }}
                     <span></span>
                 </label>
                 <label class="mt-radio">
-                    <input @click="swapTypeView" name="type" value="TextData" type="radio"/>
+                    <input @click="swapTypeView" name="type" value="2" type="radio"/>
                     {{ 'admin.text' | trans }}
                     <span></span>
                 </label>
                 <label class="mt-radio">
-                    <input @click="swapTypeView" name="type" value="LongText" type="radio"/>
+                    <input @click="swapTypeView" name="type" value="3" type="radio"/>
                     {{ 'admin.long_text' | trans }}
                     <span></span>
                 </label>
                 <label class="mt-radio">
-                    <input @click="swapTypeView" name="type" value="DateTime" type="radio"/>
+                    <input @click="swapTypeView" name="type" value="4" type="radio"/>
                     {{ 'admin.date_time' | trans }}
                     <span></span>
                 </label>
                 <label class="mt-radio">
-                    <input @click="swapTypeView" name="type" value="Rating" type="radio"/>
+                    <input @click="swapTypeView" name="type" value="5" type="radio"/>
                     {{ 'admin.rating' | trans }}
                     <span></span>
                 </label>
@@ -57,7 +57,28 @@
         },
         methods: {
             swapTypeView: function (event) {
-                this.$set(this.data, "currentView", $(event.target).val());
+                let currentView = "Single";
+                switch ($(event.target).val()) {
+                    case "0":
+                        currentView = "Single";
+                        break;
+                    case "1":
+                        currentView = "Multiple";
+                        break;
+                    case "2":
+                        currentView = "TextData";
+                        break;
+                    case "3":
+                        currentView = "LongText";
+                        break;
+                    case "4":
+                        currentView = "DateTime";
+                        break;
+                    case "5":
+                        currentView = "Rating";
+                        break;
+                }
+                this.$set(this.data, "currentView", currentView);
             }
         },
         components: {

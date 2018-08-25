@@ -100,12 +100,20 @@ return [
         "upcoming"
     ],
     "questionnaireTypes"         => [
-        "checkbox" => "Multiple",
         "radio"    => "Single",
+        "checkbox" => "Multiple",
         "text"     => "Text",
         "longText" => "LongText",
         "dateTime" => "DateTime",
         "rating"   => "Rating"
+    ],
+    "questionnaireTypesIndexed"         => [
+        "radio"    => 0,
+        "checkbox" => 1,
+        "text"     => 2,
+        "longText" => 3,
+        "dateTime" => 4,
+        "rating"   => 5
     ],
     "max_questionnaire_pages"    => 20,
     "max_questionnaire_per_page" => 5,

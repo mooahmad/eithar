@@ -200,12 +200,16 @@ class ServicesController extends Controller
 
     public function createServiceQuestionnaire(Request $request, $serviceId)
     {
-        $allPages = range(1, config('constants.max_questionnaire_pages'));
-//        $pages = Questionnaire::where('service_id', $serviceId)
-//            ->groupBy('pagination')->get();
-//        dd($pages);
+        $pages = range(0, config('constants.max_questionnaire_pages'));
+        unset($pages[0]);
+        $unAvailablePages = Questionnaire::where('service_id', $serviceId)
+            ->groupBy('pagination')
+            ->havingRaw('count(pagination) >= ' . config('constants.max_questionnaire_per_page'))
+            ->pluck('pagination')->toArray();
         $data = [
-            'pages'           => $allPages,
+            'serviceId'       => $serviceId,
+            'pages'           => $pages,
+            'unAvailablePages' => $unAvailablePages,
             'formRoute' => route('storeServiceQuestionnaire', ['serviceId' => $serviceId]),
             'submitBtn' => trans('admin.create')
         ];
@@ -261,9 +265,17 @@ class ServicesController extends Controller
         return Questionnaire::whereIn('id', $ids)->delete();
     }
 
-    public function getAvailablePageOrders(Request $request, $serviceId, $pageId)
+    public function getAvailablePageOrders(Request $request, $serviceId, $page)
     {
-
+        $ordersCount = range(0, config('constants.max_questionnaire_per_page'));
+        unset($ordersCount[0]);
+        $unAvailableOrders = Questionnaire::where([['service_id', $serviceId], ['pagination', $page]])
+            ->pluck('order')->toArray();
+        $data = [
+            'ordersCount' => $ordersCount,
+            'unAvailableOrders' => $unAvailableOrders
+        ];
+        return response()->json($data);
     }
 
 }
