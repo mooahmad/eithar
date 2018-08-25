@@ -200,7 +200,12 @@ class ServicesController extends Controller
 
     public function createServiceQuestionnaire(Request $request, $serviceId)
     {
+        $allPages = range(1, config('constants.max_questionnaire_pages'));
+//        $pages = Questionnaire::where('service_id', $serviceId)
+//            ->groupBy('pagination')->get();
+//        dd($pages);
         $data = [
+            'pages'           => $allPages,
             'formRoute' => route('storeServiceQuestionnaire', ['serviceId' => $serviceId]),
             'submitBtn' => trans('admin.create')
         ];
@@ -254,6 +259,11 @@ class ServicesController extends Controller
         }
         $ids = $request->input('ids');
         return Questionnaire::whereIn('id', $ids)->delete();
+    }
+
+    public function getAvailablePageOrders(Request $request, $serviceId, $pageId)
+    {
+
     }
 
 }

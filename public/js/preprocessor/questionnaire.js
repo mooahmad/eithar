@@ -13997,7 +13997,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/Questionnaire/components/textInput.vue"
+Component.options.__file = "resources\\assets\\js\\Questionnaire\\components\\textInput.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -14006,9 +14006,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-f04f6cbc", Component.options)
+    hotAPI.createRecord("data-v-057822cf", Component.options)
   } else {
-    hotAPI.reload("data-v-f04f6cbc", Component.options)
+    hotAPI.reload("data-v-057822cf", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48016,7 +48016,7 @@ module.exports = function spread(callback) {
 /* 42 */
 /***/ (function(module, exports) {
 
-module.exports = { "ar.admin": { "about": "About", "about_ar": "Arabic about", "about_en": "English about", "action": "Action", "actions": "Actions", "add_admin": "Add Admin", "add_category": "Add category", "add_provider": "Add provider", "add_questionnaire": "Add questionnaire", "add_service": "Add service", "admins": "Admins", "appear_on_website": "Appear on website", "benefits_ar": "Arabic benefits", "benefits_en": "English benefits", "birthdate": "Birth date", "cancel": "Cancel", "cat_name_col": "category_name_ar", "categories": "Categories", "change_password": "Change Password", "cities": "Cities", "code": "code", "confirm_delete": "Are You Sure?!", "contract_expiry_date": "Contract expiry date", "contract_start_date": "Contract start date", "country": "Country", "country_name_col": "country_name_eng", "create": "Create", "currency": "Currency", "currency_name_col": "name_ara", "customerService": "Customer service", "date_section": "Date section", "date_time": "Datetime", "default_language": "Default language", "delete": "Delete", "desc_ar": "Arabic description", "desc_en": "English description", "edit": "Edit", "education_ar": "Arabic education", "education_en": "English education", "email": "Email", "empty_data": "There is no data to show", "end_date": "End date", "enter_email": "Enter Admin Email", "enter_password": "Enter Admin Password", "error_login": "Please check your credentials", "error_message": "There is something went wrong", "experience_ar": "Arabic experience", "experience_en": "English experience", "expire_date": "Expire date", "female": "Female", "first_name_ar": "Arabic first name", "first_name_en": "English first name", "fname": "First Name", "forgot_password": "Forgot Password", "gender": "Gender", "id": "ID", "image": "Image", "is_active": "Is active", "is_available": "Is available", "is_required": "Is required", "is_saudi_nationality": "Saudi nationality", "last_name_ar": "Arabic last name", "last_name_en": "English last name", "lname": "Last Name", "login": "Login", "logout": "Log Out", "long_text": "Long Text", "male": "Male", "mname": "Middle Name", "mobile": "Mobile", "multiple_answer": "Multiple answers", "name": "Name", "name_ar": "Arabic name", "name_en": "English name", "national_id": "National ID", "nationality_id": "Nationality ID", "no": "No", "off": "Off", "on": "On", "parent_cat": "Parent category", "password": "Password", "password_confirmation": "Confirm Password", "price": "Price", "providers": "Providers", "questionnaire": "Questionnaire", "rating": "Rating", "remember": "Remember me", "reset_password": "Reset password", "save": "Save", "select": "Select", "select_avatar": "Select Avatar", "select_date": "Select date", "select_nationality": "Select Nationality", "service": "Service", "serviceProvider": "Service provider", "service_type": "Service type", "services": "Services", "show_admin": "Show Admin", "show_category": "Show category", "show_provider": "Show provider", "show_questionnaire": "Show questionnaire", "show_service": "Show service", "signin": "Sign in", "single_answer": "Single answer", "speciality_area_ar": "Arabic speciality", "speciality_area_en": "English speciality", "srv_name_col": "name_ar", "start_date": "Start date", "status": "Status", "submit": "Submit", "subtitle_ar": "Arabic subtitle", "subtitle_en": "English subtitle", "success_message": "Everything is okay, you are on the right path", "superAdmin": "Super admin", "text": "Text", "time_before_next_visit": "Time before next visit", "title_ar": "Arabic title", "title_en": "English title", "type": "Type", "type_desc": "Type description", "type_description": "Type description", "update": "Update", "userType": "User type", "video": "Youtube ID", "visit_duration": "Visit duration", "yes": "Yes" }, "en.admin": { "about": "About", "about_ar": "Arabic about", "about_en": "English about", "action": "Action", "actions": "Actions", "add_admin": "Add Admin", "add_category": "Add category", "add_provider": "Add provider", "add_questionnaire": "Add questionnaire", "add_service": "Add service", "admins": "Admins", "appear_on_website": "Appear on website", "benefits_ar": "Arabic benefits", "benefits_en": "English benefits", "birthdate": "Birth date", "cancel": "Cancel", "cat_name_col": "category_name_en", "categories": "Categories", "change_password": "Change Password", "cities": "Cities", "code": "Code", "confirm_delete": "Are You Sure?!", "contract_expiry_date": "Contract expiry date", "contract_start_date": "Contract start date", "country": "Country", "country_name_col": "country_name_eng", "create": "create", "currency": "Currency", "currency_name_col": "name_eng", "customerService": "Customer service", "date_section": "Date section", "date_time": "Datetime", "default_language": "Default language", "delete": "Delete", "desc_ar": "Arabic description", "desc_en": "English description", "edit": "Edit", "education_ar": "Arabic education", "education_en": "English education", "email": "Email", "empty_data": "There is no data to show", "end_date": "End date", "enter_email": "Enter Admin Email", "enter_password": "Enter Admin Password", "error_login": "Please check your credentials", "error_message": "There is something went wrong", "experience_ar": "Arabic experience", "experience_en": "English experience", "expire_date": "Expire date", "female": "Female", "first_name_ar": "Arabic first name", "first_name_en": "English first name", "fname": "First Name", "forgot_password": "Forgot Password", "gender": "Gender", "id": "ID", "image": "Image", "is_active": "Is active", "is_available": "Is available", "is_required": "Is required", "is_saudi_nationality": "Saudi nationality", "last_name_ar": "Arabic last name", "last_name_en": "English last name", "lname": "Last Name", "login": "Login", "logout": "Log Out", "long_text": "Long Text", "male": "Male", "mname": "Middle Name", "mobile": "Mobile", "multiple_answer": "Multiple answers", "name": "Name", "name_ar": "Arabic name", "name_en": "English name", "national_id": "National ID", "nationality_id": "Nationality ID", "no": "No", "off": "Off", "on": "On", "parent_cat": "Parent category", "password": "Password", "password_confirmation": "Confirm Password", "price": "Price", "providers": "Providers", "questionnaire": "Questionnaire", "rating": "Rating", "remember": "Remember me", "reset_password": "Reset password", "save": "Save", "select": "Select", "select_avatar": "Select Avatar", "select_date": "Select date", "select_nationality": "Select Nationality", "service": "Service", "serviceProvider": "Service provider", "service_type": "Service type", "services": "Services", "show_admin": "Show Admin", "show_category": "Show category", "show_provider": "Show provider", "show_questionnaire": "Show questionnaire", "show_service": "Show service", "signin": "Sign in", "single_answer": "Single answer", "speciality_area_ar": "Arabic speciality", "speciality_area_en": "English speciality", "srv_name_col": "name_en", "start_date": "Start date", "status": "Status", "submit": "Submit", "subtitle_ar": "Arabic subtitle", "subtitle_en": "English subtitle", "success_message": "Everything is okay, you are on the right path", "superAdmin": "Super admin", "text": "Text", "time_before_next_visit": "Time before next visit", "title_ar": "Arabic title", "title_en": "English title", "type": "Type", "type_desc": "Type description", "type_description": "Type description", "update": "Update", "userType": "User type", "video": "Youtube ID", "visit_duration": "Visit duration", "yes": "Yes" } };
+module.exports = { "ar.admin": { "about": "About", "about_ar": "Arabic about", "about_en": "English about", "action": "Action", "actions": "Actions", "add_admin": "Add Admin", "add_category": "Add category", "add_provider": "Add provider", "add_questionnaire": "Add questionnaire", "add_service": "Add service", "admins": "Admins", "appear_on_website": "Appear on website", "benefits_ar": "Arabic benefits", "benefits_en": "English benefits", "birthdate": "Birth date", "cancel": "Cancel", "cat_name_col": "category_name_ar", "categories": "Categories", "change_password": "Change Password", "cities": "Cities", "code": "code", "confirm_delete": "Are You Sure?!", "contract_expiry_date": "Contract expiry date", "contract_start_date": "Contract start date", "country": "Country", "country_name_col": "country_name_eng", "create": "Create", "currency": "Currency", "currency_name_col": "name_ara", "customerService": "Customer service", "date_section": "Date section", "date_time": "Datetime", "default_language": "Default language", "delete": "Delete", "desc_ar": "Arabic description", "desc_en": "English description", "edit": "Edit", "education_ar": "Arabic education", "education_en": "English education", "email": "Email", "empty_data": "There is no data to show", "end_date": "End date", "enter_email": "Enter Admin Email", "enter_password": "Enter Admin Password", "error_login": "Please check your credentials", "error_message": "There is something went wrong", "experience_ar": "Arabic experience", "experience_en": "English experience", "expire_date": "Expire date", "female": "Female", "first_name_ar": "Arabic first name", "first_name_en": "English first name", "fname": "First Name", "forgot_password": "Forgot Password", "gender": "Gender", "id": "ID", "image": "Image", "is_active": "Is active", "is_available": "Is available", "is_required": "Is required", "is_saudi_nationality": "Saudi nationality", "last_name_ar": "Arabic last name", "last_name_en": "English last name", "lname": "Last Name", "login": "Login", "logout": "Log Out", "long_text": "Long Text", "male": "Male", "mname": "Middle Name", "mobile": "Mobile", "multiple_answer": "Multiple answers", "name": "Name", "name_ar": "Arabic name", "name_en": "English name", "national_id": "National ID", "nationality_id": "Nationality ID", "no": "No", "off": "Off", "on": "On", "order_on_page": "Order on page", "page": "page", "parent_cat": "Parent category", "password": "Password", "password_confirmation": "Confirm Password", "price": "Price", "providers": "Providers", "questionnaire": "Questionnaire", "rating": "Rating", "remember": "Remember me", "reset_password": "Reset password", "save": "Save", "select": "Select", "select_avatar": "Select Avatar", "select_date": "Select date", "select_nationality": "Select Nationality", "service": "Service", "serviceProvider": "Service provider", "service_type": "Service type", "services": "Services", "show_admin": "Show Admin", "show_category": "Show category", "show_provider": "Show provider", "show_questionnaire": "Show questionnaire", "show_service": "Show service", "signin": "Sign in", "single_answer": "Single answer", "speciality_area_ar": "Arabic speciality", "speciality_area_en": "English speciality", "srv_name_col": "name_ar", "start_date": "Start date", "status": "Status", "submit": "Submit", "subtitle_ar": "Arabic subtitle", "subtitle_en": "English subtitle", "success_message": "Everything is okay, you are on the right path", "superAdmin": "Super admin", "text": "Text", "time_before_next_visit": "Time before next visit", "title_ar": "Arabic title", "title_en": "English title", "type": "Type", "type_desc": "Type description", "type_description": "Type description", "update": "Update", "userType": "User type", "video": "Youtube ID", "visit_duration": "Visit duration", "yes": "Yes" }, "en.admin": { "about": "About", "about_ar": "Arabic about", "about_en": "English about", "action": "Action", "actions": "Actions", "add_admin": "Add Admin", "add_category": "Add category", "add_provider": "Add provider", "add_questionnaire": "Add questionnaire", "add_service": "Add service", "admins": "Admins", "appear_on_website": "Appear on website", "benefits_ar": "Arabic benefits", "benefits_en": "English benefits", "birthdate": "Birth date", "cancel": "Cancel", "cat_name_col": "category_name_en", "categories": "Categories", "change_password": "Change Password", "cities": "Cities", "code": "Code", "confirm_delete": "Are You Sure?!", "contract_expiry_date": "Contract expiry date", "contract_start_date": "Contract start date", "country": "Country", "country_name_col": "country_name_eng", "create": "create", "currency": "Currency", "currency_name_col": "name_eng", "customerService": "Customer service", "date_section": "Date section", "date_time": "Datetime", "default_language": "Default language", "delete": "Delete", "desc_ar": "Arabic description", "desc_en": "English description", "edit": "Edit", "education_ar": "Arabic education", "education_en": "English education", "email": "Email", "empty_data": "There is no data to show", "end_date": "End date", "enter_email": "Enter Admin Email", "enter_password": "Enter Admin Password", "error_login": "Please check your credentials", "error_message": "There is something went wrong", "experience_ar": "Arabic experience", "experience_en": "English experience", "expire_date": "Expire date", "female": "Female", "first_name_ar": "Arabic first name", "first_name_en": "English first name", "fname": "First Name", "forgot_password": "Forgot Password", "gender": "Gender", "id": "ID", "image": "Image", "is_active": "Is active", "is_available": "Is available", "is_required": "Is required", "is_saudi_nationality": "Saudi nationality", "last_name_ar": "Arabic last name", "last_name_en": "English last name", "lname": "Last Name", "login": "Login", "logout": "Log Out", "long_text": "Long Text", "male": "Male", "mname": "Middle Name", "mobile": "Mobile", "multiple_answer": "Multiple answers", "name": "Name", "name_ar": "Arabic name", "name_en": "English name", "national_id": "National ID", "nationality_id": "Nationality ID", "no": "No", "off": "Off", "on": "On", "order_on_page": "Order on page", "page": "page", "parent_cat": "Parent category", "password": "Password", "password_confirmation": "Confirm Password", "price": "Price", "providers": "Providers", "questionnaire": "Questionnaire", "rating": "Rating", "remember": "Remember me", "reset_password": "Reset password", "save": "Save", "select": "Select", "select_avatar": "Select Avatar", "select_date": "Select date", "select_nationality": "Select Nationality", "service": "Service", "serviceProvider": "Service provider", "service_type": "Service type", "services": "Services", "show_admin": "Show Admin", "show_category": "Show category", "show_provider": "Show provider", "show_questionnaire": "Show questionnaire", "show_service": "Show service", "signin": "Sign in", "single_answer": "Single answer", "speciality_area_ar": "Arabic speciality", "speciality_area_en": "English speciality", "srv_name_col": "name_en", "start_date": "Start date", "status": "Status", "submit": "Submit", "subtitle_ar": "Arabic subtitle", "subtitle_en": "English subtitle", "success_message": "Everything is okay, you are on the right path", "superAdmin": "Super admin", "text": "Text", "time_before_next_visit": "Time before next visit", "title_ar": "Arabic title", "title_en": "English title", "type": "Type", "type_desc": "Type description", "type_description": "Type description", "update": "Update", "userType": "User type", "video": "Youtube ID", "visit_duration": "Visit duration", "yes": "Yes" } };
 
 /***/ }),
 /* 43 */
@@ -48044,7 +48044,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/Questionnaire/components/app.vue"
+Component.options.__file = "resources\\assets\\js\\Questionnaire\\components\\app.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -48053,9 +48053,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-43d800e6", Component.options)
+    hotAPI.createRecord("data-v-f02d005a", Component.options)
   } else {
-    hotAPI.reload("data-v-43d800e6", Component.options)
+    hotAPI.reload("data-v-f02d005a", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48115,7 +48115,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/Questionnaire/components/swapper.vue"
+Component.options.__file = "resources\\assets\\js\\Questionnaire\\components\\swapper.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -48124,9 +48124,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-ea846322", Component.options)
+    hotAPI.createRecord("data-v-5aec0edc", Component.options)
   } else {
-    hotAPI.reload("data-v-ea846322", Component.options)
+    hotAPI.reload("data-v-5aec0edc", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48252,7 +48252,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/Questionnaire/components/single.vue"
+Component.options.__file = "resources\\assets\\js\\Questionnaire\\components\\single.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -48261,9 +48261,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-12532b13", Component.options)
+    hotAPI.createRecord("data-v-4254a906", Component.options)
   } else {
-    hotAPI.reload("data-v-12532b13", Component.options)
+    hotAPI.reload("data-v-4254a906", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48346,7 +48346,7 @@ var render = function() {
     _c("input", {
       staticClass: "form-control",
       attrs: {
-        name: "ar_text_option[]",
+        name: "options_ar[]",
         type: "text",
         required: "required",
         placeholder: "Enter arabic option " + _vm.count
@@ -48358,7 +48358,7 @@ var render = function() {
     _c("input", {
       staticClass: "form-control",
       attrs: {
-        name: "en_text_option[]",
+        name: "options_en[]",
         type: "text",
         required: "required",
         placeholder: "Enter english option " + _vm.count
@@ -48374,7 +48374,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-f04f6cbc", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-057822cf", module.exports)
   }
 }
 
@@ -48414,7 +48414,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-12532b13", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-4254a906", module.exports)
   }
 }
 
@@ -48444,7 +48444,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/Questionnaire/components/multiple.vue"
+Component.options.__file = "resources\\assets\\js\\Questionnaire\\components\\multiple.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -48453,9 +48453,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-a6b02fca", Component.options)
+    hotAPI.createRecord("data-v-3b7c9564", Component.options)
   } else {
-    hotAPI.reload("data-v-a6b02fca", Component.options)
+    hotAPI.reload("data-v-3b7c9564", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48541,7 +48541,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-a6b02fca", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-3b7c9564", module.exports)
   }
 }
 
@@ -48571,7 +48571,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/Questionnaire/components/text.vue"
+Component.options.__file = "resources\\assets\\js\\Questionnaire\\components\\text.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -48580,9 +48580,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-8f4b3b90", Component.options)
+    hotAPI.createRecord("data-v-130e7e2a", Component.options)
   } else {
-    hotAPI.reload("data-v-8f4b3b90", Component.options)
+    hotAPI.reload("data-v-130e7e2a", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48622,7 +48622,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-8f4b3b90", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-130e7e2a", module.exports)
   }
 }
 
@@ -48652,7 +48652,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/Questionnaire/components/longText.vue"
+Component.options.__file = "resources\\assets\\js\\Questionnaire\\components\\longText.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -48661,9 +48661,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5ab8c158", Component.options)
+    hotAPI.createRecord("data-v-083d6c87", Component.options)
   } else {
-    hotAPI.reload("data-v-5ab8c158", Component.options)
+    hotAPI.reload("data-v-083d6c87", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48703,7 +48703,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5ab8c158", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-083d6c87", module.exports)
   }
 }
 
@@ -48733,7 +48733,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/Questionnaire/components/dateTime.vue"
+Component.options.__file = "resources\\assets\\js\\Questionnaire\\components\\dateTime.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -48742,9 +48742,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7c7697b4", Component.options)
+    hotAPI.createRecord("data-v-1142fd4e", Component.options)
   } else {
-    hotAPI.reload("data-v-7c7697b4", Component.options)
+    hotAPI.reload("data-v-1142fd4e", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48784,7 +48784,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-7c7697b4", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-1142fd4e", module.exports)
   }
 }
 
@@ -48814,7 +48814,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/Questionnaire/components/rating.vue"
+Component.options.__file = "resources\\assets\\js\\Questionnaire\\components\\rating.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -48823,9 +48823,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-587fa5e8", Component.options)
+    hotAPI.createRecord("data-v-eefdb84a", Component.options)
   } else {
-    hotAPI.reload("data-v-587fa5e8", Component.options)
+    hotAPI.reload("data-v-eefdb84a", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48865,7 +48865,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-587fa5e8", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-eefdb84a", module.exports)
   }
 }
 
@@ -48982,7 +48982,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-ea846322", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-5aec0edc", module.exports)
   }
 }
 
@@ -49002,7 +49002,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-43d800e6", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-f02d005a", module.exports)
   }
 }
 
@@ -49010,7 +49010,7 @@ if (false) {
 /* 69 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: ENOENT: no such file or directory, scandir 'C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\node-sass\\vendor'\n    at Object.fs.readdirSync (fs.js:904:18)\n    at Object.getInstalledBinaries (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\node-sass\\lib\\extensions.js:129:13)\n    at foundBinariesList (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\node-sass\\lib\\errors.js:20:15)\n    at foundBinaries (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\node-sass\\lib\\errors.js:15:5)\n    at Object.module.exports.missingBinary (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\node-sass\\lib\\errors.js:45:5)\n    at module.exports (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\node-sass\\lib\\binding.js:15:30)\n    at Object.<anonymous> (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\node-sass\\lib\\index.js:14:35)\n    at Module._compile (module.js:652:30)\n    at Object.Module._extensions..js (module.js:663:10)\n    at Module.load (module.js:565:32)\n    at tryModuleLoad (module.js:505:12)\n    at Function.Module._load (module.js:497:3)\n    at Module.require (module.js:596:17)\n    at require (internal/module.js:11:18)\n    at Object.<anonymous> (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\sass-loader\\lib\\loader.js:3:14)\n    at Module._compile (module.js:652:30)\n    at Object.Module._extensions..js (module.js:663:10)\n    at Module.load (module.js:565:32)\n    at tryModuleLoad (module.js:505:12)\n    at Function.Module._load (module.js:497:3)\n    at Module.require (module.js:596:17)\n    at require (internal/module.js:11:18)\n    at loadLoader (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\loader-runner\\lib\\loadLoader.js:13:17)\n    at iteratePitchingLoaders (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\loader-runner\\lib\\LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\loader-runner\\lib\\LoaderRunner.js:165:10)\n    at C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\loader-runner\\lib\\LoaderRunner.js:173:18\n    at loadLoader (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\loader-runner\\lib\\loadLoader.js:36:3)\n    at iteratePitchingLoaders (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\loader-runner\\lib\\LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\loader-runner\\lib\\LoaderRunner.js:165:10)\n    at C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\loader-runner\\lib\\LoaderRunner.js:173:18\n    at runLoaders (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\webpack\\lib\\NormalModule.js:195:19)\n    at C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\loader-runner\\lib\\LoaderRunner.js:170:18\n    at loadLoader (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\loader-runner\\lib\\loadLoader.js:27:11)\n    at iteratePitchingLoaders (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\loader-runner\\lib\\LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\loader-runner\\lib\\LoaderRunner.js:165:10)\n    at C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\loader-runner\\lib\\LoaderRunner.js:173:18\n    at loadLoader (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\loader-runner\\lib\\loadLoader.js:36:3)\n    at iteratePitchingLoaders (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\loader-runner\\lib\\LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\loader-runner\\lib\\LoaderRunner.js:165:10)\n    at C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\loader-runner\\lib\\LoaderRunner.js:173:18\n    at loadLoader (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\loader-runner\\lib\\loadLoader.js:36:3)\n    at iteratePitchingLoaders (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\loader-runner\\lib\\LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\loader-runner\\lib\\LoaderRunner.js:165:10)\n    at C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\loader-runner\\lib\\LoaderRunner.js:173:18\n    at loadLoader (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\loader-runner\\lib\\loadLoader.js:36:3)\n    at iteratePitchingLoaders (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\loader-runner\\lib\\LoaderRunner.js:169:2)\n    at runLoaders (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\loader-runner\\lib\\LoaderRunner.js:362:2)\n    at NormalModule.doBuild (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\webpack\\lib\\NormalModule.js:182:3)\n    at NormalModule.build (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\webpack\\lib\\NormalModule.js:275:15)\n    at Compilation.buildModule (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\webpack\\lib\\Compilation.js:157:10)\n    at moduleFactory.create (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\webpack\\lib\\Compilation.js:460:10)\n    at factory (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\webpack\\lib\\NormalModuleFactory.js:243:5)\n    at applyPluginsAsyncWaterfall (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\webpack\\lib\\NormalModuleFactory.js:94:13)\n    at C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\tapable\\lib\\Tapable.js:268:11\n    at NormalModuleFactory.params.normalModuleFactory.plugin (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\webpack\\lib\\CompatibilityPlugin.js:52:5)\n    at NormalModuleFactory.applyPluginsAsyncWaterfall (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\tapable\\lib\\Tapable.js:272:13)\n    at resolver (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\webpack\\lib\\NormalModuleFactory.js:69:10)\n    at process.nextTick (C:\\myData\\xampp\\htdocs\\eithar-administrator-and-api\\node_modules\\webpack\\lib\\NormalModuleFactory.js:196:7)\n    at _combinedTickCallback (internal/process/next_tick.js:131:7)");
 
 /***/ })
 /******/ ]);

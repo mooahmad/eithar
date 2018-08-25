@@ -100,6 +100,24 @@
                                                 </label>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <label for="default_language" class="control-label">
+                                                {{ trans('admin.page') }} <span class="required"> * </span>
+                                            </label>
+                                            {!! Form::select('page', $pages, (isset($questionnaire))? $questionnaire->paggination : old('page'), array('id'=>'page', 'class'=>'form-control','required'=>'required')) !!}
+                                            @if($errors->has('page'))
+                                                <span class="help-block text-danger">{{ $errors->first('page') }}</span>
+                                            @endif
+                                        </div>
+                                        {{--<div class="form-group">--}}
+                                            {{--<label for="default_language" class="control-label">--}}
+                                                {{--{{ trans('admin.order_on_page') }} <span class="required"> * </span>--}}
+                                            {{--</label>--}}
+                                            {{--{!! Form::select('order', [], (isset($questionnaire))? $questionnaire->order : old('order'), array('id'=>'order', 'class'=>'form-control','required'=>'required')) !!}--}}
+                                            {{--@if($errors->has('order'))--}}
+                                                {{--<span class="help-block text-danger">{{ $errors->first('order') }}</span>--}}
+                                            {{--@endif--}}
+                                        {{--</div>--}}
                                         <div class="margiv-top-10">
                                             {!! Form::submit($submitBtn, array('class'=>'btn green')) !!}
                                             <a href="{{ url(AD.'/admins') }}"
@@ -124,5 +142,5 @@
     <script src="{{ asset('public/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js') }}"
             type="text/javascript"></script>
     <script src="{{ asset('public/js/preprocessor/questionnaire.js') }}" type="text/javascript"></script>
-
+    <script src="{{ asset('public/js/custom/questionnaire.js') }}" type="text/javascript"></script>
 @stop

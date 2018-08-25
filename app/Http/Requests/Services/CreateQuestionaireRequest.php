@@ -24,10 +24,7 @@ class CreateQuestionaireRequest extends FormRequest
     public function rules()
     {
         return [
-            'parent_cat' => 'required',
-            'name_en'    => 'required',
-            'name_ar'    => 'required',
-            'avatar'     => 'required|mimes:jpeg,bmp,png|dimensions:min_width=100,min_height=200',
+
         ];
     }
 }

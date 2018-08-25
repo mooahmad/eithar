@@ -48,9 +48,10 @@ class ServiceClass
         $questionnaire->subtitle_en = $request->input('subtitle_en');
         $questionnaire->type = $request->input('type');
         $questionnaire->type_description = $request->input('type_description');
-        $questionnaire->max_limit = $request->input('max_limit');
+        $questionnaire->is_required = $request->input('is_required');
         $questionnaire->options_ar = $request->input('options_ar');
         $questionnaire->options_en = $request->input('options_en');
+        $questionnaire->pagination = $request->input('page');
         return $questionnaire->save();
     }
 
