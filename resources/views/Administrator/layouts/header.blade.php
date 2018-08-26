@@ -28,7 +28,9 @@ Like: https://www.facebook.com/consultrust/
     <meta content="HUD Systems" name="author"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="lang" content="{{ \Illuminate\Support\Facades\App::getLocale()  }}">
-
+    <script>
+        window.baseUrl = "{{\Illuminate\Support\Facades\URL::to('/')}}";
+    </script>
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet"
           type="text/css"/>

@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 13);
+/******/ 	return __webpack_require__(__webpack_require__.s = 14);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -70,7 +70,7 @@
 "use strict";
 
 
-var bind = __webpack_require__(7);
+var bind = __webpack_require__(8);
 var isBuffer = __webpack_require__(25);
 
 /*global toString:true*/
@@ -533,10 +533,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(8);
+    adapter = __webpack_require__(9);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(8);
+    adapter = __webpack_require__(9);
   }
   return adapter;
 }
@@ -13719,6 +13719,12 @@ return jQuery;
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__(24);
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 
@@ -13734,7 +13740,7 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13745,7 +13751,7 @@ var settle = __webpack_require__(28);
 var buildURL = __webpack_require__(30);
 var parseHeaders = __webpack_require__(31);
 var isURLSameOrigin = __webpack_require__(32);
-var createError = __webpack_require__(9);
+var createError = __webpack_require__(10);
 var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(33);
 
 module.exports = function xhrAdapter(config) {
@@ -13921,7 +13927,7 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13946,7 +13952,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13958,7 +13964,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13984,7 +13990,7 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
@@ -14031,15 +14037,15 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(14);
+__webpack_require__(15);
 module.exports = __webpack_require__(69);
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14048,7 +14054,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__vue_translations_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__vue_translations_js__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_app_vue__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_app_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_app_vue__);
-__webpack_require__(15);
+__webpack_require__(16);
 
 
 
@@ -14074,13 +14080,13 @@ new Vue({
 });
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-window._ = __webpack_require__(16);
+window._ = __webpack_require__(17);
 window.Popper = __webpack_require__(4).default;
-window.Lang = __webpack_require__(18);
-window.Vue = __webpack_require__(19);
+window.Lang = __webpack_require__(19);
+window.Vue = __webpack_require__(20);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -14091,7 +14097,7 @@ window.Vue = __webpack_require__(19);
 try {
   window.$$ = window.jQuery = __webpack_require__(6);
 
-  __webpack_require__(22);
+  __webpack_require__(23);
 } catch (e) {}
 
 /**
@@ -14100,7 +14106,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(23);
+window.axios = __webpack_require__(7);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -14136,7 +14142,7 @@ if (token) {
 // });
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -31246,10 +31252,10 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(17)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(18)(module)))
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -31277,7 +31283,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -31958,7 +31964,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42921,10 +42927,10 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(20).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(21).setImmediate))
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -42980,7 +42986,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(21);
+__webpack_require__(22);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -42994,7 +43000,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -43187,7 +43193,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(5)))
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -47137,12 +47143,6 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 
 /***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(24);
-
-/***/ }),
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -47150,7 +47150,7 @@ module.exports = __webpack_require__(24);
 
 
 var utils = __webpack_require__(0);
-var bind = __webpack_require__(7);
+var bind = __webpack_require__(8);
 var Axios = __webpack_require__(26);
 var defaults = __webpack_require__(3);
 
@@ -47185,9 +47185,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(11);
+axios.Cancel = __webpack_require__(12);
 axios.CancelToken = __webpack_require__(40);
-axios.isCancel = __webpack_require__(10);
+axios.isCancel = __webpack_require__(11);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -47340,7 +47340,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var createError = __webpack_require__(9);
+var createError = __webpack_require__(10);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -47773,7 +47773,7 @@ module.exports = InterceptorManager;
 
 var utils = __webpack_require__(0);
 var transformData = __webpack_require__(37);
-var isCancel = __webpack_require__(10);
+var isCancel = __webpack_require__(11);
 var defaults = __webpack_require__(3);
 var isAbsoluteURL = __webpack_require__(38);
 var combineURLs = __webpack_require__(39);
@@ -47933,7 +47933,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var Cancel = __webpack_require__(11);
+var Cancel = __webpack_require__(12);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -48166,6 +48166,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dateTime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__dateTime__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rating__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__rating__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_axios__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_axios__);
 //
 //
 //
@@ -48207,6 +48209,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 
@@ -48219,34 +48222,59 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             data: {
-                currentView: "Single"
+                currentView: "Single",
+                questionnaire: null
             }
         };
     },
     methods: {
-        swapTypeView: function swapTypeView(event) {
+        clickSwapper: function clickSwapper(event) {
+            this.swapTypeView($(event.target).val());
+        },
+        swapTypeView: function swapTypeView(type) {
+            var isClicked = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
             var currentView = "Single";
-            switch ($(event.target).val()) {
-                case "0":
+            type = parseInt(type);
+            switch (type) {
+                case 0:
                     currentView = "Single";
                     break;
-                case "1":
+                case 1:
                     currentView = "Multiple";
                     break;
-                case "2":
+                case 2:
                     currentView = "TextData";
                     break;
-                case "3":
+                case 3:
                     currentView = "LongText";
                     break;
-                case "4":
+                case 4:
                     currentView = "DateTime";
                     break;
-                case "5":
+                case 5:
                     currentView = "Rating";
                     break;
             }
+            if (!isClicked) {
+                $('#' + currentView).click();
+                return;
+            }
             this.$set(this.data, "currentView", currentView);
+        }
+    },
+    mounted: function mounted() {
+        var thisVue = this;
+        var questionnaireId = $('input[name="id"]').val();
+        if (questionnaireId != '') {
+            __WEBPACK_IMPORTED_MODULE_6_axios___default.a.post(baseUrl + '/Administrator/services/questionnaire/options', {
+                id: questionnaireId
+            }).then(function (response) {
+                thisVue.data.questionnaire = response.data;
+                thisVue.swapTypeView(thisVue.data.questionnaire.type, false);
+            }).catch(function (error) {
+                console.log(error);
+            });
         }
     },
     components: {
@@ -48312,7 +48340,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__textInput__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__textInput__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__textInput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__textInput__);
 //
 //
@@ -48326,19 +48354,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: ["questionnaire"],
     data: function data() {
         return {
             data: {
-                optionsCount: [{
-                    num: 1
-                }],
+                options: [],
                 maxOptionsCount: 5
             }
         };
     },
+    mounted: function mounted() {
+        var thisVue = this;
+        $.each(thisVue.questionnaire.options_ar, function (key, value) {
+            thisVue.data.options.push({ option_ar: thisVue.questionnaire.options_ar[key], option_en: thisVue.questionnaire.options_ar[key] });
+        });
+    },
     methods: {
         increamtOptions: function increamtOptions(event) {
-            if (this.data.optionsCount.length !== this.data.maxOptionsCount) this.data.optionsCount.push({ num: this.data.optionsCount.length + 1 });
+            if (this.data.options.length !== this.data.maxOptionsCount) this.data.options.push({ option_ar: "", option_en: "" });
         }
     },
     components: {
@@ -48363,7 +48396,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ["count"]
+    props: ["count", "option_ar", "option_en"]
 
 });
 
@@ -48383,7 +48416,8 @@ var render = function() {
         type: "text",
         required: "required",
         placeholder: "Enter arabic option " + _vm.count
-      }
+      },
+      domProps: { value: _vm.option_ar }
     }),
     _vm._v(" "),
     _c("br"),
@@ -48395,7 +48429,8 @@ var render = function() {
         type: "text",
         required: "required",
         placeholder: "Enter english option " + _vm.count
-      }
+      },
+      domProps: { value: _vm.option_en }
     }),
     _vm._v(" "),
     _c("br")
@@ -48422,8 +48457,15 @@ var render = function() {
   return _c(
     "div",
     [
-      _vm._l(_vm.data.optionsCount, function(count) {
-        return _c("TextOption", { key: count.num, attrs: { count: count.num } })
+      _vm._l(_vm.data.options, function(option, index) {
+        return _c("TextOption", {
+          key: index,
+          attrs: {
+            count: index,
+            option_ar: option.option_ar,
+            option_en: option.option_en
+          }
+        })
       }),
       _vm._v(" "),
       _c("div", { staticClass: "form-group" }, [
@@ -48504,7 +48546,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__textInput__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__textInput__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__textInput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__textInput__);
 //
 //
@@ -48921,8 +48963,14 @@ var render = function() {
         _c("div", { staticClass: "mt-radio-inline" }, [
           _c("label", { staticClass: "mt-radio" }, [
             _c("input", {
-              attrs: { name: "type", value: "0", type: "radio", checked: "" },
-              on: { click: _vm.swapTypeView }
+              attrs: {
+                id: "Single",
+                name: "type",
+                value: "0",
+                type: "radio",
+                checked: ""
+              },
+              on: { click: _vm.clickSwapper }
             }),
             _vm._v(
               "\n                " +
@@ -48934,8 +48982,13 @@ var render = function() {
           _vm._v(" "),
           _c("label", { staticClass: "mt-radio" }, [
             _c("input", {
-              attrs: { name: "type", value: "1", type: "radio" },
-              on: { click: _vm.swapTypeView }
+              attrs: {
+                id: "Multiple",
+                name: "type",
+                value: "1",
+                type: "radio"
+              },
+              on: { click: _vm.clickSwapper }
             }),
             _vm._v(
               "\n                " +
@@ -48947,8 +49000,13 @@ var render = function() {
           _vm._v(" "),
           _c("label", { staticClass: "mt-radio" }, [
             _c("input", {
-              attrs: { name: "type", value: "2", type: "radio" },
-              on: { click: _vm.swapTypeView }
+              attrs: {
+                id: "TextData",
+                name: "type",
+                value: "2",
+                type: "radio"
+              },
+              on: { click: _vm.clickSwapper }
             }),
             _vm._v(
               "\n                " +
@@ -48960,8 +49018,13 @@ var render = function() {
           _vm._v(" "),
           _c("label", { staticClass: "mt-radio" }, [
             _c("input", {
-              attrs: { name: "type", value: "3", type: "radio" },
-              on: { click: _vm.swapTypeView }
+              attrs: {
+                id: "LongText",
+                name: "type",
+                value: "3",
+                type: "radio"
+              },
+              on: { click: _vm.clickSwapper }
             }),
             _vm._v(
               "\n                " +
@@ -48973,8 +49036,13 @@ var render = function() {
           _vm._v(" "),
           _c("label", { staticClass: "mt-radio" }, [
             _c("input", {
-              attrs: { name: "type", value: "4", type: "radio" },
-              on: { click: _vm.swapTypeView }
+              attrs: {
+                id: "DateTime",
+                name: "type",
+                value: "4",
+                type: "radio"
+              },
+              on: { click: _vm.clickSwapper }
             }),
             _vm._v(
               "\n                " +
@@ -48986,8 +49054,8 @@ var render = function() {
           _vm._v(" "),
           _c("label", { staticClass: "mt-radio" }, [
             _c("input", {
-              attrs: { name: "type", value: "5", type: "radio" },
-              on: { click: _vm.swapTypeView }
+              attrs: { id: "Rating", name: "type", value: "5", type: "radio" },
+              on: { click: _vm.clickSwapper }
             }),
             _vm._v(
               "\n                " +
@@ -48999,7 +49067,12 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c(_vm.data.currentView, { tag: "component" })
+      _vm.data.questionnaire !== null
+        ? _c(_vm.data.currentView, {
+            tag: "component",
+            attrs: { questionnaire: _vm.data.questionnaire }
+          })
+        : _vm._e()
     ],
     1
   )

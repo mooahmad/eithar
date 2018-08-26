@@ -226,19 +226,28 @@ class ServicesController extends Controller
 
     public function editServiceQuestionnaire(Request $request, $serviceId, $questionnaireId)
     {
+        $pages = range(0, config('constants.max_questionnaire_pages'));
+        unset($pages[0]);
+        $unAvailablePages = Questionnaire::where('service_id', $serviceId)
+            ->groupBy('pagination')
+            ->havingRaw('count(pagination) >= ' . config('constants.max_questionnaire_per_page'))
+            ->pluck('pagination')->toArray();
         $questionnaire = Questionnaire::find($questionnaireId);
         $data = [
+            'serviceId'       => $serviceId,
+            'pages'           => $pages,
+            'unAvailablePages' => $unAvailablePages,
             'questionnaire'  => $questionnaire,
             'formRoute' => route('updateServiceQuestionnaire', ['id' => $serviceId, 'questionnaireId' => $questionnaireId]),
             'submitBtn' => trans('admin.update')
         ];
-        return view(AD . '.providers.calendar_form')->with($data);
+        return view(AD . '.services.questionnaire_form')->with($data);
     }
 
     public function updateServiceQuestionnaire(UpdateQuestionnaireRequest $request, $serviceId, $questionnaireId)
     {
         $questionnaire = Questionnaire::find($questionnaireId);
-        ServiceClass::createOrUpdateCalendar($questionnaire, $request, $serviceId);
+        ServiceClass::createOrUpdateQuestionnaire($questionnaire, $request, $serviceId);
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/services/' . $serviceId . '/questionnaire');
     }
@@ -276,6 +285,15 @@ class ServicesController extends Controller
             'unAvailableOrders' => $unAvailableOrders
         ];
         return response()->json($data);
+    }
+
+    public function getQuestionnaireOptions(Request $request)
+    {
+        $questionnaireId = $request->input('id');
+        $questionnaire = Questionnaire::find($questionnaireId);
+        $questionnaire->options_ar = unserialize($questionnaire->options_ar);
+        $questionnaire->options_en = unserialize($questionnaire->options_en);
+        return response()->json($questionnaire);
     }
 
 }
