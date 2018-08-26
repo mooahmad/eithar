@@ -13,7 +13,7 @@ class Category extends Model
 {
     use HasApiTokens, Notifiable, SoftDeletes;
 
-    public $timestamps = false;
+    public $timestamps = true;
     protected $table = 'categories';
     protected $dateFormat = 'Y-m-d H:m:s';
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];

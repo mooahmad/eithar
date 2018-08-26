@@ -11,7 +11,7 @@ class Customer extends Authenticatable
 {
     use HasApiTokens, Notifiable, SoftDeletes;
 
-    public $timestamps = false;
+    public $timestamps = true;
     protected $table = 'customers';
     protected $dateFormat = 'Y-m-d H:m:s';
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
