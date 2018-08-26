@@ -16,7 +16,7 @@ class Provider
         $day = $request->input('day');
         if(empty($day))
             $day = Carbon::today()->format('Y-m-d');
-        $provider = ProviderModel::where('id', $providerId)->with(['calendar' => function ($query) use ($day) {
+        $provider = ProviderModel::where('id', $providerId)->with('cities')->with(['calendar' => function ($query) use ($day) {
             $query->where('providers_calendars.start_date', 'like', "%$day%");
         }])->first();
         $provider->addHidden([
@@ -24,6 +24,11 @@ class Provider
             'last_name_ar', 'last_name_en', 'speciality_area_ar', 'speciality_area_en',
             'about_ar', 'about_en', 'experience_ar', 'experience_en', 'education_ar', 'education_en'
         ]);
+        $provider->cities = $provider->cities->each(function ($city) {
+            $city->addHidden([
+                'city_name_ara', 'city_name_eng'
+            ]);
+        });
         return Utilities::getValidationError(config('constants.responseStatus.success'),
                                              new MessageBag([
                                                                 "provider" => $provider
