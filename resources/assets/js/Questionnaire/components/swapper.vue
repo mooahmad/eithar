@@ -35,7 +35,7 @@
                 </label>
             </div>
         </div>
-        <component v-if="data.questionnaire !== null" :is="data.currentView" :questionnaire="data.questionnaire"></component>
+        <component v-if="data.questionnaire !== null || data.isCreate" :is="data.currentView" :questionnaire="data.questionnaire"></component>
     </div>
 </template>
 
@@ -53,13 +53,14 @@
             return {
                 data: {
                     currentView: "Single",
-                    questionnaire: null
+                    questionnaire: null,
+                    isCreate: false
                 }
             }
         },
         methods: {
             clickSwapper: function (event){
-                this.swapTypeView($(event.target).val());
+                this.swapTypeView($(event.target).val(), true);
         },
             swapTypeView: function (type, isClicked = true) {
                 let currentView = "Single";
@@ -105,6 +106,8 @@
                     .catch(function (error) {
                         console.log(error);
                     });
+            }else{
+                thisVue.data.isCreate = true;
             }
         },
         components: {

@@ -141,6 +141,9 @@
     <script>
         var unAvailablePages = "{{json_encode($unAvailablePages)}}";
         var serviceId = "{{$serviceId}}";
+        var questionnaireCurrentOrder = "{{ (isset($questionnaire))? $questionnaire->order : ''}}";
+        var questionnaireCurrentSymbol = "{{ (isset($questionnaire))? $questionnaire->rating_symbol : ''}}";
+        var questionnaireCurrentLevels = "{{ (isset($questionnaire))? $questionnaire->rating_levels : ''}}";
     </script>
     <script src="{{ asset('public/assets/pages/scripts/profile.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('public/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js') }}"

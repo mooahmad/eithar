@@ -53,6 +53,8 @@ class ServiceClass
         $questionnaire->options_en = serialize($request->input('options_en', ''));
         $questionnaire->pagination = $request->input('page');
         $questionnaire->order = $request->input('order');
+        $questionnaire->rating_symbol = $request->input('symbol', null);
+        $questionnaire->rating_levels = $request->input('rating_levels', null);
         return $questionnaire->save();
     }
 

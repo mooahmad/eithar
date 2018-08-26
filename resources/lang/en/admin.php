@@ -140,5 +140,7 @@ return [
     'type_description' => 'Type description',
     'page' => 'page',
     'order_on_page' => 'Order on page',
+    'symbol' => 'Symbol',
+    'rating_levels' => 'Rating levels',
 
 ];

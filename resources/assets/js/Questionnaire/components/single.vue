@@ -21,8 +21,9 @@
         },
         mounted: function () {
             let thisVue = this;
+            if(thisVue.questionnaire !== null)
           $.each(thisVue.questionnaire.options_ar, function (key, value) {
-              thisVue.data.options.push({option_ar: thisVue.questionnaire.options_ar[key], option_en: thisVue.questionnaire.options_ar[key]});
+              thisVue.data.options.push({option_ar: thisVue.questionnaire.options_ar[key], option_en: thisVue.questionnaire.options_en[key]});
           });
         },
         methods: {

@@ -115,6 +115,10 @@ return [
         "dateTime" => 4,
         "rating"   => 5
     ],
+    "ratingSymbols" => [
+        "stars" => [ "type" => 0, "name" => "Stars", "max_rating_level" => 5],
+        "numeric" => [  "type" => 1,  "name" => "Numeric", "max_rating_level" => 10]
+    ],
     "max_questionnaire_pages"    => 20,
     "max_questionnaire_per_page" => 5,
 ];

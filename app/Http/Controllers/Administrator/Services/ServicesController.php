@@ -296,4 +296,21 @@ class ServicesController extends Controller
         return response()->json($questionnaire);
     }
 
+    public function getSymbolLevels(Request $request, $type)
+    {
+        $levels = 0;
+         switch ($type){
+             case 0:
+                 $levels = config('constants.ratingSymbols.stars.max_rating_level');
+                 break;
+             case 1:
+                 $levels = config('constants.ratingSymbols.numeric.max_rating_level');
+                 break;
+         }
+        $data = [
+            "levels" => $levels
+        ];
+        return response()->json($data);
+    }
+
 }

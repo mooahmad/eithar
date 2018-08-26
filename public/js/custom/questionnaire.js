@@ -13,8 +13,10 @@ $(document).ready(function () {
                 var unAvailableOrders = res.unAvailableOrders;
                 $.each(ordersCount, function (index, item) {
                     var elOption = '<option value="' + item + '">' + item + '</option>';
+                    if(parseInt(item) === parseInt(questionnaireCurrentOrder))
+                        elOption = '<option value="' + item + '" selected>' + item + '</option>';
                     $.each(unAvailableOrders, function (oIndex, oItem) {
-                        if (item === oItem)
+                        if (item === oItem && parseInt(item) !== parseInt(questionnaireCurrentOrder))
                             elOption = '<option value="' + item + '" disabled="disabled">' + item + '</option>';
                     });
                     $('#order').append(elOption);

@@ -513,6 +513,12 @@ module.exports = g;
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__(24);
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
@@ -611,10 +617,10 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3155,7 +3161,7 @@ Popper.Defaults = Defaults;
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(2)))
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -3345,7 +3351,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -13716,12 +13722,6 @@ return jQuery;
 
 
 /***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(24);
-
-/***/ }),
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14084,7 +14084,7 @@ new Vue({
 /***/ (function(module, exports, __webpack_require__) {
 
 window._ = __webpack_require__(17);
-window.Popper = __webpack_require__(4).default;
+window.Popper = __webpack_require__(5).default;
 window.Lang = __webpack_require__(19);
 window.Vue = __webpack_require__(20);
 
@@ -14095,7 +14095,7 @@ window.Vue = __webpack_require__(20);
  */
 
 try {
-  window.$$ = window.jQuery = __webpack_require__(6);
+  window.$$ = window.jQuery = __webpack_require__(7);
 
   __webpack_require__(23);
 } catch (e) {}
@@ -14106,7 +14106,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(7);
+window.axios = __webpack_require__(3);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -43190,7 +43190,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(6)))
 
 /***/ }),
 /* 23 */
@@ -43202,7 +43202,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
 (function (global, factory) {
-   true ? factory(exports, __webpack_require__(6), __webpack_require__(4)) :
+   true ? factory(exports, __webpack_require__(7), __webpack_require__(5)) :
   typeof define === 'function' && define.amd ? define(['exports', 'jquery', 'popper.js'], factory) :
   (factory((global.bootstrap = {}),global.jQuery,global.Popper));
 }(this, (function (exports,$,Popper) { 'use strict';
@@ -47152,7 +47152,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 var utils = __webpack_require__(0);
 var bind = __webpack_require__(8);
 var Axios = __webpack_require__(26);
-var defaults = __webpack_require__(3);
+var defaults = __webpack_require__(4);
 
 /**
  * Create an instance of Axios
@@ -47235,7 +47235,7 @@ function isSlowBuffer (obj) {
 "use strict";
 
 
-var defaults = __webpack_require__(3);
+var defaults = __webpack_require__(4);
 var utils = __webpack_require__(0);
 var InterceptorManager = __webpack_require__(35);
 var dispatchRequest = __webpack_require__(36);
@@ -47774,7 +47774,7 @@ module.exports = InterceptorManager;
 var utils = __webpack_require__(0);
 var transformData = __webpack_require__(37);
 var isCancel = __webpack_require__(11);
-var defaults = __webpack_require__(3);
+var defaults = __webpack_require__(4);
 var isAbsoluteURL = __webpack_require__(38);
 var combineURLs = __webpack_require__(39);
 
@@ -48028,7 +48028,7 @@ module.exports = function spread(callback) {
 /* 42 */
 /***/ (function(module, exports) {
 
-module.exports = { "ar.admin": { "about": "About", "about_ar": "Arabic about", "about_en": "English about", "action": "Action", "actions": "Actions", "add_admin": "Add Admin", "add_category": "Add category", "add_provider": "Add provider", "add_questionnaire": "Add questionnaire", "add_service": "Add service", "admins": "Admins", "appear_on_website": "Appear on website", "benefits_ar": "Arabic benefits", "benefits_en": "English benefits", "birthdate": "Birth date", "cancel": "Cancel", "cat_name_col": "category_name_ar", "categories": "Categories", "change_password": "Change Password", "cities": "Cities", "code": "code", "confirm_delete": "Are You Sure?!", "contract_expiry_date": "Contract expiry date", "contract_start_date": "Contract start date", "country": "Country", "country_name_col": "country_name_eng", "create": "Create", "currency": "Currency", "currency_name_col": "name_ara", "customerService": "Customer service", "date_section": "Date section", "date_time": "Datetime", "default_language": "Default language", "delete": "Delete", "desc_ar": "Arabic description", "desc_en": "English description", "edit": "Edit", "education_ar": "Arabic education", "education_en": "English education", "email": "Email", "empty_data": "There is no data to show", "end_date": "End date", "enter_email": "Enter Admin Email", "enter_password": "Enter Admin Password", "error_login": "Please check your credentials", "error_message": "There is something went wrong", "experience_ar": "Arabic experience", "experience_en": "English experience", "expire_date": "Expire date", "female": "Female", "first_name_ar": "Arabic first name", "first_name_en": "English first name", "fname": "First Name", "forgot_password": "Forgot Password", "gender": "Gender", "id": "ID", "image": "Image", "is_active": "Is active", "is_available": "Is available", "is_required": "Is required", "is_saudi_nationality": "Saudi nationality", "last_name_ar": "Arabic last name", "last_name_en": "English last name", "lname": "Last Name", "login": "Login", "logout": "Log Out", "long_text": "Long Text", "male": "Male", "mname": "Middle Name", "mobile": "Mobile", "multiple_answer": "Multiple answers", "name": "Name", "name_ar": "Arabic name", "name_en": "English name", "national_id": "National ID", "nationality_id": "Nationality ID", "no": "No", "off": "Off", "on": "On", "order_on_page": "Order on page", "page": "page", "parent_cat": "Parent category", "password": "Password", "password_confirmation": "Confirm Password", "price": "Price", "providers": "Providers", "questionnaire": "Questionnaire", "rating": "Rating", "remember": "Remember me", "reset_password": "Reset password", "save": "Save", "select": "Select", "select_avatar": "Select Avatar", "select_date": "Select date", "select_nationality": "Select Nationality", "service": "Service", "serviceProvider": "Service provider", "service_type": "Service type", "services": "Services", "show_admin": "Show Admin", "show_category": "Show category", "show_provider": "Show provider", "show_questionnaire": "Show questionnaire", "show_service": "Show service", "signin": "Sign in", "single_answer": "Single answer", "speciality_area_ar": "Arabic speciality", "speciality_area_en": "English speciality", "srv_name_col": "name_ar", "start_date": "Start date", "status": "Status", "submit": "Submit", "subtitle_ar": "Arabic subtitle", "subtitle_en": "English subtitle", "success_message": "Everything is okay, you are on the right path", "superAdmin": "Super admin", "text": "Text", "time_before_next_visit": "Time before next visit", "title_ar": "Arabic title", "title_en": "English title", "type": "Type", "type_desc": "Type description", "type_description": "Type description", "update": "Update", "userType": "User type", "video": "Youtube ID", "visit_duration": "Visit duration", "yes": "Yes" }, "en.admin": { "about": "About", "about_ar": "Arabic about", "about_en": "English about", "action": "Action", "actions": "Actions", "add_admin": "Add Admin", "add_category": "Add category", "add_provider": "Add provider", "add_questionnaire": "Add questionnaire", "add_service": "Add service", "admins": "Admins", "appear_on_website": "Appear on website", "benefits_ar": "Arabic benefits", "benefits_en": "English benefits", "birthdate": "Birth date", "cancel": "Cancel", "cat_name_col": "category_name_en", "categories": "Categories", "change_password": "Change Password", "cities": "Cities", "code": "Code", "confirm_delete": "Are You Sure?!", "contract_expiry_date": "Contract expiry date", "contract_start_date": "Contract start date", "country": "Country", "country_name_col": "country_name_eng", "create": "create", "currency": "Currency", "currency_name_col": "name_eng", "customerService": "Customer service", "date_section": "Date section", "date_time": "Datetime", "default_language": "Default language", "delete": "Delete", "desc_ar": "Arabic description", "desc_en": "English description", "edit": "Edit", "education_ar": "Arabic education", "education_en": "English education", "email": "Email", "empty_data": "There is no data to show", "end_date": "End date", "enter_email": "Enter Admin Email", "enter_password": "Enter Admin Password", "error_login": "Please check your credentials", "error_message": "There is something went wrong", "experience_ar": "Arabic experience", "experience_en": "English experience", "expire_date": "Expire date", "female": "Female", "first_name_ar": "Arabic first name", "first_name_en": "English first name", "fname": "First Name", "forgot_password": "Forgot Password", "gender": "Gender", "id": "ID", "image": "Image", "is_active": "Is active", "is_available": "Is available", "is_required": "Is required", "is_saudi_nationality": "Saudi nationality", "last_name_ar": "Arabic last name", "last_name_en": "English last name", "lname": "Last Name", "login": "Login", "logout": "Log Out", "long_text": "Long Text", "male": "Male", "mname": "Middle Name", "mobile": "Mobile", "multiple_answer": "Multiple answers", "name": "Name", "name_ar": "Arabic name", "name_en": "English name", "national_id": "National ID", "nationality_id": "Nationality ID", "no": "No", "off": "Off", "on": "On", "order_on_page": "Order on page", "page": "page", "parent_cat": "Parent category", "password": "Password", "password_confirmation": "Confirm Password", "price": "Price", "providers": "Providers", "questionnaire": "Questionnaire", "rating": "Rating", "remember": "Remember me", "reset_password": "Reset password", "save": "Save", "select": "Select", "select_avatar": "Select Avatar", "select_date": "Select date", "select_nationality": "Select Nationality", "service": "Service", "serviceProvider": "Service provider", "service_type": "Service type", "services": "Services", "show_admin": "Show Admin", "show_category": "Show category", "show_provider": "Show provider", "show_questionnaire": "Show questionnaire", "show_service": "Show service", "signin": "Sign in", "single_answer": "Single answer", "speciality_area_ar": "Arabic speciality", "speciality_area_en": "English speciality", "srv_name_col": "name_en", "start_date": "Start date", "status": "Status", "submit": "Submit", "subtitle_ar": "Arabic subtitle", "subtitle_en": "English subtitle", "success_message": "Everything is okay, you are on the right path", "superAdmin": "Super admin", "text": "Text", "time_before_next_visit": "Time before next visit", "title_ar": "Arabic title", "title_en": "English title", "type": "Type", "type_desc": "Type description", "type_description": "Type description", "update": "Update", "userType": "User type", "video": "Youtube ID", "visit_duration": "Visit duration", "yes": "Yes" } };
+module.exports = { "ar.admin": { "about": "About", "about_ar": "Arabic about", "about_en": "English about", "action": "Action", "actions": "Actions", "add_admin": "Add Admin", "add_category": "Add category", "add_provider": "Add provider", "add_questionnaire": "Add questionnaire", "add_service": "Add service", "admins": "Admins", "appear_on_website": "Appear on website", "benefits_ar": "Arabic benefits", "benefits_en": "English benefits", "birthdate": "Birth date", "cancel": "Cancel", "cat_name_col": "category_name_ar", "categories": "Categories", "change_password": "Change Password", "cities": "Cities", "code": "code", "confirm_delete": "Are You Sure?!", "contract_expiry_date": "Contract expiry date", "contract_start_date": "Contract start date", "country": "Country", "country_name_col": "country_name_eng", "create": "Create", "currency": "Currency", "currency_name_col": "name_ara", "customerService": "Customer service", "date_section": "Date section", "date_time": "Datetime", "default_language": "Default language", "delete": "Delete", "desc_ar": "Arabic description", "desc_en": "English description", "edit": "Edit", "education_ar": "Arabic education", "education_en": "English education", "email": "Email", "empty_data": "There is no data to show", "end_date": "End date", "enter_email": "Enter Admin Email", "enter_password": "Enter Admin Password", "error_login": "Please check your credentials", "error_message": "There is something went wrong", "experience_ar": "Arabic experience", "experience_en": "English experience", "expire_date": "Expire date", "female": "Female", "first_name_ar": "Arabic first name", "first_name_en": "English first name", "fname": "First Name", "forgot_password": "Forgot Password", "gender": "Gender", "id": "ID", "image": "Image", "is_active": "Is active", "is_available": "Is available", "is_required": "Is required", "is_saudi_nationality": "Saudi nationality", "last_name_ar": "Arabic last name", "last_name_en": "English last name", "lname": "Last Name", "login": "Login", "logout": "Log Out", "long_text": "Long Text", "male": "Male", "mname": "Middle Name", "mobile": "Mobile", "multiple_answer": "Multiple answers", "name": "Name", "name_ar": "Arabic name", "name_en": "English name", "national_id": "National ID", "nationality_id": "Nationality ID", "no": "No", "off": "Off", "on": "On", "order_on_page": "Order on page", "page": "page", "parent_cat": "Parent category", "password": "Password", "password_confirmation": "Confirm Password", "price": "Price", "providers": "Providers", "questionnaire": "Questionnaire", "rating": "Rating", "rating_levels": "Rating levels", "remember": "Remember me", "reset_password": "Reset password", "save": "Save", "select": "Select", "select_avatar": "Select Avatar", "select_date": "Select date", "select_nationality": "Select Nationality", "service": "Service", "serviceProvider": "Service provider", "service_type": "Service type", "services": "Services", "show_admin": "Show Admin", "show_category": "Show category", "show_provider": "Show provider", "show_questionnaire": "Show questionnaire", "show_service": "Show service", "signin": "Sign in", "single_answer": "Single answer", "speciality_area_ar": "Arabic speciality", "speciality_area_en": "English speciality", "srv_name_col": "name_ar", "start_date": "Start date", "status": "Status", "submit": "Submit", "subtitle_ar": "Arabic subtitle", "subtitle_en": "English subtitle", "success_message": "Everything is okay, you are on the right path", "superAdmin": "Super admin", "symbol": "Symbol", "text": "Text", "time_before_next_visit": "Time before next visit", "title_ar": "Arabic title", "title_en": "English title", "type": "Type", "type_desc": "Type description", "type_description": "Type description", "update": "Update", "userType": "User type", "video": "Youtube ID", "visit_duration": "Visit duration", "yes": "Yes" }, "en.admin": { "about": "About", "about_ar": "Arabic about", "about_en": "English about", "action": "Action", "actions": "Actions", "add_admin": "Add Admin", "add_category": "Add category", "add_provider": "Add provider", "add_questionnaire": "Add questionnaire", "add_service": "Add service", "admins": "Admins", "appear_on_website": "Appear on website", "benefits_ar": "Arabic benefits", "benefits_en": "English benefits", "birthdate": "Birth date", "cancel": "Cancel", "cat_name_col": "category_name_en", "categories": "Categories", "change_password": "Change Password", "cities": "Cities", "code": "Code", "confirm_delete": "Are You Sure?!", "contract_expiry_date": "Contract expiry date", "contract_start_date": "Contract start date", "country": "Country", "country_name_col": "country_name_eng", "create": "create", "currency": "Currency", "currency_name_col": "name_eng", "customerService": "Customer service", "date_section": "Date section", "date_time": "Datetime", "default_language": "Default language", "delete": "Delete", "desc_ar": "Arabic description", "desc_en": "English description", "edit": "Edit", "education_ar": "Arabic education", "education_en": "English education", "email": "Email", "empty_data": "There is no data to show", "end_date": "End date", "enter_email": "Enter Admin Email", "enter_password": "Enter Admin Password", "error_login": "Please check your credentials", "error_message": "There is something went wrong", "experience_ar": "Arabic experience", "experience_en": "English experience", "expire_date": "Expire date", "female": "Female", "first_name_ar": "Arabic first name", "first_name_en": "English first name", "fname": "First Name", "forgot_password": "Forgot Password", "gender": "Gender", "id": "ID", "image": "Image", "is_active": "Is active", "is_available": "Is available", "is_required": "Is required", "is_saudi_nationality": "Saudi nationality", "last_name_ar": "Arabic last name", "last_name_en": "English last name", "lname": "Last Name", "login": "Login", "logout": "Log Out", "long_text": "Long Text", "male": "Male", "mname": "Middle Name", "mobile": "Mobile", "multiple_answer": "Multiple answers", "name": "Name", "name_ar": "Arabic name", "name_en": "English name", "national_id": "National ID", "nationality_id": "Nationality ID", "no": "No", "off": "Off", "on": "On", "order_on_page": "Order on page", "page": "page", "parent_cat": "Parent category", "password": "Password", "password_confirmation": "Confirm Password", "price": "Price", "providers": "Providers", "questionnaire": "Questionnaire", "rating": "Rating", "rating_levels": "Rating levels", "remember": "Remember me", "reset_password": "Reset password", "save": "Save", "select": "Select", "select_avatar": "Select Avatar", "select_date": "Select date", "select_nationality": "Select Nationality", "service": "Service", "serviceProvider": "Service provider", "service_type": "Service type", "services": "Services", "show_admin": "Show Admin", "show_category": "Show category", "show_provider": "Show provider", "show_questionnaire": "Show questionnaire", "show_service": "Show service", "signin": "Sign in", "single_answer": "Single answer", "speciality_area_ar": "Arabic speciality", "speciality_area_en": "English speciality", "srv_name_col": "name_en", "start_date": "Start date", "status": "Status", "submit": "Submit", "subtitle_ar": "Arabic subtitle", "subtitle_en": "English subtitle", "success_message": "Everything is okay, you are on the right path", "superAdmin": "Super admin", "symbol": "Symbol", "text": "Text", "time_before_next_visit": "Time before next visit", "title_ar": "Arabic title", "title_en": "English title", "type": "Type", "type_desc": "Type description", "type_description": "Type description", "update": "Update", "userType": "User type", "video": "Youtube ID", "visit_duration": "Visit duration", "yes": "Yes" } };
 
 /***/ }),
 /* 43 */
@@ -48166,7 +48166,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dateTime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__dateTime__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rating__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__rating__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_axios__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_axios__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_axios__);
 //
 //
@@ -48223,13 +48223,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             data: {
                 currentView: "Single",
-                questionnaire: null
+                questionnaire: null,
+                isCreate: false
             }
         };
     },
     methods: {
         clickSwapper: function clickSwapper(event) {
-            this.swapTypeView($(event.target).val());
+            this.swapTypeView($(event.target).val(), true);
         },
         swapTypeView: function swapTypeView(type) {
             var isClicked = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
@@ -48275,6 +48276,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (error) {
                 console.log(error);
             });
+        } else {
+            thisVue.data.isCreate = true;
         }
     },
     components: {
@@ -48365,8 +48368,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mounted: function mounted() {
         var thisVue = this;
-        $.each(thisVue.questionnaire.options_ar, function (key, value) {
-            thisVue.data.options.push({ option_ar: thisVue.questionnaire.options_ar[key], option_en: thisVue.questionnaire.options_ar[key] });
+        if (thisVue.questionnaire !== null) $.each(thisVue.questionnaire.options_ar, function (key, value) {
+            thisVue.data.options.push({ option_ar: thisVue.questionnaire.options_ar[key], option_en: thisVue.questionnaire.options_en[key] });
         });
     },
     methods: {
@@ -48560,19 +48563,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: ["questionnaire"],
     data: function data() {
         return {
             data: {
-                optionsCount: [{
-                    num: 1
-                }],
+                options: [],
                 maxOptionsCount: 5
             }
         };
     },
+    mounted: function mounted() {
+        var thisVue = this;
+        if (thisVue.questionnaire !== null) $.each(thisVue.questionnaire.options_ar, function (key, value) {
+            thisVue.data.options.push({ option_ar: thisVue.questionnaire.options_ar[key], option_en: thisVue.questionnaire.options_en[key] });
+        });
+    },
     methods: {
         increamtOptions: function increamtOptions(event) {
-            if (this.data.optionsCount.length !== this.data.maxOptionsCount) this.data.optionsCount.push({ num: this.data.optionsCount.length + 1 });
+            if (this.data.options.length !== this.data.maxOptionsCount) this.data.options.push({ option_ar: "", option_en: "" });
         }
     },
     components: {
@@ -48591,8 +48599,15 @@ var render = function() {
   return _c(
     "div",
     [
-      _vm._l(_vm.data.optionsCount, function(count) {
-        return _c("TextOption", { key: count.num, attrs: { count: count.num } })
+      _vm._l(_vm.data.options, function(option, index) {
+        return _c("TextOption", {
+          key: index,
+          attrs: {
+            count: index,
+            option_ar: option.option_ar,
+            option_en: option.option_en
+          }
+        })
       }),
       _vm._v(" "),
       _c("div", { staticClass: "form-group" }, [
@@ -48916,13 +48931,50 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
 //
 //
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    methods: {},
+    mounted: function mounted() {
+        $('#symbol').find('option[value="' + questionnaireCurrentSymbol + '"]').prop('selected', true);
+        $('#symbol').on('change', function () {
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(baseUrl + '/Administrator/services/questionnaire/symbollevels/' + $(this).find('option:selected').val()).then(function (response) {
+                $('#rating_levels').find('option').remove().end();
+                for (var i = 1; i <= response.data.levels; i++) {
+                    var option = '<option value="' + i + '">' + i + '</option>';
+                    if (i === parseInt(questionnaireCurrentLevels)) option = '<option value="' + i + '" selected>' + i + '</option>';
+                    $('#rating_levels').append(option);
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }).change();
+    }
+});
 
 /***/ }),
 /* 66 */
@@ -48932,9 +48984,49 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "form-group" })
+  return _c("div", [
+    _c("div", { staticClass: "form-group" }, [
+      _c("label", { staticClass: "control-label" }, [
+        _vm._v("\n        " + _vm._s(_vm._f("trans")("admin.symbol")) + " "),
+        _c("span", { staticClass: "required" }, [_vm._v(" * ")])
+      ]),
+      _vm._v(" "),
+      _vm._m(0)
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group" }, [
+      _c("label", { staticClass: "control-label" }, [
+        _vm._v(
+          "\n        " + _vm._s(_vm._f("trans")("admin.rating_levels")) + " "
+        ),
+        _c("span", { staticClass: "required" }, [_vm._v(" * ")])
+      ]),
+      _vm._v(" "),
+      _c("select", {
+        staticClass: "form-control",
+        attrs: { name: "rating_levels", id: "rating_levels" }
+      })
+    ])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "select",
+      { staticClass: "form-control", attrs: { name: "symbol", id: "symbol" } },
+      [
+        _c("option", { attrs: { value: "0", selected: "" } }, [
+          _vm._v("Stars")
+        ]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "1" } }, [_vm._v("Numeric")])
+      ]
+    )
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -49067,7 +49159,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm.data.questionnaire !== null
+      _vm.data.questionnaire !== null || _vm.data.isCreate
         ? _c(_vm.data.currentView, {
             tag: "component",
             attrs: { questionnaire: _vm.data.questionnaire }
