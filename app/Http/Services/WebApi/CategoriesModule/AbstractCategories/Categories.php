@@ -78,6 +78,9 @@ abstract class Categories implements ICategory
         $questionnaire->each(function ($questionnaire) {
             $questionnaire->options_ar = unserialize($questionnaire->options_ar);
             $questionnaire->options_en = unserialize($questionnaire->options_en);
+            $questionnaire->addHidden([
+                'title_ar', 'title_en', 'subtitle_ar', 'subtitle_en'
+            ]);
     });
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([
