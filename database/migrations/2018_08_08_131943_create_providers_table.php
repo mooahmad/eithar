@@ -25,6 +25,7 @@ class CreateProvidersTable extends Migration
             $table->string('speciality_area_ar', 255)->nullable();
             $table->string('speciality_area_en', 255)->nullable();
             $table->string('profile_picture_path', 255)->nullable();
+            $table->string('video', 255)->nullable();
             $table->double('price')->nullable();
             $table->double('rating')->nullable();
             $table->longText('about_ar')->nullable();
@@ -33,11 +34,11 @@ class CreateProvidersTable extends Migration
             $table->string('experience_en', 255)->nullable();
             $table->string('education_ar', 255)->nullable();
             $table->string('education_en', 255)->nullable();
-            $table->integer('no_of_followers')->nullable();
-            $table->integer('no_of_likes')->nullable();
-            $table->integer('no_of_views')->nullable();
-            $table->integer('no_of_ratings')->nullable();
-            $table->integer('no_of_reviews')->nullable();
+            $table->integer('no_of_followers')->default(0);
+            $table->integer('no_of_likes')->default(0);
+            $table->integer('no_of_views')->default(0);
+            $table->integer('no_of_ratings')->default(0);
+            $table->integer('no_of_reviews')->default(0);
             $table->integer('is_active')->nullable();
             $table->dateTime('contract_start_date')->nullable();
             $table->dateTime('contract_expiry_date')->nullable();

@@ -26,6 +26,7 @@ class ProviderClass
         $provider->last_name_en = $request->input('last_name_en');
         $provider->speciality_area_ar = $request->input('speciality_area_ar');
         $provider->speciality_area_en = $request->input('speciality_area_en');
+        $provider->video = $request->input('video');
         $provider->price = $request->input('price');
         $provider->rating = $request->input('rating');
         $provider->about_ar = $request->input('about_ar');
@@ -73,6 +74,7 @@ class ProviderClass
                                                              ['end_date', '>', $endDate]
                                                          ])
                                                ->orWhere([
+                                                             ['start_date', '<', $endDate],
                                                              ['start_date', '>', $startDate],
                                                              ['end_date', '>', $endDate]
                                                          ])
@@ -82,7 +84,8 @@ class ProviderClass
                                                          ])
                                                ->orWhere([
                                                              ['start_date', '<', $startDate],
-                                                             ['end_date', '<', $endDate]
+                                                             ['end_date', '<', $endDate],
+                                                             ['end_date', '>', $startDate]
                                                          ])
                                                ->orWhere([
                                                              ['start_date', '<', $startDate],

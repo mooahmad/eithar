@@ -179,6 +179,16 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <label class="control-label">
+                                            {{ trans('admin.video') }} <span class="required"> * </span>
+                                        </label>
+                                        {!! Form::text('video', (isset($provider))? $provider->video : old('video'), array('id'=>'video', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.video'))) !!}
+                                        @if($errors->has('video'))
+                                            <span class="help-block text-danger">{{ $errors->first('video') }}</span>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group">
                                         <label for="name" class="control-label">
                                             {{ trans('admin.price') }} <span class="required"> * </span>
                                         </label>

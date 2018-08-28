@@ -24,7 +24,7 @@ class UpdateCalendarRequest extends FormRequest
     public function rules()
     {
         return [
-            'start_date' => 'required|date',
+            'start_date' => 'required|date|after:now',
             'end_date'   => 'required|date|after:start_date',
         ];
     }
