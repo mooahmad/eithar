@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Administrator\Categories;
 use App\Helpers\Utilities;
 use App\Http\Requests\Categories\CreateCategoryRequest;
 use App\Http\Requests\Categories\UpdateCategoryRequest;
-use App\Http\Services\Adminstrator\CategoryModule\ClassesCategory\CategoryClass;
+use App\Http\Services\Adminstrator\CategoryModule\ClassesCategory\PromoCodeClass;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -61,8 +61,8 @@ class CategoriesController extends Controller
             return response()->view('errors.403', [], 403);
         }
         $category = new Category();
-        CategoryClass::createOrUpdate($category, $request);
-        CategoryClass::uploadImage($request, 'avatar', 'public/images/categories', $category, 'profile_picture_path');
+        PromoCodeClass::createOrUpdate($category, $request);
+        PromoCodeClass::uploadImage($request, 'avatar', 'public/images/categories', $category, 'profile_picture_path');
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/categories');
     }
@@ -104,8 +104,8 @@ class CategoriesController extends Controller
             return response()->view('errors.403', [], 403);
         }
         $category = Category::findOrFail($id);
-        CategoryClass::createOrUpdate($category, $request, false);
-        CategoryClass::uploadImage($request, 'avatar', 'public/images/categories', $category, 'profile_picture_path');
+        PromoCodeClass::createOrUpdate($category, $request, false);
+        PromoCodeClass::uploadImage($request, 'avatar', 'public/images/categories', $category, 'profile_picture_path');
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/categories');
     }

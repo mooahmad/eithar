@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\PromoCode;
 use App\Models\Questionnaire;
 use App\Models\Service;
 use App\Policies\AdminPolicy;
 use App\Policies\CategoryPolicy;
+use App\Policies\PromoCodesPolicy;
 use App\Policies\QuestionnairePolicy;
 use App\Policies\ServicePolicy;
 use App\User;
@@ -25,6 +27,7 @@ class AuthServiceProvider extends ServiceProvider
         User::class => AdminPolicy::class,
         Category::class => CategoryPolicy::class,
         Service::class => ServicePolicy::class,
+        PromoCode::class => PromoCodesPolicy::class,
     ];
 
     /**
@@ -59,6 +62,12 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('provider.create', 'App\Policies\ProviderPolicy@create');
         Gate::define('provider.update', 'App\Policies\ProviderPolicy@update');
         Gate::define('provider.delete', 'App\Policies\ProviderPolicy@delete');
+
+        // policies promoCodes
+        Gate::define('promo_code.view', 'App\Policies\PromoCodesPolicy@view');
+        Gate::define('promo_code.create', 'App\Policies\PromoCodesPolicy@create');
+        Gate::define('promo_code.update', 'App\Policies\PromoCodesPolicy@update');
+        Gate::define('promo_code.delete', 'App\Policies\PromoCodesPolicy@delete');
 
         // passport
         Passport::routes();

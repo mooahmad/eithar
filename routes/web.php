@@ -9,6 +9,7 @@ define('CATN', 'Administrator\Categories');
 define('SRVN', 'Administrator\Services');
 define('PRON', 'Administrator\Providers');
 define('QUN', 'Administrator\Questionnaire');
+define('PRCN', 'Administrator\promo_codes');
 
 //Frontend Routes
 Route::group(['namespace' => FE], function () {
@@ -111,5 +112,18 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => PRON, 'prefix' => AD],
     // calendar dataTable
     Route::post('providers/{id}/calendar/datatable', 'ProvidersController@getCalendarDatatable')->name('getCalendarDatatable');
     Route::post('deleteCalendar', 'ProvidersController@deleteCalendar')->name('deleteCalendar');
+});
+
+Route::group(['middleware' => 'AdminAuth', 'namespace' => PRCN, 'prefix' => AD], function () {
+    Route::resource('promo_codes', 'PromoCodesController',
+        ['names' => [
+            'index'   => 'show promo code',
+            'create'  => 'create promo code',
+            'show'    => 'show promo code',
+            'edit'    => 'edit promo code',
+            'destroy' => 'delete promo code'
+        ]]);
+    Route::get('getpromocodesdatatable', 'PromoCodesController@getPromoCodesDataTable')->name('getPromoCodesDataTable');
+    Route::post('deletepromocodes', 'PromoCodesController@deletePromoCodes')->name('deletePromoCodes');
 });
 

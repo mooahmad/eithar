@@ -142,5 +142,13 @@ return [
     'order_on_page' => 'Order on page',
     'symbol' => 'Symbol',
     'rating_levels' => 'Rating levels',
+    'promo_codes' => 'Promo codes',
+    'add_promo_code' => 'Add promo code',
+    'show_promo_code' => 'Show promo code',
+    'is_approved' => 'Is approved',
+    'code_en' => 'English code',
+    'code_ar' => 'Arabic code',
+    'comment' => 'Comment',
+'discount_percentage' => 'Discount percentage',
 
 ];
