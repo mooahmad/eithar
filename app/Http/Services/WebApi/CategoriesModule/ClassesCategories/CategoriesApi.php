@@ -23,4 +23,13 @@ class CategoriesApi extends Categories
             return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
         return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
     }
+
+    public function getServiceQuestionnaire($id, $page = 1)
+    {
+        $validationObject = parent::getServiceQuestionnaire($id, $page);
+        if ($validationObject->error == config('constants.responseStatus.success'))
+            return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
+    }
+
 }

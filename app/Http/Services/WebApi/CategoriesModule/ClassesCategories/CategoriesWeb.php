@@ -12,7 +12,7 @@ class CategoriesWeb extends Categories
         $data = parent::getMainCategories($request);
     }
 
-    public function getChildCategories(Request $request, $id)
+    public function getChildCategories($id)
     {
         $data = parent::getChildCategories($id);
     }
