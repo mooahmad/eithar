@@ -34,11 +34,11 @@ class CreateServicesTable extends Migration
             $table->integer('time_before_next_visit')->nullable();
             $table->integer('is_active_service')->nullable();
             $table->dateTime('expiry_date')->nullable();
-            $table->integer('no_of_followers')->nullable();
-            $table->integer('no_of_likes')->nullable();
-            $table->integer('no_of_views')->nullable();
-            $table->integer('no_of_ratings')->nullable();
-            $table->integer('no_of_reviews')->nullable();
+            $table->integer('no_of_followers')->default(0);
+            $table->integer('no_of_likes')->default(0);
+            $table->integer('no_of_views')->default(0);
+            $table->integer('no_of_ratings')->default(0);
+            $table->integer('no_of_reviews')->default(0);
             $table->integer('appear_on_website')->nullable();
             $table->integer('added_by')->nullable();
             $table->softDeletes();

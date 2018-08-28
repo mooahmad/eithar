@@ -48,8 +48,8 @@ class CreateProviderServicesTable extends Migration
     {
         // relations
         Schema::table('provider_services', function (Blueprint $table) {
-            $table->dropForeign(['provider_id']);
             $table->dropForeign(['service_id']);
+            $table->dropForeign(['provider_id']);
         });
         Schema::dropIfExists('provider_services');
     }

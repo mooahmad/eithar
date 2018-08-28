@@ -8,6 +8,7 @@ define('FE', 'Frontend');
 define('CATN', 'Administrator\Categories');
 define('SRVN', 'Administrator\Services');
 define('PRON', 'Administrator\Providers');
+define('QUN', 'Administrator\Questionnaire');
 
 //Frontend Routes
 Route::group(['namespace' => FE], function () {
@@ -72,6 +73,20 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => SRVN, 'prefix' => AD],
                     ]]);
     Route::get('getservicesdatatable', 'ServicesController@getServicesDataTable')->name('getServicesDatatable');
     Route::post('deleteservices', 'ServicesController@deleteServices')->name('deleteServices');
+
+    // questionnaires section
+    Route::get('services/{id}/questionnaire', 'ServicesController@showServiceQuestionnaire')->name('showServiceQuestionnaire');
+    Route::get('services/{id}/questionnaire/create', 'ServicesController@createServiceQuestionnaire')->name('createServiceQuestionnaire');
+    Route::post('services/{id}/questionnaire/store', 'ServicesController@storeServiceQuestionnaire')->name('storeServiceQuestionnaire');
+    Route::get('services/{id}/questionnaire/{questionnaireId}/edit', 'ServicesController@editServiceQuestionnaire')->name('editServiceQuestionnaire');
+    Route::post('services/{id}/questionnaire/{questionnaireId}/update', 'ServicesController@updateServiceQuestionnaire')->name('updateServiceQuestionnaire');
+    Route::get('services/{id}/questionnaire/{page}', 'ServicesController@getAvailablePageOrders')->name('getAvailablePageOrders');
+    Route::post('services/questionnaire/options', 'ServicesController@getQuestionnaireOptions')->name('getQuestionnaireOptions');
+    Route::get('services/questionnaire/symbollevels/{type}', 'ServicesController@getSymbolLevels')->name('getSymbolLevels');
+
+    // questionnaires dataTable
+    Route::post('services/{id}/questionnaire/datatable', 'ServicesController@getQuestionnaireDatatable')->name('getQuestionnaireDatatable');
+    Route::post('deleteQuestionnaire', 'ServicesController@deleteQuestionnaire')->name('deleteQuestionnaire');
 });
 
 Route::group(['middleware' => 'AdminAuth', 'namespace' => PRON, 'prefix' => AD], function () {
@@ -97,5 +112,4 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => PRON, 'prefix' => AD],
     Route::post('providers/{id}/calendar/datatable', 'ProvidersController@getCalendarDatatable')->name('getCalendarDatatable');
     Route::post('deleteCalendar', 'ProvidersController@deleteCalendar')->name('deleteCalendar');
 });
-
 

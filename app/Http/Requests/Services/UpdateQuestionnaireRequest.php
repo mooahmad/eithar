@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Providers;
+namespace App\Http\Requests\Services;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateCalendarRequest extends FormRequest
+class UpdateQuestionnaireRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,7 @@ class UpdateCalendarRequest extends FormRequest
     public function rules()
     {
         return [
-            'start_date' => 'required|date|after:now',
-            'end_date'   => 'required|date|after:start_date',
+
         ];
     }
 }

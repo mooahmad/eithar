@@ -7,6 +7,7 @@ use App\Helpers\Utilities;
 use App\Http\Services\WebApi\CategoriesModule\ICategories\ICategory;
 use App\Models\Category;
 use App\Models\Provider;
+use App\Models\Questionnaire;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -80,5 +81,24 @@ abstract class Categories implements ICategory
                                                                 "services"   => $services,
                                                                 "providers"  => $providers
                                                             ]));
+    }
+
+    public function getServiceQuestionnaire($id, $page = 1)
+    {
+        $pagesCount = Questionnaire::where('service_id', $id)->max('pagination');
+        $questionnaire = Questionnaire::where([['service_id', $id], ['pagination', $page]])->get();
+        $questionnaire->each(function ($questionnaire) {
+            $questionnaire->options_ar = unserialize($questionnaire->options_ar);
+            $questionnaire->options_en = unserialize($questionnaire->options_en);
+            $questionnaire->addHidden([
+                'title_ar', 'title_en', 'subtitle_ar', 'subtitle_en'
+            ]);
+    });
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([
+                "questionnaire" => $questionnaire,
+                "pagesCount" => $pagesCount,
+                "currentPage" => $page
+            ]));
     }
 }
