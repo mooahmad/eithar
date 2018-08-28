@@ -26,4 +26,10 @@ class CategoriesController extends Controller
         $categories = new CategoriesStrategy(ApiHelpers::requestType($request));
         return $categories->getChildCategories($id);
     }
+
+    public function getServiceQuestionnaire(Request $request, $id, $page = 1)
+    {
+        $categories = new CategoriesStrategy(ApiHelpers::requestType($request));
+        return $categories->getServiceQuestionnaire($id, $page);
+    }
 }

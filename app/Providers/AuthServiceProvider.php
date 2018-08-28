@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\Questionnaire;
 use App\Models\Service;
 use App\Policies\AdminPolicy;
 use App\Policies\CategoryPolicy;
+use App\Policies\QuestionnairePolicy;
 use App\Policies\ServicePolicy;
 use App\User;
 use Illuminate\Support\Facades\Gate;

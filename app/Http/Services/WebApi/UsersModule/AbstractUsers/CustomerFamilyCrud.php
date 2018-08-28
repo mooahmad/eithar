@@ -68,9 +68,6 @@ abstract class CustomerFamilyCrud implements ICustomerFamilyCrud
         $member->mobile_number = $request->input('mobile');
         $member->national_id = $request->input('national_id');
         $member->address = $request->input('address');
-        if($isCreate)
-        $member->created_at = Carbon::now()->toDateTimeString();
-        $member->updated_at = Carbon::now()->toDateTimeString();
         return $member;
     }
 

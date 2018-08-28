@@ -7,6 +7,7 @@ use App\Helpers\Utilities;
 use App\Http\Services\WebApi\CategoriesModule\ICategories\ICategory;
 use App\Models\Category;
 use App\Models\Provider;
+use App\Models\Questionnaire;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -53,9 +54,21 @@ abstract class Categories implements ICategory
         } else {
             foreach ($services as $service) {
                 if ($service->category && $service->category->category_parent_id == config('constants.categories.Doctor')) {
-                    $providers = $service->providers()->whereHas('cities', function ($query) use ($customerCity) {
+                    $providers = $service->providers()->with('cities')->whereHas('cities', function ($query) use ($customerCity) {
                         $query->where('cities.id', $customerCity);
                     })->get();
+                    $providers = $providers->each(function ($provider) {
+                        $provider->addHidden([
+                            'title_ar', 'title_en', 'first_name_ar', 'first_name_en',
+                            'last_name_ar', 'last_name_en', 'speciality_area_ar', 'speciality_area_en',
+                            'about_ar', 'about_en', 'experience_ar', 'experience_en', 'education_ar', 'education_en', 'pivot'
+                        ]);
+                        $provider->cities = $provider->cities->each(function ($city) {
+                            $city->addHidden([
+                                'city_name_ara', 'city_name_eng'
+                            ]);
+                        });
+                    });
                     $services = [];
                     break;
                 }
@@ -68,5 +81,24 @@ abstract class Categories implements ICategory
                                                                 "services"   => $services,
                                                                 "providers"  => $providers
                                                             ]));
+    }
+
+    public function getServiceQuestionnaire($id, $page = 1)
+    {
+        $pagesCount = Questionnaire::where('service_id', $id)->max('pagination');
+        $questionnaire = Questionnaire::where([['service_id', $id], ['pagination', $page]])->get();
+        $questionnaire->each(function ($questionnaire) {
+            $questionnaire->options_ar = unserialize($questionnaire->options_ar);
+            $questionnaire->options_en = unserialize($questionnaire->options_en);
+            $questionnaire->addHidden([
+                'title_ar', 'title_en', 'subtitle_ar', 'subtitle_en'
+            ]);
+    });
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([
+                "questionnaire" => $questionnaire,
+                "pagesCount" => $pagesCount,
+                "currentPage" => $page
+            ]));
     }
 }

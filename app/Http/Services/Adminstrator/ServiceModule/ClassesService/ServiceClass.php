@@ -4,6 +4,7 @@ namespace App\Http\Services\Adminstrator\ServiceModule\ClassesService;
 
 
 use App\Helpers\Utilities;
+use App\Models\Questionnaire;
 use App\Models\Service;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -36,6 +37,25 @@ class ServiceClass
         if ($isCreate)
             $service->added_by = Auth::id();
         return $service->save();
+    }
+
+    public static function createOrUpdateQuestionnaire(Questionnaire $questionnaire, $request, $serviceId, $isCreate = true)
+    {
+        $questionnaire->service_id = $serviceId;
+        $questionnaire->title_ar = $request->input('title_ar');
+        $questionnaire->title_en = $request->input('title_en');
+        $questionnaire->subtitle_ar = $request->input('subtitle_ar');
+        $questionnaire->subtitle_en = $request->input('subtitle_en');
+        $questionnaire->type = $request->input('type');
+        $questionnaire->type_description = $request->input('type_description');
+        $questionnaire->is_required = $request->input('is_required');
+        $questionnaire->options_ar = serialize($request->input('options_ar', ''));
+        $questionnaire->options_en = serialize($request->input('options_en', ''));
+        $questionnaire->pagination = $request->input('page');
+        $questionnaire->order = $request->input('order');
+        $questionnaire->rating_symbol = $request->input('symbol', null);
+        $questionnaire->rating_levels = $request->input('rating_levels', null);
+        return $questionnaire->save();
     }
 
     /**

@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Administrator\Services;
 
 use App\Helpers\Utilities;
+use App\Http\Requests\Services\CreateQuestionaireRequest;
 use App\Http\Requests\Services\CreateServiceRequest;
+use App\Http\Requests\Services\UpdateQuestionnaireRequest;
 use App\Http\Requests\Services\UpdateServiceRequest;
 use App\Http\Services\Adminstrator\ServiceModule\ClassesService\ServiceClass;
 use App\Models\Category;
 use App\Models\Country;
 use App\Models\Currency;
+use App\Models\Questionnaire;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -49,8 +52,8 @@ class ServicesController extends Controller
         $doctorID = config('constants.categories.Doctor');
         $categories = Category::doesntHave('categories')->where('id', '<>', $doctorID)->get();
         $categories = $categories->reject(function ($category, $key) use ($doctorID) {
-            if($category->category_parent_id == $doctorID){
-                if($category->services->isEmpty())
+            if ($category->category_parent_id == $doctorID) {
+                if ($category->services->isEmpty())
                     return false;
                 return true;
             }
@@ -106,8 +109,8 @@ class ServicesController extends Controller
         $doctorID = config('constants.categories.Doctor');
         $categories = Category::doesntHave('categories')->where('id', '<>', $doctorID)->get();
         $categories = $categories->reject(function ($category, $key) use ($doctorID, $service) {
-            if($category->category_parent_id == $doctorID && $category->id != $service->category_id){
-                if($category->services->isEmpty())
+            if ($category->category_parent_id == $doctorID && $category->id != $service->category_id) {
+                if ($category->services->isEmpty())
                     return false;
                 return true;
             }
@@ -159,7 +162,9 @@ class ServicesController extends Controller
         $dataTable = DataTables::of($services)
                                ->addColumn('actions', function ($service) {
                                    $editURL = url(AD . '/services/' . $service->id . '/edit');
-                                   return View::make('Administrator.widgets.dataTablesActions', ['editURL' => $editURL]);
+                                   $questionnaireURL = url(AD . '/services/' . $service->id . '/questionnaire');
+                                   $addQuestionnaireURL = url(AD . '/services/' . $service->id . '/questionnaire/create');
+                                   return View::make('Administrator.services.widgets.dataTableQuestionnaireAction', ['editURL' => $editURL, 'questionnaireURL' => $questionnaireURL, 'addQuestionnaireURL' => $addQuestionnaireURL]);
                                })
                                ->addColumn('image', function ($service) {
                                    if (!empty($service->profile_picture_path)) {
@@ -181,6 +186,131 @@ class ServicesController extends Controller
         }
         $ids = $request->input('ids');
         return Service::whereIn('id', $ids)->delete();
+    }
+
+    // questionnaire section
+
+    public function showServiceQuestionnaire($id)
+    {
+        $data = [
+            'serviceId'       => $id,
+        ];
+        return view(AD . '.services.questionnaire_index')->with($data);
+    }
+
+    public function createServiceQuestionnaire(Request $request, $serviceId)
+    {
+        $pages = range(0, config('constants.max_questionnaire_pages'));
+        unset($pages[0]);
+        $unAvailablePages = Questionnaire::where('service_id', $serviceId)
+            ->groupBy('pagination')
+            ->havingRaw('count(pagination) >= ' . config('constants.max_questionnaire_per_page'))
+            ->pluck('pagination')->toArray();
+        $data = [
+            'serviceId'       => $serviceId,
+            'pages'           => $pages,
+            'unAvailablePages' => $unAvailablePages,
+            'formRoute' => route('storeServiceQuestionnaire', ['serviceId' => $serviceId]),
+            'submitBtn' => trans('admin.create')
+        ];
+        return view(AD . '.services.questionnaire_form')->with($data);
+    }
+
+    public function storeServiceQuestionnaire(CreateQuestionaireRequest $request, $serviceId)
+    {
+        $questionnaire = new Questionnaire();
+        ServiceClass::createOrUpdateQuestionnaire($questionnaire, $request, $serviceId);
+        session()->flash('success_msg', trans('admin.success_message'));
+        return redirect(AD . '/services/' . $serviceId . '/questionnaire');
+    }
+
+    public function editServiceQuestionnaire(Request $request, $serviceId, $questionnaireId)
+    {
+        $pages = range(0, config('constants.max_questionnaire_pages'));
+        unset($pages[0]);
+        $unAvailablePages = Questionnaire::where('service_id', $serviceId)
+            ->groupBy('pagination')
+            ->havingRaw('count(pagination) >= ' . config('constants.max_questionnaire_per_page'))
+            ->pluck('pagination')->toArray();
+        $questionnaire = Questionnaire::find($questionnaireId);
+        $data = [
+            'serviceId'       => $serviceId,
+            'pages'           => $pages,
+            'unAvailablePages' => $unAvailablePages,
+            'questionnaire'  => $questionnaire,
+            'formRoute' => route('updateServiceQuestionnaire', ['id' => $serviceId, 'questionnaireId' => $questionnaireId]),
+            'submitBtn' => trans('admin.update')
+        ];
+        return view(AD . '.services.questionnaire_form')->with($data);
+    }
+
+    public function updateServiceQuestionnaire(UpdateQuestionnaireRequest $request, $serviceId, $questionnaireId)
+    {
+        $questionnaire = Questionnaire::find($questionnaireId);
+        ServiceClass::createOrUpdateQuestionnaire($questionnaire, $request, $serviceId);
+        session()->flash('success_msg', trans('admin.success_message'));
+        return redirect(AD . '/services/' . $serviceId . '/questionnaire');
+    }
+
+    public function getQuestionnaireDatatable($id)
+    {
+        $questionnaire = Questionnaire::where('service_id', $id);
+        $dataTable = DataTables::of($questionnaire)
+                               ->addColumn('actions', function ($questionnaire) use ($id) {
+                                   $editURL = url(AD . '/services/' . $id . '/questionnaire/' . $questionnaire->id . '/edit');
+                                   return View::make('Administrator.widgets.dataTablesActions', ['editURL' => $editURL]);
+                               })
+                               ->rawColumns(['actions'])
+                               ->make(true);
+        return $dataTable;
+    }
+
+    public function deleteQuestionnaire(Request $request)
+    {
+        if (Gate::denies('service.delete', new Service())) {
+            return response()->view('errors.403', [], 403);
+        }
+        $ids = $request->input('ids');
+        return Questionnaire::whereIn('id', $ids)->delete();
+    }
+
+    public function getAvailablePageOrders(Request $request, $serviceId, $page)
+    {
+        $ordersCount = range(0, config('constants.max_questionnaire_per_page'));
+        unset($ordersCount[0]);
+        $unAvailableOrders = Questionnaire::where([['service_id', $serviceId], ['pagination', $page]])
+            ->pluck('order')->toArray();
+        $data = [
+            'ordersCount' => $ordersCount,
+            'unAvailableOrders' => $unAvailableOrders
+        ];
+        return response()->json($data);
+    }
+
+    public function getQuestionnaireOptions(Request $request)
+    {
+        $questionnaireId = $request->input('id');
+        $questionnaire = Questionnaire::find($questionnaireId);
+        $questionnaire->options_ar = unserialize($questionnaire->options_ar);
+        $questionnaire->options_en = unserialize($questionnaire->options_en);
+        return response()->json($questionnaire);
+    }
+
+    public function getSymbolLevels(Request $request, $type)
+    {
+        $levels = 0;
+         switch ($type){
+             case 0:
+                 $levels = config('constants.ratingSymbols.stars.max_rating_level');
+                 break;
+             case 1:
+                 $levels = config('constants.ratingSymbols.numeric.max_rating_level');
+                 break;
+         }
+        $data = [
+            "levels" => $levels
+        ];
+        return response()->json($data);
     }
 
 }

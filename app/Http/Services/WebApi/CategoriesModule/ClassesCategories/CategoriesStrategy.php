@@ -28,4 +28,9 @@ class CategoriesStrategy
     {
         return $this->strategy->getChildCategories($id);
     }
+
+    public function getServiceQuestionnaire($id, $page = 1)
+    {
+        return $this->strategy->getServiceQuestionnaire($id, $page);
+    }
 }

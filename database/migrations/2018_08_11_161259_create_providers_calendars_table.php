@@ -42,7 +42,7 @@ class CreateProvidersCalendarsTable extends Migration
     public function down()
     {
         // relations
-        Schema::table('provider_services', function (Blueprint $table) {
+        Schema::table('providers_calendars', function (Blueprint $table) {
             $table->dropForeign(['provider_id']);
         });
         Schema::dropIfExists('providers_calendars');
