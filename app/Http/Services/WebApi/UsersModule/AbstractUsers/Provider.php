@@ -14,10 +14,14 @@ class Provider
     public function getProvider($request, $providerId)
     {
         $day = $request->input('day');
-        if(empty($day))
-            $day = Carbon::today()->format('Y-m-d');
-        $provider = ProviderModel::where('id', $providerId)->with('cities')->with(['calendar' => function ($query) use ($day) {
-            $query->where('providers_calendars.start_date', 'like', "%$day%");
+        $provider = ProviderModel::where('id', $providerId)->with(['calendar' => function ($query) use ($day) {
+            if(empty($day)) {
+                $day = Carbon::today()->format('Y-m-d H:m:s');
+                $query->where('providers_calendars.start_date', '>=', "%$day%");
+            }else{
+                $day = Carbon::today()->format('Y-m-d');
+                $query->where('providers_calendars.start_date', 'like', "%$day%");
+            }
         }])->first();
         $provider->addHidden([
             'title_ar', 'title_en', 'first_name_ar', 'first_name_en',
