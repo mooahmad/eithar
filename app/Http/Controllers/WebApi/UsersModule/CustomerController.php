@@ -89,4 +89,9 @@ class CustomerController extends Controller
         $customerFamily = new CustomerFamilyCrudStrategy(ApiHelpers::requestType($request));
         return $customerFamily->getFamilyMembers($request);
     }
+
+    public function bookService(Request $request)
+    {
+
+    }
 }
