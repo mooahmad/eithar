@@ -19,8 +19,7 @@ class PromoCodeClass
         $promoCode->end_date = $request->input('end_date');
         $promoCode->type = $request->input('type');
         $promoCode->type_description = $request->input('type_description');
-        $promoCode->code_en = $request->input('code_en');
-        $promoCode->code_ar = $request->input('code_ar');
+        $promoCode->code = $request->input('code');
         $promoCode->discount_percentage = $request->input('discount_percentage');
         $promoCode->comment = $request->input('comment');
         $promoCode->is_approved = $request->input('is_approved');

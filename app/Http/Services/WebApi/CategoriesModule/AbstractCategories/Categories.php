@@ -6,7 +6,6 @@ namespace App\Http\Services\WebApi\CategoriesModule\AbstractCategories;
 use App\Helpers\Utilities;
 use App\Http\Services\WebApi\CategoriesModule\ICategories\ICategory;
 use App\Models\Category;
-use App\Models\Provider;
 use App\Models\Questionnaire;
 use App\Models\Service;
 use Illuminate\Http\Request;
