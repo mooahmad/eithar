@@ -19,7 +19,6 @@ class Provider
                 $day = Carbon::today()->format('Y-m-d H:m:s');
                 $query->where('providers_calendars.start_date', '>=', "%$day%");
             }else{
-                $day = Carbon::today()->format('Y-m-d');
                 $query->where('providers_calendars.start_date', 'like', "%$day%");
             }
         }])->first();
