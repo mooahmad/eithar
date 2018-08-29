@@ -55,4 +55,12 @@ class Questionnaire extends Model
         else
             return $this->subtitle_ar;
     }
+
+    public function getOptionsAttribute()
+    {
+        if(App::isLocale('en'))
+            return $this->options_en;
+        else
+            return $this->options_ar;
+    }
 }
