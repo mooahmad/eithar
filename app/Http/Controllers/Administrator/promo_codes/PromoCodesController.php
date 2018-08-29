@@ -42,7 +42,7 @@ class PromoCodesController extends Controller
         if (Gate::denies('promo_code.create', new PromoCode())) {
             return response()->view('errors.403', [], 403);
         }
-        $types = [];
+        $types = config('constants.promoCodeTypes');
         $data = [
             'types' => $types,
             'formRoute' => route('promo_codes.store'),
@@ -82,14 +82,14 @@ class PromoCodesController extends Controller
             return response()->view('errors.403', [], 403);
         }
         $promoCode = PromoCode::FindOrFail($id);
-        $types = [];
+        $types = config('constants.promoCodeTypes');
         $data = [
             'types' => $types,
             'promoCode' => $promoCode,
             'formRoute' => route('promo_codes.update', ['promoCode' => $id]),
             'submitBtn' => trans('admin.update')
         ];
-        return view(AD . '.promo_code.form')->with($data);
+        return view(AD . '.promo_codes.form')->with($data);
     }
 
     /**
@@ -134,10 +134,6 @@ class PromoCodesController extends Controller
             return response()->view('errors.403', [], 403);
         }
         $ids = $request->input('ids');
-        for ($i = 1; $i <= 5; $i++)
-            if (($key = array_search($i, $ids)) !== false) {
-                unset($ids[$key]);
-            }
         return PromoCode::whereIn('id', $ids)->delete();
     }
 

@@ -25,7 +25,7 @@
                                 <div class="tab-content">
                                     <!-- Create New User TAB -->
                                     <div class="tab-pane active" id="new_user">
-                                        {!! Form::open(['method'=>'POST','url'=> $formRoute, 'role'=>'form', 'files' => true]) !!}
+                                        {!! Form::open(['method'=>(isset($promoCode))? 'PUT':'POST','url'=> $formRoute, 'role'=>'form', 'files' => true]) !!}
 
                                         <div class="form-group">
                                             <label for="name" class="control-label">
@@ -101,9 +101,9 @@
                                             <label for="name" class="control-label">
                                                 {{ trans('admin.type_desc') }}
                                             </label>
-                                            {!! Form::textarea('type_desc', (isset($promoCode))? $promoCode->type_desc : old('type_desc'), array('id'=>'type_desc', 'class'=>'form-control','rows' => 2)) !!}
-                                            @if($errors->has('type_desc'))
-                                                <span class="help-block text-danger">{{ $errors->first('type_desc') }}</span>
+                                            {!! Form::textarea('type_description', (isset($promoCode))? $promoCode->type_description : old('type_description'), array('id'=>'type_description', 'class'=>'form-control','rows' => 2)) !!}
+                                            @if($errors->has('type_description'))
+                                                <span class="help-block text-danger">{{ $errors->first('type_description') }}</span>
                                             @endif
                                         </div>
 
@@ -131,7 +131,7 @@
                                             <label for="name" class="control-label">
                                                 {{ trans('admin.discount_percentage') }} <span class="required"> * </span>
                                             </label>
-                                            {!! Form::number('discount_percentage', (isset($service))? $service->discount_percentage : old('discount_percentage') , array('id'=>'discount_percentage', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.discount_percentage' ), 'min'=> 0, 'max'=> 100)) !!}
+                                            {!! Form::number('discount_percentage', (isset($promoCode))? $promoCode->discount_percentage : old('discount_percentage') , array('id'=>'discount_percentage', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.discount_percentage' ), 'min'=> 0, 'max'=> 100)) !!}
                                             @if($errors->has('discount_percentage'))
                                                 <span class="help-block text-danger">{{ $errors->first('discount_percentage') }}</span>
                                             @endif
