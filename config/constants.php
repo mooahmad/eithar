@@ -125,4 +125,7 @@ return [
     ],
     "max_questionnaire_pages" => 20,
     "max_questionnaire_per_page" => 5,
+    "promoCodeTypes" => [
+        "All services will be discounted"
+    ],
 ];

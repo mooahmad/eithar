@@ -148,6 +148,32 @@
                 </li>
         @endcan
         <!-- End Providers Area -->
+            <!-- Start promo_codes Area -->
+            @can('promo_code.view', new \App\Models\PromoCode())
+                <li class="nav-item start {{ (Request::segment(2)=='promo_codes') ? 'active' :'' }}">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-user-secret"></i>
+                        <span class="title">{{ trans('admin.promo_codes') }}</span>
+                        <span class="selected"></span>
+                        <span class="arrow {{ (Request::segment(2)=='promo_codes') ? 'open' :'' }}"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item start {{ (Request::segment(2)=='promo_codes' && Request::segment(3)=='create') ? 'active' :'' }}">
+                            <a href="{{ url(AD.'/promo_codes/create') }}" class="nav-link ">
+                                <i class="fa fa-plus-circle"></i>
+                                <span class="title">{{ trans('admin.add_promo_code') }}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item start {{ (Request::is(AD.'/promo_codes')) ? 'active' :'' }}">
+                            <a href="{{ url(AD.'/promo_codes') }}" class="nav-link ">
+                                <i class="icon-user"></i>
+                                <span class="title">{{ trans('admin.show_promo_code') }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+        @endcan
+        <!-- End Promo_codes Area -->
         </ul>
         <!-- END SIDEBAR MENU -->
     </div>

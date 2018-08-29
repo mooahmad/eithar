@@ -88,10 +88,11 @@ abstract class Categories implements ICategory
         $pagesCount = Questionnaire::where('service_id', $id)->max('pagination');
         $questionnaire = Questionnaire::where([['service_id', $id], ['pagination', $page]])->get();
         $questionnaire->each(function ($questionnaire) {
-            $questionnaire->options_ar = unserialize($questionnaire->options_ar);
-            $questionnaire->options_en = unserialize($questionnaire->options_en);
+            $questionnaire->options_ar = empty(unserialize($questionnaire->options_ar))? [] : unserialize($questionnaire->options_ar);
+            $questionnaire->options_en = empty(unserialize($questionnaire->options_en))? [] : unserialize($questionnaire->options_en);
             $questionnaire->addHidden([
-                'title_ar', 'title_en', 'subtitle_ar', 'subtitle_en'
+                'title_ar', 'title_en', 'subtitle_ar', 'subtitle_en',
+                'options_en', 'options_ar'
             ]);
     });
         return Utilities::getValidationError(config('constants.responseStatus.success'),
