@@ -24,8 +24,7 @@ class CreatePromoCodesTable extends Migration
             $table->dateTime('end_date')->nullable();
             $table->integer('type')->default(1);
             $table->longText('type_description')->nullable();
-            $table->string('code_en', 255);
-            $table->string('code_ar', 255);
+            $table->string('code', 255);
             $table->integer('discount_percentage')->default(0);
             $table->longText('comment')->nullable();
             $table->integer('is_approved')->default(0);

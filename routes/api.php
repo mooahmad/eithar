@@ -41,6 +41,10 @@ Route::middleware('auth:api')->group(function () {
     Route::group(['namespace' => 'WebApi\UsersModule', 'prefix' => 'providers'], (function () {
         Route::post('/{id}', 'ProviderController@getProvider');
     }));
+
+    Route::group(['namespace' => 'WebApi\PromoCodesModule', 'prefix' => 'promo_codes'], (function () {
+        Route::post('/register', 'PromoCodesController@registerPromoCode');
+    }));
 });
 
 Route::group(['namespace' => 'WebApi\UsersModule', 'prefix' => 'customers'], (function () {

@@ -109,21 +109,11 @@
 
                                         <div class="form-group">
                                             <label for="name" class="control-label">
-                                                {{ trans('admin.code_ar') }} <span class="required"> * </span>
-                                            </label>
-                                            {!! Form::text('code_ar', (isset($promoCode))? $promoCode->code_ar : old('code_ar') , array('id'=>'code_ar', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.code_ar'))) !!}
-                                            @if($errors->has('code_ar'))
-                                                <span class="help-block text-danger">{{ $errors->first('code_ar') }}</span>
-                                            @endif
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="name" class="control-label">
                                                 {{ trans('admin.code_en') }} <span class="required"> * </span>
                                             </label>
-                                            {!! Form::text('code_en', (isset($promoCode))? $promoCode->code_en : old('code_en') , array('id'=>'code_en', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.code_en'))) !!}
-                                            @if($errors->has('code_en'))
-                                                <span class="help-block text-danger">{{ $errors->first('code_en') }}</span>
+                                            {!! Form::text('code', (isset($promoCode))? $promoCode->code : old('code') , array('id'=>'code', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.code_en'))) !!}
+                                            @if($errors->has('code'))
+                                                <span class="help-block text-danger">{{ $errors->first('code') }}</span>
                                             @endif
                                         </div>
 

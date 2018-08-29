@@ -91,11 +91,11 @@ return [
         "WomanAndChild" => 5
     ],
     "serviceTypes" => [
-        "One time visit with Calendar",
-        "Package",
-        "Items sold part of visit",
-        "Lab Service",
-        "Provider Service"
+        1 => "One time visit with Calendar",
+        2 => "Package",
+        3 => "Items sold part of visit",
+        4 => "Lab Service",
+        5 => "Provider Service"
     ],
     "calendarSections" => [
         "all",
@@ -126,6 +126,11 @@ return [
     "max_questionnaire_pages" => 20,
     "max_questionnaire_per_page" => 5,
     "promoCodeTypes" => [
-        "All services will be discounted"
+        0 => "All services will be discounted",
+        1 => "One time visit with Calendar",
+        2 => "Package",
+        3 => "Items sold part of visit",
+        4 => "Lab Service",
+        5 => "Provider Service"
     ],
 ];
