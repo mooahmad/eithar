@@ -13,6 +13,7 @@ use App\Models\Questionnaire;
 use App\Models\Service;
 use App\Models\ServiceBooking;
 use App\Models\ServiceBookingAnswers;
+use App\Models\ServiceBookingAppointment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\MessageBag;
 
@@ -58,7 +59,6 @@ class Services implements IService
         $isLap = $request->input('is_lap');
         $providerId = $request->input('provider_id');
         $providerAssignedId = $request->input('provider_assigned_id');
-        $serviceId = $request->input('service_id');
         $promoCodeId = $request->input('promo_code_id');
         $price = $request->input('price');
         $currencyId = $request->input('currency_id');
@@ -70,24 +70,16 @@ class Services implements IService
         $serviceBookingId = $this->saveServiceBooking($isLap, $providerId, $providerAssignedId, $serviceId, $promoCodeId, $price, $currencyId, $comment, $address, $familyMemberId, $status, $statusDescription);
         // service booking answers table
         $serviceQuestionnaireIds = $request->input('service_questionnaire_id');
-//        $questionType = $request->input('question_type');
-//        $questionTitleAr = $request->input('question_title_ar');
-//        $questionTitleEn = $request->input('question_title_en');
-//        $questionSubtitleAr = $request->input('question_subtitle_ar');
-//        $questionSubtitleEn = $request->input('question_subtitle_en');
-//        $questionOptionsAr = $request->input('question_options_ar');
-//        $questionOptionsEn = $request->input('question_options_en');
-//        $questionIsRequired = $request->input('question_is_required');
-//        $questionRatingLevels = $request->input('question_rating_levels');
-//        $questionRatingSymbol = $request->input('question_rating_symbol');
-//        $questionPagination = $request->input('question_pagination');
-//        $questionOrder = $request->input('question_order');
         $answerTypes = $request->input('answer_type');
         $answers = $request->input('answer');
         $bookingAnswer = $this->saveBookingAnswers($serviceBookingId, $serviceQuestionnaireIds, $answerTypes, $answers);
         // service booking appointments table
         $appointmentDate = $request->input('appointment_date');
+        $this->saveBookingAppointments($serviceBookingId, $appointmentDate);
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([
 
+            ]));
     }
 
     private function saveServiceBooking($isLap, $providerId, $providerAssignedId, $serviceId, $promoCodeId, $price, $currencyId, $comment, $address, $familyMemberId, $status, $statusDescription)
@@ -113,7 +105,37 @@ class Services implements IService
     private function saveBookingAnswers($serviceBookingId, $serviceQuestionnaireIds, $answerTypes, $answers)
     {
         $data = [];
-
+        for ($i = 0; $i < count($serviceQuestionnaireIds); $i++) {
+            $questionnaire = Questionnaire::find($serviceQuestionnaireIds[$i]);
+            $answerType = $answerTypes[$i];
+            $answer = $answers[$i];
+            $data[] = [
+                "service_booking_id" => $serviceBookingId,
+                "service_questionnaire_id" => $questionnaire->id,
+                "question_type" => $questionnaire->type,
+                "title_ar" => $questionnaire->title_ar,
+                "title_en" => $questionnaire->title_en,
+                "subtitle_ar" => $questionnaire->subtitle_ar,
+                "subtitle_en" => $questionnaire->subtitle_en,
+                "options_ar" => $questionnaire->options_ar,
+                "options_en" => $questionnaire->options_en,
+                "is_required" => $questionnaire->is_required,
+                "rating_levels" => $questionnaire->rating_levels,
+                "rating_symbol" => $questionnaire->rating_symbol,
+                "order" => $questionnaire->order,
+                "pagination" => $questionnaire->pagination,
+                "type" => $answerType,
+                "answer" => $answer
+            ];
+        }
         return ServiceBookingAnswers::insert($data);
+    }
+
+    private function saveBookingAppointments($serviceBookingId, $appointmentDate)
+    {
+        $bookingAppointment = new ServiceBookingAppointment();
+        $bookingAppointment->service_booking_id = $serviceBookingId;
+        $bookingAppointment->appointment_date_time = $appointmentDate;
+        $bookingAppointment->save();
     }
 }
