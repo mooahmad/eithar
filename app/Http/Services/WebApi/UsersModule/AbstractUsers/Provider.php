@@ -10,6 +10,7 @@ use App\Http\Services\WebApi\CommonTraits\Ratings;
 use App\Http\Services\WebApi\CommonTraits\Reviews;
 use App\Http\Services\WebApi\CommonTraits\Views;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\MessageBag;
 use App\Models\Provider as ProviderModel;
 
@@ -38,6 +39,11 @@ class Provider
                 'city_name_ara', 'city_name_eng'
             ]);
         });
+        $provider->vat = 0;
+        if(!Auth::user()->is_saudi_nationality)
+            $provider->vat = config('constants.vat_percentage');
+        $provider->total_price = $provider->price + Utilities::calcPercentage($provider->price, $provider->vat);
+
         return Utilities::getValidationError(config('constants.responseStatus.success'),
                                              new MessageBag([
                                                                 "provider" => $provider

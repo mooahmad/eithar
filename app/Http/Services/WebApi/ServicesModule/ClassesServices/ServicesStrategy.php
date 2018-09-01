@@ -23,4 +23,9 @@ class ServicesStrategy
     {
         return $this->strategy->getServiceQuestionnaire($id, $page);
     }
+
+    public function book($request, $serviceId)
+    {
+        return $this->strategy->book($request, $serviceId);
+    }
 }

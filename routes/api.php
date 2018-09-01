@@ -39,6 +39,7 @@ Route::middleware('auth:api')->group(function () {
 
     Route::group(['namespace' => 'WebApi\ServicesModule', 'prefix' => 'categories'], (function () {
         Route::get('/service/{id}/questionnaire/{page?}', 'ServicesController@getServiceQuestionnaire');
+        Route::post('/service/{id}/book', 'ServicesController@book');
     }));
 
     Route::group(['namespace' => 'WebApi\UsersModule', 'prefix' => 'providers'], (function () {

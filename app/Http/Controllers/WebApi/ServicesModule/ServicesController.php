@@ -20,4 +20,10 @@ class ServicesController extends Controller
         $services = new ServicesStrategy(ApiHelpers::requestType($request));
         return $services->getServiceQuestionnaire($id, $page);
     }
+
+    public function book(Request $request, $serviceId)
+    {
+        $services = new ServicesStrategy(ApiHelpers::requestType($request));
+        return $services->book($request, $serviceId);
+    }
 }
