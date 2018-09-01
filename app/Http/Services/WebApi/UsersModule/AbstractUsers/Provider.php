@@ -4,12 +4,18 @@ namespace App\Http\Services\WebApi\UsersModule\AbstractUsers;
 
 
 use App\Helpers\Utilities;
+use App\Http\Services\WebApi\CommonTraits\Follows;
+use App\Http\Services\WebApi\CommonTraits\Likes;
+use App\Http\Services\WebApi\CommonTraits\Ratings;
+use App\Http\Services\WebApi\CommonTraits\Reviews;
+use App\Http\Services\WebApi\CommonTraits\Views;
 use Carbon\Carbon;
 use Illuminate\Support\MessageBag;
 use App\Models\Provider as ProviderModel;
 
 class Provider
 {
+    use Likes, Follows, Ratings, Views, Reviews;
 
     public function getProvider($request, $providerId)
     {

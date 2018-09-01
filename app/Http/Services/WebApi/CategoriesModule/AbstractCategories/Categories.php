@@ -5,9 +5,8 @@ namespace App\Http\Services\WebApi\CategoriesModule\AbstractCategories;
 
 use App\Helpers\Utilities;
 use App\Http\Services\WebApi\CategoriesModule\ICategories\ICategory;
+use App\Http\Services\WebApi\ServicesModule\AbstractServices\Services;
 use App\Models\Category;
-use App\Models\Questionnaire;
-use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\MessageBag;
@@ -33,13 +32,7 @@ abstract class Categories implements ICategory
     public function getChildCategories($id)
     {
         $customerCity = Auth::user()->city_id;
-        $services = Service::where('category_id', $id)->get();
-        $services = $services->each(function ($service) {
-            $service->addHidden([
-                                    'name_en', 'name_ar',
-                                    'desc_en', 'desc_ar'
-                                ]);
-        });
+        $services = Services::getCategoryServices($id);
         $categories = [];
         $providers = [];
         if ($services->isEmpty()) {
@@ -82,23 +75,4 @@ abstract class Categories implements ICategory
                                                             ]));
     }
 
-    public function getServiceQuestionnaire($id, $page = 1)
-    {
-        $pagesCount = Questionnaire::where('service_id', $id)->max('pagination');
-        $questionnaire = Questionnaire::where([['service_id', $id], ['pagination', $page]])->get();
-        $questionnaire->each(function ($questionnaire) {
-            $questionnaire->options_ar = empty(unserialize($questionnaire->options_ar))? [] : unserialize($questionnaire->options_ar);
-            $questionnaire->options_en = empty(unserialize($questionnaire->options_en))? [] : unserialize($questionnaire->options_en);
-            $questionnaire->addHidden([
-                'title_ar', 'title_en', 'subtitle_ar', 'subtitle_en',
-                'options_en', 'options_ar'
-            ]);
-    });
-        return Utilities::getValidationError(config('constants.responseStatus.success'),
-            new MessageBag([
-                "questionnaire" => $questionnaire,
-                "pagesCount" => $pagesCount,
-                "currentPage" => $page
-            ]));
-    }
 }

@@ -24,7 +24,6 @@ class CreateServiceBookingsTable extends Migration
             $table->unsignedInteger('family_member_id')->nullable();
             $table->integer('is_lap')->default(0);
             $table->double('price')->nullable();
-            $table->dateTime('appointment_date_time')->nullable();
             $table->longText('comment')->nullable();
             $table->longText('address')->nullable();
             $table->integer('status')->nullable();
