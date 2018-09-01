@@ -100,5 +100,9 @@ class Utilities
         }
     }
 
+    public static function calcPercentage($total, $percentage)
+    {
+        return $total * ($percentage/100);
+    }
 
 }

@@ -11,5 +11,4 @@ interface ICategory
 
     public function getChildCategories($id);
 
-
 }

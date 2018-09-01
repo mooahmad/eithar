@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Http\Services\WebApi\CategoriesModule\ClassesCategories;
+namespace App\Http\Services\WebApi\ServicesModule\ClassesServices;
 
 use App\Helpers\ApiHelpers;
-use App\Http\Services\WebApi\CategoriesModule\AbstractCategories\Categories;
+use App\Http\Services\WebApi\ServicesModule\AbstractServices\Services;
 use Illuminate\Http\Request;
 
-class CategoriesApi extends Categories
+class ServicesApi extends Services
 {
-    public function getMainCategories(Request $request)
+    public function getServiceQuestionnaire($id, $page = 1)
     {
-        $validationObject = parent::getMainCategories($request);
+        $validationObject = parent::getServiceQuestionnaire($id, $page);
         if ($validationObject->error == config('constants.responseStatus.success'))
             return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
         return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
     }
 
-    public function getChildCategories($id)
+    public function book($request, $serviceId)
     {
-        $validationObject = parent::getChildCategories($id);
+        $validationObject = parent::book($request, $serviceId);
         if ($validationObject->error == config('constants.responseStatus.success'))
             return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
         return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
