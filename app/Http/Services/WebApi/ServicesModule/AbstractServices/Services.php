@@ -77,9 +77,7 @@ class Services implements IService
         $appointmentDate = $request->input('appointment_date');
         $this->saveBookingAppointments($serviceBookingId, $appointmentDate);
         return Utilities::getValidationError(config('constants.responseStatus.success'),
-            new MessageBag([
-
-            ]));
+            new MessageBag([]));
     }
 
     private function saveServiceBooking($isLap, $providerId, $providerAssignedId, $serviceId, $promoCodeId, $price, $currencyId, $comment, $address, $familyMemberId, $status, $statusDescription)
@@ -136,6 +134,6 @@ class Services implements IService
         $bookingAppointment = new ServiceBookingAppointment();
         $bookingAppointment->service_booking_id = $serviceBookingId;
         $bookingAppointment->appointment_date_time = $appointmentDate;
-        $bookingAppointment->save();
+        return $bookingAppointment->save();
     }
 }
