@@ -19,14 +19,14 @@ abstract class Categories implements ICategory
         $categories = Category::all()->take(5);
         $categories = $categories->each(function ($category) {
             $category->addHidden([
-                                     'category_name_en', 'category_name_ar',
-                                     'description_en', 'description_ar'
-                                 ]);
+                'category_name_en', 'category_name_ar',
+                'description_en', 'description_ar'
+            ]);
         });
         return Utilities::getValidationError(config('constants.responseStatus.success'),
-                                             new MessageBag([
-                                                                "categories" => $categories
-                                                            ]));
+            new MessageBag([
+                "categories" => $categories
+            ]));
     }
 
     public function getChildCategories($id)
@@ -35,21 +35,23 @@ abstract class Categories implements ICategory
         $services = Services::getCategoryServices($id);
         $categories = [];
         $providers = [];
+        $serviceId = null;
         if ($services->isEmpty()) {
             $categories = Category::where('category_parent_id', $id)->get();
             $categories = $categories->each(function ($category) {
                 $category->addHidden([
-                                         'category_name_en', 'category_name_ar',
-                                         'description_en', 'description_ar'
-                                     ]);
+                    'category_name_en', 'category_name_ar',
+                    'description_en', 'description_ar'
+                ]);
             });
         } else {
             foreach ($services as $service) {
                 if ($service->category && $service->category->category_parent_id == config('constants.categories.Doctor')) {
+                    $serviceId = $service->id;
                     $providers = $service->providers()->with('cities')->whereHas('cities', function ($query) use ($customerCity) {
                         $query->where('cities.id', $customerCity);
                     })->get();
-                    $providers = $providers->each(function ($provider) {
+                    $providers = $providers->each(function ($provider) use ($service) {
                         $provider->addHidden([
                             'title_ar', 'title_en', 'first_name_ar', 'first_name_en',
                             'last_name_ar', 'last_name_en', 'speciality_area_ar', 'speciality_area_en',
@@ -68,11 +70,12 @@ abstract class Categories implements ICategory
 
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'),
-                                             new MessageBag([
-                                                                "categories" => $categories,
-                                                                "services"   => $services,
-                                                                "providers"  => $providers
-                                                            ]));
+            new MessageBag([
+                "categories" => $categories,
+                "services" => $services,
+                "providers" => $providers,
+                "service_id" => $serviceId
+            ]));
     }
 
 }

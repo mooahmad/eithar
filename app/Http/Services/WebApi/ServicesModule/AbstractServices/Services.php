@@ -56,7 +56,9 @@ class Services implements IService
     public function book($request, $serviceId)
     {
         // service booking table
-        $isLap = $request->input('is_lap');
+        $serviceId = $request->input('service_id');
+        $serviceType = Service::find($serviceId)->type;
+        $isLap = ($serviceType == 4)? 1 : 0;
         $providerId = $request->input('provider_id');
         $providerAssignedId = $request->input('provider_assigned_id');
         $promoCodeId = $request->input('promo_code_id');
@@ -69,17 +71,13 @@ class Services implements IService
         $statusDescription = $request->input('status_description', '');
         $serviceBookingId = $this->saveServiceBooking($isLap, $providerId, $providerAssignedId, $serviceId, $promoCodeId, $price, $currencyId, $comment, $address, $familyMemberId, $status, $statusDescription);
         // service booking answers table
-        $serviceQuestionnaireIds = $request->input('service_questionnaire_id');
-        $answerTypes = $request->input('answer_type');
-        $answers = $request->input('answer');
-        $bookingAnswer = $this->saveBookingAnswers($serviceBookingId, $serviceQuestionnaireIds, $answerTypes, $answers);
+        $serviceQuestionnaireAnswers = $request->input('service_questionnaire_answers');
+        $bookingAnswer = $this->saveBookingAnswers($serviceBookingId, $serviceQuestionnaireAnswers);
         // service booking appointments table
-        $appointmentDate = $request->input('appointment_date');
+        $appointmentDate = $request->input('slot_id');
         $this->saveBookingAppointments($serviceBookingId, $appointmentDate);
         return Utilities::getValidationError(config('constants.responseStatus.success'),
-            new MessageBag([
-
-            ]));
+            new MessageBag([]));
     }
 
     private function saveServiceBooking($isLap, $providerId, $providerAssignedId, $serviceId, $promoCodeId, $price, $currencyId, $comment, $address, $familyMemberId, $status, $statusDescription)
@@ -102,17 +100,14 @@ class Services implements IService
         return $booking->id;
     }
 
-    private function saveBookingAnswers($serviceBookingId, $serviceQuestionnaireIds, $answerTypes, $answers)
+    private function saveBookingAnswers($serviceBookingId, $serviceQuestionnaireAnswers)
     {
         $data = [];
-        for ($i = 0; $i < count($serviceQuestionnaireIds); $i++) {
-            $questionnaire = Questionnaire::find($serviceQuestionnaireIds[$i]);
-            $answerType = $answerTypes[$i];
-            $answer = $answers[$i];
+        foreach($serviceQuestionnaireAnswers as $key => $value) {
+            $questionnaire = Questionnaire::find($key);
             $data[] = [
                 "service_booking_id" => $serviceBookingId,
                 "service_questionnaire_id" => $questionnaire->id,
-                "question_type" => $questionnaire->type,
                 "title_ar" => $questionnaire->title_ar,
                 "title_en" => $questionnaire->title_en,
                 "subtitle_ar" => $questionnaire->subtitle_ar,
@@ -124,8 +119,8 @@ class Services implements IService
                 "rating_symbol" => $questionnaire->rating_symbol,
                 "order" => $questionnaire->order,
                 "pagination" => $questionnaire->pagination,
-                "type" => $answerType,
-                "answer" => $answer
+                "type" => $questionnaire->type,
+                "answer" => $value
             ];
         }
         return ServiceBookingAnswers::insert($data);
@@ -135,7 +130,7 @@ class Services implements IService
     {
         $bookingAppointment = new ServiceBookingAppointment();
         $bookingAppointment->service_booking_id = $serviceBookingId;
-        $bookingAppointment->appointment_date_time = $appointmentDate;
-        $bookingAppointment->save();
+        $bookingAppointment->slot_id = $appointmentDate;
+        return $bookingAppointment->save();
     }
 }

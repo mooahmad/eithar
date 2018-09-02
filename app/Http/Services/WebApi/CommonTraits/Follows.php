@@ -3,17 +3,24 @@
 namespace App\Http\Services\WebApi\CommonTraits;
 
 
+use App\Models\TransactionsUsers;
+use Illuminate\Support\Facades\Auth;
+
 trait Follows
 {
-    public function follow($model)
+    public function follow($service_provider_id, $type, $transactionType, $transactionDescription)
     {
-        $model->no_of_followers = $model->no_of_followers + 1;
-        $model->save();
+        $transaction = new TransactionsUsers();
+        $transaction->user_id = Auth::id();
+        $transaction->service_provider_id = $service_provider_id;
+        $transaction->type = $type;
+        $transaction->transaction_type = $transactionType;
+        $transaction->transaction_description = $transactionDescription;
+        return $transaction->save();
     }
 
-    public function unFollow($model)
+    public function unFollow($service_provider_id)
     {
-        $model->no_of_followers = $model->no_of_followers - 1;
-        $model->save();
+     return TransactionsUsers::where([['user_id' => Auth::id()], ['service_provider_id' => $service_provider_id]])->delete();
     }
 }

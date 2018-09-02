@@ -134,4 +134,7 @@ return [
         5 => "Provider Service"
     ],
     "vat_percentage" => 5,
+    "transactions" => [
+
+    ],
 ];

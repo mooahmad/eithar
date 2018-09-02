@@ -9,6 +9,7 @@ use App\Http\Services\WebApi\CommonTraits\Likes;
 use App\Http\Services\WebApi\CommonTraits\Ratings;
 use App\Http\Services\WebApi\CommonTraits\Reviews;
 use App\Http\Services\WebApi\CommonTraits\Views;
+use App\Models\Currency;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\MessageBag;
@@ -39,6 +40,7 @@ class Provider
                 'city_name_ara', 'city_name_eng'
             ]);
         });
+        $provider->currency_name = Currency::find($provider->currency_id)->name_eng;
         $provider->calendar_dates = $this->reBuildCalendar($day, $provider->calendar);
         $provider->vat = 0;
         if (!Auth::user()->is_saudi_nationality)

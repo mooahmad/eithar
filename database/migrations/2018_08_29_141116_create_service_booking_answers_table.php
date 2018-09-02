@@ -18,7 +18,6 @@ class CreateServiceBookingAnswersTable extends Migration
             $table->unsignedInteger('service_booking_id')->nullable();
             $table->unsignedInteger('service_questionnaire_id')->nullable();
             $table->string('answer', 255);
-            $table->integer('question_type');
             $table->string('title_ar', 255);
             $table->string('title_en', 255);
             $table->string('subtitle_ar', 255);
