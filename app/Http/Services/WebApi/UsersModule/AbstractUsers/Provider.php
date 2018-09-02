@@ -40,7 +40,6 @@ class Provider
                 'city_name_ara', 'city_name_eng'
             ]);
         });
-        dd($provider->calendar);
         $provider->currency_name = Currency::find($provider->currency_id)->name_eng;
         $provider->calendar_dates = $this->reBuildCalendar($day, $provider->calendar);
         $provider->vat = 0;
