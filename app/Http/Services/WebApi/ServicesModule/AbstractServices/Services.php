@@ -56,7 +56,6 @@ class Services implements IService
     public function book($request, $serviceId)
     {
         // service booking table
-        $serviceId = $request->input('service_id');
         $serviceType = Service::find($serviceId)->type;
         $isLap = ($serviceType == 4)? 1 : 0;
         $providerId = $request->input('provider_id');
