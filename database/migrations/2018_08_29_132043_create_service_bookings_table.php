@@ -37,7 +37,7 @@ class CreateServiceBookingsTable extends Migration
         Schema::table('service_bookings', function (Blueprint $table) {
             $table->foreign('customer_id')
                 ->references('id')
-                ->on('users')
+                ->on('customers')
                 ->onUpdate('set null')
                 ->onDelete('set null');
 
