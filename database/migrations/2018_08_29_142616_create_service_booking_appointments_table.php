@@ -16,7 +16,7 @@ class CreateServiceBookingAppointmentsTable extends Migration
         Schema::create('service_booking_appointments', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('service_booking_id')->nullable();
-            $table->dateTime('appointment_date_time')->nullable();
+            $table->integer('slot_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
