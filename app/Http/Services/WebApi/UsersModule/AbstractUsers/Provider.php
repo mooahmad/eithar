@@ -24,8 +24,8 @@ class Provider
         $day = $request->input('day');
         $provider = ProviderModel::where('id', $providerId)->with(['calendar' => function ($query) use (&$day) {
             if (empty($day)) {
-                $day = Carbon::today()->format('Y-m-d H:m:s');
-                $query->where('providers_calendars.start_date', '=', "%$day%");
+                $day = Carbon::today()->format('Y-m-d');
+                $query->where('providers_calendars.start_date', 'like', "%$day%");
             } else {
                 $query->where('providers_calendars.start_date', 'like', "%$day%");
             }
