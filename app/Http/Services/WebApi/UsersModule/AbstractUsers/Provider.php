@@ -58,7 +58,7 @@ class Provider
         $dayDate = Carbon::parse($day)->format('Y-m-d');
         $morning = ["start" => "$dayDate 00:00:00", "end" => "$dayDate 12:00:00"];
         $afternoon = ["start" => "$dayDate 12:00:00", "end" => "$dayDate 17:00:00"];
-        $evening = ["start" => "$dayDate 17:00:00", "end" => "$dayDate 00:00:00"];
+        $evening = ["start" => "$dayDate 17:00:00", "end" => "$dayDate 23:59:59"];
         $reBuitCalendar = new \stdClass();
         $reBuitCalendar->day = $day;
         $reBuitCalendar->morning = [];
