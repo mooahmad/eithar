@@ -66,8 +66,8 @@ class Services implements IService
         $comment = $request->input('comment', '');
         $address = $request->input('address', '');
         $familyMemberId = $request->input('family_member_id', null);
-        $status = $request->input('status');
-        $statusDescription = $request->input('status_description', '');
+        $status = config('constants.bookingStatus.inprogress');
+        $statusDescription = "inprogress";
         $serviceBookingId = $this->saveServiceBooking($isLap, $providerId, $providerAssignedId, $serviceId, $promoCodeId, $price, $currencyId, $comment, $address, $familyMemberId, $status, $statusDescription);
         // service booking answers table
         $serviceQuestionnaireAnswers = $request->input('service_questionnaire_answers');
@@ -131,5 +131,59 @@ class Services implements IService
         $bookingAppointment->service_booking_id = $serviceBookingId;
         $bookingAppointment->slot_id = $appointmentDate;
         return $bookingAppointment->save();
+    }
+
+    public function likeService($request, $serviceId)
+    {
+        $description = $request->input('description', '');
+        $this->like($serviceId, config('constants.transactionsTypes.service'), $description);
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([]));
+    }
+
+    public function unlikeService($request, $serviceId)
+    {
+        $this->unlike($serviceId);
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([]));
+    }
+
+    public function followService($request, $serviceId)
+    {
+        $description = $request->input('description', '');
+        $this->follow($serviceId, config('constants.transactionsTypes.service'), $description);
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([]));
+    }
+
+    public function unFollowService($request, $serviceId)
+    {
+        $this->unFollow($serviceId);
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([]));
+    }
+
+    public function rateService($request, $serviceId)
+    {
+        $description = $request->input('description', '');
+        $this->rate($serviceId, config('constants.transactionsTypes.service'), $description);
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([]));
+    }
+
+    public function reviewService($request, $serviceId)
+    {
+        $description = $request->input('description', '');
+        $this->review($serviceId, config('constants.transactionsTypes.service'), $description);
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([]));
+    }
+
+    public function viewService($request, $serviceId)
+    {
+        $description = $request->input('description', '');
+        $this->view($serviceId, config('constants.transactionsTypes.service'), $description);
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([]));
     }
 }

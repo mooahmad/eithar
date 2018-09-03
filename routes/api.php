@@ -37,13 +37,28 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/{id}', 'CategoriesController@getChildCategories');
     }));
 
-    Route::group(['namespace' => 'WebApi\ServicesModule', 'prefix' => 'categories'], (function () {
-        Route::get('/service/{id}/questionnaire/{page?}', 'ServicesController@getServiceQuestionnaire');
-        Route::post('/service/{id}/book', 'ServicesController@book');
+    Route::group(['namespace' => 'WebApi\ServicesModule', 'prefix' => 'services'], (function () {
+        Route::get('/{id}/questionnaire/{page?}', 'ServicesController@getServiceQuestionnaire');
+        Route::post('/{id}/book', 'ServicesController@book');
+        Route::post('/{id}/like', 'ServicesController@like');
+        Route::post('/{id}/unlike', 'ServicesController@unlike');
+        Route::post('/{id}/follow', 'ServicesController@follow');
+        Route::post('/{id}/unfollow', 'ServicesController@unFollow');
+        Route::post('/{id}/rate', 'ServicesController@rate');
+        Route::post('/{id}/review', 'ServicesController@review');
+        Route::post('/{id}/view', 'ServicesController@view');
+
     }));
 
     Route::group(['namespace' => 'WebApi\UsersModule', 'prefix' => 'providers'], (function () {
         Route::post('/{id}', 'ProviderController@getProvider');
+        Route::post('/{id}/like', 'ProviderController@like');
+        Route::post('/{id}/unlike', 'ProviderController@unlike');
+        Route::post('/{id}/follow', 'ProviderController@follow');
+        Route::post('/{id}/unfollow', 'ProviderController@unFollow');
+        Route::post('/{id}/rate', 'ProviderController@rate');
+        Route::post('/{id}/review', 'ProviderController@review');
+        Route::post('/{id}/view', 'ProviderController@view');
     }));
 
     Route::group(['namespace' => 'WebApi\PromoCodesModule', 'prefix' => 'promo_codes'], (function () {

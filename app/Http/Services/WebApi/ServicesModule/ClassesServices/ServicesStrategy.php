@@ -28,4 +28,39 @@ class ServicesStrategy
     {
         return $this->strategy->book($request, $serviceId);
     }
+
+    public function likeService($request, $serviceId)
+    {
+        return $this->strategy->likeService($request, $serviceId);
+    }
+
+    public function unlikeService($request, $serviceId)
+    {
+        return $this->strategy->unlikeService($request, $serviceId);
+    }
+
+    public function followService($request, $serviceId)
+    {
+        return $this->strategy->followService($request, $serviceId);
+    }
+
+    public function unFollowService($request, $serviceId)
+    {
+        return $this->strategy->unFollowService($request, $serviceId);
+    }
+
+    public function rateService($request, $serviceId)
+    {
+        return $this->strategy->rateService($request, $serviceId);
+    }
+
+    public function reviewService($request, $serviceId)
+    {
+        return $this->strategy->reviewService($request, $serviceId);
+    }
+
+    public function viewService($request, $serviceId)
+    {
+        return $this->strategy->viewService($request, $serviceId);
+    }
 }

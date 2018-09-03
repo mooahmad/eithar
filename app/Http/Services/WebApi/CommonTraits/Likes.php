@@ -7,13 +7,13 @@ use Illuminate\Support\Facades\Auth;
 
 trait Likes
 {
-    public function like($service_provider_id, $type, $transactionType, $transactionDescription)
+    public function like($service_provider_id, $type, $transactionDescription)
     {
         $transaction = new TransactionsUsers();
         $transaction->user_id = Auth::id();
         $transaction->service_provider_id = $service_provider_id;
         $transaction->type = $type;
-        $transaction->transaction_type = $transactionType;
+        $transaction->transaction_type = config('constants.transactions.like');
         $transaction->transaction_description = $transactionDescription;
         return $transaction->save();
     }

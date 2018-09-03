@@ -8,13 +8,13 @@ use Illuminate\Support\Facades\Auth;
 
 trait Follows
 {
-    public function follow($service_provider_id, $type, $transactionType, $transactionDescription)
+    public function follow($service_provider_id, $type, $transactionDescription)
     {
         $transaction = new TransactionsUsers();
         $transaction->user_id = Auth::id();
         $transaction->service_provider_id = $service_provider_id;
         $transaction->type = $type;
-        $transaction->transaction_type = $transactionType;
+        $transaction->transaction_type = config('constants.transactions.follow');
         $transaction->transaction_description = $transactionDescription;
         return $transaction->save();
     }
