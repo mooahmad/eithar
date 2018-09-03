@@ -24,4 +24,60 @@ class ServicesApi extends Services
         return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
     }
 
+    public function likeService($request, $serviceId)
+    {
+        $validationObject = parent::likeService($request, $serviceId);
+        if ($validationObject->error == config('constants.responseStatus.success'))
+            return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
+    }
+
+    public function unlikeService($request, $serviceId)
+    {
+        $validationObject = parent::unlikeService($request, $serviceId);
+        if ($validationObject->error == config('constants.responseStatus.success'))
+            return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
+    }
+
+    public function followService($request, $serviceId)
+    {
+        $validationObject = parent::followService($request, $serviceId);
+        if ($validationObject->error == config('constants.responseStatus.success'))
+            return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
+    }
+
+    public function unFollowService($request, $serviceId)
+    {
+        $validationObject = parent::unFollowService($request, $serviceId);
+        if ($validationObject->error == config('constants.responseStatus.success'))
+            return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
+    }
+
+    public function rateService($request, $serviceId)
+    {
+        $validationObject = parent::rateService($request, $serviceId);
+        if ($validationObject->error == config('constants.responseStatus.success'))
+            return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
+    }
+
+    public function reviewService($request, $serviceId)
+    {
+        $validationObject = parent::reviewService($request, $serviceId);
+        if ($validationObject->error == config('constants.responseStatus.success'))
+            return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
+    }
+
+    public function viewService($request, $serviceId)
+    {
+        $validationObject = parent::viewService($request, $serviceId);
+        if ($validationObject->error == config('constants.responseStatus.success'))
+            return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
+    }
+
 }

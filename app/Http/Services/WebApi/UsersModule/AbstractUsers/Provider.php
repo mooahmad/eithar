@@ -53,6 +53,60 @@ class Provider
             ]));
     }
 
+    public function likeProvider($request, $providerId)
+    {
+        $description = $request->input('description', '');
+        $this->like($providerId, config('constants.transactionsTypes.provider'), $description);
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([]));
+    }
+
+    public function unlikeProvider($request, $providerId)
+    {
+        $this->unlike($providerId);
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([]));
+    }
+
+    public function followProvider($request, $providerId)
+    {
+        $description = $request->input('description', '');
+        $this->follow($providerId, config('constants.transactionsTypes.provider'), $description);
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([]));
+    }
+
+    public function unFollowProvider($request, $providerId)
+    {
+        $this->unFollow($providerId);
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([]));
+    }
+
+    public function rateProvider($request, $providerId)
+    {
+        $description = $request->input('description', '');
+        $this->rate($providerId, config('constants.transactionsTypes.provider'), $description);
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([]));
+    }
+
+    public function reviewProvider($request, $providerId)
+    {
+        $description = $request->input('description', '');
+        $this->review($providerId, config('constants.transactionsTypes.provider'), $description);
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([]));
+    }
+
+    public function viewProvider($request, $providerId)
+    {
+        $description = $request->input('description', '');
+        $this->view($providerId, config('constants.transactionsTypes.provider'), $description);
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([]));
+    }
+
     private function reBuildCalendar($day, $calendar)
     {
         $dayDate = Carbon::parse($day)->format('Y-m-d');

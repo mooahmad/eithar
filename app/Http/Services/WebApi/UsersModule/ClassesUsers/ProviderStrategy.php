@@ -24,4 +24,39 @@ class ProviderStrategy
         return $this->strategy->getProvider($request, $providerId);
     }
 
+    public function likeProvider($request, $providerId)
+    {
+        return $this->strategy->likeProvider($request, $providerId);
+    }
+
+    public function unlikeProvider($request, $providerId)
+    {
+        return $this->strategy->unlikeProvider($request, $providerId);
+    }
+
+    public function followProvider($request, $providerId)
+    {
+        return $this->strategy->followProvider($request, $providerId);
+    }
+
+    public function unFollowProvider($request, $providerId)
+    {
+        return $this->strategy->unFollowProvider($request, $providerId);
+    }
+
+    public function rateProvider($request, $providerId)
+    {
+        return $this->strategy->rateProvider($request, $providerId);
+    }
+
+    public function reviewProvider($request, $providerId)
+    {
+        return $this->strategy->reviewProvider($request, $providerId);
+    }
+
+    public function viewProvider($request, $providerId)
+    {
+        return $this->strategy->viewProvider($request, $providerId);
+    }
+
 }

@@ -135,6 +135,19 @@ return [
     ],
     "vat_percentage" => 5,
     "transactions" => [
-
+        "follow" => 1,
+        "like" => 2,
+        "rate" => 3,
+        "review" => 4,
+        "view" => 5
     ],
+    "transactionsTypes" => [
+        "service" => 1,
+        "provider" => 2
+    ],
+    "bookingStatus" => [
+        "inprogress" => 1,
+        "confirmed"  => 2,
+        "canceled"   => 3
+    ]
 ];
