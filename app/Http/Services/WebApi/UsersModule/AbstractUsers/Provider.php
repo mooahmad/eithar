@@ -56,9 +56,9 @@ class Provider
     private function reBuildCalendar($day, $calendar)
     {
         $dayDate = Carbon::parse($day)->format('Y-m-d');
-        $morning = ["start" => "$dayDate 00:00:00", "end" => "$dayDate 11:59:00"];
+        $morning = ["start" => "$dayDate 00:00:00", "end" => "$dayDate 12:00:00"];
         $afternoon = ["start" => "$dayDate 12:00:00", "end" => "$dayDate 17:00:00"];
-        $evening = ["start" => "$dayDate 17:01:00", "end" => "$dayDate 23:59:00"];
+        $evening = ["start" => "$dayDate 17:00:00", "end" => "$dayDate 23:59:59"];
         $reBuitCalendar = new \stdClass();
         $reBuitCalendar->day = $day;
         $reBuitCalendar->morning = [];
