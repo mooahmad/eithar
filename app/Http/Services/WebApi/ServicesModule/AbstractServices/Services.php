@@ -119,7 +119,7 @@ class Services implements IService
                 "order" => $questionnaire->order,
                 "pagination" => $questionnaire->pagination,
                 "type" => $questionnaire->type,
-                "answer" => $value
+                "answer" => serialize($value)
             ];
         }
         return ServiceBookingAnswers::insert($data);

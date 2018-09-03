@@ -20,6 +20,6 @@ trait Likes
 
     public function unlike($service_provider_id)
     {
-        return TransactionsUsers::where([['user_id' => Auth::id()], ['service_provider_id' => $service_provider_id]])->delete();
+        return TransactionsUsers::where([['user_id', '=', Auth::id()], ['service_provider_id', '=', $service_provider_id], ['transaction_type', '=', config('constants.transactions.like')]])->delete();
     }
 }
