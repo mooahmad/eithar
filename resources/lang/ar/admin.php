@@ -150,5 +150,9 @@ return [
     'code_ar' => 'Arabic code',
     'comment' => 'Comment',
 'discount_percentage' => 'Discount percentage',
+    'invoices'                  => 'Invoices',
+    'add_invoices'              => 'Add Invoices',
+    'edit_invoices'             => 'Edit Invoices',
+    'show_invoices'             => 'Show Invoices',
 
 ];

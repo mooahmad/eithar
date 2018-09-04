@@ -10,6 +10,7 @@ define('SRVN', 'Administrator\Services');
 define('PRON', 'Administrator\Providers');
 define('QUN', 'Administrator\Questionnaire');
 define('PRCN', 'Administrator\promo_codes');
+define('INVN', 'Administrator\Invoices');
 
 //Frontend Routes
 Route::group(['namespace' => FE], function () {
@@ -125,5 +126,18 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => PRCN, 'prefix' => AD],
         ]]);
     Route::get('getpromocodesdatatable', 'PromoCodesController@getPromoCodesDataTable')->name('getPromoCodesDataTable');
     Route::post('deletepromocodes', 'PromoCodesController@deletePromoCodes')->name('deletePromoCodes');
+});
+
+Route::group(['middleware' => 'AdminAuth', 'namespace' => INVN, 'prefix' => AD], function () {
+    Route::resource('invoices', 'InvoicesController',
+        ['names' => [
+            'index'   => 'Show Invoices',
+            'create'  => 'Create Invoice',
+            'show'    => 'Show Invoice',
+            'edit'    => 'Edit Invoice',
+            'destroy' => 'Delete Invoice'
+        ]]);
+//    Route::get('getpromocodesdatatable', 'PromoCodesController@getPromoCodesDataTable')->name('getPromoCodesDataTable');
+//    Route::post('deletepromocodes', 'PromoCodesController@deletePromoCodes')->name('deletePromoCodes');
 });
 

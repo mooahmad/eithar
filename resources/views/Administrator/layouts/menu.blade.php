@@ -174,6 +174,33 @@
                 </li>
         @endcan
         <!-- End Promo_codes Area -->
+
+            <!-- Start Invoices Area -->
+{{--            @can('promo_code.view', new \App\Models\PromoCode())--}}
+                <li class="nav-item start {{ (Request::segment(2)=='invoices') ? 'active' :'' }}">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-file-pdf-o"></i>
+                        <span class="title">{{ trans('admin.invoices') }}</span>
+                        <span class="selected"></span>
+                        <span class="arrow {{ (Request::segment(2)=='invoices') ? 'open' :'' }}"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item start {{ (Request::segment(2)=='invoices' && Request::segment(3)=='create') ? 'active' :'' }}">
+                            <a href="{{ url(AD.'/invoices/create') }}" class="nav-link ">
+                                <i class="fa fa-plus-circle"></i>
+                                <span class="title">{{ trans('admin.add_invoices') }}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item start {{ (Request::is(AD.'/invoices')) ? 'active' :'' }}">
+                            <a href="{{ url(AD.'/invoices') }}" class="nav-link ">
+                                <i class="fa fa-eye"></i>
+                                <span class="title">{{ trans('admin.show_invoices') }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            {{--@endcan--}}
+            <!-- End Invoices Area -->
         </ul>
         <!-- END SIDEBAR MENU -->
     </div>
