@@ -11,6 +11,7 @@ define('PRON', 'Administrator\Providers');
 define('QUN', 'Administrator\Questionnaire');
 define('PRCN', 'Administrator\promo_codes');
 define('INVN', 'Administrator\Invoices');
+define('CUSN', 'Administrator\Customers');
 
 //Frontend Routes
 Route::group(['namespace' => FE], function () {
@@ -128,16 +129,32 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => PRCN, 'prefix' => AD],
     Route::post('deletepromocodes', 'PromoCodesController@deletePromoCodes')->name('deletePromoCodes');
 });
 
-Route::group(['middleware' => 'AdminAuth', 'namespace' => INVN, 'prefix' => AD], function () {
-    Route::resource('invoices', 'InvoicesController',
-        ['names' => [
-            'index'   => 'Show Invoices',
-            'create'  => 'Create Invoice',
-            'show'    => 'Show Invoice',
-            'edit'    => 'Edit Invoice',
-            'destroy' => 'Delete Invoice'
-        ]]);
+Route::group(['middleware' => 'AdminAuth', 'prefix' => AD], function () {
+    Route::group(['namespace' => INVN],function (){
+        Route::resource('invoices', 'InvoicesController',
+            ['names' => [
+                'index'   => 'Show Invoices',
+                'create'  => 'Create Invoice',
+                'show'    => 'Show Invoice',
+                'edit'    => 'Edit Invoice',
+                'destroy' => 'Delete Invoice'
+            ]]);
 //    Route::get('getpromocodesdatatable', 'PromoCodesController@getPromoCodesDataTable')->name('getPromoCodesDataTable');
 //    Route::post('deletepromocodes', 'PromoCodesController@deletePromoCodes')->name('deletePromoCodes');
+    });
+
+    Route::group(['namespace' => CUSN],function (){
+        Route::resource('customers', 'CustomersController',
+            ['names' => [
+                'index'   => 'Show Customers',
+                'create'  => 'Create Customer',
+                'show'    => 'Show Customer',
+                'edit'    => 'Edit Customer',
+                'destroy' => 'Delete Customer'
+            ]]);
+    Route::get('get-customers-Datatable', 'CustomersController@getCustomersDataTable')->name('get-customers-Datatable');
+    Route::get('get-customer-appointments-Datatable/{id}', 'CustomersController@getCustomerAppointmentsDataTable')->name('get-customer-appointments-Datatable');
+//    Route::post('deletepromocodes', 'PromoCodesController@deletePromoCodes')->name('deletePromoCodes');
+    });
 });
 

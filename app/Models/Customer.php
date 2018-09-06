@@ -33,4 +33,38 @@ class Customer extends Authenticatable
     protected $hidden = [
         'password', 'remember_token', 'email_code', 'mobile_code', 'deleted_at', 'created_at', 'updated_at'
     ];
+
+    /**
+     * return active customers
+     * @return mixed
+     */
+    public function scopeGetActiveCustomers()
+    {
+        return $this->where('mobile_verified',1);
+    }
+
+    /**
+     * return customer full name with nationality ID
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        return "{$this->first_name} {$this->middle_name} {$this->last_name}";
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function country()
+    {
+        return $this->belongsTo(Country::class,'country_id','id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function city()
+    {
+        return $this->belongsTo(City::class,'city_id','id');
+    }
 }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Administrator\Invoices;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use App\Models\Invoices;
+use App\Models\Provider;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -40,7 +42,10 @@ class InvoicesController extends Controller
             return response()->view('errors.403',[],403);
         }
         $data = [
-            'items'=>Service::where('type',config('constants.')),
+            'items'=>Service::GetItemsServices()->get()->pluck('name_en','id'),
+            'selected_items'=>'',
+            'customers'=>Customer::GetActiveCustomers()->get()->pluck('full_name','id'),
+            'providers'=>Provider::GetActiveProviders()->get()->pluck('full_name','id'),
             'formRoute' => route('promo_codes.store'),
             'required'=>'required',
             'submitBtn' => trans('admin.create')

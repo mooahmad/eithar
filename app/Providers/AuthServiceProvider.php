@@ -3,12 +3,14 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\Customer;
 use App\Models\Invoices;
 use App\Models\PromoCode;
 use App\Models\Questionnaire;
 use App\Models\Service;
 use App\Policies\AdminPolicy;
 use App\Policies\CategoryPolicy;
+use App\Policies\CustomerPolicy;
 use App\Policies\InvoicesPolicy;
 use App\Policies\PromoCodesPolicy;
 use App\Policies\QuestionnairePolicy;
@@ -31,6 +33,7 @@ class AuthServiceProvider extends ServiceProvider
         Service::class => ServicePolicy::class,
         PromoCode::class => PromoCodesPolicy::class,
         Invoices::class => InvoicesPolicy::class,
+        Customer::class => CustomerPolicy::class,
     ];
 
     /**
@@ -73,12 +76,11 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('promo_code.delete', 'App\Policies\PromoCodesPolicy@delete');
 
 //        Invoices Policies
-        Gate::define('invoices.view','App\Policies\InvoicesPolicy@view');
-        Gate::define('invoices.create','App\Policies\InvoicesPolicy@create');
-        Gate::define('invoices.update','App\Policies\InvoicesPolicy@update');
-        Gate::define('invoices.delete','App\Policies\InvoicesPolicy@delete');
-//        Gate::define('invoices.view','App\Policies\InvoicesPolicy@restore');
-//        Gate::define('invoices.view','App\Policies\InvoicesPolicy@forceDelete');
+        Gate::resource('invoices', 'App\Policies\InvoicesPolicy');
+
+//        Customers Policies
+        Gate::resource('customers', 'App\Policies\CustomerPolicy');
+//        Gate::define('get-customers-Datatable','App\Policies\CustomerPolicy@getCustomersDataTable');
 
         // passport
         Passport::routes();
