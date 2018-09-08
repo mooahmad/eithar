@@ -47,6 +47,10 @@ abstract class Categories implements ICategory
             });
         } else {
             $orderedCategory = Category::find($id);
+            $services = $services->each(function ($service) {
+                $service->profile_picture_path = Utilities::getFileUrl($service->profile_picture_path);
+                $service->addHidden(['benefits_en', 'benefits_ar']);
+            });
             if ($orderedCategory->category_parent_id == config('constants.categories.Doctor')) {
                 $services->each(function ($service) use (&$serviceId, &$customerCity, &$providers, &$services, $isPackage) {
                     $serviceId = $service->id;
