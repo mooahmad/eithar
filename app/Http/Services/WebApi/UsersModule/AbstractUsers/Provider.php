@@ -40,6 +40,10 @@ class Provider
                 'city_name_ara', 'city_name_eng'
             ]);
         });
+        $provider->services->each(function ($service) use (&$provider){
+            if($service->category->category_parent_id == config('constants.categories.Doctor'))
+                $provider->category_name = $service->category->name;
+        });
         $provider->currency_name = Currency::find($provider->currency_id)->name_eng;
         $provider->calendar_dates = $this->reBuildCalendar($day, $provider->calendar);
         $provider->vat = 0;

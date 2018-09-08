@@ -7,6 +7,7 @@ use App\Helpers\Utilities;
 use App\Http\Services\WebApi\CategoriesModule\ICategories\ICategory;
 use App\Http\Services\WebApi\ServicesModule\AbstractServices\Services;
 use App\Models\Category;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\MessageBag;
@@ -29,7 +30,7 @@ abstract class Categories implements ICategory
             ]));
     }
 
-    public function getChildCategories($id)
+    public function getChildCategories($id, $isPackage)
     {
         $customerCity = Auth::user()->city_id;
         $services = Services::getCategoryServices($id);
@@ -45,8 +46,9 @@ abstract class Categories implements ICategory
                 ]);
             });
         } else {
-            foreach ($services as $service) {
-                if ($service->category && $service->category->category_parent_id == config('constants.categories.Doctor')) {
+            $orderedCategory = Category::find($id);
+            if ($orderedCategory->category_parent_id == config('constants.categories.Doctor')) {
+                $services->each(function ($service) use (&$serviceId, &$customerCity, &$providers, &$services, $isPackage) {
                     $serviceId = $service->id;
                     $providers = $service->providers()->with('cities')->whereHas('cities', function ($query) use ($customerCity) {
                         $query->where('cities.id', $customerCity);
@@ -64,10 +66,22 @@ abstract class Categories implements ICategory
                         });
                     });
                     $services = [];
-                    break;
-                }
+                });
+            } elseif ($orderedCategory->category_parent_id == config('constants.categories.Physiotherapy') || $orderedCategory->category_parent_id == config('constants.categories.Nursing') || $orderedCategory->category_parent_id == config('constants.categories.WomanAndChild')) {
+                $services = $services->reject(function ($service) use ($isPackage) {
+                    if ($isPackage) {
+                        if ($service->type == 2)
+                            return false;
+                        else
+                            return true;
+                    } elseif (!$isPackage) {
+                        if ($service->type == 1)
+                            return false;
+                        else
+                            return true;
+                    }
+                });
             }
-
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([
