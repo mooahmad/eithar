@@ -35,6 +35,7 @@ class Services implements IService
 
     public function getServiceQuestionnaire($id, $page = 1)
     {
+        $id = ($id == 0)? null : $id;
         $pagesCount = Questionnaire::where('service_id', $id)->max('pagination');
         $questionnaire = Questionnaire::where([['service_id', $id], ['pagination', $page]])->get();
         $questionnaire->each(function ($questionnaire) {

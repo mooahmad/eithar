@@ -76,6 +76,7 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => SRVN, 'prefix' => AD],
                     ]]);
     Route::get('getservicesdatatable', 'ServicesController@getServicesDataTable')->name('getServicesDatatable');
     Route::post('deleteservices', 'ServicesController@deleteServices')->name('deleteServices');
+    Route::get('getservicestypes/{categoryId}', 'ServicesController@getServicesTypes')->name('getServicesTypes');
 
     // questionnaires section
     Route::get('services/{id}/questionnaire', 'ServicesController@showServiceQuestionnaire')->name('showServiceQuestionnaire');

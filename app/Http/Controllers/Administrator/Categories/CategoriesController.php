@@ -43,7 +43,7 @@ class CategoriesController extends Controller
         if (Gate::denies('category.create', new Category())) {
             return response()->view('errors.403', [], 403);
         }
-        $categories = Category::doesntHave('services')->where('category_parent_id', null)->pluck(trans('admin.cat_name_col'), 'id')->toArray();
+        $categories = Category::doesntHave('services')->where('category_parent_id', null)->where('id', '<>', config('constants.categories.Lap'))->pluck(trans('admin.cat_name_col'), 'id')->toArray();
         $data = [
             'categories' => $categories,
             'formRoute'  => route('categories.store'),
@@ -126,6 +126,12 @@ class CategoriesController extends Controller
                                    if (!in_array($category->id, [1, 2, 3, 4, 5])) {
                                        $editURL = url(AD . '/categories/' . $category->id . '/edit');
                                        return View::make('Administrator.widgets.dataTablesActions', ['editURL' => $editURL]);
+                                   }elseif($category->id == 2){
+                                       $questionnaireURL = url(AD . '/services/' . 0 . '/questionnaire');
+                                       $addQuestionnaireURL = url(AD . '/services/' . 0 . '/questionnaire/create');
+                                       $calendarURL = url(AD . '/providers/' . 0 . '/calendar');
+                                       $addCalendarURL = url(AD . '/providers/' . 0 . '/calendar/create');
+                                       return View::make('Administrator.widgets.dataTableLapAction', ['questionnaireURL' => $questionnaireURL, 'addQuestionnaireURL' => $addQuestionnaireURL, 'calendarURL' => $calendarURL, 'addCalendarURL' => $addCalendarURL]);
                                    }
                                })
                                ->addColumn('image', function ($category) {
