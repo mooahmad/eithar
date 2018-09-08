@@ -61,4 +61,13 @@ class Service extends Model
     {
         return $this->belongsTo('App\Models\Category', 'category_id', 'id');
     }
+
+    /**
+     * get Services that type is Item
+     * @return mixed
+     */
+    public function scopeGetItemsServices()
+    {
+        return $this->where('type',3);
+    }
 }

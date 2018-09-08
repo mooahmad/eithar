@@ -23,7 +23,7 @@ Like: https://www.facebook.com/consultrust/
     <title>{{ Route::currentRouteName() }} | {{ config('app.name') }} Dashboard</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
-    <meta content="Preview page of HUD Systems Admin Theme #1 for statistics, charts, recent events and reports"
+    <meta content="We started in 2016 our journey with our first product ConsulTrust, a mobile application running smoothly in iOS, Android with an amazing backend web application. Our consultants are increasing every day and full trust from our customers. With our development methodology and experience we will be able to support your business, offer you innovative solutions."
           name="description"/>
     <meta content="HUD Systems" name="author"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -79,7 +79,6 @@ Like: https://www.facebook.com/consultrust/
     {{--lightbox--}}
     <link href="{{ asset('public/assets/global/css/lightbox.min.css')}}" rel="stylesheet" type="text/css"/>
 
-    {{----}}
     <link href="{{ asset('public/assets/global/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css') }}"
           rel="stylesheet" type="text/css"/>
     <link href="{{ asset('public/assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css') }}"

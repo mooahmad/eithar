@@ -197,6 +197,7 @@ class ProvidersController extends Controller
 
     public function storeProviderCalendar(CreateCalendarRequest $request, $providerId)
     {
+        $providerId = ($providerId == 0)? null : $providerId;
         $providerCalendar = new ProvidersCalendar();
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');
@@ -205,6 +206,7 @@ class ProvidersController extends Controller
         }
         ProviderClass::createOrUpdateCalendar($providerCalendar, $request, $providerId);
         session()->flash('success_msg', trans('admin.success_message'));
+        $providerId = ($providerId == null)? 0 : $providerId;
         return redirect(AD . '/providers/' . $providerId . '/calendar');
     }
 
@@ -221,6 +223,7 @@ class ProvidersController extends Controller
 
     public function updateProviderCalendar(UpdateCalendarRequest $request, $providerId, $calendarId)
     {
+        $providerId = ($providerId == 0)? null : $providerId;
         $providerCalendar = ProvidersCalendar::find($calendarId);
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');
@@ -229,14 +232,17 @@ class ProvidersController extends Controller
         }
         ProviderClass::createOrUpdateCalendar($providerCalendar, $request, $providerId);
         session()->flash('success_msg', trans('admin.success_message'));
+        $providerId = ($providerId == null)? 0 : $providerId;
         return redirect(AD . '/providers/' . $providerId . '/calendar');
     }
 
     public function getCalendarDatatable($id)
     {
+        $id = ($id == 0)? null : $id;
         $providerCalendar = ProvidersCalendar::where('provider_id', $id);
         $dataTable = DataTables::of($providerCalendar)
                                ->addColumn('actions', function ($calendar) use ($id) {
+                                   $id = ($id == null)? 0 : $id;
                                    $editURL = url(AD . '/providers/' . $id . '/calendar/' . $calendar->id . '/edit');
                                    return View::make('Administrator.widgets.dataTablesActions', ['editURL' => $editURL]);
                                })

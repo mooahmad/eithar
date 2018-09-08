@@ -36,7 +36,7 @@ class CreatePromoCodesTable extends Migration
         Schema::table('promo_codes', function (Blueprint $table) {
             $table->foreign('user_id')
                 ->references('id')
-                ->on('customers')
+                ->on('users')
                 ->onUpdate('set null')
                 ->onDelete('set null');
 

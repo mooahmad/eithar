@@ -3,11 +3,15 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\Customer;
+use App\Models\Invoices;
 use App\Models\PromoCode;
 use App\Models\Questionnaire;
 use App\Models\Service;
 use App\Policies\AdminPolicy;
 use App\Policies\CategoryPolicy;
+use App\Policies\CustomerPolicy;
+use App\Policies\InvoicesPolicy;
 use App\Policies\PromoCodesPolicy;
 use App\Policies\QuestionnairePolicy;
 use App\Policies\ServicePolicy;
@@ -28,6 +32,8 @@ class AuthServiceProvider extends ServiceProvider
         Category::class => CategoryPolicy::class,
         Service::class => ServicePolicy::class,
         PromoCode::class => PromoCodesPolicy::class,
+        Invoices::class => InvoicesPolicy::class,
+        Customer::class => CustomerPolicy::class,
     ];
 
     /**
@@ -68,6 +74,13 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('promo_code.create', 'App\Policies\PromoCodesPolicy@create');
         Gate::define('promo_code.update', 'App\Policies\PromoCodesPolicy@update');
         Gate::define('promo_code.delete', 'App\Policies\PromoCodesPolicy@delete');
+
+//        Invoices Policies
+        Gate::resource('invoices', 'App\Policies\InvoicesPolicy');
+
+//        Customers Policies
+        Gate::resource('customers', 'App\Policies\CustomerPolicy');
+//        Gate::define('get-customers-Datatable','App\Policies\CustomerPolicy@getCustomersDataTable');
 
         // passport
         Passport::routes();

@@ -150,5 +150,17 @@ return [
     'code_ar' => 'Arabic code',
     'comment' => 'Comment',
 'discount_percentage' => 'Discount percentage',
-
+    'invoices'                  => 'Invoices',
+    'add_invoices'              => 'Add Invoices',
+    'edit_invoices'             => 'Edit Invoices',
+    'show_invoices'             => 'Show Invoices',
+    'items'                     => 'Items',
+    'customers'                 => 'Customers',
+    'add_customers'             => 'Add Customer',
+    'edit_customers'            => 'Edit Customer',
+    'show_customers'            => 'Show Customers',
+    'full_name'                 => 'Full Name',
+    'first_name'                => 'First Name',
+    'service_name'              => 'Service Name',
+    'submitted_at'              => 'Submitted At',
 ];

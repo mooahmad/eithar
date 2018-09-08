@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Helpers\Utilities;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\App;
@@ -115,5 +116,23 @@ class Provider extends Model
     public function calendar()
     {
         return $this->hasMany('App\Models\ProvidersCalendar', 'provider_id', 'id');
+    }
+
+    /**
+     * get active providers and not expired contract
+     * @return mixed
+     */
+    public function scopeGetActiveProviders()
+    {
+        return $this->where('is_active',1)->where('contract_expiry_date','>=',Carbon::now());
+    }
+
+    /**
+     * get provider full name
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        return "{$this->title_en} {$this->first_name_en} {$this->last_name_en}";
     }
 }
