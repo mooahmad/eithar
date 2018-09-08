@@ -52,6 +52,14 @@ class Service extends Model
             return $this->description_ar;
     }
 
+    public function getBenefitsAttribute()
+    {
+        if (App::isLocale('en'))
+            return $this->benefits_en;
+        else
+            return $this->benefits_ar;
+    }
+
     public function providers()
     {
         return $this->belongsToMany('App\Models\Provider', 'provider_services', 'service_id', 'provider_id');
