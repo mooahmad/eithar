@@ -116,8 +116,8 @@ class CustomersController extends Controller
         $dataTable = DataTables::of($customers)
             ->addColumn('actions', function ($item) {
                 $editURL = url(AD . '/customers/' . $item->id . '/edit');
-                $viewURL = url(AD . '/customers/' . $item->id);
-                return View::make('Administrator.widgets.dataTablesActions', ['editURL' => $editURL, 'viewURL' => $viewURL]);
+                $showURL = url(AD . '/customers/' . $item->id);
+                return View::make('Administrator.widgets.dataTablesActions', ['editURL' => $editURL, 'showURL' => $showURL]);
             })
             ->addColumn('image', function ($item) {
                 if (!empty($item->profile_picture_path)) {
