@@ -12,7 +12,8 @@
                 {{--<img src="{{ \App\Helpers\Utilities::getFileUrl($booking->customer->image) }}" class="img-responsive" alt="" /> </div>--}}
                 <img src="{{ asset('public/assets/layouts/layout/img/logo.png') }}" class="img-responsive" alt="" /> </div>
             <div class="col-xs-6">
-                <p> #{{ $booking->id }} / {{ $booking->created_at->toFormattedDateString() }}
+                <p> #{{ $booking->id }} / {{ $booking->created_at->format('l j F Y h:i A') }}
+                    <strong class="text-info">{{ $booking->status_desc }}</strong>
                     <span class="muted"> {{ $booking->customer->full_name }} </span>
                 </p>
             </div>
@@ -20,7 +21,7 @@
         <hr/>
         <div class="row">
             <div class="col-xs-4">
-                <h3>Client:</h3>
+                <h3>Customer Details:</h3>
                 <ul class="list-unstyled">
                     <li> {{ $booking->customer->full_name }} </li>
                     <li> {{ $booking->customer->national_id }} </li>
@@ -28,33 +29,34 @@
                     <li> {{ $booking->customer->email }} </li>
                     <li> {{ $booking->customer->address }} </li>
                     <li> {{ ($booking->customer->country) ? $booking->customer->country->country_name_eng : '' }}  - {{ ($booking->customer->city) ? $booking->customer->city->city_name_eng : '' }}</li>
-                    <li>  </li>
                 </ul>
             </div>
-            <div class="col-xs-4">
-                <h3>About:</h3>
-                <ul class="list-unstyled">
-                    <li> Drem psum dolor sit amet </li>
-                    <li> Laoreet dolore magna </li>
-                    <li> Consectetuer adipiscing elit </li>
-                    <li> Magna aliquam tincidunt erat volutpat </li>
-                    <li> Olor sit amet adipiscing eli </li>
-                    <li> Laoreet dolore magna </li>
-                </ul>
-            </div>
+
+            @if(count($booking->family_member))
+                <div class="col-xs-4">
+                    <h3>Family Member:</h3>
+                    <ul class="list-unstyled">
+                        <li> {{ $booking->family_member->full_name }} ({{ config('constants.MemberRelations_desc.'.$booking->family_member->relation_type) }})</li>
+                        <li> {{ $booking->family_member->national_id }} </li>
+                        <li> {{ config('constants.gender_desc.'.$booking->family_member->gender) }}</li>
+                        <li> {{ $booking->family_member->mobile_number }} </li>
+                        <li> {{ $booking->family_member->address }} </li>
+                    </ul>
+                </div>
+            @endif
             <div class="col-xs-4 invoice-payment">
                 <h3>Payment Details:</h3>
                 <ul class="list-unstyled">
                     <li>
-                        <strong>V.A.T Reg #:</strong> 542554(DEMO)78 </li>
+                        <strong>V.A.T:</strong> {{ ($booking->customer->is_saudi_nationality ==1) ? 0 : config('constants.vat_percentage') }} %</li>
                     <li>
-                        <strong>Account Name:</strong> FoodMaster Ltd </li>
+                        <strong>Promo Code:</strong> {{ ($booking->promo_code) ? $booking->promo_code->name_en .'-('.$booking->promo_code->code .')-'.$booking->promo_code->discount_percentage.'%' : 'No' }} </li>
                     <li>
-                        <strong>SWIFT code:</strong> 45454DEMO545DEMO </li>
+                        <strong>Currency:</strong> {{ ($booking->currency) ? $booking->currency->name_eng : '' }} </li>
                     <li>
-                        <strong>Account Name:</strong> FoodMaster Ltd </li>
+                        <strong>Customer Comment:</strong> {{ $booking->comment }} </li>
                     <li>
-                        <strong>SWIFT code:</strong> 45454DEMO545DEMO </li>
+                        <strong>Admin Comment:</strong> {{ $booking->admin_comment }} </li>
                 </ul>
             </div>
         </div>

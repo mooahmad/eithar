@@ -37,4 +37,20 @@ class ServiceBooking extends Model
     {
         return $this->belongsTo(Customer::class,'customer_id','id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function promo_code()
+    {
+        return $this->belongsTo(PromoCode::class,'promo_code_id','id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function family_member()
+    {
+        return $this->belongsTo(FamilyMember::class,'family_member_id','id');
+    }
 }

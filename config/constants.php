@@ -17,6 +17,11 @@ return [
         "male" => 1,
         "female" => 2
     ],
+    "gender_desc" => [
+        0=>"None",
+        1=>"Male",
+        2=>"Female",
+    ],
     "customerMemberRelations" => [
         "father" => 1,
         "mother" => 2,
@@ -28,6 +33,18 @@ return [
         "grandmother" => 8,
         "grandson" => 9,
         "granddaughter" => 10,
+    ],
+    "MemberRelations_desc" => [
+        1 => "Father",
+        2 => "Mother",
+        3 => "Son",
+        4 => "Daughter",
+        5 => "Wife",
+        6 => "Husband",
+        7 => "Grand Father",
+        8 => "Grand Mother",
+        9 => "Grand Son",
+        10 => "Grand Daughter",
     ],
     "userTypes" => [
         "superAdmin" => 0,
