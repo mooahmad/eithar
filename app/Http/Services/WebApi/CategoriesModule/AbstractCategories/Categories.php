@@ -7,6 +7,7 @@ use App\Helpers\Utilities;
 use App\Http\Services\WebApi\CategoriesModule\ICategories\ICategory;
 use App\Http\Services\WebApi\ServicesModule\AbstractServices\Services;
 use App\Models\Category;
+use App\Models\Currency;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -53,6 +54,7 @@ abstract class Categories implements ICategory
                 $service->vat = 0;
                 if (!Auth::user()->is_saudi_nationality)
                     $service->vat = config('constants.vat_percentage');
+                $service->currency_name = Currency::find($service->currency_id)->name_eng;
                 $service->total_price = $service->price + Utilities::calcPercentage($service->price, $service->vat);
             });
             if ($orderedCategory->category_parent_id == config('constants.categories.Doctor')) {
