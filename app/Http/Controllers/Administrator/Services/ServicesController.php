@@ -193,7 +193,12 @@ class ServicesController extends Controller
     public function getServicesTypes(Request $request, $categoryId)
     {
         $allTypes = config('constants.serviceTypes');
-        if ($categoryId == config('constants.categories.Lap')) {
+        if($categoryId == config('constants.categories.Lap')) {
+            unset($allTypes[1]);
+            unset($allTypes[2]);
+            unset($allTypes[3]);
+            unset($allTypes[4]);
+        }elseif ($categoryId == config('constants.categories.Lap')) {
             unset($allTypes[1]);
             unset($allTypes[2]);
             unset($allTypes[3]);

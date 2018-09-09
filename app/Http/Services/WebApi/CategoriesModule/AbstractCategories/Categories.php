@@ -50,6 +50,10 @@ abstract class Categories implements ICategory
             $services = $services->each(function ($service) {
                 $service->profile_picture_path = Utilities::getFileUrl($service->profile_picture_path);
                 $service->addHidden(['benefits_en', 'benefits_ar']);
+                $service->vat = 0;
+                if (!Auth::user()->is_saudi_nationality)
+                    $service->vat = config('constants.vat_percentage');
+                $service->total_price = $service->price + Utilities::calcPercentage($service->price, $service->vat);
             });
             if ($orderedCategory->category_parent_id == config('constants.categories.Doctor')) {
                 $services->each(function ($service) use (&$serviceId, &$customerCity, &$providers, &$services, $isPackage) {
