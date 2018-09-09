@@ -3,6 +3,7 @@
 namespace App\Http\Services\WebApi\UsersModule\AbstractUsers;
 
 
+use App\Helpers\ApiHelpers;
 use App\Helpers\Utilities;
 use App\Http\Services\WebApi\CommonTraits\Follows;
 use App\Http\Services\WebApi\CommonTraits\Likes;
@@ -45,7 +46,7 @@ class Provider
                 $provider->category_name = $service->category->name;
         });
         $provider->currency_name = Currency::find($provider->currency_id)->name_eng;
-        $provider->calendar_dates = $this->reBuildCalendar($day, $provider->calendar);
+        $provider->calendar_dates = ApiHelpers::reBuildCalendar($day, $provider->calendar);
         $provider->vat = 0;
         if (!Auth::user()->is_saudi_nationality)
             $provider->vat = config('constants.vat_percentage');
@@ -111,31 +112,4 @@ class Provider
             new MessageBag([]));
     }
 
-    private function reBuildCalendar($day, $calendar)
-    {
-        $dayDate = Carbon::parse($day)->format('Y-m-d');
-        $morning = ["start" => "$dayDate 00:00:00", "end" => "$dayDate 12:00:00"];
-        $afternoon = ["start" => "$dayDate 12:00:00", "end" => "$dayDate 17:00:00"];
-        $evening = ["start" => "$dayDate 17:00:00", "end" => "$dayDate 23:59:59"];
-        $reBuitCalendar = new \stdClass();
-        $reBuitCalendar->day = $day;
-        $reBuitCalendar->morning = [];
-        $reBuitCalendar->afternoon = [];
-        $reBuitCalendar->evening = [];
-        $calendar->each(function ($calendar) use ($morning, $afternoon, $evening, &$reBuitCalendar) {
-            $carbonStartDate = Carbon::parse($calendar->start_date);
-            $slot = new \stdClass();
-            $slot->id = $calendar->id;
-            $slot->start_time = $carbonStartDate->format('g:i A');
-            // lte $time >= start , gte $time <= end
-            if (strtotime($calendar->start_date) >= strtotime($morning["start"]) && strtotime($calendar->start_date) <= strtotime($morning["end"])) {
-                array_push($reBuitCalendar->morning, $slot);
-            } elseif (strtotime($calendar->start_date) >= strtotime($afternoon["start"]) && strtotime($calendar->start_date) <= strtotime($afternoon["end"])) {
-                array_push($reBuitCalendar->afternoon, $slot);
-            } elseif (strtotime($calendar->start_date) >= strtotime($evening["start"]) && strtotime($calendar->start_date) <= strtotime($evening["end"])) {
-                array_push($reBuitCalendar->evening, $slot);
-            }
-        });
-        return $reBuitCalendar;
-    }
 }

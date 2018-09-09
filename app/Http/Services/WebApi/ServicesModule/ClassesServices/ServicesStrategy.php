@@ -24,6 +24,11 @@ class ServicesStrategy
         return $this->strategy->getServiceQuestionnaire($id, $page);
     }
 
+    public function getLapCalendar($request)
+    {
+        return $this->strategy->getLapCalendar($request);
+    }
+
     public function book($request, $serviceId)
     {
         return $this->strategy->book($request, $serviceId);
