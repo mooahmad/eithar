@@ -74,8 +74,8 @@ class Services implements IService
     {
         // service booking table
         $isLap = ($serviceId == 0)? 1 : 0;
-        $providerId = $request->input('provider_id');
-        $providerAssignedId = $request->input('provider_assigned_id');
+        $providerId = $request->input('provider_id', null);
+        $providerAssignedId = $request->input('provider_assigned_id', null);
         $promoCodeId = $request->input('promo_code_id');
         $price = $request->input('price');
         $currencyId = $request->input('currency_id');
