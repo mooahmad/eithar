@@ -163,4 +163,5 @@ return [
     'first_name'                => 'First Name',
     'service_name'              => 'Service Name',
     'submitted_at'              => 'Submitted At',
+    'booking-services'          => 'Booking Services',
 ];

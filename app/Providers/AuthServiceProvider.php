@@ -80,7 +80,9 @@ class AuthServiceProvider extends ServiceProvider
 
 //        Customers Policies
         Gate::resource('customers', 'App\Policies\CustomerPolicy');
-//        Gate::define('get-customers-Datatable','App\Policies\CustomerPolicy@getCustomersDataTable');
+
+//        Service Booking Policies
+        Gate::define('booking.view','App\Policies\BookingServicesPolicy@view');
 
         // passport
         Passport::routes();
