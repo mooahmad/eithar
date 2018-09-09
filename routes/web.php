@@ -12,6 +12,7 @@ define('QUN', 'Administrator\Questionnaire');
 define('PRCN', 'Administrator\promo_codes');
 define('INVN', 'Administrator\Invoices');
 define('CUSN', 'Administrator\Customers');
+define('BSN', 'Administrator\BookingServices');
 
 //Frontend Routes
 Route::group(['namespace' => FE], function () {
@@ -154,7 +155,10 @@ Route::group(['middleware' => 'AdminAuth', 'prefix' => AD], function () {
             ]]);
     Route::get('get-customers-Datatable', 'CustomersController@getCustomersDataTable')->name('get-customers-Datatable');
     Route::get('get-customer-appointments-Datatable/{id}', 'CustomersController@getCustomerAppointmentsDataTable')->name('get-customer-appointments-Datatable');
-//    Route::post('deletepromocodes', 'PromoCodesController@deletePromoCodes')->name('deletePromoCodes');
+    });
+
+    Route::group(['namespace' => BSN],function (){
+        Route::get('booking-services/{booking}', 'BookingServicesController@show')->name('Show Booking Details');
     });
 });
 

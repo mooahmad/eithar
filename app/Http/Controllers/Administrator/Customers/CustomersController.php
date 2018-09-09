@@ -135,10 +135,16 @@ class CustomersController extends Controller
             })
             ->rawColumns(['image','full_name','actions'])
             ->make(true);
-//        dd($dataTable);
         return $dataTable;
     }
 
+    /**
+     * Get All Services Booked by Customer ID
+     *
+     * @param Request $request
+     * @return mixed
+     * @throws \Exception
+     */
     public function getCustomerAppointmentsDataTable(Request $request)
     {
         $Booking_services = ServiceBooking::where('id', '<>', 0)->where('customer_id',$request->id);
@@ -148,7 +154,7 @@ class CustomersController extends Controller
                 return View::make('Administrator.widgets.dataTablesActions', ['showURL' => $showURL]);
             })
             ->addColumn('service_name',function ($item){
-                return ($item->service)? $item->service->name_en : '';
+                return ($item->service)? $item->service->name_en. '-'.$item->service->type_desc : '';
             })
             ->addColumn('price',function ($item){
                 $price = $item->price .' ';

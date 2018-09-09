@@ -29,4 +29,12 @@ class ServiceBooking extends Model
     {
         return $this->belongsTo(Currency::class,'currency_id','id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class,'customer_id','id');
+    }
 }
