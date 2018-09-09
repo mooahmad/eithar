@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Models\Customer;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\MessageBag;
@@ -62,5 +63,33 @@ class ApiHelpers
         $customer->profile_picture_path = Utilities::getFileUrl($customer->profile_picture_path);
         $customer->nationality_id_picture = Utilities::getFileUrl($customer->nationality_id_picture);
         return $customer;
+    }
+
+    public static function reBuildCalendar($day, $calendar)
+    {
+        $dayDate = Carbon::parse($day)->format('Y-m-d');
+        $morning = ["start" => "$dayDate 00:00:00", "end" => "$dayDate 12:00:00"];
+        $afternoon = ["start" => "$dayDate 12:00:00", "end" => "$dayDate 17:00:00"];
+        $evening = ["start" => "$dayDate 17:00:00", "end" => "$dayDate 23:59:59"];
+        $reBuitCalendar = new \stdClass();
+        $reBuitCalendar->day = $day;
+        $reBuitCalendar->morning = [];
+        $reBuitCalendar->afternoon = [];
+        $reBuitCalendar->evening = [];
+        $calendar->each(function ($calendar) use ($morning, $afternoon, $evening, &$reBuitCalendar) {
+            $carbonStartDate = Carbon::parse($calendar->start_date);
+            $slot = new \stdClass();
+            $slot->id = $calendar->id;
+            $slot->start_time = $carbonStartDate->format('g:i A');
+            // lte $time >= start , gte $time <= end
+            if (strtotime($calendar->start_date) >= strtotime($morning["start"]) && strtotime($calendar->start_date) <= strtotime($morning["end"])) {
+                array_push($reBuitCalendar->morning, $slot);
+            } elseif (strtotime($calendar->start_date) >= strtotime($afternoon["start"]) && strtotime($calendar->start_date) <= strtotime($afternoon["end"])) {
+                array_push($reBuitCalendar->afternoon, $slot);
+            } elseif (strtotime($calendar->start_date) >= strtotime($evening["start"]) && strtotime($calendar->start_date) <= strtotime($evening["end"])) {
+                array_push($reBuitCalendar->evening, $slot);
+            }
+        });
+        return $reBuitCalendar;
     }
 }

@@ -21,6 +21,12 @@ class ServicesController extends Controller
         return $services->getServiceQuestionnaire($id, $page);
     }
 
+    public function getLapCalendar(Request $request)
+    {
+        $services = new ServicesStrategy(ApiHelpers::requestType($request));
+        return $services->getLapCalendar($request);
+    }
+
     public function book(Request $request, $serviceId)
     {
         $services = new ServicesStrategy(ApiHelpers::requestType($request));

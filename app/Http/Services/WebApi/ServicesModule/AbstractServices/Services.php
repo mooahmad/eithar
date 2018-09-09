@@ -2,6 +2,7 @@
 
 namespace App\Http\Services\WebApi\ServicesModule\AbstractServices;
 
+use App\Helpers\ApiHelpers;
 use App\Helpers\Utilities;
 use App\Http\Services\WebApi\CommonTraits\Follows;
 use App\Http\Services\WebApi\CommonTraits\Likes;
@@ -9,12 +10,16 @@ use App\Http\Services\WebApi\CommonTraits\Ratings;
 use App\Http\Services\WebApi\CommonTraits\Reviews;
 use App\Http\Services\WebApi\CommonTraits\Views;
 use App\Http\Services\WebApi\ServicesModule\IServices\IService;
+use App\Models\ProvidersCalendar;
 use App\Models\Questionnaire;
 use App\Models\Service;
 use App\Models\ServiceBooking;
 use App\Models\ServiceBookingAnswers;
 use App\Models\ServiceBookingAppointment;
+use App\Models\ServiceBookingLap;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\MessageBag;
 
 class Services implements IService
@@ -54,11 +59,21 @@ class Services implements IService
             ]));
     }
 
+    public function getLapCalendar(Request $request)
+    {
+        $day = $request->input('day', Carbon::today()->format('Y-m-d'));
+        $calendar = ProvidersCalendar::where([['provider_id', '=', null], ['start_date', 'like', "%$day%"]])->get();
+        $calendar = ApiHelpers::reBuildCalendar($day, $calendar);
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([
+                "calendar" => $calendar,
+            ]));
+    }
+
     public function book($request, $serviceId)
     {
         // service booking table
-        $serviceType = Service::find($serviceId)->type;
-        $isLap = ($serviceType == 4)? 1 : 0;
+        $isLap = ($serviceId == 0)? 1 : 0;
         $providerId = $request->input('provider_id');
         $providerAssignedId = $request->input('provider_assigned_id');
         $promoCodeId = $request->input('promo_code_id');
@@ -69,7 +84,8 @@ class Services implements IService
         $familyMemberId = $request->input('family_member_id', null);
         $status = config('constants.bookingStatus.inprogress');
         $statusDescription = "inprogress";
-        $serviceBookingId = $this->saveServiceBooking($isLap, $providerId, $providerAssignedId, $serviceId, $promoCodeId, $price, $currencyId, $comment, $address, $familyMemberId, $status, $statusDescription);
+        $lapServicesIds = $request->input('lap_services_ids', []);
+        $serviceBookingId = $this->saveServiceBooking($isLap, $providerId, $providerAssignedId, $serviceId, $promoCodeId, $price, $currencyId, $comment, $address, $familyMemberId, $status, $statusDescription, $lapServicesIds);
         // service booking answers table
         $serviceQuestionnaireAnswers = $request->input('service_questionnaire_answers');
         $bookingAnswer = $this->saveBookingAnswers($serviceBookingId, $serviceQuestionnaireAnswers);
@@ -80,7 +96,7 @@ class Services implements IService
             new MessageBag([]));
     }
 
-    private function saveServiceBooking($isLap, $providerId, $providerAssignedId, $serviceId, $promoCodeId, $price, $currencyId, $comment, $address, $familyMemberId, $status, $statusDescription)
+    private function saveServiceBooking($isLap, $providerId, $providerAssignedId, $serviceId, $promoCodeId, $price, $currencyId, $comment, $address, $familyMemberId, $status, $statusDescription, $lapServicesIds)
     {
         $booking = new ServiceBooking();
         $booking->customer_id = Auth::id();
@@ -97,6 +113,12 @@ class Services implements IService
         $booking->status = $status;
         $booking->status_desc = $statusDescription;
         $booking->save();
+        if($serviceId == 0){
+            $data = [];
+            foreach ($lapServicesIds as $lapServicesId)
+                $data[] = ["service_booking_id" => $booking->id, "service_id" => $lapServicesId];
+            ServiceBookingLap::insert($data);
+        }
         return $booking->id;
     }
 
