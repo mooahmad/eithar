@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Models\Customer;
+use App\Models\Provider;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +24,7 @@ class ApiHelpers
      */
     public static function success($status = 0, $data)
     {
-        return response()->json(array("status" => $status, "data" => $data));
+        return json_encode(array("status" => $status, "data" => $data));
     }
 
     /**
@@ -32,9 +33,9 @@ class ApiHelpers
      * MessageBag $message
      * @return string
      */
-    public static function fail($status = 1, MessageBag $message)
+    public static function fail($status = 1,MessageBag $message)
     {
-        return response()->json(array("status" => $status, "message" => $message));
+        return json_encode(array("status" => $status, "message" => $message));
     }
 
     /**
@@ -45,23 +46,28 @@ class ApiHelpers
     public static function requestType(Request $request)
     {
         $uri = $request->path();
-        if (str_contains($uri, 'api'))
+        if(str_contains($uri, 'api'))
             return config('constants.requestTypes.api');
         return config('constants.requestTypes.web');
     }
 
-    public static function getCustomerWithToken(Customer $customer, $scopes = [])
-    {
-        DB::table('oauth_access_tokens')->where('user_id', $customer->id)->delete();
-        if (empty($scopes))
+    public static function getCustomerWithToken(Customer $customer, $scopes = []){
+        if(empty($scopes))
             $customer->access_token = $customer->createToken('customer')->accessToken;
         else
             $customer->access_token = $customer->createToken('customer', [])->accessToken;
         return $customer;
     }
 
-    public static function getCustomerImages(Customer $customer)
-    {
+    public static function getProviderWithToken(Provider $provider, $scopes = []){
+        if(empty($scopes))
+            $provider->access_token = $provider->createToken('provider')->accessToken;
+        else
+            $provider->access_token = $provider->createToken('provider', [])->accessToken;
+        return $provider;
+    }
+
+    public static function getCustomerImages(Customer $customer){
         $customer->profile_picture_path = Utilities::getFileUrl($customer->profile_picture_path);
         $customer->nationality_id_picture = Utilities::getFileUrl($customer->nationality_id_picture);
         return $customer;

@@ -164,6 +164,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Kozz\Laravel\Providers\Guzzle::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        SMartins\PassportMultiauth\Providers\MultiauthServiceProvider::class,
         Mariuzzo\LaravelJsLocalization\LaravelJsLocalizationServiceProvider::class,
         Edujugon\PushNotification\Providers\PushNotificationServiceProvider::class
     ],
