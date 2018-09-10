@@ -11,6 +11,7 @@ use App\Http\Services\WebApi\CommonTraits\Ratings;
 use App\Http\Services\WebApi\CommonTraits\Reviews;
 use App\Http\Services\WebApi\CommonTraits\Views;
 use App\Models\Currency;
+use App\Models\ProvidersCalendar;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\MessageBag;
@@ -23,9 +24,17 @@ class Provider
     public function getProvider($request, $providerId)
     {
         $day = $request->input('day');
-        $provider = ProviderModel::where('id', $providerId)->with(['calendar' => function ($query) use (&$day) {
+        $provider = ProviderModel::where('id', $providerId)->with(['calendar' => function ($query) use (&$day, $providerId) {
             if (empty($day)) {
-                $day = Carbon::today()->format('Y-m-d');
+                $date = ProvidersCalendar::where('provider_id', $providerId)
+                    ->where('start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
+                    ->where('is_available', 1)
+                    ->orderBy('start_date', 'desc')
+                    ->first();
+                if(!$date)
+                    $day = Carbon::today()->format('Y-m-d');
+                else
+                    $day = Carbon::parse($date->start_date)->format('Y-m-d');
                 $query->where('providers_calendars.start_date', 'like', "%$day%");
             } else {
                 $query->where('providers_calendars.start_date', 'like', "%$day%");
