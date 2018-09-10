@@ -22,6 +22,14 @@ class CreateProvidersTable extends Migration
             $table->string('first_name_en', 255)->nullable();
             $table->string('last_name_ar', 255)->nullable();
             $table->string('last_name_en', 255)->nullable();
+            $table->string('email')->nullable();
+            $table->integer('email_verified')->default(0);
+            $table->string('email_code', 8)->nullable();
+            $table->string('mobile_number')->nullable();
+            $table->integer('mobile_verified')->default(0);
+            $table->string('mobile_code', 8)->nullable();
+            $table->string('password');
+            $table->string('forget_password_code')->nullable();
             $table->string('speciality_area_ar', 255)->nullable();
             $table->string('speciality_area_en', 255)->nullable();
             $table->string('profile_picture_path', 255)->nullable();
@@ -45,6 +53,8 @@ class CreateProvidersTable extends Migration
             $table->integer('visit_duration')->nullable();
             $table->integer('time_before_next_visit')->nullable();
             $table->integer('added_by')->nullable();
+            $table->dateTime('last_login_date')->nullable();
+            $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Models\Customer;
+use App\Models\Provider;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -51,12 +52,19 @@ class ApiHelpers
     }
 
     public static function getCustomerWithToken(Customer $customer, $scopes = []){
-        DB::table('oauth_access_tokens')->where('user_id', $customer->id)->delete();
         if(empty($scopes))
         $customer->access_token = $customer->createToken('customer')->accessToken;
         else
             $customer->access_token = $customer->createToken('customer', [])->accessToken;
         return $customer;
+    }
+
+    public static function getProviderWithToken(Provider $provider, $scopes = []){
+        if(empty($scopes))
+            $provider->access_token = $provider->createToken('provider')->accessToken;
+        else
+            $provider->access_token = $provider->createToken('provider', [])->accessToken;
+        return $provider;
     }
 
     public static function getCustomerImages(Customer $customer){

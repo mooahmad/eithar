@@ -14,6 +14,7 @@ use App\Policies\ServicePolicy;
 use App\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Route;
 use Laravel\Passport\Passport;
 
 class AuthServiceProvider extends ServiceProvider
@@ -77,5 +78,12 @@ class AuthServiceProvider extends ServiceProvider
         Passport::tokensExpireIn(now()->addMinutes(60));
 
         Passport::refreshTokensExpireIn(now()->addMinutes(50));
+
+        // Middleware `oauth.providers` middleware defined on $routeMiddleware above
+        Route::group(['middleware' => 'oauth.providers'], function () {
+            Passport::routes(function ($router) {
+                return $router->forAccessTokens();
+            });
+        });
     }
 }

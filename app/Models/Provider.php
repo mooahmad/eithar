@@ -3,18 +3,22 @@
 namespace App\Models;
 
 use App\Helpers\Utilities;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\App;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use SMartins\PassportMultiauth\HasMultiAuthApiTokens;
 
-class Provider extends Model
+class Provider extends Authenticatable
 {
-    use SoftDeletes;
+    use SoftDeletes, HasMultiAuthApiTokens;
 
     public $timestamps = true;
     protected $table = 'providers';
     protected $dateFormat = 'Y-m-d H:m:s';
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+    protected $hidden = [
+        'password', 'remember_token', 'email_code', 'mobile_code', 'deleted_at', 'created_at', 'updated_at'
+    ];
 
     public function attributesToArray()
     {
