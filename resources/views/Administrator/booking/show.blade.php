@@ -67,10 +67,9 @@
                     <tr>
                         <th> # </th>
                         <th> Service Name </th>
-                        <th class="hidden-xs"> Description </th>
+                        <th class="hidden-xs"> Start Date </th>
+                        <th class="hidden-xs"> End Date </th>
                         <th class="hidden-xs"> Price </th>
-                        <th class="hidden-xs"> Unit Cost </th>
-                        <th> Total </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -78,19 +77,16 @@
                         <tr>
                             <td> {{ $booking->service->id }} </td>
                             <td> {{ $booking->service->name_en }} </td>
-                            <td class="hidden-xs"> {{ $booking->service->desc_en }} </td>
                             <td class="hidden-xs"> {{ $booking->service->price }} </td>
                             <td class="hidden-xs"> {{ $booking->service->visit_duration }} </td>
-                            <td> $2152 </td>
                         </tr>
                     @else
                         <tr>
                             <td> {{ $booking->service->id }} </td>
                             <td> {{ $booking->service->name_en }} {{ ($booking->provider) ? $booking->provider->full_name : '' }} </td>
-                            <td class="hidden-xs"> {{ ($booking->provider) ? $booking->provider->price : '' }} </td>
+                            <td class="hidden-xs"> {{ ($booking->service_appointments->first()->provider_slot) ? $booking->service_appointments->first()->provider_slot->start_date : '' }} </td>
+                            <td class="hidden-xs"> {{ ($booking->service_appointments->first()->provider_slot) ? $booking->service_appointments->first()->provider_slot->end_date : '' }} </td>
                             <td class="hidden-xs"> {{ $booking->service->price }} {{ $booking->currency->name_eng }}</td>
-                            <td class="hidden-xs"> {{ $booking->service->visit_duration }} </td>
-                            <td> $2152 </td>
                         </tr>
                     @endif
                     </tbody>

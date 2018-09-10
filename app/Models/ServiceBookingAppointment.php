@@ -13,4 +13,12 @@ class ServiceBookingAppointment extends Model
     protected $table      = 'service_booking_appointments';
     protected $dateFormat = 'Y-m-d H:m:s';
     protected $dates      = ['created_at', 'updated_at', 'deleted_at'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function provider_slot()
+    {
+        return $this->belongsTo(ProvidersCalendar::class,'slot_id','id');
+    }
 }
