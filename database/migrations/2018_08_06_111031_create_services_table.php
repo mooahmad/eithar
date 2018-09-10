@@ -28,7 +28,7 @@ class CreateServicesTable extends Migration
             $table->string('profile_video_path', 255)->nullable();
             $table->string('benefits_ar', 255)->nullable();
             $table->string('benefits_en', 255)->nullable();
-            $table->integer('no_of_visits')->nullable();
+            $table->integer('no_of_visits')->default(0);
             $table->double('price')->nullable();
             $table->integer('visit_duration')->nullable();
             $table->integer('time_before_next_visit')->nullable();
