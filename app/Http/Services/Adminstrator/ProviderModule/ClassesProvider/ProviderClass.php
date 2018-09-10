@@ -62,48 +62,49 @@ class ProviderClass
     public static function isExistCalendar($startDate, $endDate, $providerId, $calendarId = false)
     {
         $day = Carbon::parse($startDate)->format('Y-m-d');
+        $timeBeforeNextVisit = Provider::find($providerId)->time_before_next_visit;
         $calendar = ProvidersCalendar::where('provider_id', $providerId)
-                                     ->where('start_date', 'like', "%$day%")
-                                     ->where(function ($query) use ($startDate, $endDate) {
-                                         $query->where([
-                                                           ['start_date', '=', $startDate],
-                                                           ['end_date', '=', $endDate]
-                                                       ])
-                                               ->orWhere([
-                                                             ['start_date', '<', $startDate],
-                                                             ['end_date', '>', $endDate]
-                                                         ])
-                                               ->orWhere([
-                                                             ['start_date', '<', $endDate],
-                                                             ['start_date', '>', $startDate],
-                                                             ['end_date', '>', $endDate]
-                                                         ])
-                                               ->orWhere([
-                                                             ['start_date', '>', $startDate],
-                                                             ['end_date', '<', $endDate]
-                                                         ])
-                                               ->orWhere([
-                                                             ['start_date', '<', $startDate],
-                                                             ['end_date', '<', $endDate],
-                                                             ['end_date', '>', $startDate]
-                                                         ])
-                                               ->orWhere([
-                                                             ['start_date', '<', $startDate],
-                                                             ['end_date', '=', $endDate]
-                                                         ])
-                                               ->orWhere([
-                                                             ['start_date', '>', $startDate],
-                                                             ['end_date', '=', $endDate]
-                                                         ])
-                                               ->orWhere([
-                                                             ['start_date', '=', $startDate],
-                                                             ['end_date', '<', $endDate]
-                                                         ])
-                                               ->orWhere([
-                                                             ['start_date', '=', $startDate],
-                                                             ['end_date', '>', $endDate]
-                                                         ]);
-                                     });
+            ->where('start_date', 'like', "%$day%")
+            ->where(function ($query) use ($startDate, $endDate, $timeBeforeNextVisit) {
+                $query->where(function ($query) use ($startDate, $endDate, $timeBeforeNextVisit) {
+                    $query->where('start_date', '=', $startDate)
+                        ->whereRaw('DATE_ADD(end_date, INTERVAL ' . $timeBeforeNextVisit . ' MINUTE) = ' . "'$endDate'");
+                })
+                    ->orWhere(function ($query) use ($startDate, $endDate, $timeBeforeNextVisit) {
+                        $query->where('start_date', '<', $startDate)
+                            ->whereRaw('DATE_ADD(end_date, INTERVAL ' . $timeBeforeNextVisit . ' MINUTE) > ' . "'$endDate'");
+                    })
+                    ->orWhere(function ($query) use ($startDate, $endDate, $timeBeforeNextVisit) {
+                        $query->where('start_date', '<', $endDate)
+                            ->where('start_date', '>', $startDate)
+                            ->whereRaw('DATE_ADD(end_date, INTERVAL ' . $timeBeforeNextVisit . ' MINUTE) > ' . "'$endDate'");
+                    })
+                    ->orWhere(function ($query) use ($startDate, $endDate, $timeBeforeNextVisit) {
+                        $query->where('start_date', '>', $startDate)
+                            ->whereRaw('DATE_ADD(end_date, INTERVAL ' . $timeBeforeNextVisit . ' MINUTE) < ' . "'$endDate'");
+                    })
+                    ->orWhere(function ($query) use ($startDate, $endDate, $timeBeforeNextVisit) {
+                        $query->where('start_date', '<', $startDate)
+                            ->whereRaw('DATE_ADD(end_date, INTERVAL ' . $timeBeforeNextVisit . ' MINUTE) < ' . "'$endDate'")
+                            ->whereRaw('DATE_ADD(end_date, INTERVAL ' . $timeBeforeNextVisit . ' MINUTE) > ' . "'$startDate'");
+                    })
+                    ->orWhere(function ($query) use ($startDate, $endDate, $timeBeforeNextVisit) {
+                        $query->where('start_date', '<', $startDate)
+                            ->whereRaw('DATE_ADD(end_date, INTERVAL ' . $timeBeforeNextVisit . ' MINUTE) = ' . "'$endDate'");
+                    })
+                    ->orWhere(function ($query) use ($startDate, $endDate, $timeBeforeNextVisit) {
+                        $query->where('start_date', '>', $startDate)
+                            ->whereRaw('DATE_ADD(end_date, INTERVAL ' . $timeBeforeNextVisit . ' MINUTE) = ' . "'$endDate'");
+                    })
+                    ->orWhere(function ($query) use ($startDate, $endDate, $timeBeforeNextVisit) {
+                        $query->where('start_date', '=', $startDate)
+                            ->whereRaw('DATE_ADD(end_date, INTERVAL ' . $timeBeforeNextVisit . ' MINUTE) < ' . "'$endDate'");
+                    })
+                    ->orWhere(function ($query) use ($startDate, $endDate, $timeBeforeNextVisit) {
+                        $query->where('start_date', '=', $startDate)
+                            ->whereRaw('DATE_ADD(end_date, INTERVAL ' . $timeBeforeNextVisit . ' MINUTE) > ' . "'$endDate'");
+                    });
+            });
         if ($calendarId) {
             $calendar = $calendar->where('id', '<>', $calendarId);
         }
@@ -133,22 +134,22 @@ class ProviderClass
             $isValidImage = Utilities::validateImage($request, $fileName);
             if (!$isValidImage)
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
-                                                     new MessageBag([
-                                                                        "message" => trans('errors.errorUploadAvatar')
-                                                                    ]));
+                    new MessageBag([
+                        "message" => trans('errors.errorUploadAvatar')
+                    ]));
             $isUploaded = Utilities::UploadImage($request->file($fileName), $path);
             if (!$isUploaded)
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
-                                                     new MessageBag([
-                                                                        "message" => trans('errors.errorUploadAvatar')
-                                                                    ]));
+                    new MessageBag([
+                        "message" => trans('errors.errorUploadAvatar')
+                    ]));
             Utilities::DeleteImage($provider->{$fieldName});
             $provider->{$fieldName} = $isUploaded;
             if (!$provider->save())
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
-                                                     new MessageBag([
-                                                                        "message" => trans('errors.errorUploadAvatar')
-                                                                    ]));
+                    new MessageBag([
+                        "message" => trans('errors.errorUploadAvatar')
+                    ]));
             return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
