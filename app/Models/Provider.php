@@ -133,6 +133,8 @@ class Provider extends Model
      */
     public function getFullNameAttribute()
     {
+//        $local = App::getLocale();
+//        return $this->{'title_'.$local} .' '. $this->{'first_name_'.$local}.' '. $this->{'last_name_'.$local};
         return "{$this->title_en} {$this->first_name_en} {$this->last_name_en}";
     }
 }
