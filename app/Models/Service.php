@@ -47,9 +47,9 @@ class Service extends Model
     public function getDescriptionAttribute()
     {
         if (App::isLocale('en'))
-            return $this->description_en;
+            return $this->desc_en;
         else
-            return $this->description_ar;
+            return $this->desc_ar;
     }
 
     public function getBenefitsAttribute()
