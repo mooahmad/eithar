@@ -91,6 +91,7 @@ abstract class Categories implements ICategory
                             return true;
                     }
                 });
+                $services->all();
             }
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'),
