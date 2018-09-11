@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Administrator\Services;
 
 use App\Helpers\Utilities;
+use App\Http\Requests\Providers\CreateCalendarRequest;
+use App\Http\Requests\Providers\UpdateCalendarRequest;
 use App\Http\Requests\Services\CreateQuestionaireRequest;
 use App\Http\Requests\Services\CreateServiceRequest;
 use App\Http\Requests\Services\UpdateQuestionnaireRequest;
@@ -13,9 +15,11 @@ use App\Models\Country;
 use App\Models\Currency;
 use App\Models\Questionnaire;
 use App\Models\Service;
+use App\Models\ServicesCalendar;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -50,7 +54,15 @@ class ServicesController extends Controller
             return response()->view('errors.403', [], 403);
         }
         $doctorID = config('constants.categories.Doctor');
-        $categories = Category::doesntHave('categories')->where('id', '<>', $doctorID)->get();
+        $nursingID = config('constants.categories.Nursing');
+        $physioID = config('constants.categories.Physiotherapy');
+        $womanID = config('constants.categories.WomanAndChild');
+        $categories = Category::doesntHave('categories')
+            ->where('id', '<>', $doctorID)
+            ->where('id', '<>', $nursingID)
+            ->where('id', '<>', $physioID)
+            ->where('id', '<>', $womanID)
+            ->get();
         $categories = $categories->reject(function ($category, $key) use ($doctorID) {
             if ($category->category_parent_id == $doctorID) {
                 if ($category->services->isEmpty())
@@ -107,7 +119,15 @@ class ServicesController extends Controller
         }
         $service = Service::FindOrFail($id);
         $doctorID = config('constants.categories.Doctor');
-        $categories = Category::doesntHave('categories')->where('id', '<>', $doctorID)->get();
+        $nursingID = config('constants.categories.Nursing');
+        $physioID = config('constants.categories.Physiotherapy');
+        $womanID = config('constants.categories.WomanAndChild');
+        $categories = Category::doesntHave('categories')
+            ->where('id', '<>', $doctorID)
+            ->where('id', '<>', $nursingID)
+            ->where('id', '<>', $physioID)
+            ->where('id', '<>', $womanID)
+            ->get();
         $categories = $categories->reject(function ($category, $key) use ($doctorID, $service) {
             if ($category->category_parent_id == $doctorID && $category->id != $service->category_id) {
                 if ($category->services->isEmpty())
@@ -165,7 +185,13 @@ class ServicesController extends Controller
                     $editURL = url(AD . '/services/' . $service->id . '/edit');
                     $questionnaireURL = url(AD . '/services/' . $service->id . '/questionnaire');
                     $addQuestionnaireURL = url(AD . '/services/' . $service->id . '/questionnaire/create');
-                    return View::make('Administrator.services.widgets.dataTableQuestionnaireAction', ['editURL' => $editURL, 'questionnaireURL' => $questionnaireURL, 'addQuestionnaireURL' => $addQuestionnaireURL]);
+                    $calendarURL = "";
+                    $addCalendarURL = "";
+                    if($service->type == 1 || $service->type == 2){
+                        $calendarURL = url(AD . '/services/' . $service->id . '/calendar');
+                        $addCalendarURL = url(AD . '/services/' . $service->id . '/calendar/create');
+                    }
+                    return View::make('Administrator.services.widgets.dataTableQuestionnaireAction', ['editURL' => $editURL, 'questionnaireURL' => $questionnaireURL, 'addQuestionnaireURL' => $addQuestionnaireURL, "calendarURL" => $calendarURL, "addCalendarURL" => $addCalendarURL]);
                 }
             })
             ->addColumn('image', function ($service) {
@@ -193,7 +219,8 @@ class ServicesController extends Controller
     public function getServicesTypes(Request $request, $categoryId)
     {
         $allTypes = config('constants.serviceTypes');
-        if($categoryId == config('constants.categories.Lap')) {
+        $category = Category::find($categoryId);
+        if($category->category_parent_id == config('constants.categories.Doctor')) {
             unset($allTypes[1]);
             unset($allTypes[2]);
             unset($allTypes[3]);
@@ -203,7 +230,7 @@ class ServicesController extends Controller
             unset($allTypes[2]);
             unset($allTypes[3]);
             unset($allTypes[5]);
-        } elseif ($categoryId == config('constants.categories.Physiotherapy') || $categoryId == config('constants.categories.Nursing') || $categoryId == config('constants.categories.WomanAndChild')) {
+        } elseif ($category->category_parent_id == config('constants.categories.Physiotherapy') || $category->category_parent_id == config('constants.categories.Nursing') || $category->category_parent_id == config('constants.categories.WomanAndChild')) {
             unset($allTypes[3]);
             unset($allTypes[4]);
             unset($allTypes[5]);
@@ -345,4 +372,100 @@ class ServicesController extends Controller
         return response()->json($data);
     }
 
+    // calendar section
+
+    public function showServiceCalendar($id)
+    {
+        $calendarSections = config('constants.calendarSections');
+        $data = [
+            'serviceID'       => $id,
+            'calendarSections' => $calendarSections
+        ];
+        return view(AD . '.services.calendar_index')->with($data);
+    }
+
+    public function createServiceCalendar(Request $request, $serviceId)
+    {
+        $data = [
+            'formRoute' => route('storeServiceCalendar', ['service' => $serviceId]),
+            'submitBtn' => trans('admin.create')
+        ];
+        return view(AD . '.services.calendar_form')->with($data);
+    }
+
+    public function storeServiceCalendar(CreateCalendarRequest $request, $serviceId)
+    {
+        $serviceCalendar = new ServicesCalendar();
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+        if(ServiceClass::isExistCalendar($startDate, $endDate, $serviceId)){
+            return Redirect::back()->withErrors(['msg' => 'The slot you have picked conflicts with another one']);
+        }
+        ServiceClass::createOrUpdateCalendar($serviceCalendar, $request, $serviceId);
+        session()->flash('success_msg', trans('admin.success_message'));
+        return redirect(AD . '/services/' . $serviceId . '/calendar');
+    }
+
+    public function editServiceCalendar(Request $request, $serviceId, $calendarId)
+    {
+        $calendar = ServicesCalendar::find($calendarId);
+        $data = [
+            'calendar'  => $calendar,
+            'formRoute' => route('updateServiceCalendar', ['id' => $serviceId, 'calendarId' => $calendarId]),
+            'submitBtn' => trans('admin.update')
+        ];
+        return view(AD . '.services.calendar_form')->with($data);
+    }
+
+    public function updateServiceCalendar(UpdateCalendarRequest $request, $serviceId, $calendarId)
+    {
+        $serviceCalendar = ServicesCalendar::find($calendarId);
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+        if(ServiceClass::isExistCalendar($startDate, $endDate, $serviceId, $calendarId)){
+            return Redirect::back()->withErrors(['msg' => 'The slot you have picked conflicts with another one']);
+        }
+        ServiceClass::createOrUpdateCalendar($serviceCalendar, $request, $serviceId);
+        session()->flash('success_msg', trans('admin.success_message'));
+        return redirect(AD . '/services/' . $serviceId . '/calendar');
+    }
+
+    public function getCalendarDatatable($id)
+    {
+        $serviceCalendar = ServicesCalendar::where('service_id', $id);
+        $dataTable = DataTables::of($serviceCalendar)
+            ->addColumn('actions', function ($calendar) use ($id) {
+                $editURL = url(AD . '/services/' . $id . '/calendar/' . $calendar->id . '/edit');
+                return View::make('Administrator.widgets.dataTablesActions', ['editURL' => $editURL]);
+            })
+            ->filterColumn('services_calendars.start_date', function ($query, $keyword) {
+                $now = Carbon::now()->format('Y-m-d H:m:s');
+                switch ($keyword) {
+                    case 0:
+                        break;
+                        $query->whereRaw("1 = 1");
+                    case 1:
+                        $query->whereRaw("end_date < ?", ["%{$now}%"]);
+                        break;
+                    case 2:
+                        $query->whereRaw("start_date < ? AND end_date > ?", ["%{$now}%", "%{$now}%"]);
+                        break;
+                    case 3:
+                        $query->whereRaw("start_date > ?", ["%{$now}%"]);
+                        break;
+                }
+            })
+            ->rawColumns(['actions'])
+            ->make(true);
+        return $dataTable;
+    }
+
+    public function deleteCalendar(Request $request)
+    {
+        if (Gate::denies('service.delete', new Service())) {
+            return response()->view('errors.403', [], 403);
+        }
+        $ids = $request->input('ids');
+        return ServicesCalendar::whereIn('id', $ids)->delete();
+    }
 }

@@ -6,6 +6,7 @@ namespace App\Http\Services\Adminstrator\ServiceModule\ClassesService;
 use App\Helpers\Utilities;
 use App\Models\Questionnaire;
 use App\Models\Service;
+use App\Models\ServicesCalendar;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -90,6 +91,67 @@ class ServiceClass
             return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
+    }
+
+    public static function isExistCalendar($startDate, $endDate, $serviceId, $calendarId = false)
+    {
+        $day = Carbon::parse($startDate)->format('Y-m-d');
+        $calendar = ServicesCalendar::where('service_id', $serviceId)
+            ->where('start_date', 'like', "%$day%")
+            ->where(function ($query) use ($startDate, $endDate) {
+                $query->where(function ($query) use ($startDate, $endDate) {
+                    $query->where('start_date', '=', $startDate)
+                        ->whereRaw('end_date = ' . "'$endDate'");
+                })
+                    ->orWhere(function ($query) use ($startDate, $endDate) {
+                        $query->where('start_date', '<', $startDate)
+                            ->whereRaw('end_date > ' . "'$endDate'");
+                    })
+                    ->orWhere(function ($query) use ($startDate, $endDate) {
+                        $query->where('start_date', '<', $endDate)
+                            ->where('start_date', '>', $startDate)
+                            ->whereRaw('end_date > ' . "'$endDate'");
+                    })
+                    ->orWhere(function ($query) use ($startDate, $endDate) {
+                        $query->where('start_date', '>', $startDate)
+                            ->whereRaw('end_date < ' . "'$endDate'");
+                    })
+                    ->orWhere(function ($query) use ($startDate, $endDate) {
+                        $query->where('start_date', '<', $startDate)
+                            ->whereRaw('end_date < ' . "'$endDate'")
+                            ->whereRaw('end_date > ' . "'$startDate'");
+                    })
+                    ->orWhere(function ($query) use ($startDate, $endDate) {
+                        $query->where('start_date', '<', $startDate)
+                            ->whereRaw('end_date = ' . "'$endDate'");
+                    })
+                    ->orWhere(function ($query) use ($startDate, $endDate) {
+                        $query->where('start_date', '>', $startDate)
+                            ->whereRaw('end_date = ' . "'$endDate'");
+                    })
+                    ->orWhere(function ($query) use ($startDate, $endDate) {
+                        $query->where('start_date', '=', $startDate)
+                            ->whereRaw('end_date < ' . "'$endDate'");
+                    })
+                    ->orWhere(function ($query) use ($startDate, $endDate) {
+                        $query->where('start_date', '=', $startDate)
+                            ->whereRaw('end_date > ' . "'$endDate'");
+                    });
+            });
+        if ($calendarId) {
+            $calendar = $calendar->where('id', '<>', $calendarId);
+        }
+        $calendar = $calendar->get();
+        return !$calendar->isEmpty();
+    }
+
+    public static function createOrUpdateCalendar(ServicesCalendar $serviceCalendar, $request, $serviceId, $isCreate = true)
+    {
+        $serviceCalendar->service_id = $serviceId;
+        $serviceCalendar->start_date = $request->input('start_date');
+        $serviceCalendar->end_date = $request->input('end_date');
+        $serviceCalendar->is_available = $request->input('is_available');
+        return $serviceCalendar->save();
     }
 
 }
