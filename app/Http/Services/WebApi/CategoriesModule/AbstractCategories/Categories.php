@@ -79,19 +79,18 @@ abstract class Categories implements ICategory
                 });
             } elseif ($orderedCategory->category_parent_id == config('constants.categories.Physiotherapy') || $orderedCategory->category_parent_id == config('constants.categories.Nursing') || $orderedCategory->category_parent_id == config('constants.categories.WomanAndChild')) {
                 $services = $services->reject(function ($service) use ($isPackage) {
-                    if ($isPackage) {
+                    if ($isPackage == "true") {
                         if ($service->type == 2)
                             return false;
                         else
                             return true;
-                    } elseif (!$isPackage) {
+                    } elseif ($isPackage == "false") {
                         if ($service->type == 1)
                             return false;
                         else
                             return true;
                     }
                 });
-                $services->all();
             }
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'),
