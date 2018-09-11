@@ -21,7 +21,7 @@ class CategoriesController extends Controller
         return $categories->getMainCategories($request);
     }
 
-    public function getChildCategories(Request $request, $id, $isPackage = false)
+    public function getChildCategories(Request $request, $id, $isPackage = "false")
     {
         $categories = new CategoriesStrategy(ApiHelpers::requestType($request));
         return $categories->getChildCategories($id, $isPackage);
