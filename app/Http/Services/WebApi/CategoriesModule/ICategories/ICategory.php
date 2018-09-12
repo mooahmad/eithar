@@ -9,6 +9,6 @@ interface ICategory
 {
     public function getMainCategories(Request $request);
 
-    public function getChildCategories($id, $isPackage);
+    public function getChildCategories(Request $request, $id, $isPackage);
 
 }

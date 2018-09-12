@@ -10,7 +10,9 @@ use App\Http\Requests\Services\CreateServiceRequest;
 use App\Http\Requests\Services\UpdateQuestionnaireRequest;
 use App\Http\Requests\Services\UpdateServiceRequest;
 use App\Http\Services\Adminstrator\ServiceModule\ClassesService\ServiceClass;
+use App\LapCalendar;
 use App\Models\Category;
+use App\Models\City;
 use App\Models\Country;
 use App\Models\Currency;
 use App\Models\Questionnaire;
@@ -386,7 +388,9 @@ class ServicesController extends Controller
 
     public function createServiceCalendar(Request $request, $serviceId)
     {
+        $allCities = City::all()->pluck('city_name_eng', 'id')->toArray();
         $data = [
+            'allCities' => $allCities,
             'formRoute' => route('storeServiceCalendar', ['service' => $serviceId]),
             'submitBtn' => trans('admin.create')
         ];
@@ -398,7 +402,8 @@ class ServicesController extends Controller
         $serviceCalendar = new ServicesCalendar();
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');
-        if(ServiceClass::isExistCalendar($startDate, $endDate, $serviceId)){
+        $cityID = $request->input('city_id');
+        if(ServiceClass::isExistCalendar($startDate, $endDate, $serviceId, false, $cityID)){
             return Redirect::back()->withErrors(['msg' => 'The slot you have picked conflicts with another one']);
         }
         ServiceClass::createOrUpdateCalendar($serviceCalendar, $request, $serviceId);
@@ -409,7 +414,9 @@ class ServicesController extends Controller
     public function editServiceCalendar(Request $request, $serviceId, $calendarId)
     {
         $calendar = ServicesCalendar::find($calendarId);
+        $allCities = City::all()->pluck('city_name_eng', 'id')->toArray();
         $data = [
+            'allCities' => $allCities,
             'calendar'  => $calendar,
             'formRoute' => route('updateServiceCalendar', ['id' => $serviceId, 'calendarId' => $calendarId]),
             'submitBtn' => trans('admin.update')
@@ -422,7 +429,8 @@ class ServicesController extends Controller
         $serviceCalendar = ServicesCalendar::find($calendarId);
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');
-        if(ServiceClass::isExistCalendar($startDate, $endDate, $serviceId, $calendarId)){
+        $cityID = $request->input('city_id');
+        if(ServiceClass::isExistCalendar($startDate, $endDate, $serviceId, $calendarId, $cityID)){
             return Redirect::back()->withErrors(['msg' => 'The slot you have picked conflicts with another one']);
         }
         ServiceClass::createOrUpdateCalendar($serviceCalendar, $request, $serviceId);
@@ -467,5 +475,106 @@ class ServicesController extends Controller
         }
         $ids = $request->input('ids');
         return ServicesCalendar::whereIn('id', $ids)->delete();
+    }
+
+    // Lap calendar section
+
+    public function showServiceLapCalendar()
+    {
+        $calendarSections = config('constants.calendarSections');
+        $data = [
+            'calendarSections' => $calendarSections
+        ];
+        return view(AD . '.services.lap_calendar_index')->with($data);
+    }
+
+    public function createServiceLapCalendar(Request $request)
+    {
+        $allCities = City::all()->pluck('city_name_eng', 'id')->toArray();
+        $data = [
+            'allCities' => $allCities,
+            'formRoute' => route('storeServiceLapCalendar'),
+            'submitBtn' => trans('admin.create')
+        ];
+        return view(AD . '.services.lap_calendar_form')->with($data);
+    }
+
+    public function storeServiceLapCalendar(CreateCalendarRequest $request)
+    {
+        $lapCalendar = new LapCalendar();
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+        $cityID = $request->input('city_id');
+        if(ServiceClass::isExistLapCalendar($startDate, $endDate, false, $cityID)){
+            return Redirect::back()->withErrors(['msg' => 'The slot you have picked conflicts with another one']);
+        }
+        ServiceClass::createOrUpdateLapCalendar($lapCalendar, $request);
+        session()->flash('success_msg', trans('admin.success_message'));
+        return redirect(AD . '/lap/calendar');
+    }
+
+    public function editServiceLapCalendar(Request $request, $calendarId)
+    {
+        $calendar = LapCalendar::find($calendarId);
+        $allCities = City::all()->pluck('city_name_eng', 'id')->toArray();
+        $data = [
+            'allCities' => $allCities,
+            'calendar'  => $calendar,
+            'formRoute' => route('updateServiceLapCalendar', ['calendarId' => $calendarId]),
+            'submitBtn' => trans('admin.update')
+        ];
+        return view(AD . '.services.Lap_calendar_form')->with($data);
+    }
+
+    public function updateServiceLapCalendar(UpdateCalendarRequest $request, $calendarId)
+    {
+        $lapCalendar = LapCalendar::find($calendarId);
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+        if(ServiceClass::isExistLapCalendar($startDate, $endDate, $calendarId)){
+            return Redirect::back()->withErrors(['msg' => 'The slot you have picked conflicts with another one']);
+        }
+        ServiceClass::createOrUpdateLapCalendar($lapCalendar, $request);
+        session()->flash('success_msg', trans('admin.success_message'));
+        return redirect(AD . '/lap/calendar');
+    }
+
+    public function getLapCalendarDatatable()
+    {
+        $serviceCalendar = LapCalendar::where('id', '<>', 0);
+        $dataTable = DataTables::of($serviceCalendar)
+            ->addColumn('actions', function ($calendar) {
+                $editURL = url(AD . '/lap/calendar/' . $calendar->id . '/edit');
+                return View::make('Administrator.widgets.dataTablesActions', ['editURL' => $editURL]);
+            })
+            ->filterColumn('lap_calendars.start_date', function ($query, $keyword) {
+                $now = Carbon::now()->format('Y-m-d H:m:s');
+                switch ($keyword) {
+                    case 0:
+                        break;
+                        $query->whereRaw("1 = 1");
+                    case 1:
+                        $query->whereRaw("end_date < ?", ["%{$now}%"]);
+                        break;
+                    case 2:
+                        $query->whereRaw("start_date < ? AND end_date > ?", ["%{$now}%", "%{$now}%"]);
+                        break;
+                    case 3:
+                        $query->whereRaw("start_date > ?", ["%{$now}%"]);
+                        break;
+                }
+            })
+            ->rawColumns(['actions'])
+            ->make(true);
+        return $dataTable;
+    }
+
+    public function deleteLapCalendar(Request $request)
+    {
+        if (Gate::denies('service.delete', new Service())) {
+            return response()->view('errors.403', [], 403);
+        }
+        $ids = $request->input('ids');
+        return LapCalendar::whereIn('id', $ids)->delete();
     }
 }

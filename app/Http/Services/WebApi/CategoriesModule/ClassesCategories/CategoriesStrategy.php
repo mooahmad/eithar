@@ -24,8 +24,8 @@ class CategoriesStrategy
         return $this->strategy->getMainCategories($request);
     }
 
-    public function getChildCategories($id, $isPackage)
+    public function getChildCategories(Request $request, $id, $isPackage)
     {
-        return $this->strategy->getChildCategories($id, $isPackage);
+        return $this->strategy->getChildCategories($request, $id, $isPackage);
     }
 }

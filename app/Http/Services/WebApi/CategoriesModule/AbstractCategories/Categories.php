@@ -31,10 +31,10 @@ abstract class Categories implements ICategory
             ]));
     }
 
-    public function getChildCategories($id, $isPackage)
+    public function getChildCategories(Request $request, $id, $isPackage)
     {
         $customerCity = Auth::user()->city_id;
-        $services = Services::getCategoryServices($id);
+        $services = Services::getCategoryServices($request, $id);
         $categories = [];
         $providers = [];
         $serviceId = null;

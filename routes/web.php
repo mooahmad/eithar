@@ -100,6 +100,17 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => SRVN, 'prefix' => AD],
     // calendar dataTable
     Route::post('services/{id}/calendar/datatable', 'ServicesController@getCalendarDatatable')->name('getServiceCalendarDatatable');
     Route::post('deleteServiceCalendar', 'ServicesController@deleteCalendar')->name('deleteServiceCalendar');
+
+    // lap calendar section
+    Route::get('lap/calendar', 'ServicesController@showServiceLapCalendar')->name('showServiceLapCalendar');
+    Route::get('lap/calendar/create', 'ServicesController@createServiceLapCalendar')->name('createServiceLapCalendar');
+    Route::post('lap/calendar/store', 'ServicesController@storeServiceLapCalendar')->name('storeServiceLapCalendar');
+    Route::get('lap/calendar/{calendarId}/edit', 'ServicesController@editServiceLapCalendar')->name('editServiceLapCalendar');
+    Route::post('lap/calendar/{calendarId}/update', 'ServicesController@updateServiceLapCalendar')->name('updateServiceLapCalendar');
+
+    // calendar dataTable
+    Route::post('lap/calendar/datatable', 'ServicesController@getLapCalendarDatatable')->name('getServiceLapCalendarDatatable');
+    Route::post('deleteServiceLapCalendar', 'ServicesController@deleteLapCalendar')->name('deleteServiceLapCalendar');
 });
 
 Route::group(['middleware' => 'AdminAuth', 'namespace' => PRON, 'prefix' => AD], function () {

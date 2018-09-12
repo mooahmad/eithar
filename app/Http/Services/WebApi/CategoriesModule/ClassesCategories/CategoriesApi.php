@@ -16,9 +16,9 @@ class CategoriesApi extends Categories
         return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
     }
 
-    public function getChildCategories($id, $isPackage)
+    public function getChildCategories(Request $request, $id, $isPackage)
     {
-        $validationObject = parent::getChildCategories($id, $isPackage);
+        $validationObject = parent::getChildCategories($request, $id, $isPackage);
         if ($validationObject->error == config('constants.responseStatus.success'))
             return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
         return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);

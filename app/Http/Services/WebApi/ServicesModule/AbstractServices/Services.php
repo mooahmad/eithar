@@ -17,6 +17,7 @@ use App\Models\ServiceBooking;
 use App\Models\ServiceBookingAnswers;
 use App\Models\ServiceBookingAppointment;
 use App\Models\ServiceBookingLap;
+use App\Models\ServicesCalendar;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -26,21 +27,40 @@ class Services implements IService
 {
     use Likes, Follows, Views, Ratings, Reviews;
 
-    public static function getCategoryServices($categoryID)
+    public static function getCategoryServices($request, $categoryID)
     {
-        $services = Service::where('category_id', $categoryID)->get();
-        $services = $services->each(function ($service) {
+        $day = $request->input('day');
+        // calendar for one time visit only
+        $services = Service::where('category_id', $categoryID)->with(['calendar' => function ($query) use (&$day, $categoryID) {
+            if (empty($day)) {
+                $date = Service::join('services_calendars', 'services.id', 'services_calendars.service_id')
+                    ->where('services.category_id', $categoryID)
+                    ->where('services_calendars.start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
+                    ->where('services_calendars.is_available', 1)
+                    ->orderBy('services_calendars.start_date', 'desc')
+                    ->first();
+                if(!$date)
+                    $day = Carbon::today()->format('Y-m-d');
+                else
+                    $day = Carbon::parse($date->start_date)->format('Y-m-d');
+                $query->where('services_calendars.city', '=', Auth::user()->city_id)->where('services_calendars.start_date', 'like', "%$day%");
+            } else {
+                $query->where('services_calendars.city', '=', Auth::user()->city_id)->where('services_calendars.start_date', 'like', "%$day%");
+            }
+        }])->get();
+        $services = $services->each(function ($service) use ($day) {
             $service->addHidden([
                 'name_en', 'name_ar',
-                'desc_en', 'desc_ar'
+                'desc_en', 'desc_ar', 'calendar'
             ]);
+            $service->calendar_dates = ApiHelpers::reBuildCalendar($day, $service->calendar);
         });
         return $services;
     }
 
     public function getServiceQuestionnaire($id, $page = 1)
     {
-        $id = ($id == 0)? null : $id;
+        $id = ($id == 0) ? null : $id;
         $pagesCount = Questionnaire::where('service_id', $id)->max('pagination');
         $questionnaire = Questionnaire::where([['service_id', $id], ['pagination', $page]])->get();
         $questionnaire->each(function ($questionnaire) {
@@ -73,8 +93,8 @@ class Services implements IService
     public function book($request, $serviceId)
     {
         // service booking table
-        $isLap = ($serviceId == 0)? 1 : 0;
-        $serviceId = ($serviceId == 0)? null : $serviceId;
+        $isLap = ($serviceId == 0) ? 1 : 0;
+        $serviceId = ($serviceId == 0) ? null : $serviceId;
         $providerId = $request->input('provider_id', null);
         $providerAssignedId = $request->input('provider_assigned_id', null);
         $promoCodeId = $request->input('promo_code_id');
@@ -114,7 +134,7 @@ class Services implements IService
         $booking->status = $status;
         $booking->status_desc = $statusDescription;
         $booking->save();
-        if($serviceId == 0){
+        if ($serviceId == 0) {
             $data = [];
             foreach ($lapServicesIds as $lapServicesId)
                 $data[] = ["service_booking_id" => $booking->id, "service_id" => $lapServicesId];
@@ -126,7 +146,7 @@ class Services implements IService
     private function saveBookingAnswers($serviceBookingId, $serviceQuestionnaireAnswers)
     {
         $data = [];
-        foreach($serviceQuestionnaireAnswers as $key => $value) {
+        foreach ($serviceQuestionnaireAnswers as $key => $value) {
             $questionnaire = Questionnaire::find($key);
             $data[] = [
                 "service_booking_id" => $serviceBookingId,

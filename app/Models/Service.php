@@ -69,4 +69,9 @@ class Service extends Model
     {
         return $this->belongsTo('App\Models\Category', 'category_id', 'id');
     }
+
+    public function calendar()
+    {
+        return $this->hasMany('App\Models\ServicesCalendar', 'service_id', 'id');
+    }
 }
