@@ -218,10 +218,14 @@ class ServicesController extends Controller
         return Service::whereIn('id', $ids)->delete();
     }
 
-    public function getServicesTypes(Request $request, $categoryId)
+    public function getServicesTypes(Request $request, $categoryId, $serviceID = "")
     {
         $allTypes = config('constants.serviceTypes');
         $category = Category::find($categoryId);
+        $service = Service::find($serviceID);
+        $serviceType = "";
+        if($service)
+            $serviceType = $service->type;
         if($category->category_parent_id == config('constants.categories.Doctor')) {
             unset($allTypes[1]);
             unset($allTypes[2]);
@@ -237,7 +241,11 @@ class ServicesController extends Controller
             unset($allTypes[4]);
             unset($allTypes[5]);
         }
-        return response()->json($allTypes);
+        $data = [
+            "allTypes" => $allTypes,
+            "selectedType" => $serviceType
+        ];
+        return response()->json($data);
     }
 
     // questionnaire section

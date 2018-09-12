@@ -43,9 +43,9 @@ class Services implements IService
                     $day = Carbon::today()->format('Y-m-d');
                 else
                     $day = Carbon::parse($date->start_date)->format('Y-m-d');
-                $query->where('services_calendars.city', '=', Auth::user()->city_id)->where('services_calendars.start_date', 'like', "%$day%");
+                $query->where('services_calendars.city_id', '=', Auth::user()->city_id)->where('services_calendars.start_date', 'like', "%$day%");
             } else {
-                $query->where('services_calendars.city', '=', Auth::user()->city_id)->where('services_calendars.start_date', 'like', "%$day%");
+                $query->where('services_calendars.city_id', '=', Auth::user()->city_id)->where('services_calendars.start_date', 'like', "%$day%");
             }
         }])->get();
         $services = $services->each(function ($service) use ($day) {

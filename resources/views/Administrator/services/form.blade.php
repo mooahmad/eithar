@@ -295,5 +295,8 @@
     <script src="{{ asset('public/assets/pages/scripts/profile.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('public/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js') }}"
             type="text/javascript"></script>
+    <script>
+        var serviceId = '{{(isset($service))? $service->id : ""}}';
+    </script>
     <script src="{{ asset('public/js/custom/services.js') }}" type="text/javascript"></script>
 @stop

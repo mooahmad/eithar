@@ -6,9 +6,9 @@ namespace App\Http\Services\WebApi\CategoriesModule\AbstractCategories;
 use App\Helpers\Utilities;
 use App\Http\Services\WebApi\CategoriesModule\ICategories\ICategory;
 use App\Http\Services\WebApi\ServicesModule\AbstractServices\Services;
+use App\LapCalendar;
 use App\Models\Category;
 use App\Models\Currency;
-use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\MessageBag;
@@ -37,6 +37,7 @@ abstract class Categories implements ICategory
         $services = Services::getCategoryServices($request, $id);
         $categories = [];
         $providers = [];
+        $lapCalendar = [];
         $serviceId = null;
         if ($services->isEmpty()) {
             $categories = Category::where('category_parent_id', $id)->get();
@@ -58,7 +59,7 @@ abstract class Categories implements ICategory
                 $service->total_price = $service->price + Utilities::calcPercentage($service->price, $service->vat);
             });
             if ($orderedCategory->category_parent_id == config('constants.categories.Doctor')) {
-                $services->each(function ($service) use (&$serviceId, &$customerCity, &$providers, &$services, $isPackage) {
+                $services->each(function ($service) use (&$serviceId, &$customerCity, &$providers, &$services) {
                     $serviceId = $service->id;
                     $providers = $service->providers()->with('cities')->whereHas('cities', function ($query) use ($customerCity) {
                         $query->where('cities.id', $customerCity);
@@ -90,7 +91,10 @@ abstract class Categories implements ICategory
                         else
                             return true;
                     }
+                    $service->load('calendar');
                 });
+            }elseif ($orderedCategory->id == config('constants.categories.Lap')){
+                $lapCalendar = LapCalendar::all();
             }
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'),
@@ -98,7 +102,8 @@ abstract class Categories implements ICategory
                 "categories" => $categories,
                 "services" => $services,
                 "providers" => $providers,
-                "service_id" => $serviceId
+                "service_id" => $serviceId,
+                "lap_calendar" => $lapCalendar
             ]));
     }
 

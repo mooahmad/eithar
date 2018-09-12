@@ -7,7 +7,7 @@
             <div class="portlet light bordered">
                 <div class="portlet-title">
                     <div class="btn-group">
-                        <a href="{{ url(AD.'/services/Lap/calendar/create') }}" class="btn sbold green">
+                        <a href="{{ url(AD.'/lap/calendar/create') }}" class="btn sbold green">
                             Add New <i
                                     class="fa fa-plus"></i></a>
                     </div>
