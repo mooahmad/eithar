@@ -27,33 +27,15 @@ class Services implements IService
 {
     use Likes, Follows, Views, Ratings, Reviews;
 
-    public static function getCategoryServices($request, $categoryID)
+    public static function getCategoryServices($request, $categoryID, $day)
     {
-        $day = $request->input('day');
         // calendar for one time visit only
-        $services = Service::where('category_id', $categoryID)->with(['calendar' => function ($query) use (&$day, $categoryID) {
-            if (empty($day)) {
-                $date = Service::join('services_calendars', 'services.id', 'services_calendars.service_id')
-                    ->where('services.category_id', $categoryID)
-                    ->where('services_calendars.start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
-                    ->where('services_calendars.is_available', 1)
-                    ->orderBy('services_calendars.start_date', 'desc')
-                    ->first();
-                if(!$date)
-                    $day = Carbon::today()->format('Y-m-d');
-                else
-                    $day = Carbon::parse($date->start_date)->format('Y-m-d');
-                $query->where('services_calendars.city_id', '=', Auth::user()->city_id)->where('services_calendars.start_date', 'like', "%$day%");
-            } else {
-                $query->where('services_calendars.city_id', '=', Auth::user()->city_id)->where('services_calendars.start_date', 'like', "%$day%");
-            }
-        }])->get();
+        $services = Service::where('category_id', $categoryID)->get();
         $services = $services->each(function ($service) use ($day) {
             $service->addHidden([
                 'name_en', 'name_ar',
                 'desc_en', 'desc_ar', 'calendar'
             ]);
-            $service->calendar_dates = ApiHelpers::reBuildCalendar($day, $service->calendar);
         });
         return $services;
     }
