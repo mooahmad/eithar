@@ -97,47 +97,48 @@ class ServiceClass
     public static function isExistCalendar($startDate, $endDate, $serviceId, $calendarId = false, $cityID)
     {
         $day = Carbon::parse($startDate)->format('Y-m-d');
+        $timeBeforeNextVisit = Service::find($serviceId)->time_before_next_visit;
         $calendar = ServicesCalendar::where('service_id', $serviceId)
             ->where('city_id', $cityID)
             ->where('start_date', 'like', "%$day%")
-            ->where(function ($query) use ($startDate, $endDate) {
-                $query->where(function ($query) use ($startDate, $endDate) {
+            ->where(function ($query) use ($startDate, $endDate, $timeBeforeNextVisit) {
+                $query->where(function ($query) use ($startDate, $endDate, $timeBeforeNextVisit) {
                     $query->where('start_date', '=', $startDate)
-                        ->whereRaw('end_date = ' . "'$endDate'");
+                        ->whereRaw('DATE_ADD(end_date, INTERVAL ' . $timeBeforeNextVisit . ' MINUTE) = ' . "'$endDate'");
                 })
-                    ->orWhere(function ($query) use ($startDate, $endDate) {
+                    ->orWhere(function ($query) use ($startDate, $endDate, $timeBeforeNextVisit) {
                         $query->where('start_date', '<', $startDate)
-                            ->whereRaw('end_date > ' . "'$endDate'");
+                            ->whereRaw('DATE_ADD(end_date, INTERVAL ' . $timeBeforeNextVisit . ' MINUTE) > ' . "'$endDate'");
                     })
-                    ->orWhere(function ($query) use ($startDate, $endDate) {
+                    ->orWhere(function ($query) use ($startDate, $endDate, $timeBeforeNextVisit) {
                         $query->where('start_date', '<', $endDate)
                             ->where('start_date', '>', $startDate)
-                            ->whereRaw('end_date > ' . "'$endDate'");
+                            ->whereRaw('DATE_ADD(end_date, INTERVAL ' . $timeBeforeNextVisit . ' MINUTE) > ' . "'$endDate'");
                     })
-                    ->orWhere(function ($query) use ($startDate, $endDate) {
+                    ->orWhere(function ($query) use ($startDate, $endDate, $timeBeforeNextVisit) {
                         $query->where('start_date', '>', $startDate)
-                            ->whereRaw('end_date < ' . "'$endDate'");
+                            ->whereRaw('DATE_ADD(end_date, INTERVAL ' . $timeBeforeNextVisit . ' MINUTE) < ' . "'$endDate'");
                     })
-                    ->orWhere(function ($query) use ($startDate, $endDate) {
+                    ->orWhere(function ($query) use ($startDate, $endDate, $timeBeforeNextVisit) {
                         $query->where('start_date', '<', $startDate)
-                            ->whereRaw('end_date < ' . "'$endDate'")
-                            ->whereRaw('end_date > ' . "'$startDate'");
+                            ->whereRaw('DATE_ADD(end_date, INTERVAL ' . $timeBeforeNextVisit . ' MINUTE) < ' . "'$endDate'")
+                            ->whereRaw('DATE_ADD(end_date, INTERVAL ' . $timeBeforeNextVisit . ' MINUTE) > ' . "'$startDate'");
                     })
-                    ->orWhere(function ($query) use ($startDate, $endDate) {
+                    ->orWhere(function ($query) use ($startDate, $endDate, $timeBeforeNextVisit) {
                         $query->where('start_date', '<', $startDate)
-                            ->whereRaw('end_date = ' . "'$endDate'");
+                            ->whereRaw('DATE_ADD(end_date, INTERVAL ' . $timeBeforeNextVisit . ' MINUTE) = ' . "'$endDate'");
                     })
-                    ->orWhere(function ($query) use ($startDate, $endDate) {
+                    ->orWhere(function ($query) use ($startDate, $endDate, $timeBeforeNextVisit) {
                         $query->where('start_date', '>', $startDate)
-                            ->whereRaw('end_date = ' . "'$endDate'");
+                            ->whereRaw('DATE_ADD(end_date, INTERVAL ' . $timeBeforeNextVisit . ' MINUTE) = ' . "'$endDate'");
                     })
-                    ->orWhere(function ($query) use ($startDate, $endDate) {
+                    ->orWhere(function ($query) use ($startDate, $endDate, $timeBeforeNextVisit) {
                         $query->where('start_date', '=', $startDate)
-                            ->whereRaw('end_date < ' . "'$endDate'");
+                            ->whereRaw('DATE_ADD(end_date, INTERVAL ' . $timeBeforeNextVisit . ' MINUTE) < ' . "'$endDate'");
                     })
-                    ->orWhere(function ($query) use ($startDate, $endDate) {
+                    ->orWhere(function ($query) use ($startDate, $endDate, $timeBeforeNextVisit) {
                         $query->where('start_date', '=', $startDate)
-                            ->whereRaw('end_date > ' . "'$endDate'");
+                            ->whereRaw('DATE_ADD(end_date, INTERVAL ' . $timeBeforeNextVisit . ' MINUTE) > ' . "'$endDate'");
                     });
             });
         if ($calendarId) {
