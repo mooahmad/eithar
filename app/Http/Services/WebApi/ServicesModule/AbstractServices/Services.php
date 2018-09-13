@@ -93,8 +93,9 @@ class Services implements IService
         $serviceQuestionnaireAnswers = $request->input('service_questionnaire_answers');
         $bookingAnswer = $this->saveBookingAnswers($serviceBookingId, $serviceQuestionnaireAnswers);
         // service booking appointments table
-        $appointmentDate = $request->input('slot_id');
-        $this->saveBookingAppointments($serviceBookingId, $appointmentDate);
+        $appointmentDate = $request->input('slot_id', null);
+        $appointmentPackageDates = $request->input('slot_ids', []);
+        $this->saveBookingAppointments($serviceBookingId, $appointmentDate, $appointmentPackageDates);
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([]));
     }
@@ -151,12 +152,20 @@ class Services implements IService
         return ServiceBookingAnswers::insert($data);
     }
 
-    private function saveBookingAppointments($serviceBookingId, $appointmentDate)
+    private function saveBookingAppointments($serviceBookingId, $appointmentDate, $appointmentDates)
     {
-        $bookingAppointment = new ServiceBookingAppointment();
-        $bookingAppointment->service_booking_id = $serviceBookingId;
-        $bookingAppointment->slot_id = $appointmentDate;
-        return $bookingAppointment->save();
+        if($appointmentDate != null) {
+            $bookingAppointment = new ServiceBookingAppointment();
+            $bookingAppointment->service_booking_id = $serviceBookingId;
+            $bookingAppointment->slot_id = $appointmentDate;
+            $bookingAppointment->save();
+        }elseif($appointmentDates != []){
+            $data = [];
+            foreach ($appointmentDates as $appointmentDate)
+                array_push($data, ["service_booking_id" => $serviceBookingId, "slot_id" => $appointmentDate]);
+            ServiceBookingAppointment::insert($data);
+        }
+        return true;
     }
 
     public function likeService($request, $serviceId)
