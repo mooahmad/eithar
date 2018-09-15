@@ -23,7 +23,7 @@ class ApiHelpers
      */
     public static function success($status = 0, $data)
     {
-        return json_encode(array("status" => $status, "data" => $data));
+        return response()->json(array("status" => $status, "data" => $data));
     }
 
     /**
@@ -34,7 +34,7 @@ class ApiHelpers
      */
     public static function fail($status = 1,MessageBag $message)
     {
-        return json_encode(array("status" => $status, "message" => $message));
+        return response()->json(array("status" => $status, "message" => $message));
     }
 
     /**

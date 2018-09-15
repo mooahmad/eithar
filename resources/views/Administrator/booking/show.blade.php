@@ -66,38 +66,29 @@
                     <thead>
                     <tr>
                         <th> # </th>
-                        <th> Item </th>
-                        <th class="hidden-xs"> Description </th>
-                        <th class="hidden-xs"> Quantity </th>
-                        <th class="hidden-xs"> Unit Cost </th>
-                        <th> Total </th>
+                        <th> Service Name </th>
+                        <th class="hidden-xs"> Start Date </th>
+                        <th class="hidden-xs"> End Date </th>
+                        <th class="hidden-xs"> Price </th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td> 1 </td>
-                        <td> Hardware </td>
-                        <td class="hidden-xs"> Server hardware purchase </td>
-                        <td class="hidden-xs"> 32 </td>
-                        <td class="hidden-xs"> $75 </td>
-                        <td> $2152 </td>
-                    </tr>
-                    <tr>
-                        <td> 2 </td>
-                        <td> Furniture </td>
-                        <td class="hidden-xs"> Office furniture purchase </td>
-                        <td class="hidden-xs"> 15 </td>
-                        <td class="hidden-xs"> $169 </td>
-                        <td> $4169 </td>
-                    </tr>
-                    <tr>
-                        <td> 3 </td>
-                        <td> Foods </td>
-                        <td class="hidden-xs"> Company Anual Dinner Catering </td>
-                        <td class="hidden-xs"> 69 </td>
-                        <td class="hidden-xs"> $49 </td>
-                        <td> $1260 </td>
-                    </tr>
+                    @if($booking->is_lap ==1)
+                        <tr>
+                            <td> {{ $booking->service->id }} </td>
+                            <td> {{ $booking->service->name_en }} </td>
+                            <td class="hidden-xs"> {{ $booking->service->price }} </td>
+                            <td class="hidden-xs"> {{ $booking->service->visit_duration }} </td>
+                        </tr>
+                    @else
+                        <tr>
+                            <td> {{ $booking->service->id }} </td>
+                            <td> {{ $booking->service->name_en }} {{ ($booking->provider) ? $booking->provider->full_name : '' }} </td>
+                            <td class="hidden-xs"> {{ ($booking->service_appointments->first()->provider_slot) ? $booking->service_appointments->first()->provider_slot->start_date : '' }} </td>
+                            <td class="hidden-xs"> {{ ($booking->service_appointments->first()->provider_slot) ? $booking->service_appointments->first()->provider_slot->end_date : '' }} </td>
+                            <td class="hidden-xs"> {{ $booking->service->price }} {{ $booking->currency->name_eng }}</td>
+                        </tr>
+                    @endif
                     </tbody>
                 </table>
             </div>
