@@ -69,9 +69,9 @@
 
                                         <div id="no-of-visits" class="form-group">
                                             <label for="default_language" class="control-label">
-                                                {{ trans('admin.number_of_visits') }} <span class="required"> * </span>
+                                                {{ trans('admin.number_of_visits') }}
                                             </label>
-                                            {!! Form::number('number_of_visits', (isset($service))? $service->no_of_visits : old('number_of_visits') , array('id'=>'number_of_visits', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.number_of_visits'))) !!}
+                                            {!! Form::number('number_of_visits', (isset($service))? $service->no_of_visits : old('number_of_visits') , array('id'=>'number_of_visits', 'class'=>'form-control','placeholder'=>trans('admin.number_of_visits'))) !!}
                                             @if($errors->has('number_of_visits'))
                                                 <span class="help-block text-danger">{{ $errors->first('number_of_visits') }}</span>
                                             @endif
@@ -79,9 +79,9 @@
 
                                         <div id="no-of-visits-per-week" class="form-group">
                                             <label for="default_language" class="control-label">
-                                                {{ trans('admin.number_of_visits_per_week') }} <span class="required"> * </span>
+                                                {{ trans('admin.number_of_visits_per_week') }}
                                             </label>
-                                            {!! Form::number('number_of_visits_per_week', (isset($service))? $service->visits_per_week : old('number_of_visits_per_week') , array('id'=>'number_of_visits_per_week', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.number_of_visits_per_week'))) !!}
+                                            {!! Form::number('number_of_visits_per_week', (isset($service))? $service->visits_per_week : old('number_of_visits_per_week') , array('id'=>'number_of_visits_per_week', 'class'=>'form-control','placeholder'=>trans('admin.number_of_visits_per_week'))) !!}
                                             @if($errors->has('number_of_visits_per_week'))
                                                 <span class="help-block text-danger">{{ $errors->first('number_of_visits_per_week') }}</span>
                                             @endif

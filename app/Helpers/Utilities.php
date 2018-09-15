@@ -118,4 +118,16 @@ class Utilities
         return $dayDates;
     }
 
+    public static function GenerateHours()
+    {
+        $times = [];
+        for ($i=0; $i<24; $i++)
+        {
+            ($i<10)? $second_item='0' : $second_item='';
+            $times[$second_item . $i.':00'] = $second_item . $i.':00';
+            $times[$second_item . $i.':30'] = $second_item . $i.':30';
+        }
+        return $times;
+    }
+
 }
