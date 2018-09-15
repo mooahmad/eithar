@@ -109,11 +109,11 @@ class Utilities
     public static function getDayDatesOfWeeks($day = "monday", $numberOfWeeks = 0)
     {
         $dayDates = [];
-        for($i =1; $i <= $numberOfWeeks; $i++) {
+        for($i =0; $i < $numberOfWeeks; $i++) {
             $date = Carbon::parse("next $day");
+            $date->addWeek($i);
             $dayDate = $date->toDateString();
             array_push($dayDates, $dayDate);
-            $date->addWeek($i);
         }
         return $dayDates;
     }

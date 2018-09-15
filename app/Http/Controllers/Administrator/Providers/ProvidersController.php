@@ -204,12 +204,20 @@ class ProvidersController extends Controller
 
     public function storeProviderCalendar(CreateCalendarRequest $request, $providerId)
     {
-        $providerCalendar = new ProvidersCalendar();
+        $provider = Provider::find($providerId);
         $selectedDays = $request->input('week_days');
         $numberOfWeeks = $request->input('number_of_weeks');
-        //dd(Utilities::getDayDatesOfWeeks($selectedDays[1], 4));
+        $startTime     = $request->input('start_time');
+        $startDates    = [];
+        $endDates      = [];
+        foreach ($selectedDays as $selectedDay){
+            $startDates[] = $selectedDay. ' '.$startTime;
+            $carbonEndDate = "";
+            $endDates[] = $selectedDay. ' '.$startTime;
+        }
+        $providerCalendar = new ProvidersCalendar();
 
-        ProviderClass::createOrUpdateCalendar($providerCalendar, $request, $providerId);
+
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/providers/' . $providerId . '/calendar');
     }
