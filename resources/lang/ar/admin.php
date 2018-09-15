@@ -150,7 +150,7 @@ return [
     'code_en' => 'English code',
     'code_ar' => 'Arabic code',
     'comment' => 'Comment',
-'discount_percentage' => 'Discount percentage',
+    'discount_percentage'       => 'Discount percentage',
     'invoices'                  => 'Invoices',
     'add_invoices'              => 'Add Invoices',
     'edit_invoices'             => 'Edit Invoices',
@@ -165,4 +165,5 @@ return [
     'service_name'              => 'Service Name',
     'submitted_at'              => 'Submitted At',
     'booking-services'          => 'Booking Services',
+    'is_doctor'                 => 'Is doctor',
 ];
