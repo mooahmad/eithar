@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
@@ -103,6 +104,18 @@ class Utilities
     public static function calcPercentage($total, $percentage)
     {
         return $total * ($percentage/100);
+    }
+
+    public static function getDayDatesOfWeeks($day = "monday", $numberOfWeeks = 0)
+    {
+        $dayDates = [];
+        for($i =1; $i <= $numberOfWeeks; $i++) {
+            $date = Carbon::parse("next $day");
+            $dayDate = $date->toDateString();
+            array_push($dayDates, $dayDate);
+            $date->addWeek($i);
+        }
+        return $dayDates;
     }
 
 }

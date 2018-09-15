@@ -152,5 +152,7 @@ return [
     'comment' => 'Comment',
     'discount_percentage' => 'Discount percentage',
     'is_doctor' => 'Is doctor',
+    'number_of_visits_per_week' => "Number of visits per week",
+    'number_of_visits' => "Number of visits",
 
 ];

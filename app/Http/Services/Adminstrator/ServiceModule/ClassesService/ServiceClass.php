@@ -32,6 +32,8 @@ class ServiceClass
         $service->price = $request->input('price');
         $service->visit_duration = $request->input('visit_duration');
         $service->time_before_next_visit = $request->input('time_before_next_visit');
+        $service->no_of_visits = $request->input('number_of_visits', 0);
+        $service->visits_per_week = $request->input('number_of_visits_per_week', 0);
         $service->expiry_date = Carbon::parse($request->input('expire_date'))->format('Y-m-d H:m:s');
         $service->is_active_service = $request->input('is_active');
         $service->appear_on_website = $request->input('appear_on_website');
