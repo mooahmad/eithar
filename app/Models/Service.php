@@ -70,12 +70,21 @@ class Service extends Model
         return $this->belongsTo('App\Models\Category', 'category_id', 'id');
     }
 
+
     /**
      * get Services that type is Item
      * @return mixed
      */
     public function scopeGetItemsServices()
     {
-        return $this->where('type',3);
+        return $this->where('type', 3);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function calendar()
+    {
+        return $this->hasMany('App\Models\ServicesCalendar', 'service_id', 'id');
     }
 }

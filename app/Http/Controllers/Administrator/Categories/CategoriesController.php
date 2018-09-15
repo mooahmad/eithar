@@ -129,8 +129,8 @@ class CategoriesController extends Controller
                                    }elseif($category->id == 2){
                                        $questionnaireURL = url(AD . '/services/' . 0 . '/questionnaire');
                                        $addQuestionnaireURL = url(AD . '/services/' . 0 . '/questionnaire/create');
-                                       $calendarURL = url(AD . '/providers/' . 0 . '/calendar');
-                                       $addCalendarURL = url(AD . '/providers/' . 0 . '/calendar/create');
+                                       $calendarURL = url(AD . '/lap/calendar');
+                                       $addCalendarURL = url(AD . '/lap/calendar/create');
                                        return View::make('Administrator.widgets.dataTableLapAction', ['questionnaireURL' => $questionnaireURL, 'addQuestionnaireURL' => $addQuestionnaireURL, 'calendarURL' => $calendarURL, 'addCalendarURL' => $addCalendarURL]);
                                    }
                                })
