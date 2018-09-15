@@ -32,8 +32,12 @@ class ServiceClass
         $service->price = $request->input('price');
         $service->visit_duration = $request->input('visit_duration');
         $service->time_before_next_visit = $request->input('time_before_next_visit');
-        $service->no_of_visits = $request->input('number_of_visits', 0);
-        $service->visits_per_week = $request->input('number_of_visits_per_week', 0);
+        if ($request->input('number_of_visits') == null)
+            $no_of_visits = 0;
+        $service->no_of_visits = $no_of_visits;
+        if ($request->input('number_of_visits_per_week') == null)
+            $visits_per_week = 0;
+        $service->visits_per_week = $visits_per_week;
         $service->expiry_date = Carbon::parse($request->input('expire_date'))->format('Y-m-d H:m:s');
         $service->is_active_service = $request->input('is_active');
         $service->appear_on_website = $request->input('appear_on_website');
@@ -75,22 +79,22 @@ class ServiceClass
             $isValidImage = Utilities::validateImage($request, $fileName);
             if (!$isValidImage)
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
-                                                     new MessageBag([
-                                                                        "message" => trans('errors.errorUploadAvatar')
-                                                                    ]));
+                    new MessageBag([
+                        "message" => trans('errors.errorUploadAvatar')
+                    ]));
             $isUploaded = Utilities::UploadImage($request->file($fileName), $path);
             if (!$isUploaded)
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
-                                                     new MessageBag([
-                                                                        "message" => trans('errors.errorUploadAvatar')
-                                                                    ]));
+                    new MessageBag([
+                        "message" => trans('errors.errorUploadAvatar')
+                    ]));
             Utilities::DeleteImage($service->{$fieldName});
             $service->{$fieldName} = $isUploaded;
             if (!$service->save())
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
-                                                     new MessageBag([
-                                                                        "message" => trans('errors.errorUploadAvatar')
-                                                                    ]));
+                    new MessageBag([
+                        "message" => trans('errors.errorUploadAvatar')
+                    ]));
             return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
