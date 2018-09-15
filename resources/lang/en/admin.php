@@ -167,5 +167,7 @@ return [
     'booking-services'          => 'Booking Services',
     'is_doctor'                 => 'Is doctor',
     'number_of_visits_per_week' => "Number of visits per week",
-    'number_of_visits' => "Number of visits",
+    'number_of_visits'          => "Number of visits",
+    'booking_services'          => "Booking Services",
+    'show_booking_services'     => "Show Booking Services",
 ];

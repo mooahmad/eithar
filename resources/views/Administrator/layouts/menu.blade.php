@@ -228,6 +228,27 @@
                 </li>
             {{--@endcan--}}
             <!-- End Invoices Area -->
+
+            <!-- Start Booking Services Area -->
+            {{--            @can('promo_code.view', new \App\Models\PromoCode())--}}
+            <li class="nav-item start {{ (Request::segment(2)=='booking-services') ? 'active' :'' }}">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-calendar"></i>
+                    <span class="title">{{ trans('admin.booking_services') }}</span>
+                    <span class="selected"></span>
+                    <span class="arrow {{ (Request::segment(2)=='booking-services') ? 'open' :'' }}"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item start {{ (Request::is(AD.'/booking-services')) ? 'active' :'' }}">
+                        <a href="{{ url(AD.'/booking-services') }}" class="nav-link ">
+                            <i class="fa fa-eye"></i>
+                            <span class="title">{{ trans('admin.show_booking_services') }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        {{--@endcan--}}
+        <!-- End Booking Services Area -->
         </ul>
         <!-- END SIDEBAR MENU -->
     </div>

@@ -6,17 +6,13 @@
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
             <div class="portlet light bordered">
                 <div class="portlet-title">
-                    <div class="btn-group">
-                        <a href="{{ url(AD.'/customers/create') }}" class="btn sbold green"> Add New <i
-                                    class="fa fa-plus"></i></a>
-                    </div>
                     <div id="dataTable-buttons" class="tools">
 
                     </div>
                 </div>
                 <div class="portlet-body">
                     <div class="table-responsive">
-                        <table id="data-table-customers" class="dataTable table table-bordered table-hover"
+                        <table id="data-table-booking-services" class="dataTable table table-bordered table-hover"
                                width="100%">
                             <thead>
                             <tr>
@@ -39,14 +35,13 @@
             <!-- END EXAMPLE TABLE PORTLET-->
         </div>
     </div>
-    @include('Administrator.widgets.deleteModal', ['message' => 'are you sure you want to delete?'])
 @stop
 
 @section('script')
     <script>
-        var indexURL = "{!! route('get-customers-Datatable') !!}";
+        var indexURL = "{!! route('get-booking-services-Datatable') !!}";
         var deleteURL    = "{!! route('deleteServices') !!}";
         var csrfToken          = "{!! csrf_token() !!}";
     </script>
-    <script src="{{ asset('public/js/custom/customersDataTable.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/js/custom/bookingServicesDataTable.js') }}"></script>
 @stop
