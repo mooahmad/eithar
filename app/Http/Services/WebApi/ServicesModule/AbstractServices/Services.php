@@ -61,6 +61,17 @@ class Services implements IService
             ]));
     }
 
+    public function getServiceCalendar(Request $request, $serviceId)
+    {
+        $day = $request->input('day', Carbon::today()->format('Y-m-d'));
+        $calendar = ServicesCalendar::where([['id', '=', $serviceId], ['start_date', 'like', "%$day%"]])->get();
+        $calendar = ApiHelpers::reBuildCalendar($day, $calendar);
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([
+                "calendar" => $calendar,
+            ]));
+    }
+
     public function getLapCalendar(Request $request)
     {
         $day = $request->input('day', Carbon::today()->format('Y-m-d'));

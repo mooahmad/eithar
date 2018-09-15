@@ -103,7 +103,7 @@ abstract class Categories implements ICategory
                                 $currentCalendar = ApiHelpers::reBuildCalendar($day, $service->calendar);
                                 array_push($packageCalendar, $currentCalendar);
                             }
-                            $service->calendar_dates = $packageCalendar;
+                            $service->calendar_package = $packageCalendar;
                             array_push($filteredServices, $service);
                         }
                     } elseif ($isPackage == "false") {

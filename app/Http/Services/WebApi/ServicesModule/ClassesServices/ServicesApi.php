@@ -16,6 +16,14 @@ class ServicesApi extends Services
         return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
     }
 
+    public function getServiceCalendar(Request $request, $serviceId)
+    {
+        $validationObject = parent::getServiceCalendar($request, $serviceId);
+        if ($validationObject->error == config('constants.responseStatus.success'))
+            return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
+    }
+
     public function getLapCalendar(Request $request)
     {
         $validationObject = parent::getLapCalendar($request);
