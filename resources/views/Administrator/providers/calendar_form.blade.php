@@ -27,9 +27,11 @@
                                     <div class="tab-pane active" id="new_user">
                                         <div class="row">
                                             <div class="col-sm-12 col-md-12 text-center">
-                                                @if($errors->any())
-                                                    <h4 class="alert alert-danger">{{$errors->first()}}</h4>
-                                                @endif
+                                                <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li class="alert alert-danger">{{$error}}</li>
+                                                @endforeach
+                                                </ul>
                                             </div>
                                         </div>
                                         {!! Form::open(['method'=> 'POST','url'=> $formRoute, 'role'=>'form', 'files' => true]) !!}

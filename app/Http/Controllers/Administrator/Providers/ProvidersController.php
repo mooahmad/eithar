@@ -207,17 +207,24 @@ class ProvidersController extends Controller
         $provider = Provider::find($providerId);
         $selectedDays = $request->input('week_days');
         $numberOfWeeks = $request->input('number_of_weeks');
-        $startTime     = $request->input('start_time');
-        $startDates    = [];
-        $endDates      = [];
-        foreach ($selectedDays as $selectedDay){
-            $startDates[] = $selectedDay. ' '.$startTime;
-            $carbonEndDate = "";
-            $endDates[] = $selectedDay. ' '.$startTime;
+        $startTime = $request->input('start_time');
+        $allDates = [];
+        $unAvailableDates = [];
+        foreach ($selectedDays as $selectedDay) {
+            $allDates = array_merge($allDates, Utilities::getDayDatesOfWeeks($selectedDay, $numberOfWeeks));
         }
-        $providerCalendar = new ProvidersCalendar();
-
-
+        foreach ($allDates as $dayDate) {
+            $startDate = $dayDate . ' ' . $startTime . ':00';
+            $endDate = Carbon::parse($dayDate . ' ' . $startTime)->addMinutes($provider->visit_duration)->toDateTimeString();
+            if (ProviderClass::isExistCalendar($startDate, $endDate, $providerId)) {
+                $unAvailableDates[] = "this date : " . $startDate . " is unavailable.";
+            } else {
+                $providerCalendar = new ProvidersCalendar();
+                ProviderClass::createOrUpdateCalendar($providerCalendar, $providerId, $startDate, $endDate, 1);
+            }
+        }
+        if (!empty($unAvailableDates))
+            return Redirect::back()->withErrors($unAvailableDates);
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/providers/' . $providerId . '/calendar');
     }
@@ -230,7 +237,7 @@ class ProvidersController extends Controller
             'formRoute' => route('updateProviderCalendar', ['id' => $providerId, 'calendarId' => $calendarId]),
             'submitBtn' => trans('admin.update')
         ];
-        return view(AD . '.providers.calendar_form')->with($data);
+        return view(AD . '.providers.calendar_edit_form')->with($data);
     }
 
     public function updateProviderCalendar(UpdateCalendarRequest $request, $providerId, $calendarId)
@@ -238,10 +245,11 @@ class ProvidersController extends Controller
         $providerCalendar = ProvidersCalendar::find($calendarId);
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');
+        $isAvailable = $request->input('is_available');
         if (ProviderClass::isExistCalendar($startDate, $endDate, $providerId, $calendarId)) {
             return Redirect::back()->withErrors(['msg' => 'The slot you have picked conflicts with another one']);
         }
-        ProviderClass::createOrUpdateCalendar($providerCalendar, $request, $providerId);
+        ProviderClass::createOrUpdateCalendar($providerCalendar, $providerId, $startDate, $endDate, $isAvailable);
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/providers/' . $providerId . '/calendar');
     }

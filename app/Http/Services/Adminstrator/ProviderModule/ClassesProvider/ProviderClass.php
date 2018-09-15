@@ -113,12 +113,12 @@ class ProviderClass
         return !$calendar->isEmpty();
     }
 
-    public static function createOrUpdateCalendar(ProvidersCalendar $providerCalendar, $request, $providerId, $isCreate = true)
+    public static function createOrUpdateCalendar(ProvidersCalendar $providerCalendar, $providerId, $startDate, $endDate, $isAvailable)
     {
         $providerCalendar->provider_id = $providerId;
-        $providerCalendar->start_date = $request->input('start_date');
-        $providerCalendar->end_date = $request->input('end_date');
-        $providerCalendar->is_available = $request->input('is_available');
+        $providerCalendar->start_date = $startDate;
+        $providerCalendar->end_date = $endDate;
+        $providerCalendar->is_available = $isAvailable;
         return $providerCalendar->save();
     }
 
