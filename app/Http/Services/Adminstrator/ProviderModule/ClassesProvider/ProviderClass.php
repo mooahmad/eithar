@@ -36,6 +36,7 @@ class ProviderClass
         $provider->education_ar = $request->input('education_ar');
         $provider->education_en = $request->input('education_en');
         $provider->is_active = $request->input('is_active');
+        $provider->is_doctor = $request->input('is_doctor');
         $provider->contract_start_date = $request->input('contract_start_date');
         $provider->contract_expiry_date = $request->input('contract_expiry_date');
         $provider->visit_duration = $request->input('visit_duration');

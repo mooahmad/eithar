@@ -40,6 +40,7 @@ class CreateProvidersTable extends Migration
             $table->integer('no_of_ratings')->default(0);
             $table->integer('no_of_reviews')->default(0);
             $table->integer('is_active')->nullable();
+            $table->integer('is_doctor')->nullable();
             $table->dateTime('contract_start_date')->nullable();
             $table->dateTime('contract_expiry_date')->nullable();
             $table->integer('visit_duration')->nullable();

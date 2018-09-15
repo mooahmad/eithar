@@ -151,5 +151,6 @@ return [
     'code_ar' => 'Arabic code',
     'comment' => 'Comment',
     'discount_percentage' => 'Discount percentage',
+    'is_doctor' => 'Is doctor',
 
 ];

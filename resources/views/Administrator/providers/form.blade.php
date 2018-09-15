@@ -292,6 +292,29 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <label for="on"
+                                               class="control-label">{{ trans('admin.is_doctor') }} </label>
+                                        @php
+                                            $is_doctor = null;
+                                            if(isset($provider)){
+                                            $is_doctor = $provider->is_doctor;
+                                            }
+                                        @endphp
+                                        <div class="mt-radio-inline">
+                                            <label class="mt-radio">
+                                                {!! Form::radio('is_doctor', 1, ($is_doctor === 1 || empty($is_doctor))? 'true' : '',array('id'=>'yes-doctor')) !!}
+                                                {{ trans('admin.yes') }}
+                                                <span></span>
+                                            </label>
+                                            <label class="mt-radio">
+                                                {!! Form::radio('is_doctor', 0, ($is_doctor === 0 )? 'true' : '',array('id'=>'no-doctor')) !!}
+                                                {{ trans('admin.no') }}
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
                                         <label class="control-label">
                                             {{ trans('admin.contract_start_date') }} <span class="required"> * </span>
                                         </label>
