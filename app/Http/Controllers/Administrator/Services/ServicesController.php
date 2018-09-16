@@ -397,15 +397,21 @@ class ServicesController extends Controller
 
     public function createServiceCalendar(Request $request, $serviceId)
     {
+        $service = Service::find($serviceId);
         $allCities = City::all()->pluck('city_name_eng', 'id')->toArray();
         $allWeekDays = ["saturday" => "saturday", "sunday" => "sunday",
             "monday" => "monday", "tuesday" => "tuesday", "wednesday" => "wednesday",
             "thursday" => "thursday", "friday" => "friday"];
         $times = Utilities::GenerateHours();
+        $maxSelect = 7;
+        if($service->type == 2)
+            $maxSelect = $service->visits_per_week;
         $data = [
             'times' => $times,
             'allWeekDays' => $allWeekDays,
             'selectedWeekDays' => [],
+            'maxSelect' => $maxSelect,
+            'serviceType' => $service->type,
             'allCities' => $allCities,
             'formRoute' => route('storeServiceCalendar', ['service' => $serviceId]),
             'submitBtn' => trans('admin.create')
@@ -418,11 +424,12 @@ class ServicesController extends Controller
         $service = Service::find($serviceId);
         $cityID = $request->input('city_id');
         $selectedDays = $request->input('week_days');
-        $numberOfWeeks = $request->input('number_of_weeks');
+        $numberOfWeeks = $request->input('number_of_weeks', null);
         $startTime = $request->input('start_time');
         $allDates = [];
         $message["invalid"] = [];
         $message["valid"] = [];
+        $numberOfWeeks = ($numberOfWeeks == null)? ceil($service->no_of_visits/count($selectedDays)): $numberOfWeeks;
         foreach ($selectedDays as $selectedDay) {
             $allDates = array_merge($allDates, Utilities::getDayDatesOfWeeks($selectedDay, $numberOfWeeks));
         }
