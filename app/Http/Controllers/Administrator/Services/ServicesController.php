@@ -539,7 +539,8 @@ class ServicesController extends Controller
         $lapCalendar = LapCalendar::find($calendarId);
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');
-        if(ServiceClass::isExistLapCalendar($startDate, $endDate, $calendarId)){
+        $cityID = $request->input('city_id');
+        if(ServiceClass::isExistLapCalendar($startDate, $endDate, $calendarId, $cityID)){
             return Redirect::back()->withErrors(['msg' => 'The slot you have picked conflicts with another one']);
         }
         ServiceClass::createOrUpdateLapCalendar($lapCalendar, $request);
