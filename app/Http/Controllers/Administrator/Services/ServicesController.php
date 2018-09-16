@@ -278,17 +278,17 @@ class ServicesController extends Controller
 
     public function storeServiceQuestionnaire(CreateQuestionaireRequest $request, $serviceId)
     {
-        $serviceId = ($serviceId == 0)? null : $serviceId;
+        $serviceId = ($serviceId == "lap")? null : $serviceId;
         $questionnaire = new Questionnaire();
         ServiceClass::createOrUpdateQuestionnaire($questionnaire, $request, $serviceId);
         session()->flash('success_msg', trans('admin.success_message'));
-        $serviceId = ($serviceId == null)? 0 : $serviceId;
+        $serviceId = ($serviceId == null)? "lap" : $serviceId;
         return redirect(AD . '/services/' . $serviceId . '/questionnaire');
     }
 
     public function editServiceQuestionnaire(Request $request, $serviceId, $questionnaireId)
     {
-        $serviceId = ($serviceId == 0)? null : $serviceId;
+        $serviceId = ($serviceId == "lap")? null : $serviceId;
         $pages = range(0, config('constants.max_questionnaire_pages'));
         unset($pages[0]);
         $unAvailablePages = Questionnaire::where('service_id', $serviceId)
@@ -296,7 +296,7 @@ class ServicesController extends Controller
             ->havingRaw('count(pagination) >= ' . config('constants.max_questionnaire_per_page'))
             ->pluck('pagination')->toArray();
         $questionnaire = Questionnaire::find($questionnaireId);
-        $serviceId = ($serviceId == null)? 0 : $serviceId;
+        $serviceId = ($serviceId == null)? "lap" : $serviceId;
         $data = [
             'serviceId' => $serviceId,
             'pages' => $pages,
@@ -310,21 +310,21 @@ class ServicesController extends Controller
 
     public function updateServiceQuestionnaire(UpdateQuestionnaireRequest $request, $serviceId, $questionnaireId)
     {
-        $serviceId = ($serviceId == 0)? null : $serviceId;
+        $serviceId = ($serviceId == "lap")? null : $serviceId;
         $questionnaire = Questionnaire::find($questionnaireId);
         ServiceClass::createOrUpdateQuestionnaire($questionnaire, $request, $serviceId);
         session()->flash('success_msg', trans('admin.success_message'));
-        $serviceId = ($serviceId == null)? 0 : $serviceId;
+        $serviceId = ($serviceId == null)? "lap" : $serviceId;
         return redirect(AD . '/services/' . $serviceId . '/questionnaire');
     }
 
     public function getQuestionnaireDatatable($id)
     {
-        $id = ($id == 0)? null : $id;
+        $id = ($id == "lap")? null : $id;
         $questionnaire = Questionnaire::where('service_id', $id);
         $dataTable = DataTables::of($questionnaire)
             ->addColumn('actions', function ($questionnaire) use ($id) {
-                $id = ($id == null)? 0 : $id;
+                $id = ($id == null)? "lap" : $id;
                 $editURL = url(AD . '/services/' . $id . '/questionnaire/' . $questionnaire->id . '/edit');
                 return View::make('Administrator.widgets.dataTablesActions', ['editURL' => $editURL]);
             })
@@ -344,7 +344,7 @@ class ServicesController extends Controller
 
     public function getAvailablePageOrders(Request $request, $serviceId, $page)
     {
-        $serviceId = ($serviceId == 0)? null : $serviceId;
+        $serviceId = ($serviceId == "lap")? null : $serviceId;
         $ordersCount = range(0, config('constants.max_questionnaire_per_page'));
         unset($ordersCount[0]);
         $unAvailableOrders = Questionnaire::where([['service_id', $serviceId], ['pagination', $page]])
