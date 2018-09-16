@@ -32,10 +32,12 @@ class ServiceClass
         $service->price = $request->input('price');
         $service->visit_duration = $request->input('visit_duration');
         $service->time_before_next_visit = $request->input('time_before_next_visit');
-        if ($request->input('number_of_visits') == null)
+        $no_of_visits = $request->input('number_of_visits', null);
+        if ($no_of_visits == null)
             $no_of_visits = 0;
         $service->no_of_visits = $no_of_visits;
-        if ($request->input('number_of_visits_per_week') == null)
+        $visits_per_week = $request->input('number_of_visits_per_week', null);
+        if ($visits_per_week == null)
             $visits_per_week = 0;
         $service->visits_per_week = $visits_per_week;
         $service->expiry_date = Carbon::parse($request->input('expire_date'))->format('Y-m-d H:m:s');
