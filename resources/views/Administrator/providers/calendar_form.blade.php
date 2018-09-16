@@ -26,12 +26,25 @@
                                     <!-- Create New User TAB -->
                                     <div class="tab-pane active" id="new_user">
                                         <div class="row">
-                                            <div class="col-sm-12 col-md-12 text-center">
+                                            <div class="col-sm-6 col-md-6 text-center">
+                                                @if($errors->has('valid'))
+                                                <h5>These dates has been added successfully.</h5>
                                                 <ul>
-                                                @foreach ($errors->all() as $error)
-                                                    <li class="alert alert-danger">{{$error}}</li>
+                                                    @foreach ($errors->get('valid') as $error)
+                                                        <li class="alert alert-success" style="padding: 0px">{{$error}}</li>
+                                                    @endforeach
+                                                </ul>
+                                                    @endif
+                                            </div>
+                                            <div class="col-sm-6 col-md-6 text-center">
+                                                @if($errors->has('invalid'))
+                                                    <h5>These dates are unavailable.</h5>
+                                                <ul>
+                                                @foreach ($errors->get('invalid') as $error)
+                                                    <li class="alert alert-danger" style="padding: 0px">{{$error}}</li>
                                                 @endforeach
                                                 </ul>
+                                                @endif
                                             </div>
                                         </div>
                                         {!! Form::open(['method'=> 'POST','url'=> $formRoute, 'role'=>'form', 'files' => true]) !!}

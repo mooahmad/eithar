@@ -209,7 +209,8 @@ class ProvidersController extends Controller
         $numberOfWeeks = $request->input('number_of_weeks');
         $startTime = $request->input('start_time');
         $allDates = [];
-        $unAvailableDates = [];
+        $message["invalid"] = [];
+        $message["valid"] = [];
         foreach ($selectedDays as $selectedDay) {
             $allDates = array_merge($allDates, Utilities::getDayDatesOfWeeks($selectedDay, $numberOfWeeks));
         }
@@ -217,14 +218,15 @@ class ProvidersController extends Controller
             $startDate = $dayDate . ' ' . $startTime . ':00';
             $endDate = Carbon::parse($dayDate . ' ' . $startTime)->addMinutes($provider->visit_duration)->toDateTimeString();
             if (ProviderClass::isExistCalendar($startDate, $endDate, $providerId)) {
-                $unAvailableDates[] = "this date : " . $startDate . " is unavailable.";
+                array_push($message["invalid"], $startDate);
             } else {
                 $providerCalendar = new ProvidersCalendar();
                 ProviderClass::createOrUpdateCalendar($providerCalendar, $providerId, $startDate, $endDate, 1);
+                array_push($message["valid"], $startDate);
             }
         }
-        if (!empty($unAvailableDates))
-            return Redirect::back()->withErrors($unAvailableDates);
+        if (!empty($message["invalid"]))
+            return Redirect::back()->withErrors($message);
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/providers/' . $providerId . '/calendar');
     }
