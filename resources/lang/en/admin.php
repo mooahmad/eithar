@@ -170,4 +170,7 @@ return [
     'number_of_visits'          => "Number of visits",
     'booking_services'          => "Booking Services",
     'show_booking_services'     => "Show Booking Services",
+    'select_week_days' => 'Select days',
+    'start_time' => 'Start Time',
+    'number_of_weeks' => 'Number of weeks',
 ];

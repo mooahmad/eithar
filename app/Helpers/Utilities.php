@@ -109,13 +109,25 @@ class Utilities
     public static function getDayDatesOfWeeks($day = "monday", $numberOfWeeks = 0)
     {
         $dayDates = [];
-        for($i =1; $i <= $numberOfWeeks; $i++) {
+        for($i =0; $i < $numberOfWeeks; $i++) {
             $date = Carbon::parse("next $day");
+            $date->addWeek($i);
             $dayDate = $date->toDateString();
             array_push($dayDates, $dayDate);
-            $date->addWeek($i);
         }
         return $dayDates;
+    }
+
+    public static function GenerateHours()
+    {
+        $times = [];
+        for ($i=0; $i<24; $i++)
+        {
+            ($i<10)? $second_item='0' : $second_item='';
+            $times[$second_item . $i.':00'] = $second_item . $i.':00';
+            $times[$second_item . $i.':30'] = $second_item . $i.':30';
+        }
+        return $times;
     }
 
 }
