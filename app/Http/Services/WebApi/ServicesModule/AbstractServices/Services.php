@@ -10,6 +10,7 @@ use App\Http\Services\WebApi\CommonTraits\Ratings;
 use App\Http\Services\WebApi\CommonTraits\Reviews;
 use App\Http\Services\WebApi\CommonTraits\Views;
 use App\Http\Services\WebApi\ServicesModule\IServices\IService;
+use App\LapCalendar;
 use App\Models\ProvidersCalendar;
 use App\Models\Questionnaire;
 use App\Models\Service;
@@ -75,7 +76,7 @@ class Services implements IService
     public function getLapCalendar(Request $request)
     {
         $day = $request->input('day', Carbon::today()->format('Y-m-d'));
-        $calendar = ProvidersCalendar::where([['provider_id', '=', null], ['start_date', 'like', "%$day%"]])->get();
+        $calendar = LapCalendar::where('start_date', 'like', "%$day%")->get();
         $calendar = ApiHelpers::reBuildCalendar($day, $calendar);
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([
