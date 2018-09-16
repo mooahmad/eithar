@@ -150,13 +150,13 @@ class ServiceClass
         return !$calendar->isEmpty();
     }
 
-    public static function createOrUpdateCalendar(ServicesCalendar $serviceCalendar, $request, $serviceId, $isCreate = true)
+    public static function createOrUpdateCalendar(ServicesCalendar $serviceCalendar, $serviceId, $cityId, $startDate, $endDate, $isAvailable)
     {
         $serviceCalendar->service_id = $serviceId;
-        $serviceCalendar->city_id = $request->input('city_id');
-        $serviceCalendar->start_date = $request->input('start_date');
-        $serviceCalendar->end_date = $request->input('end_date');
-        $serviceCalendar->is_available = $request->input('is_available');
+        $serviceCalendar->city_id = $cityId;
+        $serviceCalendar->start_date = $startDate;
+        $serviceCalendar->end_date = $endDate;
+        $serviceCalendar->is_available = $isAvailable;
         return $serviceCalendar->save();
     }
 
@@ -212,12 +212,12 @@ class ServiceClass
         return !$calendar->isEmpty();
     }
 
-    public static function createOrUpdateLapCalendar(LapCalendar $lapCalendar, $request, $isCreate = true)
+    public static function createOrUpdateLapCalendar(LapCalendar $lapCalendar, $cityId, $startDate, $endDate, $isAvailable)
     {
-        $lapCalendar->city_id = $request->input('city_id');
-        $lapCalendar->start_date = $request->input('start_date');
-        $lapCalendar->end_date = $request->input('end_date');
-        $lapCalendar->is_available = $request->input('is_available');
+        $lapCalendar->city_id = $cityId;
+        $lapCalendar->start_date = $startDate;
+        $lapCalendar->end_date = $endDate;
+        $lapCalendar->is_available = $isAvailable;
         return $lapCalendar->save();
     }
 
