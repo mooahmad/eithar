@@ -141,11 +141,11 @@ abstract class Categories implements ICategory
                         $day = Carbon::today()->format('Y-m-d');
                     else
                         $day = Carbon::parse($date->start_date)->format('Y-m-d');
-                    $lapCalendar = LapCalendar::where('city_id', '=', Auth::user()->city_id)->where('start_date', 'like', "%$day%")->get();
+                    $lapCalendars = LapCalendar::where('city_id', '=', Auth::user()->city_id)->where('start_date', 'like', "%$day%")->get();
                 } else {
-                    $lapCalendar = LapCalendar::where('city_id', '=', Auth::user()->city_id)->where('start_date', 'like', "%$day%")->get();
+                    $lapCalendars = LapCalendar::where('city_id', '=', Auth::user()->city_id)->where('start_date', 'like', "%$day%")->get();
                 }
-                $lapCalendar = ApiHelpers::reBuildCalendar($day, $lapCalendar);
+                array_push($lapCalendar, ApiHelpers::reBuildCalendar($day, $lapCalendars));
             }
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'),
