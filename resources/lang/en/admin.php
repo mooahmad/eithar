@@ -164,7 +164,7 @@ return [
     'first_name'                => 'First Name',
     'service_name'              => 'Service Name',
     'submitted_at'              => 'Submitted At',
-    'booking-services'          => 'Booking Services',
+    'meetings-services'          => 'Booking Services',
     'is_doctor'                 => 'Is doctor',
     'number_of_visits_per_week' => "Number of visits per week",
     'number_of_visits'          => "Number of visits",

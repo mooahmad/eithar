@@ -21,15 +21,15 @@ class BookingServicesController extends Controller
         $this->middleware('AdminAuth');
     }
 
-    public function index()
+    public function indexUpComingMeetings()
     {
-        if (Gate::denies('booking.view',new ServiceBooking())){
+        if (Gate::denies('meetings.view',new ServiceBooking())){
             return response()->view('errors.403',[],403);
         }
         $data = [
-            'booking' => ServiceBooking::first()
+            'meeting_type' => 'upcoming'
         ];
-        return view(AD.'.booking.index')->with($data);
+        return view(AD.'.meetings.index')->with($data);
     }
 
     /**
@@ -38,47 +38,66 @@ class BookingServicesController extends Controller
      */
     public function show(ServiceBooking $booking)
     {
-        if (Gate::denies('booking.view',new ServiceBooking())){
+        if (Gate::denies('meetings.view',new ServiceBooking())){
             return response()->view('errors.403',[],403);
         }
         $data = [
-            'booking'=>$booking
+            'meetings'=>$booking
         ];
-        return view(AD.'.booking.show')->with($data);
+        return view(AD.'.meetings.show')->with($data);
     }
 
     /**
      * @return mixed
      */
-    public function getBookingServicesDataTable()
+    public function getBookingServicesDataTable(Request $request)
     {
-        $items = Customer::where('id', '<>', 0);
+//        By default get all upcoming meetings
+        $status = [config('constants.bookingStatus.inprogress'), config('constants.bookingStatus.confirmed')];
+
+        if ($request->meeting_type && $request->meeting_type == 'upcoming'){
+//            return upcoming meetings
+            $status = [config('constants.bookingStatus.inprogress'), config('constants.bookingStatus.confirmed')];
+        }
+
+        if ($request->meeting_type && $request->meeting_type == 'old'){
+//            return upcoming meetings
+            $status = [config('constants.bookingStatus.completed')];
+        }
+//        dd($status);
+        $items = ServiceBooking::where('id', '<>', 0)->whereIn('status',$status);
         $dataTable = DataTables::of($items)
+            ->addColumn('service_name',function ($item){
+                return ($item->service) ? $item->service->name_en : '';
+            })
+            ->addColumn('full_name',function ($item){
+                return ($item->customer) ? $item->customer->full_name : '';
+            })
+            ->addColumn('national_id',function ($item){
+                return ($item->customer) ? $item->customer->national_id : '';
+            })
+            ->addColumn('status',function ($item){
+                $status_type = 'warning';
+                if($item->status==2){$status_type= 'success';}
+                if($item->status==3){$status_type= 'danger';}
+                return '<span class="label label-'.$status_type.' label-sm">'.$item->status_desc.'</span>';
+            })
+            ->addColumn('price',function ($item){
+                $price = $item->price .' ';
+                $price.= ($item->currency)? $item->currency->name_eng :" ";
+                return $price;
+            })
             ->addColumn('actions', function ($item) {
-                $showURL = url(AD . '/customers/' . $item->id);
+                $showURL = url(AD . '/meetings/' . $item->id);
 
                 $URLs = [
                     ['link'=>$showURL],
                 ];
                 return View::make('Administrator.widgets.advancedActions', ['URLs'=>$URLs]);
             })
-            ->addColumn('image', function ($item) {
-                if (!empty($item->profile_picture_path)) {
-                    $Image = Utilities::getFileUrl($item->profile_picture_path);
-                    return '<td><a href="' . $Image . '" data-lightbox="image-1" data-title="' . $item->id . '" class="text-success">Show <i class="fa fa-image"></i></a></td>';
-                } else {
-                    return '<td><span class="text-danger">No Image</span></td>';
-                }
-            })
-            ->addColumn('full_name',function ($item){
-                return $item->full_name;
-            })
-            ->addColumn('country',function ($item){
-                return $item->country->country_name_eng .' - '. $item->city->city_name_eng;
-            })
-            ->rawColumns(['image','full_name','actions'])
+
+            ->rawColumns(['service_name','full_name','national_id','status','actions'])
             ->make(true);
         return $dataTable;
     }
-
 }

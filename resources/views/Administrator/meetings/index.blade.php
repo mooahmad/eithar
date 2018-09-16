@@ -12,18 +12,18 @@
                 </div>
                 <div class="portlet-body">
                     <div class="table-responsive">
-                        <table id="data-table-booking-services" class="dataTable table table-bordered table-hover"
+                        <table id="data-table-meetings" class="table table-bordered table-hover"
                                width="100%">
                             <thead>
-                            <tr>
-                                <th>{{ trans('admin.id') }}</th>
-                                <th>{{ trans('admin.full_name') }}</th>
-                                <th>{{ trans('admin.national_id') }}</th>
-                                <th>{{ trans('admin.mobile') }}</th>
-                                <th>{{ trans('admin.country') }}</th>
-                                <th>{{ trans('admin.image') }}</th>
-                                <th>{{ trans('admin.actions') }}</th>
-                            </tr>
+                                <tr>
+                                    <th>{{ trans('admin.id') }}</th>
+                                    <th>{{ trans('admin.service_name') }}</th>
+                                    <th>{{ trans('admin.full_name') }}</th>
+                                    <th>{{ trans('admin.national_id') }}</th>
+                                    <th>{{ trans('admin.price') }}</th>
+                                    <th>{{ trans('admin.status') }}</th>
+                                    <th>{{ trans('admin.actions') }}</th>
+                                </tr>
                             </thead>
                             <tbody>
 
@@ -39,9 +39,10 @@
 
 @section('script')
     <script>
-        var indexURL = "{!! route('get-booking-services-Datatable') !!}";
+        var indexURL = "{!! route('get-meetings-Datatable') !!}";
         var deleteURL    = "{!! route('deleteServices') !!}";
         var csrfToken          = "{!! csrf_token() !!}";
+        var meeting_type          = "{{ $meeting_type }}";
     </script>
-    <script src="{{ asset('public/js/custom/bookingServicesDataTable.js') }}"></script>
+    <script src="{{ asset('public/js/custom/meetingsDataTable.js') }}"></script>
 @stop

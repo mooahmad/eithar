@@ -11,7 +11,7 @@ class BookingServicesPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view the service booking.
+     * Determine whether the user can view the service meetings.
      *
      * @param  \App\User  $user
      * @param  \App\Models\ServiceBooking  $serviceBooking
@@ -34,7 +34,7 @@ class BookingServicesPolicy
     }
 
     /**
-     * Determine whether the user can update the service booking.
+     * Determine whether the user can update the service meetings.
      *
      * @param  \App\User  $user
      * @param  \App\Models\ServiceBooking  $serviceBooking
@@ -46,7 +46,7 @@ class BookingServicesPolicy
     }
 
     /**
-     * Determine whether the user can delete the service booking.
+     * Determine whether the user can delete the service meetings.
      *
      * @param  \App\User  $user
      * @param  \App\Models\ServiceBooking  $serviceBooking
@@ -58,7 +58,7 @@ class BookingServicesPolicy
     }
 
     /**
-     * Determine whether the user can restore the service booking.
+     * Determine whether the user can restore the service meetings.
      *
      * @param  \App\User  $user
      * @param  \App\Models\ServiceBooking  $serviceBooking
@@ -70,7 +70,7 @@ class BookingServicesPolicy
     }
 
     /**
-     * Determine whether the user can permanently delete the service booking.
+     * Determine whether the user can permanently delete the service meetings.
      *
      * @param  \App\User  $user
      * @param  \App\Models\ServiceBooking  $serviceBooking

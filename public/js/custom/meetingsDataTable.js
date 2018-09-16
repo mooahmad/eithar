@@ -1,9 +1,9 @@
 var mainTable = null;
 
 function datatable() {
-    $('#data-table-booking-services').dataTable().fnDestroy();
+    $('#data-table-meetings').dataTable().fnDestroy();
     $.fn.dataTable.ext.errMode = 'throw';
-    mainTable = $('#data-table-booking-services').DataTable({
+    mainTable = $('#data-table-meetings').DataTable({
         "bfilter": true,
         "dom": 'B f l t p r i',
         "paging": true,
@@ -18,7 +18,7 @@ function datatable() {
         order: [[0, 'asc']],
         buttons: [{
             extend: 'csvHtml5',
-            title: 'Booking Services Report',
+            title: 'Meetings Report',
             messageTop: 'Search result data',
             exportOptions: {
                 columns: [0, 2, 3]
@@ -47,23 +47,16 @@ function datatable() {
         processing: true,
         serverSide: true,
         ajax: {
-            url: indexURL
+            url: indexURL,
+            data: {'meeting_type':meeting_type}
         },
         columns: [
-            {data: 'id', name: 'customers.id'},
-            {data: 'full_name', name: 'customers.first_name'},
-            {data: 'national_id', name: 'customers.national_id'},
-            {data: 'mobile_number', name: 'customers.mobile_number'},
-            {data: 'country', name: 'customers.country'},
-            {
-                searchable: false,
-                orderable: false,
-                data: 'image',
-                name: 'image',
-                "render": function (data, type, full, meta) {
-                    return data;
-                }
-            },
+            {data: 'id', name: 'service_bookings.id'},
+            {data: 'service_name', name: 'service_bookings.service_name'},
+            {data: 'full_name', name: 'service_bookings.first_name'},
+            {data: 'national_id', name: 'service_bookings.national_id'},
+            {data: 'price', name: 'service_bookings.price'},
+            {data: 'status', name: 'meetings.status'},
             {
                 searchable: false,
                 orderable: false,

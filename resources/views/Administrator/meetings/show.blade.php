@@ -9,7 +9,7 @@
     <div class="invoice">
         <div class="row invoice-logo">
             <div class="col-xs-6 invoice-logo-space">
-                {{--<img src="{{ \App\Helpers\Utilities::getFileUrl($booking->customer->image) }}" class="img-responsive" alt="" /> </div>--}}
+                {{--<img src="{{ \App\Helpers\Utilities::getFileUrl($meetings->customer->image) }}" class="img-responsive" alt="" /> </div>--}}
                 <img src="{{ asset('public/assets/layouts/layout/img/logo.png') }}" class="img-responsive" alt="" /> </div>
             <div class="col-xs-6">
                 <p> #{{ $booking->id }} / {{ $booking->created_at->format('l j F Y h:i A') }}
