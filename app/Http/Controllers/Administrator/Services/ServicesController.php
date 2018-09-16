@@ -531,7 +531,7 @@ class ServicesController extends Controller
             'formRoute' => route('updateServiceLapCalendar', ['calendarId' => $calendarId]),
             'submitBtn' => trans('admin.update')
         ];
-        return view(AD . '.services.Lap_calendar_form')->with($data);
+        return view(AD . '.services.lap_calendar_form')->with($data);
     }
 
     public function updateServiceLapCalendar(UpdateCalendarRequest $request, $calendarId)

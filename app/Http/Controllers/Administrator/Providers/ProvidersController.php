@@ -58,13 +58,13 @@ class ProvidersController extends Controller
         $allCities = City::all()->pluck('city_name_eng', 'id')->toArray();
         $selectedCities = [];
         $data = [
-            'currencies'       => $currencies,
-            'allServices'      => $allServices,
+            'currencies' => $currencies,
+            'allServices' => $allServices,
             'selectedServices' => $selectedServices,
-            'allCities'        => $allCities,
-            'selectedCities'   => $selectedCities,
-            'formRoute'        => route('providers.store'),
-            'submitBtn'        => trans('admin.create')
+            'allCities' => $allCities,
+            'selectedCities' => $selectedCities,
+            'formRoute' => route('providers.store'),
+            'submitBtn' => trans('admin.create')
         ];
         return view(AD . '.providers.form')->with($data);
     }
@@ -107,14 +107,14 @@ class ProvidersController extends Controller
         $allCities = City::all()->pluck('city_name_eng', 'id')->toArray();
         $selectedCities = $provider->cities->pluck('id')->toArray();
         $data = [
-            'currencies'       => $currencies,
-            'provider'         => $provider,
-            'allServices'      => $allServices,
+            'currencies' => $currencies,
+            'provider' => $provider,
+            'allServices' => $allServices,
             'selectedServices' => $selectedServices,
-            'allCities'        => $allCities,
-            'selectedCities'   => $selectedCities,
-            'formRoute'        => route('providers.update', ['provider' => $id]),
-            'submitBtn'        => trans('admin.update')
+            'allCities' => $allCities,
+            'selectedCities' => $selectedCities,
+            'formRoute' => route('providers.update', ['provider' => $id]),
+            'submitBtn' => trans('admin.update')
         ];
         return view(AD . '.providers.form')->with($data);
     }
@@ -147,21 +147,21 @@ class ProvidersController extends Controller
     {
         $providers = Provider::where('id', '<>', 0);
         $dataTable = DataTables::of($providers)
-                               ->addColumn('actions', function ($provider) {
-                                   $editURL = url(AD . '/providers/' . $provider->id . '/edit');
-                                   $calendarURL = url(AD . '/providers/' . $provider->id . '/calendar');
-                                   $addCalendarURL = url(AD . '/providers/' . $provider->id . '/calendar/create');
-                                   return View::make('Administrator.providers.widgets.dataTableCalendarAction', ['editURL' => $editURL, 'calendarURL' => $calendarURL, 'addCalendarURL' => $addCalendarURL]);
-                               })
-                               ->addColumn('image', function ($provider) {
-                                   if (!empty($provider->profile_picture_path)) {
-                                       return '<td><a href="' . $provider->profile_picture_path . '" data-lightbox="image-1" data-title="' . $provider->id . '" class="text-success">Show <i class="fa fa-image"></a></i></a></td>';
-                                   } else {
-                                       return '<td><span class="text-danger">No Image</span></td>';
-                                   }
-                               })
-                               ->rawColumns(['image', 'actions'])
-                               ->make(true);
+            ->addColumn('actions', function ($provider) {
+                $editURL = url(AD . '/providers/' . $provider->id . '/edit');
+                $calendarURL = url(AD . '/providers/' . $provider->id . '/calendar');
+                $addCalendarURL = url(AD . '/providers/' . $provider->id . '/calendar/create');
+                return View::make('Administrator.providers.widgets.dataTableCalendarAction', ['editURL' => $editURL, 'calendarURL' => $calendarURL, 'addCalendarURL' => $addCalendarURL]);
+            })
+            ->addColumn('image', function ($provider) {
+                if (!empty($provider->profile_picture_path)) {
+                    return '<td><a href="' . $provider->profile_picture_path . '" data-lightbox="image-1" data-title="' . $provider->id . '" class="text-success">Show <i class="fa fa-image"></a></i></a></td>';
+                } else {
+                    return '<td><span class="text-danger">No Image</span></td>';
+                }
+            })
+            ->rawColumns(['image', 'actions'])
+            ->make(true);
         return $dataTable;
     }
 
@@ -180,7 +180,7 @@ class ProvidersController extends Controller
     {
         $calendarSections = config('constants.calendarSections');
         $data = [
-            'providerID'       => $id,
+            'providerID' => $id,
             'calendarSections' => $calendarSections
         ];
         return view(AD . '.providers.calendar_index')->with($data);
@@ -188,7 +188,14 @@ class ProvidersController extends Controller
 
     public function createProviderCalendar(Request $request, $providerId)
     {
+        $allWeekDays = ["saturday" => "saturday", "sunday" => "sunday",
+            "monday" => "monday", "tuesday" => "tuesday", "wednesday" => "wednesday",
+            "thursday" => "thursday", "friday" => "friday"];
+        $times = Utilities::GenerateHours();
         $data = [
+            'times' => $times,
+            'allWeekDays' => $allWeekDays,
+            'selectedWeekDays' => [],
             'formRoute' => route('storeProviderCalendar', ['provider' => $providerId]),
             'submitBtn' => trans('admin.create')
         ];
@@ -197,13 +204,29 @@ class ProvidersController extends Controller
 
     public function storeProviderCalendar(CreateCalendarRequest $request, $providerId)
     {
-        $providerCalendar = new ProvidersCalendar();
-        $startDate = $request->input('start_date');
-        $endDate = $request->input('end_date');
-        if(ProviderClass::isExistCalendar($startDate, $endDate, $providerId)){
-            return Redirect::back()->withErrors(['msg' => 'The slot you have picked conflicts with another one']);
+        $provider = Provider::find($providerId);
+        $selectedDays = $request->input('week_days');
+        $numberOfWeeks = $request->input('number_of_weeks');
+        $startTime = $request->input('start_time');
+        $allDates = [];
+        $message["invalid"] = [];
+        $message["valid"] = [];
+        foreach ($selectedDays as $selectedDay) {
+            $allDates = array_merge($allDates, Utilities::getDayDatesOfWeeks($selectedDay, $numberOfWeeks));
         }
-        ProviderClass::createOrUpdateCalendar($providerCalendar, $request, $providerId);
+        foreach ($allDates as $dayDate) {
+            $startDate = $dayDate . ' ' . $startTime . ':00';
+            $endDate = Carbon::parse($dayDate . ' ' . $startTime)->addMinutes($provider->visit_duration)->toDateTimeString();
+            if (ProviderClass::isExistCalendar($startDate, $endDate, $providerId)) {
+                array_push($message["invalid"], $startDate);
+            } else {
+                $providerCalendar = new ProvidersCalendar();
+                ProviderClass::createOrUpdateCalendar($providerCalendar, $providerId, $startDate, $endDate, 1);
+                array_push($message["valid"], $startDate);
+            }
+        }
+        if (!empty($message["invalid"]))
+            return Redirect::back()->withErrors($message);
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/providers/' . $providerId . '/calendar');
     }
@@ -212,11 +235,11 @@ class ProvidersController extends Controller
     {
         $calendar = ProvidersCalendar::find($calendarId);
         $data = [
-            'calendar'  => $calendar,
+            'calendar' => $calendar,
             'formRoute' => route('updateProviderCalendar', ['id' => $providerId, 'calendarId' => $calendarId]),
             'submitBtn' => trans('admin.update')
         ];
-        return view(AD . '.providers.calendar_form')->with($data);
+        return view(AD . '.providers.calendar_edit_form')->with($data);
     }
 
     public function updateProviderCalendar(UpdateCalendarRequest $request, $providerId, $calendarId)
@@ -224,10 +247,11 @@ class ProvidersController extends Controller
         $providerCalendar = ProvidersCalendar::find($calendarId);
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');
-        if(ProviderClass::isExistCalendar($startDate, $endDate, $providerId, $calendarId)){
+        $isAvailable = $request->input('is_available');
+        if (ProviderClass::isExistCalendar($startDate, $endDate, $providerId, $calendarId)) {
             return Redirect::back()->withErrors(['msg' => 'The slot you have picked conflicts with another one']);
         }
-        ProviderClass::createOrUpdateCalendar($providerCalendar, $request, $providerId);
+        ProviderClass::createOrUpdateCalendar($providerCalendar, $providerId, $startDate, $endDate, $isAvailable);
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/providers/' . $providerId . '/calendar');
     }
@@ -236,29 +260,29 @@ class ProvidersController extends Controller
     {
         $providerCalendar = ProvidersCalendar::where('provider_id', $id);
         $dataTable = DataTables::of($providerCalendar)
-                               ->addColumn('actions', function ($calendar) use ($id) {
-                                   $editURL = url(AD . '/providers/' . $id . '/calendar/' . $calendar->id . '/edit');
-                                   return View::make('Administrator.widgets.dataTablesActions', ['editURL' => $editURL]);
-                               })
-                               ->filterColumn('providers_calendars.start_date', function ($query, $keyword) {
-                                   $now = Carbon::now()->format('Y-m-d H:m:s');
-                                   switch ($keyword) {
-                                       case 0:
-                                           break;
-                                           $query->whereRaw("1 = 1");
-                                       case 1:
-                                           $query->whereRaw("end_date < ?", ["%{$now}%"]);
-                                           break;
-                                       case 2:
-                                           $query->whereRaw("start_date < ? AND end_date > ?", ["%{$now}%", "%{$now}%"]);
-                                           break;
-                                       case 3:
-                                           $query->whereRaw("start_date > ?", ["%{$now}%"]);
-                                           break;
-                                   }
-                               })
-                               ->rawColumns(['actions'])
-                               ->make(true);
+            ->addColumn('actions', function ($calendar) use ($id) {
+                $editURL = url(AD . '/providers/' . $id . '/calendar/' . $calendar->id . '/edit');
+                return View::make('Administrator.widgets.dataTablesActions', ['editURL' => $editURL]);
+            })
+            ->filterColumn('providers_calendars.start_date', function ($query, $keyword) {
+                $now = Carbon::now()->format('Y-m-d H:m:s');
+                switch ($keyword) {
+                    case 0:
+                        break;
+                        $query->whereRaw("1 = 1");
+                    case 1:
+                        $query->whereRaw("end_date < ?", ["%{$now}%"]);
+                        break;
+                    case 2:
+                        $query->whereRaw("start_date < ? AND end_date > ?", ["%{$now}%", "%{$now}%"]);
+                        break;
+                    case 3:
+                        $query->whereRaw("start_date > ?", ["%{$now}%"]);
+                        break;
+                }
+            })
+            ->rawColumns(['actions'])
+            ->make(true);
         return $dataTable;
     }
 
