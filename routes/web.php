@@ -181,7 +181,8 @@ Route::group(['middleware' => 'AdminAuth', 'prefix' => AD], function () {
     });
 
     Route::group(['namespace' => BSN],function (){
-        Route::get('booking-services', 'BookingServicesController@index')->name('Show Booking Services');
+        Route::get('upcoming-meetings', 'BookingServicesController@index')->name('upcoming-meetings');
+        Route::get('old-meetings', 'BookingServicesController@index')->name('old-meetings');
         Route::get('get-booking-services-Datatable', 'BookingServicesController@getBookingServicesDataTable')->name('get-booking-services-Datatable');
         Route::get('booking-services/{booking}', 'BookingServicesController@show')->name('Show Booking Service Details');
     });
