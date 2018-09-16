@@ -170,6 +170,7 @@ return [
     'number_of_visits' => "Number of visits",
     'select_week_days' => 'Select days',
     'start_time' => 'Start Time',
+    'end_time' => 'End Time',
     'number_of_weeks' => 'Number of weeks',
     'Lap' => 'Lap',
     'add_calendar' => 'Add calendar',
