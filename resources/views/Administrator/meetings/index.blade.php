@@ -19,6 +19,8 @@
                                     <th>{{ trans('admin.id') }}</th>
                                     <th>{{ trans('admin.service_name') }}</th>
                                     <th>{{ trans('admin.full_name') }}</th>
+                                    <th>{{ trans('admin.full_name') }}</th>
+                                    <th>{{ trans('admin.full_name') }}</th>
                                     <th>{{ trans('admin.national_id') }}</th>
                                     <th>{{ trans('admin.price') }}</th>
                                     <th>{{ trans('admin.status') }}</th>

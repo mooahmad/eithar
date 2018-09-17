@@ -12,9 +12,6 @@ function datatable() {
         select: {
             style: 'multi'
         },
-        "columnDefs": [
-            {className: "text-center", "targets": "_all"}
-        ],
         order: [[0, 'asc']],
         buttons: [{
             extend: 'csvHtml5',
@@ -52,11 +49,13 @@ function datatable() {
         },
         columns: [
             {data: 'id', name: 'service_bookings.id'},
-            {data: 'service_name', name: 'service_bookings.service_name'},
-            {data: 'full_name', name: 'service_bookings.first_name'},
-            {data: 'national_id', name: 'service_bookings.national_id'},
+            {data: 'name_en', name: 'services.name_en'},
+            {data: 'first_name', name: 'customers.first_name'},
+            {data: 'middle_name', name: 'customers.middle_name'},
+            {data: 'last_name', name: 'customers.last_name'},
+            {data: 'national_id', name: 'customers.national_id'},
             {data: 'price', name: 'service_bookings.price'},
-            {data: 'status', name: 'meetings.status'},
+            {data: 'status', name: 'service_bookings.status'},
             {
                 searchable: false,
                 orderable: false,
@@ -66,6 +65,15 @@ function datatable() {
                     return data;
                 }
             }
+        ],
+        columnDefs: [
+            {
+                "render": function ( data, type, row ) {
+                    return data + '-' +row['middle_name']+ '-' +row['last_name'];
+                },
+                "targets": 2
+            },
+            { "visible": false,  "targets": [ 3,4 ] }
         ],
         "fnDrawCallback": function () {
             // fires after each search

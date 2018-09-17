@@ -65,16 +65,14 @@ class BookingServicesController extends Controller
             $status = [config('constants.bookingStatus.completed')];
         }
 //        dd($status);
-        $items = ServiceBooking::where('id', '<>', 0)->whereIn('status',$status);
+        $items = ServiceBooking::where('service_bookings.id', '<>', 0)->whereIn('service_bookings.status',$status)
+            ->join('services','service_bookings.service_id','services.id')
+            ->join('customers','service_bookings.customer_id','customers.id')
+            ->join('currencies','service_bookings.currency_id','currencies.id')
+            ->select(['service_bookings.id','service_bookings.status','service_bookings.price','service_bookings.status_desc','services.name_en','customers.first_name','customers.middle_name','customers.last_name','customers.national_id','currencies.name_eng']);
         $dataTable = DataTables::of($items)
-            ->addColumn('service_name',function ($item){
-                return ($item->service) ? $item->service->name_en : '';
-            })
-            ->addColumn('full_name',function ($item){
-                return ($item->customer) ? $item->customer->full_name : '';
-            })
-            ->addColumn('national_id',function ($item){
-                return ($item->customer) ? $item->customer->national_id : '';
+            ->editColumn('full_name',function ($item){
+                return $item->first_name .' '. $item->middle_name .' '. $item->last_name;
             })
             ->addColumn('status',function ($item){
                 $status_type = 'warning';
@@ -82,10 +80,8 @@ class BookingServicesController extends Controller
                 if($item->status==3){$status_type= 'danger';}
                 return '<span class="label label-'.$status_type.' label-sm">'.$item->status_desc.'</span>';
             })
-            ->addColumn('price',function ($item){
-                $price = $item->price .' ';
-                $price.= ($item->currency)? $item->currency->name_eng :" ";
-                return $price;
+            ->editColumn('price',function ($item){
+                return $item->price .' '.$item->name_eng;
             })
             ->addColumn('actions', function ($item) {
                 $showURL = url(AD . '/meetings/' . $item->id);
@@ -95,8 +91,7 @@ class BookingServicesController extends Controller
                 ];
                 return View::make('Administrator.widgets.advancedActions', ['URLs'=>$URLs]);
             })
-
-            ->rawColumns(['service_name','full_name','national_id','status','actions'])
+            ->rawColumns(['status','actions'])
             ->make(true);
         return $dataTable;
     }
