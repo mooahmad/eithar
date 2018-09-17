@@ -90,8 +90,9 @@ class CustomerController extends Controller
         return $customerFamily->getFamilyMembers($request);
     }
 
-    public function bookService(Request $request)
+    public function getCustomerAppointments(Request $request)
     {
-
+        $customer = new CustomerStrategy(ApiHelpers::requestType($request));
+        return $customer->getCustomerAppointments($request);
     }
 }

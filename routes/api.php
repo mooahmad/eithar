@@ -30,6 +30,7 @@ Route::middleware('auth:api')->group(function () {
         Route::post('getFamilyMember', 'CustomerController@getCustomerFamilyMember');
         Route::post('deleteFamilyMember', 'CustomerController@deleteCustomerFamilyMember');
         Route::get('getFamilyMembers', 'CustomerController@getCustomerFamilyMembers');
+        Route::get('getAppointments', 'CustomerController@getCustomerAppointments');
     }));
 
     Route::group(['namespace' => 'WebApi\CategoriesModule', 'prefix' => 'categories'], (function () {
