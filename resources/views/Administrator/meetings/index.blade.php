@@ -6,9 +6,18 @@
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
             <div class="portlet light bordered">
                 <div class="portlet-title">
-                    <div id="dataTable-buttons" class="tools">
-
-                    </div>
+                    <div id="dataTable-buttons" class="tools"></div>
+                    {{--<div class="col-12">--}}
+                        {{--<form method="POST" id="search-form" class="form-inline" role="form">--}}
+                            {{--<div class="input-group input-large date-picker input-daterange" data-date-format="yyyy-mm-dd">--}}
+                                {{--<input type="text" class="form-control" name="from_date" placeholder="From Date" id="from_date" required>--}}
+                                {{--<span class="input-group-addon"> to </span>--}}
+                                {{--<input type="text" class="form-control" name="to_date" placeholder="To Date" id="to_date">--}}
+                            {{--</div>--}}
+                            {{--<button type="submit" class="btn btn-primary">Search</button>--}}
+                            {{--<span class="help-block"> Filter By Date </span>--}}
+                        {{--</form>--}}
+                    {{--</div>--}}
                 </div>
                 <div class="portlet-body">
                     <div class="table-responsive">
@@ -22,8 +31,10 @@
                                     <th>{{ trans('admin.full_name') }}</th>
                                     <th>{{ trans('admin.full_name') }}</th>
                                     <th>{{ trans('admin.national_id') }}</th>
+                                    <th>{{ trans('admin.mobile') }}</th>
                                     <th>{{ trans('admin.price') }}</th>
                                     <th>{{ trans('admin.status') }}</th>
+                                    <th>{{ trans('admin.submitted_at') }}</th>
                                     <th>{{ trans('admin.actions') }}</th>
                                 </tr>
                             </thead>

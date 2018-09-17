@@ -21,13 +21,13 @@ class BookingServicesController extends Controller
         $this->middleware('AdminAuth');
     }
 
-    public function indexUpComingMeetings()
+    public function index(Request $request)
     {
         if (Gate::denies('meetings.view',new ServiceBooking())){
             return response()->view('errors.403',[],403);
         }
         $data = [
-            'meeting_type' => 'upcoming'
+            'meeting_type' => $request->segment(3)
         ];
         return view(AD.'.meetings.index')->with($data);
     }
@@ -47,32 +47,30 @@ class BookingServicesController extends Controller
         return view(AD.'.meetings.show')->with($data);
     }
 
-    /**
-     * @return mixed
-     */
     public function getBookingServicesDataTable(Request $request)
     {
 //        By default get all upcoming meetings
-        $status = [config('constants.bookingStatus.inprogress'), config('constants.bookingStatus.confirmed')];
+        $status = [config('constants.bookingStatus.inprogress')];
 
-        if ($request->meeting_type && $request->meeting_type == 'upcoming'){
-//            return upcoming meetings
-            $status = [config('constants.bookingStatus.inprogress'), config('constants.bookingStatus.confirmed')];
+        if ($request->meeting_type){
+            $status = [config('constants.bookingStatus.'.$request->meeting_type)];
         }
 
-        if ($request->meeting_type && $request->meeting_type == 'old'){
-//            return upcoming meetings
-            $status = [config('constants.bookingStatus.completed')];
-        }
-//        dd($status);
-        $items = ServiceBooking::where('service_bookings.id', '<>', 0)->whereIn('service_bookings.status',$status)
+        $items = ServiceBooking::where('service_bookings.id', '<>', 0)
+            ->whereIn('service_bookings.status',$status)
             ->join('services','service_bookings.service_id','services.id')
             ->join('customers','service_bookings.customer_id','customers.id')
             ->join('currencies','service_bookings.currency_id','currencies.id')
-            ->select(['service_bookings.id','service_bookings.status','service_bookings.price','service_bookings.status_desc','services.name_en','customers.first_name','customers.middle_name','customers.last_name','customers.national_id','currencies.name_eng']);
+            ->select(['service_bookings.id','service_bookings.status','service_bookings.price','service_bookings.status_desc','service_bookings.created_at','services.name_en','customers.first_name','customers.middle_name','customers.last_name','customers.national_id','customers.mobile_number','currencies.name_eng']);
         $dataTable = DataTables::of($items)
             ->editColumn('full_name',function ($item){
                 return $item->first_name .' '. $item->middle_name .' '. $item->last_name;
+            })
+            ->editColumn('created_at',function ($item){
+                return $item->created_at->format('Y-m-d h:i A');
+            })
+            ->filterColumn('created_at', function ($query, $keyword) {
+                $query->whereRaw("DATE_FORMAT(service_bookings.created_at,'%m/%d/%Y') like ?", ["%$keyword%"]);
             })
             ->addColumn('status',function ($item){
                 $status_type = 'warning';
@@ -87,12 +85,13 @@ class BookingServicesController extends Controller
                 $showURL = url(AD . '/meetings/' . $item->id);
 
                 $URLs = [
-                    ['link'=>$showURL],
+                    ['link'=>$showURL,'icon'=>'info'],
                 ];
                 return View::make('Administrator.widgets.advancedActions', ['URLs'=>$URLs]);
             })
             ->rawColumns(['status','actions'])
             ->make(true);
+
         return $dataTable;
     }
 }

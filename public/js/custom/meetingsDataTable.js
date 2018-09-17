@@ -22,30 +22,16 @@ function datatable() {
             },
             bom: true,
             charset: 'UTF-8'
-        },
-            {
-                className: 'deleteSelected',
-                text: 'Delete selected',
-                action: function () {
-                    var ids = [];
-                    var data = mainTable.rows('.selected').data();
-                    $(data).each(function () {
-                        var row = this;
-                        ids.push(row.id);
-                    });
-                    $('#btn-modal-delete').unbind('click');
-                    $('#btn-modal-delete').on('click', function () {
-                        // deleteServicesRecords(ids)
-                    });
-                    $('#staticDeleteModal').modal();
-                }
-            }
-        ],
+        }],
         processing: true,
         serverSide: true,
         ajax: {
             url: indexURL,
-            data: {'meeting_type':meeting_type}
+            data: function (d) {
+                d.from_date = $('#from_date').val();
+                d.to_date = $('#to_date').val();
+                d.meeting_type = meeting_type;
+            }
         },
         columns: [
             {data: 'id', name: 'service_bookings.id'},
@@ -54,8 +40,10 @@ function datatable() {
             {data: 'middle_name', name: 'customers.middle_name'},
             {data: 'last_name', name: 'customers.last_name'},
             {data: 'national_id', name: 'customers.national_id'},
+            {data: 'mobile_number', name: 'customers.mobile_number'},
             {data: 'price', name: 'service_bookings.price'},
             {data: 'status', name: 'service_bookings.status'},
+            {data: 'created_at', name: 'service_bookings.created_at'},
             {
                 searchable: false,
                 orderable: false,
@@ -85,6 +73,38 @@ function datatable() {
             $('.deleteSelected').addClass('hidden');
             $(".dt-buttons").appendTo("#dataTable-buttons");
             $(".dt-buttons").show();
+            this.api().columns([1,5]).every( function () {
+                var column = this;
+                var select = $('<select class="btn btn-outline btn-circle btn-large blue-ebonyclay"><option value="">Advanced Filter</option></select>')
+                    .appendTo( $(column.header()).empty() )
+                    .on('change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+                        column.search( this.value ).draw();
+                    });
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+            this.api().columns([8]).every( function () {
+                var meeting_status = new Array();
+                meeting_status[1] = ["In Progress"];
+                meeting_status[2] = ["Confirmed"];
+                meeting_status[3] = ["Canceled"];
+                var column = this;
+                var select = $('<select class="btn btn-outline btn-circle btn-large blue-ebonyclay"><option value="">Advanced Filter</option></select>')
+                    .appendTo( $(column.header()).empty() )
+                    .on('change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+                        column.search( this.value ).draw();
+                    });
+                meeting_status.forEach( function ( value,key ) {
+                    select.append( '<option value="'+key+'">'+value+'</option>' )
+                } );
+            } );
         }
     });
 
@@ -101,26 +121,10 @@ function datatable() {
         });
 }
 
-function deleteServicesRecords(ids) {
-    $.ajax({
-        url: deleteURL,
-        type: "Post",
-        data: {
-            "_token": csrfToken,
-            ids: ids
-        },
-        success: function (response, status, xhr) {
-            mainTable
-                .order( [[ 0, 'asc' ]] )
-                .draw( false );
-            $('#staticDeleteModal').modal('hide');
-            $('.deleteSelected').addClass('hidden');
-        },
-        error: function (response, status, xhr) {
-
-        }
-    });
-}
+$('#search-form').on('submit', function(e) {
+    mainTable.draw();
+    e.preventDefault();
+});
 
 $(document).ready(function () {
     datatable();

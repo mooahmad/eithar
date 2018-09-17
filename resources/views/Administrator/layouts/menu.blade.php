@@ -231,24 +231,30 @@
 
             <!-- Start Booking Services Area -->
             {{--            @can('promo_code.view', new \App\Models\PromoCode())--}}
-            <li class="nav-item start {{ (Request::segment(2)=='upcoming-meetings' || Request::segment(2)=='old-meetings') ? 'active' :'' }}">
+            <li class="nav-item start {{ (Request::segment(2)=='meetings') ? 'active' :'' }}">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-calendar"></i>
                     <span class="title">{{ trans('admin.booking_services') }}</span>
                     <span class="selected"></span>
-                    <span class="arrow {{ (Request::segment(2)=='upcoming-meetings' || Request::segment(2)=='old-meetings') ? 'open' :'' }}"></span>
+                    <span class="arrow {{ (Request::segment(2)=='meetings') ? 'open' :'' }}"></span>
                 </a>
                 <ul class="sub-menu">
-                    <li class="nav-item start {{ (Request::is(AD.'/upcoming-meetings')) ? 'active' :'' }}">
-                        <a href="{{ url(AD.'/upcoming-meetings') }}" class="nav-link ">
+                    <li class="nav-item start {{ (Request::is(AD.'/meetings/canceled')) ? 'active' :'' }}">
+                        <a href="{{ url(AD.'/meetings/canceled') }}" class="nav-link ">
                             <i class="fa fa-eye"></i>
-                            <span class="title">{{ trans('admin.upcoming_meetings') }}</span>
+                            <span class="title">{{ trans('admin.canceled_meetings') }}</span>
                         </a>
                     </li>
-                    <li class="nav-item start {{ (Request::is(AD.'/old-meetings')) ? 'active' :'' }}">
-                        <a href="{{ url(AD.'/old-meetings') }}" class="nav-link ">
+                    <li class="nav-item start {{ (Request::is(AD.'/meetings/inprogress')) ? 'active' :'' }}">
+                        <a href="{{ url(AD.'/meetings/inprogress') }}" class="nav-link ">
                             <i class="fa fa-eye"></i>
-                            <span class="title">{{ trans('admin.old_meetings') }}</span>
+                            <span class="title">{{ trans('admin.inprogress_meetings') }}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item start {{ (Request::is(AD.'/meetings/confirmed')) ? 'active' :'' }}">
+                        <a href="{{ url(AD.'/meetings/confirmed') }}" class="nav-link ">
+                            <i class="fa fa-eye"></i>
+                            <span class="title">{{ trans('admin.confirmed_meetings') }}</span>
                         </a>
                     </li>
                 </ul>
