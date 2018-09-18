@@ -82,8 +82,7 @@ class BookingServicesController extends Controller
                 return $item->price .' '.$item->name_eng;
             })
             ->addColumn('actions', function ($item) {
-                $showURL = url(AD . '/meetings/' . $item->id);
-
+                $showURL = route('show-meeting-details',[$item->id]);
                 $URLs = [
                     ['link'=>$showURL,'icon'=>'info'],
                 ];
