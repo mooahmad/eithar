@@ -16,9 +16,9 @@ class AppointmentConfirmed extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($payload)
     {
-        //
+        $this->payload = $payload;
     }
 
     /**
@@ -42,7 +42,7 @@ class AppointmentConfirmed extends Notification
     {
         return (new MailMessage)
             ->view('vendor.mail.appointmentConfirmed',
-                ['title' => $this->title, 'message' => $this->message ]
+                ['title' => $this->payload->title, 'message' => $this->payload->message ]
             );
     }
 
@@ -55,8 +55,8 @@ class AppointmentConfirmed extends Notification
     public function toArray($notifiable)
     {
         return [
-            'title' => $this->title,
-            'message' => $this->message,
+            'title' => $this->payload->title,
+            'message' => $this->payload->message,
         ];
     }
 }
