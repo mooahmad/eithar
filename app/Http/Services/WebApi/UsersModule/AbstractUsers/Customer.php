@@ -323,7 +323,8 @@ class Customer
         $query = Auth::user()->select('service_booking_appointments.slot_id')
             ->leftJoin('service_bookings', 'customers.id', '=', 'service_bookings.customer_id')
             ->leftJoin('services', 'service_bookings.service_id', '=', 'services.id')
-            ->leftJoin('service_booking_appointments', 'service_bookings.id', '=', 'service_booking_appointments.service_booking_id');
+            ->leftJoin('service_booking_appointments', 'service_bookings.id', '=', 'service_booking_appointments.service_booking_id')
+            ->where('service_booking_appointments.slot_id', '<>', Null);
         if ($isLap) {
             $query->whereRaw('service_bookings.service_id IS NULL');
         } else
