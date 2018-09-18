@@ -37,7 +37,7 @@ class CreateAdminRequest extends FormRequest
             'national_id'          => 'required|unique:users,national_id',
             'nationality_id'       => 'required',
             'is_saudi_nationality' => 'required',
-            'avatar'     => 'required|mimes:jpeg,bmp,png|dimensions:min_width=100,min_height=200',
+            'avatar'     => 'required|mimes:jpeg,bmp,png|dimensions:min_width=100,min_height=100',
         ];
     }
 }

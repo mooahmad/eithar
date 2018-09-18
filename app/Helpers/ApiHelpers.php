@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use App\Models\Customer;
 use Carbon\Carbon;
+use Edujugon\PushNotification\PushNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\MessageBag;
@@ -91,5 +92,14 @@ class ApiHelpers
             }
         });
         return $reBuitCalendar;
+    }
+
+    public static function pushNotification($tokens, $data)
+    {
+        $push = new PushNotification('fcm');
+        $push->setUrl(env('FIREBASE_URL'));
+        $push->setMessage($data);
+        $push->setDevicesToken($tokens);
+        return $push->send()->getFeedback();
     }
 }

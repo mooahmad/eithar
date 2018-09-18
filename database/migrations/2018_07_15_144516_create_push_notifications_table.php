@@ -13,26 +13,21 @@ class CreateNotificationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('notifications', function (Blueprint $table) {
+        Schema::create('push_notifications', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedInteger('customer_id')->nullable();
             $table->string('imei',255)->nullable();
             $table->string('device_type',255)->nullable();
+            $table->string('device_language', 255)->nullable();
             $table->string('token',255)->nullable();
-            $table->string('title',255)->nullable();
-            $table->string('description',255)->nullable();
-            $table->integer('type')->default(0);
-            $table->integer('is_read')->default(0);
-            $table->integer('language')->default(0);
-            $table->dateTime('send_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
         // relations
-        Schema::table('notifications', function (Blueprint $table) {
-            $table->foreign('user_id')
+        Schema::table('push_notifications', function (Blueprint $table) {
+            $table->foreign('customer_id')
                 ->references('id')
-                ->on('users')
+                ->on('customers')
                 ->onUpdate('set null')
                 ->onDelete('set null');
         });
@@ -46,9 +41,9 @@ class CreateNotificationsTable extends Migration
     public function down()
     {
         // relations
-        Schema::table('notifications', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
+        Schema::table('push_notifications', function (Blueprint $table) {
+            $table->dropForeign(['customer_id']);
         });
-        Schema::dropIfExists('notifications');
+        Schema::dropIfExists('push_notifications');
     }
 }
