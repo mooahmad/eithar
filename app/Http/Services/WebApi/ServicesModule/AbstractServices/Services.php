@@ -108,8 +108,17 @@ class Services implements IService
         $appointmentDate = $request->input('slot_id', null);
         $appointmentPackageDates = $request->input('slot_ids', []);
         $this->saveBookingAppointments($serviceBookingId, $appointmentDate, $appointmentPackageDates);
+        if ($providerId != null)
+            $this->updateSlotStatus($appointmentDate, 0);
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([]));
+    }
+
+    private function updateSlotStatus($slotId, $isAvailsble)
+    {
+        $slot = ProvidersCalendar::find($slotId);
+        $slot->is_available = $isAvailsble;
+        $slot->save();
     }
 
     private function saveServiceBooking($isLap, $providerId, $providerAssignedId, $serviceId, $promoCodeId, $price, $currencyId, $comment, $address, $familyMemberId, $status, $statusDescription, $lapServicesIds)
@@ -166,12 +175,12 @@ class Services implements IService
 
     private function saveBookingAppointments($serviceBookingId, $appointmentDate, $appointmentDates)
     {
-        if($appointmentDate != null) {
+        if ($appointmentDate != null) {
             $bookingAppointment = new ServiceBookingAppointment();
             $bookingAppointment->service_booking_id = $serviceBookingId;
             $bookingAppointment->slot_id = $appointmentDate;
             $bookingAppointment->save();
-        }elseif($appointmentDates != []){
+        } elseif ($appointmentDates != []) {
             $data = [];
             foreach ($appointmentDates as $appointmentDate)
                 array_push($data, ["service_booking_id" => $serviceBookingId, "slot_id" => $appointmentDate]);

@@ -184,8 +184,8 @@ class ServicesController extends Controller
         $services = Service::where('id', '<>', 0);
         $dataTable = DataTables::of($services)
             ->addColumn('actions', function ($service) {
+                $editURL = url(AD . '/services/' . $service->id . '/edit');
                 if ($service->type != 4) {
-                    $editURL = url(AD . '/services/' . $service->id . '/edit');
                     $questionnaireURL = url(AD . '/services/' . $service->id . '/questionnaire');
                     $addQuestionnaireURL = url(AD . '/services/' . $service->id . '/questionnaire/create');
                     $calendarURL = "";
@@ -195,6 +195,8 @@ class ServicesController extends Controller
                         $addCalendarURL = url(AD . '/services/' . $service->id . '/calendar/create');
                     }
                     return View::make('Administrator.services.widgets.dataTableQuestionnaireAction', ['editURL' => $editURL, 'questionnaireURL' => $questionnaireURL, 'addQuestionnaireURL' => $addQuestionnaireURL, "calendarURL" => $calendarURL, "addCalendarURL" => $addCalendarURL]);
+                }else{
+                    return View::make('Administrator.services.widgets.dataTableQuestionnaireAction', ['editURL' => $editURL]);
                 }
             })
             ->addColumn('image', function ($service) {

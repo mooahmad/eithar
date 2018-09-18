@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\LapCalendar;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -9,16 +10,16 @@ class ServiceBookingAppointment extends Model
 {
     use SoftDeletes;
 
-    public    $timestamps = true;
-    protected $table      = 'service_booking_appointments';
+    public $timestamps = true;
+    protected $table = 'service_booking_appointments';
     protected $dateFormat = 'Y-m-d H:m:s';
-    protected $dates      = ['created_at', 'updated_at', 'deleted_at'];
+    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function provider_slot()
+    public function servicesBooking()
     {
-        return $this->belongsTo(ProvidersCalendar::class,'slot_id','id');
+        return $this->belongsTo(ServiceBooking::class, 'service_booking_id', 'id');
     }
 }

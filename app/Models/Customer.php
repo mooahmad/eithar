@@ -40,7 +40,7 @@ class Customer extends Authenticatable
      */
     public function scopeGetActiveCustomers()
     {
-        return $this->where('mobile_verified',1);
+        return $this->where('mobile_verified', 1);
     }
 
     /**
@@ -57,7 +57,7 @@ class Customer extends Authenticatable
      */
     public function country()
     {
-        return $this->belongsTo(Country::class,'country_id','id');
+        return $this->belongsTo(Country::class, 'country_id', 'id');
     }
 
     /**
@@ -65,6 +65,11 @@ class Customer extends Authenticatable
      */
     public function city()
     {
-        return $this->belongsTo(City::class,'city_id','id');
+        return $this->belongsTo(City::class, 'city_id', 'id');
+    }
+
+    public function servicesBooking()
+    {
+        return $this->hasMany('App\Models\ServiceBooking', 'customer_id', 'id');
     }
 }
