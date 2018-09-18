@@ -33,7 +33,7 @@ class ApiHelpers
      * MessageBag $message
      * @return string
      */
-    public static function fail($status = 1,MessageBag $message)
+    public static function fail($status = 1, MessageBag $message)
     {
         return response()->json(array("status" => $status, "message" => $message));
     }
@@ -46,21 +46,23 @@ class ApiHelpers
     public static function requestType(Request $request)
     {
         $uri = $request->path();
-        if(str_contains($uri, 'api'))
+        if (str_contains($uri, 'api'))
             return config('constants.requestTypes.api');
         return config('constants.requestTypes.web');
     }
 
-    public static function getCustomerWithToken(Customer $customer, $scopes = []){
+    public static function getCustomerWithToken(Customer $customer, $scopes = [])
+    {
         DB::table('oauth_access_tokens')->where('user_id', $customer->id)->delete();
-        if(empty($scopes))
-        $customer->access_token = $customer->createToken('customer')->accessToken;
+        if (empty($scopes))
+            $customer->access_token = $customer->createToken('customer')->accessToken;
         else
             $customer->access_token = $customer->createToken('customer', [])->accessToken;
         return $customer;
     }
 
-    public static function getCustomerImages(Customer $customer){
+    public static function getCustomerImages(Customer $customer)
+    {
         $customer->profile_picture_path = Utilities::getFileUrl($customer->profile_picture_path);
         $customer->nationality_id_picture = Utilities::getFileUrl($customer->nationality_id_picture);
         return $customer;
@@ -101,5 +103,18 @@ class ApiHelpers
         $push->setMessage($data);
         $push->setDevicesToken($tokens);
         return $push->send()->getFeedback();
+    }
+
+    public static function buildNotification($title, $message, $badge, $arrCustomData)
+    {
+        return [
+            'notification' => [
+                'title' => $title,
+                'body' => $message,
+                "badge" => $badge,
+                'sound' => 'default'
+            ],
+            'data' => $arrCustomData
+        ];
     }
 }

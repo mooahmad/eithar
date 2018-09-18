@@ -174,6 +174,6 @@ return [
         "appointmentConfirmed" => 4,
         "medicalReportAdded" => 5,
         "invoiceGenerated" => 6,
-        "AddItemToInvoice" => 7
+        "addItemToInvoice" => 7
     ]
 ];

@@ -34,6 +34,11 @@ class Customer extends Authenticatable
         'password', 'remember_token', 'email_code', 'mobile_code', 'deleted_at', 'created_at', 'updated_at'
     ];
 
+    public function routeNotificationForMail($notification)
+    {
+        return $this->email;
+    }
+
     /**
      * return active customers
      * @return mixed
