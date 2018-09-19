@@ -323,6 +323,7 @@ class Customer
         $calendar = [];
         $services = [];
         $vat = (Auth::user()->is_saudi_nationality) ? 0 : config('constants.vat_percentage');
+        $totalBeforeTax = 0;
         $serviceBooking = ServiceBooking::find($appointment->service_booking_id);
         $promoCode = ($serviceBooking->promo_code != null) ? $serviceBooking->promo_code->code : "";
         $currency = $serviceBooking->currency->name_eng;
@@ -340,6 +341,7 @@ class Customer
             $servicesLap = ServiceBookingLap::where('service_booking_id', $serviceBooking->id)->get();
             foreach ($servicesLap as $serviceLap) {
                 $services [] = $serviceLap->service;
+                $totalBeforeTax += $serviceLap->service->price;
             }
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
