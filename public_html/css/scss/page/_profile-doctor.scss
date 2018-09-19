@@ -1,0 +1,80 @@
+@import "helpers/variables.scss";
+@import "componants/buttons.scss";
+@import "componants/slider-custum.scss"; /**********/
+// Start Provider Pages
+
+.doctor_info-block {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+
+  .doctor_pic {
+    height: 230px;
+    margin-bottom: 15px;
+
+    img {
+      display: block;
+      max-height: 100%;
+      max-width: 100%;
+    }
+  }
+
+  .doctor_info-description {
+    text-align: center;
+
+    h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 14px;
+      color: #0A982B;
+    }
+
+    span {
+      margin: 10px 0;
+      display: inline-block;
+    }
+
+    .rate_content {
+      padding: 0 20px;
+      margin: 30px 0;
+
+      aside {
+        span {
+          color: #7D7D7D;
+          margin: 0 8px;
+        }
+
+        img {}
+      }
+    }
+
+    .rate_area {
+      background-color: #07A7E2;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      padding: 20px 0;
+
+      .rate_area-stars {
+        li {
+          display: inline-block;
+        }
+        margin-bottom: 15px;
+      }
+
+      span {
+        color: #fff;
+        margin: 0;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.register_button {
+  width: 100%;
+  text-align: center;
+  margin: 15px 0;
+}

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /***Navigation Layout****/
 /*Media Query*/
 /*Box Shadow*/
@@ -40,7 +41,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-button, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-button, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -77,13 +78,13 @@ a:hover {
     display: block;
     font-size: 12px; }
   .glopal_form input:focus,
-  .glopal_form textarea:focus,
-  .glopal_form select:focus {
+  .glopal_form select:focus,
+  .glopal_form textarea:focus {
     outline: none !important;
     border-color: #07A7E3; }
   .glopal_form input,
-  .glopal_form textarea,
-  .glopal_form select {
+  .glopal_form select,
+  .glopal_form textarea {
     border: none;
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
@@ -96,10 +97,12 @@ a:hover {
     border: none;
     cursor: pointer; }
 
+.single_page-content {
+  padding: 50px 0; }
+
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
-p,
 a,
 h1,
 h2,
@@ -107,14 +110,15 @@ h3,
 h4,
 h5,
 h6,
-span,
-li,
 input,
 label,
-textarea,
+li,
+p,
 select,
-th,
-td {
+span,
+td,
+textarea,
+th {
   font-family: 'Montserrat', sans-serif; }
 
 /*Media Query*/
@@ -158,7 +162,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-button, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-button, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -195,13 +199,13 @@ a:hover {
     display: block;
     font-size: 12px; }
   .glopal_form input:focus,
-  .glopal_form textarea:focus,
-  .glopal_form select:focus {
+  .glopal_form select:focus,
+  .glopal_form textarea:focus {
     outline: none !important;
     border-color: #07A7E3; }
   .glopal_form input,
-  .glopal_form textarea,
-  .glopal_form select {
+  .glopal_form select,
+  .glopal_form textarea {
     border: none;
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
@@ -214,10 +218,12 @@ a:hover {
     border: none;
     cursor: pointer; }
 
+.single_page-content {
+  padding: 50px 0; }
+
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
-p,
 a,
 h1,
 h2,
@@ -225,14 +231,15 @@ h3,
 h4,
 h5,
 h6,
-span,
-li,
 input,
 label,
-textarea,
+li,
+p,
 select,
-th,
-td {
+span,
+td,
+textarea,
+th {
   font-family: 'Montserrat', sans-serif; }
 
 .button:focus {
@@ -249,6 +256,10 @@ td {
   .button:hover {
     background-color: #07A7E3;
     color: #fff; }
+
+.languge_button {
+  padding: 15px;
+  margin: 5px; }
 
 .button-blue {
   padding: 10px 15px;
@@ -407,7 +418,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-button, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-button, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -444,13 +455,13 @@ a:hover {
     display: block;
     font-size: 12px; }
   .glopal_form input:focus,
-  .glopal_form textarea:focus,
-  .glopal_form select:focus {
+  .glopal_form select:focus,
+  .glopal_form textarea:focus {
     outline: none !important;
     border-color: #07A7E3; }
   .glopal_form input,
-  .glopal_form textarea,
-  .glopal_form select {
+  .glopal_form select,
+  .glopal_form textarea {
     border: none;
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
@@ -463,10 +474,12 @@ a:hover {
     border: none;
     cursor: pointer; }
 
+.single_page-content {
+  padding: 50px 0; }
+
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
-p,
 a,
 h1,
 h2,
@@ -474,14 +487,15 @@ h3,
 h4,
 h5,
 h6,
-span,
-li,
 input,
 label,
-textarea,
+li,
+p,
 select,
-th,
-td {
+span,
+td,
+textarea,
+th {
   font-family: 'Montserrat', sans-serif; }
 
 /**Start Navbar**/
@@ -491,26 +505,37 @@ td {
   z-index: 99;
   right: 0;
   left: 0;
-  top: 0px; }
+  top: 0; }
   .navbar.fixed {
     position: fixed;
-    top: -8px; }
-    .navbar.fixed .navbar_content {
-      box-shadow: 0px 5px 20px 0px rgba(4, 78, 128, 0.3); }
+    top: -8px;
+    background-color: #fff;
+    box-shadow: 0 5px 20px 0 rgba(4, 78, 128, 0.3);
+    padding: 20px 0 0; }
+    .navbar.fixed .logo_color {
+      display: block; }
+    .navbar.fixed .logo_white {
+      display: none; }
   @media (min-width: 992px) {
     .navbar {
       top: 80px; } }
 
+.logo_color {
+  display: none; }
+
 .navbar_content {
-  background-color: #fff;
-  border-radius: 10px;
-  line-height: 100px;
   display: flex;
-  padding: 0 10px;
   flex-wrap: nowrap;
   justify-content: space-between;
-  background-color: #fff;
   width: 100%; }
+
+.menu_content {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px; }
+  @media (min-width: 992px) {
+    .menu_content {
+      background-color: #fff; } }
 
 .navbar_brand {
   height: 50px; }
@@ -539,9 +564,10 @@ td {
   @media (min-width: 992px) {
     .navbar_menu {
       width: 800px;
+      line-height: 61px;
       position: relative;
-      line-height: 100px;
-      display: block; } }
+      display: block;
+      margin: 0 20px !important; } }
   @media (max-width: 992px) {
     .navbar_menu {
       overflow-y: auto;
@@ -757,7 +783,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-button, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-button, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -794,13 +820,13 @@ a:hover {
     display: block;
     font-size: 12px; }
   .glopal_form input:focus,
-  .glopal_form textarea:focus,
-  .glopal_form select:focus {
+  .glopal_form select:focus,
+  .glopal_form textarea:focus {
     outline: none !important;
     border-color: #07A7E3; }
   .glopal_form input,
-  .glopal_form textarea,
-  .glopal_form select {
+  .glopal_form select,
+  .glopal_form textarea {
     border: none;
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
@@ -813,10 +839,12 @@ a:hover {
     border: none;
     cursor: pointer; }
 
+.single_page-content {
+  padding: 50px 0; }
+
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
-p,
 a,
 h1,
 h2,
@@ -824,14 +852,15 @@ h3,
 h4,
 h5,
 h6,
-span,
-li,
 input,
 label,
-textarea,
+li,
+p,
 select,
-th,
-td {
+span,
+td,
+textarea,
+th {
   font-family: 'Montserrat', sans-serif; }
 
 /**Slider Img Size */
@@ -847,7 +876,7 @@ td {
   .header_slider .header:before {
     width: 100%;
     height: 100%;
-    background: rgba(4, 78, 128, 0.45);
+    background: rgba(7, 167, 226, 0.5);
     overflow: hidden;
     width: 100%;
     z-index: 1; }
@@ -864,6 +893,13 @@ td {
       @media (max-width: 992px) {
         .header_slider .header aside h1 {
           font-size: 20px; } }
+
+.single_page-head .header {
+  height: 500px; }
+  @media (max-width: 992px) {
+    .single_page-head .header {
+      height: 100vh;
+      border-radius: 0; } }
 
 /*Home Page*/
 /*Media Query*/
@@ -907,7 +943,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-button, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-button, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -944,13 +980,13 @@ a:hover {
     display: block;
     font-size: 12px; }
   .glopal_form input:focus,
-  .glopal_form textarea:focus,
-  .glopal_form select:focus {
+  .glopal_form select:focus,
+  .glopal_form textarea:focus {
     outline: none !important;
     border-color: #07A7E3; }
   .glopal_form input,
-  .glopal_form textarea,
-  .glopal_form select {
+  .glopal_form select,
+  .glopal_form textarea {
     border: none;
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
@@ -963,10 +999,12 @@ a:hover {
     border: none;
     cursor: pointer; }
 
+.single_page-content {
+  padding: 50px 0; }
+
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
-p,
 a,
 h1,
 h2,
@@ -974,14 +1012,15 @@ h3,
 h4,
 h5,
 h6,
-span,
-li,
 input,
 label,
-textarea,
+li,
+p,
 select,
-th,
-td {
+span,
+td,
+textarea,
+th {
   font-family: 'Montserrat', sans-serif; }
 
 /*Media Query*/
@@ -1025,7 +1064,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-button, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-button, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -1062,13 +1101,13 @@ a:hover {
     display: block;
     font-size: 12px; }
   .glopal_form input:focus,
-  .glopal_form textarea:focus,
-  .glopal_form select:focus {
+  .glopal_form select:focus,
+  .glopal_form textarea:focus {
     outline: none !important;
     border-color: #07A7E3; }
   .glopal_form input,
-  .glopal_form textarea,
-  .glopal_form select {
+  .glopal_form select,
+  .glopal_form textarea {
     border: none;
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
@@ -1081,10 +1120,12 @@ a:hover {
     border: none;
     cursor: pointer; }
 
+.single_page-content {
+  padding: 50px 0; }
+
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
-p,
 a,
 h1,
 h2,
@@ -1092,14 +1133,15 @@ h3,
 h4,
 h5,
 h6,
-span,
-li,
 input,
 label,
-textarea,
+li,
+p,
 select,
-th,
-td {
+span,
+td,
+textarea,
+th {
   font-family: 'Montserrat', sans-serif; }
 
 .button:focus {
@@ -1116,6 +1158,10 @@ td {
   .button:hover {
     background-color: #07A7E3;
     color: #fff; }
+
+.languge_button {
+  padding: 15px;
+  margin: 5px; }
 
 .button-blue {
   padding: 10px 15px;
@@ -1198,7 +1244,7 @@ td {
   cursor: pointer; }
 .slider_custum_button .slick-arrow {
   z-index: 9;
-  top: 50%;
+  top: 30%;
   position: absolute; }
 .slider_custum_button .slick-arrow:before {
   position: absolute;
@@ -1221,6 +1267,31 @@ td {
 .slider_custum_button .slick-next {
   right: 15px; }
 
+/*┘ìStart Providr Page*/
+.department_slider .slick-arrow {
+  background-color: transparent;
+  border: 1px solid transparent; }
+  .department_slider .slick-arrow:hover {
+    background-color: transparent; }
+.department_slider .slick-arrow:hover:before {
+  color: #044E80; }
+.department_slider .slick-arrow:before {
+  color: #07A7E3;
+  font-size: 30px; }
+@media (max-width: 992px) {
+  .department_slider .slick-prev {
+    left: 0; } }
+@media (min-width: 992px) {
+  .department_slider .slick-prev {
+    left: -30px; } }
+@media (max-width: 992px) {
+  .department_slider .slick-next {
+    right: 0; } }
+@media (min-width: 992px) {
+  .department_slider .slick-next {
+    right: -30px; } }
+
+/*End Providr Page*/
 /*Custum Slider Button Webiners**/
 .webinars_slider-js .slick-arrow {
   background-color: #fff;
@@ -1463,8 +1534,6 @@ td {
     color: #044E80; }
 
 /*06= Start Services Order*/
-/*Single Pages*/
-/***Footer Layout****/
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/
@@ -1506,7 +1575,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-button, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-button, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -1543,13 +1612,13 @@ a:hover {
     display: block;
     font-size: 12px; }
   .glopal_form input:focus,
-  .glopal_form textarea:focus,
-  .glopal_form select:focus {
+  .glopal_form select:focus,
+  .glopal_form textarea:focus {
     outline: none !important;
     border-color: #07A7E3; }
   .glopal_form input,
-  .glopal_form textarea,
-  .glopal_form select {
+  .glopal_form select,
+  .glopal_form textarea {
     border: none;
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
@@ -1562,10 +1631,12 @@ a:hover {
     border: none;
     cursor: pointer; }
 
+.single_page-content {
+  padding: 50px 0; }
+
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
-p,
 a,
 h1,
 h2,
@@ -1573,14 +1644,1095 @@ h3,
 h4,
 h5,
 h6,
-span,
-li,
 input,
 label,
-textarea,
+li,
+p,
 select,
-th,
-td {
+span,
+td,
+textarea,
+th {
+  font-family: 'Montserrat', sans-serif; }
+
+/*Media Query*/
+/*Box Shadow*/
+/***Container Widt***/
+@media (min-width: 992px) {
+  .container {
+    max-width: 1170px; } }
+
+/*Glopal Style*/
+img {
+  max-width: 100%;
+  height: auto; }
+
+[data-src] {
+  -webkit-background-size: cover;
+  background-size: cover; }
+
+/********Glopal Class******/
+.home_page-title {
+  color: #333333;
+  font-size: 26px;
+  margin-bottom: 25px; }
+
+.paragraph_global {
+  color: #333333;
+  font-size: 16px;
+  line-height: 34px; }
+
+.home_page-section {
+  padding: 50px 0; }
+
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+a,
+a:hover {
+  text-decoration: none; }
+
+.button, .button-blue, .advanced_search-button,
+.our_student-button, .glopal_form-button, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+  transition: all ease-in-out 0.3s; }
+
+.head_page:before, .header_slider .header:before {
+  position: absolute;
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0; }
+
+.advanced_search-button:before,
+.our_student-button:before, .glopal_form-button:before {
+  position: absolute;
+  display: block;
+  font-family: 'Font Awesome\ 5 Free';
+  font-weight: 900; }
+
+/*Start Glopal Form*/
+.glopal_form {
+  background: #fff;
+  box-shadow: 0 0 10px rgba(18, 68, 98, 0.42);
+  border-radius: 10px;
+  padding: 30px 15px;
+  /*End Glopal Form*/ }
+  @media (max-width: 576px) {
+    .glopal_form {
+      margin-top: 30px; } }
+  .glopal_form select {
+    width: 100%;
+    color: #044E80;
+    cursor: pointer; }
+  .glopal_form label {
+    display: block;
+    font-size: 12px; }
+  .glopal_form input:focus,
+  .glopal_form select:focus,
+  .glopal_form textarea:focus {
+    outline: none !important;
+    border-color: #07A7E3; }
+  .glopal_form input,
+  .glopal_form select,
+  .glopal_form textarea {
+    border: none;
+    border: 1px solid rgba(18, 68, 98, 0.23);
+    width: 100%;
+    border-radius: 10px;
+    padding: 4px 10px;
+    margin-bottom: 20px; }
+  .glopal_form textarea {
+    height: 120px; }
+  .glopal_form .button-blue {
+    border: none;
+    cursor: pointer; }
+
+.single_page-content {
+  padding: 50px 0; }
+
+/*****Font******/
+/****Start Font Face*******/
+/**** End Font Face*******/
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+label,
+li,
+p,
+select,
+span,
+td,
+textarea,
+th {
+  font-family: 'Montserrat', sans-serif; }
+
+.button:focus {
+  outline: none !important; }
+
+.button {
+  display: inline-block;
+  padding: 12px 50px;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #044E80;
+  border-radius: 10px;
+  color: #fff; }
+  .button:hover {
+    background-color: #07A7E3;
+    color: #fff; }
+
+.languge_button {
+  padding: 15px;
+  margin: 5px; }
+
+.button-blue {
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #07A7E3;
+  border-radius: 10px;
+  color: #fff; }
+  .button-blue:hover {
+    color: #fff;
+    background-color: #044E80; }
+
+.advanced_search-button,
+.our_student-button {
+  background-color: #07A7E3;
+  padding-right: 40px;
+  position: relative;
+  margin: 0 auto;
+  display: inline-block;
+  margin-top: 20px; }
+  .advanced_search-button:hover,
+  .our_student-button:hover {
+    background-color: #044E80; }
+  .advanced_search-button:before,
+  .our_student-button:before {
+    content: "\f101";
+    color: #fff;
+    right: 15px; }
+
+.glopal_form-button {
+  background-color: #07A7E3;
+  padding-right: 40px;
+  position: relative;
+  margin: 0 auto;
+  display: inline-block;
+  margin-top: 20px; }
+  .glopal_form-button:hover {
+    background-color: #044E80; }
+  .glopal_form-button:before {
+    content: "\f1d8";
+    color: #fff;
+    right: 15px; }
+
+/*****Blog Button****/
+@media (min-width: 992px) {
+  #menu_blog {
+    position: relative;
+    z-index: 9;
+    text-align: center;
+    color: #fff; } }
+@media (min-width: 992px) {
+  #menu_blog:before {
+    content: "";
+    top: -9px;
+    bottom: -9px;
+    right: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+    border-radius: 10px;
+    background-color: #07A7E3; } }
+@media (min-width: 992px) {
+  #menu_blog:hover:before {
+    background-color: #044E80; } }
+
+/*Custum Slider Button**/
+.slider_custum_button .slick-arrow:focus {
+  outline: none !important; }
+.slider_custum_button .slick-arrow {
+  font-size: 0;
+  border: 0;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  text-align: center;
+  background-color: #fff;
+  border: 1px solid #07A7E3;
+  position: relative;
+  cursor: pointer; }
+.slider_custum_button .slick-arrow {
+  z-index: 9;
+  top: 30%;
+  position: absolute; }
+.slider_custum_button .slick-arrow:before {
+  position: absolute;
+  display: block;
+  color: #17112d;
+  font-size: 13px;
+  right: 15px;
+  font-family: 'Font Awesome\ 5 Free';
+  font-weight: 900; }
+.slider_custum_button .slick-arrow:hover {
+  background-color: #17112d; }
+.slider_custum_button .slick-arrow:hover:before {
+  color: #fff; }
+.slider_custum_button .slick-prev:before {
+  content: "\f053"; }
+.slider_custum_button .slick-next:before {
+  content: "\f054"; }
+.slider_custum_button .slick-prev {
+  left: 15px; }
+.slider_custum_button .slick-next {
+  right: 15px; }
+
+/*┘ìStart Providr Page*/
+.department_slider .slick-arrow {
+  background-color: transparent;
+  border: 1px solid transparent; }
+  .department_slider .slick-arrow:hover {
+    background-color: transparent; }
+.department_slider .slick-arrow:hover:before {
+  color: #044E80; }
+.department_slider .slick-arrow:before {
+  color: #07A7E3;
+  font-size: 30px; }
+@media (max-width: 992px) {
+  .department_slider .slick-prev {
+    left: 0; } }
+@media (min-width: 992px) {
+  .department_slider .slick-prev {
+    left: -30px; } }
+@media (max-width: 992px) {
+  .department_slider .slick-next {
+    right: 0; } }
+@media (min-width: 992px) {
+  .department_slider .slick-next {
+    right: -30px; } }
+
+/*End Providr Page*/
+/*Custum Slider Button Webiners**/
+.webinars_slider-js .slick-arrow {
+  background-color: #fff;
+  border: 1px solid #07A7E3; }
+.webinars_slider-js .slick-arrow {
+  top: -70px; }
+  @media (max-width: 576px) {
+    .webinars_slider-js .slick-arrow {
+      top: -100px; } }
+.webinars_slider-js .slick-arrow:before {
+  color: #07A7E3; }
+.webinars_slider-js .slick-arrow:hover {
+  background-color: #07A7E3; }
+.webinars_slider-js .slick-arrow:hover:before {
+  color: #fff; }
+.webinars_slider-js .slick-prev {
+  left: 15px; }
+.webinars_slider-js .slick-next {
+  right: 15px; }
+
+/*Custum Slider Button Our Company**/
+.our_company-js .slick-arrow {
+  background-color: #fff;
+  border: 1px solid #07A7E3; }
+.our_company-js .slick-arrow {
+  top: 45%; }
+.our_company-js .slick-arrow:before {
+  color: #07A7E3; }
+.our_company-js .slick-arrow:hover {
+  background-color: #07A7E3; }
+.our_company-js .slick-arrow:hover:before {
+  color: #fff; }
+.our_company-js .slick-prev {
+  left: 10px; }
+.our_company-js .slick-next {
+  right: 10px; }
+
+/*********Slider Style For Single Page Slider************/
+.slider_dots .slick-dots {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+  .slider_dots .slick-dots li {
+    display: inline-block;
+    cursor: pointer; }
+    .slider_dots .slick-dots li button {
+      font-size: 0;
+      border: 0;
+      height: 3px;
+      width: 15px;
+      background-color: #ccc;
+      margin: 0 3px;
+      cursor: pointer;
+      border-radius: 100px; }
+      .slider_dots .slick-dots li button:focus {
+        outline: none !important; }
+  .slider_dots .slick-dots .slick-active button {
+    background-color: #044E80;
+    width: 20px; }
+
+/**Header Slider Dotes****/
+.header_slider .slick-dots {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  bottom: 100px;
+  position: relative; }
+  @media (min-width: 992px) {
+    .header_slider .slick-dots {
+      bottom: 300px; } }
+  .header_slider .slick-dots li {
+    display: inline-block;
+    cursor: pointer; }
+    .header_slider .slick-dots li button {
+      font-size: 0;
+      border: 0;
+      height: 12px;
+      width: 12px;
+      margin: 0 10px;
+      cursor: pointer;
+      border-radius: 100%;
+      background-color: #fff; }
+      .header_slider .slick-dots li button:focus {
+        outline: none !important; }
+  .header_slider .slick-dots .slick-active button {
+    width: 20px;
+    border-radius: 3px;
+    width: 30px; }
+
+/**********/
+.department_slider .container {
+  padding: 0 20px; }
+.department_slider .department_block {
+  height: 100px;
+  width: 100px;
+  line-height: 100px;
+  border-radius: 100%;
+  border: 2px solid rgba(212, 212, 212, 0.35);
+  cursor: pointer; }
+  .department_slider .department_block:hover {
+    border: 2px solid #07A7E3; }
+  .department_slider .department_block.active {
+    border: 2px solid #07A7E3; }
+
+.list_doctor .doctor_block {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 30px;
+  overflow: hidden; }
+  .list_doctor .doctor_block .doctor_img {
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    height: 170px;
+    width: 100%;
+    margin: 2px; }
+    .list_doctor .doctor_block .doctor_img:before {
+      position: absolute;
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%; }
+    .list_doctor .doctor_block .doctor_img:hover:before {
+      background-color: rgba(7, 167, 226, 0.5); }
+    .list_doctor .doctor_block .doctor_img:hover .more_details {
+      opacity: 1; }
+    .list_doctor .doctor_block .doctor_img .more_details {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      color: #fff; }
+    .list_doctor .doctor_block .doctor_img img {
+      max-height: 100%;
+      max-width: 100%; }
+  .list_doctor .doctor_block .doctor_description {
+    background: #07A7E3;
+    padding: 10px 11px; }
+    .list_doctor .doctor_block .doctor_description .name {
+      color: #fff;
+      display: flex;
+      margin-bottom: 10px;
+      justify-content: space-between; }
+      .list_doctor .doctor_block .doctor_description .name h2 {
+        font-size: 14px; }
+      .list_doctor .doctor_block .doctor_description .name span {
+        font-size: 14px; }
+
+.rate_content {
+  display: flex;
+  justify-content: space-between; }
+  .rate_content aside:hover {
+    color: #f00; }
+  .rate_content aside span {
+    color: #fff;
+    margin: 0 6px; }
+
+.all_tabs > div:not(:first-child) {
+  display: none; }
+
+/*Media Query*/
+/*Box Shadow*/
+/***Container Widt***/
+@media (min-width: 992px) {
+  .container {
+    max-width: 1170px; } }
+
+/*Glopal Style*/
+img {
+  max-width: 100%;
+  height: auto; }
+
+[data-src] {
+  -webkit-background-size: cover;
+  background-size: cover; }
+
+/********Glopal Class******/
+.home_page-title {
+  color: #333333;
+  font-size: 26px;
+  margin-bottom: 25px; }
+
+.paragraph_global {
+  color: #333333;
+  font-size: 16px;
+  line-height: 34px; }
+
+.home_page-section {
+  padding: 50px 0; }
+
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+a,
+a:hover {
+  text-decoration: none; }
+
+.button, .button-blue, .advanced_search-button,
+.our_student-button, .glopal_form-button, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+  transition: all ease-in-out 0.3s; }
+
+.head_page:before, .header_slider .header:before {
+  position: absolute;
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0; }
+
+.advanced_search-button:before,
+.our_student-button:before, .glopal_form-button:before {
+  position: absolute;
+  display: block;
+  font-family: 'Font Awesome\ 5 Free';
+  font-weight: 900; }
+
+/*Start Glopal Form*/
+.glopal_form {
+  background: #fff;
+  box-shadow: 0 0 10px rgba(18, 68, 98, 0.42);
+  border-radius: 10px;
+  padding: 30px 15px;
+  /*End Glopal Form*/ }
+  @media (max-width: 576px) {
+    .glopal_form {
+      margin-top: 30px; } }
+  .glopal_form select {
+    width: 100%;
+    color: #044E80;
+    cursor: pointer; }
+  .glopal_form label {
+    display: block;
+    font-size: 12px; }
+  .glopal_form input:focus,
+  .glopal_form select:focus,
+  .glopal_form textarea:focus {
+    outline: none !important;
+    border-color: #07A7E3; }
+  .glopal_form input,
+  .glopal_form select,
+  .glopal_form textarea {
+    border: none;
+    border: 1px solid rgba(18, 68, 98, 0.23);
+    width: 100%;
+    border-radius: 10px;
+    padding: 4px 10px;
+    margin-bottom: 20px; }
+  .glopal_form textarea {
+    height: 120px; }
+  .glopal_form .button-blue {
+    border: none;
+    cursor: pointer; }
+
+.single_page-content {
+  padding: 50px 0; }
+
+/*****Font******/
+/****Start Font Face*******/
+/**** End Font Face*******/
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+label,
+li,
+p,
+select,
+span,
+td,
+textarea,
+th {
+  font-family: 'Montserrat', sans-serif; }
+
+/*Media Query*/
+/*Box Shadow*/
+/***Container Widt***/
+@media (min-width: 992px) {
+  .container {
+    max-width: 1170px; } }
+
+/*Glopal Style*/
+img {
+  max-width: 100%;
+  height: auto; }
+
+[data-src] {
+  -webkit-background-size: cover;
+  background-size: cover; }
+
+/********Glopal Class******/
+.home_page-title {
+  color: #333333;
+  font-size: 26px;
+  margin-bottom: 25px; }
+
+.paragraph_global {
+  color: #333333;
+  font-size: 16px;
+  line-height: 34px; }
+
+.home_page-section {
+  padding: 50px 0; }
+
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+a,
+a:hover {
+  text-decoration: none; }
+
+.button, .button-blue, .advanced_search-button,
+.our_student-button, .glopal_form-button, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+  transition: all ease-in-out 0.3s; }
+
+.head_page:before, .header_slider .header:before {
+  position: absolute;
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0; }
+
+.advanced_search-button:before,
+.our_student-button:before, .glopal_form-button:before {
+  position: absolute;
+  display: block;
+  font-family: 'Font Awesome\ 5 Free';
+  font-weight: 900; }
+
+/*Start Glopal Form*/
+.glopal_form {
+  background: #fff;
+  box-shadow: 0 0 10px rgba(18, 68, 98, 0.42);
+  border-radius: 10px;
+  padding: 30px 15px;
+  /*End Glopal Form*/ }
+  @media (max-width: 576px) {
+    .glopal_form {
+      margin-top: 30px; } }
+  .glopal_form select {
+    width: 100%;
+    color: #044E80;
+    cursor: pointer; }
+  .glopal_form label {
+    display: block;
+    font-size: 12px; }
+  .glopal_form input:focus,
+  .glopal_form select:focus,
+  .glopal_form textarea:focus {
+    outline: none !important;
+    border-color: #07A7E3; }
+  .glopal_form input,
+  .glopal_form select,
+  .glopal_form textarea {
+    border: none;
+    border: 1px solid rgba(18, 68, 98, 0.23);
+    width: 100%;
+    border-radius: 10px;
+    padding: 4px 10px;
+    margin-bottom: 20px; }
+  .glopal_form textarea {
+    height: 120px; }
+  .glopal_form .button-blue {
+    border: none;
+    cursor: pointer; }
+
+.single_page-content {
+  padding: 50px 0; }
+
+/*****Font******/
+/****Start Font Face*******/
+/**** End Font Face*******/
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+label,
+li,
+p,
+select,
+span,
+td,
+textarea,
+th {
+  font-family: 'Montserrat', sans-serif; }
+
+.button:focus {
+  outline: none !important; }
+
+.button {
+  display: inline-block;
+  padding: 12px 50px;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #044E80;
+  border-radius: 10px;
+  color: #fff; }
+  .button:hover {
+    background-color: #07A7E3;
+    color: #fff; }
+
+.languge_button {
+  padding: 15px;
+  margin: 5px; }
+
+.button-blue {
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #07A7E3;
+  border-radius: 10px;
+  color: #fff; }
+  .button-blue:hover {
+    color: #fff;
+    background-color: #044E80; }
+
+.advanced_search-button,
+.our_student-button {
+  background-color: #07A7E3;
+  padding-right: 40px;
+  position: relative;
+  margin: 0 auto;
+  display: inline-block;
+  margin-top: 20px; }
+  .advanced_search-button:hover,
+  .our_student-button:hover {
+    background-color: #044E80; }
+  .advanced_search-button:before,
+  .our_student-button:before {
+    content: "\f101";
+    color: #fff;
+    right: 15px; }
+
+.glopal_form-button {
+  background-color: #07A7E3;
+  padding-right: 40px;
+  position: relative;
+  margin: 0 auto;
+  display: inline-block;
+  margin-top: 20px; }
+  .glopal_form-button:hover {
+    background-color: #044E80; }
+  .glopal_form-button:before {
+    content: "\f1d8";
+    color: #fff;
+    right: 15px; }
+
+/*****Blog Button****/
+@media (min-width: 992px) {
+  #menu_blog {
+    position: relative;
+    z-index: 9;
+    text-align: center;
+    color: #fff; } }
+@media (min-width: 992px) {
+  #menu_blog:before {
+    content: "";
+    top: -9px;
+    bottom: -9px;
+    right: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+    border-radius: 10px;
+    background-color: #07A7E3; } }
+@media (min-width: 992px) {
+  #menu_blog:hover:before {
+    background-color: #044E80; } }
+
+/*Custum Slider Button**/
+.slider_custum_button .slick-arrow:focus {
+  outline: none !important; }
+.slider_custum_button .slick-arrow {
+  font-size: 0;
+  border: 0;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  text-align: center;
+  background-color: #fff;
+  border: 1px solid #07A7E3;
+  position: relative;
+  cursor: pointer; }
+.slider_custum_button .slick-arrow {
+  z-index: 9;
+  top: 30%;
+  position: absolute; }
+.slider_custum_button .slick-arrow:before {
+  position: absolute;
+  display: block;
+  color: #17112d;
+  font-size: 13px;
+  right: 15px;
+  font-family: 'Font Awesome\ 5 Free';
+  font-weight: 900; }
+.slider_custum_button .slick-arrow:hover {
+  background-color: #17112d; }
+.slider_custum_button .slick-arrow:hover:before {
+  color: #fff; }
+.slider_custum_button .slick-prev:before {
+  content: "\f053"; }
+.slider_custum_button .slick-next:before {
+  content: "\f054"; }
+.slider_custum_button .slick-prev {
+  left: 15px; }
+.slider_custum_button .slick-next {
+  right: 15px; }
+
+/*┘ìStart Providr Page*/
+.department_slider .slick-arrow {
+  background-color: transparent;
+  border: 1px solid transparent; }
+  .department_slider .slick-arrow:hover {
+    background-color: transparent; }
+.department_slider .slick-arrow:hover:before {
+  color: #044E80; }
+.department_slider .slick-arrow:before {
+  color: #07A7E3;
+  font-size: 30px; }
+@media (max-width: 992px) {
+  .department_slider .slick-prev {
+    left: 0; } }
+@media (min-width: 992px) {
+  .department_slider .slick-prev {
+    left: -30px; } }
+@media (max-width: 992px) {
+  .department_slider .slick-next {
+    right: 0; } }
+@media (min-width: 992px) {
+  .department_slider .slick-next {
+    right: -30px; } }
+
+/*End Providr Page*/
+/*Custum Slider Button Webiners**/
+.webinars_slider-js .slick-arrow {
+  background-color: #fff;
+  border: 1px solid #07A7E3; }
+.webinars_slider-js .slick-arrow {
+  top: -70px; }
+  @media (max-width: 576px) {
+    .webinars_slider-js .slick-arrow {
+      top: -100px; } }
+.webinars_slider-js .slick-arrow:before {
+  color: #07A7E3; }
+.webinars_slider-js .slick-arrow:hover {
+  background-color: #07A7E3; }
+.webinars_slider-js .slick-arrow:hover:before {
+  color: #fff; }
+.webinars_slider-js .slick-prev {
+  left: 15px; }
+.webinars_slider-js .slick-next {
+  right: 15px; }
+
+/*Custum Slider Button Our Company**/
+.our_company-js .slick-arrow {
+  background-color: #fff;
+  border: 1px solid #07A7E3; }
+.our_company-js .slick-arrow {
+  top: 45%; }
+.our_company-js .slick-arrow:before {
+  color: #07A7E3; }
+.our_company-js .slick-arrow:hover {
+  background-color: #07A7E3; }
+.our_company-js .slick-arrow:hover:before {
+  color: #fff; }
+.our_company-js .slick-prev {
+  left: 10px; }
+.our_company-js .slick-next {
+  right: 10px; }
+
+/*********Slider Style For Single Page Slider************/
+.slider_dots .slick-dots {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+  .slider_dots .slick-dots li {
+    display: inline-block;
+    cursor: pointer; }
+    .slider_dots .slick-dots li button {
+      font-size: 0;
+      border: 0;
+      height: 3px;
+      width: 15px;
+      background-color: #ccc;
+      margin: 0 3px;
+      cursor: pointer;
+      border-radius: 100px; }
+      .slider_dots .slick-dots li button:focus {
+        outline: none !important; }
+  .slider_dots .slick-dots .slick-active button {
+    background-color: #044E80;
+    width: 20px; }
+
+/**Header Slider Dotes****/
+.header_slider .slick-dots {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  bottom: 100px;
+  position: relative; }
+  @media (min-width: 992px) {
+    .header_slider .slick-dots {
+      bottom: 300px; } }
+  .header_slider .slick-dots li {
+    display: inline-block;
+    cursor: pointer; }
+    .header_slider .slick-dots li button {
+      font-size: 0;
+      border: 0;
+      height: 12px;
+      width: 12px;
+      margin: 0 10px;
+      cursor: pointer;
+      border-radius: 100%;
+      background-color: #fff; }
+      .header_slider .slick-dots li button:focus {
+        outline: none !important; }
+  .header_slider .slick-dots .slick-active button {
+    width: 20px;
+    border-radius: 3px;
+    width: 30px; }
+
+/**********/
+.doctor_info-block {
+  border: 1px solid #ddd;
+  border-radius: 5px; }
+  .doctor_info-block .doctor_pic {
+    height: 230px;
+    margin-bottom: 15px; }
+    .doctor_info-block .doctor_pic img {
+      display: block;
+      max-height: 100%;
+      max-width: 100%; }
+  .doctor_info-block .doctor_info-description {
+    text-align: center; }
+    .doctor_info-block .doctor_info-description h2 {
+      margin: 0;
+      font-size: 20px; }
+    .doctor_info-block .doctor_info-description h3 {
+      margin: 0;
+      font-size: 14px;
+      color: #0A982B; }
+    .doctor_info-block .doctor_info-description span {
+      margin: 10px 0;
+      display: inline-block; }
+    .doctor_info-block .doctor_info-description .rate_content {
+      padding: 0 20px;
+      margin: 30px 0; }
+      .doctor_info-block .doctor_info-description .rate_content aside span {
+        color: #7D7D7D;
+        margin: 0 8px; }
+    .doctor_info-block .doctor_info-description .rate_area {
+      background-color: #07A7E2;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      padding: 20px 0; }
+      .doctor_info-block .doctor_info-description .rate_area .rate_area-stars {
+        margin-bottom: 15px; }
+        .doctor_info-block .doctor_info-description .rate_area .rate_area-stars li {
+          display: inline-block; }
+      .doctor_info-block .doctor_info-description .rate_area span {
+        color: #fff;
+        margin: 0;
+        font-size: 14px; }
+
+.register_button {
+  width: 100%;
+  text-align: center;
+  margin: 15px 0; }
+
+/*Media Query*/
+/*Box Shadow*/
+/***Container Widt***/
+@media (min-width: 992px) {
+  .container {
+    max-width: 1170px; } }
+
+/*Glopal Style*/
+img {
+  max-width: 100%;
+  height: auto; }
+
+[data-src] {
+  -webkit-background-size: cover;
+  background-size: cover; }
+
+/********Glopal Class******/
+.home_page-title {
+  color: #333333;
+  font-size: 26px;
+  margin-bottom: 25px; }
+
+.paragraph_global {
+  color: #333333;
+  font-size: 16px;
+  line-height: 34px; }
+
+.home_page-section {
+  padding: 50px 0; }
+
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+a,
+a:hover {
+  text-decoration: none; }
+
+.button, .button-blue, .advanced_search-button,
+.our_student-button, .glopal_form-button, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+  transition: all ease-in-out 0.3s; }
+
+.head_page:before, .header_slider .header:before {
+  position: absolute;
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0; }
+
+.advanced_search-button:before,
+.our_student-button:before, .glopal_form-button:before {
+  position: absolute;
+  display: block;
+  font-family: 'Font Awesome\ 5 Free';
+  font-weight: 900; }
+
+/*Start Glopal Form*/
+.glopal_form {
+  background: #fff;
+  box-shadow: 0 0 10px rgba(18, 68, 98, 0.42);
+  border-radius: 10px;
+  padding: 30px 15px;
+  /*End Glopal Form*/ }
+  @media (max-width: 576px) {
+    .glopal_form {
+      margin-top: 30px; } }
+  .glopal_form select {
+    width: 100%;
+    color: #044E80;
+    cursor: pointer; }
+  .glopal_form label {
+    display: block;
+    font-size: 12px; }
+  .glopal_form input:focus,
+  .glopal_form select:focus,
+  .glopal_form textarea:focus {
+    outline: none !important;
+    border-color: #07A7E3; }
+  .glopal_form input,
+  .glopal_form select,
+  .glopal_form textarea {
+    border: none;
+    border: 1px solid rgba(18, 68, 98, 0.23);
+    width: 100%;
+    border-radius: 10px;
+    padding: 4px 10px;
+    margin-bottom: 20px; }
+  .glopal_form textarea {
+    height: 120px; }
+  .glopal_form .button-blue {
+    border: none;
+    cursor: pointer; }
+
+.single_page-content {
+  padding: 50px 0; }
+
+/*****Font******/
+/****Start Font Face*******/
+/**** End Font Face*******/
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+label,
+li,
+p,
+select,
+span,
+td,
+textarea,
+th {
   font-family: 'Montserrat', sans-serif; }
 
 footer {

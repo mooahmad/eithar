@@ -56,13 +56,13 @@ a:hover {
     display: block;
     font-size: 12px; }
   .glopal_form input:focus,
-  .glopal_form textarea:focus,
-  .glopal_form select:focus {
+  .glopal_form select:focus,
+  .glopal_form textarea:focus {
     outline: none !important;
     border-color: #07A7E3; }
   .glopal_form input,
-  .glopal_form textarea,
-  .glopal_form select {
+  .glopal_form select,
+  .glopal_form textarea {
     border: none;
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
@@ -75,10 +75,12 @@ a:hover {
     border: none;
     cursor: pointer; }
 
+.single_page-content {
+  padding: 50px 0; }
+
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
-p,
 a,
 h1,
 h2,
@@ -86,14 +88,15 @@ h3,
 h4,
 h5,
 h6,
-span,
-li,
 input,
 label,
-textarea,
+li,
+p,
 select,
-th,
-td {
+span,
+td,
+textarea,
+th {
   font-family: 'Montserrat', sans-serif; }
 
 /**Start Arabic Menu**/
