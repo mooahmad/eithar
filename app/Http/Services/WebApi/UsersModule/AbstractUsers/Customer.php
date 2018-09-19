@@ -319,7 +319,7 @@ class Customer
 
     public function getCustomerAppointment(Request $request, $id, $serviceType)
     {
-        $appointments = ServiceBookingAppointment::where('service_booking_id', $id)->get();
+        $appointments = ServiceBookingAppointment::where('id', $id)->get();
         $calendar = [];
         $services = [];
         $promoCode = "";
