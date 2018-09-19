@@ -286,6 +286,7 @@ class Customer
                             "start_date" => Carbon::parse($calendar->start_date)->format('l jS \\of F Y'),
                             "start_time" => Carbon::parse($calendar->start_date)->format('g:i A')
                         ];
+                        $appointments[] = $payLoad;
                         //one and package
                     } elseif ($service->type == 1 || $service->type == 2) {
                         $calendar = ServicesCalendar::find($serviceAppointment->slot_id);
@@ -296,6 +297,7 @@ class Customer
                             "start_date" => Carbon::parse($calendar->start_date)->format('l jS \\of F Y'),
                             "start_time" => Carbon::parse($calendar->start_date)->format('g:i A')
                         ];
+                        $appointments[] = $payLoad;
                     }
                 } elseif ($serviceBookingLaps != null) {
                     $calendar = LapCalendar::find($serviceAppointment->slot_id);
@@ -307,9 +309,9 @@ class Customer
                             "start_date" => Carbon::parse($calendar->start_date)->format('l jS \\of F Y'),
                             "start_time" => Carbon::parse($calendar->start_date)->format('g:i A')
                         ];
+                        $appointments[] = $payLoad;
                     }
                 }
-                $appointments[] = $payLoad;
             }
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
@@ -319,29 +321,23 @@ class Customer
 
     public function getCustomerAppointment(Request $request, $id, $serviceType)
     {
-        $appointments = ServiceBookingAppointment::where('id', $id)->get();
+        $appointment = ServiceBookingAppointment::find('id', $id);
         $calendar = [];
         $services = [];
-        $promoCode = "";
-        $currency = "";
-        $totalBeforeTax = 0;
         $vat = (Auth::user()->is_saudi_nationality) ? 0 : config('constants.vat_percentage');
-        $total = 0;
-        foreach ($appointments as $appointment) {
-            if ($serviceType == 5) {
-                $calendar[] = ProvidersCalendar::find($appointment->slot_id);
-            } elseif ($serviceType == 1 || $serviceType == 2) {
-                $calendar[] = ServicesCalendar::find($appointment->slot_id);
-            } elseif ($serviceType == 4) {
-                $calendar[] = LapCalendar::find($appointment->slot_id);
-            }
-            $serviceBooking = ServiceBooking::find($appointment->service_booking_id);
-            $service = $serviceBooking->service;
-            $services [] = $service;
-            $promoCode = ($serviceBooking->promo_code != null)? $serviceBooking->promo_code->code : "";
-            $currency = $serviceBooking->currency->name_eng;
-            $totalBeforeTax = $service->price;
-            $total = $serviceBooking->price;
+        $serviceBooking = ServiceBooking::find($appointment->service_booking_id);
+        $service = $serviceBooking->service;
+        $services [] = $service;
+        $promoCode = ($serviceBooking->promo_code != null) ? $serviceBooking->promo_code->code : "";
+        $currency = $serviceBooking->currency->name_eng;
+        $totalBeforeTax = $service->price;
+        $total = $serviceBooking->price;
+        if ($serviceType == 5) {
+            $calendar[] = ProvidersCalendar::find($appointment->slot_id);
+        } elseif ($serviceType == 1 || $serviceType == 2) {
+            $calendar[] = ServicesCalendar::find($appointment->slot_id);
+        } elseif ($serviceType == 4) {
+            $calendar[] = LapCalendar::find($appointment->slot_id);
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
             "calendar" => $calendar,
