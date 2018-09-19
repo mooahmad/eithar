@@ -70,8 +70,8 @@ class CustomerStrategy
         return $this->strategy->getCustomerAppointments($request);
     }
 
-    public function getCustomerAppointment(Request $request)
+    public function getCustomerAppointment(Request $request, $id, $serviceType)
     {
-        return $this->strategy->getCustomerAppointment($request);
+        return $this->strategy->getCustomerAppointment($request, $id, $serviceType);
     }
 }
