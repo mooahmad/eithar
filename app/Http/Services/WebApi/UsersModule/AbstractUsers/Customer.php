@@ -319,7 +319,7 @@ class Customer
 
     public function getCustomerAppointment(Request $request, $id, $serviceType)
     {
-        $appointment = ServiceBookingAppointment::find('id', $id);
+        $appointment = ServiceBookingAppointment::find($id);
         $calendar = [];
         $services = [];
         $vat = (Auth::user()->is_saudi_nationality) ? 0 : config('constants.vat_percentage');
@@ -329,15 +329,15 @@ class Customer
         $currency = $serviceBooking->currency->name_eng;
         $total = $serviceBooking->price;
         if ($serviceType == 5) {
-            $calendar[] = ProvidersCalendar::find($appointment->slot_id);
+            $calendar[] = ApiHelpers::reBuildCalendarSlot(ProvidersCalendar::find($appointment->slot_id));
             $services [] = $serviceBooking->service;
             $totalBeforeTax = $serviceBooking->service->price;
         } elseif ($serviceType == 1 || $serviceType == 2) {
-            $calendar[] = ServicesCalendar::find($appointment->slot_id);
+            $calendar[] = ApiHelpers::reBuildCalendarSlot(ProvidersCalendar::find($appointment->slot_id));
             $services [] = $serviceBooking->service;
             $totalBeforeTax = $serviceBooking->service->price;
         } elseif ($serviceType == 4) {
-            $calendar[] = LapCalendar::find($appointment->slot_id);
+            $calendar[] = ApiHelpers::reBuildCalendarSlot(ProvidersCalendar::find($appointment->slot_id));
             $servicesLap = ServiceBookingLap::where('service_booking_id', $serviceBooking->id)->get();
             foreach ($servicesLap as $serviceLap) {
                 $services [] = $serviceLap->service;

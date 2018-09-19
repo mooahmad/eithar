@@ -96,6 +96,18 @@ class ApiHelpers
         return $reBuitCalendar;
     }
 
+    public static function reBuildCalendarSlot($slot)
+    {
+        $dayDate = Carbon::parse($slot->start_date)->format('l jS \\of F Y');
+        $carbonStartDate = Carbon::parse($slot->start_date);
+        $carbonEndDate = Carbon::parse($slot->end_date);
+        $builtSlot = new \stdClass();
+        $builtSlot->day = $dayDate;
+        $builtSlot->start_time = $carbonStartDate->format('g:i A');
+        $builtSlot->end_time = $carbonEndDate->format('g:i A');
+        return $builtSlot;
+    }
+
     public static function pushNotification($tokens, $data)
     {
         $push = new PushNotification('fcm');
