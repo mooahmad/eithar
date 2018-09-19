@@ -338,7 +338,7 @@ class Customer
             $serviceBooking = ServiceBooking::find($appointment->service_booking_id);
             $service = $serviceBooking->service;
             $services [] = $service;
-            $promoCode = $serviceBooking->promo_code->code;
+            $promoCode = ($serviceBooking->promo_code != null)? $serviceBooking->promo_code->code : "";
             $currency = $serviceBooking->currency->name_eng;
             $totalBeforeTax = $service->price;
             $total = $serviceBooking->price;
