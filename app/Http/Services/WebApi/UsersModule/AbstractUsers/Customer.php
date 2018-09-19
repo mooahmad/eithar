@@ -329,7 +329,7 @@ class Customer
             } elseif ($serviceType == 4) {
                 $calendar[] = LapCalendar::find($appointment->slot_id);
             }
-            $serviceBooking = ServiceBooking::find($appointment->service_bokking_id);
+            $serviceBooking = ServiceBooking::find($appointment->service_booking_id);
             $service = $serviceBooking->service;
             $services [] = $service;
         }
