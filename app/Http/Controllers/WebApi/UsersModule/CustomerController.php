@@ -95,4 +95,10 @@ class CustomerController extends Controller
         $customer = new CustomerStrategy(ApiHelpers::requestType($request));
         return $customer->getCustomerAppointments($request);
     }
+
+    public function getCustomerAppointment(Request $request)
+    {
+        $customer = new CustomerStrategy(ApiHelpers::requestType($request));
+        return $customer->getCustomerAppointment($request);
+    }
 }

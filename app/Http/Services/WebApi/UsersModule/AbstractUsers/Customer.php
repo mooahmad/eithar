@@ -14,6 +14,7 @@ use App\Mail\Customer\ForgetPasswordMail;
 use App\Models\ProvidersCalendar;
 use App\Models\Service;
 use App\Models\ServiceBooking;
+use App\Models\ServiceBookingAppointment;
 use App\Models\ServiceBookingLap;
 use App\Models\ServicesCalendar;
 use Carbon\Carbon;
@@ -278,6 +279,8 @@ class Customer
                     if ($service->type == 5) {
                         $calendar = ProvidersCalendar::find($serviceAppointment->slot_id);
                         $payLoad = [
+                            "id" => $serviceAppointment->id,
+                            "service_type" => $service->type,
                             "service_name" => $service->name_en,
                             "start_date" => Carbon::parse($calendar->start_date)->format('l jS \\of F Y'),
                             "start_time" => Carbon::parse($calendar->start_date)->format('g:i A')
@@ -286,6 +289,8 @@ class Customer
                     } elseif ($service->type == 1 || $service->type == 2) {
                         $calendar = ServicesCalendar::find($serviceAppointment->slot_id);
                         $payLoad = [
+                            "id" => $serviceAppointment->id,
+                            "service_type" => $service->type,
                             "service_name" => $service->name_en,
                             "start_date" => Carbon::parse($calendar->start_date)->format('l jS \\of F Y'),
                             "start_time" => Carbon::parse($calendar->start_date)->format('g:i A')
@@ -295,6 +300,8 @@ class Customer
                     $calendar = LapCalendar::find($serviceAppointment->slot_id);
                     foreach ($serviceBookingLaps as $serviceBookingLap) {
                         $payLoad = [
+                            "id" => $serviceAppointment->id,
+                            "service_type" => $serviceBookingLap->service->type,
                             "service_name" => $serviceBookingLap->service->name_en,
                             "start_date" => Carbon::parse($calendar->start_date)->format('l jS \\of F Y'),
                             "start_time" => Carbon::parse($calendar->start_date)->format('g:i A')
@@ -306,6 +313,29 @@ class Customer
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
             "appointments" => $appointments
+        ]));
+    }
+
+    public function getCustomerAppointment(Request $request, $id, $serviceType)
+    {
+        $appointments = ServiceBookingAppointment::where('service_booking_id', $id)->get();
+        $calendar = [];
+        $services = [];
+        foreach ($appointments as $appointment) {
+            if ($serviceType == 5) {
+                $calendar[] = ProvidersCalendar::find($appointment->slot_id);
+            } elseif ($serviceType == 1 || $serviceType == 2) {
+                $calendar[] = ServicesCalendar::find($appointment->slot_id);
+            } elseif ($serviceType == 4) {
+                $calendar[] = LapCalendar::find($appointment->slot_id);
+            }
+            $serviceBooking = ServiceBooking::find($appointment->service_bokking_id);
+            $service = $serviceBooking->service;
+            $services [] = $service;
+        }
+        return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
+            "calendar" => $calendar,
+            "services" => $services
         ]));
     }
 
