@@ -29,7 +29,7 @@ class AppointmentConfirmed extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['database'];
     }
 
     /**

@@ -18,6 +18,7 @@ use App\Models\ServiceBooking;
 use App\Models\ServiceBookingAppointment;
 use App\Models\ServiceBookingLap;
 use App\Models\ServicesCalendar;
+use App\Notifications\AppointmentConfirmed;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Customer as CustomerModel;
