@@ -18,9 +18,9 @@ return [
         "female" => 2
     ],
     "gender_desc" => [
-        0=>"None",
-        1=>"Male",
-        2=>"Female",
+        0 => "None",
+        1 => "Male",
+        2 => "Female",
     ],
     "customerMemberRelations" => [
         "father" => 1,
@@ -164,7 +164,16 @@ return [
     ],
     "bookingStatus" => [
         "inprogress" => 1,
-        "confirmed"  => 2,
-        "canceled"   => 3
+        "confirmed" => 2,
+        "canceled" => 3
+    ],
+    "pushTypes" => [
+        "services" => 1,
+        "doctors" => 2,
+        "appointmentReminder" => 3,
+        "appointmentConfirmed" => 4,
+        "medicalReportAdded" => 5,
+        "invoiceGenerated" => 6,
+        "addItemToInvoice" => 7
     ]
 ];

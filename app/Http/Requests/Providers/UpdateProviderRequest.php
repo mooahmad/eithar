@@ -45,7 +45,7 @@ class UpdateProviderRequest extends FormRequest
             'contract_expiry_date'   => 'required',
             'visit_duration'         => 'required|numeric|min:0',
             'time_before_next_visit' => 'required|numeric|min:0',
-            'avatar'                 => 'mimes:jpeg,bmp,png|max:10240|dimensions:min_width=100,min_height=200',
+            'avatar'                 => 'mimes:jpeg,bmp,png|dimensions:min_width=100,min_height=100',
         ];
     }
 }

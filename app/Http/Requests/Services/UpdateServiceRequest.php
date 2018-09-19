@@ -41,7 +41,7 @@ class UpdateServiceRequest extends FormRequest
             'expire_date'            => 'required',
             'is_active'              => 'required',
             'appear_on_website'      => 'required',
-            'avatar'                 => 'mimes:jpeg,bmp,png|max:10240|dimensions:min_width=100,min_height=200'
+            'avatar'                 => 'mimes:jpeg,bmp,png|dimensions:min_width=100,min_height=100'
         ];
     }
 }
