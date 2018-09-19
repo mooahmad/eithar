@@ -3,6 +3,7 @@
 namespace App\Http\Services\WebApi\UsersModule\AbstractUsers;
 
 
+use App\Helpers\ApiHelpers;
 use App\Helpers\Utilities;
 use App\Http\Requests\Auth\RegisterCustomer;
 use App\Http\Requests\Auth\UpdateForgetPasswordRequest;
@@ -321,6 +322,11 @@ class Customer
         $appointments = ServiceBookingAppointment::where('service_booking_id', $id)->get();
         $calendar = [];
         $services = [];
+        $promoCode = "";
+        $currency = "";
+        $totalBeforeTax = 0;
+        $vat = (Auth::user()->is_saudi_nationality) ? 0 : config('constants.vat_percentage');
+        $total = 0;
         foreach ($appointments as $appointment) {
             if ($serviceType == 5) {
                 $calendar[] = ProvidersCalendar::find($appointment->slot_id);
@@ -332,10 +338,19 @@ class Customer
             $serviceBooking = ServiceBooking::find($appointment->service_booking_id);
             $service = $serviceBooking->service;
             $services [] = $service;
+            $promoCode = $serviceBooking->promo_code->code;
+            $currency = $serviceBooking->currency->name_eng;
+            $totalBeforeTax = $service->price;
+            $total = $serviceBooking->price;
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
             "calendar" => $calendar,
-            "services" => $services
+            "services" => $services,
+            "promo_code" => $promoCode,
+            "currency" => $currency,
+            "total_before_tax" => $totalBeforeTax,
+            "vat" => $vat,
+            "total" => $total
         ]));
     }
 
