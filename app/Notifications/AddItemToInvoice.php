@@ -24,7 +24,7 @@ class AddItemToInvoice extends Notification
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param  mixed $notifiable
      * @return array
      */
     public function via($notifiable)
@@ -35,28 +35,30 @@ class AddItemToInvoice extends Notification
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param  mixed $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-            ->view('vendor.mail.addItemToInvoice',
-                ['title' => $this->payload->title, 'message' => $this->payload->message ]
-            );
+        return new MailMessage();
     }
 
     /**
      * Get the array representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param  mixed $notifiable
      * @return array
      */
     public function toArray($notifiable)
     {
         return [
-            'title' => $this->payload->title,
-            'message' => $this->payload->message,
+            'title_ar' => $this->payload->title_ar,
+            'title_en' => $this->payload->title_en,
+            'desc_ar' => $this->payload->desc_ar,
+            'desc_en' => $this->payload->desc_en,
+            'notification_type' => config('constants.pushTypes.addItemToInvoice'),
+            'related_id' => $this->payload->invoice_id,
+            'send_at' => $this->payload->send_at,
         ];
     }
 }

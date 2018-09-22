@@ -40,10 +40,7 @@ class MedicalReportAdded extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-            ->view('vendor.mail.medicalReportAdded',
-                ['title' => $this->payload->title, 'message' => $this->payload->message ]
-            );
+        return new MailMessage();
     }
 
     /**
@@ -55,8 +52,13 @@ class MedicalReportAdded extends Notification
     public function toArray($notifiable)
     {
         return [
-            'title' => $this->payload->title,
-            'message' => $this->payload->message,
+            'title_ar' => $this->payload->title_ar,
+            'title_en' => $this->payload->title_en,
+            'desc_ar' => $this->payload->desc_ar,
+            'desc_en' => $this->payload->desc_en,
+            'notification_type' => config('constants.pushTypes.medicalReportAdded'),
+            'related_id' => $this->payload->report_id,
+            'send_at' => $this->payload->send_at,
         ];
     }
 }

@@ -379,5 +379,23 @@ class Customer
         return $query->pluck('slot_id')->toArray();
     }
 
+    public function getCustomerNotifications(Request $request)
+    {
+        $notifications = Auth::user()->notifications;
+        $notifications->markAsRead();
+        $returnNotifications = [];
+        foreach ($notifications as $notification) {
+            $notificationData = json_decode(json_encode($notification->data));
+            $data = new \StdClass();
+            $data->title = $notificationData->{'title_' . App::getLocale()};
+            $data->description = $notificationData->{'desc_' . App::getLocale()};
+            $data->notification_type = $notificationData->notification_type;
+            $data->related_id = $notificationData->related_id;
+            array_push($returnNotifications, $data);
+        }
+        return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
+            "notifications" => $returnNotifications
+        ]));
+    }
 
 }

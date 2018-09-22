@@ -74,4 +74,10 @@ class CustomerStrategy
     {
         return $this->strategy->getCustomerAppointment($request, $id, $serviceType);
     }
+
+    public function getCustomerNotifications(Request $request)
+    {
+        return $this->strategy->getCustomerNotifications($request);
+    }
+
 }
