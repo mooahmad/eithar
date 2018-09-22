@@ -13,6 +13,7 @@ use App\LapCalendar;
 use App\Mail\Auth\VerifyEmailCode;
 use App\Mail\Customer\ForgetPasswordMail;
 use App\Models\ProvidersCalendar;
+use App\Models\PushNotification;
 use App\Models\Service;
 use App\Models\ServiceBooking;
 use App\Models\ServiceBookingAppointment;
@@ -153,6 +154,19 @@ class Customer
         }
         return $customer;
     }
+
+    public function updateCustomerToken(CustomerModel $customer, Request $request)
+    {
+        $customer->pushNotification()->delete();
+        $pushNotification = new PushNotification();
+        $pushNotification->customer_id = $customer->id;
+        $pushNotification->imei = $request->input('imei');
+        $pushNotification->device_type = $request->input('device_type');
+        $pushNotification->device_language = $request->input('device_language');
+        $pushNotification->token = $request->input('token');
+        $pushNotification->save();
+    }
+
 
     public function editCustomer(Request $request)
     {

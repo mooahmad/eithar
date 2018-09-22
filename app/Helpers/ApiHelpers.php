@@ -4,7 +4,6 @@ namespace App\Helpers;
 
 use App\Models\Customer;
 use Carbon\Carbon;
-use Edujugon\PushNotification\PushNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\MessageBag;
@@ -106,27 +105,5 @@ class ApiHelpers
         $builtSlot->start_time = $carbonStartDate->format('g:i A');
         $builtSlot->end_time = $carbonEndDate->format('g:i A');
         return $builtSlot;
-    }
-
-    public static function pushNotification($tokens, $data)
-    {
-        $push = new PushNotification('fcm');
-        $push->setUrl(env('FIREBASE_URL'));
-        $push->setMessage($data);
-        $push->setDevicesToken($tokens);
-        return $push->send()->getFeedback();
-    }
-
-    public static function buildNotification($title, $message, $badge, $arrCustomData)
-    {
-        return [
-            'notification' => [
-                'title' => $title,
-                'body' => $message,
-                "badge" => $badge,
-                'sound' => 'default'
-            ],
-            'data' => $arrCustomData
-        ];
     }
 }

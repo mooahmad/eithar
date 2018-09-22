@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Facades\App;
 
 class InvoiceGenerated extends Notification
 {
@@ -57,8 +58,12 @@ class InvoiceGenerated extends Notification
             'desc_ar' => $this->payload->desc_ar,
             'desc_en' => $this->payload->desc_en,
             'notification_type' => config('constants.pushTypes.invoiceGenerated'),
+            'is_pushed' => 0,
+            'is_mailed' => 0,
+            'is_smsed' => 0,
             'related_id' => $this->payload->invoice_id,
             'send_at' => $this->payload->send_at,
+            'lang'    => App::getLocale(),
         ];
     }
 }

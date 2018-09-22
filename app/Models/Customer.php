@@ -77,4 +77,9 @@ class Customer extends Authenticatable
     {
         return $this->hasMany('App\Models\ServiceBooking', 'customer_id', 'id');
     }
+
+    public function pushNotification()
+    {
+        return $this->hasOne('App\Models\PushNotification', 'customer_id', 'id');
+    }
 }
