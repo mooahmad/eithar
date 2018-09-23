@@ -7,6 +7,7 @@ use App\Helpers\ApiHelpers;
 use App\Helpers\Utilities;
 use App\Http\Services\WebApi\CategoriesModule\ICategories\ICategory;
 use App\Http\Services\WebApi\ServicesModule\AbstractServices\Services;
+use App\Http\Services\WebApi\UsersModule\AbstractUsers\Customer;
 use App\LapCalendar;
 use App\Models\Category;
 use App\Models\Currency;
@@ -84,15 +85,19 @@ abstract class Categories implements ICategory
                 });
             } elseif ($orderedCategory->category_parent_id == config('constants.categories.Physiotherapy') || $orderedCategory->category_parent_id == config('constants.categories.Nursing') || $orderedCategory->category_parent_id == config('constants.categories.WomanAndChild')) {
                 $filteredServices = [];
-                $services->each(function ($service) use ($isPackage, &$filteredServices, $id) {
+                $bookedSlotsIds = (new Customer())->getBookedSlots();
+                $services->each(function ($service) use ($isPackage, &$filteredServices, $id, $bookedSlotsIds) {
                     if ($isPackage == "true") {
                         if ($service->type == 2) {
                             $packageCalendar = [];
                             $availableDays = [];
-                            $service->load(['calendar' => function ($query) use (&$day, $id) {
+                            $service->load(['calendar' => function ($query) use (&$day, $id, $service, $bookedSlotsIds) {
                                 $query->where('city_id', '=', Auth::user()->city_id)
                                     ->where('start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
-                                    ->where('is_available', 1);
+                                    ->where('is_available', 1)
+                                    ->limit($service->no_of_visits);
+                                if (!empty($bookedSlotsIds))
+                                    $query->whereRaw("services_calendars.id NOT IN (" . implode(',', $bookedSlotsIds) . ")");
                             }]);
                             foreach ($service->calendar as $date) {
                                 $day = Carbon::parse($date->start_date)->format('Y-m-d');
@@ -108,22 +113,26 @@ abstract class Categories implements ICategory
                         }
                     } elseif ($isPackage == "false") {
                         if ($service->type == 1) {
-                            $service->load(['calendar' => function ($query) use (&$day, $id) {
+                            $service->load(['calendar' => function ($query) use (&$day, $service, $bookedSlotsIds) {
                                 if (empty($day)) {
                                     $date = Service::join('services_calendars', 'services.id', 'services_calendars.service_id')
-                                        ->where('services.category_id', $id)
+                                        ->where('services.id', $service->id)
                                         ->where('services_calendars.start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
                                         ->where('services_calendars.is_available', 1)
-                                        ->orderBy('services_calendars.start_date', 'desc')
+                                        ->orderBy('services_calendars.start_date', 'asc')
                                         ->first();
                                     if (!$date)
                                         $day = Carbon::today()->format('Y-m-d');
                                     else
                                         $day = Carbon::parse($date->start_date)->format('Y-m-d');
-                                    $query->where('services_calendars.city_id', '=', Auth::user()->city_id)->where('services_calendars.start_date', 'like', "%$day%");
+                                    $query->where('services_calendars.city_id', '=', Auth::user()->city_id)
+                                        ->where('services_calendars.start_date', 'like', "%$day%");
                                 } else {
-                                    $query->where('services_calendars.city_id', '=', Auth::user()->city_id)->where('services_calendars.start_date', 'like', "%$day%");
+                                    $query->where('services_calendars.city_id', '=', Auth::user()->city_id)
+                                        ->where('services_calendars.start_date', 'like', "%$day%");
                                 }
+                                if (!empty($bookedSlotsIds))
+                                    $query->whereRaw("services_calendars.id NOT IN (" . implode(',', $bookedSlotsIds) . ")");
                             }]);
                             $service->calendar_dates = ApiHelpers::reBuildCalendar($day, $service->calendar);
                             array_push($filteredServices, $service);
@@ -132,20 +141,23 @@ abstract class Categories implements ICategory
                 });
                 $services = $filteredServices;
             } elseif ($orderedCategory->id == config('constants.categories.Lap')) {
+                $bookedSlotsIds = (new Customer())->getBookedSlots(true);
                 if (empty($day)) {
                     $date = LapCalendar::where('start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
                         ->where('is_available', 1)
-                        ->orderBy('start_date', 'desc')
+                        ->orderBy('start_date', 'asc')
                         ->first();
                     if (!$date)
                         $day = Carbon::today()->format('Y-m-d');
                     else
                         $day = Carbon::parse($date->start_date)->format('Y-m-d');
-                    $lapCalendar = LapCalendar::where('city_id', '=', Auth::user()->city_id)->where('start_date', 'like', "%$day%")->get();
-                } else {
-                    $lapCalendar = LapCalendar::where('city_id', '=', Auth::user()->city_id)->where('start_date', 'like', "%$day%")->get();
                 }
-                $lapCalendar = ApiHelpers::reBuildCalendar($day, $lapCalendar);
+                $lapCalendars = LapCalendar::where('city_id', '=', Auth::user()->city_id)
+                    ->where('start_date', 'like', "%$day%");
+                if (!empty($bookedSlotsIds) && $bookedSlotsIds[0] != null)
+                    $lapCalendars->whereRaw("lap_calendars.id NOT IN (" . implode(',', $bookedSlotsIds) . ")");
+                $lapCalendars->get();
+                array_push($lapCalendar, ApiHelpers::reBuildCalendar($day, $lapCalendars));
             }
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'),

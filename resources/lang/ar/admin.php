@@ -172,5 +172,9 @@ return [
     'show_booking_services'     => "Show Booking Services",
     'select_week_days' => 'Select days',
     'start_time' => 'Start Time',
+    'end_time' => 'End Time',
     'number_of_weeks' => 'Number of weeks',
+    'Lap' => 'Lap',
+    'add_calendar' => 'Add calendar',
+    'show_calendar' => 'Show calendar',
 ];

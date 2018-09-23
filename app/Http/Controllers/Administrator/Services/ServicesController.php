@@ -18,6 +18,7 @@ use App\Models\Currency;
 use App\Models\Questionnaire;
 use App\Models\Service;
 use App\Models\ServicesCalendar;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
@@ -183,17 +184,19 @@ class ServicesController extends Controller
         $services = Service::where('id', '<>', 0);
         $dataTable = DataTables::of($services)
             ->addColumn('actions', function ($service) {
+                $editURL = url(AD . '/services/' . $service->id . '/edit');
                 if ($service->type != 4) {
-                    $editURL = url(AD . '/services/' . $service->id . '/edit');
                     $questionnaireURL = url(AD . '/services/' . $service->id . '/questionnaire');
                     $addQuestionnaireURL = url(AD . '/services/' . $service->id . '/questionnaire/create');
                     $calendarURL = "";
                     $addCalendarURL = "";
-                    if($service->type == 1 || $service->type == 2){
+                    if ($service->type == 1 || $service->type == 2) {
                         $calendarURL = url(AD . '/services/' . $service->id . '/calendar');
                         $addCalendarURL = url(AD . '/services/' . $service->id . '/calendar/create');
                     }
                     return View::make('Administrator.services.widgets.dataTableQuestionnaireAction', ['editURL' => $editURL, 'questionnaireURL' => $questionnaireURL, 'addQuestionnaireURL' => $addQuestionnaireURL, "calendarURL" => $calendarURL, "addCalendarURL" => $addCalendarURL]);
+                }else{
+                    return View::make('Administrator.services.widgets.dataTableQuestionnaireAction', ['editURL' => $editURL]);
                 }
             })
             ->addColumn('image', function ($service) {
@@ -224,14 +227,14 @@ class ServicesController extends Controller
         $category = Category::find($categoryId);
         $service = Service::find($serviceID);
         $serviceType = "";
-        if($service)
+        if ($service)
             $serviceType = $service->type;
-        if($category->category_parent_id == config('constants.categories.Doctor')) {
+        if ($category->category_parent_id == config('constants.categories.Doctor')) {
             unset($allTypes[1]);
             unset($allTypes[2]);
             unset($allTypes[3]);
             unset($allTypes[4]);
-        }elseif ($categoryId == config('constants.categories.Lap')) {
+        } elseif ($categoryId == config('constants.categories.Lap')) {
             unset($allTypes[1]);
             unset($allTypes[2]);
             unset($allTypes[3]);
@@ -278,17 +281,17 @@ class ServicesController extends Controller
 
     public function storeServiceQuestionnaire(CreateQuestionaireRequest $request, $serviceId)
     {
-        $serviceId = ($serviceId == 0)? null : $serviceId;
+        $serviceId = ($serviceId == "lap")? null : $serviceId;
         $questionnaire = new Questionnaire();
         ServiceClass::createOrUpdateQuestionnaire($questionnaire, $request, $serviceId);
         session()->flash('success_msg', trans('admin.success_message'));
-        $serviceId = ($serviceId == null)? 0 : $serviceId;
+        $serviceId = ($serviceId == null)? "lap" : $serviceId;
         return redirect(AD . '/services/' . $serviceId . '/questionnaire');
     }
 
     public function editServiceQuestionnaire(Request $request, $serviceId, $questionnaireId)
     {
-        $serviceId = ($serviceId == 0)? null : $serviceId;
+        $serviceId = ($serviceId == "lap")? null : $serviceId;
         $pages = range(0, config('constants.max_questionnaire_pages'));
         unset($pages[0]);
         $unAvailablePages = Questionnaire::where('service_id', $serviceId)
@@ -296,7 +299,7 @@ class ServicesController extends Controller
             ->havingRaw('count(pagination) >= ' . config('constants.max_questionnaire_per_page'))
             ->pluck('pagination')->toArray();
         $questionnaire = Questionnaire::find($questionnaireId);
-        $serviceId = ($serviceId == null)? 0 : $serviceId;
+        $serviceId = ($serviceId == null)? "lap" : $serviceId;
         $data = [
             'serviceId' => $serviceId,
             'pages' => $pages,
@@ -310,21 +313,21 @@ class ServicesController extends Controller
 
     public function updateServiceQuestionnaire(UpdateQuestionnaireRequest $request, $serviceId, $questionnaireId)
     {
-        $serviceId = ($serviceId == 0)? null : $serviceId;
+        $serviceId = ($serviceId == "lap")? null : $serviceId;
         $questionnaire = Questionnaire::find($questionnaireId);
         ServiceClass::createOrUpdateQuestionnaire($questionnaire, $request, $serviceId);
         session()->flash('success_msg', trans('admin.success_message'));
-        $serviceId = ($serviceId == null)? 0 : $serviceId;
+        $serviceId = ($serviceId == null)? "lap" : $serviceId;
         return redirect(AD . '/services/' . $serviceId . '/questionnaire');
     }
 
     public function getQuestionnaireDatatable($id)
     {
-        $id = ($id == 0)? null : $id;
+        $id = ($id == "lap")? null : $id;
         $questionnaire = Questionnaire::where('service_id', $id);
         $dataTable = DataTables::of($questionnaire)
             ->addColumn('actions', function ($questionnaire) use ($id) {
-                $id = ($id == null)? 0 : $id;
+                $id = ($id == null)? "lap" : $id;
                 $editURL = url(AD . '/services/' . $id . '/questionnaire/' . $questionnaire->id . '/edit');
                 return View::make('Administrator.widgets.dataTablesActions', ['editURL' => $editURL]);
             })
@@ -344,7 +347,7 @@ class ServicesController extends Controller
 
     public function getAvailablePageOrders(Request $request, $serviceId, $page)
     {
-        $serviceId = ($serviceId == 0)? null : $serviceId;
+        $serviceId = ($serviceId == "lap")? null : $serviceId;
         $ordersCount = range(0, config('constants.max_questionnaire_per_page'));
         unset($ordersCount[0]);
         $unAvailableOrders = Questionnaire::where([['service_id', $serviceId], ['pagination', $page]])
@@ -388,7 +391,7 @@ class ServicesController extends Controller
     {
         $calendarSections = config('constants.calendarSections');
         $data = [
-            'serviceID'       => $id,
+            'serviceID' => $id,
             'calendarSections' => $calendarSections
         ];
         return view(AD . '.services.calendar_index')->with($data);
@@ -396,8 +399,21 @@ class ServicesController extends Controller
 
     public function createServiceCalendar(Request $request, $serviceId)
     {
+        $service = Service::find($serviceId);
         $allCities = City::all()->pluck('city_name_eng', 'id')->toArray();
+        $allWeekDays = ["saturday" => "saturday", "sunday" => "sunday",
+            "monday" => "monday", "tuesday" => "tuesday", "wednesday" => "wednesday",
+            "thursday" => "thursday", "friday" => "friday"];
+        $times = Utilities::GenerateHours();
+        $maxSelect = 7;
+        if($service->type == 2)
+            $maxSelect = $service->visits_per_week;
         $data = [
+            'times' => $times,
+            'allWeekDays' => $allWeekDays,
+            'selectedWeekDays' => [],
+            'maxSelect' => $maxSelect,
+            'serviceType' => $service->type,
             'allCities' => $allCities,
             'formRoute' => route('storeServiceCalendar', ['service' => $serviceId]),
             'submitBtn' => trans('admin.create')
@@ -407,14 +423,31 @@ class ServicesController extends Controller
 
     public function storeServiceCalendar(CreateCalendarRequest $request, $serviceId)
     {
-        $serviceCalendar = new ServicesCalendar();
-        $startDate = $request->input('start_date');
-        $endDate = $request->input('end_date');
+        $service = Service::find($serviceId);
         $cityID = $request->input('city_id');
-        if(ServiceClass::isExistCalendar($startDate, $endDate, $serviceId, false, $cityID)){
-            return Redirect::back()->withErrors(['msg' => 'The slot you have picked conflicts with another one']);
+        $selectedDays = $request->input('week_days');
+        $numberOfWeeks = $request->input('number_of_weeks', null);
+        $startTime = $request->input('start_time');
+        $allDates = [];
+        $message["invalid"] = [];
+        $message["valid"] = [];
+        $numberOfWeeks = ($numberOfWeeks == null)? ceil($service->no_of_visits/count($selectedDays)): $numberOfWeeks;
+        foreach ($selectedDays as $selectedDay) {
+            $allDates = array_merge($allDates, Utilities::getDayDatesOfWeeks($selectedDay, $numberOfWeeks));
         }
-        ServiceClass::createOrUpdateCalendar($serviceCalendar, $request, $serviceId);
+        foreach ($allDates as $dayDate) {
+            $startDate = $dayDate . ' ' . $startTime . ':00';
+            $endDate = Carbon::parse($dayDate . ' ' . $startTime)->addMinutes($service->visit_duration)->toDateTimeString();
+            if (ServiceClass::isExistCalendar($startDate, $endDate, $serviceId, false, $cityID)) {
+                array_push($message["invalid"], $startDate);
+            } else {
+                $serviceCalendar = new ServicesCalendar();
+                ServiceClass::createOrUpdateCalendar($serviceCalendar, $serviceId, $cityID, $startDate, $endDate, 1);
+                array_push($message["valid"], $startDate);
+            }
+        }
+        if (!empty($message["invalid"]))
+            return Redirect::back()->withErrors($message);
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/services/' . $serviceId . '/calendar');
     }
@@ -425,11 +458,11 @@ class ServicesController extends Controller
         $allCities = City::all()->pluck('city_name_eng', 'id')->toArray();
         $data = [
             'allCities' => $allCities,
-            'calendar'  => $calendar,
+            'calendar' => $calendar,
             'formRoute' => route('updateServiceCalendar', ['id' => $serviceId, 'calendarId' => $calendarId]),
             'submitBtn' => trans('admin.update')
         ];
-        return view(AD . '.services.calendar_form')->with($data);
+        return view(AD . '.services.calendar_edit_form')->with($data);
     }
 
     public function updateServiceCalendar(UpdateCalendarRequest $request, $serviceId, $calendarId)
@@ -438,10 +471,11 @@ class ServicesController extends Controller
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');
         $cityID = $request->input('city_id');
-        if(ServiceClass::isExistCalendar($startDate, $endDate, $serviceId, $calendarId, $cityID)){
+        $isAvailable = $request->input('is_available');
+        if (ServiceClass::isExistCalendar($startDate, $endDate, $serviceId, $calendarId, $cityID)) {
             return Redirect::back()->withErrors(['msg' => 'The slot you have picked conflicts with another one']);
         }
-        ServiceClass::createOrUpdateCalendar($serviceCalendar, $request, $serviceId);
+        ServiceClass::createOrUpdateCalendar($serviceCalendar, $serviceId, $cityID, $startDate, $endDate, $isAvailable);
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/services/' . $serviceId . '/calendar');
     }
@@ -499,7 +533,14 @@ class ServicesController extends Controller
     public function createServiceLapCalendar(Request $request)
     {
         $allCities = City::all()->pluck('city_name_eng', 'id')->toArray();
+        $allWeekDays = ["saturday" => "saturday", "sunday" => "sunday",
+            "monday" => "monday", "tuesday" => "tuesday", "wednesday" => "wednesday",
+            "thursday" => "thursday", "friday" => "friday"];
+        $times = Utilities::GenerateHours();
         $data = [
+            'times' => $times,
+            'allWeekDays' => $allWeekDays,
+            'selectedWeekDays' => [],
             'allCities' => $allCities,
             'formRoute' => route('storeServiceLapCalendar'),
             'submitBtn' => trans('admin.create')
@@ -509,14 +550,30 @@ class ServicesController extends Controller
 
     public function storeServiceLapCalendar(CreateCalendarRequest $request)
     {
-        $lapCalendar = new LapCalendar();
-        $startDate = $request->input('start_date');
-        $endDate = $request->input('end_date');
-        $cityID = $request->input('city_id');
-        if(ServiceClass::isExistLapCalendar($startDate, $endDate, false, $cityID)){
-            return Redirect::back()->withErrors(['msg' => 'The slot you have picked conflicts with another one']);
+        $selectedDays = $request->input('week_days');
+        $numberOfWeeks = $request->input('number_of_weeks');
+        $startTime = $request->input('start_time');
+        $endTime = $request->input('end_time');
+        $cityId  = $request->input('city_id');
+        $allDates = [];
+        $message["invalid"] = [];
+        $message["valid"] = [];
+        foreach ($selectedDays as $selectedDay) {
+            $allDates = array_merge($allDates, Utilities::getDayDatesOfWeeks($selectedDay, $numberOfWeeks));
         }
-        ServiceClass::createOrUpdateLapCalendar($lapCalendar, $request);
+        foreach ($allDates as $dayDate) {
+            $startDate = $dayDate . ' ' . $startTime . ':00';
+            $endDate = $dayDate . ' ' . $endTime . ':00';
+            if (ServiceClass::isExistLapCalendar($startDate, $endDate, false, $cityId)) {
+                array_push($message["invalid"], $startDate);
+            } else {
+                $lapCalendar = new LapCalendar();
+                ServiceClass::createOrUpdateLapCalendar($lapCalendar, $cityId, $startDate, $endDate, 1);
+                array_push($message["valid"], $startDate);
+            }
+        }
+        if (!empty($message["invalid"]))
+            return Redirect::back()->withErrors($message);
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/lap/calendar');
     }
@@ -527,11 +584,11 @@ class ServicesController extends Controller
         $allCities = City::all()->pluck('city_name_eng', 'id')->toArray();
         $data = [
             'allCities' => $allCities,
-            'calendar'  => $calendar,
+            'calendar' => $calendar,
             'formRoute' => route('updateServiceLapCalendar', ['calendarId' => $calendarId]),
             'submitBtn' => trans('admin.update')
         ];
-        return view(AD . '.services.lap_calendar_form')->with($data);
+        return view(AD . '.services.lap_calendar_edit_form')->with($data);
     }
 
     public function updateServiceLapCalendar(UpdateCalendarRequest $request, $calendarId)
@@ -539,10 +596,12 @@ class ServicesController extends Controller
         $lapCalendar = LapCalendar::find($calendarId);
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');
-        if(ServiceClass::isExistLapCalendar($startDate, $endDate, $calendarId)){
+        $cityId = $request->input('city_id');
+        $isAvailable = $request->input('is_available');
+        if (ServiceClass::isExistLapCalendar($startDate, $endDate, $calendarId, $cityId)) {
             return Redirect::back()->withErrors(['msg' => 'The slot you have picked conflicts with another one']);
         }
-        ServiceClass::createOrUpdateLapCalendar($lapCalendar, $request);
+        ServiceClass::createOrUpdateLapCalendar($lapCalendar, $cityId, $startDate, $endDate, $isAvailable);
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/lap/calendar');
     }

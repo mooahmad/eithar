@@ -37,7 +37,7 @@ class UpdateAdminRequest extends FormRequest
             'national_id'          => 'required|unique:users,national_id, ' . $this->route()->parameters()['admin'],
             'nationality_id'       => 'required',
             'is_saudi_nationality' => 'required',
-            'avatar'               => 'mimes:jpeg,bmp,png|dimensions:min_width=100,min_height=200'
+            'avatar'               => 'mimes:jpeg,bmp,png|dimensions:min_width=100,min_height=100'
         ];
     }
 }

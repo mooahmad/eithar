@@ -34,13 +34,18 @@ class Customer extends Authenticatable
         'password', 'remember_token', 'email_code', 'mobile_code', 'deleted_at', 'created_at', 'updated_at'
     ];
 
+    public function routeNotificationForMail($notification)
+    {
+        return $this->email;
+    }
+
     /**
      * return active customers
      * @return mixed
      */
     public function scopeGetActiveCustomers()
     {
-        return $this->where('mobile_verified',1);
+        return $this->where('mobile_verified', 1);
     }
 
     /**
@@ -57,7 +62,7 @@ class Customer extends Authenticatable
      */
     public function country()
     {
-        return $this->belongsTo(Country::class,'country_id','id');
+        return $this->belongsTo(Country::class, 'country_id', 'id');
     }
 
     /**
@@ -65,6 +70,16 @@ class Customer extends Authenticatable
      */
     public function city()
     {
-        return $this->belongsTo(City::class,'city_id','id');
+        return $this->belongsTo(City::class, 'city_id', 'id');
+    }
+
+    public function servicesBooking()
+    {
+        return $this->hasMany('App\Models\ServiceBooking', 'customer_id', 'id');
+    }
+
+    public function pushNotification()
+    {
+        return $this->hasOne('App\Models\PushNotification', 'customer_id', 'id');
     }
 }

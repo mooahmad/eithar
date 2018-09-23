@@ -61,7 +61,7 @@
                                             @endif
                                         </div>
 
-                                        <div id="no-of-visits-per-week" class="form-group">
+                                        <div class="form-group">
                                             <label for="default_language" class="control-label">
                                                 {{ trans('admin.number_of_weeks') }}
                                             </label>

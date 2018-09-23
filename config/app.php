@@ -164,7 +164,8 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Kozz\Laravel\Providers\Guzzle::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
-        Mariuzzo\LaravelJsLocalization\LaravelJsLocalizationServiceProvider::class
+        Mariuzzo\LaravelJsLocalization\LaravelJsLocalizationServiceProvider::class,
+        Edujugon\PushNotification\Providers\PushNotificationServiceProvider::class
     ],
 
     /*
@@ -217,6 +218,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Guzzle' => Kozz\Laravel\Facades\Guzzle::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'PushNotification' => Edujugon\PushNotification\Facades\PushNotification::class,
     ],
 
 ];

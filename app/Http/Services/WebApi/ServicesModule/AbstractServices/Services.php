@@ -12,6 +12,7 @@ use App\Http\Services\WebApi\CommonTraits\Views;
 use App\Http\Services\WebApi\ServicesModule\IServices\IService;
 use App\LapCalendar;
 use App\Models\ProvidersCalendar;
+use App\Models\PushNotificationsTypes;
 use App\Models\Questionnaire;
 use App\Models\Service;
 use App\Models\ServiceBooking;
@@ -19,6 +20,8 @@ use App\Models\ServiceBookingAnswers;
 use App\Models\ServiceBookingAppointment;
 use App\Models\ServiceBookingLap;
 use App\Models\ServicesCalendar;
+use App\Notifications\AppointmentConfirmed;
+use App\Notifications\AppointmentReminder;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -108,8 +111,25 @@ class Services implements IService
         $appointmentDate = $request->input('slot_id', null);
         $appointmentPackageDates = $request->input('slot_ids', []);
         $this->saveBookingAppointments($serviceBookingId, $appointmentDate, $appointmentPackageDates);
+        if ($providerId != null)
+            $this->updateSlotStatus($appointmentDate, 0);
+        $pushTypeData = PushNotificationsTypes::find(config('constants.pushTypes.appointmentConfirmed'));
+        $pushTypeData->booking_id = $serviceBookingId;
+        $pushTypeData->send_at = Carbon::now()->format('Y-m-d H:m:s');
+        Auth::user()->notify(new AppointmentConfirmed($pushTypeData));
+        $pushTypeData = PushNotificationsTypes::find(config('constants.pushTypes.appointmentReminder'));
+        $pushTypeData->booking_id = $serviceBookingId;
+        $pushTypeData->send_at = Carbon::now()->subDays(3)->format('Y-m-d H:m:s');
+        Auth::user()->notify(new AppointmentReminder($pushTypeData));
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([]));
+    }
+
+    private function updateSlotStatus($slotId, $isAvailsble)
+    {
+        $slot = ProvidersCalendar::find($slotId);
+        $slot->is_available = $isAvailsble;
+        $slot->save();
     }
 
     private function saveServiceBooking($isLap, $providerId, $providerAssignedId, $serviceId, $promoCodeId, $price, $currencyId, $comment, $address, $familyMemberId, $status, $statusDescription, $lapServicesIds)
@@ -166,12 +186,12 @@ class Services implements IService
 
     private function saveBookingAppointments($serviceBookingId, $appointmentDate, $appointmentDates)
     {
-        if($appointmentDate != null) {
+        if ($appointmentDate != null) {
             $bookingAppointment = new ServiceBookingAppointment();
             $bookingAppointment->service_booking_id = $serviceBookingId;
             $bookingAppointment->slot_id = $appointmentDate;
             $bookingAppointment->save();
-        }elseif($appointmentDates != []){
+        } elseif ($appointmentDates != []) {
             $data = [];
             foreach ($appointmentDates as $appointmentDate)
                 array_push($data, ["service_booking_id" => $serviceBookingId, "slot_id" => $appointmentDate]);

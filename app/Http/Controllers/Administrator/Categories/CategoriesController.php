@@ -120,15 +120,15 @@ class CategoriesController extends Controller
 
     public function getCategoriesDataTable()
     {
-        $categories = Category::where('id', '<>', 0);
+        $categories = Category::where('id', '<>', 2);
         $dataTable = DataTables::of($categories)
                                ->addColumn('actions', function ($category) {
                                    if (!in_array($category->id, [1, 2, 3, 4, 5])) {
                                        $editURL = url(AD . '/categories/' . $category->id . '/edit');
                                        return View::make('Administrator.widgets.dataTablesActions', ['editURL' => $editURL]);
                                    }elseif($category->id == 2){
-                                       $questionnaireURL = url(AD . '/services/' . 0 . '/questionnaire');
-                                       $addQuestionnaireURL = url(AD . '/services/' . 0 . '/questionnaire/create');
+                                       $questionnaireURL = url(AD . '/services/lap/questionnaire');
+                                       $addQuestionnaireURL = url(AD . '/services/lap/questionnaire/create');
                                        $calendarURL = url(AD . '/lap/calendar');
                                        $addCalendarURL = url(AD . '/lap/calendar/create');
                                        return View::make('Administrator.widgets.dataTableLapAction', ['questionnaireURL' => $questionnaireURL, 'addQuestionnaireURL' => $addQuestionnaireURL, 'calendarURL' => $calendarURL, 'addCalendarURL' => $addCalendarURL]);

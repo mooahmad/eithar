@@ -3,16 +3,27 @@
 namespace App\Http\Services\WebApi\UsersModule\AbstractUsers;
 
 
+use App\Helpers\ApiHelpers;
 use App\Helpers\Utilities;
 use App\Http\Requests\Auth\RegisterCustomer;
 use App\Http\Requests\Auth\UpdateForgetPasswordRequest;
 use App\Http\Requests\Auth\VerifyCustomerEmail;
 use App\Http\Services\Auth\AbstractAuth\Registration;
+use App\LapCalendar;
 use App\Mail\Auth\VerifyEmailCode;
 use App\Mail\Customer\ForgetPasswordMail;
+use App\Models\ProvidersCalendar;
+use App\Models\PushNotification;
+use App\Models\Service;
+use App\Models\ServiceBooking;
+use App\Models\ServiceBookingAppointment;
+use App\Models\ServiceBookingLap;
+use App\Models\ServicesCalendar;
+use App\Notifications\AppointmentConfirmed;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Customer as CustomerModel;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
@@ -34,22 +45,22 @@ class Customer
             $isValidImage = Utilities::validateImage($request, $fileName);
             if (!$isValidImage)
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
-                                                     new MessageBag([
-                                                                        "message" => trans('errors.errorUploadAvatar')
-                                                                    ]));
+                    new MessageBag([
+                        "message" => trans('errors.errorUploadAvatar')
+                    ]));
             $isUploaded = Utilities::UploadImage($request->file($fileName), 'public/images/avatars');
             if (!$isUploaded)
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
-                                                     new MessageBag([
-                                                                        "message" => trans('errors.errorUploadAvatar')
-                                                                    ]));
+                    new MessageBag([
+                        "message" => trans('errors.errorUploadAvatar')
+                    ]));
             Utilities::DeleteImage($customer->profile_picture_path);
             $customer->profile_picture_path = $isUploaded;
             if (!$customer->save())
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
-                                                     new MessageBag([
-                                                                        "message" => trans('errors.errorUploadAvatar')
-                                                                    ]));
+                    new MessageBag([
+                        "message" => trans('errors.errorUploadAvatar')
+                    ]));
             return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
@@ -66,22 +77,22 @@ class Customer
             $isValidImage = Utilities::validateImage($request, $fileName);
             if (!$isValidImage)
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
-                                                     new MessageBag([
-                                                                        "message" => trans('errors.errorUploadNationalID')
-                                                                    ]));
+                    new MessageBag([
+                        "message" => trans('errors.errorUploadNationalID')
+                    ]));
             $isUploaded = Utilities::UploadImage($request->file($fileName), 'public/images/nationalities');
             if (!$isUploaded)
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
-                                                     new MessageBag([
-                                                                        "message" => trans('errors.errorUploadNationalID')
-                                                                    ]));
+                    new MessageBag([
+                        "message" => trans('errors.errorUploadNationalID')
+                    ]));
             Utilities::DeleteImage($customer->nationality_id_picture);
             $customer->nationality_id_picture = $isUploaded;
             if (!$customer->save())
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
-                                                     new MessageBag([
-                                                                        "message" => trans('errors.errorUploadNationalID')
-                                                                    ]));
+                    new MessageBag([
+                        "message" => trans('errors.errorUploadNationalID')
+                    ]));
             return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
@@ -144,6 +155,19 @@ class Customer
         return $customer;
     }
 
+    public function updateCustomerToken(CustomerModel $customer, Request $request)
+    {
+        $customer->pushNotification()->delete();
+        $pushNotification = new PushNotification();
+        $pushNotification->customer_id = $customer->id;
+        $pushNotification->imei = $request->input('imei');
+        $pushNotification->device_type = $request->input('device_type');
+        $pushNotification->device_language = $request->input('device_language');
+        $pushNotification->token = $request->input('token');
+        $pushNotification->save();
+    }
+
+
     public function editCustomer(Request $request)
     {
         return (new Registration())->registerCustomer($request);
@@ -184,9 +208,9 @@ class Customer
         $customer = CustomerModel::where([['email', $request->input('email')], ['email_code', $request->input('email_code')]])->first();
         if (!$customer)
             return Utilities::getValidationError(config('constants.responseStatus.operationFailed'),
-                                                 new MessageBag([
-                                                                    "message" => trans('errors.wrongCode')
-                                                                ]));
+                new MessageBag([
+                    "message" => trans('errors.wrongCode')
+                ]));
         $customer->email_verified = 1;
         $customer->save();
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
@@ -242,13 +266,106 @@ class Customer
         $customer = CustomerModel::where([['mobile_number', $request->input('mobile')], ['forget_password_code', $request->input('code')]])->first();
         if (!$customer)
             return Utilities::getValidationError(config('constants.responseStatus.userNotFound'),
-                                                 new MessageBag([
-                                                                    'message' => trans('errors.userNotFound')
-                                                                ]));
-        $customer->password  = Hash::make($request->input('password'));
+                new MessageBag([
+                    'message' => trans('errors.userNotFound')
+                ]));
+        $customer->password = Hash::make($request->input('password'));
         $customer->save();
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
 
+    }
+
+    public function getCustomerAppointments(Request $request)
+    {
+        $appointments = [];
+        $servicesBookings = Auth::user()->load('servicesBooking.service_appointments')->servicesBooking;
+        foreach ($servicesBookings as $servicesBooking) {
+            $service = null;
+            $serviceBookingLaps = null;
+            $serviceId = $servicesBooking->service_id;
+            if ($serviceId != null) {
+                $service = Service::find($serviceId);
+            } else {
+                $serviceBookingLaps = ServiceBookingLap::with('service')->where('service_booking_id', $servicesBooking->id)->get();
+            }
+            $serviceAppointments = $servicesBooking->service_appointments;
+            foreach ($serviceAppointments as $serviceAppointment) {
+                if ($service != null) {
+                    //provider
+                    if ($service->type == 5) {
+                        $calendar = ProvidersCalendar::find($serviceAppointment->slot_id);
+                        $payLoad = [
+                            "id" => $serviceAppointment->id,
+                            "service_type" => $service->type,
+                            "service_name" => $service->name_en,
+                            "start_date" => Carbon::parse($calendar->start_date)->format('l jS \\of F Y'),
+                            "start_time" => Carbon::parse($calendar->start_date)->format('g:i A')
+                        ];
+                        //one and package
+                    } elseif ($service->type == 1 || $service->type == 2) {
+                        $calendar = ServicesCalendar::find($serviceAppointment->slot_id);
+                        $payLoad = [
+                            "id" => $serviceAppointment->id,
+                            "service_type" => $service->type,
+                            "service_name" => $service->name_en,
+                            "start_date" => Carbon::parse($calendar->start_date)->format('l jS \\of F Y'),
+                            "start_time" => Carbon::parse($calendar->start_date)->format('g:i A')
+                        ];
+                    }
+                } elseif ($serviceBookingLaps != null) {
+                    $calendar = LapCalendar::find($serviceAppointment->slot_id);
+                        $payLoad = [
+                            "id" => $serviceAppointment->id,
+                            "service_type" => 4,
+                            "service_name" => "Lap",
+                            "start_date" => Carbon::parse($calendar->start_date)->format('l jS \\of F Y'),
+                            "start_time" => Carbon::parse($calendar->start_date)->format('g:i A')
+                        ];
+                }
+                $appointments[] = $payLoad;
+            }
+        }
+        return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
+            "appointments" => $appointments
+        ]));
+    }
+
+    public function getCustomerAppointment(Request $request, $id, $serviceType)
+    {
+        $appointment = ServiceBookingAppointment::find($id);
+        $calendar = [];
+        $services = [];
+        $vat = (Auth::user()->is_saudi_nationality) ? 0 : config('constants.vat_percentage');
+        $totalBeforeTax = 0;
+        $serviceBooking = ServiceBooking::find($appointment->service_booking_id);
+        $promoCode = ($serviceBooking->promo_code != null) ? $serviceBooking->promo_code->code : "";
+        $currency = $serviceBooking->currency->name_eng;
+        $total = $serviceBooking->price;
+        if ($serviceType == 5) {
+            $calendar[] = ApiHelpers::reBuildCalendarSlot(ProvidersCalendar::find($appointment->slot_id));
+            $services [] = $serviceBooking->service;
+            $totalBeforeTax = $serviceBooking->service->price;
+        } elseif ($serviceType == 1 || $serviceType == 2) {
+            $calendar[] = ApiHelpers::reBuildCalendarSlot(ProvidersCalendar::find($appointment->slot_id));
+            $services [] = $serviceBooking->service;
+            $totalBeforeTax = $serviceBooking->service->price;
+        } elseif ($serviceType == 4) {
+            $calendar[] = ApiHelpers::reBuildCalendarSlot(ProvidersCalendar::find($appointment->slot_id));
+            $servicesLap = ServiceBookingLap::where('service_booking_id', $serviceBooking->id)->get();
+            foreach ($servicesLap as $serviceLap) {
+                $services [] = $serviceLap->service;
+                $totalBeforeTax += $serviceLap->service->price;
+            }
+        }
+        return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
+            "calendar" => $calendar,
+            "services" => $services,
+            "promo_code" => $promoCode,
+            "currency" => $currency,
+            "total_before_tax" => $totalBeforeTax,
+            "vat" => $vat,
+            "total" => $total
+        ]));
     }
 
     private function validateUpdateForgetPassword(Request $request)
@@ -260,5 +377,37 @@ class Customer
         return true;
     }
 
+    public function getBookedSlots($isLap = false)
+    {
+        $query = Auth::user()->select('service_booking_appointments.slot_id')
+            ->leftJoin('service_bookings', 'customers.id', '=', 'service_bookings.customer_id')
+            ->leftJoin('services', 'service_bookings.service_id', '=', 'services.id')
+            ->leftJoin('service_booking_appointments', 'service_bookings.id', '=', 'service_booking_appointments.service_booking_id')
+            ->where('service_booking_appointments.slot_id', '<>', Null);
+        if ($isLap) {
+            $query->whereRaw('service_bookings.service_id IS NULL');
+        } else
+            $query->whereRaw('services.type in (1, 2)');
+        return $query->pluck('slot_id')->toArray();
+    }
+
+    public function getCustomerNotifications(Request $request)
+    {
+        $notifications = Auth::user()->notifications;
+        $notifications->markAsRead();
+        $returnNotifications = [];
+        foreach ($notifications as $notification) {
+            $notificationData = json_decode(json_encode($notification->data));
+            $data = new \StdClass();
+            $data->title = $notificationData->{'title_' . App::getLocale()};
+            $data->description = $notificationData->{'desc_' . App::getLocale()};
+            $data->notification_type = $notificationData->notification_type;
+            $data->related_id = $notificationData->related_id;
+            array_push($returnNotifications, $data);
+        }
+        return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
+            "notifications" => $returnNotifications
+        ]));
+    }
 
 }

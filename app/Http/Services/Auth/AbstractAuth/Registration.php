@@ -37,6 +37,8 @@ class Registration implements IRegistration
                                                  new MessageBag([
                                                                     "message" => trans('errors.operationFailed')
                                                                 ]));
+        $customerOperations = new \App\Http\Services\WebApi\UsersModule\AbstractUsers\Customer();
+        $customerOperations->updateCustomerToken($newCustomer, $request);
         // uploading customer avatar
         $validationObject = $customerInstance->uploadCustomerAvatar($request, 'avatar', $newCustomer);
         if ($validationObject->error != config('constants.responseStatus.success'))

@@ -34,6 +34,11 @@ class User extends Authenticatable implements CanResetPassword
         'password', 'remember_token', 'deleted_at', 'created_at', 'updated_at'
     ];
 
+    public function routeNotificationForMail($notification)
+    {
+        return $this->email;
+    }
+
     public function attributesToArray()
     {
         $attributes = parent::attributesToArray();

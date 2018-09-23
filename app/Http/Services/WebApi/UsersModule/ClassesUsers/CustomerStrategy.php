@@ -64,4 +64,20 @@ class CustomerStrategy
     {
         return $this->strategy->resendEmailVerificationCode($request);
     }
+
+    public function getCustomerAppointments(Request $request)
+    {
+        return $this->strategy->getCustomerAppointments($request);
+    }
+
+    public function getCustomerAppointment(Request $request, $id, $serviceType)
+    {
+        return $this->strategy->getCustomerAppointment($request, $id, $serviceType);
+    }
+
+    public function getCustomerNotifications(Request $request)
+    {
+        return $this->strategy->getCustomerNotifications($request);
+    }
+
 }

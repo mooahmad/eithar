@@ -32,7 +32,7 @@ class ApiHelpers
      * MessageBag $message
      * @return string
      */
-    public static function fail($status = 1,MessageBag $message)
+    public static function fail($status = 1, MessageBag $message)
     {
         return response()->json(array("status" => $status, "message" => $message));
     }
@@ -45,21 +45,23 @@ class ApiHelpers
     public static function requestType(Request $request)
     {
         $uri = $request->path();
-        if(str_contains($uri, 'api'))
+        if (str_contains($uri, 'api'))
             return config('constants.requestTypes.api');
         return config('constants.requestTypes.web');
     }
 
-    public static function getCustomerWithToken(Customer $customer, $scopes = []){
+    public static function getCustomerWithToken(Customer $customer, $scopes = [])
+    {
         DB::table('oauth_access_tokens')->where('user_id', $customer->id)->delete();
-        if(empty($scopes))
-        $customer->access_token = $customer->createToken('customer')->accessToken;
+        if (empty($scopes))
+            $customer->access_token = $customer->createToken('customer')->accessToken;
         else
             $customer->access_token = $customer->createToken('customer', [])->accessToken;
         return $customer;
     }
 
-    public static function getCustomerImages(Customer $customer){
+    public static function getCustomerImages(Customer $customer)
+    {
         $customer->profile_picture_path = Utilities::getFileUrl($customer->profile_picture_path);
         $customer->nationality_id_picture = Utilities::getFileUrl($customer->nationality_id_picture);
         return $customer;
@@ -91,5 +93,17 @@ class ApiHelpers
             }
         });
         return $reBuitCalendar;
+    }
+
+    public static function reBuildCalendarSlot($slot)
+    {
+        $dayDate = Carbon::parse($slot->start_date)->format('l jS \\of F Y');
+        $carbonStartDate = Carbon::parse($slot->start_date);
+        $carbonEndDate = Carbon::parse($slot->end_date);
+        $builtSlot = new \stdClass();
+        $builtSlot->day = $dayDate;
+        $builtSlot->start_time = $carbonStartDate->format('g:i A');
+        $builtSlot->end_time = $carbonEndDate->format('g:i A');
+        return $builtSlot;
     }
 }

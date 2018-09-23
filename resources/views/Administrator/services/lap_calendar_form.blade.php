@@ -26,70 +26,99 @@
                                     <!-- Create New User TAB -->
                                     <div class="tab-pane active" id="new_user">
                                         <div class="row">
-                                            <div class="col-sm-12 col-md-12 text-center">
-                                                @if($errors->any())
-                                                    <h4 class="alert alert-danger">{{$errors->first()}}</h4>
+                                            <div class="col-sm-6 col-md-6 text-center">
+                                                @if($errors->has('valid'))
+                                                    <h5>These dates has been added successfully.</h5>
+                                                    <ul>
+                                                        @foreach ($errors->get('valid') as $error)
+                                                            <li class="alert alert-success" style="padding: 0px">{{$error}}</li>
+                                                        @endforeach
+                                                    </ul>
                                                 @endif
                                             </div>
+                                            <div class="col-sm-6 col-md-6 text-center">
+                                                @if($errors->has('invalid'))
+                                                    <h5>These dates are unavailable.</h5>
+                                                    <ul>
+                                                        @foreach ($errors->get('invalid') as $error)
+                                                            <li class="alert alert-danger" style="padding: 0px">{{$error}}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                @endif
                                             </div>
+                                        </div>
                                         {!! Form::open(['method'=> 'POST','url'=> $formRoute, 'role'=>'form', 'files' => true]) !!}
                                             <input name="id" type="hidden" value="{{ isset($calendar)? $calendar->id: '' }}">
+                                        <div class="form-group">
                                             <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-sm-3 col-md-3">
-                                                        <div class="form-group">
-                                                            <label for="default_language" class="control-label">
-                                                                {{ trans('admin.city') }}
-                                                            </label>
-                                                            {!! Form::select('city_id', $allCities, isset($calendar)? $calendar->city_id: '', array('id'=>'city_id', 'class'=>'form-control')) !!}
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-3 col-md-3">
-                                                        <label class="control-label">
-                                                            {{ trans('admin.start_date') }} <span
-                                                                    class="required"> * </span>
-                                                        </label>
-                                                        {!! Form::text('start_date', isset($calendar)? $calendar->start_date : '' , array('id'=>'', 'class'=>'form-control form-control-inline input-medium date_time_picker','required'=>'required', 'size' => 16, 'type' => 'text')) !!}
-                                                        @if($errors->has('start_date'))
-                                                            <span class="help-block text-danger">{{ $errors->first('start_date') }}</span>
-                                                        @endif
-                                                    </div>
-                                                    <div class="col-sm-3 col-md-3">
-                                                        <label class="control-label">
-                                                            {{ trans('admin.end_date') }} <span
-                                                                    class="required"> * </span>
-                                                        </label>
-                                                        {!! Form::text('end_date', isset($calendar)? $calendar->end_date: '', array('id'=>'', 'class'=>'form-control form-control-inline input-medium date_time_picker','required'=>'required', 'size' => 16, 'type' => 'text')) !!}
-                                                        @if($errors->has('end_date'))
-                                                            <span class="help-block text-danger">{{ $errors->first('end_date') }}</span>
-                                                        @endif
-                                                    </div>
-                                                    <div class="col-sm-3 col-md-3">
-                                                        <label class="control-label">
-                                                            {{ trans('admin.is_available') }} <span
-                                                                    class="required"> * </span>
-                                                        </label>
-                                                        @php
-                                                            $is_available = null;
-                                                            if(isset($calendar)){
-                                                            $is_available = $calendar->is_available;
-                                                            }
-                                                        @endphp
-                                                        <div class="mt-radio-inline">
-                                                            <label class="mt-radio">
-                                                                {!! Form::radio('is_available', 1, ($is_available === 1 || empty($is_available))? 'true' : '',array('id'=>'yes-active')) !!}
-                                                                {{ trans('admin.yes') }}
-                                                                <span></span>
-                                                            </label>
-                                                            <label class="mt-radio">
-                                                                {!! Form::radio('is_available', 0, ($is_available === 0 )? 'true' : '',array('id'=>'no-active')) !!}
-                                                                {{ trans('admin.no') }}
-                                                                <span></span>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <label for="default_language" class="control-label">
+                                                    {{ trans('admin.city') }}
+                                                </label>
+                                                {!! Form::select('city_id', $allCities, isset($calendar)? $calendar->city_id: '', array('id'=>'city_id', 'class'=>'form-control')) !!}
                                             </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="default_language" class="control-label">
+                                                {{ trans('admin.select_week_days') }} <span class="required"> * </span>
+                                            </label>
+                                            {!! Form::select('week_days[]', $allWeekDays, $selectedWeekDays, array('id'=>'week_days', 'class'=>'form-control select2-multiple','required'=>'required', 'multiple' => 'multiple')) !!}
+                                            @if($errors->has('week_days'))
+                                                <span class="help-block text-danger">{{ $errors->first('week_days') }}</span>
+                                            @endif
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="default_language" class="control-label">
+                                                {{ trans('admin.number_of_weeks') }}
+                                            </label>
+                                            {!! Form::number('number_of_weeks', old('number_of_weeks') , array('id'=>'number_of_weeks', 'class'=>'form-control','placeholder'=>trans('admin.number_of_weeks'))) !!}
+                                            @if($errors->has('number_of_weeks'))
+                                                <span class="help-block text-danger">{{ $errors->first('number_of_weeks') }}</span>
+                                            @endif
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">
+                                                {{ trans('admin.start_time') }} <span
+                                                        class="required"> * </span>
+                                            </label>
+                                            {!! Form::select('start_time', $times, 0, array('id'=>'date_section', 'class'=>'form-control')) !!}
+                                            @if($errors->has('start_time'))
+                                                <span class="help-block text-danger">{{ $errors->first('start_time') }}</span>
+                                            @endif
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">
+                                                {{ trans('admin.end_time') }} <span
+                                                        class="required"> * </span>
+                                            </label>
+                                            {!! Form::select('end_time', $times, 0, array('id'=>'end_time', 'class'=>'form-control')) !!}
+                                            @if($errors->has('end_time'))
+                                                <span class="help-block text-danger">{{ $errors->first('end_time') }}</span>
+                                            @endif
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">
+                                                {{ trans('admin.is_available') }} <span
+                                                        class="required"> * </span>
+                                            </label>
+                                            @php
+                                                $is_available = null;
+                                                if(isset($calendar)){
+                                                $is_available = $calendar->is_available;
+                                                }
+                                            @endphp
+                                            <div class="mt-radio-inline">
+                                                <label class="mt-radio">
+                                                    {!! Form::radio('is_available', 1, ($is_available === 1 || empty($is_available))? 'true' : '',array('id'=>'yes-active')) !!}
+                                                    {{ trans('admin.yes') }}
+                                                    <span></span>
+                                                </label>
+                                                <label class="mt-radio">
+                                                    {!! Form::radio('is_available', 0, ($is_available === 0 )? 'true' : '',array('id'=>'no-active')) !!}
+                                                    {{ trans('admin.no') }}
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        </div>
                                         <div class="margiv-top-10">
                                             {!! Form::submit($submitBtn, array('class'=>'btn green')) !!}
                                             <a href="{{ url(AD.'/admins') }}"

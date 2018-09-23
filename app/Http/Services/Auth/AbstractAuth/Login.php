@@ -5,6 +5,7 @@ namespace App\Http\Services\Auth\AbstractAuth;
 use App\Helpers\ApiHelpers;
 use App\Helpers\Utilities;
 use App\Http\Services\Auth\IAuth\ILogin;
+use App\Http\Services\WebApi\UsersModule\AbstractUsers\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\MessageBag;
 
@@ -25,6 +26,8 @@ Abstract class Login implements ILogin
                                                  new MessageBag([
                                                                     "message" => trans('errors.userNotFound')
                                                                 ]));
+        $customerOperations = new Customer();
+        $customerOperations->updateCustomerToken($customer, $request);
         $customerData = clone $customer;
         $customerData = ApiHelpers::getCustomerImages($customerData);
         $customerData = ApiHelpers::getCustomerWithToken($customerData);
