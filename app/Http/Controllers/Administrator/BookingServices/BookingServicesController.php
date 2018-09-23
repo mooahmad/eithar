@@ -158,6 +158,10 @@ class BookingServicesController extends Controller
         return $booking_details;
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
+     */
     public function assignProviderToMeeting(Request $request){
         if (Gate::denies('meetings.view',new ServiceBooking())){
             return response()->view('errors.403',[],403);
@@ -172,6 +176,8 @@ class BookingServicesController extends Controller
         if ($request->booking){
             ServiceBooking::where('id',$request->booking)->update(['provider_id_assigned_by_admin'=>$request->input('provider_id')]);
         }
+        session()->flash('success_msg', trans('admin.success_message'));
+        return redirect(AD . '/meetings/'.$request->booking);
         return back();
     }
 }
