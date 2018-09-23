@@ -134,7 +134,7 @@ class Utilities
     public static function pushNotification($tokens, $data)
     {
         $push = new PushNotification('fcm');
-        $push->setUrl(env('FIREBASE_URL'));
+        $push->setUrl(env('FIREBASE_URL', 'https://fcm.googleapis.com/fcm/send'));
         $push->setMessage($data);
         $push->setDevicesToken($tokens);
         return $push->send()->getFeedback();

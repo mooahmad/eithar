@@ -157,7 +157,8 @@ class Customer
 
     public function updateCustomerToken(CustomerModel $customer, Request $request)
     {
-        $customer->pushNotification()->delete();
+        if($customer->pushNotification)
+            $customer->pushNotification->delete();
         $pushNotification = new PushNotification();
         $pushNotification->customer_id = $customer->id;
         $pushNotification->imei = $request->input('imei');
