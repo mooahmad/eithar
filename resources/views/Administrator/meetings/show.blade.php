@@ -20,7 +20,7 @@
             </div>
             <hr/>
             <div class="row">
-                @if(count($booking->customer))
+                @if(!empty($booking->customer))
                     <div class="col-xs-4">
                         <h3>Customer Details:</h3>
                         <ul class="list-unstyled">
@@ -34,7 +34,7 @@
                     </div>
                 @endif
 
-                @if(count($booking->family_member))
+                @if(!empty($booking->family_member))
                     <div class="col-xs-4">
                         <h3>Family Member:</h3>
                         <ul class="list-unstyled">
