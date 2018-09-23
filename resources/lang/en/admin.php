@@ -180,6 +180,7 @@ return [
     'confirmed'                 => "Confirmed",
     'inprogress'                => "Inprogress",
     'meetings'                  => "Meetings",
+    'show-meeting-details'      => "Show Meeting Details",
     'select_week_days' => 'Select days',
     'start_time' => 'Start Time',
     'end_time' => 'End Time',
