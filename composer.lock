@@ -4,6 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+    "hash": "951fcf1ecd1fc4e3c52145a11f4dd280",
     "content-hash": "4a6ee5bd9c2df682c931cdf5c1c98786",
     "packages": [
         {
@@ -332,7 +333,7 @@
                 "priority",
                 "push"
             ],
-            "time": "2018-09-01T08:24:10+00:00"
+            "time": "2018-09-01 08:24:10"
         },
         {
             "name": "egulias/email-validator",
