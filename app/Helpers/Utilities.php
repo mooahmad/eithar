@@ -56,8 +56,8 @@ class Utilities
         if (empty($request->file($fileName)) || !$request->file($fileName)->isValid())
             return false;
         $request->validate([
-                               $fileName => 'image',
-                           ]);
+            $fileName => 'image',
+        ]);
         return true;
     }
 
@@ -104,13 +104,13 @@ class Utilities
 
     public static function calcPercentage($total, $percentage)
     {
-        return $total * ($percentage/100);
+        return $total * ($percentage / 100);
     }
 
     public static function getDayDatesOfWeeks($day = "monday", $numberOfWeeks = 0)
     {
         $dayDates = [];
-        for($i =0; $i < $numberOfWeeks; $i++) {
+        for ($i = 0; $i < $numberOfWeeks; $i++) {
             $date = Carbon::parse("next $day");
             $date->addWeek($i);
             $dayDate = $date->toDateString();
@@ -122,11 +122,10 @@ class Utilities
     public static function GenerateHours()
     {
         $times = [];
-        for ($i=0; $i<24; $i++)
-        {
-            ($i<10)? $second_item='0' : $second_item='';
-            $times[$second_item . $i.':00'] = $second_item . $i.':00';
-            $times[$second_item . $i.':30'] = $second_item . $i.':30';
+        for ($i = 0; $i < 24; $i++) {
+            ($i < 10) ? $second_item = '0' : $second_item = '';
+            $times[$second_item . $i . ':00'] = $second_item . $i . ':00';
+            $times[$second_item . $i . ':30'] = $second_item . $i . ':30';
         }
         return $times;
     }
@@ -134,7 +133,7 @@ class Utilities
     public static function pushNotification($tokens, $data)
     {
         $push = new PushNotification('fcm');
-        $push->setUrl(env('FIREBASE_URL'));
+        $push->setUrl(env('FIREBASE_URL', 'https://fcm.googleapis.com/fcm/send'));
         $push->setMessage($data);
         $push->setDevicesToken($tokens);
         return $push->send()->getFeedback();
@@ -142,6 +141,8 @@ class Utilities
 
     public static function buildNotification($title, $message, $badge, $arrCustomData)
     {
+        $arrCustomData['title'] = $title;
+        $arrCustomData['body'] = $message;
         return [
             'notification' => [
                 'title' => $title,
