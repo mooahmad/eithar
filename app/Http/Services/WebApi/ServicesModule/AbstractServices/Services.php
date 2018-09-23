@@ -89,7 +89,7 @@ class Services implements IService
 
     public function book($request, $serviceId)
     {
-        // service booking table
+        // service meetings table
         $isLap = ($serviceId == 0) ? 1 : 0;
         $serviceId = ($serviceId == 0) ? null : $serviceId;
         $providerId = $request->input('provider_id', null);
@@ -104,10 +104,10 @@ class Services implements IService
         $statusDescription = "inprogress";
         $lapServicesIds = $request->input('lap_services_ids', []);
         $serviceBookingId = $this->saveServiceBooking($isLap, $providerId, $providerAssignedId, $serviceId, $promoCodeId, $price, $currencyId, $comment, $address, $familyMemberId, $status, $statusDescription, $lapServicesIds);
-        // service booking answers table
+        // service meetings answers table
         $serviceQuestionnaireAnswers = $request->input('service_questionnaire_answers');
         $bookingAnswer = $this->saveBookingAnswers($serviceBookingId, $serviceQuestionnaireAnswers);
-        // service booking appointments table
+        // service meetings appointments table
         $appointmentDate = $request->input('slot_id', null);
         $appointmentPackageDates = $request->input('slot_ids', []);
         $this->saveBookingAppointments($serviceBookingId, $appointmentDate, $appointmentPackageDates);

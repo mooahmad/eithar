@@ -69,4 +69,20 @@ class ServiceBooking extends Model
     {
         return $this->hasMany(ServiceBookingAppointment::class,'service_booking_id','id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function booking_lap_services()
+    {
+        return $this->hasMany(ServiceBookingLap::class,'service_booking_id','id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function assigned_provider()
+    {
+        return $this->belongsTo(Provider::class,'provider_id_assigned_by_admin','id');
+    }
 }

@@ -20,7 +20,7 @@ Like: https://www.facebook.com/consultrust/
 
 <head>
     <meta charset="utf-8"/>
-    <title>{{ Route::currentRouteName() }} | {{ config('app.name') }} Dashboard</title>
+    <title>{{ trans('admin.'.Route::currentRouteName()) }} | {{ config('app.name') }} Dashboard</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <meta content="We started in 2016 our journey with our first product ConsulTrust, a mobile application running smoothly in iOS, Android with an amazing backend web application. Our consultants are increasing every day and full trust from our customers. With our development methodology and experience we will be able to support your business, offer you innovative solutions."

@@ -43,7 +43,6 @@
 @stop
 
 @section('script')
-    // declaring used variables
     <script>
         var indexURL = "{!! route('get-customers-Datatable') !!}";
         var deleteURL    = "{!! route('deleteServices') !!}";
