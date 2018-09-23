@@ -150,8 +150,12 @@ class CustomersController extends Controller
         $Booking_services = ServiceBooking::where('id', '<>', 0)->where('customer_id',$request->id);
         $dataTable = DataTables::of($Booking_services)
             ->addColumn('actions', function ($item) {
-                $showURL = url(AD . '/booking-services/' . $item->id);
-                return View::make('Administrator.widgets.dataTablesActions', ['showURL' => $showURL]);
+                $showURL = route('show-meeting-details',[$item->id]);
+
+                $URLs = [
+                    ['link'=>$showURL,'icon'=>'info'],
+                ];
+                return View::make('Administrator.widgets.advancedActions', ['URLs'=>$URLs]);
             })
             ->addColumn('service_name',function ($item){
                 return ($item->service)? $item->service->name_en. '-'.$item->service->type_desc : '';

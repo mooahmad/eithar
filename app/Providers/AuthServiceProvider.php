@@ -82,7 +82,7 @@ class AuthServiceProvider extends ServiceProvider
         Gate::resource('customers', 'App\Policies\CustomerPolicy');
 
 //        Service Booking Policies
-        Gate::define('booking.view','App\Policies\BookingServicesPolicy@view');
+        Gate::define('meetings.view','App\Policies\BookingServicesPolicy@view');
 
         // passport
         Passport::routes();

@@ -170,18 +170,23 @@ Route::group(['middleware' => 'AdminAuth', 'prefix' => AD], function () {
     Route::group(['namespace' => CUSN],function (){
         Route::resource('customers', 'CustomersController',
             ['names' => [
-                'index'   => 'Show Customers',
-                'create'  => 'Create Customer',
-                'show'    => 'Show Customer',
-                'edit'    => 'Edit Customer',
-                'destroy' => 'Delete Customer'
+                'index'   => 'show_customers',
+                'create'  => 'add_customers',
+                'show'    => 'show_customers',
+                'edit'    => 'edit_customers',
+                'destroy' => 'delete_customers'
             ]]);
     Route::get('get-customers-Datatable', 'CustomersController@getCustomersDataTable')->name('get-customers-Datatable');
     Route::get('get-customer-appointments-Datatable/{id}', 'CustomersController@getCustomerAppointmentsDataTable')->name('get-customer-appointments-Datatable');
     });
 
     Route::group(['namespace' => BSN],function (){
-        Route::get('booking-services/{booking}', 'BookingServicesController@show')->name('Show Booking Details');
+        Route::get('meetings/canceled', 'BookingServicesController@index')->name('meetings');
+        Route::get('meetings/inprogress', 'BookingServicesController@index')->name('meetings');
+        Route::get('meetings/confirmed', 'BookingServicesController@index')->name('meetings');
+        Route::get('get-meetings-Datatable', 'BookingServicesController@getBookingServicesDataTable')->name('get-meetings-Datatable');
+        Route::get('meetings/{booking}', 'BookingServicesController@show')->name('show-meeting-details');
+        Route::post('meetings/{booking}/assign-provider', 'BookingServicesController@assignProviderToMeeting')->name('assign-provider-to-meeting');
     });
 });
 
