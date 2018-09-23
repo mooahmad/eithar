@@ -314,15 +314,13 @@ class Customer
                     }
                 } elseif ($serviceBookingLaps != null) {
                     $calendar = LapCalendar::find($serviceAppointment->slot_id);
-                    foreach ($serviceBookingLaps as $serviceBookingLap) {
                         $payLoad = [
                             "id" => $serviceAppointment->id,
-                            "service_type" => $serviceBookingLap->service->type,
+                            "service_type" => 4,
                             "service_name" => "Lap",
                             "start_date" => Carbon::parse($calendar->start_date)->format('l jS \\of F Y'),
                             "start_time" => Carbon::parse($calendar->start_date)->format('g:i A')
                         ];
-                    }
                 }
                 $appointments[] = $payLoad;
             }
