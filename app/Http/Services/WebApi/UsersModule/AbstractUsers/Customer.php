@@ -48,7 +48,7 @@ class Customer
                     new MessageBag([
                         "message" => trans('errors.errorUploadAvatar')
                     ]));
-            $isUploaded = Utilities::UploadImage($request->file($fileName), 'public/images/avatars');
+            $isUploaded = Utilities::uploadFile($request->file($fileName), 'public/images/avatars');
             if (!$isUploaded)
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
                     new MessageBag([
@@ -80,7 +80,7 @@ class Customer
                     new MessageBag([
                         "message" => trans('errors.errorUploadNationalID')
                     ]));
-            $isUploaded = Utilities::UploadImage($request->file($fileName), 'public/images/nationalities');
+            $isUploaded = Utilities::uploadFile($request->file($fileName), 'public/images/nationalities');
             if (!$isUploaded)
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
                     new MessageBag([

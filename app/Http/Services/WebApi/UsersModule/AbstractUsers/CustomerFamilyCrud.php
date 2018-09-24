@@ -80,7 +80,7 @@ abstract class CustomerFamilyCrud implements ICustomerFamilyCrud
                                                      new MessageBag([
                                                                         "message" => trans('errors.errorUploadMember')
                                                                     ]));
-            $isUploaded = Utilities::UploadImage($request->file($fileName), 'public/images/familymembers');
+            $isUploaded = Utilities::uploadFile($request->file($fileName), 'public/images/familymembers');
             if (!$isUploaded)
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
                                                      new MessageBag([

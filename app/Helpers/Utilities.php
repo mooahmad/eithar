@@ -26,11 +26,11 @@ class Utilities
      * @param string $disk
      * @return mixed
      */
-    public static function UploadImage($file, $path, $oldImagePath = null, $disk = 'local')
+    public static function UploadFile($file, $path, $oldImagePath = null, $disk = 'local')
     {
         //Delete old image
         if (!empty($oldImagePath))
-            self::DeleteImage($oldImagePath);
+            self::DeleteFile($oldImagePath);
         return $file->store($path, $disk);
     }
 
@@ -40,7 +40,7 @@ class Utilities
      * @param string $disk
      * @return bool
      */
-    public static function DeleteImage($imagePath, $disk = 'local')
+    public static function DeleteFile($imagePath, $disk = 'local')
     {
         if (!empty($imagePath)) {
             if (Storage::disk($disk)->exists($imagePath)) {
