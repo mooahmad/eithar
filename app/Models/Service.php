@@ -87,4 +87,9 @@ class Service extends Model
     {
         return $this->hasMany('App\Models\ServicesCalendar', 'service_id', 'id');
     }
+
+    public function medicalReports()
+    {
+        return $this->hasMany('App\Models\MedicalReports', 'service_id', 'id');
+    }
 }

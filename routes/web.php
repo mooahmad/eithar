@@ -13,6 +13,7 @@ define('PRCN', 'Administrator\promo_codes');
 define('INVN', 'Administrator\Invoices');
 define('CUSN', 'Administrator\Customers');
 define('BSN', 'Administrator\BookingServices');
+define('MRP', 'Administrator\MedicalReports');
 
 //Frontend Routes
 Route::group(['namespace' => FE], function () {
@@ -151,6 +152,19 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => PRCN, 'prefix' => AD],
         ]]);
     Route::get('getpromocodesdatatable', 'PromoCodesController@getPromoCodesDataTable')->name('getPromoCodesDataTable');
     Route::post('deletepromocodes', 'PromoCodesController@deletePromoCodes')->name('deletePromoCodes');
+});
+
+Route::group(['middleware' => 'AdminAuth', 'namespace' => MRP, 'prefix' => AD], function () {
+    Route::resource('medical_reports', 'MedicalReportController',
+        ['names' => [
+            'index'   => 'show medical report',
+            'create'  => 'create medical report',
+            'show'    => 'show medical report',
+            'edit'    => 'edit medical report',
+            'destroy' => 'delete medical report'
+        ]]);
+    Route::get('getmedicalreportsdatatable', 'MedicalReportController@getMedicalReportsDataTable')->name('getMedicalReportsDataTable');
+    Route::post('deletemedicalreports', 'MedicalReportController@deleteMedicalReports')->name('deleteMedicalReports');
 });
 
 Route::group(['middleware' => 'AdminAuth', 'prefix' => AD], function () {

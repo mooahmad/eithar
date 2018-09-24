@@ -243,6 +243,9 @@
 
             <!-- Start Invoices Area -->
 {{--            @can('promo_code.view', new \App\Models\PromoCode())--}}
+
+            @can('promo_code.view', new \App\Models\PromoCode())
+
                 <li class="nav-item start {{ (Request::segment(2)=='invoices') ? 'active' :'' }}">
                     <a href="javascript:;" class="nav-link nav-toggle">
                         <i class="fa fa-file-pdf-o"></i>
@@ -265,6 +268,7 @@
                         </li>
                     </ul>
                 </li>
+
             {{--@endcan--}}
             <!-- End Invoices Area -->
 
@@ -296,9 +300,40 @@
                             <span class="title">{{ trans('admin.confirmed_meetings') }}</span>
                         </a>
                     </li>
+                </ul>
             </li>
         {{--@endcan--}}
         <!-- End Booking Services Area -->
+
+            @endcan
+        <!-- End Invoices Area -->
+            <!-- Start Medical reports Area -->
+            @can('medical_report.view', new \App\Models\MedicalReports())
+                <li class="nav-item start {{ (Request::segment(2)=='medical_reports') ? 'active' :'' }}">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-user-secret"></i>
+                        <span class="title">{{ trans('admin.medical_reports') }}</span>
+                        <span class="selected"></span>
+                        <span class="arrow {{ (Request::segment(2)=='medical_reports') ? 'open' :'' }}"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item start {{ (Request::segment(2)=='medical_reports' && Request::segment(3)=='create') ? 'active' :'' }}">
+                            <a href="{{ url(AD.'/medical_reports/create') }}" class="nav-link ">
+                                <i class="fa fa-plus-circle"></i>
+                                <span class="title">{{ trans('admin.add_medical_reports') }}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item start {{ (Request::is(AD.'/medical_reports')) ? 'active' :'' }}">
+                            <a href="{{ url(AD.'/medical_reports') }}" class="nav-link ">
+                                <i class="icon-user"></i>
+                                <span class="title">{{ trans('admin.show_medical_reports') }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+        @endcan
+        <!-- End Medical reports Area -->
+
         </ul>
         <!-- END SIDEBAR MENU -->
     </div>

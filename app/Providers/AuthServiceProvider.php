@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Category;
 use App\Models\Customer;
 use App\Models\Invoices;
+use App\Models\MedicalReports;
 use App\Models\PromoCode;
 use App\Models\Questionnaire;
 use App\Models\Service;
@@ -12,8 +13,8 @@ use App\Policies\AdminPolicy;
 use App\Policies\CategoryPolicy;
 use App\Policies\CustomerPolicy;
 use App\Policies\InvoicesPolicy;
+use App\Policies\MedicalReportPolicy;
 use App\Policies\PromoCodesPolicy;
-use App\Policies\QuestionnairePolicy;
 use App\Policies\ServicePolicy;
 use App\User;
 use Illuminate\Support\Facades\Gate;
@@ -34,6 +35,7 @@ class AuthServiceProvider extends ServiceProvider
         PromoCode::class => PromoCodesPolicy::class,
         Invoices::class => InvoicesPolicy::class,
         Customer::class => CustomerPolicy::class,
+        MedicalReports::class => MedicalReportPolicy::class,
     ];
 
     /**
@@ -74,6 +76,12 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('promo_code.create', 'App\Policies\PromoCodesPolicy@create');
         Gate::define('promo_code.update', 'App\Policies\PromoCodesPolicy@update');
         Gate::define('promo_code.delete', 'App\Policies\PromoCodesPolicy@delete');
+
+        // policies medical report
+        Gate::define('medical_report.view', 'App\Policies\MedicalReportPolicy@view');
+        Gate::define('medical_report.create', 'App\Policies\MedicalReportPolicy@create');
+        Gate::define('medical_report.update', 'App\Policies\MedicalReportPolicy@update');
+        Gate::define('medical_report.delete', 'App\Policies\MedicalReportPolicy@delete');
 
 //        Invoices Policies
         Gate::resource('invoices', 'App\Policies\InvoicesPolicy');
