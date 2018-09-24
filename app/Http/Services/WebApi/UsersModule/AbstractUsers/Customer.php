@@ -279,7 +279,9 @@ class Customer
     public function getCustomerAppointments(Request $request)
     {
         $appointments = [];
-        $servicesBookings = Auth::user()->load('servicesBooking.service_appointments')->servicesBooking;
+        $servicesBookings = Auth::user()->load(['servicesBooking.service_appointments' => function ($query){
+            $query->orderByRaw('service_booking_appointments.id DESC');
+        }])->servicesBooking;
         foreach ($servicesBookings as $servicesBooking) {
             $service = null;
             $serviceBookingLaps = null;
@@ -299,6 +301,7 @@ class Customer
                             "id" => $serviceAppointment->id,
                             "service_type" => $service->type,
                             "service_name" => $service->name_en,
+                            "upcoming"   => (Carbon::now() > Carbon::parse($calendar->start_date))? 0 : 1,
                             "start_date" => Carbon::parse($calendar->start_date)->format('l jS \\of F Y'),
                             "start_time" => Carbon::parse($calendar->start_date)->format('g:i A')
                         ];
@@ -309,6 +312,7 @@ class Customer
                             "id" => $serviceAppointment->id,
                             "service_type" => $service->type,
                             "service_name" => $service->name_en,
+                            "upcoming"   => (Carbon::now() > Carbon::parse($calendar->start_date))? 0 : 1,
                             "start_date" => Carbon::parse($calendar->start_date)->format('l jS \\of F Y'),
                             "start_time" => Carbon::parse($calendar->start_date)->format('g:i A')
                         ];
@@ -319,6 +323,7 @@ class Customer
                             "id" => $serviceAppointment->id,
                             "service_type" => 4,
                             "service_name" => "Lap",
+                            "upcoming"   => (Carbon::now() > Carbon::parse($calendar->start_date))? 0 : 1,
                             "start_date" => Carbon::parse($calendar->start_date)->format('l jS \\of F Y'),
                             "start_time" => Carbon::parse($calendar->start_date)->format('g:i A')
                         ];
