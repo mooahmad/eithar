@@ -75,15 +75,15 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @if(!empty($booking_details))
-                                <tr>
-                                    <td> {{ $booking_details['id'] }} </td>
-                                    <td> {{ $booking_details['service_name'] }} </td>
-                                    <td> {{ $booking_details['start_date'] }} </td>
-                                    <td> {{ $booking_details['end_date'] }} </td>
-                                    <td class="hidden-xs"> {{ $booking_details['price'] }} {{ $booking_details['currency'] }} </td>
-                                </tr>
-                            @endif
+                        @if(!empty($booking_details))
+                            <tr>
+                                <td> {{ $booking_details['id'] }} </td>
+                                <td> {{ $booking_details['service_name'] }} </td>
+                                <td> {{ $booking_details['start_date'] }} </td>
+                                <td> {{ $booking_details['end_date'] }} </td>
+                                <td class="hidden-xs"> {{ $booking_details['price'] }} {{ $booking_details['currency'] }} </td>
+                            </tr>
+                        @endif
                         </tbody>
                     </table>
                 </div>
@@ -108,25 +108,25 @@
                                 <li>
                                     <strong>Assigned Provider:</strong> {{ $booking->assigned_provider->full_name }}
                                 </li>
-                                @else
+                            @else
                                 @if(!empty($providers))
                                     {!! Form::open(['method'=>'POST','url'=>'Administrator/meetings/'.$booking->id.'/assign-provider']) !!}
-                                            <label for="name" class="control-label">
-                                                Assign Provider To Meeting <span class="required"> * </span>
-                                            </label>
-                                            <div class="input-group">
-                                                <div class="input-icon">
-                                                    {!! Form::select('provider_id',$providers,'',['class'=>'form-control select2','required'=>'required']) !!}
-                                                </div>
-                                                <span class="input-group-btn">
+                                    <label for="name" class="control-label">
+                                        Assign Provider To Meeting <span class="required"> * </span>
+                                    </label>
+                                    <div class="input-group">
+                                        <div class="input-icon">
+                                            {!! Form::select('provider_id',$providers,'',['class'=>'form-control select2','required'=>'required']) !!}
+                                        </div>
+                                        <span class="input-group-btn">
                                                     <button class="btn btn-success" type="submit">
                                                         <i class="fa fa-user-md"></i> Assign
                                                     </button>
                                                 </span>
-                                            </div>
-                                            @if($errors->has('provider_id'))
-                                                <span class="help-block text-danger">{{ $errors->first('provider_id') }}</span>
-                                            @endif
+                                    </div>
+                                    @if($errors->has('provider_id'))
+                                        <span class="help-block text-danger">{{ $errors->first('provider_id') }}</span>
+                                    @endif
                                     {!! Form::close() !!}
                                 @endif
                             @endif
@@ -158,7 +158,7 @@
 @stop
 
 @section('script')
-{{--    <script src="{{ asset('public/assets/pages/scripts/ui-modals.min.js') }}" type="text/javascript"></script>--}}
+    {{--    <script src="{{ asset('public/assets/pages/scripts/ui-modals.min.js') }}" type="text/javascript"></script>--}}
 
     {{--<script src="{{ asset('public/js/custom/customerAppointmentsDataTable.js') }}" type="text/javascript"></script>--}}
 @stop

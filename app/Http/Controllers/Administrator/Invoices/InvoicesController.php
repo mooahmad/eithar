@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Administrator\Invoices;
 
+use App\Http\Controllers\Administrator\BookingServices\BookingServicesController;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
+use App\Models\Invoice;
 use App\Models\Invoices;
 use App\Models\Provider;
 use App\Models\Service;
+use App\Models\ServiceBooking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -25,9 +28,19 @@ class InvoicesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ServiceBooking $booking)
     {
-        //
+        return BookingServicesController::getBookingDetails($booking);
+//        check if this meeting has generated invoice
+        if (!$booking->invoice){
+//            Now Generate new invoice for this meeting
+            return $this->createNewInvoice($booking);
+        }
+        $data = [
+            'booking'=>$booking
+        ];
+        return view(AD . '.invoices.index')->with($data);
+        return $booking->invoice;
     }
 
     /**
@@ -54,59 +67,40 @@ class InvoicesController extends Controller
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function createNewInvoice($booking)
     {
-        //
+        if (!$booking) return null;
+        return auth()->user()->id;
+
+        $add = new Invoice();
+        $add->service_booking_id   = $booking->id;
+        $add->customer_id          = $booking->customer_id;
+//        login Provider ID
+        $add->provider_id          = auth()->user()->id;
+        $add->currency_id          = $booking->currency_id;
+
+//        $add->amount_original      = $booking->id;
+//        $add->amount_after_discount= $booking->id;
+//        $add->amount_after_vat     = $booking->id;
+//        $add->amount_final         = $booking->price;
+//        $add->payment_method       = $booking->id;
+//        $add->payment_transaction_number = $booking->id;
+//        $add->provider_comment     = $booking->comment;
+
+        $add->is_saudi_nationality = $booking->customer->is_saudi_nationality;
+        $add->invoice_code         = config('constants.invoice_code').$booking->id;
+        $add->admin_comment        = $booking->admin_comment;
+        $add->save();
+        return $add;
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function addItemsToInvoice($invoice)
     {
-        //
-    }
+        if (!$invoice) return null;
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        $promo_code = $invoice->booking_service->promo_code;
+//        calcPercentage
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

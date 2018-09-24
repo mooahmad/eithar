@@ -51,7 +51,7 @@ class BookingServicesController extends Controller
             'booking'=>$booking,
             'booking_details'=>$this->getBookingDetails($booking),
             'providers'=>Provider::GetActiveProviders()
-                ->where('is_doctor',0)->pluck('first_name_en','id')
+                ->where('is_doctor',0)->get()->pluck('full_name','id')
         ];
         return view(AD.'.meetings.show')->with($data);
     }
@@ -115,12 +115,14 @@ class BookingServicesController extends Controller
      * @param $booking
      * @return array|null
      */
-    private function getBookingDetails($booking){
+    public static function getBookingDetails($booking){
         if (!$booking) return null;
 
         $booking_details = [
             'id'=>$booking->id,
             'service_name'=>'',
+            'service_id'=>'',
+            'service_amount'=>'',
             'start_date'=>'',
             'end_date'=>'',
             'price'=>$booking->price,
@@ -130,29 +132,38 @@ class BookingServicesController extends Controller
 //        in case Provider
         if (!empty($booking->service) && $booking->service->type == 5){
             $provider_calendar = ProvidersCalendar::find($booking->service_appointments->first()->slot_id);
-            $booking_details['service_name'] = $booking->provider->full_name .' ('. $booking->service->type_desc.')';
-            $booking_details['start_date']   = $provider_calendar->start_date->format('Y-m-d h:i A');
-            $booking_details['end_date']     = $provider_calendar->end_date->format('Y-m-d h:i A');
+            $booking_details['service_name']    = $booking->provider->full_name .' ('. $booking->service->type_desc.')';
+            $booking_details['service_id']      = [$booking->provider->id => $booking->provider->full_name];
+            $booking_details['service_amount']  = $booking->provider->price;
+            $booking_details['start_date']      = $provider_calendar->start_date->format('Y-m-d h:i A');
+            $booking_details['end_date']        = $provider_calendar->end_date->format('Y-m-d h:i A');
         }
 
 //        in case Lap Service
         if (empty($booking->service) && $booking->is_lap==1){
             $lap_calendar = LapCalendar::find($booking->service_appointments->first()->slot_id);
             $lap_services = $booking->load('booking_lap_services.service')->booking_lap_services;
+            $total_amount = 0;
             foreach ($lap_services as $key=>$lap_service){
-                $booking_details['service_name'] .=  ( $key !== count( $lap_services ) -1 ) ? $lap_service->service->name_en .' & ' : $lap_service->service->name_en .' (Lab Service)';
+                $booking_details['service_name']   .=  ( $key !== count( $lap_services ) -1 ) ? $lap_service->service->name_en .' & ' : $lap_service->service->name_en .' (Lab Service)';
+                $total_amount += $lap_service->service->price;
+                $booking_details['service_id'] = $lap_service->service->price;
             }
 //            $booking_details['service_name'] = $booking->load('booking_lap_services.service')->booking_lap_services;
-            $booking_details['start_date']   = $lap_calendar->start_date->format('Y-m-d h:i A');
-            $booking_details['end_date']     = $lap_calendar->end_date->format('Y-m-d h:i A');
+            $booking_details['service_amount']  = $total_amount;
+            $booking_details['service_id']      = '';
+            $booking_details['start_date']      = $lap_calendar->start_date->format('Y-m-d h:i A');
+            $booking_details['end_date']        = $lap_calendar->end_date->format('Y-m-d h:i A');
         }
 
 //        in case one time visit and package
         if (!empty($booking->service) && ($booking->service->type == 1 || $booking->service->type == 2)){
             $package_oneTime_calendar = ServicesCalendar::find($booking->service_appointments->first()->slot_id);
-            $booking_details['service_name'] = $booking->service->name_en .' ('. $booking->service->type_desc.')';
-            $booking_details['start_date']   = $package_oneTime_calendar->start_date->format('Y-m-d h:i A');
-            $booking_details['end_date']     = $package_oneTime_calendar->end_date->format('Y-m-d h:i A');
+            $booking_details['service_name']    = $booking->service->name_en .' ('. $booking->service->type_desc.')';
+            $booking_details['service_id']      = [$booking->service->id => $booking->service->name_en];
+            $booking_details['service_amount']  = $booking->service->price;
+            $booking_details['start_date']      = $package_oneTime_calendar->start_date->format('Y-m-d h:i A');
+            $booking_details['end_date']        = $package_oneTime_calendar->end_date->format('Y-m-d h:i A');
 
         }
         return $booking_details;

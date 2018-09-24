@@ -85,4 +85,12 @@ class ServiceBooking extends Model
     {
         return $this->belongsTo(Provider::class,'provider_id_assigned_by_admin','id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function invoice()
+    {
+        return $this->hasOne(Invoice::class,'service_booking_id','id');
+    }
 }

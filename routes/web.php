@@ -155,16 +155,7 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => PRCN, 'prefix' => AD],
 
 Route::group(['middleware' => 'AdminAuth', 'prefix' => AD], function () {
     Route::group(['namespace' => INVN],function (){
-        Route::resource('invoices', 'InvoicesController',
-            ['names' => [
-                'index'   => 'Show Invoices',
-                'create'  => 'Create Invoice',
-                'show'    => 'Show Invoice',
-                'edit'    => 'Edit Invoice',
-                'destroy' => 'Delete Invoice'
-            ]]);
-//    Route::get('getpromocodesdatatable', 'PromoCodesController@getPromoCodesDataTable')->name('getPromoCodesDataTable');
-//    Route::post('deletepromocodes', 'PromoCodesController@deletePromoCodes')->name('deletePromoCodes');
+      Route::get('generate-invoice/{booking}', 'InvoicesController@index')->name('generate-invoice');
     });
 
     Route::group(['namespace' => CUSN],function (){

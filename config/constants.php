@@ -175,5 +175,6 @@ return [
         "medicalReportAdded" => 5,
         "invoiceGenerated" => 6,
         "addItemToInvoice" => 7
-    ]
+    ],
+    'invoice_code'=>'EitharInvoice#',
 ];
