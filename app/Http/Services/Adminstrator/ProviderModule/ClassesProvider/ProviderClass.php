@@ -138,7 +138,7 @@ class ProviderClass
                     new MessageBag([
                         "message" => trans('errors.errorUploadAvatar')
                     ]));
-            $isUploaded = Utilities::UploadImage($request->file($fileName), $path);
+            $isUploaded = Utilities::uploadFile($request->file($fileName), $path);
             if (!$isUploaded)
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
                     new MessageBag([
