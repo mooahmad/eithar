@@ -21,8 +21,8 @@
                             <thead>
                             <tr>
                                 <th>{{ trans('admin.id') }}</th>
-                                <th>{{ trans('admin.name_en') }}</th>
-                                <th>{{ trans('admin.name_ar') }}</th>
+                                <th>{{ trans('admin.is_general') }}</th>
+                                <th>{{ trans('admin.see_by_customer') }}</th>
                                 <th>{{ trans('admin.actions') }}</th>
                             </tr>
                             </thead>

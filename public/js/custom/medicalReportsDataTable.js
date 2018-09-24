@@ -49,8 +49,20 @@ function datatable() {
         },
         columns: [
             {data: 'id', name: 'medical_reports.id'},
-            {data: 'is_general', name: 'medical_reports.is_general'},
-            {data: 'is_published', name: 'medical_reports.is_published'},
+            {
+                data: 'is_general',
+                name: 'medical_reports.is_general',
+                render: function (data, type, full, meta) {
+                    return (data === 0)? 'no' : 'yes';
+                }
+            },
+            {
+                data: 'customer_can_view',
+                name: 'medical_reports.customer_can_view',
+                render: function (data, type, full, meta) {
+                    return (data === 0)? 'no' : 'yes';
+                }
+            },
             {
                 searchable: false,
                 orderable: false,
