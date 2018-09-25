@@ -10,6 +10,7 @@ use App\Http\Services\WebApi\CommonTraits\Likes;
 use App\Http\Services\WebApi\CommonTraits\Ratings;
 use App\Http\Services\WebApi\CommonTraits\Reviews;
 use App\Http\Services\WebApi\CommonTraits\Views;
+use App\Models\BookingMedicalReports;
 use App\Models\Currency;
 use App\Models\MedicalReports;
 use App\Models\ProvidersCalendar;
@@ -154,6 +155,29 @@ class Provider
             new MessageBag([
                 "reports" => $reports
             ]));
+    }
+
+    public function addBookingReport($request, $bookingId)
+    {
+        $medicalReportId = $request->input('medial_report_id');
+        $report = $request->file('report');
+        $filePath = Utilities::UploadFile($report, 'public/bookings/' . $bookingId . '/reports');
+        $bookingMedicalReport = new BookingMedicalReports();
+        $this->createUpdateMedicalReport($bookingMedicalReport, $bookingId, $medicalReportId, $report->getClientOriginalName(), $filePath);
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([]));
+    }
+
+    public function createUpdateMedicalReport($bookingMedicalReport, $bookingId, $medicalReportId, $originalName, $filePath)
+    {
+        $bookingMedicalReport->provider_id = Auth::id();
+        $bookingMedicalReport->service_booking_id = $bookingId;
+        $bookingMedicalReport->medical_report_id = $medicalReportId;
+        $bookingMedicalReport->original_name = $originalName;
+        $bookingMedicalReport->filled_file_path = $filePath;
+        $bookingMedicalReport->is_approved = 0;
+        $bookingMedicalReport->customer_can_view = 0;
+        return $bookingMedicalReport->save();
     }
 
 }

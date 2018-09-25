@@ -80,4 +80,9 @@ class CustomerStrategy
         return $this->strategy->getCustomerNotifications($request);
     }
 
+    public function getCustomerMedicalReports(Request $request)
+    {
+        return $this->strategy->getCustomerMedicalReports($request);
+    }
+
 }

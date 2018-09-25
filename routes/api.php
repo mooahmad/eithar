@@ -33,6 +33,7 @@ Route::middleware('auth:api')->group(function () {
         Route::get('getAppointments', 'CustomerController@getCustomerAppointments');
         Route::get('getAppointments/{id}/{servicetype}', 'CustomerController@getCustomerAppointment');
         Route::get('getNotifications', 'CustomerController@getCustomerNotifications');
+        Route::get('getMedicalReports', 'CustomerController@getCustomerMedicalReports');
     }));
 
     Route::group(['namespace' => 'WebApi\CategoriesModule', 'prefix' => 'categories'], (function () {
@@ -66,6 +67,7 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/{id}/review', 'ProviderController@review');
         Route::post('/{id}/view', 'ProviderController@view');
         Route::get('/bookings/{id}/reports', 'ProviderController@getBookingAvailableReports');
+        Route::post('/bookings/{id}/addreport', 'ProviderController@addBookingReport');
     }));
 
     Route::group(['namespace' => 'WebApi\PromoCodesModule', 'prefix' => 'promo_codes'], (function () {
