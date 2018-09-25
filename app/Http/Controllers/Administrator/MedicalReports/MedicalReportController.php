@@ -59,12 +59,15 @@ class MedicalReportController extends Controller
         $serviceId = $request->input('service', null);
         $isGeneral = $request->input('is_general', null);
         $customerCanView = $request->input('customer_can_view', null);
-        if ($isGeneral == 1)
-            $serviceId = null;
         $fileDirectory = 'public/services/' . $serviceId . '/reports';
+        if ($isGeneral == 1) {
+            $serviceId = null;
+            $fileDirectory = 'public/services/general/reports';
+        }
         $filePath = Utilities::UploadFile($request->file('report'), $fileDirectory);
+        $fileOriginalName = $request->file('report')->getClientOriginalName();
         $medicalReport = new MedicalReports();
-        MedicalReportClass::createOrUpdate($medicalReport, $serviceId, $isGeneral, 0, $customerCanView, $filePath);
+        MedicalReportClass::createOrUpdate($medicalReport, $serviceId, $isGeneral, 0, $customerCanView, $filePath, $fileOriginalName);
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/medical_reports');
     }
@@ -109,13 +112,18 @@ class MedicalReportController extends Controller
         $serviceId = $request->input('service', null);
         $isGeneral = $request->input('is_general', null);
         $customerCanView = $request->input('customer_can_view', null);
-        if ($isGeneral == 1)
-            $serviceId = null;
         $fileDirectory = 'public/services/' . $serviceId . '/reports';
+        if ($isGeneral == 1) {
+            $serviceId = null;
+            $fileDirectory = 'public/services/general/reports';
+        }
         $filePath = $medicalReport->file_path;
-        if ($request->hasFile('report'))
+        $fileOriginalName = $medicalReport->original_name;
+        if ($request->hasFile('report')) {
             $filePath = Utilities::UploadFile($request->file('report'), $fileDirectory);
-        MedicalReportClass::createOrUpdate($medicalReport, $serviceId, $isGeneral, 0, $customerCanView, $filePath);
+            $fileOriginalName = $request->file('report')->getClientOriginalName();
+        }
+        MedicalReportClass::createOrUpdate($medicalReport, $serviceId, $isGeneral, 0, $customerCanView, $filePath, $fileOriginalName);
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/medical_reports');
     }

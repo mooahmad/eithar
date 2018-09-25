@@ -12,13 +12,14 @@ use Illuminate\Support\MessageBag;
 class MedicalReportClass
 {
 
-    public static function createOrUpdate(MedicalReports $medicalReport, $serviceId, $isGeneral, $isPublished, $customerCanView, $filePath)
+    public static function createOrUpdate(MedicalReports $medicalReport, $serviceId, $isGeneral, $isPublished, $customerCanView, $filePath, $originalName)
     {
         $medicalReport->service_id = $serviceId;
         $medicalReport->user_id = Auth::id();
         $medicalReport->is_general = $isGeneral;
         $medicalReport->is_published = $isPublished;
         $medicalReport->customer_can_view = $customerCanView;
+        $medicalReport->original_name = $originalName;
         $medicalReport->file_path = $filePath;
         return $medicalReport->save();
     }

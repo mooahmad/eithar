@@ -24,6 +24,14 @@ class ProviderApi extends Provider
         return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
     }
 
+    public function getBookingAvailableReports($request, $bookingId)
+    {
+        $validationObject = parent::getBookingAvailableReports($request, $bookingId);
+        if ($validationObject->error == config('constants.responseStatus.success'))
+            return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
+    }
+
     public function unlikeProvider($request, $providerId)
     {
         $validationObject = parent::unlikeProvider($request, $providerId);

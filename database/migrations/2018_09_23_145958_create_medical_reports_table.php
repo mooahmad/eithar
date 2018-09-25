@@ -20,6 +20,7 @@ class CreateMedicalReportsTable extends Migration
             $table->Integer('is_general')->default(0)->nullable();
             $table->Integer('is_published')->default(0)->nullable();
             $table->Integer('customer_can_view')->default(0)->nullable();
+            $table->text('original_name')->nullable();
             $table->text('file_path')->nullable();
             $table->softDeletes();
             $table->timestamps();

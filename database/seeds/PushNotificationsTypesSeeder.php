@@ -19,8 +19,8 @@ class PushNotificationsTypesSeeder extends Seeder
                 'type' => $value,
                 'title_ar' => $key,
                 'title_en' => $key,
-                'desc_ar' => '',
-                'desc_en' => '',
+                'desc_ar' => 'This is a default message',
+                'desc_en' => 'This is a default message',
                 'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             ];
         DB::table('push_notifications_types')->insert($data);
