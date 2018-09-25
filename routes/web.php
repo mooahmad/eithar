@@ -14,6 +14,7 @@ define('INVN', 'Administrator\Invoices');
 define('CUSN', 'Administrator\Customers');
 define('BSN', 'Administrator\BookingServices');
 define('MRP', 'Administrator\MedicalReports');
+define('SET', 'Administrator\Settings');
 
 //Frontend Routes
 Route::group(['namespace' => FE], function () {
@@ -152,6 +153,17 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => PRCN, 'prefix' => AD],
         ]]);
     Route::get('getpromocodesdatatable', 'PromoCodesController@getPromoCodesDataTable')->name('getPromoCodesDataTable');
     Route::post('deletepromocodes', 'PromoCodesController@deletePromoCodes')->name('deletePromoCodes');
+});
+
+Route::group(['middleware' => 'AdminAuth', 'namespace' => SET, 'prefix' => AD], function () {
+    Route::resource('settings', 'SettingsController',
+        ['names' => [
+            'index'   => 'show settings',
+            'create'  => 'create settings',
+            'show'    => 'show settings',
+            'edit'    => 'edit settings',
+            'destroy' => 'delete settings'
+        ]]);
 });
 
 Route::group(['middleware' => 'AdminAuth', 'namespace' => MRP, 'prefix' => AD], function () {

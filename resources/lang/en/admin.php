@@ -196,4 +196,9 @@ return [
     'select_report' => 'Select report',
     'customer_can_view' => 'Customer can view',
     'see_by_customer' => 'Customer can see',
+    'settings' => 'Settings',
+    'mobile_number' => 'Mobile number',
+    'whats_app_number' => 'What\'s app number',
+    'customer_banner_path' => 'Customer app banner',
+
 ];

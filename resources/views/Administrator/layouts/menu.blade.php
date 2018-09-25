@@ -242,7 +242,7 @@
         <!-- End Customers Area -->
 
             <!-- Start Invoices Area -->
-{{--            @can('promo_code.view', new \App\Models\PromoCode())--}}
+            {{--            @can('promo_code.view', new \App\Models\PromoCode())--}}
 
             @can('promo_code.view', new \App\Models\PromoCode())
 
@@ -269,41 +269,41 @@
                     </ul>
                 </li>
 
-            {{--@endcan--}}
+                {{--@endcan--}}
             <!-- End Invoices Area -->
 
-            <!-- Start Booking Services Area -->
-            {{--            @can('promo_code.view', new \App\Models\PromoCode())--}}
-            <li class="nav-item start {{ (Request::segment(2)=='meetings') ? 'active' :'' }}">
-                <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="fa fa-calendar"></i>
-                    <span class="title">{{ trans('admin.booking_services') }}</span>
-                    <span class="selected"></span>
-                    <span class="arrow {{ (Request::segment(2)=='meetings') ? 'open' :'' }}"></span>
-                </a>
-                <ul class="sub-menu">
-                    <li class="nav-item start {{ (Request::is(AD.'/meetings/canceled')) ? 'active' :'' }}">
-                        <a href="{{ url(AD.'/meetings/canceled') }}" class="nav-link ">
-                            <i class="fa fa-eye"></i>
-                            <span class="title">{{ trans('admin.canceled_meetings') }}</span>
-                        </a>
-                    </li>
-                    <li class="nav-item start {{ (Request::is(AD.'/meetings/inprogress')) ? 'active' :'' }}">
-                        <a href="{{ url(AD.'/meetings/inprogress') }}" class="nav-link ">
-                            <i class="fa fa-eye"></i>
-                            <span class="title">{{ trans('admin.inprogress_meetings') }}</span>
-                        </a>
-                    </li>
-                    <li class="nav-item start {{ (Request::is(AD.'/meetings/confirmed')) ? 'active' :'' }}">
-                        <a href="{{ url(AD.'/meetings/confirmed') }}" class="nav-link ">
-                            <i class="fa fa-eye"></i>
-                            <span class="title">{{ trans('admin.confirmed_meetings') }}</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        {{--@endcan--}}
-        <!-- End Booking Services Area -->
+                <!-- Start Booking Services Area -->
+                {{--            @can('promo_code.view', new \App\Models\PromoCode())--}}
+                <li class="nav-item start {{ (Request::segment(2)=='meetings') ? 'active' :'' }}">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-calendar"></i>
+                        <span class="title">{{ trans('admin.booking_services') }}</span>
+                        <span class="selected"></span>
+                        <span class="arrow {{ (Request::segment(2)=='meetings') ? 'open' :'' }}"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item start {{ (Request::is(AD.'/meetings/canceled')) ? 'active' :'' }}">
+                            <a href="{{ url(AD.'/meetings/canceled') }}" class="nav-link ">
+                                <i class="fa fa-eye"></i>
+                                <span class="title">{{ trans('admin.canceled_meetings') }}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item start {{ (Request::is(AD.'/meetings/inprogress')) ? 'active' :'' }}">
+                            <a href="{{ url(AD.'/meetings/inprogress') }}" class="nav-link ">
+                                <i class="fa fa-eye"></i>
+                                <span class="title">{{ trans('admin.inprogress_meetings') }}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item start {{ (Request::is(AD.'/meetings/confirmed')) ? 'active' :'' }}">
+                            <a href="{{ url(AD.'/meetings/confirmed') }}" class="nav-link ">
+                                <i class="fa fa-eye"></i>
+                                <span class="title">{{ trans('admin.confirmed_meetings') }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {{--@endcan--}}
+            <!-- End Booking Services Area -->
 
             @endcan
         <!-- End Invoices Area -->
@@ -331,9 +331,28 @@
                         </li>
                     </ul>
                 </li>
+            @endcan
+        <!-- End Medical reports Area -->
+            <!-- Start Medical reports Area -->
+            @can('settings.view', new \App\Models\Settings())
+                <li class="nav-item start {{ (Request::segment(2)=='settings') ? 'active' :'' }}">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-user-secret"></i>
+                        <span class="title">{{ trans('admin.settings') }}</span>
+                        <span class="selected"></span>
+                        <span class="arrow {{ (Request::segment(2)=='settings') ? 'open' :'' }}"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item start {{ (Request::is(AD.'/settings')) ? 'active' :'' }}">
+                            <a href="{{ url(AD.'/settings/1/edit') }}" class="nav-link ">
+                                <i class="fa fa-eye"></i>
+                                <span class="title">{{ trans('admin.settings') }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
         @endcan
         <!-- End Medical reports Area -->
-
         </ul>
         <!-- END SIDEBAR MENU -->
     </div>
