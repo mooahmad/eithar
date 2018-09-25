@@ -88,6 +88,14 @@ class ServiceBooking extends Model
 
     public function medicalReports()
     {
-        return $this->hasMany(BookingMedicalReports::class,'service_booking_id','id');
+        return $this->hasMany(BookingMedicalReports::class, 'service_booking_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function invoice()
+    {
+        return $this->hasOne(Invoice::class,'service_booking_id','id');
     }
 }

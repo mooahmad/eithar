@@ -181,16 +181,11 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => MRP, 'prefix' => AD], 
 
 Route::group(['middleware' => 'AdminAuth', 'prefix' => AD], function () {
     Route::group(['namespace' => INVN],function (){
-        Route::resource('invoices', 'InvoicesController',
-            ['names' => [
-                'index'   => 'Show Invoices',
-                'create'  => 'Create Invoice',
-                'show'    => 'Show Invoice',
-                'edit'    => 'Edit Invoice',
-                'destroy' => 'Delete Invoice'
-            ]]);
-//    Route::get('getpromocodesdatatable', 'PromoCodesController@getPromoCodesDataTable')->name('getPromoCodesDataTable');
-//    Route::post('deletepromocodes', 'PromoCodesController@deletePromoCodes')->name('deletePromoCodes');
+      Route::get('generate-invoice/{booking}', 'InvoicesController@index')->name('generate-invoice');
+      Route::post('invoice-add-item', 'InvoicesController@addItemToInvoice')->name('add-item-to-invoice');
+      Route::post('invoice-delete-item', 'InvoicesController@deleteItemToInvoice')->name('delete-item-to-invoice');
+      Route::get('invoice-pay/{invoice}', 'InvoicesController@showPayInvoice')->name('show-pay-invoice');
+      Route::post('invoice-pay', 'InvoicesController@storePayInvoice')->name('store-pay-invoice');
     });
 
     Route::group(['namespace' => CUSN],function (){
