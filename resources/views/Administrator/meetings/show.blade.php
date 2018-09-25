@@ -148,7 +148,7 @@
                     <a class="btn btn-lg blue hidden-print margin-bottom-5" onclick="javascript:window.print();"> Print
                         <i class="fa fa-print"></i>
                     </a>
-                    <a class="btn btn-lg green hidden-print margin-bottom-5"> Generate Invoice
+                    <a class="btn btn-lg green hidden-print margin-bottom-5" href="{{ route('generate-invoice',['booking'=>$booking->id]) }}"> Generate Invoice
                         <i class="fa fa-check"></i>
                     </a>
                 </div>
