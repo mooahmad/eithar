@@ -177,4 +177,10 @@ return [
         "addItemToInvoice" => 7
     ],
     'invoice_code'=>'EitharInvoice#',
+    'payment_methods'=>[
+        1 =>'Cash',
+        2 =>'Credit Card',
+        3 =>'Debit Card',
+        4 =>'Mada',
+    ]
 ];

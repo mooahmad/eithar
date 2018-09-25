@@ -22,6 +22,14 @@ class InvoiceItems extends Model
     ];
 
     /**
+     * @return mixed
+     */
+    public function scopePendingItems()
+    {
+        return $this->where('status',1);
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function invoice()

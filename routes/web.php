@@ -158,6 +158,8 @@ Route::group(['middleware' => 'AdminAuth', 'prefix' => AD], function () {
       Route::get('generate-invoice/{booking}', 'InvoicesController@index')->name('generate-invoice');
       Route::post('invoice-add-item', 'InvoicesController@addItemToInvoice')->name('add-item-to-invoice');
       Route::post('invoice-delete-item', 'InvoicesController@deleteItemToInvoice')->name('delete-item-to-invoice');
+      Route::get('invoice-pay/{invoice}', 'InvoicesController@showPayInvoice')->name('show-pay-invoice');
+      Route::post('invoice-pay', 'InvoicesController@storePayInvoice')->name('store-pay-invoice');
     });
 
     Route::group(['namespace' => CUSN],function (){

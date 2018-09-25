@@ -7,6 +7,7 @@ use App\Http\Controllers\Administrator\BookingServices\BookingServicesController
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Invoice\AddItemToInvoiceRequest;
 use App\Http\Requests\Invoice\DeleteItemFromInvoiceRequest;
+use App\Http\Requests\Invoice\PayInvoiceRequest;
 use App\Models\Customer;
 use App\Models\Invoice;
 use App\Models\InvoiceItems;
@@ -98,6 +99,55 @@ class InvoicesController extends Controller
         return redirect()->route('generate-invoice',['booking'=>$updated_invoice->booking_service->id]);
     }
 
+    /**
+     * @param Invoice $invoice
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
+    public function showPayInvoice(Invoice $invoice)
+    {
+        if ($this->checkInvoiceItemsStatus($invoice)){
+            session()->flash('error_msg', trans('admin.invoice_items_pending'));
+            return redirect()->route('generate-invoice',['booking'=>$invoice->booking_service->id]);
+        }
+
+        $data = [
+            'form_data'=>$invoice,
+            'payment_methods'=>config('constants.payment_methods'),
+            'formRoute'=>route('store-pay-invoice'),
+            'submitBtn'=>trans('admin.save')
+        ];
+        return view(AD . '.invoices.form_pay')->with($data);
+    }
+
+    /**
+     * @param PayInvoiceRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function storePayInvoice(PayInvoiceRequest $request)
+    {
+//        Now update invoice to be paid
+        $invoice = Invoice::findOrFail($request->input('invoice_id'));
+        $invoice->update([
+           'is_paid'=>1,
+           'payment_method'=>$request->input('payment_method'),
+           'payment_transaction_number'=>$request->input('payment_transaction_number'),
+           'provider_comment'=>$request->input('provider_comment'),
+        ]);
+
+        session()->flash('success_msg', trans('admin.success_message'));
+        return redirect()->route('generate-invoice',['booking'=>$invoice->booking_service->id]);
+    }
+
+    /**
+     * @param $invoice
+     * @param int $status
+     * @return bool
+     */
+    public function checkInvoiceItemsStatus($invoice,$status=1)
+    {
+        if (count($invoice->items->where('status',$status))) return true;
+        return false;
+    }
     /**
      * @param $booking
      * @return Invoice|null

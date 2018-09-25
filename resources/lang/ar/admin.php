@@ -187,4 +187,9 @@ return [
     'Lap' => 'Lap',
     'add_calendar' => 'Add calendar',
     'show_calendar' => 'Show calendar',
+    'invoice_items_pending' => 'Please confirm all item in this invoice or delete them',
+    'invoice-pay'=>'Pay Invoice',
+    'payment_method'=>'Payment Method',
+    'payment_transaction_number'=>'Payment Transaction Number',
+    'provider_comment'=>'Provider Comment',
 ];

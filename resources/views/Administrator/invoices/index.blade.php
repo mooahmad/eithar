@@ -166,7 +166,7 @@
                                 Paid <i class="fa fa-check"></i>
                             </a>
                         @else
-                            <a class="btn btn-lg green hidden-print margin-bottom-5" href="{{ route('generate-invoice',['booking'=>$invoice->id]) }}">
+                            <a class="btn btn-lg green hidden-print margin-bottom-5" href="{{ route('show-pay-invoice',['invoice'=>$invoice->id]) }}">
                                 Pay Invoice <i class="fa fa-check"></i>
                             </a>
                     @endif
