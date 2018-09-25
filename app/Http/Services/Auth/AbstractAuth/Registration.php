@@ -9,6 +9,7 @@ use App\Http\Services\Auth\IAuth\IRegistration;
 use App\Http\Services\WebApi\ClassesUsers\CustomerFamilyCrudStrategy;
 use App\Mail\Auth\VerifyEmailCode;
 use App\Models\Customer;
+use App\Models\Settings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -29,34 +30,39 @@ class Registration implements IRegistration
             return Utilities::getValidationError(config('constants.responseStatus.missingInput'), $isVerified->errors());
         // create customer on database
         $newCustomer = new Customer();
-        if(Auth::check())
+        if (Auth::check())
             $newCustomer = Customer::find(Auth::user()->id);
         $newCustomer = $customerInstance->updateORCreateCustomer($newCustomer, $request);
         if (!$newCustomer->save())
             return Utilities::getValidationError(config('constants.responseStatus.operationFailed'),
-                                                 new MessageBag([
-                                                                    "message" => trans('errors.operationFailed')
-                                                                ]));
+                new MessageBag([
+                    "message" => trans('errors.operationFailed')
+                ]));
         $customerOperations = new \App\Http\Services\WebApi\UsersModule\AbstractUsers\Customer();
         $customerOperations->updateCustomerToken($newCustomer, $request);
         // uploading customer avatar
         $validationObject = $customerInstance->uploadCustomerAvatar($request, 'avatar', $newCustomer);
         if ($validationObject->error != config('constants.responseStatus.success'))
             return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
-                                                 new MessageBag([
-                                                                    "message" => trans('errors.errorUploadAvatar')
-                                                                ]));
+                new MessageBag([
+                    "message" => trans('errors.errorUploadAvatar')
+                ]));
         // uploading customer national id image
         $validationObject = $customerInstance->uploadCustomerNationalIDImage($request, 'nationality_id_picture', $newCustomer);
         if ($validationObject->error != config('constants.responseStatus.success'))
             return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
-                                                 new MessageBag([
-                                                                    "message" => trans('errors.errorUploadNationalID')
-                                                                ]));
+                new MessageBag([
+                    "message" => trans('errors.errorUploadNationalID')
+                ]));
+        $settings = Settings::find(1);
         $customer = Customer::find($newCustomer->id);
         $customerData = clone $customer;
         $customerData = ApiHelpers::getCustomerImages($customerData);
-        if(!Auth::check())
+        $customerData->company_number = $settings->mobile_number;
+        $customerData->company_whats_app_number = $settings->whats_app_number;
+        $customerData->company_customer_banner = Utilities::getFileUrl($settings->customer_banner_path);
+        $customerData->notifications_count = $customer->unreadnotifications->count();
+        if (!Auth::check())
             $customerData = ApiHelpers::getCustomerWithToken($customerData);
         Utilities::forgetModelItems($customerData, [
             'registration_source',
@@ -64,12 +70,12 @@ class Registration implements IRegistration
             'birthdate'
         ]);
         $customerInstance->updateLastLoginDate($customer);
-        if(!Auth::check())
-        Mail::to($customer->email)->send(new VerifyEmailCode($customer));
+        if (!Auth::check())
+            Mail::to($customer->email)->send(new VerifyEmailCode($customer));
         return Utilities::getValidationError(config('constants.responseStatus.success'),
-                                             new MessageBag([
-                                                                "user" => $customerData
-                                                            ]));
+            new MessageBag([
+                "user" => $customerData
+            ]));
     }
 
 }

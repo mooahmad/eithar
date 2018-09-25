@@ -86,7 +86,7 @@ abstract class CustomerFamilyCrud implements ICustomerFamilyCrud
                                                      new MessageBag([
                                                                         "message" => trans('errors.errorUploadMember')
                                                                     ]));
-            Utilities::DeleteImage($member->profile_picture_path);
+            Utilities::DeleteFile($member->profile_picture_path);
             $member->profile_picture_path = $isUploaded;
             if (!$member->save())
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),

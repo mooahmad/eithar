@@ -195,7 +195,7 @@ class ServicesController extends Controller
                         $addCalendarURL = url(AD . '/services/' . $service->id . '/calendar/create');
                     }
                     return View::make('Administrator.services.widgets.dataTableQuestionnaireAction', ['editURL' => $editURL, 'questionnaireURL' => $questionnaireURL, 'addQuestionnaireURL' => $addQuestionnaireURL, "calendarURL" => $calendarURL, "addCalendarURL" => $addCalendarURL]);
-                }else{
+                } else {
                     return View::make('Administrator.services.widgets.dataTableQuestionnaireAction', ['editURL' => $editURL]);
                 }
             })
@@ -229,7 +229,12 @@ class ServicesController extends Controller
         $serviceType = "";
         if ($service)
             $serviceType = $service->type;
-        if ($category->category_parent_id == config('constants.categories.Doctor')) {
+        if ($categoryId == 0) {
+            unset($allTypes[1]);
+            unset($allTypes[2]);
+            unset($allTypes[4]);
+            unset($allTypes[5]);
+        } elseif ($category->category_parent_id == config('constants.categories.Doctor')) {
             unset($allTypes[1]);
             unset($allTypes[2]);
             unset($allTypes[3]);
@@ -281,17 +286,17 @@ class ServicesController extends Controller
 
     public function storeServiceQuestionnaire(CreateQuestionaireRequest $request, $serviceId)
     {
-        $serviceId = ($serviceId == "lap")? null : $serviceId;
+        $serviceId = ($serviceId == "lap") ? null : $serviceId;
         $questionnaire = new Questionnaire();
         ServiceClass::createOrUpdateQuestionnaire($questionnaire, $request, $serviceId);
         session()->flash('success_msg', trans('admin.success_message'));
-        $serviceId = ($serviceId == null)? "lap" : $serviceId;
+        $serviceId = ($serviceId == null) ? "lap" : $serviceId;
         return redirect(AD . '/services/' . $serviceId . '/questionnaire');
     }
 
     public function editServiceQuestionnaire(Request $request, $serviceId, $questionnaireId)
     {
-        $serviceId = ($serviceId == "lap")? null : $serviceId;
+        $serviceId = ($serviceId == "lap") ? null : $serviceId;
         $pages = range(0, config('constants.max_questionnaire_pages'));
         unset($pages[0]);
         $unAvailablePages = Questionnaire::where('service_id', $serviceId)
@@ -299,7 +304,7 @@ class ServicesController extends Controller
             ->havingRaw('count(pagination) >= ' . config('constants.max_questionnaire_per_page'))
             ->pluck('pagination')->toArray();
         $questionnaire = Questionnaire::find($questionnaireId);
-        $serviceId = ($serviceId == null)? "lap" : $serviceId;
+        $serviceId = ($serviceId == null) ? "lap" : $serviceId;
         $data = [
             'serviceId' => $serviceId,
             'pages' => $pages,
@@ -313,21 +318,21 @@ class ServicesController extends Controller
 
     public function updateServiceQuestionnaire(UpdateQuestionnaireRequest $request, $serviceId, $questionnaireId)
     {
-        $serviceId = ($serviceId == "lap")? null : $serviceId;
+        $serviceId = ($serviceId == "lap") ? null : $serviceId;
         $questionnaire = Questionnaire::find($questionnaireId);
         ServiceClass::createOrUpdateQuestionnaire($questionnaire, $request, $serviceId);
         session()->flash('success_msg', trans('admin.success_message'));
-        $serviceId = ($serviceId == null)? "lap" : $serviceId;
+        $serviceId = ($serviceId == null) ? "lap" : $serviceId;
         return redirect(AD . '/services/' . $serviceId . '/questionnaire');
     }
 
     public function getQuestionnaireDatatable($id)
     {
-        $id = ($id == "lap")? null : $id;
+        $id = ($id == "lap") ? null : $id;
         $questionnaire = Questionnaire::where('service_id', $id);
         $dataTable = DataTables::of($questionnaire)
             ->addColumn('actions', function ($questionnaire) use ($id) {
-                $id = ($id == null)? "lap" : $id;
+                $id = ($id == null) ? "lap" : $id;
                 $editURL = url(AD . '/services/' . $id . '/questionnaire/' . $questionnaire->id . '/edit');
                 return View::make('Administrator.widgets.dataTablesActions', ['editURL' => $editURL]);
             })
@@ -347,7 +352,7 @@ class ServicesController extends Controller
 
     public function getAvailablePageOrders(Request $request, $serviceId, $page)
     {
-        $serviceId = ($serviceId == "lap")? null : $serviceId;
+        $serviceId = ($serviceId == "lap") ? null : $serviceId;
         $ordersCount = range(0, config('constants.max_questionnaire_per_page'));
         unset($ordersCount[0]);
         $unAvailableOrders = Questionnaire::where([['service_id', $serviceId], ['pagination', $page]])
@@ -406,7 +411,7 @@ class ServicesController extends Controller
             "thursday" => "thursday", "friday" => "friday"];
         $times = Utilities::GenerateHours();
         $maxSelect = 7;
-        if($service->type == 2)
+        if ($service->type == 2)
             $maxSelect = $service->visits_per_week;
         $data = [
             'times' => $times,
@@ -431,7 +436,7 @@ class ServicesController extends Controller
         $allDates = [];
         $message["invalid"] = [];
         $message["valid"] = [];
-        $numberOfWeeks = ($numberOfWeeks == null)? ceil($service->no_of_visits/count($selectedDays)): $numberOfWeeks;
+        $numberOfWeeks = ($numberOfWeeks == null) ? ceil($service->no_of_visits / count($selectedDays)) : $numberOfWeeks;
         foreach ($selectedDays as $selectedDay) {
             $allDates = array_merge($allDates, Utilities::getDayDatesOfWeeks($selectedDay, $numberOfWeeks));
         }
@@ -554,7 +559,7 @@ class ServicesController extends Controller
         $numberOfWeeks = $request->input('number_of_weeks');
         $startTime = $request->input('start_time');
         $endTime = $request->input('end_time');
-        $cityId  = $request->input('city_id');
+        $cityId = $request->input('city_id');
         $allDates = [];
         $message["invalid"] = [];
         $message["valid"] = [];

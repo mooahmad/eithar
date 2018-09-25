@@ -54,7 +54,7 @@ class Customer
                     new MessageBag([
                         "message" => trans('errors.errorUploadAvatar')
                     ]));
-            Utilities::DeleteImage($customer->profile_picture_path);
+            Utilities::DeleteFile($customer->profile_picture_path);
             $customer->profile_picture_path = $isUploaded;
             if (!$customer->save())
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
@@ -86,7 +86,7 @@ class Customer
                     new MessageBag([
                         "message" => trans('errors.errorUploadNationalID')
                     ]));
-            Utilities::DeleteImage($customer->nationality_id_picture);
+            Utilities::DeleteFile($customer->nationality_id_picture);
             $customer->nationality_id_picture = $isUploaded;
             if (!$customer->save())
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
@@ -157,7 +157,7 @@ class Customer
 
     public function updateCustomerToken(CustomerModel $customer, Request $request)
     {
-        if($customer->pushNotification)
+        if ($customer->pushNotification)
             $customer->pushNotification->delete();
         $pushNotification = new PushNotification();
         $pushNotification->customer_id = $customer->id;
@@ -279,7 +279,7 @@ class Customer
     public function getCustomerAppointments(Request $request)
     {
         $appointments = [];
-        $servicesBookings = Auth::user()->load(['servicesBooking.service_appointments' => function ($query){
+        $servicesBookings = Auth::user()->load(['servicesBooking.service_appointments' => function ($query) {
             $query->orderByRaw('service_booking_appointments.id DESC');
         }])->servicesBooking;
         foreach ($servicesBookings as $servicesBooking) {
@@ -297,36 +297,54 @@ class Customer
                     //provider
                     if ($service->type == 5) {
                         $calendar = ProvidersCalendar::find($serviceAppointment->slot_id);
+                        $startDate = $startTime = $upComming = "Unknown";
+                        if ($calendar) {
+                            $upComming = (Carbon::now() > Carbon::parse($calendar->start_date)) ? 0 : 1;
+                            $startDate = Carbon::parse($calendar->start_date)->format('l jS \\of F Y');
+                            $startTime = Carbon::parse($calendar->start_date)->format('g:i A');
+                        }
                         $payLoad = [
                             "id" => $serviceAppointment->id,
                             "service_type" => $service->type,
                             "service_name" => $service->name_en,
-                            "upcoming"   => (Carbon::now() > Carbon::parse($calendar->start_date))? 0 : 1,
-                            "start_date" => Carbon::parse($calendar->start_date)->format('l jS \\of F Y'),
-                            "start_time" => Carbon::parse($calendar->start_date)->format('g:i A')
+                            "upcoming" => $upComming,
+                            "start_date" => $startDate,
+                            "start_time" => $startTime
                         ];
                         //one and package
                     } elseif ($service->type == 1 || $service->type == 2) {
                         $calendar = ServicesCalendar::find($serviceAppointment->slot_id);
+                        $startDate = $startTime = $upComming = "Unknown";
+                        if ($calendar) {
+                            $upComming = (Carbon::now() > Carbon::parse($calendar->start_date)) ? 0 : 1;
+                            $startDate = Carbon::parse($calendar->start_date)->format('l jS \\of F Y');
+                            $startTime = Carbon::parse($calendar->start_date)->format('g:i A');
+                        }
                         $payLoad = [
                             "id" => $serviceAppointment->id,
                             "service_type" => $service->type,
                             "service_name" => $service->name_en,
-                            "upcoming"   => (Carbon::now() > Carbon::parse($calendar->start_date))? 0 : 1,
-                            "start_date" => Carbon::parse($calendar->start_date)->format('l jS \\of F Y'),
-                            "start_time" => Carbon::parse($calendar->start_date)->format('g:i A')
+                            "upcoming" => $upComming,
+                            "start_date" => $startDate,
+                            "start_time" => $startTime
                         ];
                     }
                 } elseif ($serviceBookingLaps != null) {
                     $calendar = LapCalendar::find($serviceAppointment->slot_id);
-                        $payLoad = [
-                            "id" => $serviceAppointment->id,
-                            "service_type" => 4,
-                            "service_name" => "Lap",
-                            "upcoming"   => (Carbon::now() > Carbon::parse($calendar->start_date))? 0 : 1,
-                            "start_date" => Carbon::parse($calendar->start_date)->format('l jS \\of F Y'),
-                            "start_time" => Carbon::parse($calendar->start_date)->format('g:i A')
-                        ];
+                    $startDate = $startTime = $upComming = "Unknown";
+                    if ($calendar) {
+                        $upComming = (Carbon::now() > Carbon::parse($calendar->start_date)) ? 0 : 1;
+                        $startDate = Carbon::parse($calendar->start_date)->format('l jS \\of F Y');
+                        $startTime = Carbon::parse($calendar->start_date)->format('g:i A');
+                    }
+                    $payLoad = [
+                        "id" => $serviceAppointment->id,
+                        "service_type" => 4,
+                        "service_name" => "Lap",
+                        "upcoming" => $upComming,
+                        "start_date" => $startDate,
+                        "start_time" => $startTime
+                    ];
                 }
                 $appointments[] = $payLoad;
             }
@@ -409,6 +427,7 @@ class Customer
             $data->description = $notificationData->{'desc_' . App::getLocale()};
             $data->notification_type = $notificationData->notification_type;
             $data->related_id = $notificationData->related_id;
+            $data->is_read = ($notification->read_at != null) ? 1 : 0;
             array_push($returnNotifications, $data);
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([

@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
              CitiesSeeder::class,
              CurrenciesSeeder::class,
              PushNotificationsTypesSeeder::class,
+             SettingsSeeder::class,
          ]);
     }
 }
