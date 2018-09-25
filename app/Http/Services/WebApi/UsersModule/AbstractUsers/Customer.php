@@ -297,7 +297,8 @@ class Customer
                     //provider
                     if ($service->type == 5) {
                         $calendar = ProvidersCalendar::find($serviceAppointment->slot_id);
-                        $startDate = $startTime = $upComming = "Unknown";
+                        $startDate = $startTime = "Unknown";
+                        $upComming = 0;
                         if ($calendar) {
                             $upComming = (Carbon::now() > Carbon::parse($calendar->start_date)) ? 0 : 1;
                             $startDate = Carbon::parse($calendar->start_date)->format('l jS \\of F Y');
@@ -314,7 +315,8 @@ class Customer
                         //one and package
                     } elseif ($service->type == 1 || $service->type == 2) {
                         $calendar = ServicesCalendar::find($serviceAppointment->slot_id);
-                        $startDate = $startTime = $upComming = "Unknown";
+                        $startDate = $startTime = "Unknown";
+                        $upComming = 0;
                         if ($calendar) {
                             $upComming = (Carbon::now() > Carbon::parse($calendar->start_date)) ? 0 : 1;
                             $startDate = Carbon::parse($calendar->start_date)->format('l jS \\of F Y');
@@ -331,7 +333,8 @@ class Customer
                     }
                 } elseif ($serviceBookingLaps != null) {
                     $calendar = LapCalendar::find($serviceAppointment->slot_id);
-                    $startDate = $startTime = $upComming = "Unknown";
+                    $startDate = $startTime = "Unknown";
+                    $upComming = 0;
                     if ($calendar) {
                         $upComming = (Carbon::now() > Carbon::parse($calendar->start_date)) ? 0 : 1;
                         $startDate = Carbon::parse($calendar->start_date)->format('l jS \\of F Y');
