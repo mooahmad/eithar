@@ -156,6 +156,8 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => PRCN, 'prefix' => AD],
 Route::group(['middleware' => 'AdminAuth', 'prefix' => AD], function () {
     Route::group(['namespace' => INVN],function (){
       Route::get('generate-invoice/{booking}', 'InvoicesController@index')->name('generate-invoice');
+      Route::post('invoice-add-item', 'InvoicesController@addItemToInvoice')->name('add-item-to-invoice');
+      Route::post('invoice-delete-item', 'InvoicesController@deleteItemToInvoice')->name('delete-item-to-invoice');
     });
 
     Route::group(['namespace' => CUSN],function (){

@@ -6,129 +6,135 @@
 
 @section('content')
 
-    @if(!empty($booking))
+    @if(!empty($invoice))
         <div class="invoice">
             <div class="row invoice-logo">
                 <div class="col-xs-6 invoice-logo-space">
-                    {{--<img src="{{ \App\Helpers\Utilities::getFileUrl($meetings->customer->image) }}" class="img-responsive" alt="" /> </div>--}}
                     <img src="{{ asset('public/assets/layouts/layout/img/logo.png') }}" class="img-responsive" alt="" /> </div>
                 <div class="col-xs-6">
-                    <p> #{{ $booking->id }} / {{ $booking->created_at->format('l j F Y h:i A') }}
-                        <strong class="text-info">{{ $booking->status_desc }}</strong>
+                    <p> #{{ $invoice->invoice_code }} / {{ $invoice->invoice_date->format('l j F Y h:i A') }}
+{{--                        <strong class="text-info">{{ $invoice->status_desc }}</strong>--}}
                     </p>
                 </div>
             </div>
             <hr/>
             <div class="row">
-                @if(!empty($booking->customer))
-                    <div class="col-xs-4">
+                @if(!empty($invoice->customer))
+                    <div class="col-xs-6">
                         <h3>Customer Details:</h3>
                         <ul class="list-unstyled">
-                            <li> {{ $booking->customer->full_name }} </li>
-                            <li> {{ $booking->customer->national_id }} </li>
-                            <li> {{ $booking->customer->mobile_number }} </li>
-                            <li> {{ $booking->customer->email }} </li>
-                            <li> {{ $booking->customer->address }} </li>
-                            <li> {{ ($booking->customer->country) ? $booking->customer->country->country_name_eng : '' }}  - {{ ($booking->customer->city) ? $booking->customer->city->city_name_eng : '' }}</li>
+                            <li> {{ $invoice->customer->full_name }} </li>
+                            <li> {{ $invoice->customer->national_id }} </li>
+                            <li> {{ $invoice->customer->mobile_number }} </li>
+                            <li> {{ $invoice->customer->email }} </li>
+                            <li> {{ $invoice->customer->address }} </li>
+                            <li> {{ ($invoice->customer->country) ? $invoice->customer->country->country_name_eng : '' }}  - {{ ($invoice->customer->city) ? $invoice->customer->city->city_name_eng : '' }}</li>
                         </ul>
                     </div>
                 @endif
 
-                @if(!empty($booking->family_member))
-                    <div class="col-xs-4">
-                        <h3>Family Member:</h3>
-                        <ul class="list-unstyled">
-                            <li> {{ $booking->family_member->full_name }} ({{ config('constants.MemberRelations_desc.'.$booking->family_member->relation_type) }})</li>
-                            <li> {{ $booking->family_member->national_id }} </li>
-                            <li> {{ config('constants.gender_desc.'.$booking->family_member->gender) }}</li>
-                            <li> {{ $booking->family_member->mobile_number }} </li>
-                            <li> {{ $booking->family_member->address }} </li>
-                        </ul>
-                    </div>
-                @endif
-
-                <div class="col-xs-4 invoice-payment">
+                <div class="col-xs-6 invoice-payment">
                     <h3>Payment Details:</h3>
                     <ul class="list-unstyled">
                         <li>
-                            <strong>V.A.T:</strong> {{ ($booking->customer->is_saudi_nationality ==1) ? 0 : config('constants.vat_percentage') }} %
+                            <strong>Amount Original:</strong>{{ $invoice->amount_original }}
                         </li>
                         <li>
-                            <strong>Promo Code:</strong> {{ ($booking->promo_code) ? $booking->promo_code->name_en .'-('.$booking->promo_code->code .')-'.$booking->promo_code->discount_percentage.'%' : 'No' }}
+                            <strong>Amount After Discount:</strong>{{ $invoice->amount_after_discount }}
                         </li>
                         <li>
-                            <strong>Currency:</strong> {{ ($booking->currency) ? $booking->currency->name_eng : '' }}
+                            <strong>Amount After V.A.T:</strong>{{ $invoice->amount_after_vat }}
+                        </li>
+                        <li>
+                            <strong>Amount Final:</strong> {{ $invoice->amount_final }}
+                        </li>
+                        <li>
+                            <strong>Currency:</strong> {{ ($invoice->currency) ? $invoice->currency->name_eng : '' }}
                         </li>
                     </ul>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <table class="table table-striped table-hover">
-                        <thead>
-                        <tr>
-                            <th> # </th>
-                            <th> Service Name </th>
-                            <th class="hidden-xs"> Start Date </th>
-                            <th class="hidden-xs"> End Date </th>
-                            <th class="hidden-xs"> Price </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @if(!empty($booking_details))
+
+            @if(!empty($invoice->items))
+                <div class="row">
+                    <div class="col-xs-12">
+                        <table class="table table-striped table-hover">
+                            <thead>
                             <tr>
-                                <td> {{ $booking_details['id'] }} </td>
-                                <td> {{ $booking_details['service_name'] }} </td>
-                                <td> {{ $booking_details['start_date'] }} </td>
-                                <td> {{ $booking_details['end_date'] }} </td>
-                                <td class="hidden-xs"> {{ $booking_details['price'] }} {{ $booking_details['currency'] }} </td>
+                                <th> # </th>
+                                <th> Service/Provider Name </th>
+                                <th> Status</th>
+                                <th> Created At</th>
                             </tr>
-                        @endif
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach($invoice->items as $item)
+                                    <tr>
+                                        <td> {{ $item->id }} </td>
+                                        <td> {{ $item->item_desc_appear_in_invoice }} </td>
+                                        <td>
+                                            @if(($item->status == 2))
+                                                    <span class="label label-success label-sm"> Approved </span>
+                                                @else
+                                                    <span class="label label-warning label-sm"> Pending </span>
+
+                                                    {!! Form::open(['method'=>'POST','route'=>['delete-item-to-invoice']]) !!}
+                                                        {!! Form::hidden('invoice_item_id',$item->id) !!}
+                                                        <button class="btn btn-danger" type="submit">
+                                                            <i class="fa fa-close"></i> Delete
+                                                        </button>
+                                                {!! Form::close() !!}
+
+                                            @endif
+                                        </td>
+                                        <td>{{ $item->created_at }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
+            @endif
+
             <div class="row">
                 <div class="col-xs-4">
                     <div class="well">
                         <ul class="list-unstyled">
-                            @if(!empty($booking->comment))
+                            @if(!empty($invoice->provider_comment))
                                 <li>
-                                    <strong>Customer Comment:</strong> {{ $booking->comment }}
+                                    <strong>Provider Comment:</strong> {{ $invoice->provider_comment }}
                                 </li>
                             @endif
 
-                            @if(!empty($booking->admin_comment))
+                            @if(!empty($invoice->admin_comment))
                                 <li>
-                                    <strong>Admin Comment:</strong> {{ $booking->admin_comment }}
+                                    <strong>Admin Comment:</strong> {{ $invoice->admin_comment }}
                                 </li>
                             @endif
 
-                            @if(!empty($booking->provider_id_assigned_by_admin))
-                                <li>
-                                    <strong>Assigned Provider:</strong> {{ $booking->assigned_provider->full_name }}
-                                </li>
-                            @else
-                                @if(!empty($providers))
-                                    {!! Form::open(['method'=>'POST','url'=>'Administrator/meetings/'.$booking->id.'/assign-provider']) !!}
-                                    <label for="name" class="control-label">
-                                        Assign Provider To Meeting <span class="required"> * </span>
+                            @if(!empty($services_items) && $invoice->is_paid ==0)
+                                {!! Form::open(['method'=>'POST','route'=>['add-item-to-invoice']]) !!}
+                                    <label for="service_id" class="control-label">
+                                        Add Item To Invoice <span class="required"> * </span>
                                     </label>
                                     <div class="input-group">
                                         <div class="input-icon">
-                                            {!! Form::select('provider_id',$providers,'',['class'=>'form-control select2','required'=>'required']) !!}
+                                            {!! Form::select('service_id',$services_items,'',['class'=>'form-control select2','required'=>'required']) !!}
+                                            {!! Form::hidden('invoice_id',$invoice->id) !!}
                                         </div>
                                         <span class="input-group-btn">
-                                                    <button class="btn btn-success" type="submit">
-                                                        <i class="fa fa-user-md"></i> Assign
-                                                    </button>
-                                                </span>
+                                            <button class="btn btn-success" type="submit">
+                                                <i class="fa fa-check-circle"></i> Add
+                                            </button>
+                                        </span>
                                     </div>
-                                    @if($errors->has('provider_id'))
-                                        <span class="help-block text-danger">{{ $errors->first('provider_id') }}</span>
+                                    @if($errors->has('invoice_id'))
+                                        <span class="help-block text-danger">{{ $errors->first('invoice_id') }}</span>
                                     @endif
-                                    {!! Form::close() !!}
-                                @endif
+                                    @if($errors->has('service_id'))
+                                        <span class="help-block text-danger">{{ $errors->first('service_id') }}</span>
+                                    @endif
+                                {!! Form::close() !!}
                             @endif
                         </ul>
                     </div>
@@ -136,21 +142,34 @@
                 <div class="col-xs-12 invoice-block">
                     <ul class="list-unstyled amounts">
                         <li>
-                            <strong>Sub - Total amount:</strong> {{ $booking_details['price'] }} {{ $booking_details['currency'] }} </li>
+                            <strong>Amount Original:</strong>{{ $invoice->amount_original }}
+                        </li>
                         <li>
-                            <strong>Discount:</strong> {{ ($booking->promo_code) ? $booking->promo_code->name_en .'-('.$booking->promo_code->code .')-'.$booking->promo_code->discount_percentage : '0' }} %</li>
+                            <strong>Amount After Discount:</strong>{{ $invoice->amount_after_discount }}
+                        </li>
                         <li>
-                            <strong>VAT:</strong> {{ ($booking->customer->is_saudi_nationality ==1) ? 0 : config('constants.vat_percentage') }} % </li>
+                            <strong>Amount After V.A.T:</strong>{{ $invoice->amount_after_vat }}
+                        </li>
                         <li>
-                            <strong>Grand Total:</strong> {{ $booking_details['price'] }} {{ $booking_details['currency'] }} </li>
+                            <strong>Amount Final:</strong> {{ $invoice->amount_final }}
+                        </li>
+                        <li>
+                            <strong>Currency:</strong> {{ ($invoice->currency) ? $invoice->currency->name_eng : '' }}
+                        </li>
                     </ul>
                     <br/>
                     <a class="btn btn-lg blue hidden-print margin-bottom-5" onclick="javascript:window.print();"> Print
                         <i class="fa fa-print"></i>
                     </a>
-                    <a class="btn btn-lg green hidden-print margin-bottom-5" href="{{ route('generate-invoice',['booking'=>$booking->id]) }}"> Generate Invoice
-                        <i class="fa fa-check"></i>
-                    </a>
+                    @if($invoice->is_paid==1)
+                            <a class="btn btn-lg green hidden-print margin-bottom-5" onclick="return false" href="#">
+                                Paid <i class="fa fa-check"></i>
+                            </a>
+                        @else
+                            <a class="btn btn-lg green hidden-print margin-bottom-5" href="{{ route('generate-invoice',['booking'=>$invoice->id]) }}">
+                                Pay Invoice <i class="fa fa-check"></i>
+                            </a>
+                    @endif
                 </div>
             </div>
         </div>

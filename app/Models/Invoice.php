@@ -13,8 +13,10 @@ class Invoice extends Model
 
     protected $primaryKey = 'id';
 
+    protected $guarded =[];
+
     protected $dates = [
-        'created_at', 'updated_at', 'deleted_at'
+        'created_at', 'updated_at', 'deleted_at','invoice_date'
     ];
 
     /**
@@ -23,5 +25,37 @@ class Invoice extends Model
     public function booking_service()
     {
         return $this->belongsTo(ServiceBooking::class,'service_booking_id','id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function items()
+    {
+        return $this->hasMany(InvoiceItems::class,'invoice_id','id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class,'customer_id','id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function currency()
+    {
+        return $this->belongsTo(Currency::class,'currency_id','id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function provider()
+    {
+        return $this->belongsTo(Provider::class,'provider_id','id');
     }
 }

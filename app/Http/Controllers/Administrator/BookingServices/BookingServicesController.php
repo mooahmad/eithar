@@ -122,7 +122,11 @@ class BookingServicesController extends Controller
             'id'=>$booking->id,
             'service_name'=>'',
             'service_id'=>'',
-            'service_amount'=>'',
+            'is_provider'=>false,
+            'provider_id'=>'',
+            'original_amount'=>'',
+            'promo_code_percentage'=> ($booking->promo_code) ? $booking->promo_code->discount_percentage : 0,
+            'vat_percentage'=> ($booking->customer->is_saudi_nationality !=1) ? config('constants.vat_percentage') : 0,
             'start_date'=>'',
             'end_date'=>'',
             'price'=>$booking->price,
@@ -133,8 +137,9 @@ class BookingServicesController extends Controller
         if (!empty($booking->service) && $booking->service->type == 5){
             $provider_calendar = ProvidersCalendar::find($booking->service_appointments->first()->slot_id);
             $booking_details['service_name']    = $booking->provider->full_name .' ('. $booking->service->type_desc.')';
-            $booking_details['service_id']      = [$booking->provider->id => $booking->provider->full_name];
-            $booking_details['service_amount']  = $booking->provider->price;
+            $booking_details['provider_id']      = [$booking->provider->id => $booking->provider->full_name];
+            $booking_details['is_provider']      = true;
+            $booking_details['original_amount'] = $booking->provider->price;
             $booking_details['start_date']      = $provider_calendar->start_date->format('Y-m-d h:i A');
             $booking_details['end_date']        = $provider_calendar->end_date->format('Y-m-d h:i A');
         }
@@ -147,11 +152,11 @@ class BookingServicesController extends Controller
             foreach ($lap_services as $key=>$lap_service){
                 $booking_details['service_name']   .=  ( $key !== count( $lap_services ) -1 ) ? $lap_service->service->name_en .' & ' : $lap_service->service->name_en .' (Lab Service)';
                 $total_amount += $lap_service->service->price;
-                $booking_details['service_id'] = $lap_service->service->price;
+                $services_ids[$lap_service->service->id] = $lap_service->service->name_en;
             }
 //            $booking_details['service_name'] = $booking->load('booking_lap_services.service')->booking_lap_services;
-            $booking_details['service_amount']  = $total_amount;
-            $booking_details['service_id']      = '';
+            $booking_details['original_amount'] = $total_amount;
+            $booking_details['service_id']      = $services_ids;
             $booking_details['start_date']      = $lap_calendar->start_date->format('Y-m-d h:i A');
             $booking_details['end_date']        = $lap_calendar->end_date->format('Y-m-d h:i A');
         }
@@ -161,7 +166,7 @@ class BookingServicesController extends Controller
             $package_oneTime_calendar = ServicesCalendar::find($booking->service_appointments->first()->slot_id);
             $booking_details['service_name']    = $booking->service->name_en .' ('. $booking->service->type_desc.')';
             $booking_details['service_id']      = [$booking->service->id => $booking->service->name_en];
-            $booking_details['service_amount']  = $booking->service->price;
+            $booking_details['original_amount'] = $booking->service->price;
             $booking_details['start_date']      = $package_oneTime_calendar->start_date->format('Y-m-d h:i A');
             $booking_details['end_date']        = $package_oneTime_calendar->end_date->format('Y-m-d h:i A');
 
@@ -177,7 +182,6 @@ class BookingServicesController extends Controller
         if (Gate::denies('meetings.view',new ServiceBooking())){
             return response()->view('errors.403',[],403);
         }
-        $request->validate(['provider_id' => 'required|integer|min:1']);
         $validator = Validator::make($request->all(), ['provider_id' => 'required|integer|min:1',]);
 
         if ($validator->fails()) {
@@ -189,6 +193,5 @@ class BookingServicesController extends Controller
         }
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/meetings/'.$request->booking);
-        return back();
     }
 }

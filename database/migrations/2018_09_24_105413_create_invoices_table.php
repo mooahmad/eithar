@@ -43,18 +43,19 @@ class CreateInvoicesTable extends Migration
                 ->onUpdate('set null')
                 ->onDelete('set null');
 
-            $table->integer('amount_original')->nullable();
-            $table->integer('amount_after_discount')->nullable();
-            $table->integer('amount_after_vat')->nullable();
-            $table->integer('amount_final')->nullable();
+            $table->double('amount_original')->default(0)->nullable();
+            $table->double('amount_after_discount')->default(0)->nullable();
+            $table->double('amount_after_vat')->default(0)->nullable();
+            $table->double('amount_final')->default(0)->nullable();
 
             $table->integer('is_saudi_nationality')->default(1)->nullable();
 
-            $table->dateTime('invoice_date')->nullable()->useCurrent();
+            $table->timestamp('invoice_date')->useCurrent()->nullable();
             $table->string('invoice_code')->nullable();
 
             $table->string('pdf_path')->nullable();
 
+            $table->integer('is_paid')->default(0)->nullable();
             $table->integer('payment_method')->nullable();
             $table->string('payment_transaction_number')->nullable();
 
