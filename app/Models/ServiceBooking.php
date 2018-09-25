@@ -85,4 +85,9 @@ class ServiceBooking extends Model
     {
         return $this->belongsTo(Provider::class,'provider_id_assigned_by_admin','id');
     }
+
+    public function medicalReports()
+    {
+        return $this->hasMany(BookingMedicalReports::class,'service_booking_id','id');
+    }
 }

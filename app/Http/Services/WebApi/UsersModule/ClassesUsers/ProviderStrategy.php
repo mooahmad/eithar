@@ -64,4 +64,9 @@ class ProviderStrategy
         return $this->strategy->getBookingAvailableReports($request, $bookingId);
     }
 
+    public function addBookingReport($request, $bookingId)
+    {
+        return $this->strategy->addBookingReport($request, $bookingId);
+    }
+
 }

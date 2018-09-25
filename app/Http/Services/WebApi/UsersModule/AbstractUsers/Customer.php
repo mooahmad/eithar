@@ -438,4 +438,21 @@ class Customer
         ]));
     }
 
+    public function getCustomerMedicalReports(Request $request)
+    {
+        $medicalReports = [];
+        $bookings = Auth::user()->servicesBooking;
+        $bookings->each(function ($booking) use (&$medicalReports) {
+            $reports = $booking->load(['medicalReports' => function ($query) {
+                $query->where('is_approved', 1)->where('customer_can_view', 1);
+            }])->medicalReports;
+            $reports->each(function ($report) use (&$medicalReports) {
+                array_push($medicalReports, $report);
+            });
+        });
+        return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
+            "reports" => $medicalReports
+        ]));
+    }
+
 }
