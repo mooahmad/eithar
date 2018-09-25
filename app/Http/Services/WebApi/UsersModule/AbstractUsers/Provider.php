@@ -11,7 +11,9 @@ use App\Http\Services\WebApi\CommonTraits\Ratings;
 use App\Http\Services\WebApi\CommonTraits\Reviews;
 use App\Http\Services\WebApi\CommonTraits\Views;
 use App\Models\Currency;
+use App\Models\MedicalReports;
 use App\Models\ProvidersCalendar;
+use App\Models\ServiceBooking;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\MessageBag;
@@ -31,7 +33,7 @@ class Provider
                     ->where('is_available', 1)
                     ->orderBy('start_date', 'desc')
                     ->first();
-                if(!$date)
+                if (!$date)
                     $day = Carbon::today()->format('Y-m-d');
                 else
                     $day = Carbon::parse($date->start_date)->format('Y-m-d');
@@ -50,8 +52,8 @@ class Provider
                 'city_name_ara', 'city_name_eng'
             ]);
         });
-        $provider->services->each(function ($service) use (&$provider){
-            if($service->category->category_parent_id == config('constants.categories.Doctor'))
+        $provider->services->each(function ($service) use (&$provider) {
+            if ($service->category->category_parent_id == config('constants.categories.Doctor'))
                 $provider->category_name = $service->category->name;
         });
         $provider->currency_name = Currency::find($provider->currency_id)->name_eng;
@@ -119,6 +121,39 @@ class Provider
         $this->view($providerId, config('constants.transactionsTypes.provider'), $description);
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([]));
+    }
+
+    public function getBookingAvailableReports($request, $bookingId)
+    {
+        $reports = [];
+        $generalMedicalReports = MedicalReports::where('service_id', null)->get();
+        $generalMedicalReports->each(function ($medicalReport) use (&$reports) {
+            $medicalReport->file_path = Utilities::getFileUrl($medicalReport->file_path);
+            array_push($reports, $medicalReport);
+        });
+        $booking = ServiceBooking::find($bookingId);
+        if ($booking->service_id == null) {
+            $lapServices = $booking->booking_lap_services;
+            $lapServices->each(function ($lapService) use (&$reports) {
+                $service = $lapService->service;
+                $medicalReports = $service->medicalReports;
+                $medicalReports->each(function ($medicalReport) use (&$reports) {
+                    $medicalReport->file_path = Utilities::getFileUrl($medicalReport->file_path);
+                    array_push($reports, $medicalReport);
+                });
+            });
+        } else {
+            $service = $booking->service;
+            $medicalReports = $service->medicalReports;
+            $medicalReports->each(function ($medicalReport) use (&$reports) {
+                $medicalReport->file_path = Utilities::getFileUrl($medicalReport->file_path);
+                array_push($reports, $medicalReport);
+            });
+        }
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([
+                "reports" => $reports
+            ]));
     }
 
 }

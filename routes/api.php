@@ -40,6 +40,7 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/{id}/{isPackage?}', 'CategoriesController@getChildCategories');
     }));
 
+
     Route::group(['namespace' => 'WebApi\ServicesModule', 'prefix' => 'services'], (function () {
         Route::get('/{id}/questionnaire/{page?}', 'ServicesController@getServiceQuestionnaire');
         Route::post('/lap/calendar', 'ServicesController@getLapCalendar');
@@ -64,6 +65,7 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/{id}/rate', 'ProviderController@rate');
         Route::post('/{id}/review', 'ProviderController@review');
         Route::post('/{id}/view', 'ProviderController@view');
+        Route::get('/bookings/{id}/reports', 'ProviderController@getBookingAvailableReports');
     }));
 
     Route::group(['namespace' => 'WebApi\PromoCodesModule', 'prefix' => 'promo_codes'], (function () {

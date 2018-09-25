@@ -63,4 +63,10 @@ class ProviderController extends Controller
         return $provider->viewProvider($request, $providerId);
     }
 
+    public function getBookingAvailableReports(Request $request, $bookingId)
+    {
+        $provider = new ProviderStrategy(ApiHelpers::requestType($request));
+        return $provider->getBookingAvailableReports($request, $bookingId);
+    }
+
 }

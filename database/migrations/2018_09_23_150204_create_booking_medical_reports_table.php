@@ -18,6 +18,7 @@ class CreateBookingMedicalReportsTable extends Migration
             $table->unsignedInteger('provider_id')->nullable();
             $table->unsignedInteger('service_booking_id')->nullable();
             $table->unsignedInteger('medical_report_id')->nullable();
+            $table->text('original_name')->nullable();
             $table->text('filled_file_path')->nullable();
             $table->Integer('is_approved')->default(0)->nullable();
             $table->Integer('customer_can_view')->default(0)->nullable();

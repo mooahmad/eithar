@@ -59,4 +59,9 @@ class ProviderStrategy
         return $this->strategy->viewProvider($request, $providerId);
     }
 
+    public function getBookingAvailableReports($request, $bookingId)
+    {
+        return $this->strategy->getBookingAvailableReports($request, $bookingId);
+    }
+
 }

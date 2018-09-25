@@ -13,8 +13,8 @@ class SettingsClass
 
     public static function update(Settings $settings, $mobileNumber, $whatsAppNumber)
     {
-        $settings->customer_banner_path = $mobileNumber;
-        $settings->customer_banner_path = $whatsAppNumber;
+        $settings->mobile_number = $mobileNumber;
+        $settings->whats_app_number = $whatsAppNumber;
         return $settings->save();
     }
 
