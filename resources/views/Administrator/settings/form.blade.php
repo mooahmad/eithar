@@ -73,7 +73,7 @@
                                                     @if(!empty($settings))
 
                                                         @if(!empty($settings->customer_banner_path))
-                                                            <img src="{{ $settings->customer_banner_path }}"
+                                                            <img src="{{ \App\Helpers\Utilities::getFileUrl($settings->customer_banner_path) }}"
                                                                  class="img-thumbnail" style="max-height: 120px">
                                                         @endif
                                                     @endif
