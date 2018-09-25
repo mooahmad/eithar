@@ -200,5 +200,6 @@ return [
     'mobile_number' => 'Mobile number',
     'whats_app_number' => 'What\'s app number',
     'customer_banner_path' => 'Customer app banner',
+    'is_item' => 'Is item',
 
 ];

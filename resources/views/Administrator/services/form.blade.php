@@ -28,6 +28,31 @@
                                         {!! Form::open(['method'=>(isset($service))? 'PUT' : 'POST','url'=> $formRoute, 'role'=>'form', 'files' => true]) !!}
 
                                         <div class="form-group">
+                                            <label for="on"
+                                                   class="control-label">{{ trans('admin.is_item') }} </label>
+                                            @php
+                                                $is_item = null;
+                                                if(isset($service)){
+                                                $is_item = ($service->type === 3)? 1 : 0;
+                                                }
+                                            @endphp
+                                            <div class="mt-radio-inline">
+                                                <label class="mt-radio">
+                                                    {!! Form::radio('is_item', 1, ($is_item === 1 )? 'true' : '',array('id'=>'yes-item')) !!}
+                                                    {{ trans('admin.yes') }}
+                                                    <span></span>
+                                                </label>
+                                                <label class="mt-radio">
+                                                    {!! Form::radio('is_item', 0, ($is_item === 0 || empty($is_item))? 'true' : '',array('id'=>'no-item')) !!}
+                                                    {{ trans('admin.no') }}
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div id="parent-categories"
+                                             style="{{ (isset($service) && $service->type == 3)? 'display:none': '' }}"
+                                             class="form-group">
                                             <label for="default_language" class="control-label">
                                                 {{ trans('admin.parent_cat') }} <span class="required"> * </span>
                                             </label>
@@ -137,30 +162,30 @@
                                             @endif
                                         </div>
 
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-xs-3">
-                                                        <label class="control-label">
-                                                            {{ trans('admin.select_avatar') }}
-                                                        </label>
-                                                        <div>
-                                                            <div class="fileinput fileinput-new"
-                                                                 data-provides="fileinput">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-xs-3">
+                                                    <label class="control-label">
+                                                        {{ trans('admin.select_avatar') }}
+                                                    </label>
+                                                    <div>
+                                                        <div class="fileinput fileinput-new"
+                                                             data-provides="fileinput">
                                                             <span class="btn green btn-file">
                                                                 <span class="fileinput-new"> Select file </span>
                                                                 <span class="fileinput-exists"> Change </span>
                                                                 <input type="file" name="avatar"> </span>
-                                                                <span class="fileinput-filename"> </span> &nbsp;
-                                                                <a href="javascript:;" class="close fileinput-exists"
-                                                                   data-dismiss="fileinput"> </a>
-                                                            </div>
+                                                            <span class="fileinput-filename"> </span> &nbsp;
+                                                            <a href="javascript:;" class="close fileinput-exists"
+                                                               data-dismiss="fileinput"> </a>
                                                         </div>
-                                                        @if($errors->has('avatar'))
-                                                            <span class="help-block text-danger">{{ $errors->first('avatar') }}</span>
-                                                        @endif
                                                     </div>
-                                                    <div class="col-xs-2">
-                                                        @if(!empty($service))
+                                                    @if($errors->has('avatar'))
+                                                        <span class="help-block text-danger">{{ $errors->first('avatar') }}</span>
+                                                    @endif
+                                                </div>
+                                                <div class="col-xs-2">
+                                                    @if(!empty($service))
                                                         @if(!empty($service->profile_picture_path))
                                                             @php
                                                                 $serviceImage = \App\Helpers\Utilities::getFileUrl($service->profile_picture_path);
@@ -168,11 +193,11 @@
                                                             <img src="{{ $serviceImage }}"
                                                                  class="img-thumbnail" style="max-height: 120px">
                                                         @endif
-                                                            @endif
+                                                    @endif
 
-                                                    </div>
                                                 </div>
                                             </div>
+                                        </div>
                                     </div>
 
                                     <div class="form-group">
