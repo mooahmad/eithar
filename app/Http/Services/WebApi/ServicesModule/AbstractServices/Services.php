@@ -34,7 +34,7 @@ class Services implements IService
     public static function getCategoryServices($request, $categoryID, $day)
     {
         // calendar for one time visit only
-        $services = Service::where('category_id', $categoryID)->get();
+        $services = Service::where('category_id', $categoryID)->where('type', '<>', 3)->get();
         $services = $services->each(function ($service) use ($day) {
             $service->addHidden([
                 'name_en', 'name_ar',
