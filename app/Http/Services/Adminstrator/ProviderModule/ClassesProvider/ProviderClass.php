@@ -144,7 +144,7 @@ class ProviderClass
                     new MessageBag([
                         "message" => trans('errors.errorUploadAvatar')
                     ]));
-            Utilities::DeleteImage($provider->{$fieldName});
+            Utilities::DeleteFile($provider->{$fieldName});
             $provider->{$fieldName} = $isUploaded;
             if (!$provider->save())
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),

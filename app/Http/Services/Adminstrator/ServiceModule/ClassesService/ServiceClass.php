@@ -90,7 +90,7 @@ class ServiceClass
                     new MessageBag([
                         "message" => trans('errors.errorUploadAvatar')
                     ]));
-            Utilities::DeleteImage($service->{$fieldName});
+            Utilities::DeleteFile($service->{$fieldName});
             $service->{$fieldName} = $isUploaded;
             if (!$service->save())
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),

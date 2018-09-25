@@ -54,7 +54,7 @@ class Customer
                     new MessageBag([
                         "message" => trans('errors.errorUploadAvatar')
                     ]));
-            Utilities::DeleteImage($customer->profile_picture_path);
+            Utilities::DeleteFile($customer->profile_picture_path);
             $customer->profile_picture_path = $isUploaded;
             if (!$customer->save())
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
@@ -86,7 +86,7 @@ class Customer
                     new MessageBag([
                         "message" => trans('errors.errorUploadNationalID')
                     ]));
-            Utilities::DeleteImage($customer->nationality_id_picture);
+            Utilities::DeleteFile($customer->nationality_id_picture);
             $customer->nationality_id_picture = $isUploaded;
             if (!$customer->save())
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
@@ -409,6 +409,7 @@ class Customer
             $data->description = $notificationData->{'desc_' . App::getLocale()};
             $data->notification_type = $notificationData->notification_type;
             $data->related_id = $notificationData->related_id;
+            $data->is_read = ($notification->read_at != null)? 1 : 0;
             array_push($returnNotifications, $data);
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([

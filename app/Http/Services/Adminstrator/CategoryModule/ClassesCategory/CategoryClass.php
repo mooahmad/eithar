@@ -46,7 +46,7 @@ class CategoryClass
                                                      new MessageBag([
                                                                         "message" => trans('errors.errorUploadAvatar')
                                                                     ]));
-            Utilities::DeleteImage($category->{$fieldName});
+            Utilities::DeleteFile($category->{$fieldName});
             $category->{$fieldName} = $isUploaded;
             if (!$category->save())
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),

@@ -63,7 +63,7 @@ class AdminClass
                                                      new MessageBag([
                                                                         "message" => trans('errors.errorUploadAvatar')
                                                                     ]));
-            Utilities::DeleteImage($user->{$fieldName});
+            Utilities::DeleteFile($user->{$fieldName});
             $user->{$fieldName} = $isUploaded;
             if (!$user->save())
                 return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
