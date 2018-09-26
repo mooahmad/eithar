@@ -280,7 +280,7 @@ class Customer
     {
         $appointments = [];
         $servicesBookings = Auth::user()->load(['servicesBooking.service_appointments' => function ($query) {
-            $query->orderByRaw('service_booking_appointments.id DESC');
+            $query->orderByRaw('service_booking_appointments.created_at DESC');
         }])->servicesBooking;
         foreach ($servicesBookings as $servicesBooking) {
             $service = null;
