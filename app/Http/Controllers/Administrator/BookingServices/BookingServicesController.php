@@ -10,6 +10,7 @@ use App\Models\Provider;
 use App\Models\ProvidersCalendar;
 use App\Models\ServiceBooking;
 use App\Models\ServicesCalendar;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
@@ -137,11 +138,11 @@ class BookingServicesController extends Controller
         if (!empty($booking->service) && $booking->service->type == 5){
             $provider_calendar = ProvidersCalendar::find($booking->service_appointments->first()->slot_id);
             $booking_details['service_name']    = $booking->provider->full_name .' ('. $booking->service->type_desc.')';
-            $booking_details['provider_id']      = [$booking->provider->id => $booking->provider->full_name];
-            $booking_details['is_provider']      = true;
+            $booking_details['provider_id']     = [$booking->provider->id => $booking->provider->full_name];
+            $booking_details['is_provider']     = true;
             $booking_details['original_amount'] = $booking->provider->price;
-            $booking_details['start_date']      = $provider_calendar->start_date->format('Y-m-d h:i A');
-            $booking_details['end_date']        = $provider_calendar->end_date->format('Y-m-d h:i A');
+            $booking_details['start_date']      = Carbon::parse($provider_calendar->start_date)->format('Y-m-d h:i A');
+            $booking_details['end_date']        = Carbon::parse($provider_calendar->end_date)->format('Y-m-d h:i A');
         }
 
 //        in case Lap Service
@@ -157,8 +158,8 @@ class BookingServicesController extends Controller
 //            $booking_details['service_name'] = $booking->load('booking_lap_services.service')->booking_lap_services;
             $booking_details['original_amount'] = $total_amount;
             $booking_details['service_id']      = $services_ids;
-            $booking_details['start_date']      = $lap_calendar->start_date->format('Y-m-d h:i A');
-            $booking_details['end_date']        = $lap_calendar->end_date->format('Y-m-d h:i A');
+            $booking_details['start_date']      = Carbon::parse($lap_calendar->start_date)->format('Y-m-d h:i A');
+            $booking_details['end_date']        = Carbon::parse($lap_calendar->end_date)->format('Y-m-d h:i A');
         }
 
 //        in case one time visit and package
@@ -167,8 +168,8 @@ class BookingServicesController extends Controller
             $booking_details['service_name']    = $booking->service->name_en .' ('. $booking->service->type_desc.')';
             $booking_details['service_id']      = [$booking->service->id => $booking->service->name_en];
             $booking_details['original_amount'] = $booking->service->price;
-            $booking_details['start_date']      = $package_oneTime_calendar->start_date->format('Y-m-d h:i A');
-            $booking_details['end_date']        = $package_oneTime_calendar->end_date->format('Y-m-d h:i A');
+            $booking_details['start_date']      = Carbon::parse($package_oneTime_calendar->start_date)->format('Y-m-d h:i A');
+            $booking_details['end_date']        = Carbon::parse($package_oneTime_calendar->end_date)->format('Y-m-d h:i A');
 
         }
         return $booking_details;

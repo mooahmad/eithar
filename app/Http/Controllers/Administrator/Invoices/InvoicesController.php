@@ -46,7 +46,7 @@ class InvoicesController extends Controller
         $data = [
             'invoice'=>$this->createNewInvoice($booking),
 //            'services_items'=>Service::GetItemsServices()->get()->pluck('name_en','id')
-            'services_items'=>Service::get()->pluck('name_en','id')
+            'services_items'=>Service::GetItemsServices()->get()->pluck('name_en','id')
         ];
 //        return $data['invoice']->items;
         return view(AD . '.invoices.index')->with($data);
