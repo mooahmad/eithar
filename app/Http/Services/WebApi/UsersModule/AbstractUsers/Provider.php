@@ -164,10 +164,9 @@ class Provider
     public function addBookingReport($request, $bookingId)
     {
         $medicalReportId = $request->input('medial_report_id');
-        $report = $request->file('report');
-        $filePath = Utilities::UploadFile($report, 'public/bookings/' . $bookingId . '/reports');
+        $filePath = Utilities::UploadFile($request->file('report'), 'public/bookings/' . $bookingId . '/reports');
         $bookingMedicalReport = new BookingMedicalReports();
-        $this->createUpdateMedicalReport($bookingMedicalReport, $bookingId, $medicalReportId, $report->getClientOriginalName(), $filePath);
+        $this->createUpdateMedicalReport($bookingMedicalReport, $bookingId, $medicalReportId, $request->file('report')->getClientOriginalName(), $filePath);
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([]));
     }
