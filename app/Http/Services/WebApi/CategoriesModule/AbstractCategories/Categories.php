@@ -86,7 +86,7 @@ abstract class Categories implements ICategory
             } elseif ($orderedCategory->category_parent_id == config('constants.categories.Physiotherapy') || $orderedCategory->category_parent_id == config('constants.categories.Nursing') || $orderedCategory->category_parent_id == config('constants.categories.WomanAndChild')) {
                 $filteredServices = [];
                 $bookedSlotsIds = (new Customer())->getBookedSlots();
-                $services->each(function ($service) use ($isPackage, &$filteredServices, $id, $bookedSlotsIds) {
+                $services->each(function ($service) use (&$day, $isPackage, &$filteredServices, $id, $bookedSlotsIds) {
                     if ($isPackage == "true") {
                         if ($service->type == 2) {
                             $packageCalendar = [];
@@ -145,7 +145,7 @@ abstract class Categories implements ICategory
                 if (empty($day)) {
                     $date = LapCalendar::where('start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
                         ->where('is_available', 1)
-                        ->where('providers_calendars.start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
+                        ->where('lap_calendars.start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
                         ->orderBy('start_date', 'asc')
                         ->first();
                     if (!$date)
