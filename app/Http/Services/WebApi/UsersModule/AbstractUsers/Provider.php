@@ -38,9 +38,13 @@ class Provider
                     $day = Carbon::today()->format('Y-m-d');
                 else
                     $day = Carbon::parse($date->start_date)->format('Y-m-d');
-                $query->where('providers_calendars.start_date', 'like', "%$day%");
+                $query->where('providers_calendars.start_date', 'like', "%$day%")
+                    ->where('providers_calendars.start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
+                    ->where('providers_calendars.is_available', 1);
             } else {
-                $query->where('providers_calendars.start_date', 'like', "%$day%");
+                $query->where('providers_calendars.start_date', 'like', "%$day%")
+                    ->where('providers_calendars.start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
+                    ->where('providers_calendars.is_available', 1);
             }
         }])->first();
         $provider->addHidden([
