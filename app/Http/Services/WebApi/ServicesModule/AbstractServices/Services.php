@@ -10,6 +10,7 @@ use App\Http\Services\WebApi\CommonTraits\Ratings;
 use App\Http\Services\WebApi\CommonTraits\Reviews;
 use App\Http\Services\WebApi\CommonTraits\Views;
 use App\Http\Services\WebApi\ServicesModule\IServices\IService;
+use App\Http\Services\WebApi\UsersModule\AbstractUsers\Customer;
 use App\LapCalendar;
 use App\Models\ProvidersCalendar;
 use App\Models\PushNotificationsTypes;
@@ -67,23 +68,83 @@ class Services implements IService
 
     public function getServiceCalendar(Request $request, $serviceId)
     {
-        $day = $request->input('day', Carbon::today()->format('Y-m-d'));
-        $calendar = ServicesCalendar::where([['id', '=', $serviceId], ['start_date', 'like', "%$day%"]])->get();
-        $calendar = ApiHelpers::reBuildCalendar($day, $calendar);
+        $day = $request->input('day');
+        $bookedSlotsIds = (new Customer())->getBookedSlots();
+        $service = Service::find($serviceId);
+        if ($service->type == 2) {
+            $packageCalendar = [];
+            $availableDays = [];
+            $service->load(['calendar' => function ($query) use (&$day, $service, $bookedSlotsIds) {
+                $query->where('city_id', '=', Auth::user()->city_id)
+                    ->where('start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
+                    ->where('is_available', 1)
+                    ->limit($service->no_of_visits);
+                if (!empty($bookedSlotsIds))
+                    $query->whereRaw("services_calendars.id NOT IN (" . implode(',', $bookedSlotsIds) . ")");
+            }]);
+            foreach ($service->calendar as $date) {
+                $day = Carbon::parse($date->start_date)->format('Y-m-d');
+                if (!in_array($day, $availableDays))
+                    array_push($availableDays, $day);
+            }
+            foreach ($availableDays as $day) {
+                $currentCalendar = ApiHelpers::reBuildCalendar($day, $service->calendar);
+                array_push($packageCalendar, $currentCalendar);
+            }
+            $service->calendar_package = $packageCalendar;
+        } elseif ($service->type == 1) {
+            $service->load(['calendar' => function ($query) use (&$day, $service, $bookedSlotsIds) {
+                if (empty($day)) {
+                    $date = Service::join('services_calendars', 'services.id', 'services_calendars.service_id')
+                        ->where('services.id', $service->id)
+                        ->where('services_calendars.start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
+                        ->where('services_calendars.is_available', 1)
+                        ->orderBy('services_calendars.start_date', 'asc')
+                        ->first();
+                    if (!$date)
+                        $day = Carbon::today()->format('Y-m-d');
+                    else
+                        $day = Carbon::parse($date->start_date)->format('Y-m-d');
+                    $query->where('services_calendars.city_id', '=', Auth::user()->city_id)
+                        ->where('services_calendars.start_date', 'like', "%$day%");
+                } else {
+                    $query->where('services_calendars.city_id', '=', Auth::user()->city_id)
+                        ->where('services_calendars.start_date', 'like', "%$day%");
+                }
+                if (!empty($bookedSlotsIds))
+                    $query->whereRaw("services_calendars.id NOT IN (" . implode(',', $bookedSlotsIds) . ")");
+            }]);
+            $service->calendar_dates = ApiHelpers::reBuildCalendar($day, $service->calendar);
+        }
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([
-                "calendar" => $calendar,
+                "calendar" => $service->calendar_dates,
             ]));
     }
 
     public function getLapCalendar(Request $request)
     {
         $day = $request->input('day', Carbon::today()->format('Y-m-d'));
-        $calendar = LapCalendar::where('start_date', 'like', "%$day%")->get();
-        $calendar = ApiHelpers::reBuildCalendar($day, $calendar);
+        $bookedSlotsIds = (new Customer())->getBookedSlots(true);
+        if (empty($day)) {
+            $date = LapCalendar::where('start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
+                ->where('is_available', 1)
+                ->orderBy('start_date', 'asc')
+                ->first();
+            if (!$date)
+                $day = Carbon::today()->format('Y-m-d');
+            else
+                $day = Carbon::parse($date->start_date)->format('Y-m-d');
+        }
+        $lapCalendars = LapCalendar::where('city_id', '=', Auth::user()->city_id)
+            ->where('start_date', 'like', "%$day%");
+        if (!empty($bookedSlotsIds) && $bookedSlotsIds[0] != null)
+            $lapCalendars->whereRaw("lap_calendars.id NOT IN (" . implode(',', $bookedSlotsIds) . ")");
+        $lapCalendars->get();
+        $lapCalendar = ApiHelpers::reBuildCalendar($day, $lapCalendars);
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([
-                "calendar" => $calendar,
+                "calendar" => $lapCalendar,
             ]));
     }
 

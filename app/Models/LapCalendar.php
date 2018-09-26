@@ -12,5 +12,5 @@ class LapCalendar extends Model
     public    $timestamps = true;
     protected $table      = 'lap_calendars';
     protected $dateFormat = 'Y-m-d H:m:s';
-    protected $dates      = ['created_at', 'updated_at', 'deleted_at','start_date','end_date'];
+    protected $dates      = ['created_at', 'updated_at', 'deleted_at'];
 }
