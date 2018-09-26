@@ -12,9 +12,8 @@
                 <div class="col-xs-6 invoice-logo-space">
                     <img src="{{ asset('public/assets/layouts/layout/img/logo.png') }}" class="img-responsive" alt="" /> </div>
                 <div class="col-xs-6">
-                    <p> #{{ $invoice->invoice_code }} / {{ $invoice->invoice_date->format('l j F Y h:i A') }}
-{{--                        <strong class="text-info">{{ $invoice->status_desc }}</strong>--}}
-                    </p>
+                    <p> ID => {{ $invoice->invoice_code }} <span class="fa fa-calendar"> {{ $invoice->invoice_date->format('l j F Y h:i A') }}</span></p>
+
                 </div>
             </div>
             <hr/>
@@ -51,6 +50,17 @@
                         <li>
                             <strong>Currency:</strong> {{ ($invoice->currency) ? $invoice->currency->name_eng : '' }}
                         </li>
+                        @if($invoice->is_paid==1)
+                            <li>
+                                <strong>Payment Method:</strong> {{ config('constants.payment_methods.'.$invoice->payment_method) }}
+                            </li>
+
+                            @if($invoice->payment_method !=1)
+                                <li>
+                                    <strong>Payment Transaction Number:</strong> {{ $invoice->payment_transaction_number }}
+                                </li>
+                            @endif
+                        @endif
                     </ul>
                 </div>
             </div>
