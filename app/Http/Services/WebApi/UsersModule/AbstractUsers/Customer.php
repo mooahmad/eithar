@@ -278,7 +278,9 @@ class Customer
 
     public function getCustomerAppointments(Request $request)
     {
-        $appointments = [];
+        $upCommingAppointments = [];
+        $passedAppointments = [];
+        $finalAppointments = [];
         $servicesBookings = Auth::user()->load(['servicesBooking.service_appointments' => function ($query) {
             $query->orderByRaw('service_booking_appointments.created_at DESC');
         }])->servicesBooking;
@@ -301,7 +303,7 @@ class Customer
                         $upComming = 0;
                         if ($calendar) {
                             $upComming = (Carbon::now() > Carbon::parse($calendar->start_date)) ? 0 : 1;
-                            $startDate = Carbon::parse($calendar->start_date)->format('l jS \\of F Y');
+                            $startDate = $calendar->start_date;
                             $startTime = Carbon::parse($calendar->start_date)->format('g:i A');
                         }
                         $payLoad = [
@@ -319,7 +321,7 @@ class Customer
                         $upComming = 0;
                         if ($calendar) {
                             $upComming = (Carbon::now() > Carbon::parse($calendar->start_date)) ? 0 : 1;
-                            $startDate = Carbon::parse($calendar->start_date)->format('l jS \\of F Y');
+                            $startDate = $calendar->start_date;
                             $startTime = Carbon::parse($calendar->start_date)->format('g:i A');
                         }
                         $payLoad = [
@@ -337,7 +339,7 @@ class Customer
                     $upComming = 0;
                     if ($calendar) {
                         $upComming = (Carbon::now() > Carbon::parse($calendar->start_date)) ? 0 : 1;
-                        $startDate = Carbon::parse($calendar->start_date)->format('l jS \\of F Y');
+                        $startDate = $calendar->start_date;
                         $startTime = Carbon::parse($calendar->start_date)->format('g:i A');
                     }
                     $payLoad = [
@@ -349,11 +351,23 @@ class Customer
                         "start_time" => $startTime
                     ];
                 }
-                $appointments[] = $payLoad;
+                if ($payLoad["start_date"] != "Unknown") {
+                    if ($payLoad["upcoming"] == 1)
+                        $upCommingAppointments[] = $payLoad;
+                    else
+                        $passedAppointments[] = $payLoad;
+                }
             }
         }
+        $upCommingAppointments = collect($upCommingAppointments)->sortBy('start_date')->values()->all();
+        $passedAppointments = collect($passedAppointments)->sortBy('start_date')->reverse()->values()->all();
+        $appointments = collect(array_merge($upCommingAppointments, $passedAppointments));
+        $appointments->each(function($appointment) use (&$finalAppointments){
+            $appointment["start_date"] = Carbon::parse($appointment["start_date"])->format('l jS \\of F Y');
+            array_push($finalAppointments, $appointment);
+        });
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
-            "appointments" => $appointments
+            "appointments" => $finalAppointments
         ]));
     }
 
