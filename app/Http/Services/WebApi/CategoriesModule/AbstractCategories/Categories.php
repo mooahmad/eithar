@@ -86,7 +86,7 @@ abstract class Categories implements ICategory
             } elseif ($orderedCategory->category_parent_id == config('constants.categories.Physiotherapy') || $orderedCategory->category_parent_id == config('constants.categories.Nursing') || $orderedCategory->category_parent_id == config('constants.categories.WomanAndChild')) {
                 $filteredServices = [];
                 $bookedSlotsIds = (new Customer())->getBookedSlots();
-                $services->each(function ($service) use ($isPackage, &$filteredServices, $id, $bookedSlotsIds) {
+                $services->each(function ($service) use (&$day, $isPackage, &$filteredServices, $id, $bookedSlotsIds) {
                     if ($isPackage == "true") {
                         if ($service->type == 2) {
                             $packageCalendar = [];
