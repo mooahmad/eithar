@@ -145,6 +145,7 @@ abstract class Categories implements ICategory
                 if (empty($day)) {
                     $date = LapCalendar::where('start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
                         ->where('is_available', 1)
+                        ->where('providers_calendars.start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
                         ->orderBy('start_date', 'asc')
                         ->first();
                     if (!$date)
