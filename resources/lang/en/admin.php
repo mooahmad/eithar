@@ -201,5 +201,10 @@ return [
     'whats_app_number' => 'What\'s app number',
     'customer_banner_path' => 'Customer app banner',
     'is_item' => 'Is item',
-
+    'invoice_items_pending' => 'Please confirm all item in this invoice or delete them',
+    'invoice-pay'=>'Pay Invoice',
+    'payment_method'=>'Payment Method',
+    'payment_transaction_number'=>'Payment Transaction Number',
+    'provider_comment'=>'Provider Comment',
+    'generate-invoice'=>'Generate Invoice ',
 ];

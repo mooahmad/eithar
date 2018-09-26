@@ -73,20 +73,25 @@ function datatable() {
             $('.deleteSelected').addClass('hidden');
             $(".dt-buttons").appendTo("#dataTable-buttons");
             $(".dt-buttons").show();
-            this.api().columns([1,5]).every( function () {
+
+            this.api().columns([1,5,6]).every( function () {
                 var column = this;
-                var select = $('<select class="btn btn-outline btn-circle btn-large blue-ebonyclay"><option value="">Advanced Filter</option></select>')
+                    var select = $('<select class="btn btn-outline btn-circle btn-large blue-ebonyclay"><option value="">Advanced Filter</option></select>')
                     .appendTo( $(column.header()).empty() )
-                    .on('change', function () {
+                    .on( 'change', function () {
                         var val = $.fn.dataTable.util.escapeRegex(
                             $(this).val()
                         );
-                        column.search( this.value ).draw();
-                    });
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+
                 column.data().unique().sort().each( function ( d, j ) {
                     select.append( '<option value="'+d+'">'+d+'</option>' )
                 } );
             } );
+
             this.api().columns([8]).every( function () {
                 var meeting_status = new Array();
                 meeting_status[1] = ["In Progress"];
@@ -114,11 +119,25 @@ function datatable() {
             $('.deleteSelected').removeClass('hidden');
 
     })
-        .on('deselect', function (e, dt, type, indexes) {
-            var count = mainTable.rows('.selected').count();
-            if (count === 0)
-                $('.deleteSelected').addClass('hidden');
-        });
+
+    .on('deselect', function (e, dt, type, indexes) {
+        var count = mainTable.rows('.selected').count();
+        if (count === 0)
+            $('.deleteSelected').addClass('hidden');
+    });
+
+    // Apply the search
+    // mainTable.columns([0,1,2,3,4,5,6,7,8]).every( function () {
+    //     var that = this;
+    //
+    //     $( 'input', this.header() ).on( 'keyup change', function () {
+    //         if ( that.search() !== this.value ) {
+    //             that
+    //                 .search( this.value )
+    //                 .draw();
+    //         }
+    //     } );
+    // } );
 }
 
 $('#search-form').on('submit', function(e) {
@@ -127,5 +146,9 @@ $('#search-form').on('submit', function(e) {
 });
 
 $(document).ready(function () {
+    // $('#data-table-meetings thead th').each( function () {
+    //     var title = $(this).text();
+    //     $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    // } );
     datatable();
 });
