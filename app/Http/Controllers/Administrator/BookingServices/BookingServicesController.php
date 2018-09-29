@@ -101,8 +101,12 @@ class BookingServicesController extends Controller
             })
             ->addColumn('actions', function ($item) {
                 $showURL = route('show-meeting-details',[$item->id]);
+                $medicalReportsURL = route('showMeetingReport',[$item->id]);
+                $addMedicalReportURL = route('createMeetingReport',[$item->id]);
                 $URLs = [
                     ['link'=>$showURL,'icon'=>'info'],
+                    ['link'=>$medicalReportsURL,'icon'=>'list'],
+                    ['link'=>$addMedicalReportURL,'icon'=>'plus'],
                 ];
                 return View::make('Administrator.widgets.advancedActions', ['URLs'=>$URLs]);
             })

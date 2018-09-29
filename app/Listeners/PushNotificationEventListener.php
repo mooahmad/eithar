@@ -40,7 +40,8 @@ class PushNotificationEventListener
                     $notification->save();
                     $details = [
                         'notification_type' => $data->notification_type,
-                        'related_id' => $data->related_id
+                        'related_id' => $data->related_id,
+                        'send_at' => $data->send_at
                     ];
                     $tokens[] = $customer->pushNotification->token;
                     $pushData = Utilities::buildNotification($data->{'title_'.$data->lang}, $data->{'desc_'.$data->lang}, 0, $details);
