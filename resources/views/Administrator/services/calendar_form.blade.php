@@ -67,7 +67,6 @@
                                                 <span class="help-block text-danger">{{ $errors->first('week_days') }}</span>
                                             @endif
                                         </div>
-                                        @if($serviceType != 2)
                                         <div class="form-group">
                                             <label for="default_language" class="control-label">
                                                 {{ trans('admin.number_of_weeks') }}
@@ -77,7 +76,6 @@
                                                 <span class="help-block text-danger">{{ $errors->first('number_of_weeks') }}</span>
                                             @endif
                                         </div>
-                                        @endif
                                         <div class="form-group">
                                             <label class="control-label">
                                                 {{ trans('admin.start_time') }} <span
@@ -86,6 +84,15 @@
                                             {!! Form::select('start_time', $times, 0, array('id'=>'date_section', 'class'=>'form-control')) !!}
                                             @if($errors->has('start_time'))
                                                 <span class="help-block text-danger">{{ $errors->first('start_time') }}</span>
+                                            @endif
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="default_language" class="control-label">
+                                                {{ trans('admin.number_of_sessions') }}
+                                            </label>
+                                            {!! Form::number('number_of_sessions', old('number_of_sessions') , array('id'=>'number_of_sessions', 'class'=>'form-control','placeholder'=>trans('admin.number_of_sessions'))) !!}
+                                            @if($errors->has('number_of_sessions'))
+                                                <span class="help-block text-danger">{{ $errors->first('number_of_sessions') }}</span>
                                             @endif
                                         </div>
                                         <div class="form-group">
@@ -132,9 +139,6 @@
 @stop
 
 @section('script')
-    <script>
-        var maxSelect = '{{ $maxSelect }}';
-    </script>
     <script src="{{ asset('public/assets/pages/scripts/profile.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('public/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js') }}"
             type="text/javascript"></script>
