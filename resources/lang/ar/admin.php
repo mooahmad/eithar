@@ -207,4 +207,6 @@ return [
     'payment_transaction_number'=>'Payment Transaction Number',
     'provider_comment'=>'Provider Comment',
     'generate-invoice'=>'Generate Invoice ',
+    'report' => 'Report',
+
 ];
