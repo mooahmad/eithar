@@ -208,5 +208,5 @@ return [
     'provider_comment'=>'Provider Comment',
     'generate-invoice'=>'Generate Invoice ',
     'report' => 'Report',
-
+    'number_of_sessions' => 'Number of sessions',
 ];

@@ -83,6 +83,16 @@
                                         </div>
 
                                         <div class="form-group">
+                                            <label for="default_language" class="control-label">
+                                                {{ trans('admin.number_of_sessions') }}
+                                            </label>
+                                            {!! Form::number('number_of_sessions', old('number_of_sessions') , array('id'=>'number_of_sessions', 'class'=>'form-control','placeholder'=>trans('admin.number_of_sessions'))) !!}
+                                            @if($errors->has('number_of_sessions'))
+                                                <span class="help-block text-danger">{{ $errors->first('number_of_sessions') }}</span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
                                             <label class="control-label">
                                                 {{ trans('admin.is_available') }} <span
                                                         class="required"> * </span>

@@ -74,21 +74,39 @@ class Services implements IService
         if ($service->type == 2) {
             $packageCalendar = [];
             $availableDays = [];
+            $numberOfVisits = $service->no_of_visits;
+            $maxWeekVisits = $service->visits_per_week;
+            $currentWeekOfYear = null;
+            $numberOfDaysInCurrentWeek = 0;
             $service->load(['calendar' => function ($query) use (&$day, $service, $bookedSlotsIds) {
                 $query->where('city_id', '=', Auth::user()->city_id)
                     ->where('start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
-                    ->where('is_available', 1)
-                    ->limit($service->no_of_visits);
+                    ->where('is_available', 1);
                 if (!empty($bookedSlotsIds))
                     $query->whereRaw("services_calendars.id NOT IN (" . implode(',', $bookedSlotsIds) . ")");
             }]);
             foreach ($service->calendar as $date) {
-                $day = Carbon::parse($date->start_date)->format('Y-m-d');
-                if (!in_array($day, $availableDays))
-                    array_push($availableDays, $day);
+                $currentWeek = Carbon::parse($date->start_date)->weekOfYear;
+                if ($currentWeek == $currentWeekOfYear || $currentWeekOfYear == null) {
+                    if ($maxWeekVisits > $numberOfDaysInCurrentWeek) {
+                        $day = Carbon::parse($date->start_date)->format('Y-m-d');
+                        if (!in_array($day, $availableDays)) {
+                            array_push($availableDays, $day);
+                            $currentWeekOfYear = $currentWeek;
+                            $numberOfDaysInCurrentWeek += 1;
+                        }
+                    }
+                } else {
+                    if (!in_array($day, $availableDays))
+                        array_push($availableDays, $day);
+                    $currentWeekOfYear = $currentWeek;
+                    $numberOfDaysInCurrentWeek = 0;
+                }
             }
-            foreach ($availableDays as $day) {
-                $currentCalendar = ApiHelpers::reBuildCalendar($day, $service->calendar);
+            for ($i = 0; $i < $numberOfVisits; $i++) {
+                if (!isset($availableDays[$i]))
+                    break;
+                $currentCalendar = ApiHelpers::reBuildCalendar($availableDays[$i], $service->calendar);
                 array_push($packageCalendar, $currentCalendar);
             }
             $service->calendar_package = $packageCalendar;
@@ -124,7 +142,7 @@ class Services implements IService
 
     public function getLapCalendar(Request $request)
     {
-        $day = $request->input('day', Carbon::today()->format('Y-m-d'));
+        $day = $request->input('day', null);
         $bookedSlotsIds = (new Customer())->getBookedSlots(true);
         if (empty($day)) {
             $date = LapCalendar::where('start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
