@@ -453,6 +453,7 @@ class Customer
             $data->description = $notificationData->{'desc_' . App::getLocale()};
             $data->notification_type = $notificationData->notification_type;
             $data->related_id = $notificationData->related_id;
+            $data->send_at = $notificationData->send_at;
             $data->is_read = ($notification->read_at != null) ? 1 : 0;
             array_push($returnNotifications, $data);
         }
