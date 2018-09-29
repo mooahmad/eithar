@@ -208,6 +208,8 @@ class ProvidersController extends Controller
         $selectedDays = $request->input('week_days');
         $numberOfWeeks = $request->input('number_of_weeks');
         $startTime = $request->input('start_time');
+        $numberOfSessions = $request->input('number_of_sessions', 0);
+
         $allDates = [];
         $message["invalid"] = [];
         $message["valid"] = [];
@@ -216,13 +218,18 @@ class ProvidersController extends Controller
         }
         foreach ($allDates as $dayDate) {
             $startDate = $dayDate . ' ' . $startTime . ':00';
-            $endDate = Carbon::parse($dayDate . ' ' . $startTime)->addMinutes($provider->visit_duration)->toDateTimeString();
-            if (ProviderClass::isExistCalendar($startDate, $endDate, $providerId)) {
-                array_push($message["invalid"], $startDate);
-            } else {
-                $providerCalendar = new ProvidersCalendar();
-                ProviderClass::createOrUpdateCalendar($providerCalendar, $providerId, $startDate, $endDate, 1);
-                array_push($message["valid"], $startDate);
+            for ($i = 0; $i < $numberOfSessions; $i++) {
+                $endDate = Carbon::parse($startDate)->addMinutes($provider->visit_duration)->toDateTimeString();
+                if (strtotime($endDate) >= strtotime($dayDate . ' ' . '23:59:00'))
+                    break;
+                if (ProviderClass::isExistCalendar($startDate, $endDate, $providerId)) {
+                    array_push($message["invalid"], $startDate);
+                } else {
+                    $providerCalendar = new ProvidersCalendar();
+                    ProviderClass::createOrUpdateCalendar($providerCalendar, $providerId, $startDate, $endDate, 1);
+                    array_push($message["valid"], $startDate);
+                }
+                $startDate = Carbon::parse($endDate)->addMinutes($provider->time_before_next_visit)->toDateTimeString();
             }
         }
         if (!empty($message["invalid"]))

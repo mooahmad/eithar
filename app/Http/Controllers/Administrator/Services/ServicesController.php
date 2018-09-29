@@ -410,14 +410,10 @@ class ServicesController extends Controller
             "monday" => "monday", "tuesday" => "tuesday", "wednesday" => "wednesday",
             "thursday" => "thursday", "friday" => "friday"];
         $times = Utilities::GenerateHours();
-        $maxSelect = 7;
-        if ($service->type == 2)
-            $maxSelect = $service->visits_per_week;
         $data = [
             'times' => $times,
             'allWeekDays' => $allWeekDays,
             'selectedWeekDays' => [],
-            'maxSelect' => $maxSelect,
             'serviceType' => $service->type,
             'allCities' => $allCities,
             'formRoute' => route('storeServiceCalendar', ['service' => $serviceId]),
@@ -433,22 +429,28 @@ class ServicesController extends Controller
         $selectedDays = $request->input('week_days');
         $numberOfWeeks = $request->input('number_of_weeks', null);
         $startTime = $request->input('start_time');
+        $numberOfSessions = $request->input('number_of_sessions', 0);
+
         $allDates = [];
         $message["invalid"] = [];
         $message["valid"] = [];
-        $numberOfWeeks = ($numberOfWeeks == null) ? ceil($service->no_of_visits / count($selectedDays)) : $numberOfWeeks;
         foreach ($selectedDays as $selectedDay) {
             $allDates = array_merge($allDates, Utilities::getDayDatesOfWeeks($selectedDay, $numberOfWeeks));
         }
         foreach ($allDates as $dayDate) {
             $startDate = $dayDate . ' ' . $startTime . ':00';
-            $endDate = Carbon::parse($dayDate . ' ' . $startTime)->addMinutes($service->visit_duration)->toDateTimeString();
-            if (ServiceClass::isExistCalendar($startDate, $endDate, $serviceId, false, $cityID)) {
-                array_push($message["invalid"], $startDate);
-            } else {
-                $serviceCalendar = new ServicesCalendar();
-                ServiceClass::createOrUpdateCalendar($serviceCalendar, $serviceId, $cityID, $startDate, $endDate, 1);
-                array_push($message["valid"], $startDate);
+            for ($i = 0; $i < $numberOfSessions; $i++) {
+                $endDate = Carbon::parse($startDate)->addMinutes($service->visit_duration)->toDateTimeString();
+                if (strtotime($endDate) >= strtotime($dayDate . ' ' . '23:59:00'))
+                    break;
+                if (ServiceClass::isExistCalendar($startDate, $endDate, $serviceId, false, $cityID)) {
+                    array_push($message["invalid"], $startDate);
+                } else {
+                    $serviceCalendar = new ServicesCalendar();
+                    ServiceClass::createOrUpdateCalendar($serviceCalendar, $serviceId, $cityID, $startDate, $endDate, 1);
+                    array_push($message["valid"], $startDate);
+                }
+                $startDate = Carbon::parse($endDate)->addMinutes($service->time_before_next_visit)->toDateTimeString();
             }
         }
         if (!empty($message["invalid"]))
