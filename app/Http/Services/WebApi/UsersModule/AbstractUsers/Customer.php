@@ -362,7 +362,7 @@ class Customer
         $upCommingAppointments = collect($upCommingAppointments)->sortBy('start_date')->values()->all();
         $passedAppointments = collect($passedAppointments)->sortBy('start_date')->reverse()->values()->all();
         $appointments = collect(array_merge($upCommingAppointments, $passedAppointments));
-        $appointments->each(function($appointment) use (&$finalAppointments){
+        $appointments->each(function ($appointment) use (&$finalAppointments) {
             $appointment["start_date"] = Carbon::parse($appointment["start_date"])->format('l jS \\of F Y');
             array_push($finalAppointments, $appointment);
         });
@@ -383,19 +383,28 @@ class Customer
         $currency = $serviceBooking->currency->name_eng;
         $total = $serviceBooking->price;
         if ($serviceType == 5) {
-            $calendar[] = ApiHelpers::reBuildCalendarSlot(ProvidersCalendar::find($appointment->slot_id));
-            $services [] = $serviceBooking->service;
-            $totalBeforeTax = $serviceBooking->service->price;
+            $providersCalendar = ProvidersCalendar::find($appointment->slot_id);
+            if ($providersCalendar) {
+                $calendar[] = ApiHelpers::reBuildCalendarSlot($providersCalendar);
+                $services [] = $serviceBooking->service;
+                $totalBeforeTax = $serviceBooking->service->price;
+            }
         } elseif ($serviceType == 1 || $serviceType == 2) {
-            $calendar[] = ApiHelpers::reBuildCalendarSlot(ProvidersCalendar::find($appointment->slot_id));
-            $services [] = $serviceBooking->service;
-            $totalBeforeTax = $serviceBooking->service->price;
+            $servicesCalendar = ServicesCalendar::find($appointment->slot_id);
+            if ($servicesCalendar) {
+                $calendar[] = ApiHelpers::reBuildCalendarSlot($servicesCalendar);
+                $services [] = $serviceBooking->service;
+                $totalBeforeTax = $serviceBooking->service->price;
+            }
         } elseif ($serviceType == 4) {
-            $calendar[] = ApiHelpers::reBuildCalendarSlot(ProvidersCalendar::find($appointment->slot_id));
-            $servicesLap = ServiceBookingLap::where('service_booking_id', $serviceBooking->id)->get();
-            foreach ($servicesLap as $serviceLap) {
-                $services [] = $serviceLap->service;
-                $totalBeforeTax += $serviceLap->service->price;
+            $lapClendar = LapCalendar::find($appointment->slot_id);
+            if ($lapClendar) {
+                $calendar[] = ApiHelpers::reBuildCalendarSlot($lapClendar);
+                $servicesLap = ServiceBookingLap::where('service_booking_id', $serviceBooking->id)->get();
+                foreach ($servicesLap as $serviceLap) {
+                    $services [] = $serviceLap->service;
+                    $totalBeforeTax += $serviceLap->service->price;
+                }
             }
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
@@ -444,6 +453,7 @@ class Customer
             $data->description = $notificationData->{'desc_' . App::getLocale()};
             $data->notification_type = $notificationData->notification_type;
             $data->related_id = $notificationData->related_id;
+            $data->send_at = $notificationData->send_at;
             $data->is_read = ($notification->read_at != null) ? 1 : 0;
             array_push($returnNotifications, $data);
         }
