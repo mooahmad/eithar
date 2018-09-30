@@ -55,7 +55,6 @@ abstract class Categories implements ICategory
         } else {
             $orderedCategory = Category::find($id);
             $services = $services->each(function ($service) {
-                $service->profile_picture_path = Utilities::getFileUrl($service->profile_picture_path);
                 $service->addHidden(['benefits_en', 'benefits_ar']);
                 $service->vat = 0;
                 if (!Auth::user()->is_saudi_nationality)
