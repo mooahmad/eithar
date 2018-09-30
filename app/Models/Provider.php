@@ -21,20 +21,16 @@ class Provider extends Model
     {
         $attributes = parent::attributesToArray();
 
-        foreach ($this->getMutatedAttributes() as $key)
-        {
-            if ($this->hidden)
-            {
+        foreach ($this->getMutatedAttributes() as $key) {
+            if ($this->hidden) {
                 if (in_array($key, $this->hidden)) continue;
             }
 
-            if($this->visible)
-            {
+            if ($this->visible) {
                 if (!in_array($key, $this->visible)) continue;
             }
 
-            if (!array_key_exists($key, $attributes))
-            {
+            if (!array_key_exists($key, $attributes)) {
                 $attributes[$key] = $this->mutateAttribute($key, null);
             }
         }
@@ -44,7 +40,7 @@ class Provider extends Model
 
     public function getTitleAttribute()
     {
-        if(App::isLocale('en'))
+        if (App::isLocale('en'))
             return $this->title_en;
         else
             return $this->title_ar;
@@ -52,7 +48,7 @@ class Provider extends Model
 
     public function getFirstNameAttribute()
     {
-        if(App::isLocale('en'))
+        if (App::isLocale('en'))
             return $this->first_name_en;
         else
             return $this->first_name_ar;
@@ -60,7 +56,7 @@ class Provider extends Model
 
     public function getLastNameAttribute()
     {
-        if(App::isLocale('en'))
+        if (App::isLocale('en'))
             return $this->last_name_en;
         else
             return $this->last_name_ar;
@@ -68,7 +64,7 @@ class Provider extends Model
 
     public function getSpecialityAreaAttribute()
     {
-        if(App::isLocale('en'))
+        if (App::isLocale('en'))
             return $this->speciality_area_en;
         else
             return $this->speciality_area_ar;
@@ -76,7 +72,7 @@ class Provider extends Model
 
     public function getAboutAttribute()
     {
-        if(App::isLocale('en'))
+        if (App::isLocale('en'))
             return $this->about_en;
         else
             return $this->about_ar;
@@ -84,7 +80,7 @@ class Provider extends Model
 
     public function getExperienceAttribute()
     {
-        if(App::isLocale('en'))
+        if (App::isLocale('en'))
             return $this->experience_en;
         else
             return $this->experience_ar;
@@ -92,7 +88,7 @@ class Provider extends Model
 
     public function getEducationAttribute()
     {
-        if(App::isLocale('en'))
+        if (App::isLocale('en'))
             return $this->education_en;
         else
             return $this->education_ar;
@@ -100,7 +96,7 @@ class Provider extends Model
 
     public function getProfilePicturePathAttribute($value)
     {
-     return Utilities::getFileUrl($value, null, 'local', false);
+        return Utilities::getFileUrl($value, null, 'local', false);
     }
 
     public function services()
@@ -124,7 +120,7 @@ class Provider extends Model
      */
     public function scopeGetActiveProviders()
     {
-        return $this->where('is_active',1)->where('contract_expiry_date','>=',Carbon::now());
+        return $this->where('is_active', 1)->where('contract_expiry_date', '>=', Carbon::now());
     }
 
     /**
@@ -133,8 +129,9 @@ class Provider extends Model
      */
     public function getFullNameAttribute()
     {
-//        $local = App::getLocale();
-//        return $this->{'title_'.$local} .' '. $this->{'first_name_'.$local}.' '. $this->{'last_name_'.$local};
-        return "{$this->title_en} {$this->first_name_en} {$this->last_name_en}";
+        if (App::isLocale('en'))
+            return "{$this->title_en} {$this->first_name_en} {$this->last_name_en}";
+        else
+            return "{$this->title_ar} {$this->first_name_ar} {$this->last_name_ar}";
     }
 }

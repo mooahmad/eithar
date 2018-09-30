@@ -92,6 +92,6 @@ class CustomerStrategy
 
     public function search(Request $request, $keyword)
     {
-        return $this->strategy->confirmBookingItem($request, $keyword);
+        return $this->strategy->search($request, $keyword);
     }
 }
