@@ -166,7 +166,8 @@ return [
         Yajra\DataTables\DataTablesServiceProvider::class,
         SMartins\PassportMultiauth\Providers\MultiauthServiceProvider::class,
         Mariuzzo\LaravelJsLocalization\LaravelJsLocalizationServiceProvider::class,
-        Edujugon\PushNotification\Providers\PushNotificationServiceProvider::class
+        Edujugon\PushNotification\Providers\PushNotificationServiceProvider::class,
+        SMartins\PassportMultiauth\Providers\MultiauthServiceProvider::class,
     ],
 
     /*
