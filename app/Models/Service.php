@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\Utilities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\App;
@@ -91,5 +92,10 @@ class Service extends Model
     public function medicalReports()
     {
         return $this->hasMany('App\Models\MedicalReports', 'service_id', 'id');
+    }
+
+    public function getProfilePicturePathAttribute($value)
+    {
+        return Utilities::getFileUrl($value, null, 'local', false);
     }
 }
