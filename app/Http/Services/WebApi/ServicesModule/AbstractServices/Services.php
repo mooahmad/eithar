@@ -113,6 +113,8 @@ class Services implements IService
                 if (!empty($bookedSlotsIds))
                     $query->whereRaw("services_calendars.id NOT IN (" . implode(',', $bookedSlotsIds) . ")");
             }]);
+            $service->calendar_dates = [];
+            if($service->calendar)
             $service->calendar_dates = ApiHelpers::reBuildCalendar($day, $service->calendar);
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'),
@@ -128,6 +130,7 @@ class Services implements IService
         if (empty($day)) {
             $date = LapCalendar::where('start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
                 ->where('is_available', 1)
+                ->whereRaw("lap_calendars.id NOT IN (" . implode(',', $bookedSlotsIds) . ")")
                 ->orderBy('start_date', 'asc')
                 ->first();
             if (!$date)
