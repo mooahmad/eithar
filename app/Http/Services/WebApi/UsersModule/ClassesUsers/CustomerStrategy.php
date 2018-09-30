@@ -90,5 +90,8 @@ class CustomerStrategy
         return $this->strategy->confirmBookingItem($request, $itemId);
     }
 
-
+    public function search(Request $request, $keyword)
+    {
+        return $this->strategy->confirmBookingItem($request, $keyword);
+    }
 }

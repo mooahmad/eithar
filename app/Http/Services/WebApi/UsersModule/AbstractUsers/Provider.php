@@ -5,6 +5,7 @@ namespace App\Http\Services\WebApi\UsersModule\AbstractUsers;
 
 use App\Helpers\ApiHelpers;
 use App\Helpers\Utilities;
+use App\Http\Services\Adminstrator\ProviderModule\ClassesProvider\ProviderClass;
 use App\Http\Services\WebApi\CommonTraits\Follows;
 use App\Http\Services\WebApi\CommonTraits\Likes;
 use App\Http\Services\WebApi\CommonTraits\Ratings;
@@ -67,7 +68,7 @@ class Provider
         if (!Auth::user()->is_saudi_nationality)
             $provider->vat = config('constants.vat_percentage');
         $provider->total_price = $provider->price + Utilities::calcPercentage($provider->price, $provider->vat);
-
+        $this->view($providerId, config('constants.transactionsTypes.provider'), '');
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([
                 "provider" => $provider

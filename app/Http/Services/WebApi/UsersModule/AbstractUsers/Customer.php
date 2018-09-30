@@ -491,4 +491,13 @@ class Customer
             new MessageBag([]));
     }
 
+    public function search(Request $request, $keyword)
+    {
+
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([
+                "results" => ""
+            ]));
+    }
+
 }
