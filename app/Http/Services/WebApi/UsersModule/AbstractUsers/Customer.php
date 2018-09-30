@@ -12,6 +12,7 @@ use App\Http\Services\Auth\AbstractAuth\Registration;
 use App\LapCalendar;
 use App\Mail\Auth\VerifyEmailCode;
 use App\Mail\Customer\ForgetPasswordMail;
+use App\Models\InvoiceItems;
 use App\Models\ProvidersCalendar;
 use App\Models\PushNotification;
 use App\Models\Service;
@@ -478,6 +479,16 @@ class Customer
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
             "reports" => $medicalReports
         ]));
+    }
+
+    public function confirmBookingItem(Request $request, $itemId)
+    {
+        $status = $request->input('status', 2);
+        $item = InvoiceItems::find($itemId);
+        $item->status = $status;
+        $item->save();
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([]));
     }
 
 }

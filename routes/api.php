@@ -34,6 +34,7 @@ Route::middleware('auth:api')->group(function () {
         Route::get('getAppointments/{id}/{servicetype}', 'CustomerController@getCustomerAppointment');
         Route::get('getNotifications', 'CustomerController@getCustomerNotifications');
         Route::get('getMedicalReports', 'CustomerController@getCustomerMedicalReports');
+        Route::post('bookingItem/{id}/confirmItem', 'CustomerController@confirmBookingItem');
     }));
 
     Route::group(['namespace' => 'WebApi\CategoriesModule', 'prefix' => 'categories'], (function () {
