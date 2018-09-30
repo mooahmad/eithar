@@ -20,13 +20,12 @@ use App\Models\ServiceBooking;
 use App\Models\ServiceBookingAppointment;
 use App\Models\ServiceBookingLap;
 use App\Models\ServicesCalendar;
-use App\Notifications\AppointmentConfirmed;
+use App\Models\Provider;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Customer as CustomerModel;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\MessageBag;
@@ -493,10 +492,38 @@ class Customer
 
     public function search(Request $request, $keyword)
     {
+        $results = [];
+        $services = Service::select('id', 'name_ar', 'name_en')
+            ->where('name_ar', 'like', "%$keyword%")
+            ->orWhere('name_en', 'like', "%$keyword%")
+            ->get();
+        $services->each(function ($service) use (&$results) {
+            $service->search_type = config('constants.searchTypes.service');
+            $service->addHidden([
+                "name_ar", "name_en", "description", "benefits"
+            ]);
+            array_push($results, $service);
+        });
+        $providers = Provider::select('id', 'first_name_ar', 'last_name_ar', 'first_name_en', 'last_name_en')
+            ->where('first_name_ar', 'like', "%$keyword%")
+            ->orWhere('first_name_en', 'like', "%$keyword%")
+            ->orWhere('last_name_ar', 'like', "%$keyword%")
+            ->orWhere('last_name_en', 'like', "%$keyword%")
+            ->get();
+        $providers->each(function ($provider) use (&$results) {
+            $provider->search_type = config('constants.searchTypes.provider');
+            $provider->addHidden([
+                "first_name_ar", "first_name_en", "last_name_ar", "last_name_en", "title",
+                "last_name_ar", "speciality_area", "about", "experience", "education",
+                "profile_picture_path", "first_name", "last_name", "full_name"
+            ]);
+            $provider->name = $provider->full_name;
+            array_push($results, $provider);
+        });
 
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([
-                "results" => ""
+                "results" => $results
             ]));
     }
 

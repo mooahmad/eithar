@@ -182,5 +182,9 @@ return [
         2 =>'Credit Card',
         3 =>'Debit Card',
         4 =>'Mada',
+    ],
+    'searchTypes' => [
+        'service' => 1,
+        'provider' => 2
     ]
 ];

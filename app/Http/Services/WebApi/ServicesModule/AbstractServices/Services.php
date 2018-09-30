@@ -113,9 +113,11 @@ class Services implements IService
                 if (!empty($bookedSlotsIds))
                     $query->whereRaw("services_calendars.id NOT IN (" . implode(',', $bookedSlotsIds) . ")");
             }]);
-            $service->calendar_dates = [];
-            if($service->calendar)
-            $service->calendar_dates = ApiHelpers::reBuildCalendar($day, $service->calendar);
+            if (!$service->calendar->isEmpty()) {
+                $service->calendar_dates = ApiHelpers::reBuildCalendar($day, $service->calendar);
+            } else {
+                $service->calendar_dates = [];
+            }
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([
