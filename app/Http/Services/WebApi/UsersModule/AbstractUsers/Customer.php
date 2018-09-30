@@ -12,6 +12,7 @@ use App\Http\Services\Auth\AbstractAuth\Registration;
 use App\LapCalendar;
 use App\Mail\Auth\VerifyEmailCode;
 use App\Mail\Customer\ForgetPasswordMail;
+use App\Models\Category;
 use App\Models\InvoiceItems;
 use App\Models\ProvidersCalendar;
 use App\Models\PushNotification;
@@ -493,7 +494,7 @@ class Customer
     public function search(Request $request, $keyword)
     {
         $results = [];
-        $services = Service::select('id', 'name_ar', 'name_en')
+        $services = Service::select('id', 'name_ar', 'name_en', "profile_picture_path")
             ->where('name_ar', 'like', "%$keyword%")
             ->orWhere('name_en', 'like', "%$keyword%")
             ->get();
@@ -504,7 +505,7 @@ class Customer
             ]);
             array_push($results, $service);
         });
-        $providers = Provider::select('id', 'first_name_ar', 'last_name_ar', 'first_name_en', 'last_name_en')
+        $providers = Provider::select('id', 'first_name_ar', 'last_name_ar', 'first_name_en', 'last_name_en', 'profile_picture_path')
             ->where('first_name_ar', 'like', "%$keyword%")
             ->orWhere('first_name_en', 'like', "%$keyword%")
             ->orWhere('last_name_ar', 'like', "%$keyword%")
@@ -515,10 +516,22 @@ class Customer
             $provider->addHidden([
                 "first_name_ar", "first_name_en", "last_name_ar", "last_name_en", "title",
                 "last_name_ar", "speciality_area", "about", "experience", "education",
-                "profile_picture_path", "first_name", "last_name", "full_name"
+                "first_name", "last_name", "full_name"
             ]);
             $provider->name = $provider->full_name;
             array_push($results, $provider);
+        });
+
+        $categories = Category::select('id', 'category_name_ar', 'category_name_en', 'profile_picture_path')
+            ->where('category_name_ar', 'like', "%$keyword%")
+            ->orWhere('category_name_en', 'like', "%$keyword%")
+            ->get();
+        $categories->each(function ($category) use (&$results) {
+            $category->search_type = config('constants.searchTypes.category');
+            $category->addHidden([
+                'category_name_en', 'category_name_ar', "description"
+            ]);
+            array_push($results, $category);
         });
 
         return Utilities::getValidationError(config('constants.responseStatus.success'),

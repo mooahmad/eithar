@@ -185,6 +185,7 @@ return [
     ],
     'searchTypes' => [
         'service' => 1,
-        'provider' => 2
+        'provider' => 2,
+        'category' => 3
     ]
 ];
