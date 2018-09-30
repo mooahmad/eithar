@@ -182,5 +182,10 @@ return [
         2 =>'Credit Card',
         3 =>'Debit Card',
         4 =>'Mada',
-    ]
+    ],
+    'provider'=>[
+        'service_doctor'=>0,
+        'doctor'=>1,
+        'active'=>1,
+    ],
 ];

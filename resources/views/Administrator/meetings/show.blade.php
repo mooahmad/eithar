@@ -148,17 +148,11 @@
                     <a class="btn btn-lg blue hidden-print margin-bottom-5" onclick="javascript:window.print();"> Print
                         <i class="fa fa-print"></i>
                     </a>
-                    <a class="btn btn-lg green hidden-print margin-bottom-5" href="{{ route('generate-invoice',['booking'=>$booking->id]) }}"> Generate Invoice
+                    <a class="btn btn-lg green hidden-print margin-bottom-5" href="{{ route('generate-invoice',['booking'=>$booking->id]) }}"> {{ ($booking->invoice) ? 'Show ' : 'Generate ' }} Invoice
                         <i class="fa fa-check"></i>
                     </a>
                 </div>
             </div>
         </div>
     @endif
-@stop
-
-@section('script')
-{{--    <script src="{{ asset('public/assets/pages/scripts/ui-modals.min.js') }}" type="text/javascript"></script>--}}
-
-    {{--<script src="{{ asset('public/js/custom/customerAppointmentsDataTable.js') }}" type="text/javascript"></script>--}}
 @stop

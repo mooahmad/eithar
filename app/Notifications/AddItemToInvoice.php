@@ -61,7 +61,7 @@ class AddItemToInvoice extends Notification
             'is_pushed' => 0,
             'is_mailed' => 0,
             'is_smsed' => 0,
-            'related_id' => $this->payload->invoice_id,
+            'related_id' => $this->payload->item_id,
             'send_at' => $this->payload->send_at,
             'lang'    => App::getLocale(),
         ];

@@ -52,7 +52,7 @@ class BookingServicesController extends Controller
             'booking'=>$booking,
             'booking_details'=>$this->getBookingDetails($booking),
             'providers'=>Provider::GetActiveProviders()
-                ->where('is_doctor',0)->get()->pluck('full_name','id')
+                ->GetServiceProviders()->get()->pluck('full_name','id')
         ];
         return view(AD.'.meetings.show')->with($data);
     }
