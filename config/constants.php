@@ -176,7 +176,7 @@ return [
         "invoiceGenerated" => 6,
         "addItemToInvoice" => 7
     ],
-    'invoice_code'=>'EitharInvoice#',
+    'invoice_code'=>'INV-00',
     'payment_methods'=>[
         1 =>'Cash',
         2 =>'Credit Card',

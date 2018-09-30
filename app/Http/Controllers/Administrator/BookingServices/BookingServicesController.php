@@ -104,9 +104,9 @@ class BookingServicesController extends Controller
                 $medicalReportsURL = route('showMeetingReport',[$item->id]);
                 $addMedicalReportURL = route('createMeetingReport',[$item->id]);
                 $URLs = [
-                    ['link'=>$showURL,'icon'=>'info'],
+                    ['link'=>$showURL,'icon'=>'eye','color'=>'green'],
                     ['link'=>$medicalReportsURL,'icon'=>'list'],
-                    ['link'=>$addMedicalReportURL,'icon'=>'plus'],
+                    ['link'=>$addMedicalReportURL,'icon'=>'plus','color'=>'blue'],
                 ];
                 return View::make('Administrator.widgets.advancedActions', ['URLs'=>$URLs]);
             })
@@ -151,7 +151,7 @@ class BookingServicesController extends Controller
 
 //        in case Lap Service
         if (empty($booking->service) && $booking->is_lap==1){
-            $lap_calendar = LapCalendar::find($booking->service_appointments->first()->slot_id);
+            $lap_calendar = LapCalendar::findOrFail($booking->service_appointments->first()->slot_id);
             $lap_services = $booking->load('booking_lap_services.service')->booking_lap_services;
             $total_amount = 0;
             foreach ($lap_services as $key=>$lap_service){
@@ -168,7 +168,7 @@ class BookingServicesController extends Controller
 
 //        in case one time visit and package
         if (!empty($booking->service) && ($booking->service->type == 1 || $booking->service->type == 2)){
-            $package_oneTime_calendar = ServicesCalendar::find($booking->service_appointments->first()->slot_id);
+            $package_oneTime_calendar = ServicesCalendar::findOrFail($booking->service_appointments->first()->slot_id);
             $booking_details['service_name']    = $booking->service->name_en .' ('. $booking->service->type_desc.')';
             $booking_details['service_id']      = [$booking->service->id => $booking->service->name_en];
             $booking_details['original_amount'] = $booking->service->price;
