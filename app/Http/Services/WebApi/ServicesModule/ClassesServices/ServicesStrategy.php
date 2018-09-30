@@ -73,4 +73,9 @@ class ServicesStrategy
     {
         return $this->strategy->viewService($request, $serviceId);
     }
+
+    public function getService($request, $serviceId)
+    {
+        return $this->strategy->getService($request, $serviceId);
+    }
 }

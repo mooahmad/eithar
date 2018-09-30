@@ -96,4 +96,12 @@ class ServicesApi extends Services
         return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
     }
 
+    public function getService($request, $serviceId)
+    {
+        $validationObject = parent::getService($request, $serviceId);
+        if ($validationObject->error == config('constants.responseStatus.success'))
+            return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
+    }
+
 }

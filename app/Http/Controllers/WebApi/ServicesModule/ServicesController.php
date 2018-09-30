@@ -80,4 +80,10 @@ class ServicesController extends Controller
         $service = new ServicesStrategy(ApiHelpers::requestType($request));
         return $service->viewService($request, $serviceId);
     }
+
+    public function getService(Request $request, $id)
+    {
+        $service = new ServicesStrategy(ApiHelpers::requestType($request));
+        return $service->getService($request, $id);
+    }
 }
