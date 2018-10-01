@@ -4,10 +4,9 @@ namespace App\Providers;
 
 use App\Models\Category;
 use App\Models\Customer;
-use App\Models\Invoices;
+use App\Models\Invoice;
 use App\Models\MedicalReports;
 use App\Models\PromoCode;
-use App\Models\Questionnaire;
 use App\Models\Service;
 use App\Models\Settings;
 use App\Policies\AdminPolicy;
@@ -36,7 +35,7 @@ class AuthServiceProvider extends ServiceProvider
         Category::class => CategoryPolicy::class,
         Service::class => ServicePolicy::class,
         PromoCode::class => PromoCodesPolicy::class,
-        Invoices::class => InvoicesPolicy::class,
+        Invoice::class => InvoicesPolicy::class,
         Customer::class => CustomerPolicy::class,
         MedicalReports::class => MedicalReportPolicy::class,
         Settings::class => SettingsPolicy::class,

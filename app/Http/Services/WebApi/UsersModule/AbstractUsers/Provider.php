@@ -5,7 +5,8 @@ namespace App\Http\Services\WebApi\UsersModule\AbstractUsers;
 
 use App\Helpers\ApiHelpers;
 use App\Helpers\Utilities;
-use App\Http\Services\Adminstrator\ProviderModule\ClassesProvider\ProviderClass;
+use App\Http\Requests\Auth\LoginProvider;
+use App\Http\Requests\Auth\RegisterProvider;
 use App\Http\Services\WebApi\CommonTraits\Follows;
 use App\Http\Services\WebApi\CommonTraits\Likes;
 use App\Http\Services\WebApi\CommonTraits\Ratings;
@@ -15,11 +16,16 @@ use App\Models\BookingMedicalReports;
 use App\Models\Currency;
 use App\Models\MedicalReports;
 use App\Models\ProvidersCalendar;
+use App\Models\PushNotification;
 use App\Models\ServiceBooking;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\MessageBag;
 use App\Models\Provider as ProviderModel;
+use Illuminate\Support\Facades\Hash;
+
 
 class Provider
 {
@@ -184,4 +190,43 @@ class Provider
         return $bookingMedicalReport->save();
     }
 
+    public function verifyProviderCredentials(Request $request)
+    {
+        $validator = Validator::make($request->all(), (new LoginProvider())->rules());
+        if ($validator->fails()) {
+            return $validator;
+        }
+        return true;
+    }
+
+    public function isProviderExists(Request $request)
+    {
+        $provider = ProviderModel::where('mobile_number', $request->input('mobile'))->first();
+        if (!$provider)
+            return false;
+        if (!Hash::check($request->input('password'), $provider->password))
+            return false;
+        return $provider;
+    }
+
+    public function updateProviderToken(ProviderModel $provider, Request $request)
+    {
+        if ($provider->pushNotification)
+            $provider->pushNotification->delete();
+        $pushNotification = new PushNotification();
+        $pushNotification->provider_id = $provider->id;
+        $pushNotification->imei = $request->input('imei');
+        $pushNotification->device_type = $request->input('device_type');
+        $pushNotification->device_language = $request->input('device_language');
+        $pushNotification->token = $request->input('token');
+        $pushNotification->save();
+    }
+
+    public function updateLastLoginDate(ProviderModel $provider)
+    {
+        $provider->last_login_date = Carbon::now();
+        if (!$provider->save())
+            return false;
+        return true;
+    }
 }
