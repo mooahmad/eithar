@@ -2,6 +2,7 @@
 
 namespace App\Mail\Invoice;
 
+use App\Models\Invoice;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -20,6 +21,7 @@ class GenerateInvoice extends Mailable
     {
         $this->customer     = $customer;
         $this->notification = $notification_data;
+        $this->invoice      = Invoice::find($notification_data->related_id);
     }
 
     /**
@@ -32,7 +34,8 @@ class GenerateInvoice extends Mailable
         return $this->view('vendor.mail.invoiceGenerated')
             ->with([
             'customer'=>$this->customer,
-            'notification'=>$this->notification
+            'notification'=>$this->notification,
+            'invoice'=>$this->invoice
         ]);
     }
 }

@@ -199,23 +199,4 @@ class BookingServicesController extends Controller
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/meetings/'.$request->booking);
     }
-
-    public function testEmails()
-    {
-        $customers = Customer::all();
-        $now = Carbon::now();
-        $customers->each(function ($customer) use ($now) {
-            $customer->notifications->each(function ($notification) use ($now, $customer) {
-                $notification_data = json_decode(json_encode($notification->data));
-                if ($notification_data->is_mailed == 0 && $notification_data->send_at <= $now) {
-//                    $data->is_pushed = 1;
-//                    $notification->data = $data;
-//                    $notification->save();
-                    dd(Utilities::prepareEmail($customer,$notification_data));
-//                    Utilities::pushNotification($tokens, $pushData);
-                }
-            });
-        });
-        return;
-    }
 }

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
     <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
-    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+    <title>Eithar</title> <!-- The title tag shows in email notifications, like Android 4.4. -->
 
     <!-- Web Font / @font-face : BEGIN -->
     <!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
@@ -191,18 +191,18 @@
     <![endif]-->
 
 </head>
-<body width="100%" bgcolor="#d4cccc" style="margin: 0; mso-line-height-rule: exactly;">
-<center style="width: 100%; background: #d4cccc; text-align: left;">
-    <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
+<body width="100%" bgcolor="#07A7E3" style="margin: 0; mso-line-height-rule: exactly;">
+<center style="width: 100%; background: #07A7E3; text-align: left;">
+    <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="90%" style="margin: auto;" class="email-container">
         <tr>
-            <td aria-hidden="true" height="40" style="font-size: 0; line-height: 0;">
+            <td aria-hidden="true" height="30" style="font-size: 0; line-height: 0;">
                 &nbsp;
             </td>
         </tr>
         <!-- Hero Image, Flush : BEGIN -->
         <tr>
             <td bgcolor="#ffffff" align="center">
-                <img src="{{ asset('public/assets/layouts/layout/img/eithar_logo_en.jpg') }}" width="600" height="" alt="Eithar" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; margin: auto;" class="g-img">
+                <img src="{{ asset('public/assets/layouts/layout/img/eithar_logo_en.jpg') }}" width="600" height="" alt="Eithar" border="0" align="center" style="width: 100%; max-width: 400px; height: auto; line-height: 20px; margin: auto;" class="g-img">
             </td>
         </tr>
-        <!-- Hero Image, Flush : END -->
+    </table>
