@@ -143,4 +143,9 @@ class Provider extends Authenticatable
         else
             return "{$this->title_ar} {$this->first_name_ar} {$this->last_name_ar}";
     }
+
+    public function pushNotification()
+    {
+        return $this->hasOne('App\Models\PushNotification', 'provider_id', 'id');
+    }
 }

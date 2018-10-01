@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 Route::namespace('Auth')->group(function () {
     Route::post('registerCustomer', 'RegisterController@registerCustomer');
     Route::post('loginCustomer', 'LoginController@loginCustomer');
+    Route::post('loginProvider', 'LoginController@loginProvider');
 });
 
 Route::group(['namespace' => 'WebApi\UsersModule', 'prefix' => 'customers'], (function () {
@@ -93,5 +94,8 @@ Route::middleware('auth:api')->group(function () {
 //-------------------------------------------- Providers section ----------------------------------------------//
 
 Route::middleware('auth:provider')->group(function () {
-
+    Route::group(['namespace' => 'WebApi\UsersModule', 'prefix' => 'providers'], (function () {
+        Route::get('/bookings/{id}/reports', 'ProviderController@getBookingAvailableReports');
+        Route::post('/bookings/{id}/addreport', 'ProviderController@addBookingReport');
+    }));
 });

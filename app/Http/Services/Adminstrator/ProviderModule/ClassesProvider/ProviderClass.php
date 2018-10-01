@@ -10,6 +10,7 @@ use App\Models\ProviderService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\MessageBag;
 
 class ProviderClass
@@ -24,6 +25,10 @@ class ProviderClass
         $provider->first_name_en = $request->input('first_name_en');
         $provider->last_name_ar = $request->input('last_name_ar');
         $provider->last_name_en = $request->input('last_name_en');
+        $provider->email = $request->input('email');
+        $provider->mobile_number = $request->input('mobile_number');
+        if (!empty($request->input('password')) && $request->input('password') != "")
+            $provider->password = Hash::make($request->input('password'));
         $provider->speciality_area_ar = $request->input('speciality_area_ar');
         $provider->speciality_area_en = $request->input('speciality_area_en');
         $provider->video = $request->input('video');
@@ -41,8 +46,11 @@ class ProviderClass
         $provider->contract_expiry_date = $request->input('contract_expiry_date');
         $provider->visit_duration = $request->input('visit_duration');
         $provider->time_before_next_visit = $request->input('time_before_next_visit');
-        if ($isCreate)
+        if ($isCreate) {
             $provider->added_by = Auth::id();
+            $provider->email_code = Utilities::quickRandom(4, true);
+            $provider->mobile_code = Utilities::quickRandom(4, true);
+        }
         $provider->save();
         self::linkServices($provider, $request);
         return self::linkCities($provider, $request);

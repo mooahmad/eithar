@@ -64,4 +64,11 @@ class LoginController extends Controller
         return $loginStrategy->loginCustomer($request);
     }
 
+    public function loginProvider(Request $request)
+    {
+        // instantiate login strategy object using request type detection helper method
+        $loginStrategy = new LoginStrategy(ApiHelpers::requestType($request));
+        return $loginStrategy->loginProvider($request);
+    }
+
 }
