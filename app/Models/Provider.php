@@ -129,7 +129,15 @@ class Provider extends Authenticatable
      */
     public function scopeGetActiveProviders()
     {
-        return $this->where('is_active', 1)->where('contract_expiry_date', '>=', Carbon::now());
+        return $this->where('is_active',config('constants.provider.active'))->where('contract_expiry_date','>=',Carbon::now());
+    }
+
+    /**
+     * @return mixed
+     */
+    public function scopeGetServiceProviders()
+    {
+        return $this->where('is_doctor',config('constants.provider.service_doctor'));
     }
 
     /**

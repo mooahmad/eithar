@@ -17,6 +17,7 @@ use App\Models\PushNotificationsTypes;
 use App\Models\Service;
 use App\Models\ServiceBooking;
 use App\Notifications\AddItemToInvoice;
+use App\Notifications\InvoiceGenerated;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -62,7 +63,12 @@ class InvoicesController extends Controller
         $item    = Service::findOrFail($request->input('service_id'));
 
 //        Save new pending item to invoice
-        $this->saveInvoiceItem($invoice->id,$item->name_en,$item->id);
+        $invoice_item = $this->saveInvoiceItem($invoice->id,$item->name_en,$item->id);
+
+        if (!$invoice_item){
+            session()->flash('error_msg', trans('admin.error_message'));
+            return redirect()->back();
+        }
 
 //        Now calculate invoice amount
         $booking = BookingServicesController::getBookingDetails($invoice->booking_service);
@@ -71,8 +77,8 @@ class InvoicesController extends Controller
 
 //        TODO send notification to customer to approve new item added to invoice
         $payload = PushNotificationsTypes::find(config('constants.pushTypes.addItemToInvoice'));
-        $payload->invoice_id = $updated_invoice->id;
-        $payload->send_at    = Carbon::now();
+        $payload->item_id   = $invoice_item->id;
+        $payload->send_at   = Carbon::now();
         $updated_invoice->customer->notify(new AddItemToInvoice($payload));
 
         session()->flash('success_msg', trans('admin.success_message'));
@@ -166,12 +172,7 @@ class InvoicesController extends Controller
         $add->provider_id          = auth()->user()->id;
         $add->currency_id          = $booking->currency_id;
 
-//        $add->payment_method       = $booking->id;
-//        $add->payment_transaction_number = $booking->id;
-//        $add->provider_comment     = $booking->comment;
-
         $add->is_saudi_nationality = $booking->customer->is_saudi_nationality;
-//        $add->invoice_date         = '';
         $add->invoice_code         = config('constants.invoice_code').$booking->id;
         $add->admin_comment        = $booking->admin_comment;
         $add->save();
@@ -200,7 +201,16 @@ class InvoicesController extends Controller
                 }
             }
         }
-        return $add->refresh();
+
+        $add->refresh();
+
+//        TODO send notification to customer that Admin generate new invoice
+        $payload = PushNotificationsTypes::find(config('constants.pushTypes.invoiceGenerated'));
+        $payload->invoice_id   = $add->id;
+        $payload->send_at      = Carbon::now();
+        $add->customer->notify(new InvoiceGenerated($payload));
+
+        return $add;
     }
 
     /**
