@@ -165,6 +165,7 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => SET, 'prefix' => AD], 
             'edit' => 'edit settings',
             'destroy' => 'delete settings'
         ]]);
+    Route::get('getPushType/{id}', 'SettingsController@getPushType');
 });
 
 Route::group(['middleware' => 'AdminAuth', 'namespace' => MRP, 'prefix' => AD], function () {

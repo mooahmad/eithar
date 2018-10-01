@@ -3,6 +3,7 @@
 namespace App\Http\Services\Adminstrator\SettingsModule\ClassesSettings;
 
 use App\Helpers\Utilities;
+use App\Models\PushNotificationsTypes;
 use App\Models\Settings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,15 @@ class SettingsClass
         $settings->mobile_number = $mobileNumber;
         $settings->whats_app_number = $whatsAppNumber;
         return $settings->save();
+    }
+
+    public static function updatePushType(PushNotificationsTypes $pushNotificationsTypes, $titleEn, $titlear, $descEn, $descAr)
+    {
+        $pushNotificationsTypes->title_en = $titleEn;
+        $pushNotificationsTypes->title_ar = $titlear;
+        $pushNotificationsTypes->desc_en = $descEn;
+        $pushNotificationsTypes->desc_ar = $descAr;
+        return $pushNotificationsTypes->save();
     }
 
     public static function uploadImage(Request $request, $fileName, $path, Settings $settings, $fieldName)

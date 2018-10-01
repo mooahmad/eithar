@@ -48,6 +48,56 @@
                                         </div>
 
                                         <div class="form-group">
+                                            <label for="default_language" class="control-label">
+                                                {{ trans('admin.pushNotificationsTypes') }} <span class="required"> * </span>
+                                            </label>
+                                            {!! Form::select('pushNotificationsTypes', $pushNotificationsTypes, 1, array('id'=>'pushNotificationsTypes', 'class'=>'form-control','required'=>'required')) !!}
+                                            @if($errors->has('pushNotificationsTypes'))
+                                                <span class="help-block text-danger">{{ $errors->first('pushNotificationsTypes') }}</span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="name" class="control-label">
+                                                {{ trans('admin.pushTypeTitleAR') }} <span class="required"> * </span>
+                                            </label>
+                                            {!! Form::text('pushTypeTitleAR', '' , array('id'=>'pushTypeTitleAR', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.pushTypeTitleAR'))) !!}
+                                            @if($errors->has('pushTypeTitleAR'))
+                                                <span class="help-block text-danger">{{ $errors->first('pushTypeTitleAR') }}</span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="name" class="control-label">
+                                                {{ trans('admin.pushTypeTitleEN') }} <span class="required"> * </span>
+                                            </label>
+                                            {!! Form::text('pushTypeTitleEN', '' , array('id'=>'pushTypeTitleEN', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.pushTypeTitleEN'))) !!}
+                                            @if($errors->has('pushTypeTitleEN'))
+                                                <span class="help-block text-danger">{{ $errors->first('pushTypeTitleEN') }}</span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="name" class="control-label">
+                                                {{ trans('admin.desc_ar') }}
+                                            </label>
+                                            {!! Form::textarea('desc_ar', '', array('id'=>'desc_ar', 'class'=>'form-control','rows' => 2)) !!}
+                                            @if($errors->has('desc_ar'))
+                                                <span class="help-block text-danger">{{ $errors->first('desc_ar') }}</span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="name" class="control-label">
+                                                {{ trans('admin.desc_en') }}
+                                            </label>
+                                            {!! Form::textarea('desc_en', '', array('id'=>'desc_en', 'class'=>'form-control','rows' => 2)) !!}
+                                            @if($errors->has('desc_en'))
+                                                <span class="help-block text-danger">{{ $errors->first('desc_en') }}</span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
                                             <div class="row">
                                                 <div class="col-xs-3">
                                                     <label class="control-label">
@@ -105,4 +155,5 @@
     <script src="{{ asset('public/assets/pages/scripts/profile.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('public/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js') }}"
             type="text/javascript"></script>
+    <script src="{{ asset('public/js/custom/settings.js') }}" type="text/javascript"></script>
 @stop
