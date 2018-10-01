@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\PushNotificationEvent' => [
             'App\Listeners\PushNotificationEventListener',
         ],
+        'App\Events\SendEmailsEvent' => [
+            'App\Listeners\SendEmailsEventListener',
+        ],
     ];
 
     /**

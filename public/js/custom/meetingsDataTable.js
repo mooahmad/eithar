@@ -77,7 +77,7 @@ function datatable() {
             this.api().columns([1,5,6]).every( function () {
                 var column = this;
                     var select = $('<select class="btn btn-outline btn-circle btn-large blue-ebonyclay"><option value="">Advanced Filter</option></select>')
-                    .appendTo( $(column.header()).empty() )
+                    .appendTo( $(column.footer()).empty() )
                     .on( 'change', function () {
                         var val = $.fn.dataTable.util.escapeRegex(
                             $(this).val()
@@ -99,7 +99,7 @@ function datatable() {
                 meeting_status[3] = ["Canceled"];
                 var column = this;
                 var select = $('<select class="btn btn-outline btn-circle btn-large blue-ebonyclay"><option value="">Advanced Filter</option></select>')
-                    .appendTo( $(column.header()).empty() )
+                    .appendTo( $(column.footer()).empty() )
                     .on('change', function () {
                         var val = $.fn.dataTable.util.escapeRegex(
                             $(this).val()
