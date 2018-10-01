@@ -497,6 +497,8 @@ class Customer
         $services = Service::select('id', 'name_ar', 'name_en', "profile_picture_path")
             ->where('name_ar', 'like', "%$keyword%")
             ->orWhere('name_en', 'like', "%$keyword%")
+            ->orWhere('desc_ar', 'like', "%$keyword%")
+            ->orWhere('desc_en', 'like', "%$keyword%")
             ->get();
         $services->each(function ($service) use (&$results) {
             $service->search_type = config('constants.searchTypes.service');
@@ -510,6 +512,8 @@ class Customer
             ->orWhere('first_name_en', 'like', "%$keyword%")
             ->orWhere('last_name_ar', 'like', "%$keyword%")
             ->orWhere('last_name_en', 'like', "%$keyword%")
+            ->orWhere('speciality_area_ar', 'like', "%$keyword%")
+            ->orWhere('speciality_area_en', 'like', "%$keyword%")
             ->get();
         $providers->each(function ($provider) use (&$results) {
             $provider->search_type = config('constants.searchTypes.provider');
@@ -524,6 +528,8 @@ class Customer
 
         $categories = Category::select('id', 'category_name_ar', 'category_name_en', 'profile_picture_path')
             ->where('category_name_ar', 'like', "%$keyword%")
+            ->orWhere('category_name_en', 'like', "%$keyword%")
+            ->orWhere('description_ar', 'like', "%$keyword%")
             ->orWhere('category_name_en', 'like', "%$keyword%")
             ->get();
         $categories->each(function ($category) use (&$results) {
