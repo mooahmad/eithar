@@ -3,9 +3,11 @@
 namespace App\Helpers;
 
 
+use App\Mail\Invoice\GenerateInvoice;
 use Carbon\Carbon;
 use Edujugon\PushNotification\PushNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\MessageBag;
@@ -152,6 +154,14 @@ class Utilities
             ],
             'data' => $arrCustomData
         ];
+    }
+
+    public static function prepareEmail($customer,$notification_data)
+    {
+        if (!$notification_data->notification_type || $notification_data->notification_type<1 || $notification_data->notification_type>7) return false;
+
+//        check on notification type
+        return Mail::to($customer)->send(new GenerateInvoice($customer,$notification_data));
     }
 
 }

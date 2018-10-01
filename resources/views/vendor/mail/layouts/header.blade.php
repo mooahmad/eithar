@@ -202,7 +202,7 @@
         <!-- Hero Image, Flush : BEGIN -->
         <tr>
             <td bgcolor="#ffffff" align="center">
-                <img src="{{ asset('assets/images/logo.png') }}" width="600" height="" alt="ConsulTrust" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; margin: auto;" class="g-img">
+                <img src="{{ asset('public/assets/layouts/layout/img/eithar_logo_en.jpg') }}" width="600" height="" alt="Eithar" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; margin: auto;" class="g-img">
             </td>
         </tr>
         <!-- Hero Image, Flush : END -->

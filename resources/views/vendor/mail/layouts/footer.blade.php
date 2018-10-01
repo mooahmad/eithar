@@ -9,17 +9,17 @@
 
 <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
     <!-- 1 Column Text : BEGIN -->
-    <tr>
-        <td bgcolor="#ffffff">
-            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                <tr>
-                    <td style="padding: 40px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
-                        ConsulTrust is highly secure and easy to use platform where clients can visit consultants while home. All our consultants are professional and certified in their areas. ConsulTrust is seeking to make difference in your life. Try the service, enjoy the experience and change your life.
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
+    {{--<tr>--}}
+        {{--<td bgcolor="#ffffff">--}}
+            {{--<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">--}}
+                {{--<tr>--}}
+                    {{--<td style="padding: 40px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">--}}
+                        {{--ConsulTrust is highly secure and easy to use platform where clients can visit consultants while home. All our consultants are professional and certified in their areas. ConsulTrust is seeking to make difference in your life. Try the service, enjoy the experience and change your life.--}}
+                    {{--</td>--}}
+                {{--</tr>--}}
+            {{--</table>--}}
+        {{--</td>--}}
+    {{--</tr>--}}
 
     <tr>
         <td bgcolor="#ffffff" style="padding: 0 40px 40px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
@@ -59,8 +59,7 @@
 <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto; font-family: sans-serif; color: #888888; line-height:18px;" class="email-container">
     <tr>
         <td style="padding: 40px 10px;width: 100%;font-size: 12px; font-family: sans-serif; line-height:18px; text-align: center; color: #888888;" class="x-gmail-data-detectors">
-            {{--<webversion style="color:#cccccc; text-decoration:underline; font-weight: bold;">View as a Web Page</webversion>--}}
-            Copyright &copy 2017 HUD Systems LTD<br>Mayfield House, 14 Rochfords Gardens, Slough, England, SL2 5XA<br>support@consultrustpro.com
+            <p>Company Registration No: 1010950408. Registered Office: King Salman road, Riyadh, Riyadh, 6761-12458, Saudi Arabia</p>
         </td>
     </tr>
 </table>
