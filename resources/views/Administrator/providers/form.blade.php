@@ -139,7 +139,7 @@
 
                                         <div class="form-group">
                                             <label class="control-label">
-                                                {{ trans('admin.password') }} {{ (isset($provider))? '' : "<span class='required'> * </span>" }}
+                                                {{ trans('admin.password') }} {!! (isset($provider))? '' : "<span class='required'> * </span>" !!}
                                             </label>
                                             {!! Form::password('password', array('id'=>'password', 'class'=>'form-control',(isset($provider))? '' : 'required'=>'required','placeholder'=>trans('admin.password'))) !!}
                                             @if($errors->has('password'))
@@ -149,7 +149,7 @@
 
                                         <div class="form-group">
                                             <label class="control-label">
-                                                {{ trans('admin.password_confirmation') }} {{ (isset($provider))? '' : '<span class="required"> * </span>' }}
+                                                {{ trans('admin.password_confirmation') }} {!! (isset($provider))? '' : "<span class='required'> * </span>" !!}
                                             </label>
                                             {!! Form::password('password_confirmation', array('id'=>'password_confirmation', 'class'=>'form-control',(isset($provider))? '' : 'required'=>'required','placeholder'=>trans('admin.password_confirmation'))) !!}
                                             @if($errors->has('password_confirmation'))
