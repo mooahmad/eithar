@@ -530,7 +530,7 @@ class Customer
             ->where('category_name_ar', 'like', "%$keyword%")
             ->orWhere('category_name_en', 'like', "%$keyword%")
             ->orWhere('description_ar', 'like', "%$keyword%")
-            ->orWhere('category_name_en', 'like', "%$keyword%")
+            ->orWhere('description_en', 'like', "%$keyword%")
             ->get();
         $categories->each(function ($category) use (&$results) {
             $category->search_type = config('constants.searchTypes.category');

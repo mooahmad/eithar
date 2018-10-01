@@ -209,4 +209,8 @@ return [
     'generate-invoice'=>'Generate Invoice ',
     'report' => 'Report',
     'number_of_sessions' => 'Number of sessions',
+    'pushNotificationsTypes' => 'Push notifications types',
+    'pushTypeTitleAR' => 'Type title ar',
+    'pushTypeTitleEN' => 'Type title en',
+
 ];
