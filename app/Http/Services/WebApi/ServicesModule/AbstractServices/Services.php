@@ -72,8 +72,6 @@ class Services implements IService
         $bookedSlotsIds = (new Customer())->getBookedSlots();
         $service = Service::find($serviceId);
         if ($service->type == 2) {
-            $packageCalendar = [];
-            $availableDays = [];
             $service->load(['calendar' => function ($query) use ($day, $service, $bookedSlotsIds) {
                 $query->where('city_id', '=', Auth::user()->city_id)
                     ->where('start_date', 'Like', "%$day%")
@@ -81,16 +79,7 @@ class Services implements IService
                 if (!empty($bookedSlotsIds))
                     $query->whereRaw("services_calendars.id NOT IN (" . implode(',', $bookedSlotsIds) . ")");
             }]);
-            foreach ($service->calendar as $date) {
-                $day = Carbon::parse($date->start_date)->format('Y-m-d');
-                if (!in_array($day, $availableDays))
-                    array_push($availableDays, $day);
-            }
-            foreach ($availableDays as $day) {
-                $currentCalendar = ApiHelpers::reBuildCalendar($day, $service->calendar);
-                array_push($packageCalendar, $currentCalendar);
-            }
-            $service->calendar_package = $packageCalendar;
+            $service->calendar_dates = ApiHelpers::reBuildCalendar($day, $service->calendar);
         } elseif ($service->type == 1) {
             $service->load(['calendar' => function ($query) use (&$day, $service, $bookedSlotsIds) {
                 if (empty($day)) {
@@ -113,11 +102,7 @@ class Services implements IService
                 if (!empty($bookedSlotsIds))
                     $query->whereRaw("services_calendars.id NOT IN (" . implode(',', $bookedSlotsIds) . ")");
             }]);
-            if (!$service->calendar->isEmpty()) {
-                $service->calendar_dates = ApiHelpers::reBuildCalendar($day, $service->calendar);
-            } else {
-                $service->calendar_dates = [];
-            }
+            $service->calendar_dates = ApiHelpers::reBuildCalendar($day, $service->calendar);
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([
