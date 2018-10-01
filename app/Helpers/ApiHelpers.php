@@ -50,14 +50,20 @@ class ApiHelpers
         return config('constants.requestTypes.web');
     }
 
-    public static function getCustomerWithToken(Customer $customer, $scopes = [])
-    {
-        DB::table('oauth_access_tokens')->where('user_id', $customer->id)->delete();
-        if (empty($scopes))
+    public static function getCustomerWithToken(Customer $customer, $scopes = []){
+        if(empty($scopes))
             $customer->access_token = $customer->createToken('customer')->accessToken;
         else
             $customer->access_token = $customer->createToken('customer', [])->accessToken;
         return $customer;
+    }
+
+    public static function getProviderWithToken(Provider $provider, $scopes = []){
+        if(empty($scopes))
+            $provider->access_token = $provider->createToken('provider')->accessToken;
+        else
+            $provider->access_token = $provider->createToken('provider', [])->accessToken;
+        return $provider;
     }
 
     public static function getCustomerImages(Customer $customer)

@@ -4,10 +4,9 @@ namespace App\Providers;
 
 use App\Models\Category;
 use App\Models\Customer;
-use App\Models\Invoices;
+use App\Models\Invoice;
 use App\Models\MedicalReports;
 use App\Models\PromoCode;
-use App\Models\Questionnaire;
 use App\Models\Service;
 use App\Models\Settings;
 use App\Policies\AdminPolicy;
@@ -21,6 +20,7 @@ use App\Policies\SettingsPolicy;
 use App\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Route;
 use Laravel\Passport\Passport;
 
 class AuthServiceProvider extends ServiceProvider
@@ -35,7 +35,7 @@ class AuthServiceProvider extends ServiceProvider
         Category::class => CategoryPolicy::class,
         Service::class => ServicePolicy::class,
         PromoCode::class => PromoCodesPolicy::class,
-        Invoices::class => InvoicesPolicy::class,
+        Invoice::class => InvoicesPolicy::class,
         Customer::class => CustomerPolicy::class,
         MedicalReports::class => MedicalReportPolicy::class,
         Settings::class => SettingsPolicy::class,
@@ -109,5 +109,12 @@ class AuthServiceProvider extends ServiceProvider
         Passport::tokensExpireIn(now()->addMinutes(60));
 
         Passport::refreshTokensExpireIn(now()->addMinutes(50));
+
+        // Middleware `oauth.providers` middleware defined on $routeMiddleware above
+        Route::group(['middleware' => 'oauth.providers'], function () {
+            Passport::routes(function ($router) {
+                return $router->forAccessTokens();
+            });
+        });
     }
 }

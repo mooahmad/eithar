@@ -85,4 +85,13 @@ class CustomerStrategy
         return $this->strategy->getCustomerMedicalReports($request);
     }
 
+    public function confirmBookingItem(Request $request, $itemId)
+    {
+        return $this->strategy->confirmBookingItem($request, $itemId);
+    }
+
+    public function search(Request $request, $keyword)
+    {
+        return $this->strategy->search($request, $keyword);
+    }
 }

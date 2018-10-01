@@ -119,6 +119,46 @@
 
                                         <div class="form-group">
                                             <label class="control-label">
+                                                {{ trans('admin.email') }} <span class="required"> * </span>
+                                            </label>
+                                            {!! Form::text('email', (isset($provider))? $provider->email : old('email'), array('id'=>'email', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.email'))) !!}
+                                            @if($errors->has('email'))
+                                                <span class="help-block text-danger">{{ $errors->first('email') }}</span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label">
+                                                {{ trans('admin.mobile_number') }} <span class="required"> * </span>
+                                            </label>
+                                            {!! Form::text('mobile_number', (isset($provider))? $provider->mobile_number : old('mobile_number'), array('id'=>'mobile_number', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.mobile_number'))) !!}
+                                            @if($errors->has('mobile_number'))
+                                                <span class="help-block text-danger">{{ $errors->first('mobile_number') }}</span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label">
+                                                {{ trans('admin.password') }} {{ (isset($provider))? '' : "<span class='required'> * </span>" }}
+                                            </label>
+                                            {!! Form::password('password', array('id'=>'password', 'class'=>'form-control',(isset($provider))? '' : 'required'=>'required','placeholder'=>trans('admin.password'))) !!}
+                                            @if($errors->has('password'))
+                                                <span class="help-block text-danger">{{ $errors->first('password') }}</span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label">
+                                                {{ trans('admin.password_confirmation') }} {{ (isset($provider))? '' : '<span class="required"> * </span>' }}
+                                            </label>
+                                            {!! Form::password('password_confirmation', array('id'=>'password_confirmation', 'class'=>'form-control',(isset($provider))? '' : 'required'=>'required','placeholder'=>trans('admin.password_confirmation'))) !!}
+                                            @if($errors->has('password_confirmation'))
+                                                <span class="help-block text-danger">{{ $errors->first('password_confirmation') }}</span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label">
                                                 {{ trans('admin.speciality_area_ar') }} <span
                                                         class="required"> * </span>
                                             </label>
