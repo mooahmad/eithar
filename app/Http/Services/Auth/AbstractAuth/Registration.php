@@ -6,7 +6,6 @@ namespace App\Http\Services\Auth\AbstractAuth;
 use App\Helpers\ApiHelpers;
 use App\Helpers\Utilities;
 use App\Http\Services\Auth\IAuth\IRegistration;
-use App\Http\Services\WebApi\ClassesUsers\CustomerFamilyCrudStrategy;
 use App\Mail\Auth\VerifyEmailCode;
 use App\Models\Customer;
 use App\Models\Settings;

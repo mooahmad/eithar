@@ -16,7 +16,21 @@ use Illuminate\Http\Request;
 Route::namespace('Auth')->group(function () {
     Route::post('registerCustomer', 'RegisterController@registerCustomer');
     Route::post('loginCustomer', 'LoginController@loginCustomer');
+    Route::post('loginProvider', 'LoginController@loginProvider');
 });
+
+Route::group(['namespace' => 'WebApi\UsersModule', 'prefix' => 'customers'], (function () {
+    Route::post('forgetPassword', 'CustomerController@forgetPassword');
+    Route::post('updateForgottenPassword', 'CustomerController@updateForgottenPassword');
+}));
+
+Route::group(['namespace' => 'WebApi\CountriesModule', 'prefix' => 'countries'], (function () {
+    Route::get('/', 'CountriesController@getCountries');
+}));
+
+Route::group(['namespace' => 'WebApi\CitiesModule', 'prefix' => 'cities'], (function () {
+    Route::get('/{countryID}', 'CitiesController@getCities');
+}));
 
 Route::middleware('auth:api')->group(function () {
     Route::group(['namespace' => 'WebApi\UsersModule', 'prefix' => 'customers'], (function () {
@@ -77,18 +91,11 @@ Route::middleware('auth:api')->group(function () {
     }));
 });
 
-Route::group(['namespace' => 'WebApi\UsersModule', 'prefix' => 'customers'], (function () {
-    Route::post('forgetPassword', 'CustomerController@forgetPassword');
-    Route::post('updateForgottenPassword', 'CustomerController@updateForgottenPassword');
-}));
+//-------------------------------------------- Providers section ----------------------------------------------//
 
-Route::group(['namespace' => 'WebApi\CountriesModule', 'prefix' => 'countries'], (function () {
-    Route::get('/', 'CountriesController@getCountries');
-}));
-
-Route::group(['namespace' => 'WebApi\CitiesModule', 'prefix' => 'cities'], (function () {
-    Route::get('/{countryID}', 'CitiesController@getCities');
-}));
-
-
-
+Route::middleware('auth:provider')->group(function () {
+    Route::group(['namespace' => 'WebApi\UsersModule', 'prefix' => 'providers'], (function () {
+        Route::get('/bookings/{id}/reports', 'ProviderController@getBookingAvailableReports');
+        Route::post('/bookings/{id}/addreport', 'ProviderController@addBookingReport');
+    }));
+});
