@@ -533,7 +533,10 @@ class Customer
             ->orWhere('description_en', 'like', "%$keyword%")
             ->get();
         $categories->each(function ($category) use (&$results) {
-            $category->search_type = config('constants.searchTypes.category');
+            if (in_array($category->id, [1, 2, 3, 4, 5]))
+                $category->search_type = config('constants.searchTypes.category');
+            else
+                $category->search_type = config('constants.searchTypes.subcategory');
             $category->addHidden([
                 'category_name_en', 'category_name_ar', "description"
             ]);
