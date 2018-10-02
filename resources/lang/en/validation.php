@@ -126,56 +126,56 @@ return [
 
     'custom' => [
         'first_name' => [
-            'required' => 'first name is required',
+            'required' => 'First name is required',
         ],
         'middle_name' => [
-            'required' => 'middle name is required',
+            'required' => 'Middle name is required',
         ],
         'last_name' => [
-            'required' => 'last name is required',
+            'required' => 'Last name is required',
         ],
         'email' => [
-            'required' => 'email is required',
-            'unique'   => 'email already exists',
-            'email'    => 'wrong email format'
+            'required' => 'Email is required',
+            'unique'   => 'Email already exists',
+            'email'    => 'Wrong email format'
         ],
         'mobile' => [
-            'required' => 'mobile is required',
-            'unique'   => 'mobile already exists'
+            'required' => 'Mobile is required',
+            'unique'   => 'Mobile already exist'
         ],
         'password' => [
-            'required' => 'password is required',
+            'required' => 'Password is required',
         ],
         'gender' => [
-            'required' => 'gender is required',
+            'required' => 'Gender is required',
         ],
         'national_id' => [
-            'required' => 'national ID is required',
-            'unique'   => 'national ID already exists'
+            'required' => 'National ID is required',
+            'unique'   => 'National ID already exists'
         ],
         'country_id' => [
-            'required' => 'country ID is required',
+            'required' => 'Country ID is required',
         ],
         'city_id' => [
-            'required' => 'city ID is required',
+            'required' => 'City ID is required',
         ],
         'position' => [
-            'required' => 'position is required',
+            'required' => 'Position is required',
         ],
         'address' => [
-            'required' => 'address is required',
+            'required' => 'Address is required',
         ],
         'email_code' => [
-            'required' => 'code is required'
+            'required' => 'Code is required'
         ],
         'customer_id' => [
-            'required' => 'customer id is required'
+            'required' => 'Customer id is required'
         ],
         'member_id' => [
-            'required' => 'member id is required'
+            'required' => 'Member id is required'
         ],
         'code' => [
-            'required' => 'code is required'
+            'required' => 'Code is required'
         ]
     ],
 

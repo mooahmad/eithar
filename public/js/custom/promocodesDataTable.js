@@ -52,7 +52,7 @@ function datatable() {
         columns: [
             {data: 'id', name: 'promo_codes.id'},
             {data: 'name_ar', name: 'categories.name_ar'},
-            {data: 'name_ar', name: 'categories.name_en'},
+            {data: 'name_en', name: 'categories.name_en'},
             {
                 searchable: false,
                 orderable: false,

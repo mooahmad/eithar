@@ -79,7 +79,7 @@ class BookingServicesController extends Controller
             ->select(['service_bookings.id','service_bookings.status','service_bookings.price','service_bookings.status_desc','service_bookings.created_at','services.name_en','customers.first_name','customers.middle_name','customers.last_name','customers.national_id','customers.mobile_number','currencies.name_eng']);
         $dataTable = DataTables::of($items)
             ->editColumn('name_en',function ($item){
-                return ($item->name_en) ? $item->name_en : 'Lap Service';
+                return ($item->name_en) ? $item->name_en : 'Lab Service';
             })
             ->editColumn('full_name',function ($item){
                 return $item->first_name .' '. $item->middle_name .' '. $item->last_name;
