@@ -21,8 +21,8 @@
                             <thead>
                             <tr>
                                 <th>{{ trans('admin.id') }}</th>
-                                <th>{{ trans('admin.name_en') }}</th>
                                 <th>{{ trans('admin.name_ar') }}</th>
+                                <th>{{ trans('admin.name_en') }}</th>
                                 <th>{{ trans('admin.price') }}</th>
                                 <th>{{ trans('admin.image') }}</th>
                                 <th>{{ trans('admin.actions') }}</th>
