@@ -16,6 +16,7 @@ class CreatePushNotificationsTable extends Migration
         Schema::create('push_notifications', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('customer_id')->nullable();
+            $table->unsignedInteger('provider_id')->nullable();
             $table->string('imei',255)->nullable();
             $table->string('device_type',255)->nullable();
             $table->string('device_language', 255)->nullable();
@@ -28,6 +29,11 @@ class CreatePushNotificationsTable extends Migration
             $table->foreign('customer_id')
                 ->references('id')
                 ->on('customers')
+                ->onUpdate('set null')
+                ->onDelete('set null');
+            $table->foreign('provider_id')
+                ->references('id')
+                ->on('providers')
                 ->onUpdate('set null')
                 ->onDelete('set null');
         });
@@ -43,6 +49,7 @@ class CreatePushNotificationsTable extends Migration
         // relations
         Schema::table('push_notifications', function (Blueprint $table) {
             $table->dropForeign(['customer_id']);
+            $table->dropForeign(['provider_id']);
         });
         Schema::dropIfExists('push_notifications');
     }

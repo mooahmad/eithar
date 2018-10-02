@@ -3,6 +3,7 @@
         <TextOption v-for="(option, index) in data.options" v-bind:key="index" :count="index" :option_ar="option.option_ar" :option_en="option.option_en"></TextOption>
         <div class="form-group">
             <a href="javascript:void(0)" @click="increamtOptions" class="btn green">Add more</a>
+            <a href="javascript:void(0)" @click="decrementOptions" class="btn red">Remove</a>
         </div>
     </div>
 </template>
@@ -30,6 +31,9 @@
             increamtOptions: function (event) {
                 if (this.data.options.length !== this.data.maxOptionsCount)
                     this.data.options.push({option_ar: "", option_en: ""});
+            },
+            decrementOptions: function (event) {
+                this.data.options.pop();
             }
         },
         components: {

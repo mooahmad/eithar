@@ -7,15 +7,20 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\App;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use SMartins\PassportMultiauth\HasMultiAuthApiTokens;
 
-class Provider extends Model
+class Provider extends Authenticatable
 {
-    use SoftDeletes;
+    use SoftDeletes, HasMultiAuthApiTokens;
 
     public $timestamps = true;
     protected $table = 'providers';
     protected $dateFormat = 'Y-m-d H:m:s';
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+    protected $hidden = [
+        'password', 'remember_token', 'email_code', 'mobile_code', 'deleted_at', 'created_at', 'updated_at'
+    ];
 
     public function attributesToArray()
     {
@@ -141,8 +146,14 @@ class Provider extends Model
      */
     public function getFullNameAttribute()
     {
-//        $local = App::getLocale();
-//        return $this->{'title_'.$local} .' '. $this->{'first_name_'.$local}.' '. $this->{'last_name_'.$local};
-        return "{$this->title_en} {$this->first_name_en} {$this->last_name_en}";
+        if (App::isLocale('en'))
+            return "{$this->title_en} {$this->first_name_en} {$this->last_name_en}";
+        else
+            return "{$this->title_ar} {$this->first_name_ar} {$this->last_name_ar}";
+    }
+
+    public function pushNotification()
+    {
+        return $this->hasOne('App\Models\PushNotification', 'provider_id', 'id');
     }
 }

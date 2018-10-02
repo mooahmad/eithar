@@ -183,6 +183,11 @@ return [
         3 =>'Debit Card',
         4 =>'Mada',
     ],
+    'searchTypes' => [
+        'service' => 1,
+        'provider' => 2,
+        'category' => 3
+    ],
     'provider'=>[
         'service_doctor'=>0,
         'doctor'=>1,

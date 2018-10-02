@@ -104,7 +104,7 @@
                                             <label for="default_language" class="control-label">
                                                 {{ trans('admin.page') }} <span class="required"> * </span>
                                             </label>
-                                            {!! Form::select('page', $pages, (isset($questionnaire))? $questionnaire->paggination : old('page'), array('id'=>'page', 'class'=>'form-control','required'=>'required')) !!}
+                                            {!! Form::select('page', $pages, (isset($questionnaire))? $questionnaire->pagination : old('page'), array('id'=>'page', 'class'=>'form-control','required'=>'required')) !!}
                                             @if($errors->has('page'))
                                                 <span class="help-block text-danger">{{ $errors->first('page') }}</span>
                                             @endif

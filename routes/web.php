@@ -165,6 +165,7 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => SET, 'prefix' => AD], 
             'edit' => 'edit settings',
             'destroy' => 'delete settings'
         ]]);
+    Route::get('getPushType/{id}', 'SettingsController@getPushType');
 });
 
 Route::group(['middleware' => 'AdminAuth', 'namespace' => MRP, 'prefix' => AD], function () {
@@ -220,7 +221,6 @@ Route::group(['middleware' => 'AdminAuth', 'prefix' => AD], function () {
         Route::get('get-meetings-Datatable', 'BookingServicesController@getBookingServicesDataTable')->name('get-meetings-Datatable');
         Route::get('meetings/{booking}', 'BookingServicesController@show')->name('show-meeting-details');
         Route::post('meetings/{booking}/assign-provider', 'BookingServicesController@assignProviderToMeeting')->name('assign-provider-to-meeting');
-        Route::get('test', 'BookingServicesController@testEmails');
     });
 });
 

@@ -55,7 +55,6 @@ abstract class Categories implements ICategory
         } else {
             $orderedCategory = Category::find($id);
             $services = $services->each(function ($service) {
-                $service->profile_picture_path = Utilities::getFileUrl($service->profile_picture_path);
                 $service->addHidden(['benefits_en', 'benefits_ar']);
                 $service->vat = 0;
                 if (!Auth::user()->is_saudi_nationality)
@@ -95,7 +94,7 @@ abstract class Categories implements ICategory
                             $maxWeekVisits = $service->visits_per_week;
                             $currentWeekOfYear = null;
                             $numberOfDaysInCurrentWeek = 0;
-                            $service->load(['calendar' => function ($query) use (&$day, $id, $service, $bookedSlotsIds) {
+                            $service->load(['calendar' => function ($query) use ($id, $service, $bookedSlotsIds) {
                                 $query->where('city_id', '=', Auth::user()->city_id)
                                     ->where('start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
                                     ->where('is_available', 1);

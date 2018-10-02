@@ -78,7 +78,7 @@ class InvoicesController extends Controller
 //        TODO send notification to customer to approve new item added to invoice
         $payload = PushNotificationsTypes::find(config('constants.pushTypes.addItemToInvoice'));
         $payload->item_id   = $invoice_item->id;
-        $payload->send_at   = Carbon::now();
+        $payload->send_at   = Carbon::now()->format('Y-m-d H:m:s');
         $updated_invoice->customer->notify(new AddItemToInvoice($payload));
 
         session()->flash('success_msg', trans('admin.success_message'));
@@ -207,7 +207,7 @@ class InvoicesController extends Controller
 //        TODO send notification to customer that Admin generate new invoice
         $payload = PushNotificationsTypes::find(config('constants.pushTypes.invoiceGenerated'));
         $payload->invoice_id   = $add->id;
-        $payload->send_at      = Carbon::now();
+        $payload->send_at      = Carbon::now()->format('Y-m-d H:m:s');
         $add->customer->notify(new InvoiceGenerated($payload));
 
         return $add;

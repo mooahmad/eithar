@@ -12,6 +12,8 @@ use App\Http\Services\Auth\AbstractAuth\Registration;
 use App\LapCalendar;
 use App\Mail\Auth\VerifyEmailCode;
 use App\Mail\Customer\ForgetPasswordMail;
+use App\Models\Category;
+use App\Models\InvoiceItems;
 use App\Models\ProvidersCalendar;
 use App\Models\PushNotification;
 use App\Models\Service;
@@ -19,13 +21,12 @@ use App\Models\ServiceBooking;
 use App\Models\ServiceBookingAppointment;
 use App\Models\ServiceBookingLap;
 use App\Models\ServicesCalendar;
-use App\Notifications\AppointmentConfirmed;
+use App\Models\Provider;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Customer as CustomerModel;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\MessageBag;
@@ -478,6 +479,71 @@ class Customer
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
             "reports" => $medicalReports
         ]));
+    }
+
+    public function confirmBookingItem(Request $request, $itemId)
+    {
+        $status = $request->input('status', 2);
+        $item = InvoiceItems::find($itemId);
+        $item->status = $status;
+        $item->save();
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([]));
+    }
+
+    public function search(Request $request, $keyword)
+    {
+        $results = [];
+        $services = Service::select('id', 'name_ar', 'name_en', "profile_picture_path")
+            ->where('name_ar', 'like', "%$keyword%")
+            ->orWhere('name_en', 'like', "%$keyword%")
+            ->orWhere('desc_ar', 'like', "%$keyword%")
+            ->orWhere('desc_en', 'like', "%$keyword%")
+            ->get();
+        $services->each(function ($service) use (&$results) {
+            $service->search_type = config('constants.searchTypes.service');
+            $service->addHidden([
+                "name_ar", "name_en", "description", "benefits"
+            ]);
+            array_push($results, $service);
+        });
+        $providers = Provider::select('id', 'first_name_ar', 'last_name_ar', 'first_name_en', 'last_name_en', 'profile_picture_path')
+            ->where('first_name_ar', 'like', "%$keyword%")
+            ->orWhere('first_name_en', 'like', "%$keyword%")
+            ->orWhere('last_name_ar', 'like', "%$keyword%")
+            ->orWhere('last_name_en', 'like', "%$keyword%")
+            ->orWhere('speciality_area_ar', 'like', "%$keyword%")
+            ->orWhere('speciality_area_en', 'like', "%$keyword%")
+            ->get();
+        $providers->each(function ($provider) use (&$results) {
+            $provider->search_type = config('constants.searchTypes.provider');
+            $provider->addHidden([
+                "first_name_ar", "first_name_en", "last_name_ar", "last_name_en", "title",
+                "last_name_ar", "speciality_area", "about", "experience", "education",
+                "first_name", "last_name", "full_name"
+            ]);
+            $provider->name = $provider->full_name;
+            array_push($results, $provider);
+        });
+
+        $categories = Category::select('id', 'category_name_ar', 'category_name_en', 'profile_picture_path')
+            ->where('category_name_ar', 'like', "%$keyword%")
+            ->orWhere('category_name_en', 'like', "%$keyword%")
+            ->orWhere('description_ar', 'like', "%$keyword%")
+            ->orWhere('description_en', 'like', "%$keyword%")
+            ->get();
+        $categories->each(function ($category) use (&$results) {
+            $category->search_type = config('constants.searchTypes.category');
+            $category->addHidden([
+                'category_name_en', 'category_name_ar', "description"
+            ]);
+            array_push($results, $category);
+        });
+
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([
+                "results" => $results
+            ]));
     }
 
 }

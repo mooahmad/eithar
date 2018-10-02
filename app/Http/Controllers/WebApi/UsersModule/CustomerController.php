@@ -113,4 +113,16 @@ class CustomerController extends Controller
         $customer = new CustomerStrategy(ApiHelpers::requestType($request));
         return $customer->getCustomerMedicalReports($request);
     }
+
+    public function confirmBookingItem(Request $request, $itemId)
+    {
+        $customer = new CustomerStrategy(ApiHelpers::requestType($request));
+        return $customer->confirmBookingItem($request, $itemId);
+    }
+
+    public function search(Request $request, $keyword)
+    {
+        $customer = new CustomerStrategy(ApiHelpers::requestType($request));
+        return $customer->search($request, $keyword);
+    }
 }

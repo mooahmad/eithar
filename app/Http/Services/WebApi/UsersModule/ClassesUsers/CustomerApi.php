@@ -97,5 +97,20 @@ class CustomerApi extends Customer
         return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
     }
 
+    public function confirmBookingItem(Request $request, $itemId)
+    {
+        $validationObject = parent::confirmBookingItem($request, $itemId);
+        if ($validationObject->error == config('constants.responseStatus.success'))
+            return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
+    }
+
+    public function search(Request $request, $keyword)
+    {
+        $validationObject = parent::search($request, $keyword);
+        if ($validationObject->error == config('constants.responseStatus.success'))
+            return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
+    }
 
 }
