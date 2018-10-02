@@ -32,20 +32,19 @@ class PushNotificationEventListener
         $now = Carbon::now()->format('Y-m-d H:m:s');
         $customers = Customer::all();
         $customers->each(function ($customer) use ($now) {
-            $customer->notifications->each(function ($notification) use ($now, $customer) {
+            $customer->notifications()->where('is_pushed', 0)->get()->each(function ($notification) use ($now, $customer) {
                 $data = json_decode(json_encode($notification->data));
-                if ($data->is_pushed == 0 && strtotime($data->send_at) <= strtotime($now)) {
-                    $data->is_pushed = 1;
-                    $notification->data = $data;
-                    $notification->save();
+                if (strtotime($data->send_at) <= strtotime($now)) {
                     $details = [
                         'notification_type' => $data->notification_type,
                         'related_id' => $data->related_id,
                         'send_at' => $data->send_at
                     ];
                     $tokens[] = $customer->pushNotification->token;
-                    $pushData = Utilities::buildNotification($data->{'title_'.$data->lang}, $data->{'desc_'.$data->lang}, 0, $details);
+                    $pushData = Utilities::buildNotification($data->{'title_' . $data->lang}, $data->{'desc_' . $data->lang}, 0, $details);
                     Utilities::pushNotification($tokens, $pushData);
+                    $notification->is_pushed = 1;
+                    $notification->save();
                 }
             });
         });

@@ -18,6 +18,9 @@ class CreateNotificationsTable extends Migration
             $table->string('type');
             $table->morphs('notifiable');
             $table->text('data');
+            $table->integer('is_pushed')->default(0);
+            $table->integer('is_emailed')->default(0);
+            $table->integer('is_smsed')->default(0);
             $table->timestamp('read_at')->nullable();
             $table->timestamps();
         });
