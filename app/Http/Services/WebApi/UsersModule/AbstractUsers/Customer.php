@@ -501,7 +501,13 @@ class Customer
             ->orWhere('desc_en', 'like', "%$keyword%")
             ->get();
         $services->each(function ($service) use (&$results) {
-            $service->search_type = config('constants.searchTypes.service');
+            $serviceType = $service->type;
+            if($serviceType == 1)
+            $service->search_type = config('constants.searchTypes.serviceonevisit');
+            if($serviceType == 2)
+                $service->search_type = config('constants.searchTypes.servicepackage');
+            if($serviceType == 4)
+                $service->search_type = config('constants.searchTypes.servicelap');
             $service->addHidden([
                 "name_ar", "name_en", "description", "benefits"
             ]);
@@ -533,8 +539,13 @@ class Customer
             ->orWhere('description_en', 'like', "%$keyword%")
             ->get();
         $categories->each(function ($category) use (&$results) {
-            if (in_array($category->id, [1, 2, 3, 4, 5]))
+            $parentCat = $category->category;
+            if (in_array($category->id, [1, 3, 4, 5]))
                 $category->search_type = config('constants.searchTypes.category');
+            elseif ($category->id == 2)
+                $category->search_type = config('constants.searchTypes.lapcategory');
+            elseif ($parentCat->id == 1)
+                $category->search_type = config('constants.searchTypes.subcategorydoctor');
             else
                 $category->search_type = config('constants.searchTypes.subcategory');
             $category->addHidden([
