@@ -12,6 +12,7 @@ use App\Http\Services\WebApi\CommonTraits\Views;
 use App\Http\Services\WebApi\ServicesModule\IServices\IService;
 use App\Http\Services\WebApi\UsersModule\AbstractUsers\Customer;
 use App\LapCalendar;
+use App\Models\Currency;
 use App\Models\ProvidersCalendar;
 use App\Models\PushNotificationsTypes;
 use App\Models\Questionnaire;
@@ -337,6 +338,11 @@ class Services implements IService
     {
         $day = $request->input('day');
         $service = Service::find($id);
+        $service->vat = 0;
+        if (!Auth::user()->is_saudi_nationality)
+            $service->vat = config('constants.vat_percentage');
+        $service->currency_name = Currency::find($service->currency_id)->name_eng;
+        $service->total_price = $service->price + Utilities::calcPercentage($service->price, $service->vat);
         $isLap = false;
         if ($service->type == 4)
             $isLap = true;
