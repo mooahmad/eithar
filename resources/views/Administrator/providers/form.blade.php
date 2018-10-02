@@ -59,7 +59,7 @@
 
                                         <div class="form-group">
                                             <label class="control-label">
-                                                {{ trans('admin.title_ar') }} <span class="required"> * </span>
+                                                {{ trans('admin.title_ar') }} <span style="color: grey;">Ex: در, .مهندس.</span></span><span class="required"> * </span>
                                             </label>
                                             {!! Form::text('title_ar', (isset($provider))? $provider->title_ar : old('title_ar'), array('id'=>'title_ar', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.title_ar'))) !!}
                                             @if($errors->has('title_ar'))
@@ -69,7 +69,7 @@
 
                                         <div class="form-group">
                                             <label class="control-label">
-                                                {{ trans('admin.title_en') }} <span class="required"> * </span>
+                                                {{ trans('admin.title_en') }} <span style="color: grey;">Ex: Dr., Mr.</span><span class="required"> * </span>
                                             </label>
                                             {!! Form::text('title_en', (isset($provider))? $provider->title_en : old('title_en'), array('id'=>'title_en', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.title_en'))) !!}
                                             @if($errors->has('title_en'))
