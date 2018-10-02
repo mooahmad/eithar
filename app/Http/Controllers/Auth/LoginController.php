@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\PushNotificationEvent;
 use App\Helpers\ApiHelpers;
 use App\Http\Controllers\Controller;
 use App\Http\Services\Auth\ClassesAuth\LoginStrategy;
@@ -59,6 +60,7 @@ class LoginController extends Controller
      */
     public function loginCustomer(Request $request)
     {
+        event(new PushNotificationEvent());
         // instantiate login strategy object using request type detection helper method
         $loginStrategy = new LoginStrategy(ApiHelpers::requestType($request));
         return $loginStrategy->loginCustomer($request);

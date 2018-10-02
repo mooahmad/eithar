@@ -25,7 +25,7 @@ class SendEmailsEventListener
     /**
      * Handle the event.
      *
-     * @param  SendEmailsEvent  $event
+     * @param  SendEmailsEvent $event
      * @return void
      */
     public function handle(SendEmailsEvent $event)
@@ -33,12 +33,11 @@ class SendEmailsEventListener
         $now = Carbon::now()->format('Y-m-d H:m:s');
         $customers = Customer::all();
         $customers->each(function ($customer) use ($now) {
-            $customer->notifications->each(function ($notification) use ($now, $customer) {
+            $customer->notifications()->where('is_emailed', 0)->get()->each(function ($notification) use ($now, $customer) {
                 $data = json_decode(json_encode($notification->data));
-                if ($data->is_mailed == 0 && $data->send_at <= $now) {
-                    if (SendingEmailClass::prepareEmail($customer,$notification)){
-                        $data->is_mailed    = 1;
-                        $notification->data = $data;
+                if (strtotime($data->send_at) <= strtotime($now)) {
+                    if (SendingEmailClass::prepareEmail($customer, $notification)) {
+                        $notification->is_emailed = 1;
                         $notification->save();
                     }
                 }
