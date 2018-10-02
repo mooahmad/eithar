@@ -4,38 +4,34 @@
     <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="90%" style="margin: auto;" class="email-container">
         <tr>
             <td bgcolor="#ffffff" style="padding: 40px 40px 20px; text-align: left;">
-                <h3 style="margin: 0; font-family: sans-serif; font-size: 24px; line-height: 27px; color: #333333; font-weight: normal;"><strong>To</strong> {{ $customer->full_name }}</h3>
+                <h4 style="margin: 0; font-family: sans-serif; font-size: 24px; line-height: 27px; color: #333333; font-weight: normal;"><strong>To</strong> {{ $customer->full_name }}</h4>
             </td>
             <td bgcolor="#ffffff" style="padding: 40px 40px 20px; text-align: right;">
-                <h3 style="margin: 0; font-family: sans-serif; font-size: 24px; line-height: 27px; color: #333333; font-weight: normal;"><strong>From</strong>  Eithar Home Care Company
+                <h4 style="margin: 0; font-family: sans-serif; font-size: 24px; line-height: 27px; color: #333333; font-weight: normal;"><strong>From</strong>  Eithar Home Care Company
                     King Salman road<br/>
                     RIYADH RIYADH 6761-12458<br/>
                     SAUDI ARABIA<br/>
                     Telephone : +966118103234<br/>
-                </h3>
+                </h4>
             </td>
         </tr>
         <tr>
             <td bgcolor="#ffffff" style="padding: 0 40px 40px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; text-align: left;" colspan="2">
-                {{--<h3 style="margin: 0;">--}}
-                    {{--Mobile Number: {{ $customer->mobile_number }}--}}
-                {{--</h3>--}}
-
-                <h3 style="margin: 0;">
+                <h4 style="margin: 0;">
                     <strong>Invoice Number:</strong> {{ $invoice->invoice_code }}
-                </h3>
-                <h3 style="margin: 0;">
+                </h4>
+                <h4 style="margin: 0;">
                     <strong>Issued:</strong> {{ $invoice->invoice_date->format('l j F Y h:i A') }}
-                </h3>
+                </h4>
             </td>
         </tr>
     </table>
 
     <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="90%" style="margin: auto;" class="email-container">
         <thead bgcolor="#ffffff" style="padding: 40px 40px 20px; text-align: center;">
-            <th><h3>Description</h3></th>
-            <th><h3>Quantity</h3></th>
-            <th><h3>Status</h3></th>
+            <th><h4>Description</h4></th>
+            <th><h4>Quantity</h4></th>
+            <th><h4>Status</h4></th>
         </thead>
         <tbody>
             @if(!empty($invoice->items))

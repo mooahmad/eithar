@@ -202,7 +202,7 @@
         <!-- Hero Image, Flush : BEGIN -->
         <tr>
             <td bgcolor="#ffffff" align="center">
-                <img src="{{ asset('public/assets/layouts/layout/img/eithar_logo_en.jpg') }}" width="600" height="" alt="Eithar" border="0" align="center" style="width: 100%; max-width: 400px; height: auto; line-height: 20px; margin: auto;" class="g-img">
+                <img src="{{ asset('public/assets/layouts/layout/img/eithar_logo_en.jpg') }}" width="600" alt="Eithar" border="0" align="center" style="width: 100%; max-width: 400px; height: auto; line-height: 20px; margin: auto;" class="g-img">
             </td>
         </tr>
     </table>
