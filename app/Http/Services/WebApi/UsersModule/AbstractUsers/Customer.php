@@ -539,12 +539,11 @@ class Customer
             ->orWhere('description_en', 'like', "%$keyword%")
             ->get();
         $categories->each(function ($category) use (&$results) {
-            $parentCat = $category->category;
             if (in_array($category->id, [1, 3, 4, 5]))
                 $category->search_type = config('constants.searchTypes.category');
             elseif ($category->id == 2)
                 $category->search_type = config('constants.searchTypes.lapcategory');
-            elseif ($parentCat->id == 1)
+            elseif ($category->category && $category->category->id == 1)
                 $category->search_type = config('constants.searchTypes.subcategorydoctor');
             else
                 $category->search_type = config('constants.searchTypes.subcategory');
