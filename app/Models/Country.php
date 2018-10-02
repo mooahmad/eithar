@@ -45,6 +45,6 @@ class Country extends Model
         if(App::isLocale('en'))
             return $this->country_name_eng;
         else
-            return $this->country_name_ara;
+            return $this->country_name_eng;
     }
 }
