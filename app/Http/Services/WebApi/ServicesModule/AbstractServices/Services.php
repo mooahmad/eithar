@@ -403,7 +403,7 @@ class Services implements IService
                 $currentCalendar = ApiHelpers::reBuildCalendar($availableDays[$i], $service->calendar);
                 array_push($packageCalendar, $currentCalendar);
             }
-            $service->calendar_dates = $packageCalendar;
+            $service->calendar_package = $packageCalendar;
         } elseif ($service->type == 1) {
             $service->load(['calendar' => function ($query) use (&$day, $service, $bookedSlotsIds) {
                 if (empty($day)) {
