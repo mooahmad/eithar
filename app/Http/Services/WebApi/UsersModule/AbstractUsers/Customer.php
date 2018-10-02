@@ -495,6 +495,7 @@ class Customer
     {
         $results = [];
         $services = Service::select('id', 'name_ar', 'name_en', "profile_picture_path")
+            ->where('type', '<>', 3)
             ->where('name_ar', 'like', "%$keyword%")
             ->orWhere('name_en', 'like', "%$keyword%")
             ->orWhere('desc_ar', 'like', "%$keyword%")
@@ -502,11 +503,11 @@ class Customer
             ->get();
         $services->each(function ($service) use (&$results) {
             $serviceType = $service->type;
-            if($serviceType == 1)
+            if($serviceType == 1 || $serviceType == 5)
             $service->search_type = config('constants.searchTypes.serviceonevisit');
-            if($serviceType == 2)
+            elseif($serviceType == 2)
                 $service->search_type = config('constants.searchTypes.servicepackage');
-            if($serviceType == 4)
+            elseif($serviceType == 4)
                 $service->search_type = config('constants.searchTypes.servicelap');
             $service->addHidden([
                 "name_ar", "name_en", "description", "benefits"
