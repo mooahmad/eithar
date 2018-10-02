@@ -186,7 +186,8 @@ return [
     'searchTypes' => [
         'service' => 1,
         'provider' => 2,
-        'category' => 3
+        'category' => 3,
+        'subcategory' => 4,
     ],
     'provider'=>[
         'service_doctor'=>0,

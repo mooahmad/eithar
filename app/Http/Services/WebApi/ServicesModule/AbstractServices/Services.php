@@ -163,16 +163,45 @@ class Services implements IService
         $this->saveBookingAppointments($serviceBookingId, $appointmentDate, $appointmentPackageDates);
         if ($providerId != null)
             $this->updateSlotStatus($appointmentDate, 0);
+        // push notification confirmation
         $pushTypeData = PushNotificationsTypes::find(config('constants.pushTypes.appointmentConfirmed'));
         $pushTypeData->booking_id = $serviceBookingId;
         $pushTypeData->send_at = Carbon::now()->format('Y-m-d H:m:s');
         Auth::user()->notify(new AppointmentConfirmed($pushTypeData));
-        $pushTypeData = PushNotificationsTypes::find(config('constants.pushTypes.appointmentReminder'));
-        $pushTypeData->booking_id = $serviceBookingId;
-        $pushTypeData->send_at = Carbon::now()->subDays(3)->format('Y-m-d H:m:s');
-        Auth::user()->notify(new AppointmentReminder($pushTypeData));
+        // push notification reminders
+        if ($appointmentDate != null && $isLap) {
+            $startDate = LapCalendar::find($appointmentDate)->start_date;
+            $this->notifyBookingReminders($serviceBookingId, $startDate);
+        } elseif ($appointmentDate != null && $providerId == null && !$isLap) {
+            $startDate = ServicesCalendar::find($appointmentDate)->start_date;
+            $this->notifyBookingReminders($serviceBookingId, $startDate);
+        } elseif ($appointmentDate != null && $providerId != null && !$isLap) {
+            $startDate = ProvidersCalendar::find($appointmentDate)->start_date;
+            $this->notifyBookingReminders($serviceBookingId, $startDate);
+        } elseif ($appointmentDate == null && $appointmentPackageDates != null && !$isLap) {
+            foreach ($appointmentPackageDates as $appointmentPackageDate) {
+                $startDate = ServicesCalendar::find($appointmentPackageDate)->start_date;
+                $this->notifyBookingReminders($serviceBookingId, $startDate);
+            }
+        }
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([]));
+    }
+
+    private function notifyBookingReminders($serviceBookingId, $startDate)
+    {
+        $now = Carbon::now()->format('Y-m-d H:m:s');
+        $pushTypeData = PushNotificationsTypes::find(config('constants.pushTypes.appointmentReminder'));
+        $pushTypeData->booking_id = $serviceBookingId;
+        $pushTypeData->send_at = Carbon::parse($startDate)->subHours(3)->format('Y-m-d H:m:s');
+        if (strtotime($pushTypeData->send_at) > strtotime($now))
+            Auth::user()->notify(new AppointmentReminder($pushTypeData));
+        $pushTypeData->send_at = Carbon::parse($startDate)->subHours(24)->format('Y-m-d H:m:s');
+        if (strtotime($pushTypeData->send_at) > strtotime($now))
+            Auth::user()->notify(new AppointmentReminder($pushTypeData));
+        $pushTypeData->send_at = Carbon::parse($startDate)->subHours(72)->format('Y-m-d H:m:s');
+        if (strtotime($pushTypeData->send_at) > strtotime($now))
+            Auth::user()->notify(new AppointmentReminder($pushTypeData));
     }
 
     private function updateSlotStatus($slotId, $isAvailsble)
