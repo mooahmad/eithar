@@ -1,9 +1,9 @@
 @if(isset($questionnaireURL) && $questionnaireURL != "")
     <a href="{{ $questionnaireURL }}" class="btn btn-outline btn-circle btn-sm yellow">
-    <i class="fa fa-calendar"></i>
+    <i class="fa fa-list"></i>
 </a>
 <a href="{{ $addQuestionnaireURL }}" class="btn btn-outline btn-circle btn-sm red">
-    <i class="fa fa-plus"></i>
+    <i class="fa fa-info"></i>
 </a>
 @endif
 @if(isset($calendarURL) && $calendarURL != "")

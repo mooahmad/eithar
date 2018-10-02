@@ -176,22 +176,26 @@ return [
         "invoiceGenerated" => 6,
         "addItemToInvoice" => 7
     ],
-    'invoice_code'=>'INV-00',
-    'payment_methods'=>[
-        1 =>'Cash',
-        2 =>'Credit Card',
-        3 =>'Debit Card',
-        4 =>'Mada',
+    'invoice_code' => 'INV-00',
+    'payment_methods' => [
+        1 => 'Cash',
+        2 => 'Credit Card',
+        3 => 'Debit Card',
+        4 => 'Mada',
     ],
     'searchTypes' => [
-        'service' => 1,
-        'provider' => 2,
-        'category' => 3,
-        'subcategory' => 4,
+        'category' => 1,
+        'lapcategory' => 2,
+        'subcategory' => 3,
+        'subcategorydoctor' => 4,
+        'provider' => 5,
+        'serviceonevisit' => 6,
+        'servicepackage' => 7,
+        'servicelap' => 8,
     ],
-    'provider'=>[
-        'service_doctor'=>0,
-        'doctor'=>1,
-        'active'=>1,
+    'provider' => [
+        'service_doctor' => 0,
+        'doctor' => 1,
+        'active' => 1,
     ],
 ];

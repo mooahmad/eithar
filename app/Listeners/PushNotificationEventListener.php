@@ -32,7 +32,7 @@ class PushNotificationEventListener
         $now = Carbon::now()->format('Y-m-d H:m:s');
         $customers = Customer::all();
         $customers->each(function ($customer) use ($now) {
-            $customer->notifications()->where('is_pushed', 0)->get()->each(function ($notification) use ($now, $customer) {
+            $customer->notifications()->where('is_pushed', 0)->orderBy('created_at', 'asc')->get()->each(function ($notification) use ($now, $customer) {
                 $data = json_decode(json_encode($notification->data));
                 if (strtotime($data->send_at) <= strtotime($now)) {
                     $details = [
