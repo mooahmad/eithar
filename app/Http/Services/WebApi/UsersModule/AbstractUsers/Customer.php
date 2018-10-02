@@ -494,7 +494,7 @@ class Customer
     public function search(Request $request, $keyword)
     {
         $results = [];
-        $services = Service::select('id', 'name_ar', 'name_en', "profile_picture_path")
+        $services = Service::select('id', 'name_ar', 'name_en', "profile_picture_path", "type")
             ->where('type', '<>', 3)
             ->where('name_ar', 'like', "%$keyword%")
             ->orWhere('name_en', 'like', "%$keyword%")
@@ -549,7 +549,7 @@ class Customer
             else
                 $category->search_type = config('constants.searchTypes.subcategory');
             $category->addHidden([
-                'category_name_en', 'category_name_ar', "description"
+                'category_name_en', 'category_name_ar', "description", "category"
             ]);
             array_push($results, $category);
         });
