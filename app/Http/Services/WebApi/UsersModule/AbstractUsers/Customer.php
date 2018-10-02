@@ -444,7 +444,7 @@ class Customer
 
     public function getCustomerNotifications(Request $request)
     {
-        $notifications = Auth::user()->notifications;
+        $notifications = Auth::user()->notifications()->where('is_pushed', 1)->get();
         $notifications->markAsRead();
         $returnNotifications = [];
         foreach ($notifications as $notification) {
