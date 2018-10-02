@@ -265,7 +265,7 @@ class Services implements IService
 
     private function saveBookingAppointments($serviceBookingId, $appointmentDate, $appointmentDates)
     {
-        if ($appointmentDate != null) {
+        if ($appointmentDate != null && $appointmentDates == []) {
             $bookingAppointment = new ServiceBookingAppointment();
             $bookingAppointment->service_booking_id = $serviceBookingId;
             $bookingAppointment->slot_id = $appointmentDate;
