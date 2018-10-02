@@ -33,7 +33,7 @@ class VerifyEmailCode extends Mailable
     {
         return $this->view('vendor.mail.verifyemail.template')
                     ->with([
-                               'customerName'  => $this->user->first_name . ' ' .$this->user->last_name,
+                               'customerName'  => $this->user->first_name .' '. $this->user-> . ' ' .$this->user->last_name,
                                'customerCode' => $this->user->email_code,
                            ]);
     }
