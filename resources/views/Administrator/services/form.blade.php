@@ -242,7 +242,7 @@
 
                                     <div class="form-group">
                                         <label for="name" class="control-label">
-                                            {{ trans('admin.visit_duration') }} <span class="required"> * </span>
+                                            {{ trans('admin.visit_duration') }} <span style="color: grey">Hint: time in minutes</span> <span class="required"> * </span>
                                         </label>
                                         {!! Form::number('visit_duration', (isset($service))? $service->visit_duration : old('visit_duration') , array('id'=>'visit_duration', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.visit_duration'))) !!}
                                         @if($errors->has('visit_duration'))
@@ -252,7 +252,7 @@
 
                                     <div class="form-group">
                                         <label for="name" class="control-label">
-                                            {{ trans('admin.time_before_next_visit') }} <span
+                                            {{ trans('admin.time_before_next_visit') }} <span style="color: grey">Hint: time in minutes</span> <span
                                                     class="required"> * </span>
                                         </label>
                                         {!! Form::number('time_before_next_visit', (isset($service))? $service->time_before_next_visit : old('time_before_next_visit') , array('id'=>'time_before_next_visit', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.time_before_next_visit'))) !!}

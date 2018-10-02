@@ -18,7 +18,7 @@
                             <div class="portlet-title tabbable-line">
                                 <div class="caption caption-md">
                                     <i class="icon-globe theme-font hide"></i>
-                                    <span class="caption-subject font-blue-madison bold uppercase">Lap calendar</span>
+                                    <span class="caption-subject font-blue-madison bold uppercase">Lab calendar</span>
                                 </div>
                             </div>
                             <div class="portlet-body">

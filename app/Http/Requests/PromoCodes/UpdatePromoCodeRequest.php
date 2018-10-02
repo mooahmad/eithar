@@ -26,6 +26,8 @@ class UpdatePromoCodeRequest extends FormRequest
         return [
             'name_en'    => 'required',
             'name_ar'    => 'required',
+            'start_date'    => 'required',
+            'end_date'   => 'required|after:start_date',
         ];
     }
 }

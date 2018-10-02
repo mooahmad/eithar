@@ -42,7 +42,7 @@ class UpdateProviderRequest extends FormRequest
             'education_ar'           => 'required',
             'education_en'           => 'required',
             'contract_start_date'    => 'required',
-            'contract_expiry_date'   => 'required',
+            'contract_expiry_date'   => 'required|after:contract_start_date',
             'visit_duration'         => 'required|numeric|min:0',
             'time_before_next_visit' => 'required|numeric|min:0',
             'avatar'                 => 'mimes:jpeg,bmp,png|dimensions:min_width=100,min_height=100',
