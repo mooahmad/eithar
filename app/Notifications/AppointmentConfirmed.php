@@ -58,6 +58,7 @@ class AppointmentConfirmed extends Notification
             'desc_ar' => $this->payload->desc_ar,
             'desc_en' => $this->payload->desc_en,
             'notification_type' => config('constants.pushTypes.appointmentConfirmed'),
+            'service_type' => $this->payload->service_type,
             'related_id' => $this->payload->booking_id,
             'send_at' => $this->payload->send_at,
             'lang'    => App::getLocale(),

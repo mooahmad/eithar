@@ -61,7 +61,7 @@
                                             <label class="control-label">
                                                 {{ trans('admin.title_ar') }} <span style="color: grey;">Ex: در, .مهندس.</span></span><span class="required"> * </span>
                                             </label>
-                                            {!! Form::text('title_ar', (isset($provider))? $provider->title_ar : old('title_ar'), array('id'=>'title_ar', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.title_ar'))) !!}
+                                            {!! Form::text('title_ar', (isset($provider))? $provider->title_ar : old('title_ar'), array('id'=>'title_ar', 'maxlength' => 50, 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.title_ar'))) !!}
                                             @if($errors->has('title_ar'))
                                                 <span class="help-block text-danger">{{ $errors->first('title_ar') }}</span>
                                             @endif
@@ -71,7 +71,7 @@
                                             <label class="control-label">
                                                 {{ trans('admin.title_en') }} <span style="color: grey;">Ex: Dr., Mr.</span><span class="required"> * </span>
                                             </label>
-                                            {!! Form::text('title_en', (isset($provider))? $provider->title_en : old('title_en'), array('id'=>'title_en', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.title_en'))) !!}
+                                            {!! Form::text('title_en', (isset($provider))? $provider->title_en : old('title_en'), array('id'=>'title_en', 'maxlength' => 50, 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.title_en'))) !!}
                                             @if($errors->has('title_en'))
                                                 <span class="help-block text-danger">{{ $errors->first('title_en') }}</span>
                                             @endif
@@ -81,7 +81,7 @@
                                             <label class="control-label">
                                                 {{ trans('admin.first_name_ar') }} <span class="required"> * </span>
                                             </label>
-                                            {!! Form::text('first_name_ar', (isset($provider))? $provider->first_name_ar : old('first_name_ar'), array('id'=>'first_name_ar', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.first_name_ar'))) !!}
+                                            {!! Form::text('first_name_ar', (isset($provider))? $provider->first_name_ar : old('first_name_ar'), array('id'=>'first_name_ar', 'maxlength' => 50, 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.first_name_ar'))) !!}
                                             @if($errors->has('first_name_ar'))
                                                 <span class="help-block text-danger">{{ $errors->first('first_name_ar') }}</span>
                                             @endif
@@ -91,7 +91,7 @@
                                             <label class="control-label">
                                                 {{ trans('admin.first_name_en') }} <span class="required"> * </span>
                                             </label>
-                                            {!! Form::text('first_name_en', (isset($provider))? $provider->first_name_en : old('first_name_en'), array('id'=>'first_name_en', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.first_name_en'))) !!}
+                                            {!! Form::text('first_name_en', (isset($provider))? $provider->first_name_en : old('first_name_en'), array('id'=>'first_name_en', 'maxlength' => 50, 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.first_name_en'))) !!}
                                             @if($errors->has('first_name_en'))
                                                 <span class="help-block text-danger">{{ $errors->first('first_name_en') }}</span>
                                             @endif
@@ -101,7 +101,7 @@
                                             <label class="control-label">
                                                 {{ trans('admin.last_name_ar') }} <span class="required"> * </span>
                                             </label>
-                                            {!! Form::text('last_name_ar', (isset($provider))? $provider->last_name_ar : old('last_name_ar'), array('id'=>'last_name_ar', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.last_name_ar'))) !!}
+                                            {!! Form::text('last_name_ar', (isset($provider))? $provider->last_name_ar : old('last_name_ar'), array('id'=>'last_name_ar', 'maxlength' => 50, 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.last_name_ar'))) !!}
                                             @if($errors->has('last_name_ar'))
                                                 <span class="help-block text-danger">{{ $errors->first('last_name_ar') }}</span>
                                             @endif
@@ -111,7 +111,7 @@
                                             <label class="control-label">
                                                 {{ trans('admin.last_name_en') }} <span class="required"> * </span>
                                             </label>
-                                            {!! Form::text('last_name_en', (isset($provider))? $provider->last_name_en : old('last_name_en'), array('id'=>'last_name_en', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.last_name_en'))) !!}
+                                            {!! Form::text('last_name_en', (isset($provider))? $provider->last_name_en : old('last_name_en'), array('id'=>'last_name_en', 'maxlength' => 50, 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.last_name_en'))) !!}
                                             @if($errors->has('last_name_en'))
                                                 <span class="help-block text-danger">{{ $errors->first('last_name_en') }}</span>
                                             @endif
@@ -252,7 +252,7 @@
                                         <label for="name" class="control-label">
                                             {{ trans('admin.about_ar') }}
                                         </label>
-                                        {!! Form::textarea('about_ar', (isset($provider))? $provider->about_ar : old('about_ar'), array('id'=>'about_ar', 'class'=>'form-control','rows' => 2)) !!}
+                                        {!! Form::textarea('about_ar', (isset($provider))? $provider->about_ar : old('about_ar'), array('id'=>'about_ar', 'maxlength' => 300, 'class'=>'form-control','rows' => 2)) !!}
                                         @if($errors->has('about_ar'))
                                             <span class="help-block text-danger">{{ $errors->first('about_ar') }}</span>
                                         @endif
@@ -262,7 +262,7 @@
                                         <label for="name" class="control-label">
                                             {{ trans('admin.about_en') }}
                                         </label>
-                                        {!! Form::textarea('about_en', (isset($provider))? $provider->about_en : old('about_en'), array('id'=>'about_en', 'class'=>'form-control','rows' => 2)) !!}
+                                        {!! Form::textarea('about_en', (isset($provider))? $provider->about_en : old('about_en'), array('id'=>'about_en', 'maxlength' => 300, 'class'=>'form-control','rows' => 2)) !!}
                                         @if($errors->has('about_en'))
                                             <span class="help-block text-danger">{{ $errors->first('about_en') }}</span>
                                         @endif

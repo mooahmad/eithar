@@ -126,7 +126,7 @@
                                             <label for="name" class="control-label">
                                                 {{ trans('admin.name_ar') }} <span class="required"> * </span>
                                             </label>
-                                            {!! Form::text('name_ar', (isset($service))? $service->name_ar : old('name_ar') , array('id'=>'name_ar', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.name_ar'))) !!}
+                                            {!! Form::text('name_ar', (isset($service))? $service->name_ar : old('name_ar') , array('id'=>'name_ar', 'maxlength' => 50, 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.name_ar'))) !!}
                                             @if($errors->has('name_ar'))
                                                 <span class="help-block text-danger">{{ $errors->first('name_ar') }}</span>
                                             @endif
@@ -136,7 +136,7 @@
                                             <label for="name" class="control-label">
                                                 {{ trans('admin.name_en') }} <span class="required"> * </span>
                                             </label>
-                                            {!! Form::text('name_en', (isset($service))? $service->name_en : old('name_en') , array('id'=>'name_en', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.name_en'))) !!}
+                                            {!! Form::text('name_en', (isset($service))? $service->name_en : old('name_en') , array('id'=>'name_en', 'maxlength' => 50, 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.name_en'))) !!}
                                             @if($errors->has('name_en'))
                                                 <span class="help-block text-danger">{{ $errors->first('name_en') }}</span>
                                             @endif
@@ -146,7 +146,7 @@
                                             <label for="name" class="control-label">
                                                 {{ trans('admin.desc_ar') }}
                                             </label>
-                                            {!! Form::textarea('desc_ar', (isset($service))? $service->desc_ar : old('desc_ar'), array('id'=>'desc_ar', 'class'=>'form-control','rows' => 2)) !!}
+                                            {!! Form::textarea('desc_ar', (isset($service))? $service->desc_ar : old('desc_ar'), array('id'=>'desc_ar', 'maxlength' => 300, 'class'=>'form-control','rows' => 2)) !!}
                                             @if($errors->has('desc_ar'))
                                                 <span class="help-block text-danger">{{ $errors->first('desc_ar') }}</span>
                                             @endif
@@ -156,7 +156,7 @@
                                             <label for="name" class="control-label">
                                                 {{ trans('admin.desc_en') }}
                                             </label>
-                                            {!! Form::textarea('desc_en', (isset($service))? $service->desc_en : old('desc_en'), array('id'=>'desc_en', 'class'=>'form-control','rows' => 2)) !!}
+                                            {!! Form::textarea('desc_en', (isset($service))? $service->desc_en : old('desc_en'), array('id'=>'desc_en', 'maxlength' => 300, 'class'=>'form-control','rows' => 2)) !!}
                                             @if($errors->has('desc_en'))
                                                 <span class="help-block text-danger">{{ $errors->first('desc_en') }}</span>
                                             @endif
@@ -214,7 +214,7 @@
                                         <label for="name" class="control-label">
                                             {{ trans('admin.benefits_ar') }} <span class="required"> * </span>
                                         </label>
-                                        {!! Form::text('benefits_ar', (isset($service))? $service->benefits_ar : old('benefits_ar') , array('id'=>'benefits_ar', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.benefits_ar'))) !!}
+                                        {!! Form::text('benefits_ar', (isset($service))? $service->benefits_ar : old('benefits_ar') , array('id'=>'benefits_ar', 'maxlength' => 300, 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.benefits_ar'))) !!}
                                         @if($errors->has('benefits_ar'))
                                             <span class="help-block text-danger">{{ $errors->first('benefits_ar') }}</span>
                                         @endif
@@ -224,7 +224,7 @@
                                         <label for="name" class="control-label">
                                             {{ trans('admin.benefits_en') }} <span class="required"> * </span>
                                         </label>
-                                        {!! Form::text('benefits_en', (isset($service))? $service->benefits_en : old('benefits_en') , array('id'=>'benefits_en', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.benefits_en'))) !!}
+                                        {!! Form::text('benefits_en', (isset($service))? $service->benefits_en : old('benefits_en') , array('id'=>'benefits_en', 'maxlength' => 300, 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.benefits_en'))) !!}
                                         @if($errors->has('benefits_en'))
                                             <span class="help-block text-danger">{{ $errors->first('benefits_en') }}</span>
                                         @endif

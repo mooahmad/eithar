@@ -496,6 +496,7 @@ class Customer
         $results = [];
         $services = Service::select('id', 'name_ar', 'name_en', "profile_picture_path", "type")
             ->where('type', '<>', 3)
+            ->where('type', '<>', 5)
             ->where('name_ar', 'like', "%$keyword%")
             ->orWhere('name_en', 'like', "%$keyword%")
             ->orWhere('desc_ar', 'like', "%$keyword%")
@@ -503,7 +504,7 @@ class Customer
             ->get();
         $services->each(function ($service) use (&$results) {
             $serviceType = $service->type;
-            if($serviceType == 1 || $serviceType == 5)
+            if($serviceType == 1)
             $service->search_type = config('constants.searchTypes.serviceonevisit');
             elseif($serviceType == 2)
                 $service->search_type = config('constants.searchTypes.servicepackage');
