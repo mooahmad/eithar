@@ -198,4 +198,6 @@ return [
         'doctor' => 1,
         'active' => 1,
     ],
+    'MaxMessageSMS'=>160,
+    'SMSSentSuccessfully'=>100,
 ];
