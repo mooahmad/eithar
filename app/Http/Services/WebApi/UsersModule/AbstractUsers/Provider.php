@@ -39,7 +39,7 @@ class Provider
                 $date = ProvidersCalendar::where('provider_id', $providerId)
                     ->where('start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
                     ->where('is_available', 1)
-                    ->orderBy('start_date', 'desc')
+                    ->orderBy('start_date', 'asc')
                     ->first();
                 if (!$date)
                     $day = Carbon::today()->format('Y-m-d');
