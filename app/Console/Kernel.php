@@ -4,6 +4,7 @@ namespace App\Console;
 
 use App\Events\PushNotificationEvent;
 use App\Events\SendEmailsEvent;
+use App\Events\SendSMSEvent;
 use function foo\func;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -29,10 +30,14 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(function () {
             event(new PushNotificationEvent());
-        })->everyFiveMinutes();
+        })->everyMinute();
 
         $schedule->call(function (){
             event(new SendEmailsEvent());
+        })->everyMinute();
+
+        $schedule->call(function (){
+            event(new SendSMSEvent());
         })->everyMinute();
     }
 
