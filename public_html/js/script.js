@@ -173,7 +173,14 @@ $(function() {
     }, 1000)
   });
 
-
+  /*Start Profile Doctor */
+  $(".rate_content .fa-heart,.rate_content .fa-star").click(function() {
+    $(this).toggleClass("active");
+  });
+  $(".rate_content .fa-share-square").click(function() {
+    $(".social_media-content").slideToggle();
+  });
+  /*End Profile Doctor */
 
   /*****Start Preloder*****/
   //For Loading Function

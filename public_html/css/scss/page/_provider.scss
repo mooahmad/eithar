@@ -14,6 +14,8 @@
   .department_block {
     height: 100px;
     width: 100px;
+    // padding: 30px;
+    text-align: center;
     line-height: 100px;
     border-radius: 100%;
     border: 2px solid rgba(212, 212, 212, 0.35);
@@ -28,7 +30,11 @@
       border: 2px solid $secondColor;
     }
 
-    img {}
+    img {
+      display: inline-block;
+      max-height: 60px;
+      max-width: 80px;
+    }
   }
 }
 // =01= End department Slider
