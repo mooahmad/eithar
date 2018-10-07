@@ -445,7 +445,6 @@ class Customer
     public function getCustomerNotifications(Request $request)
     {
         $notifications = Auth::user()->notifications()->where('is_pushed', 1)->get();
-        $notifications->markAsRead();
         $returnNotifications = [];
         foreach ($notifications as $notification) {
             $notificationData = json_decode(json_encode($notification->data));
@@ -457,9 +456,10 @@ class Customer
                 $data->service_type = $notificationData->service_type;
             $data->related_id = $notificationData->related_id;
             $data->send_at = $notificationData->send_at;
-            $data->is_read = ($notification->read_at != null) ? 1 : 0;
+            $data->is_read = ($notification->read_at == null) ? 0 : 1;
             array_push($returnNotifications, $data);
         }
+        $notifications->markAsRead();
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
             "notifications" => $returnNotifications
         ]));
