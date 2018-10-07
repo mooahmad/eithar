@@ -39,6 +39,12 @@ class ServicesController extends Controller
         return $services->book($request, $serviceId);
     }
 
+    public function cancelBook(Request $request, $appointmentId)
+    {
+        $services = new ServicesStrategy(ApiHelpers::requestType($request));
+        return $services->cancelBook($request, $appointmentId);
+    }
+
     public function like(Request $request, $serviceId)
     {
         $service = new ServicesStrategy(ApiHelpers::requestType($request));

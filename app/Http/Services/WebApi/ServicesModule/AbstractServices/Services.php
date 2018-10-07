@@ -154,6 +154,8 @@ class Services implements IService
         $status = config('constants.bookingStatus.inprogress');
         $statusDescription = "inprogress";
         $lapServicesIds = $request->input('lap_services_ids', []);
+        if ($address == '')
+            $address = Auth::user()->address;
         $serviceBookingId = $this->saveServiceBooking($isLap, $providerId, $providerAssignedId, $serviceId, $promoCodeId, $price, $currencyId, $comment, $address, $familyMemberId, $status, $statusDescription, $lapServicesIds);
         // service meetings answers table
         $serviceQuestionnaireAnswers = $request->input('service_questionnaire_answers');
@@ -161,46 +163,25 @@ class Services implements IService
         // service meetings appointments table
         $appointmentDate = $request->input('slot_id', null);
         $appointmentPackageDates = $request->input('slot_ids', []);
-        $this->saveBookingAppointments($serviceBookingId, $appointmentDate, $appointmentPackageDates);
+        $this->saveBookingAppointments($isLap, $providerId, $serviceBookingId, $appointmentDate, $appointmentPackageDates);
         if ($providerId != null)
             $this->updateSlotStatus($appointmentDate, 0);
-        // push notification confirmation
-        $pushTypeData = PushNotificationsTypes::find(config('constants.pushTypes.appointmentConfirmed'));
-        $pushTypeData->booking_id = $serviceBookingId;
-        $pushTypeData->send_at = Carbon::now()->format('Y-m-d H:m:s');
-        // push notification reminders
-        if ($appointmentDate != null && $isLap) {
-            $pushTypeData->service_type = 4;
-            Auth::user()->notify(new AppointmentConfirmed($pushTypeData));
-            $startDate = LapCalendar::find($appointmentDate)->start_date;
-            $this->notifyBookingReminders($serviceBookingId, $startDate, 4);
-        } elseif ($appointmentDate != null && $providerId == null && !$isLap) {
-            $pushTypeData->service_type = 1;
-            Auth::user()->notify(new AppointmentConfirmed($pushTypeData));
-            $startDate = ServicesCalendar::find($appointmentDate)->start_date;
-            $this->notifyBookingReminders($serviceBookingId, $startDate, 1);
-        } elseif ($appointmentDate != null && $providerId != null && !$isLap) {
-            $pushTypeData->service_type = 5;
-            Auth::user()->notify(new AppointmentConfirmed($pushTypeData));
-            $startDate = ProvidersCalendar::find($appointmentDate)->start_date;
-            $this->notifyBookingReminders($serviceBookingId, $startDate, 5);
-        } elseif ($appointmentDate == null && $appointmentPackageDates != null && !$isLap) {
-            $pushTypeData->service_type = 2;
-            Auth::user()->notify(new AppointmentConfirmed($pushTypeData));
-            foreach ($appointmentPackageDates as $appointmentPackageDate) {
-                $startDate = ServicesCalendar::find($appointmentPackageDate)->start_date;
-                $this->notifyBookingReminders($serviceBookingId, $startDate, 2);
-            }
-        }
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([]));
     }
 
-    private function notifyBookingReminders($serviceBookingId, $startDate, $serviceType)
+    public function cancelBook($request, $appointmentId)
+    {
+
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([]));
+    }
+
+    private function notifyBookingReminders($appointmentId, $startDate, $serviceType)
     {
         $now = Carbon::now()->format('Y-m-d H:m:s');
         $pushTypeData = PushNotificationsTypes::find(config('constants.pushTypes.appointmentReminder'));
-        $pushTypeData->booking_id = $serviceBookingId;
+        $pushTypeData->booking_id = $appointmentId;
         $pushTypeData->send_at = Carbon::parse($startDate)->subHours(3)->format('Y-m-d H:m:s');
         if (strtotime($pushTypeData->send_at) > strtotime($now))
             Auth::user()->notify(new AppointmentReminder($pushTypeData));
@@ -271,18 +252,46 @@ class Services implements IService
         return ServiceBookingAnswers::insert($data);
     }
 
-    private function saveBookingAppointments($serviceBookingId, $appointmentDate, $appointmentDates)
+    private function saveBookingAppointments($isLap, $providerId, $serviceBookingId, $appointmentDate, $appointmentDates)
     {
+        $pushTypeData = PushNotificationsTypes::find(config('constants.pushTypes.appointmentConfirmed'));
         if ($appointmentDate != null && $appointmentDates == []) {
             $bookingAppointment = new ServiceBookingAppointment();
             $bookingAppointment->service_booking_id = $serviceBookingId;
             $bookingAppointment->slot_id = $appointmentDate;
             $bookingAppointment->save();
+            // push notification confirmation
+            $pushTypeData->booking_id = $bookingAppointment->id;
+            $pushTypeData->send_at = Carbon::now()->format('Y-m-d H:m:s');
+            // push notification reminders
+            if ($appointmentDate != null && $isLap) {
+                $pushTypeData->service_type = 4;
+                Auth::user()->notify(new AppointmentConfirmed($pushTypeData));
+                $startDate = LapCalendar::find($appointmentDate)->start_date;
+                $this->notifyBookingReminders($bookingAppointment->id, $startDate, 4);
+            } elseif ($appointmentDate != null && $providerId == null && !$isLap) {
+                $pushTypeData->service_type = 1;
+                Auth::user()->notify(new AppointmentConfirmed($pushTypeData));
+                $startDate = ServicesCalendar::find($appointmentDate)->start_date;
+                $this->notifyBookingReminders($bookingAppointment->id, $startDate, 1);
+            } elseif ($appointmentDate != null && $providerId != null && !$isLap) {
+                $pushTypeData->service_type = 5;
+                Auth::user()->notify(new AppointmentConfirmed($pushTypeData));
+                $startDate = ProvidersCalendar::find($appointmentDate)->start_date;
+                $this->notifyBookingReminders($bookingAppointment->id, $startDate, 5);
+            }
         } elseif ($appointmentDates != []) {
-            $data = [];
-            foreach ($appointmentDates as $appointmentDate)
-                array_push($data, ["service_booking_id" => $serviceBookingId, "slot_id" => $appointmentDate]);
-            ServiceBookingAppointment::insert($data);
+            foreach ($appointmentDates as $appointmentDate) {
+                $serviceBookingAppointment = new ServiceBookingAppointment();
+                $serviceBookingAppointment->service_booking_id = $serviceBookingId;
+                $serviceBookingAppointment->slot_id = $appointmentDate;
+                $serviceBookingAppointment->save();
+                // push notifications
+                $startDate = ServicesCalendar::find($appointmentDate)->start_date;
+                $pushTypeData->service_type = 2;
+                Auth::user()->notify(new AppointmentConfirmed($pushTypeData));
+                $this->notifyBookingReminders($serviceBookingAppointment->id, $startDate, 2);
+            }
         }
         return true;
     }
@@ -356,9 +365,8 @@ class Services implements IService
         $bookedSlotsIds = (new Customer())->getBookedSlots($isLap);
         if ($service->type == 4) {
             if (empty($day)) {
-                $date = LapCalendar::where('start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
+                $date = LapCalendar::where('start_date', '>', Carbon::now()->addHours(2)->format('Y-m-d H:m:s'))
                     ->where('is_available', 1)
-                    ->where('lap_calendars.start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
                     ->orderBy('start_date', 'asc')
                     ->first();
                 if (!$date)
@@ -381,7 +389,7 @@ class Services implements IService
             $numberOfDaysInCurrentWeek = 0;
             $service->load(['calendar' => function ($query) use ($id, $service, $bookedSlotsIds) {
                 $query->where('city_id', '=', Auth::user()->city_id)
-                    ->where('start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
+                    ->where('start_date', '>', Carbon::now()->addHours(2)->format('Y-m-d H:m:s'))
                     ->where('is_available', 1);
                 if (!empty($bookedSlotsIds))
                     $query->whereRaw("services_calendars.id NOT IN (" . implode(',', $bookedSlotsIds) . ")");
@@ -416,7 +424,7 @@ class Services implements IService
                 if (empty($day)) {
                     $date = Service::join('services_calendars', 'services.id', 'services_calendars.service_id')
                         ->where('services.id', $service->id)
-                        ->where('services_calendars.start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
+                        ->where('services_calendars.start_date', '>', Carbon::now()->addHours(2)->format('Y-m-d H:m:s'))
                         ->where('services_calendars.is_available', 1)
                         ->orderBy('services_calendars.start_date', 'asc')
                         ->first();

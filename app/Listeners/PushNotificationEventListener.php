@@ -41,9 +41,7 @@ class PushNotificationEventListener
                         'send_at' => $data->send_at
                     ];
                     if (isset($data->service_type))
-                        $details = [
-                            'service_type' => $data->service_type,
-                        ];
+                        $details['service_type'] = $data->service_type;
                     $tokens[] = $customer->pushNotification->token;
                     $pushData = Utilities::buildNotification($data->{'title_' . $data->lang}, $data->{'desc_' . $data->lang}, 0, $details);
                     Utilities::pushNotification($tokens, $pushData);

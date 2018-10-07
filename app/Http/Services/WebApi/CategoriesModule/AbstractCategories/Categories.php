@@ -96,7 +96,7 @@ abstract class Categories implements ICategory
                             $numberOfDaysInCurrentWeek = 0;
                             $service->load(['calendar' => function ($query) use ($id, $service, $bookedSlotsIds) {
                                 $query->where('city_id', '=', Auth::user()->city_id)
-                                    ->where('start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
+                                    ->where('start_date', '>', Carbon::now()->addHours(2)->format('Y-m-d H:m:s'))
                                     ->where('is_available', 1);
                                 if (!empty($bookedSlotsIds))
                                     $query->whereRaw("services_calendars.id NOT IN (" . implode(',', $bookedSlotsIds) . ")");
@@ -134,7 +134,7 @@ abstract class Categories implements ICategory
                                 if (empty($day)) {
                                     $date = Service::join('services_calendars', 'services.id', 'services_calendars.service_id')
                                         ->where('services.id', $service->id)
-                                        ->where('services_calendars.start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
+                                        ->where('services_calendars.start_date', '>', Carbon::now()->addHours(2)->format('Y-m-d H:m:s'))
                                         ->where('services_calendars.is_available', 1)
                                         ->orderBy('services_calendars.start_date', 'asc')
                                         ->first();
@@ -160,9 +160,8 @@ abstract class Categories implements ICategory
             } elseif ($orderedCategory->id == config('constants.categories.Lap')) {
                 $bookedSlotsIds = (new Customer())->getBookedSlots(true);
                 if (empty($day)) {
-                    $date = LapCalendar::where('start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
+                    $date = LapCalendar::where('start_date', '>', Carbon::now()->addHours(2)->format('Y-m-d H:m:s'))
                         ->where('is_available', 1)
-                        ->where('lap_calendars.start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
                         ->orderBy('start_date', 'asc')
                         ->first();
                     if (!$date)

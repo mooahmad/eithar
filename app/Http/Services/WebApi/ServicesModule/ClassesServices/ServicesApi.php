@@ -40,6 +40,14 @@ class ServicesApi extends Services
         return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
     }
 
+    public function cancelBook($request, $appointmentId)
+    {
+        $validationObject = parent::cancelBook($request, $appointmentId);
+        if ($validationObject->error == config('constants.responseStatus.success'))
+            return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
+    }
+
     public function likeService($request, $serviceId)
     {
         $validationObject = parent::likeService($request, $serviceId);

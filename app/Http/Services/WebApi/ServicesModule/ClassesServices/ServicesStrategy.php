@@ -39,6 +39,11 @@ class ServicesStrategy
         return $this->strategy->book($request, $serviceId);
     }
 
+    public function cancelBook($request, $appointmentId)
+    {
+        return $this->strategy->cancelBook($request, $appointmentId);
+    }
+
     public function likeService($request, $serviceId)
     {
         return $this->strategy->likeService($request, $serviceId);

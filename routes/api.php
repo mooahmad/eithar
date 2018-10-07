@@ -34,6 +34,7 @@ Route::group(['namespace' => 'WebApi\CitiesModule', 'prefix' => 'cities'], (func
 
 Route::middleware('auth:api')->group(function () {
     Route::group(['namespace' => 'WebApi\UsersModule', 'prefix' => 'customers'], (function () {
+        Route::get('logoutCustomer', 'CustomerController@logoutCustomer');
         Route::post('updateAvatar', 'CustomerController@updateCustomerAvatar');
         Route::post('updateNationalId', 'CustomerController@updateCustomerNationalId');
         Route::post('verifyEmail', 'CustomerController@verifyCustomerEmail');
@@ -95,6 +96,7 @@ Route::middleware('auth:api')->group(function () {
 
 Route::middleware('auth:provider')->group(function () {
     Route::group(['namespace' => 'WebApi\UsersModule', 'prefix' => 'providers'], (function () {
+        Route::get('logoutProvider', 'ProviderController@logoutProvider');
         Route::get('/bookings/{id}/reports', 'ProviderController@getBookingAvailableReports');
         Route::post('/bookings/{id}/addreport', 'ProviderController@addBookingReport');
     }));

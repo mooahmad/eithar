@@ -31,4 +31,5 @@ class LoginStrategy
     {
         return $this->strategy->loginProvider($request);
     }
+
 }
