@@ -35,7 +35,7 @@ Abstract class Login implements ILogin
         $customerData->company_number = $settings->mobile_number;
         $customerData->company_whats_app_number = $settings->whats_app_number;
         $customerData->company_customer_banner = Utilities::getFileUrl($settings->customer_banner_path);
-        $customerData->notifications_count = $customer->unreadnotifications->count();
+        $customerData->notifications_count = $customer->unreadnotifications()->where('is_pushed', 1)->count();
         Utilities::forgetModelItems($customerData, [
             'registration_source',
             'registration_source_desc',
