@@ -13,6 +13,7 @@ use App\Http\Services\WebApi\ServicesModule\IServices\IService;
 use App\Http\Services\WebApi\UsersModule\AbstractUsers\Customer;
 use App\LapCalendar;
 use App\Models\Currency;
+use App\Models\Provider;
 use App\Models\ProvidersCalendar;
 use App\Models\PushNotificationsTypes;
 use App\Models\Questionnaire;
@@ -22,6 +23,7 @@ use App\Models\ServiceBookingAnswers;
 use App\Models\ServiceBookingAppointment;
 use App\Models\ServiceBookingLap;
 use App\Models\ServicesCalendar;
+use App\Notifications\AppointmentCanceled;
 use App\Notifications\AppointmentConfirmed;
 use App\Notifications\AppointmentReminder;
 use Carbon\Carbon;
@@ -172,6 +174,26 @@ class Services implements IService
 
     public function cancelBook($request, $appointmentId)
     {
+        $appointment = ServiceBookingAppointment::find($appointmentId);
+        $booking = ServiceBooking::find($appointment->service_booking_id);
+        $booking->status = config('constants.bookingStatus.canceled');
+        $booking->status_desc = "canceled";
+        $booking->save();
+        $pushTypeData = PushNotificationsTypes::find(config('constants.pushTypes.appointmentcanceled'));
+        $pushTypeData->appointment_id = $appointmentId;
+        $pushTypeData->send_at = Carbon::now()->format('Y-m-d H:m:s');
+        Auth::user()->notify(new AppointmentCanceled($pushTypeData));
+
+        if ($booking->service) {
+            $serviceType = $booking->service->type;
+            if ($serviceType == 5) {
+                $slot = ProvidersCalendar::find($appointment->slot_id);
+                $slot->is_available = 1;
+                $slot->save();
+                $provider = Provider::find($booking->provider_id);
+                $provider->notify(new AppointmentCanceled($pushTypeData));
+            }
+        }
 
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([]));

@@ -64,6 +64,7 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/lap/calendar', 'ServicesController@getLapCalendar');
         Route::post('/{id}/calendar', 'ServicesController@getServiceCalendar');
         Route::post('/{id}/book', 'ServicesController@book');
+        Route::post('/cancelBook/{id}', 'ServicesController@cancelBook');
         Route::post('/{id}/like', 'ServicesController@like');
         Route::post('/{id}/unlike', 'ServicesController@unlike');
         Route::post('/{id}/follow', 'ServicesController@follow');
