@@ -173,6 +173,8 @@ class Services implements IService
     public function cancelBook($request, $appointmentId)
     {
 
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([]));
     }
 
     private function notifyBookingReminders($appointmentId, $startDate, $serviceType)

@@ -538,7 +538,7 @@ class Customer
             array_push($results, $provider);
         });
 
-        $categories = Category::select('id', 'category_name_ar', 'category_name_en', 'profile_picture_path')
+        $categories = Category::select('id', 'category_name_ar', 'category_name_en', 'profile_picture_path', 'category_parent_id')
             ->where('category_name_ar', 'like', "%$keyword%")
             ->orWhere('category_name_en', 'like', "%$keyword%")
             ->orWhere('description_ar', 'like', "%$keyword%")
@@ -549,12 +549,13 @@ class Customer
                 $category->search_type = config('constants.searchTypes.category');
             elseif ($category->id == 2)
                 $category->search_type = config('constants.searchTypes.lapcategory');
-            elseif ($category->category && $category->category->id == 1)
+            elseif ($category->category_parent_id == 1)
                 $category->search_type = config('constants.searchTypes.subcategorydoctor');
             else
                 $category->search_type = config('constants.searchTypes.subcategory');
+
             $category->addHidden([
-                'category_name_en', 'category_name_ar', "description", "category"
+                'category_name_en', 'category_name_ar', "description", "category", "category_parent_id"
             ]);
             array_push($results, $category);
         });
