@@ -94,4 +94,9 @@ class CustomerStrategy
     {
         return $this->strategy->search($request, $keyword);
     }
+
+    public function logoutCustomer(Request $request)
+    {
+        return $this->strategy->logoutCustomer($request);
+    }
 }

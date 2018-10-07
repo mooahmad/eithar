@@ -69,4 +69,9 @@ class ProviderStrategy
         return $this->strategy->addBookingReport($request, $bookingId);
     }
 
+    public function logoutProvider(Request $request)
+    {
+        return $this->strategy->logoutProvider($request);
+    }
+
 }

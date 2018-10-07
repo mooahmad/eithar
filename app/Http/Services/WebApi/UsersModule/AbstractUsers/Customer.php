@@ -565,4 +565,12 @@ class Customer
             ]));
     }
 
+    public function logoutCustomer(Request $request)
+    {
+        Auth::user()->pushNotification()->delete();
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([
+            ]));
+    }
+
 }

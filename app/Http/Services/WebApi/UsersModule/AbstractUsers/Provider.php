@@ -229,4 +229,12 @@ class Provider
             return false;
         return true;
     }
+
+    public function logoutProvider(Request $request)
+    {
+        Auth::user()->pushNotification()->delete();
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([
+            ]));
+    }
 }

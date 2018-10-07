@@ -125,4 +125,11 @@ class CustomerController extends Controller
         $customer = new CustomerStrategy(ApiHelpers::requestType($request));
         return $customer->search($request, $keyword);
     }
+
+    public function logoutCustomer(Request $request)
+    {
+        // instantiate login strategy object using request type detection helper method
+        $loginStrategy = new CustomerStrategy(ApiHelpers::requestType($request));
+        return $loginStrategy->logoutCustomer($request);
+    }
 }

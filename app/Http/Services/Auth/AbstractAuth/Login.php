@@ -7,6 +7,7 @@ use App\Helpers\Utilities;
 use App\Http\Services\Auth\IAuth\ILogin;
 use App\Models\Settings;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\MessageBag;
 
 
