@@ -6,13 +6,14 @@ use App\Helpers\Utilities;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\App;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use SMartins\PassportMultiauth\HasMultiAuthApiTokens;
 
 class Provider extends Authenticatable
 {
-    use SoftDeletes, HasMultiAuthApiTokens;
+    use SoftDeletes, Notifiable, HasMultiAuthApiTokens;
 
     public $timestamps = true;
     protected $table = 'providers';
