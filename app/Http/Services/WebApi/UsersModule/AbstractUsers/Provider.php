@@ -37,7 +37,7 @@ class Provider
         $provider = ProviderModel::where('id', $providerId)->with(['calendar' => function ($query) use (&$day, $providerId) {
             if (empty($day)) {
                 $date = ProvidersCalendar::where('provider_id', $providerId)
-                    ->where('start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
+                    ->where('start_date', '>', Carbon::now()->addHours(2)->format('Y-m-d H:m:s'))
                     ->where('is_available', 1)
                     ->orderBy('start_date', 'asc')
                     ->first();
