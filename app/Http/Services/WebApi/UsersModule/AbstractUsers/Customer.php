@@ -386,9 +386,10 @@ class Customer
         if ($serviceType == 5) {
             $providersCalendar = ProvidersCalendar::find($appointment->slot_id);
             if ($providersCalendar) {
+                $providerService = $serviceBooking->provider->services()->leftJoin('categories', 'services.category_id', '=', 'categories.id')->where('categories.category_parent_id', 1)->first();
                 $calendar[] = ApiHelpers::reBuildCalendarSlot($providersCalendar);
-                $services [] = $serviceBooking->service;
-                $totalBeforeTax = $serviceBooking->service->price;
+                $services [] = $providerService;
+                $totalBeforeTax = $providerService->price;
             }
         } elseif ($serviceType == 1 || $serviceType == 2) {
             $servicesCalendar = ServicesCalendar::find($appointment->slot_id);
