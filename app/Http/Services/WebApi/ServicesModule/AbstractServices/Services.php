@@ -180,7 +180,7 @@ class Services implements IService
         $booking->status_desc = "canceled";
         $booking->save();
         $pushTypeData = PushNotificationsTypes::find(config('constants.pushTypes.appointmentcanceled'));
-        $pushTypeData->appointment_id = $appointmentId;
+        $pushTypeData->appointment_id = $appointment->id;
         $pushTypeData->send_at = Carbon::now()->format('Y-m-d H:m:s');
         Auth::user()->notify(new AppointmentCanceled($pushTypeData));
 
