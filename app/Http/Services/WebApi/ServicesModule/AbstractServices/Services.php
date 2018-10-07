@@ -172,6 +172,20 @@ class Services implements IService
 
     public function cancelBook($request, $appointmentId)
     {
+        $appointment = ServiceBookingAppointment::find($appointmentId);
+        $booking = ServiceBooking::find($appointment->service_booking_id);
+        $booking->status = config('constants.bookingStatus.canceled');
+        $booking->status_desc = "canceled";
+        $booking->save();
+
+        if ($booking->service) {
+            $serviceType = $booking->service->type;
+            if ($serviceType == 5) {
+                $slot = ProvidersCalendar::find($appointment->slot_id);
+                $slot->is_available = 1;
+                $slot->save();
+            }
+        }
 
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([]));
