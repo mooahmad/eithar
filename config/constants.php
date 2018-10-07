@@ -174,7 +174,8 @@ return [
         "appointmentConfirmed" => 4,
         "medicalReportAdded" => 5,
         "invoiceGenerated" => 6,
-        "addItemToInvoice" => 7
+        "addItemToInvoice" => 7,
+        "appointmentcanceled" => 8,
     ],
     'invoice_code' => 'INV-00',
     'payment_methods' => [
