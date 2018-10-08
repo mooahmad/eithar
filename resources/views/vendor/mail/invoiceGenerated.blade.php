@@ -31,6 +31,7 @@
         <thead bgcolor="#ffffff" style="padding: 40px 40px 20px; text-align: center;">
             <th><h4>Description</h4></th>
             <th><h4>Quantity</h4></th>
+            <th><h4>Unit Price</h4></th>
             <th><h4>Status</h4></th>
         </thead>
         <tbody>
@@ -40,10 +41,13 @@
                         <td bgcolor="#ffffff" style="padding: 40px 40px 20px; text-align: center;">
                             <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;">{{ $item->item_desc_appear_in_invoice }}</p>
                         </td>
-                        <td bgcolor="#ffffff" style="padding: 40px 40px 20px; text-align: center;">
+                        <td bgcolor="#ffffff" style="padding: 5px 5px 10px; text-align: center;">
                             <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;">1</p>
                         </td>
-                        <td bgcolor="#ffffff" style="padding: 40px 40px 20px; text-align: center;">
+                        <td bgcolor="#ffffff" style="padding: 5px 5px 10px; text-align: center;">
+                            <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;">{{ $item->price }}</p>
+                        </td>
+                        <td bgcolor="#ffffff" style="padding: 5px 5px 10px; text-align: center;">
                         @if(($item->status == 2))
                                 <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;">Approved</p>
                             @else
@@ -54,60 +58,76 @@
                 @endforeach
             @endif
             <tr>
-                <td colspan="3" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
+                <td colspan="4" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
                     <hr>
                 </td>
             </tr>
             <tr>
-                <td colspan="3" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
+                <td colspan="2" bgcolor="#ffffff"></td>
+                <td colspan="2" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
                     <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;">Original Amount: {{ $invoice->amount_original }}</p>
                 </td>
             </tr>
             <tr>
-                <td colspan="3" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
+                <td colspan="2" bgcolor="#ffffff"></td>
+                <td colspan="2" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
+                    <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;">Discount: {{ ($invoice->booking_service->promo_code) ? $invoice->booking_service->promo_code->discount_percentage .' %' : '0 %'}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;"></td>
+                <td colspan="2" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
                     <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;">Amount After Discount: {{ $invoice->amount_after_discount }}</p>
                 </td>
             </tr>
             <tr>
-                <td colspan="3" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
+                <td colspan="2" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;"></td>
+                <td colspan="2" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
+                    <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;">Tax: {{ ($invoice->is_saudi_nationality == 1) ? 'Tax Exempt' : config('constants.vat_percentage').' %' }}</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;"></td>
+                <td colspan="2" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
                     <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;">Amount After V.A.T: {{ $invoice->amount_after_vat }}</p>
                 </td>
             </tr>
             <tr>
-                <td colspan="3" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
+                <td colspan="2" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;"></td>
+                <td colspan="2" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
                     <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;">Amount Due: {{ $invoice->amount_final }} {{ ($invoice->currency) ? $invoice->currency->name_eng : '' }}</p>
                 </td>
             </tr>
 
             <tr>
-                <td colspan="3" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
+                <td colspan="4" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
                     <hr>
                 </td>
             </tr>
 
             @if($invoice->is_paid==1)
                 <tr>
-                    <td colspan="3" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
+                    <td colspan="4" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
                         <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;"><strong>Payment Status:</strong> Paid</p>
                     </td>
                 </tr>
 
                 <tr>
-                    <td colspan="3" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
+                    <td colspan="4" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
                         <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;"><strong>Payment Type:</strong> {{ config('constants.payment_methods.'.$invoice->payment_method) }}</p>
                     </td>
                 </tr>
 
                 @if($invoice->payment_method !=1)
                     <tr>
-                        <td colspan="3" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
+                        <td colspan="4" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
                             <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;"><strong><strong>Payment Transaction Number:</strong> {{ $invoice->payment_transaction_number }}</p>
                         </td>
                     </tr>
                 @endif
                 @else
                     <tr>
-                        <td colspan="3" bgcolor="#ffffff" style="padding: 5px 40px 40px; text-align: left;">
+                        <td colspan="4" bgcolor="#ffffff" style="padding: 5px 40px 40px; text-align: left;">
                             <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;"><strong>Payment Status:</strong> Pending</p>
                         </td>
                     </tr>

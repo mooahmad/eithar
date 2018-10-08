@@ -251,12 +251,12 @@ class InvoicesController extends Controller
 
         if ($operation == 'Add'){
 //            When Add new item to invoice
-            $this->amount_original       = $this->amount_original + $item_price;
+            $this->amount_original   = $this->amount_original + $item_price;
         }
 
         if ($operation == 'Delete'){
 //            When Delete new item to invoice
-            $this->amount_original       = $this->amount_original - $item_price;
+            $this->amount_original   = $this->amount_original - $item_price;
         }
 
         $this->amount_after_discount = $this->amount_original;
