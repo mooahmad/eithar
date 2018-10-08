@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\MedicalReports;
+namespace App\Http\Requests\Services;
 
 use Illuminate\Foundation\Http\FormRequest;
 

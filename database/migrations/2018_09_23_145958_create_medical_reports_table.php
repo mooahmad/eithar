@@ -16,12 +16,16 @@ class CreateMedicalReportsTable extends Migration
         Schema::create('medical_reports', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('service_id')->nullable();
-            $table->unsignedInteger('user_id')->nullable();
-            $table->Integer('is_general')->default(0)->nullable();
-            $table->Integer('is_published')->default(0)->nullable();
-            $table->Integer('customer_can_view')->default(0)->nullable();
-            $table->text('original_name')->nullable();
-            $table->text('file_path')->nullable();
+            $table->string('title_ar', 255);
+            $table->string('title_en', 255);
+            $table->integer('type')->nullable();
+            $table->longText('type_description')->nullable();
+            $table->integer('max_limit')->nullable();
+            $table->string('options_ar', 255);
+            $table->string('options_en', 255);
+            $table->integer('is_required')->nullable();
+            $table->integer('order')->nullable();
+            $table->integer('pagination')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -30,11 +34,6 @@ class CreateMedicalReportsTable extends Migration
             $table->foreign('service_id')
                 ->references('id')
                 ->on('services')
-                ->onUpdate('set null')
-                ->onDelete('set null');
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
                 ->onUpdate('set null')
                 ->onDelete('set null');
         });
@@ -50,7 +49,6 @@ class CreateMedicalReportsTable extends Migration
         // relations
         Schema::table('medical_reports', function (Blueprint $table) {
             $table->dropForeign(['service_id']);
-            $table->dropForeign(['user_id']);
         });
         Schema::dropIfExists('medical_reports');
     }
