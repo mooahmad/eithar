@@ -203,6 +203,7 @@ class Services implements IService
     {
         $now = Carbon::now()->format('Y-m-d H:m:s');
         $pushTypeData = PushNotificationsTypes::find(config('constants.pushTypes.appointmentReminder'));
+        $pushTypeData->service_type = $serviceType;
         $pushTypeData->booking_id = $appointmentId;
         $pushTypeData->send_at = Carbon::parse($startDate)->subHours(3)->format('Y-m-d H:m:s');
         if (strtotime($pushTypeData->send_at) > strtotime($now))
