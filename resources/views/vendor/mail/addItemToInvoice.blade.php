@@ -31,6 +31,7 @@
         <thead bgcolor="#ffffff" style="padding: 40px 40px 20px; text-align: center;">
             <th><h4>Description</h4></th>
             <th><h4>Quantity</h4></th>
+            <th><h4>Unit Price</h4></th>
             <th><h4>Status</h4></th>
         </thead>
         <tbody>
@@ -41,6 +42,9 @@
                     </td>
                     <td bgcolor="#ffffff" style="padding: 20px 20px 20px; text-align: center;">
                         <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;">1</p>
+                    </td>
+                    <td bgcolor="#ffffff" style="padding: 20px 20px 20px; text-align: center;">
+                        <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;">{{ $item->price }}</p>
                     </td>
                     <td bgcolor="#ffffff" style="padding: 20px 20px 20px; text-align: center;">
                         @if(($item->status == 2))

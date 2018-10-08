@@ -18,7 +18,7 @@ class InvoiceItems extends Model
     ];
 
     protected $fillable = [
-        'invoice_id','item_desc_appear_in_invoice','service_id','provider_id','status'
+        'invoice_id','item_desc_appear_in_invoice','service_id','provider_id','status','price'
     ];
 
     /**
