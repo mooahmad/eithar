@@ -37,6 +37,7 @@ class CreateInvoiceItemsTable extends Migration
                 ->onDelete('set null');
 
             $table->integer('status')->default(1)->nullable();
+            $table->double('price')->default(0)->nullable();
 
             $table->string('item_desc_appear_in_invoice')->nullable();
 

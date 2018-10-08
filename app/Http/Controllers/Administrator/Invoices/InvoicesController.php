@@ -63,7 +63,7 @@ class InvoicesController extends Controller
         $item    = Service::findOrFail($request->input('service_id'));
 
 //        Save new pending item to invoice
-        $invoice_item = $this->saveInvoiceItem($invoice->id,$item->name_en,$item->id);
+        $invoice_item = $this->saveInvoiceItem($invoice->id,$item->name_en,$item->id,null,1,$item->price);
 
         if (!$invoice_item){
             session()->flash('error_msg', trans('admin.error_message'));
@@ -190,14 +190,14 @@ class InvoicesController extends Controller
 //            in case customer book provider
             if ($items['is_provider']){
                 foreach ($items['provider_id'] as $id=>$name){
-                    $this->saveInvoiceItem($add->id,$name,null,$id,2);
+                    $this->saveInvoiceItem($add->id,$name,null,$id,2,$items['original_amount']);
                 }
             }
 
 //            in case customer book package/lap/on time visit
             if ($items['service_id']){
                 foreach ($items['service_id'] as $id=>$name){
-                    $this->saveInvoiceItem($add->id,$name,$id,null,2);
+                    $this->saveInvoiceItem($add->id,$name,$id,null,2,$items['service_price'][$id]);
                 }
             }
         }
@@ -219,9 +219,10 @@ class InvoicesController extends Controller
      * @param null $service_id
      * @param null $provider_id
      * @param int $status
-     * @return bool|null
+     * @param $price
+     * @return null
      */
-    public function saveInvoiceItem($invoice_id,$service_name,$service_id=null,$provider_id=null,$status=1)
+    public function saveInvoiceItem($invoice_id,$service_name,$service_id=null,$provider_id=null,$status=1,$price)
     {
         if (!$invoice_id) return null;
         return InvoiceItems::updateOrCreate([
@@ -230,6 +231,7 @@ class InvoicesController extends Controller
             'service_id'=>$service_id,
             'provider_id'=>$provider_id,
             'status'=>$status,
+            'price'=>$price,
         ]);
     }
 
@@ -249,12 +251,12 @@ class InvoicesController extends Controller
 
         if ($operation == 'Add'){
 //            When Add new item to invoice
-            $this->amount_original       = $this->amount_original + $item_price;
+            $this->amount_original   = $this->amount_original + $item_price;
         }
 
         if ($operation == 'Delete'){
 //            When Delete new item to invoice
-            $this->amount_original       = $this->amount_original - $item_price;
+            $this->amount_original   = $this->amount_original - $item_price;
         }
 
         $this->amount_after_discount = $this->amount_original;
