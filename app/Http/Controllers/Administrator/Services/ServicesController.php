@@ -15,6 +15,7 @@ use App\Models\Category;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\Currency;
+use App\Models\MedicalReports;
 use App\Models\Questionnaire;
 use App\Models\Service;
 use App\Models\ServicesCalendar;
@@ -188,13 +189,18 @@ class ServicesController extends Controller
                 if ($service->type != 4) {
                     $questionnaireURL = url(AD . '/services/' . $service->id . '/questionnaire');
                     $addQuestionnaireURL = url(AD . '/services/' . $service->id . '/questionnaire/create');
+                    $medicalReportURL = url(AD . '/services/' . $service->id . '/medical_reports');
+                    $addMedicalReportURL = url(AD . '/services/' . $service->id . '/medical_reports/create');
                     $calendarURL = "";
                     $addCalendarURL = "";
                     if ($service->type == 1 || $service->type == 2) {
                         $calendarURL = url(AD . '/services/' . $service->id . '/calendar');
                         $addCalendarURL = url(AD . '/services/' . $service->id . '/calendar/create');
                     }
-                    return View::make('Administrator.services.widgets.dataTableQuestionnaireAction', ['editURL' => $editURL, 'questionnaireURL' => $questionnaireURL, 'addQuestionnaireURL' => $addQuestionnaireURL, "calendarURL" => $calendarURL, "addCalendarURL" => $addCalendarURL]);
+                    return View::make('Administrator.services.widgets.dataTableQuestionnaireAction', ['editURL' => $editURL,
+                        'questionnaireURL' => $questionnaireURL, 'addQuestionnaireURL' => $addQuestionnaireURL,
+                        'medicalReportURL' => $medicalReportURL, 'addMedicalReportURL' => $addMedicalReportURL,
+                        "calendarURL" => $calendarURL, "addCalendarURL" => $addCalendarURL]);
                 } else {
                     return View::make('Administrator.services.widgets.dataTableQuestionnaireAction', ['editURL' => $editURL]);
                 }
@@ -388,6 +394,123 @@ class ServicesController extends Controller
             "levels" => $levels
         ];
         return response()->json($data);
+    }
+
+    // medical reports section
+
+    public function showMedicalReports($id)
+    {
+        $data = [
+            'serviceId' => $id,
+        ];
+        return view(AD . '.services.medical_reports_index')->with($data);
+    }
+
+    public function createMedicalReports(Request $request, $serviceId)
+    {
+        $pages = range(0, config('constants.max_questionnaire_pages'));
+        unset($pages[0]);
+        $unAvailablePages = MedicalReports::where('service_id', $serviceId)
+            ->groupBy('pagination')
+            ->havingRaw('count(pagination) >= ' . config('constants.max_questionnaire_per_page'))
+            ->pluck('pagination')->toArray();
+        $data = [
+            'serviceId' => $serviceId,
+            'pages' => $pages,
+            'unAvailablePages' => $unAvailablePages,
+            'formRoute' => route('storeMedicalReports', ['serviceId' => $serviceId]),
+            'submitBtn' => trans('admin.create')
+        ];
+        return view(AD . '.services.medical_reports_form')->with($data);
+    }
+
+    public function storeMedicalReports(CreateQuestionaireRequest $request, $serviceId)
+    {
+        $serviceId = ($serviceId == "lap") ? null : $serviceId;
+        $medicalReport = new MedicalReports();
+        ServiceClass::createOrUpdateMedicalReport($medicalReport, $request, $serviceId);
+        session()->flash('success_msg', trans('admin.success_message'));
+        $serviceId = ($serviceId == null) ? "lap" : $serviceId;
+        return redirect(AD . '/services/' . $serviceId . '/medical_reports');
+    }
+
+    public function editMedicalReports(Request $request, $serviceId, $medicalReportId)
+    {
+        $serviceId = ($serviceId == "lap") ? null : $serviceId;
+        $pages = range(0, config('constants.max_questionnaire_pages'));
+        unset($pages[0]);
+        $unAvailablePages = MedicalReports::where('service_id', $serviceId)
+            ->groupBy('pagination')
+            ->havingRaw('count(pagination) >= ' . config('constants.max_questionnaire_per_page'))
+            ->pluck('pagination')->toArray();
+        $medicalReport = MedicalReports::find($medicalReportId);
+        $serviceId = ($serviceId == null) ? "lap" : $serviceId;
+        $data = [
+            'serviceId' => $serviceId,
+            'pages' => $pages,
+            'unAvailablePages' => $unAvailablePages,
+            'medicalReport' => $medicalReport,
+            'formRoute' => route('updateMedicalReports', ['id' => $serviceId, 'medicalReportId' => $medicalReportId]),
+            'submitBtn' => trans('admin.update')
+        ];
+        return view(AD . '.services.medical_reports_form')->with($data);
+    }
+
+    public function updateMedicalReports(UpdateQuestionnaireRequest $request, $serviceId, $medicalReportId)
+    {
+        $serviceId = ($serviceId == "lap") ? null : $serviceId;
+        $medicalReport = MedicalReports::find($medicalReportId);
+        ServiceClass::createOrUpdateMedicalReport($medicalReport, $request, $serviceId);
+        session()->flash('success_msg', trans('admin.success_message'));
+        $serviceId = ($serviceId == null) ? "lap" : $serviceId;
+        return redirect(AD . '/services/' . $serviceId . '/medical_reports');
+    }
+
+    public function getMedicalReportsDatatable($id)
+    {
+        $id = ($id == "lap") ? null : $id;
+        $medicalReports = MedicalReports::where('service_id', $id);
+        $dataTable = DataTables::of($medicalReports)
+            ->addColumn('actions', function ($medicalReport) use ($id) {
+                $id = ($id == null) ? "lap" : $id;
+                $editURL = url(AD . '/services/' . $id . '/medical_reports/' . $medicalReport->id . '/edit');
+                return View::make('Administrator.widgets.dataTablesActions', ['editURL' => $editURL]);
+            })
+            ->rawColumns(['actions'])
+            ->make(true);
+        return $dataTable;
+    }
+
+    public function deleteMedicalReports(Request $request)
+    {
+        if (Gate::denies('service.delete', new Service())) {
+            return response()->view('errors.403', [], 403);
+        }
+        $ids = $request->input('ids');
+        return MedicalReports::whereIn('id', $ids)->delete();
+    }
+
+    public function getAvailableMedicalReportsPageOrders(Request $request, $serviceId, $page)
+    {
+        $serviceId = ($serviceId == "lap") ? null : $serviceId;
+        $ordersCount = range(0, config('constants.max_questionnaire_per_page'));
+        unset($ordersCount[0]);
+        $unAvailableOrders = MedicalReports::where([['service_id', $serviceId], ['pagination', $page]])
+            ->pluck('order')->toArray();
+        $data = [
+            'ordersCount' => $ordersCount,
+            'unAvailableOrders' => $unAvailableOrders
+        ];
+        return response()->json($data);
+    }
+
+    public function getMedicalReportsOptions(Request $request)
+    {
+        $medicalReportId = $request->input('id');
+        $medicalReport = MedicalReports::find($medicalReportId);
+        $medicalReport->options_ar = unserialize($medicalReport->options_ar);
+        $medicalReport->options_en = unserialize($medicalReport->options_en);
+        return response()->json($medicalReport);
     }
 
     // calendar section

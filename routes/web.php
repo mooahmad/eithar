@@ -13,7 +13,6 @@ define('PRCN', 'Administrator\promo_codes');
 define('INVN', 'Administrator\Invoices');
 define('CUSN', 'Administrator\Customers');
 define('BSN', 'Administrator\BookingServices');
-define('MRP', 'Administrator\MedicalReports');
 define('MMRP', 'Administrator\MeetingsMedicalReports');
 define('SET', 'Administrator\Settings');
 
@@ -96,6 +95,19 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => SRVN, 'prefix' => AD],
     Route::post('services/{id}/questionnaire/datatable', 'ServicesController@getQuestionnaireDatatable')->name('getQuestionnaireDatatable');
     Route::post('deleteQuestionnaire', 'ServicesController@deleteQuestionnaire')->name('deleteQuestionnaire');
 
+    // medical reports section
+    Route::get('services/{id}/medical_reports', 'ServicesController@showMedicalReports')->name('showServiceMedicalReports');
+    Route::get('services/{id}/medical_reports/create', 'ServicesController@createMedicalReports')->name('createMedicalReports');
+    Route::post('services/{id}/medical_reports/store', 'ServicesController@storeMedicalReports')->name('storeMedicalReports');
+    Route::get('services/{id}/medical_reports/{medicalReportId}/edit', 'ServicesController@editMedicalReports')->name('editMedicalReports');
+    Route::post('services/{id}/medical_reports/{medicalReportId}/update', 'ServicesController@updateMedicalReports')->name('updateMedicalReports');
+    Route::get('services/{id}/medical_reports/{page}', 'ServicesController@getAvailableMedicalReportsPageOrders')->name('getAvailableMedicalReportsPageOrders');
+    Route::post('services/medical_reports/options', 'ServicesController@getMedicalReportsOptions')->name('getMedicalReportsOptions');
+
+    // medical reports datatable
+    Route::post('services/{id}/getmedicalreportsdatatable', 'ServicesController@getMedicalReportsDataTable')->name('getMedicalReportsDataTable');
+    Route::post('deletemedicalreports', 'ServicesController@deleteMedicalReports')->name('deleteMedicalReports');
+
     // calendar section
     Route::get('services/{id}/calendar', 'ServicesController@showServiceCalendar')->name('showServiceCalendar');
     Route::get('services/{id}/calendar/create', 'ServicesController@createServiceCalendar')->name('createServiceCalendar');
@@ -166,19 +178,6 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => SET, 'prefix' => AD], 
             'destroy' => 'delete settings'
         ]]);
     Route::get('getPushType/{id}', 'SettingsController@getPushType');
-});
-
-Route::group(['middleware' => 'AdminAuth', 'namespace' => MRP, 'prefix' => AD], function () {
-    Route::resource('medical_reports', 'MedicalReportController',
-        ['names' => [
-            'index' => 'show medical report',
-            'create' => 'create medical report',
-            'show' => 'show medical report',
-            'edit' => 'edit medical report',
-            'destroy' => 'delete medical report'
-        ]]);
-    Route::get('getmedicalreportsdatatable', 'MedicalReportController@getMedicalReportsDataTable')->name('getMedicalReportsDataTable');
-    Route::post('deletemedicalreports', 'MedicalReportController@deleteMedicalReports')->name('deleteMedicalReports');
 });
 
 Route::group(['middleware' => 'AdminAuth', 'namespace' => MMRP, 'prefix' => AD], function () {

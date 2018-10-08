@@ -5,6 +5,7 @@ namespace App\Http\Services\Adminstrator\ServiceModule\ClassesService;
 
 use App\Helpers\Utilities;
 use App\LapCalendar;
+use App\Models\MedicalReports;
 use App\Models\Questionnaire;
 use App\Models\Service;
 use App\Models\ServicesCalendar;
@@ -66,6 +67,21 @@ class ServiceClass
         $questionnaire->rating_symbol = $request->input('symbol', null);
         $questionnaire->rating_levels = $request->input('rating_levels', null);
         return $questionnaire->save();
+    }
+
+    public static function createOrUpdateMedicalReport(MedicalReports $medicalReport, $request, $serviceId)
+    {
+        $medicalReport->service_id = $serviceId;
+        $medicalReport->title_ar = $request->input('title_ar');
+        $medicalReport->title_en = $request->input('title_en');
+        $medicalReport->type = $request->input('type');
+        $medicalReport->type_description = $request->input('type_description');
+        $medicalReport->is_required = $request->input('is_required');
+        $medicalReport->options_ar = serialize($request->input('options_ar', ''));
+        $medicalReport->options_en = serialize($request->input('options_en', ''));
+        $medicalReport->pagination = $request->input('page');
+        $medicalReport->order = $request->input('order');
+        return $medicalReport->save();
     }
 
     /**

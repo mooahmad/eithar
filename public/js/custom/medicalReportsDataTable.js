@@ -1,9 +1,9 @@
 var mainTable = null;
 
 function datatable() {
-    $('#data-table-medical-reports').dataTable().fnDestroy();
+    $('#data-table-medical_reports').dataTable().fnDestroy();
     $.fn.dataTable.ext.errMode = 'throw';
-    mainTable = $('#data-table-medical-reports').DataTable({
+    mainTable = $('#data-table-medical_reports').DataTable({
         "bfilter": false,
         "dom": 'B f l t p r i',
         "paging": true,
@@ -45,24 +45,16 @@ function datatable() {
         processing: true,
         serverSide: true,
         ajax: {
-            url: medicalReportsDataTableURL
+            url: medicalReportsDataTableURL,
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            }
         },
         columns: [
             {data: 'id', name: 'medical_reports.id'},
-            {
-                data: 'is_general',
-                name: 'medical_reports.is_general',
-                render: function (data, type, full, meta) {
-                    return (data === 0)? 'no' : 'yes';
-                }
-            },
-            {
-                data: 'customer_can_view',
-                name: 'medical_reports.customer_can_view',
-                render: function (data, type, full, meta) {
-                    return (data === 0)? 'no' : 'yes';
-                }
-            },
+            {data: 'title_ar', name: 'medical_reports.title_ar'},
+            {data: 'title_en', name: 'medical_reports.title_en'},
             {
                 searchable: false,
                 orderable: false,
@@ -101,7 +93,7 @@ function datatable() {
 
 function deleteMedicalReportsRecords(ids) {
     $.ajax({
-        url: deletemedicalReportsURL,
+        url: deleteMedicalReportsURL,
         type: "Post",
         data: {
             "_token": csrfToken,
