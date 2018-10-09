@@ -127,6 +127,6 @@
     <script src="{{ asset('public/assets/pages/scripts/profile.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('public/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js') }}"
             type="text/javascript"></script>
-    <script src="{{ asset('public/js/preprocessor/medical-reports.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('public/js/custom/medical-report.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/js/preprocessor/medical-reports-questions.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/js/custom/medical-report-questions.js') }}" type="text/javascript"></script>
 @stop
