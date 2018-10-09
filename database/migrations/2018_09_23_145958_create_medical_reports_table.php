@@ -27,11 +27,7 @@ class CreateMedicalReportsTable extends Migration
         });
         // relations
         Schema::table('medical_reports', function (Blueprint $table) {
-            $table->foreign('service_id')
-                ->references('id')
-                ->on('services')
-                ->onUpdate('set null')
-                ->onDelete('set null');
+
         });
     }
 
@@ -44,7 +40,7 @@ class CreateMedicalReportsTable extends Migration
     {
         // relations
         Schema::table('medical_reports', function (Blueprint $table) {
-            $table->dropForeign(['service_id']);
+
         });
         Schema::dropIfExists('medical_reports');
     }
