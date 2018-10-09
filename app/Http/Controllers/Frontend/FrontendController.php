@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
@@ -22,6 +23,9 @@ class FrontendController extends Controller
      */
     public function index()
     {
-        return view(FE.'.index');
+        $data = [
+            'main_categories'=>Category::take(5)->get(),
+        ];
+        return view(FE.'.index')->with($data);
     }
 }

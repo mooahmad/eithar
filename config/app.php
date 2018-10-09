@@ -168,6 +168,7 @@ return [
         Mariuzzo\LaravelJsLocalization\LaravelJsLocalizationServiceProvider::class,
         Edujugon\PushNotification\Providers\PushNotificationServiceProvider::class,
         SMartins\PassportMultiauth\Providers\MultiauthServiceProvider::class,
+        Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
     ],
 
     /*
@@ -221,6 +222,7 @@ return [
         'Guzzle' => Kozz\Laravel\Facades\Guzzle::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'PushNotification' => Edujugon\PushNotification\Facades\PushNotification::class,
+        'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
     ],
 
 ];

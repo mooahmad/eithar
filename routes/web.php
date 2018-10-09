@@ -17,12 +17,12 @@ define('MRP', 'Administrator\MedicalReports');
 define('MMRP', 'Administrator\MeetingsMedicalReports');
 define('SET', 'Administrator\Settings');
 
-//Frontend Routes
+/*-------------------------------------
+----------- Frontend Routes -----------
+-------------------------------------*/
 Route::group(['namespace' => FE], function () {
-    Route::group(['middleware' => 'Language', 'prefix' => Request::segment(1)], function () {
-        Route::group(['prefix' => session()->get('lang')], function () {
-            Route::get('/', 'FrontendController@index')->name('home');
-        });
+    Route::group(['middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ],'prefix' => LaravelLocalization::setLocale()], function () {
+        Route::get('/', 'FrontendController@index')->name('home');
     });
 });
 

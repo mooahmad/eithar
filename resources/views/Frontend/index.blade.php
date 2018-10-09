@@ -39,13 +39,13 @@
     <div class="serach_subheader">
         <div class="container">
             <div class="serach_subheader-content">
-                <form>
+                {!! Form::open() !!}
                     <aside class="serach_subheader-department">
-                        <input type="button" class="department_button" value=" رعاية اولادي">
-                        <input type="button" class="department_button" value="ممرضات ">
-                        <input type="button" class="department_button" value="علاج طبيعي ">
-                        <input type="button" class="department_button" value=" المـــعامل">
-                        <input type="button" class="department_button" value="الأطباء ">
+                        @isset($main_categories)
+                            @foreach($main_categories as $main_category)
+                                <input type="button" class="department_button" value="{{ $main_category->{'category_name_'.LaravelLocalization::getCurrentLocale()} }}">
+                            @endforeach
+                        @endisset
                     </aside>
                     <aside class="serach_subheader-searsh">
                         <button type="submit" class="fas fa-search"></button>
@@ -65,7 +65,7 @@
                         </div>
 
                     </aside>
-                </form>
+                {!! Form::close() !!}
             </div>
         </div>
     </div>
@@ -83,11 +83,9 @@
 
                 <div class="col-sm-12  col-lg-6">
                     <aside>
-                        <h2 class="home_page-title"> من نحن ؟</h2>
-                        <p class="paragraph_global">
-                            لوريم إيبسوم(Lorem Ipsum) هو ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر. كان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة برص مجموعة من الأحرف بشكل عشوائي أخذتها من نص، لتكوّن كتيّب بمثابة دليل أو مرجع شكلي لهذه الأحرف. خمسة قرون من الزمن لم تقضي على هذا النص، بل انه حتى صار مستخدماً وبشكله الأصلي في الطباعة والتنضيد الإلكتروني. انتشر بشكل كبير في ستينيّات هذا القرن مع إصدار رقائق "ليتراسيت" (Letraset) البلاستيكية تحوي مقاطع من هذا النص، وعاد لينتشر مرة أخرى مؤخراَ مع ظهور برامج النشر الإلكتروني مثل "ألدوس بايج مايكر" (Aldus PageMaker) والتي حوت أيضاً على نسخ من نص لوريم إيبسوم
-                        </p>
-                        <a href="#" class="button"> المزيد</a>
+                        <h2 class="home_page-title">{{ trans('main.who_we_are') }}</h2>
+                        <p class="paragraph_global">{{ trans('main.who_we_are_text') }}</p>
+                        <a href="{{ url(LaravelLocalization::getCurrentLocale()) }}" class="button">{{ trans('main.more') }}</a>
                     </aside>
                 </div>
             </div>
@@ -100,97 +98,26 @@
     <section class="home_page-section home_page-services">
         <div class="container-fluid">
             <aside class="services_title">
-                <h2 class="home_page-title"> خــدمــاتنا</h2>
-                <p class="paragraph_global">
-                    وريم إيبسوم(Lorem Ipsum) هو ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر. كان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة برص مجموعة من الأحرف
-                </p>
+                <h2 class="home_page-title">{{ trans('main.our_services') }}</h2>
+                <p class="paragraph_global">{{ trans('main.our_services_text') }}</p>
             </aside>
             <div class="row">
-                <!--Start Block 1-->
-                <div class="col-sm-12 col-md-6 col-lg-4">
-                    <div class="services_block">
-                        <aside class="services_block-icon">
-                            <img alt="{{ trans('main.site_name') }}" src="{{ asset('public/Frontend/img/icon/services-doctor.png') }}">
-                        </aside>
-                        <aside class="services_block-paragraph">
-                            <h3> الاطباء</h3>
-                            <p class="paragraph_global">
-                                وريم إيبسوم(Lorem Ipsum) هو ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر. كان لوريم إيبسوم ولايزال المعيار
-                            </p>
-                            <a href="#" class="button"> المزيد</a>
-                        </aside>
-                    </div>
-                </div>
-                <!--End Block 1-->
-
-                <!--Start Block 2-->
-                <div class="col-sm-12 col-md-6 col-lg-4">
-                    <div class="services_block">
-                        <aside class="services_block-icon">
-                            <img alt="{{ trans('main.site_name') }}" src="{{ asset('public/Frontend/img/icon/services-lab.png') }}">
-                        </aside>
-                        <aside class="services_block-paragraph">
-                            <h3> المعامل</h3>
-                            <p class="paragraph_global">
-                                وريم إيبسوم(Lorem Ipsum) هو ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر. كان لوريم إيبسوم ولايزال المعيار
-                            </p>
-                            <a href="#" class="button"> المزيد</a>
-                        </aside>
-                    </div>
-                </div>
-                <!--End Block 2-->
-
-                <!--Start Block 3-->
-                <div class="col-sm-12 col-md-6 col-lg-4">
-                    <div class="services_block">
-                        <aside class="services_block-icon">
-                            <img alt="{{ trans('main.site_name') }}" src="{{ asset('public/Frontend/img/icon/services-nurse.png') }}">
-                        </aside>
-                        <aside class="services_block-paragraph">
-                            <h3> الممرضات</h3>
-                            <p class="paragraph_global">
-                                وريم إيبسوم(Lorem Ipsum) هو ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر. كان لوريم إيبسوم ولايزال المعيار
-                            </p>
-                            <a href="#" class="button"> المزيد</a>
-                        </aside>
-                    </div>
-                </div>
-                <!--End Block 3-->
-
-                <!--Start Block 4-->
-                <div class="col-sm-12 col-md-6 col-lg-4">
-                    <div class="services_block">
-                        <aside class="services_block-icon">
-                            <img alt="{{ trans('main.site_name') }}" src="{{ asset('public/Frontend/img/icon/services-therapy.png') }}">
-                        </aside>
-                        <aside class="services_block-paragraph">
-                            <h3> علاج طبيعي</h3>
-                            <p class="paragraph_global">
-                                وريم إيبسوم(Lorem Ipsum) هو ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر. كان لوريم إيبسوم ولايزال المعيار
-                            </p>
-                            <a href="#" class="button"> المزيد</a>
-                        </aside>
-                    </div>
-                </div>
-                <!--End Block 4-->
-
-
-                <!--Start Block 5-->
-                <div class="col-sm-12 col-md-6 col-lg-4">
-                    <div class="services_block">
-                        <aside class="services_block-icon">
-                            <img alt="{{ trans('main.site_name') }}" src="{{ asset('public/Frontend/img/icon/services-childern.png') }}">
-                        </aside>
-                        <aside class="services_block-paragraph">
-                            <h3> رعاية الأطفال</h3>
-                            <p class="paragraph_global">
-                                وريم إيبسوم(Lorem Ipsum) هو ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر. كان لوريم إيبسوم ولايزال المعيار
-                            </p>
-                            <a href="#" class="button"> المزيد</a>
-                        </aside>
-                    </div>
-                </div>
-                <!--End Block 5-->
+                @isset($main_categories)
+                    @foreach($main_categories as $main_category)
+                        <div class="col-sm-12 col-md-6 col-lg-4">
+                            <div class="services_block">
+                                <aside class="services_block-icon">
+                                    <img alt="{{ $main_category->{'category_name_'.LaravelLocalization::getCurrentLocale()} }}" src="{{ $main_category->profile_picture_path }}">
+                                </aside>
+                                <aside class="services_block-paragraph">
+                                    <h3>{{ $main_category->{'category_name_'.LaravelLocalization::getCurrentLocale()} }}</h3>
+                                    <p class="paragraph_global">{{ $main_category->{'description_'.LaravelLocalization::getCurrentLocale()} }}</p>
+                                    <a href="{{ url(LaravelLocalization::getCurrentLocale().'/categories/'.$main_category->id.'/'.str_replace(' ','-',$main_category->{'category_name_'.LaravelLocalization::getCurrentLocale()})) }}" class="button">{{ trans('main.more') }}</a>
+                                </aside>
+                            </div>
+                        </div>
+                    @endforeach
+                @endisset
             </div>
         </div>
     </section>
