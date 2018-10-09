@@ -7,7 +7,7 @@
             <div class="portlet light bordered">
                 <div class="portlet-title">
                     <div class="btn-group">
-                        <a href="{{ url(AD.'/services/'.$serviceId.'/medical_reports/create') }}" class="btn sbold green"> Add New <i
+                        <a href="{{ url(AD.'/medical_reports/'. $medicalReportId .'/questions/create') }}" class="btn sbold green"> Add New <i
                                     class="fa fa-plus"></i></a>
                     </div>
                     <div id="dataTable-buttons" class="tools">
@@ -42,9 +42,9 @@
 @section('script')
     // declaring used variables
     <script>
-        var medicalReportsDataTableURL = "{!! route('getMedicalReportsDataTable', ['id' => $serviceId]) !!}";
-        var deleteMedicalReportsURL    = "{!! route('deleteMedicalReports') !!}";
+        var medicalReportsQuestionsDataTableURL = "{!! route('getMedicalReportsQuestionsDataTable', ['id' => $medicalReportId]) !!}";
+        var deleteMedicalReportsQuestionsURL    = "{!! route('deleteMedicalReportsQuestions') !!}";
         var csrfToken          = "{!! csrf_token() !!}";
     </script>
-    <script src="{{ asset('public/js/custom/medicalReportsDataTable.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/js/custom/medicalReportsQuestionsDataTable.js') }}" type="text/javascript"></script>
 @stop

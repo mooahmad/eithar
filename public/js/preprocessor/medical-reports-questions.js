@@ -48287,7 +48287,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var thisVue = this;
         var medicalReportId = $('input[name="id"]').val();
         if (medicalReportId != '') {
-            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post(baseUrl + '/Administrator/services/medical_reports/options', {
+            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post(baseUrl + '/Administrator/medical_reports/questions/options', {
                 id: medicalReportId
             }).then(function (response) {
                 thisVue.data.medicalReport = response.data;

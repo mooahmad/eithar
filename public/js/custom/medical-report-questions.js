@@ -13,7 +13,7 @@ $(document).ready(function () {
     });
     $('#page').on('change', function () {
         $.ajax({
-            url: baseUrl + '/Administrator/services/' + serviceId + '/medical_reports/' + $(this).find('option:selected').val(),
+            url: baseUrl + '/Administrator/medical_reports/' + medicalReportId + '/questions/' + $(this).find('option:selected').val(),
             type: "GET",
             success: function (res) {
                 $('#order').find('option').remove().end();
