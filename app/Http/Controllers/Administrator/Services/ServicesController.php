@@ -189,8 +189,6 @@ class ServicesController extends Controller
                 if ($service->type != 4) {
                     $questionnaireURL = url(AD . '/services/' . $service->id . '/questionnaire');
                     $addQuestionnaireURL = url(AD . '/services/' . $service->id . '/questionnaire/create');
-                    $medicalReportURL = url(AD . '/services/' . $service->id . '/medical_reports');
-                    $addMedicalReportURL = url(AD . '/services/' . $service->id . '/medical_reports/create');
                     $calendarURL = "";
                     $addCalendarURL = "";
                     if ($service->type == 1 || $service->type == 2) {
@@ -199,7 +197,6 @@ class ServicesController extends Controller
                     }
                     return View::make('Administrator.services.widgets.dataTableQuestionnaireAction', ['editURL' => $editURL,
                         'questionnaireURL' => $questionnaireURL, 'addQuestionnaireURL' => $addQuestionnaireURL,
-                        'medicalReportURL' => $medicalReportURL, 'addMedicalReportURL' => $addMedicalReportURL,
                         "calendarURL" => $calendarURL, "addCalendarURL" => $addCalendarURL]);
                 } else {
                     return View::make('Administrator.services.widgets.dataTableQuestionnaireAction', ['editURL' => $editURL]);

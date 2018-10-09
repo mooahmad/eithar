@@ -9,6 +9,7 @@ use App\Http\Requests\MedicalReports\CreateMedicalReportRequest;
 use App\Http\Requests\MedicalReports\UpdateMedicalReportRequest;
 use App\Http\Services\Adminstrator\MedicalReportModule\ClassesReport\MedicalReportClass;
 use App\Models\MedicalReports;
+use App\Models\MedicalReportsQuestions;
 use App\Models\Service;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\View;
@@ -57,17 +58,12 @@ class MedicalReportController extends Controller
             return response()->view('errors.403', [], 403);
         }
         $serviceId = $request->input('service', null);
+        $titleAr = $request->input('title_ar', null);
+        $titleEn = $request->input('title_en', null);
         $isGeneral = $request->input('is_general', null);
         $customerCanView = $request->input('customer_can_view', null);
-        $fileDirectory = 'public/services/' . $serviceId . '/reports';
-        if ($isGeneral == 1) {
-            $serviceId = null;
-            $fileDirectory = 'public/services/general/reports';
-        }
-        $filePath = Utilities::UploadFile($request->file('report'), $fileDirectory);
-        $fileOriginalName = $request->file('report')->getClientOriginalName();
         $medicalReport = new MedicalReports();
-        MedicalReportClass::createOrUpdate($medicalReport, $serviceId, $isGeneral, 0, $customerCanView, $filePath, $fileOriginalName);
+        MedicalReportClass::createOrUpdate($medicalReport, $serviceId, $isGeneral, 0, $customerCanView, $titleAr, $titleEn);
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/medical_reports');
     }
@@ -110,20 +106,11 @@ class MedicalReportController extends Controller
         }
         $medicalReport = MedicalReports::findOrFail($id);
         $serviceId = $request->input('service', null);
+        $titleAr = $request->input('title_ar', null);
+        $titleEn = $request->input('title_en', null);
         $isGeneral = $request->input('is_general', null);
         $customerCanView = $request->input('customer_can_view', null);
-        $fileDirectory = 'public/services/' . $serviceId . '/reports';
-        if ($isGeneral == 1) {
-            $serviceId = null;
-            $fileDirectory = 'public/services/general/reports';
-        }
-        $filePath = $medicalReport->file_path;
-        $fileOriginalName = $medicalReport->original_name;
-        if ($request->hasFile('report')) {
-            $filePath = Utilities::UploadFile($request->file('report'), $fileDirectory);
-            $fileOriginalName = $request->file('report')->getClientOriginalName();
-        }
-        MedicalReportClass::createOrUpdate($medicalReport, $serviceId, $isGeneral, 0, $customerCanView, $filePath, $fileOriginalName);
+        MedicalReportClass::createOrUpdate($medicalReport, $serviceId, $isGeneral, 0, $customerCanView, $titleAr, $titleEn);
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/medical_reports');
     }
@@ -142,7 +129,10 @@ class MedicalReportController extends Controller
         $dataTable = DataTables::of($medicalReports)
             ->addColumn('actions', function ($medicalReport) {
                 $editURL = url(AD . '/medical_reports/' . $medicalReport->id . '/edit');
-                return View::make('Administrator.widgets.dataTablesActions', ['editURL' => $editURL]);
+                $questionsURL = url(AD . '/medical_reports/' . $medicalReport->id . '/questions');
+                $addQuestionsURL = url(AD . '/medical_reports/' . $medicalReport->id . '/questions/create');
+                return View::make('Administrator.medical_reports.widgets.dataTableQuestionsAction', ['editURL' => $editURL,
+                    'questionsURL' => $questionsURL, 'addQuestionsURL' => $addQuestionsURL]);
             })
             ->rawColumns(['actions'])
             ->make(true);
@@ -163,79 +153,79 @@ class MedicalReportController extends Controller
     public function showMedicalReportsQuestions($id)
     {
         $data = [
-            'serviceId' => $id,
+            'medicalReportId' => $id,
         ];
-        return view(AD . '.services.medical_reports_index')->with($data);
+        return view(AD . '.medical_reports.medical_reports_question_index')->with($data);
     }
 
-    public function createMedicalReportsQuestions(Request $request, $serviceId)
+    public function createMedicalReportsQuestions(Request $request, $medicalReportId)
     {
         $pages = range(0, config('constants.max_questionnaire_pages'));
         unset($pages[0]);
-        $unAvailablePages = MedicalReports::where('service_id', $serviceId)
+        $unAvailablePages = MedicalReportsQuestions::where('medical_report_id', $medicalReportId)
             ->groupBy('pagination')
             ->havingRaw('count(pagination) >= ' . config('constants.max_questionnaire_per_page'))
             ->pluck('pagination')->toArray();
         $data = [
-            'serviceId' => $serviceId,
+            'medicalReportId' => $medicalReportId,
             'pages' => $pages,
             'unAvailablePages' => $unAvailablePages,
-            'formRoute' => route('storeMedicalReports', ['serviceId' => $serviceId]),
+            'formRoute' => route('storeMedicalReportsQuestions', ['medicalReportId' => $medicalReportId]),
             'submitBtn' => trans('admin.create')
         ];
-        return view(AD . '.services.medical_reports_form')->with($data);
+        return view(AD . '.medical_reports.medical_reports_question_form')->with($data);
     }
 
-    public function storeMedicalReportsQuestions(CreateMedicalReportRequest $request, $serviceId)
+    public function storeMedicalReportsQuestions(CreateMedicalReportRequest $request, $medicalReportId)
     {
-        $serviceId = ($serviceId == "lap") ? null : $serviceId;
-        $medicalReport = new MedicalReports();
-        ServiceClass::createOrUpdateMedicalReport($medicalReport, $request, $serviceId);
+        $medicalReportId = ($medicalReportId == "lap") ? null : $medicalReportId;
+        $medicalReportQuestion = new MedicalReportsQuestions();
+        MedicalReportClass::createOrUpdateMedicalReportQuestion($medicalReportQuestion, $request, $medicalReportId);
         session()->flash('success_msg', trans('admin.success_message'));
-        $serviceId = ($serviceId == null) ? "lap" : $serviceId;
-        return redirect(AD . '/services/' . $serviceId . '/medical_reports');
+        $medicalReportId = ($medicalReportId == null) ? "lap" : $medicalReportId;
+        return redirect(AD . '/medical_reports/' . $medicalReportId . '/questions');
     }
 
-    public function editMedicalReportsQuestions(Request $request, $serviceId, $medicalReportId)
+    public function editMedicalReportsQuestions(Request $request, $medicalReportId, $medicalReportQuestionId)
     {
-        $serviceId = ($serviceId == "lap") ? null : $serviceId;
+        $medicalReportId = ($medicalReportId == "lap") ? null : $medicalReportId;
         $pages = range(0, config('constants.max_questionnaire_pages'));
         unset($pages[0]);
-        $unAvailablePages = MedicalReports::where('service_id', $serviceId)
+        $unAvailablePages = MedicalReportsQuestions::where('medical_report_id', $medicalReportId)
             ->groupBy('pagination')
             ->havingRaw('count(pagination) >= ' . config('constants.max_questionnaire_per_page'))
             ->pluck('pagination')->toArray();
-        $medicalReport = MedicalReports::find($medicalReportId);
-        $serviceId = ($serviceId == null) ? "lap" : $serviceId;
+        $medicalReportQuestion = MedicalReportsQuestions::find($medicalReportQuestionId);
+        $medicalReportId = ($medicalReportId == null) ? "lap" : $medicalReportId;
         $data = [
-            'serviceId' => $serviceId,
+            'medicalReportId' => $medicalReportId,
             'pages' => $pages,
             'unAvailablePages' => $unAvailablePages,
-            'medicalReport' => $medicalReport,
-            'formRoute' => route('updateMedicalReports', ['id' => $serviceId, 'medicalReportId' => $medicalReportId]),
+            'medicalReportQuestion' => $medicalReportQuestion,
+            'formRoute' => route('updateMedicalReportsQuestions', ['id' => $medicalReportId, 'medicalReportQuestionId' => $medicalReportQuestionId]),
             'submitBtn' => trans('admin.update')
         ];
-        return view(AD . '.services.medical_reports_form')->with($data);
+        return view(AD . '.medical_reports.medical_reports_question_form')->with($data);
     }
 
-    public function updateMedicalReportsQuestions(UpdateMedicalReportRequest $request, $serviceId, $medicalReportId)
+    public function updateMedicalReportsQuestions(UpdateMedicalReportRequest $request, $medicalReportId, $medicalReportQuestionId)
     {
-        $serviceId = ($serviceId == "lap") ? null : $serviceId;
-        $medicalReport = MedicalReports::find($medicalReportId);
-        ServiceClass::createOrUpdateMedicalReport($medicalReport, $request, $serviceId);
+        $medicalReportId = ($medicalReportId == "lap") ? null : $medicalReportId;
+        $medicalReportQuestion = MedicalReportsQuestions::find($medicalReportQuestionId);
+        MedicalReportClass::createOrUpdateMedicalReportQuestion($medicalReportQuestion, $request, $medicalReportId);
         session()->flash('success_msg', trans('admin.success_message'));
-        $serviceId = ($serviceId == null) ? "lap" : $serviceId;
-        return redirect(AD . '/services/' . $serviceId . '/medical_reports');
+        $medicalReportId = ($medicalReportId == null) ? "lap" : $medicalReportId;
+        return redirect(AD . '/medical_reports/' . $medicalReportId . '/questions');
     }
 
     public function getMedicalReportsQuestionsDatatable($id)
     {
         $id = ($id == "lap") ? null : $id;
-        $medicalReports = MedicalReports::where('service_id', $id);
-        $dataTable = DataTables::of($medicalReports)
-            ->addColumn('actions', function ($medicalReport) use ($id) {
+        $medicalReportsQuestions = MedicalReportsQuestions::where('medical_report_id', $id);
+        $dataTable = DataTables::of($medicalReportsQuestions)
+            ->addColumn('actions', function ($medicalReportsQuestion) use ($id) {
                 $id = ($id == null) ? "lap" : $id;
-                $editURL = url(AD . '/services/' . $id . '/medical_reports/' . $medicalReport->id . '/edit');
+                $editURL = url(AD . '/medical_reports/' . $id . '/questions/' . $medicalReportsQuestion->id . '/edit');
                 return View::make('Administrator.widgets.dataTablesActions', ['editURL' => $editURL]);
             })
             ->rawColumns(['actions'])
@@ -252,12 +242,12 @@ class MedicalReportController extends Controller
         return MedicalReports::whereIn('id', $ids)->delete();
     }
 
-    public function getAvailableMedicalReportsQuestionsPageOrders(Request $request, $serviceId, $page)
+    public function getAvailableMedicalReportsQuestionsPageOrders(Request $request, $medicalReportId, $page)
     {
-        $serviceId = ($serviceId == "lap") ? null : $serviceId;
+        $medicalReportId = ($medicalReportId == "lap") ? null : $medicalReportId;
         $ordersCount = range(0, config('constants.max_questionnaire_per_page'));
         unset($ordersCount[0]);
-        $unAvailableOrders = MedicalReports::where([['service_id', $serviceId], ['pagination', $page]])
+        $unAvailableOrders = MedicalReportsQuestions::where([['medical_report_id', $medicalReportId], ['pagination', $page]])
             ->pluck('order')->toArray();
         $data = [
             'ordersCount' => $ordersCount,
@@ -269,7 +259,7 @@ class MedicalReportController extends Controller
     public function getMedicalReportsQuestionsOptions(Request $request)
     {
         $medicalReportId = $request->input('id');
-        $medicalReport = MedicalReports::find($medicalReportId);
+        $medicalReport = MedicalReportsQuestions::find($medicalReportId);
         $medicalReport->options_ar = unserialize($medicalReport->options_ar);
         $medicalReport->options_en = unserialize($medicalReport->options_en);
         return response()->json($medicalReport);

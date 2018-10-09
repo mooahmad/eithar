@@ -18,7 +18,7 @@
                             <div class="portlet-title tabbable-line">
                                 <div class="caption caption-md">
                                     <i class="icon-globe theme-font hide"></i>
-                                    <span class="caption-subject font-blue-madison bold uppercase">Medical report</span>
+                                    <span class="caption-subject font-blue-madison bold uppercase">Medical report question</span>
                                 </div>
                             </div>
                             <div class="portlet-body">
@@ -26,12 +26,12 @@
                                     <!-- Create New User TAB -->
                                     <div class="tab-pane active" id="new_user">
                                         {!! Form::open(['method'=>'POST','url'=> $formRoute, 'role'=>'form', 'files' => true]) !!}
-                                        <input name="id" type="hidden" value="{{ isset($medicalReport)? $medicalReport->id: '' }}">
+                                        <input name="id" type="hidden" value="{{ isset($medicalReportQuestion)? $medicalReportQuestion->id: '' }}">
                                         <div class="form-group">
                                             <label for="name" class="control-label">
                                                 {{ trans('admin.title_ar') }} <span class="required"> * </span>
                                             </label>
-                                            {!! Form::text('title_ar', (isset($medicalReport))? $medicalReport->title_ar : old('title_ar') , array('id'=>'title_ar', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.title_ar'))) !!}
+                                            {!! Form::text('title_ar', (isset($medicalReportQuestion))? $medicalReportQuestion->title_ar : old('title_ar') , array('id'=>'title_ar', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.title_ar'))) !!}
                                             @if($errors->has('title_ar'))
                                                 <span class="help-block text-danger">{{ $errors->first('title_ar') }}</span>
                                             @endif
@@ -41,7 +41,7 @@
                                             <label for="name" class="control-label">
                                                 {{ trans('admin.title_en') }} <span class="required"> * </span>
                                             </label>
-                                            {!! Form::text('title_en', (isset($medicalReport))? $medicalReport->title_en : old('title_en') , array('id'=>'title_en', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.title_en'))) !!}
+                                            {!! Form::text('title_en', (isset($medicalReportQuestion))? $medicalReportQuestion->title_en : old('title_en') , array('id'=>'title_en', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.title_en'))) !!}
                                             @if($errors->has('title_en'))
                                                 <span class="help-block text-danger">{{ $errors->first('title_en') }}</span>
                                             @endif
@@ -54,7 +54,7 @@
                                             <label for="name" class="control-label">
                                                 {{ trans('admin.type_description') }}
                                             </label>
-                                            {!! Form::textarea('type_description', (isset($medicalReport))? $medicalReport->type_description : old('type_description'), array('id'=>'type_description', 'class'=>'form-control','rows' => 2)) !!}
+                                            {!! Form::textarea('type_description', (isset($medicalReportQuestion))? $medicalReportQuestion->type_description : old('type_description'), array('id'=>'type_description', 'class'=>'form-control','rows' => 2)) !!}
                                             @if($errors->has('type_description'))
                                                 <span class="help-block text-danger">{{ $errors->first('type_description') }}</span>
                                             @endif
@@ -64,8 +64,8 @@
                                                    class="control-label">{{ trans('admin.is_required') }} </label>
                                             @php
                                                 $is_required = null;
-                                                if(isset($medicalReport)){
-                                                $is_required = $medicalReport->is_required;
+                                                if(isset($medicalReportQuestion)){
+                                                $is_required = $medicalReportQuestion->is_required;
                                                 }
                                             @endphp
                                             <div class="mt-radio-inline">
@@ -85,7 +85,7 @@
                                             <label for="default_language" class="control-label">
                                                 {{ trans('admin.page') }} <span class="required"> * </span>
                                             </label>
-                                            {!! Form::select('page', $pages, (isset($medicalReport))? $medicalReport->pagination : old('page'), array('id'=>'page', 'class'=>'form-control','required'=>'required')) !!}
+                                            {!! Form::select('page', $pages, (isset($medicalReportQuestion))? $medicalReportQuestion->pagination : old('page'), array('id'=>'page', 'class'=>'form-control','required'=>'required')) !!}
                                             @if($errors->has('page'))
                                                 <span class="help-block text-danger">{{ $errors->first('page') }}</span>
                                             @endif
@@ -94,7 +94,7 @@
                                             <label for="default_language" class="control-label">
                                                 {{ trans('admin.order_on_page') }} <span class="required"> * </span>
                                             </label>
-                                            {!! Form::select('order', [], (isset($medicalReport))? $medicalReport->order : old('order'), array('id'=>'order', 'class'=>'form-control', (!isset($medicalReport))? 'required':"")) !!}
+                                            {!! Form::select('order', [], (isset($medicalReportQuestion))? $medicalReportQuestion->order : old('order'), array('id'=>'order', 'class'=>'form-control', (!isset($medicalReportQuestion))? 'required':"")) !!}
                                             @if($errors->has('order'))
                                                 <span class="help-block text-danger">{{ $errors->first('order') }}</span>
                                             @endif
@@ -121,8 +121,8 @@
 @section('script')
     <script>
         var unAvailablePages = "{{json_encode($unAvailablePages)}}";
-        var serviceId = "{{$serviceId}}";
-        var medicalReportCurrentOrder = "{{ (isset($medicalReport))? $medicalReport->order : ''}}";
+        var medicalReportId = "{{$medicalReportId}}";
+        var medicalReportCurrentOrder = "{{ (isset($medicalReportQuestion))? $medicalReportQuestion->order : ''}}";
     </script>
     <script src="{{ asset('public/assets/pages/scripts/profile.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('public/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js') }}"

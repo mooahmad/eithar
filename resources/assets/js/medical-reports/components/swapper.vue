@@ -87,7 +87,7 @@
             let thisVue = this;
             let medicalReportId = $('input[name="id"]').val();
             if (medicalReportId != '') {
-                axios.post(baseUrl + '/Administrator/services/medical_reports/options', {
+                axios.post(baseUrl + '/Administrator/medical_reports/questions/options', {
                     id: medicalReportId
                 })
                     .then(function (response) {
