@@ -201,4 +201,8 @@ return [
     ],
     'MaxMessageSMS'=>160,
     'SMSSentSuccessfully'=>100,
+    'items'=>[
+        'pending'=>1,
+        'approved'=>2,
+    ],
 ];

@@ -83,4 +83,13 @@ class ServicesStrategy
     {
         return $this->strategy->getService($request, $serviceId);
     }
+
+    /**
+     * @param $request
+     * @return \App\Helpers\ValidationError|string
+     */
+    public function changeItemStatus($request)
+    {
+        return $this->strategy->changeItemStatus($request);
+    }
 }

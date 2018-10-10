@@ -13,6 +13,7 @@ use App\Http\Services\WebApi\ServicesModule\IServices\IService;
 use App\Http\Services\WebApi\UsersModule\AbstractUsers\Customer;
 use App\LapCalendar;
 use App\Models\Currency;
+use App\Models\InvoiceItems;
 use App\Models\Provider;
 use App\Models\ProvidersCalendar;
 use App\Models\PushNotificationsTypes;
@@ -472,5 +473,30 @@ class Services implements IService
                 "service" => $service
             ]));
 
+    }
+
+    /**
+     * @param $request
+     * @return \App\Helpers\ValidationError
+     */
+    public function changeItemStatus($request)
+    {
+        $invoice_item_id = $request->input('id');
+        $status          = $request->input('status');
+        if ($invoice_item_id>0 && in_array($status,[config('constants.items.pending'),config('constants.items.approved')])){
+            $invoice_item = InvoiceItems::where('id',$invoice_item_id)->update([
+                'status'=>$status
+            ]);
+
+            if ($invoice_item){
+                return Utilities::getValidationError(config('constants.responseStatus.success'),
+                    new MessageBag([]));
+            }
+        }
+
+        return Utilities::getValidationError(config('constants.responseStatus.operationFailed'),
+            new MessageBag([
+                "message" => "Invalid item and status"
+            ]));
     }
 }
