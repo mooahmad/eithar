@@ -19,8 +19,8 @@ class CategoriesSeeder extends Seeder
                                             'created_at'       => \Carbon\Carbon::now()->toDateTimeString(),
                                         ]);
         DB::table('categories')->insert([
-                                            'category_name_ar' => 'معمل',
-                                            'category_name_en' => 'Lap',
+                                            'category_name_ar' => 'خدمات المختبر',
+                                            'category_name_en' => 'Lab',
                                             'profile_picture_path' => "http://13.57.87.177". '/public/images/Lab.png',
                                             'created_at'       => \Carbon\Carbon::now()->toDateTimeString(),
                                         ]);
