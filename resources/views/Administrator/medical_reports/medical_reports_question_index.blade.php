@@ -7,7 +7,7 @@
             <div class="portlet light bordered">
                 <div class="portlet-title">
                     <div class="btn-group">
-                        <a href="{{ url(AD.'/medical_reports/create') }}" class="btn sbold green"> Add New <i
+                        <a href="{{ url(AD.'/medical_reports/'. $medicalReportId .'/questions/create') }}" class="btn sbold green"> Add New <i
                                     class="fa fa-plus"></i></a>
                     </div>
                     <div id="dataTable-buttons" class="tools">
@@ -16,14 +16,13 @@
                 </div>
                 <div class="portlet-body">
                     <div class="table-responsive">
-                        <table id="data-table-medical-reports" class="dataTable table table-bordered table-hover"
+                        <table id="data-table-medical_reports" class="dataTable table table-bordered table-hover"
                                width="100%">
                             <thead>
                             <tr>
                                 <th>{{ trans('admin.id') }}</th>
-                                <th>{{ trans('admin.is_general') }}</th>
-                                <th>{{ trans('admin.is_lap') }}</th>
-                                <th>{{ trans('admin.see_by_customer') }}</th>
+                                <th>{{ trans('admin.title_ar') }}</th>
+                                <th>{{ trans('admin.title_en') }}</th>
                                 <th>{{ trans('admin.actions') }}</th>
                             </tr>
                             </thead>
@@ -43,9 +42,9 @@
 @section('script')
     // declaring used variables
     <script>
-        var medicalReportsDataTableURL = "{!! route('getMedicalReportsDataTable') !!}";
-        var deletemedicalReportsURL    = "{!! route('deleteMedicalReports') !!}";
+        var medicalReportsQuestionsDataTableURL = "{!! route('getMedicalReportsQuestionsDataTable', ['id' => $medicalReportId]) !!}";
+        var deleteMedicalReportsQuestionsURL    = "{!! route('deleteMedicalReportsQuestions') !!}";
         var csrfToken          = "{!! csrf_token() !!}";
     </script>
-    <script src="{{ asset('public/js/custom/medicalReportsDataTable.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/js/custom/medicalReportsQuestionsDataTable.js') }}" type="text/javascript"></script>
 @stop

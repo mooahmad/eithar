@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 42);
+/******/ 	return __webpack_require__(__webpack_require__.s = 72);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -47941,15 +47941,16 @@ module.exports = function spread(callback) {
 module.exports = { "ar.admin": { "Lap": "Lab", "about": "About", "about_ar": "Arabic about", "about_en": "English about", "action": "Action", "actions": "Actions", "add_admin": "Add Admin", "add_calendar": "Add calendar", "add_category": "Add category", "add_customers": "Add Customer", "add_invoices": "Add Invoices", "add_medical_reports": "Add medical reports", "add_promo_code": "Add promo code", "add_provider": "Add provider", "add_questionnaire": "Add questionnaire", "add_service": "Add service", "admins": "Admins", "appear_on_website": "Appear on website", "benefits_ar": "Arabic benefits", "benefits_en": "English benefits", "birthdate": "Birth date", "booking-services": "Booking Services", "booking_services": "Booking Services", "cancel": "Cancel", "canceled": "Canceled", "canceled-meetings": "Canceled Meetings", "canceled_meetings": "Canceled Meetings", "cat_name_col": "category_name_ar", "categories": "Categories", "change_password": "Change Password", "cities": "Cities", "city": "City", "code": "code", "code_ar": "Arabic code", "code_en": "English code", "comment": "Comment", "confirm_delete": "Are You Sure?!", "confirmed": "Confirmed", "confirmed-meetings": "Confirmed Meetings", "confirmed_meetings": "Confirmed Meetings", "contract_expiry_date": "Contract expiry date", "contract_start_date": "Contract start date", "country": "Country", "country_name_col": "country_name_eng", "create": "Create", "currency": "Currency", "currency_name_col": "name_ara", "customerService": "Customer service", "customer_banner_path": "Customer app banner", "customer_can_view": "Customer can view", "customers": "Customers", "date_section": "Date section", "date_time": "Datetime", "default_language": "Default language", "delete": "Delete", "desc_ar": "Arabic description", "desc_en": "English description", "discount_percentage": "Discount percentage", "edit": "Edit", "edit_customers": "Edit Customer", "edit_invoices": "Edit Invoices", "education_ar": "Arabic education", "education_en": "English education", "email": "Email", "empty_data": "There is no data to show", "end_date": "End date", "end_time": "End Time", "enter_email": "Enter Admin Email", "enter_password": "Enter Admin Password", "error_login": "Please check your credentials", "error_message": "There is something went wrong", "experience_ar": "Arabic experience", "experience_en": "English experience", "expire_date": "Expire date", "female": "Female", "first_name": "First Name", "first_name_ar": "Arabic first name", "first_name_en": "English first name", "fname": "First Name", "forgot_password": "Forgot Password", "full_name": "Full Name", "gender": "Gender", "generate-invoice": "Generate Invoice ", "id": "ID", "image": "Image", "inprogress": "Inprogress", "inprogress-meetings": "Inprogress Meetings", "inprogress_meetings": "Inprogress Meetings", "invoice-pay": "Pay Invoice", "invoice_items_pending": "Please confirm all item in this invoice or delete them", "invoices": "Invoices", "is_active": "Is active", "is_approved": "Is approved", "is_available": "Is available", "is_doctor": "Is doctor", "is_general": "Is general", "is_item": "Is item", "is_required": "Is required", "is_saudi_nationality": "Saudi nationality", "items": "Items", "last_name_ar": "Arabic last name", "last_name_en": "English last name", "lname": "Last Name", "login": "Login", "logout": "Log Out", "long_text": "Long Text", "male": "Male", "medical_reports": "Medical reports", "meetings": "Meetings", "meetings-services": "Booking Services", "mname": "Middle Name", "mobile": "Mobile", "mobile_number": "Mobile number", "multiple_answer": "Multiple answers", "name": "Name", "name_ar": "Arabic name", "name_en": "English name", "national_id": "National ID", "nationality_id": "Nationality ID", "no": "No", "number_of_sessions": "Number of sessions", "number_of_visits": "Number of visits", "number_of_visits_per_week": "Number of visits per week", "number_of_weeks": "Number of weeks", "off": "Off", "on": "On", "order_on_page": "Order on page", "page": "page", "parent_cat": "Parent category", "password": "Password", "password_confirmation": "Confirm Password", "payment_method": "Payment Method", "payment_transaction_number": "Payment Transaction Number", "price": "Price", "promo_codes": "Promo codes", "provider_comment": "Provider Comment", "providers": "Providers", "pushNotificationsTypes": "Push notifications types", "pushTypeTitleAR": "Type title ar", "pushTypeTitleEN": "Type title en", "questionnaire": "Questionnaire", "rating": "Rating", "rating_levels": "Rating levels", "remember": "Remember me", "report": "Report", "reset_password": "Reset password", "save": "Save", "see_by_customer": "Customer can see", "select": "Select", "select_avatar": "Select Avatar", "select_date": "Select date", "select_nationality": "Select Nationality", "select_report": "Select report", "select_week_days": "Select days", "service": "Service", "serviceProvider": "Service provider", "service_name": "Service Name", "service_type": "Service type", "services": "Services", "settings": "Settings", "show-meeting-details": "Show Meeting Details", "show_admin": "Show Admin", "show_booking_services": "Show Booked Services", "show_calendar": "Show calendar", "show_category": "Show category", "show_customers": "Show Customers", "show_invoices": "Show Invoices", "show_medical_reports": "Show medical reports", "show_promo_code": "Show promo code", "show_provider": "Show provider", "show_questionnaire": "Show questionnaire", "show_service": "Show service", "signin": "Sign in", "single_answer": "Single answer", "speciality_area_ar": "Arabic speciality", "speciality_area_en": "English speciality", "srv_name_col": "name_ar", "start_date": "Start date", "start_time": "Start Time", "status": "Status", "submit": "Submit", "submitted_at": "Submitted At", "subtitle_ar": "Arabic subtitle", "subtitle_en": "English subtitle", "success_message": "Everything is okay, you are on the right path", "superAdmin": "Super admin", "symbol": "Symbol", "text": "Text", "time_before_next_visit": "Time before next visit", "title_ar": "Arabic title", "title_en": "English title", "type": "Type", "type_desc": "Type description", "type_description": "Type description", "update": "Update", "userType": "User type", "video": "Youtube ID", "visit_duration": "Visit duration", "whats_app_number": "What's app number", "yes": "Yes" }, "en.admin": { "Lap": "Lab", "about": "About", "about_ar": "Arabic about", "about_en": "English about", "action": "Action", "actions": "Actions", "add_admin": "Add Admin", "add_calendar": "Add calendar", "add_category": "Add category", "add_customers": "Add Customer", "add_invoices": "Add Invoices", "add_medical_reports": "Add medical reports", "add_promo_code": "Add promo code", "add_provider": "Add provider", "add_questionnaire": "Add questionnaire", "add_service": "Add service", "admins": "Admins", "appear_on_website": "Appear on website", "benefits_ar": "Arabic benefits", "benefits_en": "English benefits", "birthdate": "Birth date", "booking-services": "Booking Services", "booking_services": "Booking Services", "cancel": "Cancel", "canceled": "Canceled", "canceled-meetings": "Canceled Meetings", "canceled_meetings": "Canceled Meetings", "cat_name_col": "category_name_ar", "categories": "Categories", "change_password": "Change Password", "cities": "Cities", "city": "City", "code": "code", "code_ar": "Arabic code", "code_en": "English code", "comment": "Comment", "confirm_delete": "Are You Sure?!", "confirmed": "Confirmed", "confirmed-meetings": "Confirmed Meetings", "confirmed_meetings": "Confirmed Meetings", "contract_expiry_date": "Contract expiry date", "contract_start_date": "Contract start date", "country": "Country", "country_name_col": "country_name_eng", "create": "Create", "currency": "Currency", "currency_name_col": "name_ara", "customerService": "Customer service", "customer_banner_path": "Customer app banner", "customer_can_view": "Customer can view", "customers": "Customers", "date_section": "Date section", "date_time": "Datetime", "default_language": "Default language", "delete": "Delete", "desc_ar": "Arabic description", "desc_en": "English description", "discount_percentage": "Discount percentage", "edit": "Edit", "edit_customers": "Edit Customer", "edit_invoices": "Edit Invoices", "education_ar": "Arabic education", "education_en": "English education", "email": "Email", "empty_data": "There is no data to show", "end_date": "End date", "end_time": "End Time", "enter_email": "Enter Admin Email", "enter_password": "Enter Admin Password", "error_login": "Please check your credentials", "error_message": "There is something went wrong", "experience_ar": "Arabic experience", "experience_en": "English experience", "expire_date": "Expire date", "female": "Female", "first_name": "First Name", "first_name_ar": "Arabic first name", "first_name_en": "English first name", "fname": "First Name", "forgot_password": "Forgot Password", "full_name": "Full Name", "gender": "Gender", "generate-invoice": "Generate Invoice ", "id": "ID", "image": "Image", "inprogress": "Inprogress", "inprogress-meetings": "Inprogress Meetings", "inprogress_meetings": "Inprogress Meetings", "invoice-pay": "Pay Invoice", "invoice_items_pending": "Please confirm all item in this invoice or delete them", "invoices": "Invoices", "is_active": "Is active", "is_approved": "Is approved", "is_available": "Is available", "is_doctor": "Is doctor", "is_general": "Is general", "is_item": "Is item", "is_required": "Is required", "is_saudi_nationality": "Saudi nationality", "items": "Items", "last_name_ar": "Arabic last name", "last_name_en": "English last name", "lname": "Last Name", "login": "Login", "logout": "Log Out", "long_text": "Long Text", "male": "Male", "medical_reports": "Medical reports", "meetings": "Meetings", "meetings-services": "Booking Services", "mname": "Middle Name", "mobile": "Mobile", "mobile_number": "Mobile number", "multiple_answer": "Multiple answers", "name": "Name", "name_ar": "Arabic name", "name_en": "English name", "national_id": "National ID", "nationality_id": "Nationality ID", "no": "No", "number_of_sessions": "Number of sessions", "number_of_visits": "Number of visits", "number_of_visits_per_week": "Number of visits per week", "number_of_weeks": "Number of weeks", "off": "Off", "on": "On", "order_on_page": "Order on page", "page": "page", "parent_cat": "Parent category", "password": "Password", "password_confirmation": "Confirm Password", "payment_method": "Payment Method", "payment_transaction_number": "Payment Transaction Number", "price": "Price", "promo_codes": "Promo codes", "provider_comment": "Provider Comment", "providers": "Providers", "pushNotificationsTypes": "Push notifications types", "pushTypeTitleAR": "Type title ar", "pushTypeTitleEN": "Type title en", "questionnaire": "Questionnaire", "rating": "Rating", "rating_levels": "Rating levels", "remember": "Remember me", "report": "Report", "reset_password": "Reset password", "save": "Save", "see_by_customer": "Customer can see", "select": "Select", "select_avatar": "Select Avatar", "select_date": "Select date", "select_nationality": "Select Nationality", "select_report": "Select report", "select_week_days": "Select days", "service": "Service", "serviceProvider": "Service provider", "service_name": "Service Name", "service_type": "Service type", "services": "Services", "settings": "Settings", "show-meeting-details": "Show Meeting Details", "show_admin": "Show Admin", "show_booking_services": "Show Booked Services", "show_calendar": "Show calendar", "show_category": "Show category", "show_customers": "Show Customers", "show_invoices": "Show Invoices", "show_medical_reports": "Show medical reports", "show_promo_code": "Show promo code", "show_provider": "Show provider", "show_questionnaire": "Show questionnaire", "show_service": "Show service", "signin": "Sign in", "single_answer": "Single answer", "speciality_area_ar": "Arabic speciality", "speciality_area_en": "English speciality", "srv_name_col": "name_ar", "start_date": "Start date", "start_time": "Start Time", "status": "Status", "submit": "Submit", "submitted_at": "Submitted At", "subtitle_ar": "Arabic subtitle", "subtitle_en": "English subtitle", "success_message": "Everything is okay, you are on the right path", "superAdmin": "Super admin", "symbol": "Symbol", "text": "Text", "time_before_next_visit": "Time before next visit", "title_ar": "Arabic title", "title_en": "English title", "type": "Type", "type_desc": "Type description", "type_description": "Type description", "update": "Update", "userType": "User type", "video": "Youtube ID", "visit_duration": "Visit duration", "whats_app_number": "What's app number", "yes": "Yes" } };
 
 /***/ }),
-/* 40 */
+/* 40 */,
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(50)
+var __vue_script__ = __webpack_require__(80)
 /* template */
-var __vue_template__ = __webpack_require__(51)
+var __vue_template__ = __webpack_require__(81)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -47966,7 +47967,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/Questionnaire/components/textInput.vue"
+Component.options.__file = "resources/assets/js/medical-reports/components/textInput.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -47975,9 +47976,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-f04f6cbc", Component.options)
+    hotAPI.createRecord("data-v-a761cbbc", Component.options)
   } else {
-    hotAPI.reload("data-v-f04f6cbc", Component.options)
+    hotAPI.reload("data-v-a761cbbc", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -47988,24 +47989,51 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 41 */,
-/* 42 */
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(43);
-__webpack_require__(70);
-module.exports = __webpack_require__(71);
+module.exports = __webpack_require__(73);
 
 
 /***/ }),
-/* 43 */
+/* 73 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__vue_translations_js__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__vue_translations_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__vue_translations_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_app_vue__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_app_vue__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_app_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_app_vue__);
 __webpack_require__(13);
 
@@ -48033,15 +48061,15 @@ new Vue({
 });
 
 /***/ }),
-/* 44 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(45)
+var __vue_script__ = __webpack_require__(75)
 /* template */
-var __vue_template__ = __webpack_require__(69)
+var __vue_template__ = __webpack_require__(96)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48058,7 +48086,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/Questionnaire/components/app.vue"
+Component.options.__file = "resources/assets/js/medical-reports/components/app.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -48067,9 +48095,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-43d800e6", Component.options)
+    hotAPI.createRecord("data-v-7bd53166", Component.options)
   } else {
-    hotAPI.reload("data-v-43d800e6", Component.options)
+    hotAPI.reload("data-v-7bd53166", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48080,12 +48108,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 45 */
+/* 75 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__swapper_vue__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__swapper_vue__ = __webpack_require__(76);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__swapper_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__swapper_vue__);
 //
 //
@@ -48104,15 +48132,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 46 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(47)
+var __vue_script__ = __webpack_require__(77)
 /* template */
-var __vue_template__ = __webpack_require__(68)
+var __vue_template__ = __webpack_require__(95)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48129,7 +48157,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/Questionnaire/components/swapper.vue"
+Component.options.__file = "resources/assets/js/medical-reports/components/swapper.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -48138,9 +48166,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-ea846322", Component.options)
+    hotAPI.createRecord("data-v-27aebeef", Component.options)
   } else {
-    hotAPI.reload("data-v-ea846322", Component.options)
+    hotAPI.reload("data-v-27aebeef", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48151,25 +48179,23 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 47 */
+/* 77 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__single__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__single__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__single___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__single__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__multiple__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__multiple__ = __webpack_require__(83);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__multiple___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__multiple__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__text__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__text__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__text___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__text__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__longText__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__longText__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__longText___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__longText__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dateTime__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dateTime__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dateTime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__dateTime__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rating__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__rating__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_axios__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_axios__);
 //
 //
 //
@@ -48206,12 +48232,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-
 
 
 
@@ -48225,7 +48245,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             data: {
                 currentView: "Single",
-                questionnaire: null,
+                medicalReport: null,
                 isCreate: false
             }
         };
@@ -48255,9 +48275,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 case 4:
                     currentView = "DateTime";
                     break;
-                case 5:
-                    currentView = "Rating";
-                    break;
             }
             if (!isClicked) {
                 $('#' + currentView).click();
@@ -48268,13 +48285,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mounted: function mounted() {
         var thisVue = this;
-        var questionnaireId = $('input[name="id"]').val();
-        if (questionnaireId != '') {
-            __WEBPACK_IMPORTED_MODULE_6_axios___default.a.post(baseUrl + '/Administrator/services/questionnaire/options', {
-                id: questionnaireId
+        var medicalReportId = $('input[name="id"]').val();
+        if (medicalReportId != '') {
+            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post(baseUrl + '/Administrator/medical_reports/questions/options', {
+                id: medicalReportId
             }).then(function (response) {
-                thisVue.data.questionnaire = response.data;
-                thisVue.swapTypeView(thisVue.data.questionnaire.type, false);
+                thisVue.data.medicalReport = response.data;
+                thisVue.swapTypeView(thisVue.data.medicalReport.type, false);
             }).catch(function (error) {
                 console.log(error);
             });
@@ -48287,21 +48304,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         Multiple: __WEBPACK_IMPORTED_MODULE_1__multiple___default.a,
         TextData: __WEBPACK_IMPORTED_MODULE_2__text___default.a,
         LongText: __WEBPACK_IMPORTED_MODULE_3__longText___default.a,
-        DateTime: __WEBPACK_IMPORTED_MODULE_4__dateTime___default.a,
-        Rating: __WEBPACK_IMPORTED_MODULE_5__rating___default.a
+        DateTime: __WEBPACK_IMPORTED_MODULE_4__dateTime___default.a
     }
 });
 
 /***/ }),
-/* 48 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(49)
+var __vue_script__ = __webpack_require__(79)
 /* template */
-var __vue_template__ = __webpack_require__(52)
+var __vue_template__ = __webpack_require__(82)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48318,7 +48334,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/Questionnaire/components/single.vue"
+Component.options.__file = "resources/assets/js/medical-reports/components/single.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -48327,9 +48343,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-12532b13", Component.options)
+    hotAPI.createRecord("data-v-d97baada", Component.options)
   } else {
-    hotAPI.reload("data-v-12532b13", Component.options)
+    hotAPI.reload("data-v-d97baada", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48340,12 +48356,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 49 */
+/* 79 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__textInput__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__textInput__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__textInput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__textInput__);
 //
 //
@@ -48360,7 +48376,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ["questionnaire"],
+    props: ["medicalReport"],
     data: function data() {
         return {
             data: {
@@ -48371,8 +48387,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mounted: function mounted() {
         var thisVue = this;
-        if (thisVue.questionnaire !== null) $.each(thisVue.questionnaire.options_ar, function (key, value) {
-            thisVue.data.options.push({ option_ar: thisVue.questionnaire.options_ar[key], option_en: thisVue.questionnaire.options_en[key] });
+        if (thisVue.medicalReport !== null) $.each(thisVue.medicalReport.options_ar, function (key, value) {
+            thisVue.data.options.push({ option_ar: thisVue.medicalReport.options_ar[key], option_en: thisVue.medicalReport.options_en[key] });
         });
     },
     methods: {
@@ -48389,7 +48405,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 50 */
+/* 80 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48410,7 +48426,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 51 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48451,12 +48467,12 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-f04f6cbc", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-a761cbbc", module.exports)
   }
 }
 
 /***/ }),
-/* 52 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48508,20 +48524,20 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-12532b13", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-d97baada", module.exports)
   }
 }
 
 /***/ }),
-/* 53 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(54)
+var __vue_script__ = __webpack_require__(84)
 /* template */
-var __vue_template__ = __webpack_require__(55)
+var __vue_template__ = __webpack_require__(85)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48538,7 +48554,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/Questionnaire/components/multiple.vue"
+Component.options.__file = "resources/assets/js/medical-reports/components/multiple.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -48547,9 +48563,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-a6b02fca", Component.options)
+    hotAPI.createRecord("data-v-a455f0ca", Component.options)
   } else {
-    hotAPI.reload("data-v-a6b02fca", Component.options)
+    hotAPI.reload("data-v-a455f0ca", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48560,12 +48576,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 54 */
+/* 84 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__textInput__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__textInput__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__textInput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__textInput__);
 //
 //
@@ -48580,7 +48596,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ["questionnaire"],
+    props: ["medicalReport"],
     data: function data() {
         return {
             data: {
@@ -48591,8 +48607,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mounted: function mounted() {
         var thisVue = this;
-        if (thisVue.questionnaire !== null) $.each(thisVue.questionnaire.options_ar, function (key, value) {
-            thisVue.data.options.push({ option_ar: thisVue.questionnaire.options_ar[key], option_en: thisVue.questionnaire.options_en[key] });
+        if (thisVue.medicalReport !== null) $.each(thisVue.medicalReport.options_ar, function (key, value) {
+            thisVue.data.options.push({ option_ar: thisVue.medicalReport.options_ar[key], option_en: thisVue.medicalReport.options_en[key] });
         });
     },
     methods: {
@@ -48609,7 +48625,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 55 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48661,20 +48677,20 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-a6b02fca", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-a455f0ca", module.exports)
   }
 }
 
 /***/ }),
-/* 56 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(57)
+var __vue_script__ = __webpack_require__(87)
 /* template */
-var __vue_template__ = __webpack_require__(58)
+var __vue_template__ = __webpack_require__(88)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48691,7 +48707,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/Questionnaire/components/text.vue"
+Component.options.__file = "resources/assets/js/medical-reports/components/text.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -48700,9 +48716,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-8f4b3b90", Component.options)
+    hotAPI.createRecord("data-v-fff97c90", Component.options)
   } else {
-    hotAPI.reload("data-v-8f4b3b90", Component.options)
+    hotAPI.reload("data-v-fff97c90", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48713,7 +48729,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 57 */
+/* 87 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48727,7 +48743,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
-/* 58 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48742,20 +48758,20 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-8f4b3b90", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-fff97c90", module.exports)
   }
 }
 
 /***/ }),
-/* 59 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(60)
+var __vue_script__ = __webpack_require__(90)
 /* template */
-var __vue_template__ = __webpack_require__(61)
+var __vue_template__ = __webpack_require__(91)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48772,7 +48788,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/Questionnaire/components/longText.vue"
+Component.options.__file = "resources/assets/js/medical-reports/components/longText.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -48781,9 +48797,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5ab8c158", Component.options)
+    hotAPI.createRecord("data-v-585e8258", Component.options)
   } else {
-    hotAPI.reload("data-v-5ab8c158", Component.options)
+    hotAPI.reload("data-v-585e8258", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48794,7 +48810,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 60 */
+/* 90 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48808,7 +48824,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
-/* 61 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48823,20 +48839,20 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5ab8c158", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-585e8258", module.exports)
   }
 }
 
 /***/ }),
-/* 62 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(63)
+var __vue_script__ = __webpack_require__(93)
 /* template */
-var __vue_template__ = __webpack_require__(64)
+var __vue_template__ = __webpack_require__(94)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48853,7 +48869,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/Questionnaire/components/dateTime.vue"
+Component.options.__file = "resources/assets/js/medical-reports/components/dateTime.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -48862,9 +48878,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7c7697b4", Component.options)
+    hotAPI.createRecord("data-v-7a1c58b4", Component.options)
   } else {
-    hotAPI.reload("data-v-7c7697b4", Component.options)
+    hotAPI.reload("data-v-7a1c58b4", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48875,7 +48891,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 63 */
+/* 93 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48889,7 +48905,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
-/* 64 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48904,170 +48920,12 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-7c7697b4", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-7a1c58b4", module.exports)
   }
 }
 
 /***/ }),
-/* 65 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(66)
-/* template */
-var __vue_template__ = __webpack_require__(67)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/Questionnaire/components/rating.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-587fa5e8", Component.options)
-  } else {
-    hotAPI.reload("data-v-587fa5e8", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 66 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    methods: {},
-    mounted: function mounted() {
-        $('#symbol').find('option[value="' + questionnaireCurrentSymbol + '"]').prop('selected', true);
-        $('#symbol').on('change', function () {
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(baseUrl + '/Administrator/services/questionnaire/symbollevels/' + $(this).find('option:selected').val()).then(function (response) {
-                $('#rating_levels').find('option').remove().end();
-                for (var i = 1; i <= response.data.levels; i++) {
-                    var option = '<option value="' + i + '">' + i + '</option>';
-                    if (i === parseInt(questionnaireCurrentLevels)) option = '<option value="' + i + '" selected>' + i + '</option>';
-                    $('#rating_levels').append(option);
-                }
-            }).catch(function (error) {
-                console.log(error);
-            });
-        }).change();
-    }
-});
-
-/***/ }),
-/* 67 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "form-group" }, [
-      _c("label", { staticClass: "control-label" }, [
-        _vm._v("\n        " + _vm._s(_vm._f("trans")("admin.symbol")) + " "),
-        _c("span", { staticClass: "required" }, [_vm._v(" * ")])
-      ]),
-      _vm._v(" "),
-      _vm._m(0)
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-group" }, [
-      _c("label", { staticClass: "control-label" }, [
-        _vm._v(
-          "\n        " + _vm._s(_vm._f("trans")("admin.rating_levels")) + " "
-        ),
-        _c("span", { staticClass: "required" }, [_vm._v(" * ")])
-      ]),
-      _vm._v(" "),
-      _c("select", {
-        staticClass: "form-control",
-        attrs: { name: "rating_levels", id: "rating_levels" }
-      })
-    ])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      { staticClass: "form-control", attrs: { name: "symbol", id: "symbol" } },
-      [
-        _c("option", { attrs: { value: "0", selected: "" } }, [
-          _vm._v("Stars")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "1" } }, [_vm._v("Numeric")])
-      ]
-    )
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-587fa5e8", module.exports)
-  }
-}
-
-/***/ }),
-/* 68 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -49172,27 +49030,14 @@ var render = function() {
                 "\n                "
             ),
             _c("span")
-          ]),
-          _vm._v(" "),
-          _c("label", { staticClass: "mt-radio" }, [
-            _c("input", {
-              attrs: { id: "Rating", name: "type", value: "5", type: "radio" },
-              on: { click: _vm.clickSwapper }
-            }),
-            _vm._v(
-              "\n                " +
-                _vm._s(_vm._f("trans")("admin.rating")) +
-                "\n                "
-            ),
-            _c("span")
           ])
         ])
       ]),
       _vm._v(" "),
-      _vm.data.questionnaire !== null || _vm.data.isCreate
+      _vm.data.medicalReport !== null || _vm.data.isCreate
         ? _c(_vm.data.currentView, {
             tag: "component",
-            attrs: { questionnaire: _vm.data.questionnaire }
+            attrs: { medicalReport: _vm.data.medicalReport }
           })
         : _vm._e()
     ],
@@ -49205,12 +49050,12 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-ea846322", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-27aebeef", module.exports)
   }
 }
 
 /***/ }),
-/* 69 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -49225,21 +49070,9 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-43d800e6", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-7bd53166", module.exports)
   }
 }
-
-/***/ }),
-/* 70 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 71 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

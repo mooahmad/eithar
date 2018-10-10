@@ -23,3 +23,6 @@ mix.webpackConfig({
 
 mix.js('resources/assets/js/Questionnaire/questionnaire.js', 'public/js/preprocessor')
    .sass('resources/assets/sass/Questionnaire/questionnaire.scss', 'public/css/preprocessor');
+
+mix.js('resources/assets/js/medical-reports/medical-reports-questions.js', 'public/js/preprocessor')
+    .sass('resources/assets/sass/medical-reports/medical-reports-questions.scss', 'public/css/preprocessor');

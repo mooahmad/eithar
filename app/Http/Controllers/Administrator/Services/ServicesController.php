@@ -15,6 +15,7 @@ use App\Models\Category;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\Currency;
+use App\Models\MedicalReports;
 use App\Models\Questionnaire;
 use App\Models\Service;
 use App\Models\ServicesCalendar;
@@ -194,7 +195,9 @@ class ServicesController extends Controller
                         $calendarURL = url(AD . '/services/' . $service->id . '/calendar');
                         $addCalendarURL = url(AD . '/services/' . $service->id . '/calendar/create');
                     }
-                    return View::make('Administrator.services.widgets.dataTableQuestionnaireAction', ['editURL' => $editURL, 'questionnaireURL' => $questionnaireURL, 'addQuestionnaireURL' => $addQuestionnaireURL, "calendarURL" => $calendarURL, "addCalendarURL" => $addCalendarURL]);
+                    return View::make('Administrator.services.widgets.dataTableQuestionnaireAction', ['editURL' => $editURL,
+                        'questionnaireURL' => $questionnaireURL, 'addQuestionnaireURL' => $addQuestionnaireURL,
+                        "calendarURL" => $calendarURL, "addCalendarURL" => $addCalendarURL]);
                 } else {
                     return View::make('Administrator.services.widgets.dataTableQuestionnaireAction', ['editURL' => $editURL]);
                 }

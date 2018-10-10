@@ -15,11 +15,10 @@ class CreateBookingMedicalReportsTable extends Migration
     {
         Schema::create('booking_medical_reports', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('provider_id')->nullable();
             $table->unsignedInteger('service_booking_id')->nullable();
+            $table->unsignedInteger('provider_id')->nullable();
             $table->unsignedInteger('medical_report_id')->nullable();
-            $table->text('original_name')->nullable();
-            $table->text('filled_file_path')->nullable();
+            $table->text('file_path')->nullable();
             $table->Integer('is_approved')->default(0)->nullable();
             $table->Integer('customer_can_view')->default(0)->nullable();
             $table->softDeletes();
@@ -27,14 +26,14 @@ class CreateBookingMedicalReportsTable extends Migration
         });
         // relations
         Schema::table('booking_medical_reports', function (Blueprint $table) {
-            $table->foreign('provider_id')
-                ->references('id')
-                ->on('providers')
-                ->onUpdate('set null')
-                ->onDelete('set null');
             $table->foreign('service_booking_id')
                 ->references('id')
                 ->on('service_bookings')
+                ->onUpdate('set null')
+                ->onDelete('set null');
+            $table->foreign('provider_id')
+                ->references('id')
+                ->on('providers')
                 ->onUpdate('set null')
                 ->onDelete('set null');
             $table->foreign('medical_report_id')
@@ -54,8 +53,8 @@ class CreateBookingMedicalReportsTable extends Migration
     {
         // relations
         Schema::table('booking_medical_reports', function (Blueprint $table) {
-            $table->dropForeign(['provider_id']);
             $table->dropForeign(['service_booking_id']);
+            $table->dropForeign(['provider_id']);
             $table->dropForeign(['medical_report_id']);
         });
         Schema::dropIfExists('booking_medical_reports');

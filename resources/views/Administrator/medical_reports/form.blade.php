@@ -28,6 +28,25 @@
                                         {!! Form::open(['method'=>(isset($report))? 'PUT' : 'POST','url'=> $formRoute, 'role'=>'form', 'files' => true]) !!}
 
                                         <div class="form-group">
+                                            <label for="name" class="control-label">
+                                                {{ trans('admin.title_ar') }} <span class="required"> * </span>
+                                            </label>
+                                            {!! Form::text('title_ar', (isset($report))? $report->title_ar : old('title_ar') , array('id'=>'title_ar', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.title_ar'))) !!}
+                                            @if($errors->has('title_ar'))
+                                                <span class="help-block text-danger">{{ $errors->first('title_ar') }}</span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="name" class="control-label">
+                                                {{ trans('admin.title_en') }} <span class="required"> * </span>
+                                            </label>
+                                            {!! Form::text('title_en', (isset($report))? $report->title_en : old('title_en') , array('id'=>'title_en', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.title_en'))) !!}
+                                            @if($errors->has('title_en'))
+                                                <span class="help-block text-danger">{{ $errors->first('title_en') }}</span>
+                                            @endif
+                                        </div>
+                                        <div class="form-group">
                                             <label for="on"
                                                    class="control-label">{{ trans('admin.is_general') }} </label>
                                             @php
@@ -50,16 +69,43 @@
                                             </div>
                                         </div>
 
-                                        <div id="services-row" style="{{ (isset($report) && $report->is_general)? 'display:none' : ''  }}" class="form-group">
-                                            <label for="default_language" class="control-label">
-                                                {{ trans('admin.service') }} <span class="required"> * </span>
-                                            </label>
-                                            {!! Form::select('service', $services, (isset($report))? $report->service_id : old('service'), array('id'=>'service', 'class'=>'form-control','required'=>'required')) !!}
-                                            @if($errors->has('service'))
-                                                <span class="help-block text-danger">{{ $errors->first('service') }}</span>
-                                            @endif
-                                        </div>
+                                        <div id="services-row"
+                                             style="{{ (isset($report) && $report->is_general)? 'display:none' : ''  }}">
+                                            <div class="form-group">
+                                                <label for="on"
+                                                       class="control-label">{{ trans('admin.is_lap') }} </label>
+                                                @php
+                                                    $is_lap = -1;
+                                                    if(isset($report)){
+                                                    $is_lap = $report->service_id;
+                                                    }
+                                                @endphp
+                                                <div class="mt-radio-inline">
+                                                    <label class="mt-radio">
+                                                        {!! Form::radio('is_lap', 1, ($is_lap === 0 )? 'true' : '',array('id'=>'yes-is_lap')) !!}
+                                                        {{ trans('admin.yes') }}
+                                                        <span></span>
+                                                    </label>
+                                                    <label class="mt-radio">
+                                                        {!! Form::radio('is_lap', 0, ($is_lap == -1)? 'true' : '',array('id'=>'no-is_lap')) !!}
+                                                        {{ trans('admin.no') }}
+                                                        <span></span>
+                                                    </label>
+                                                </div>
+                                            </div>
 
+                                            <div id="services-input"
+                                                 style="{{ (isset($report) && $report->service_id == 0)? 'display:none' : ''  }}"
+                                                 class="form-group">
+                                                <label for="default_language" class="control-label">
+                                                    {{ trans('admin.service') }} <span class="required"> * </span>
+                                                </label>
+                                                {!! Form::select('service', $services, (isset($report))? $report->service_id : old('service'), array('id'=>'service', 'class'=>'form-control','required'=>'required')) !!}
+                                                @if($errors->has('service'))
+                                                    <span class="help-block text-danger">{{ $errors->first('service') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
                                         <div class="form-group">
                                             <label for="on"
                                                    class="control-label">{{ trans('admin.customer_can_view') }} </label>
@@ -80,31 +126,6 @@
                                                     {{ trans('admin.no') }}
                                                     <span></span>
                                                 </label>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-xs-3">
-                                                    <label class="control-label">
-                                                        {{ trans('admin.select_report') }}
-                                                    </label>
-                                                    <div>
-                                                        <div class="fileinput fileinput-new"
-                                                             data-provides="fileinput">
-                                                            <span class="btn green btn-file">
-                                                                <span class="fileinput-new"> Select file </span>
-                                                                <span class="fileinput-exists"> Change </span>
-                                                                <input type="file" name="report"> </span>
-                                                            <span class="fileinput-filename"> </span> &nbsp;
-                                                            <a href="javascript:;" class="close fileinput-exists"
-                                                               data-dismiss="fileinput"> </a>
-                                                        </div>
-                                                    </div>
-                                                    @if($errors->has('report'))
-                                                        <span class="help-block text-danger">{{ $errors->first('report') }}</span>
-                                                    @endif
-                                                </div>
                                             </div>
                                         </div>
 

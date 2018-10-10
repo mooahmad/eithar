@@ -247,26 +247,26 @@
             @can('promo_code.view', new \App\Models\PromoCode())
 
                 {{--<li class="nav-item start {{ (Request::segment(2)=='invoices') ? 'active' :'' }}">--}}
-                    {{--<a href="javascript:;" class="nav-link nav-toggle">--}}
-                        {{--<i class="fa fa-file-pdf-o"></i>--}}
-                        {{--<span class="title">{{ trans('admin.invoices') }}</span>--}}
-                        {{--<span class="selected"></span>--}}
-                        {{--<span class="arrow {{ (Request::segment(2)=='invoices') ? 'open' :'' }}"></span>--}}
-                    {{--</a>--}}
-                    {{--<ul class="sub-menu">--}}
-                        {{--<li class="nav-item start {{ (Request::segment(2)=='invoices' && Request::segment(3)=='create') ? 'active' :'' }}">--}}
-                            {{--<a href="{{ url(AD.'/invoices/create') }}" class="nav-link ">--}}
-                                {{--<i class="fa fa-plus-circle"></i>--}}
-                                {{--<span class="title">{{ trans('admin.add_invoices') }}</span>--}}
-                            {{--</a>--}}
-                        {{--</li>--}}
-                        {{--<li class="nav-item start {{ (Request::is(AD.'/invoices')) ? 'active' :'' }}">--}}
-                            {{--<a href="{{ url(AD.'/invoices') }}" class="nav-link ">--}}
-                                {{--<i class="fa fa-eye"></i>--}}
-                                {{--<span class="title">{{ trans('admin.show_invoices') }}</span>--}}
-                            {{--</a>--}}
-                        {{--</li>--}}
-                    {{--</ul>--}}
+                {{--<a href="javascript:;" class="nav-link nav-toggle">--}}
+                {{--<i class="fa fa-file-pdf-o"></i>--}}
+                {{--<span class="title">{{ trans('admin.invoices') }}</span>--}}
+                {{--<span class="selected"></span>--}}
+                {{--<span class="arrow {{ (Request::segment(2)=='invoices') ? 'open' :'' }}"></span>--}}
+                {{--</a>--}}
+                {{--<ul class="sub-menu">--}}
+                {{--<li class="nav-item start {{ (Request::segment(2)=='invoices' && Request::segment(3)=='create') ? 'active' :'' }}">--}}
+                {{--<a href="{{ url(AD.'/invoices/create') }}" class="nav-link ">--}}
+                {{--<i class="fa fa-plus-circle"></i>--}}
+                {{--<span class="title">{{ trans('admin.add_invoices') }}</span>--}}
+                {{--</a>--}}
+                {{--</li>--}}
+                {{--<li class="nav-item start {{ (Request::is(AD.'/invoices')) ? 'active' :'' }}">--}}
+                {{--<a href="{{ url(AD.'/invoices') }}" class="nav-link ">--}}
+                {{--<i class="fa fa-eye"></i>--}}
+                {{--<span class="title">{{ trans('admin.show_invoices') }}</span>--}}
+                {{--</a>--}}
+                {{--</li>--}}
+                {{--</ul>--}}
                 {{--</li>--}}
 
                 {{--@endcan--}}
@@ -306,7 +306,6 @@
             <!-- End Booking Services Area -->
 
             @endcan
-        <!-- End Invoices Area -->
             <!-- Start Medical reports Area -->
             @can('medical_report.view', new \App\Models\MedicalReports())
                 <li class="nav-item start {{ (Request::segment(2)=='medical_reports') ? 'active' :'' }}">
@@ -333,7 +332,7 @@
                 </li>
             @endcan
         <!-- End Medical reports Area -->
-            <!-- Start Medical reports Area -->
+            <!-- Start settings Area -->
             @can('settings.view', new \App\Models\Settings())
                 <li class="nav-item start {{ (Request::segment(2)=='settings') ? 'active' :'' }}">
                     <a href="javascript:;" class="nav-link nav-toggle">
@@ -352,7 +351,7 @@
                     </ul>
                 </li>
         @endcan
-        <!-- End Medical reports Area -->
+        <!-- End settings Area -->
         </ul>
         <!-- END SIDEBAR MENU -->
     </div>

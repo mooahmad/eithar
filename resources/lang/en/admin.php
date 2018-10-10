@@ -212,5 +212,8 @@ return [
     'pushNotificationsTypes' => 'Push notifications types',
     'pushTypeTitleAR' => 'Type title ar',
     'pushTypeTitleEN' => 'Type title en',
+    'add_medical_report' => 'Add medical report',
+    'show_medical_report' => 'Show medical report',
+    'is_lap' => 'Is lap',
 
 ];

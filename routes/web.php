@@ -171,14 +171,29 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => SET, 'prefix' => AD], 
 Route::group(['middleware' => 'AdminAuth', 'namespace' => MRP, 'prefix' => AD], function () {
     Route::resource('medical_reports', 'MedicalReportController',
         ['names' => [
-            'index' => 'show medical report',
-            'create' => 'create medical report',
-            'show' => 'show medical report',
-            'edit' => 'edit medical report',
-            'destroy' => 'delete medical report'
+            'index' => 'show medical_reports',
+            'create' => 'create medical_reports',
+            'show' => 'show medical_reports',
+            'edit' => 'edit medical_reports',
+            'destroy' => 'delete medical_reports'
         ]]);
+
+    // medical reports datatable
     Route::get('getmedicalreportsdatatable', 'MedicalReportController@getMedicalReportsDataTable')->name('getMedicalReportsDataTable');
     Route::post('deletemedicalreports', 'MedicalReportController@deleteMedicalReports')->name('deleteMedicalReports');
+
+    // medical reports questions section
+    Route::get('medical_reports/{id}/questions', 'MedicalReportController@showMedicalReportsQuestions')->name('showMedicalReportsQuestions');
+    Route::get('medical_reports/{id}/questions/create', 'MedicalReportController@createMedicalReportsQuestions')->name('createMedicalReportsQuestions');
+    Route::post('medical_reports/{id}/questions/store', 'MedicalReportController@storeMedicalReportsQuestions')->name('storeMedicalReportsQuestions');
+    Route::get('medical_reports/{id}/questions/{medicalReportQuestionId}/edit', 'MedicalReportController@editMedicalReportsQuestions')->name('editMedicalReportsQuestions');
+    Route::post('medical_reports/{id}/questions/{medicalReportQuestionId}/update', 'MedicalReportController@updateMedicalReportsQuestions')->name('updateMedicalReportsQuestions');
+    Route::get('medical_reports/{id}/questions/{page}', 'MedicalReportController@getAvailableMedicalReportsQuestionsPageOrders')->name('getAvailableMedicalReportsQuestionsPageOrders');
+    Route::post('medical_reports/questions/options', 'MedicalReportController@getMedicalReportsQuestionsOptions')->name('getMedicalReportsQuestionsOptions');
+
+    // medical reports questions datatable
+    Route::post('medical_reports/{id}/getmedicalreportsquestionsdatatable', 'MedicalReportController@getMedicalReportsQuestionsDataTable')->name('getMedicalReportsQuestionsDataTable');
+    Route::post('deletemedicalreportsquestions', 'MedicalReportController@deleteMedicalReportsQuestions')->name('deleteMedicalReportsQuestions');
 });
 
 Route::group(['middleware' => 'AdminAuth', 'namespace' => MMRP, 'prefix' => AD], function () {
