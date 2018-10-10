@@ -42,11 +42,13 @@ class PushNotificationEventListener
                     ];
                     if (isset($data->service_type))
                         $details['service_type'] = $data->service_type;
-                    $tokens[] = $customer->pushNotification->token;
-                    $pushData = Utilities::buildNotification($data->{'title_' . $data->lang}, $data->{'desc_' . $data->lang}, 0, $details);
-                    Utilities::pushNotification($tokens, $pushData);
-                    $notification->is_pushed = 1;
-                    $notification->save();
+                    if($customer->pushNotification) {
+                        $tokens[] = $customer->pushNotification->token;
+                        $pushData = Utilities::buildNotification($data->{'title_' . $data->lang}, $data->{'desc_' . $data->lang}, 0, $details);
+                        Utilities::pushNotification($tokens, $pushData);
+                        $notification->is_pushed = 1;
+                        $notification->save();
+                    }
                 }
             });
         });
