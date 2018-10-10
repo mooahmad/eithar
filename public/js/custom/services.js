@@ -6,7 +6,7 @@ $(document).ready(function () {
             success: function (res) {
                 $('#type').find('option').remove().end();
                 $.each(res.allTypes, function (key, value) {
-                    if (res.selectedType !== "")
+                    if (res.selectedType == key)
                         $('#type').append('<option value="' + key + '" selected>' + value + '</option>');
                     else
                         $('#type').append('<option value="' + key + '">' + value + '</option>');
