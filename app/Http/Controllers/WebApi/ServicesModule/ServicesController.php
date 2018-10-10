@@ -92,4 +92,14 @@ class ServicesController extends Controller
         $service = new ServicesStrategy(ApiHelpers::requestType($request));
         return $service->getService($request, $id);
     }
+
+    /**
+     * @param Request $request
+     * @return \App\Helpers\ValidationError|string
+     */
+    public function changeItemStatus(Request $request)
+    {
+        $service = new ServicesStrategy(ApiHelpers::requestType($request));
+        return $service->changeItemStatus($request);
+    }
 }

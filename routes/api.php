@@ -60,6 +60,7 @@ Route::middleware('auth:api')->group(function () {
 
 
     Route::group(['namespace' => 'WebApi\ServicesModule', 'prefix' => 'services'], (function () {
+        Route::post('/item-status', 'ServicesController@changeItemStatus');
         Route::get('/{id}/questionnaire/{page?}', 'ServicesController@getServiceQuestionnaire');
         Route::post('/lap/calendar', 'ServicesController@getLapCalendar');
         Route::post('/{id}/calendar', 'ServicesController@getServiceCalendar');
@@ -73,7 +74,6 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/{id}/review', 'ServicesController@review');
         Route::post('/{id}/view', 'ServicesController@view');
         Route::post('/{id}', 'ServicesController@getService');
-        Route::post('/{id}', 'ServicesController@confirmItem');
     }));
 
     Route::group(['namespace' => 'WebApi\UsersModule', 'prefix' => 'providers'], (function () {
