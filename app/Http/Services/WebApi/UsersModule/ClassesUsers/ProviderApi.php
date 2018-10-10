@@ -32,7 +32,7 @@ class ProviderApi extends Provider
         return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
     }
 
-    public function getBookingReportQuestions($request, $reportId, $page)
+    public function getBookingReportQuestions($request, $reportId, $page = 1)
     {
         $validationObject = parent::getBookingReportQuestions($request, $reportId, $page);
         if ($validationObject->error == config('constants.responseStatus.success'))
@@ -40,7 +40,7 @@ class ProviderApi extends Provider
         return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
     }
 
-    public function addBookingReport($request, $bookingId)
+    public function addBookingReport(Request $request, $bookingId)
     {
         $validationObject = parent::addBookingReport($request, $bookingId);
         if ($validationObject->error == config('constants.responseStatus.success'))
