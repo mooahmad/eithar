@@ -16,6 +16,7 @@ class CreateBookingMedicalReportsAnswersTable extends Migration
         Schema::create('booking_medical_reports_answers', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('booking_report_id')->nullable();
+            $table->unsignedInteger('report_question_id')->nullable();
             $table->string('answer', 255);
             $table->string('title_ar', 255);
             $table->string('title_en', 255);

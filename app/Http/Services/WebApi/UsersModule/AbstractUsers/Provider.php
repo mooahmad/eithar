@@ -13,8 +13,10 @@ use App\Http\Services\WebApi\CommonTraits\Ratings;
 use App\Http\Services\WebApi\CommonTraits\Reviews;
 use App\Http\Services\WebApi\CommonTraits\Views;
 use App\Models\BookingMedicalReports;
+use App\Models\BookingMedicalReportsAnswers;
 use App\Models\Currency;
 use App\Models\MedicalReports;
+use App\Models\MedicalReportsQuestions;
 use App\Models\ProvidersCalendar;
 use App\Models\PushNotification;
 use App\Models\ServiceBooking;
@@ -137,57 +139,90 @@ class Provider
 
     public function getBookingAvailableReports($request, $bookingId)
     {
-        $reports = [];
-        $generalMedicalReports = MedicalReports::where('service_id', null)->get();
-        $generalMedicalReports->each(function ($medicalReport) use (&$reports) {
-            $medicalReport->file_path = Utilities::getFileUrl($medicalReport->file_path);
-            array_push($reports, $medicalReport);
-        });
+        $servicesIds = [];
         $booking = ServiceBooking::find($bookingId);
         if ($booking->service_id == null) {
             $lapServices = $booking->booking_lap_services;
-            $lapServices->each(function ($lapService) use (&$reports) {
+            $lapServices->each(function ($lapService) use (&$servicesIds) {
                 $service = $lapService->service;
-                $medicalReports = $service->medicalReports;
-                $medicalReports->each(function ($medicalReport) use (&$reports) {
-                    $medicalReport->file_path = Utilities::getFileUrl($medicalReport->file_path);
-                    array_push($reports, $medicalReport);
-                });
+                array_push($servicesIds, $service->id);
             });
         } else {
             $service = $booking->service;
-            $medicalReports = $service->medicalReports;
-            $medicalReports->each(function ($medicalReport) use (&$reports) {
-                $medicalReport->file_path = Utilities::getFileUrl($medicalReport->file_path);
-                array_push($reports, $medicalReport);
-            });
+            array_push($servicesIds, $service->id);
         }
+        $MedicalReports = MedicalReports::where('service_id', null)->orWhere(function ($query) use ($servicesIds) {
+            $query->whereIn('service_id', $servicesIds);
+        })->get();
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([
-                "reports" => $reports
+                "reports" => $MedicalReports
             ]));
     }
 
-    public function addBookingReport($request, $bookingId)
+    public function getBookingReportQuestions($request, $reportId, $page = 1)
     {
-        $medicalReportId = $request->input('medial_report_id');
-        $filePath = Utilities::UploadFile($request->file('report'), 'public/bookings/' . $bookingId . '/reports');
-        $bookingMedicalReport = new BookingMedicalReports();
-        $this->createUpdateMedicalReport($bookingMedicalReport, $bookingId, $medicalReportId, $request->file('report')->getClientOriginalName(), $filePath);
+        $pagesCount = MedicalReportsQuestions::where('medical_report_id', $reportId)->max('pagination');
+        $medicalReportsQuestions = MedicalReportsQuestions::where([['medical_report_id', $reportId], ['pagination', $page]])->get();
+        $medicalReportsQuestions->each(function ($medicalReportsQuestion) {
+            $medicalReportsQuestion->options_ar = empty(unserialize($medicalReportsQuestion->options_ar)) ? [] : unserialize($medicalReportsQuestion->options_ar);
+            $medicalReportsQuestion->options_en = empty(unserialize($medicalReportsQuestion->options_en)) ? [] : unserialize($medicalReportsQuestion->options_en);
+            $medicalReportsQuestion->addHidden([
+                'title_ar', 'title_en',
+                'options_en', 'options_ar'
+            ]);
+        });
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([
+                "medicalReportsQuestions" => $medicalReportsQuestions,
+                "pagesCount" => $pagesCount,
+                "currentPage" => $page
+            ]));
+    }
+
+    public function addBookingReport(Request $request, $bookingId)
+    {
+        $medicalReportId = $request->input('medical_report_id');
+        $reportAnswers = $request->input('report_answers');
+        $bookingReportId = $this->saveBookingReport($bookingId, $medicalReportId);
+        $this->saveBookingReportAnswers($bookingReportId, $reportAnswers);
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([]));
     }
 
-    public function createUpdateMedicalReport($bookingMedicalReport, $bookingId, $medicalReportId, $originalName, $filePath)
+    private function saveBookingReport($bookingId, $medicalReportId)
     {
-        $bookingMedicalReport->provider_id = Auth::id();
+        $medicalReport = MedicalReports::find($medicalReportId);
+        $bookingMedicalReport = new BookingMedicalReports();
         $bookingMedicalReport->service_booking_id = $bookingId;
-        $bookingMedicalReport->medical_report_id = $medicalReportId;
-        $bookingMedicalReport->original_name = $originalName;
-        $bookingMedicalReport->filled_file_path = $filePath;
-        $bookingMedicalReport->is_approved = 0;
-        $bookingMedicalReport->customer_can_view = 0;
-        return $bookingMedicalReport->save();
+        $bookingMedicalReport->provider_id = Auth::id();
+        $bookingMedicalReport->medical_report_id = $medicalReport->id;
+        $bookingMedicalReport->is_approved = $medicalReport->is_approved;
+        $bookingMedicalReport->customer_can_view = $medicalReport->customer_can_view;
+        $bookingMedicalReport->save();
+        return $bookingMedicalReport->id;
+    }
+
+    private function saveBookingReportAnswers($bookingReportId, $ReportAnswers)
+    {
+        $data = [];
+        foreach ($ReportAnswers as $key => $value) {
+            $reportQuestion = MedicalReportsQuestions::find($key);
+            $data[] = [
+                "booking_report_id" => $bookingReportId,
+                "report_question_id" => $reportQuestion->id,
+                "title_ar" => $reportQuestion->title_ar,
+                "title_en" => $reportQuestion->title_en,
+                "options_ar" => $reportQuestion->options_ar,
+                "options_en" => $reportQuestion->options_en,
+                "is_required" => $reportQuestion->is_required,
+                "order" => $reportQuestion->order,
+                "pagination" => $reportQuestion->pagination,
+                "type" => $reportQuestion->type,
+                "answer" => serialize($value)
+            ];
+        }
+        return BookingMedicalReportsAnswers::insert($data);
     }
 
     public function verifyProviderCredentials(Request $request)
