@@ -69,16 +69,43 @@
                                             </div>
                                         </div>
 
-                                        <div id="services-row" style="{{ (isset($report) && $report->is_general)? 'display:none' : ''  }}" class="form-group">
-                                            <label for="default_language" class="control-label">
-                                                {{ trans('admin.service') }} <span class="required"> * </span>
-                                            </label>
-                                            {!! Form::select('service', $services, (isset($report))? $report->service_id : old('service'), array('id'=>'service', 'class'=>'form-control','required'=>'required')) !!}
-                                            @if($errors->has('service'))
-                                                <span class="help-block text-danger">{{ $errors->first('service') }}</span>
-                                            @endif
-                                        </div>
+                                        <div id="services-row"
+                                             style="{{ (isset($report) && $report->is_general)? 'display:none' : ''  }}">
+                                            <div class="form-group">
+                                                <label for="on"
+                                                       class="control-label">{{ trans('admin.is_lap') }} </label>
+                                                @php
+                                                    $is_lap = -1;
+                                                    if(isset($report)){
+                                                    $is_lap = $report->service_id;
+                                                    }
+                                                @endphp
+                                                <div class="mt-radio-inline">
+                                                    <label class="mt-radio">
+                                                        {!! Form::radio('is_lap', 1, ($is_lap === 0 )? 'true' : '',array('id'=>'yes-is_lap')) !!}
+                                                        {{ trans('admin.yes') }}
+                                                        <span></span>
+                                                    </label>
+                                                    <label class="mt-radio">
+                                                        {!! Form::radio('is_lap', 0, ($is_lap == -1)? 'true' : '',array('id'=>'no-is_lap')) !!}
+                                                        {{ trans('admin.no') }}
+                                                        <span></span>
+                                                    </label>
+                                                </div>
+                                            </div>
 
+                                            <div id="services-input"
+                                                 style="{{ (isset($report) && $report->service_id == 0)? 'display:none' : ''  }}"
+                                                 class="form-group">
+                                                <label for="default_language" class="control-label">
+                                                    {{ trans('admin.service') }} <span class="required"> * </span>
+                                                </label>
+                                                {!! Form::select('service', $services, (isset($report))? $report->service_id : old('service'), array('id'=>'service', 'class'=>'form-control','required'=>'required')) !!}
+                                                @if($errors->has('service'))
+                                                    <span class="help-block text-danger">{{ $errors->first('service') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
                                         <div class="form-group">
                                             <label for="on"
                                                    class="control-label">{{ trans('admin.customer_can_view') }} </label>

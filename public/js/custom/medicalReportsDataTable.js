@@ -57,6 +57,13 @@ function datatable() {
                 }
             },
             {
+                data: 'service_id',
+                name: 'medical_reports.service_id',
+                render: function (data, type, full, meta) {
+                    return (data === 0)? 'yes' : 'no';
+                }
+            },
+            {
                 data: 'customer_can_view',
                 name: 'medical_reports.customer_can_view',
                 render: function (data, type, full, meta) {

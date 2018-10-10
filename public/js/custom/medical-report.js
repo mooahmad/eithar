@@ -7,4 +7,12 @@ $(document).ready(function () {
         $('#services-row').show();
         $('#service').attr('required', 'required');
     });
+    $('#yes-is_lap').on('change', function () {
+        $('#services-input').hide();
+        $('#service').removeAttr('required');
+    });
+    $('#no-is_lap').on('click', function () {
+        $('#services-input').show();
+        $('#service').attr('required', 'required');
+    });
 });

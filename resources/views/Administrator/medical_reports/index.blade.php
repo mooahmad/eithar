@@ -22,6 +22,7 @@
                             <tr>
                                 <th>{{ trans('admin.id') }}</th>
                                 <th>{{ trans('admin.is_general') }}</th>
+                                <th>{{ trans('admin.is_lap') }}</th>
                                 <th>{{ trans('admin.see_by_customer') }}</th>
                                 <th>{{ trans('admin.actions') }}</th>
                             </tr>
