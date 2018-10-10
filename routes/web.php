@@ -23,6 +23,11 @@ define('SET', 'Administrator\Settings');
 Route::group(['namespace' => FE], function () {
     Route::group(['middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ],'prefix' => LaravelLocalization::setLocale()], function () {
         Route::get('/', 'FrontendController@index')->name('home');
+
+        Route::group(['namespace'=>'CategoriesFront'],function (){
+            Route::get('categories/{category}/{name}', 'CategoriesFrontController@showSubCategories')->name('show-subcategories');
+        });
+
     });
 });
 

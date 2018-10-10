@@ -14,8 +14,8 @@ class FrontendController extends Controller
      */
     public function __construct()
     {
-        App::setLocale(session()->get('lang'));
-        $this->middleware('Language');
+//        App::setLocale(session()->get('lang'));
+//        $this->middleware('Language');
     }
 
     /**
@@ -24,7 +24,7 @@ class FrontendController extends Controller
     public function index()
     {
         $data = [
-            'main_categories'=>Category::take(5)->get(),
+            'main_categories'=>Category::GetParentCategories()->get(),
         ];
         return view(FE.'.index')->with($data);
     }

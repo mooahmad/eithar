@@ -164,4 +164,26 @@ class Utilities
         return Mail::to($customer)->send(new GenerateInvoice($customer,$notification_data));
     }
 
+    /**
+     * @param $message
+     * @param $redirect_to
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public static function successMessageAndRedirect($message,$redirect_to)
+    {
+        session()->flash('success_msg', $message);
+        return redirect($redirect_to);
+    }
+
+    /**
+     * @param $message
+     * @param $redirect_to
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public static function errorMessageAndRedirect($message,$redirect_to)
+    {
+        session()->flash('error_msg', $message);
+        return redirect($redirect_to);
+    }
+
 }
