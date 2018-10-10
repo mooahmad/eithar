@@ -13,6 +13,7 @@ use App\Http\Services\WebApi\CommonTraits\Ratings;
 use App\Http\Services\WebApi\CommonTraits\Reviews;
 use App\Http\Services\WebApi\CommonTraits\Views;
 use App\Models\BookingMedicalReports;
+use App\Models\BookingMedicalReportsAnswers;
 use App\Models\Currency;
 use App\Models\MedicalReports;
 use App\Models\MedicalReportsQuestions;
@@ -182,8 +183,46 @@ class Provider
     public function addBookingReport(Request $request, $bookingId)
     {
         $medicalReportId = $request->input('medical_report_id');
+        $reportAnswers = $request->input('report_answers');
+        $bookingReportId = $this->saveBookingReport($bookingId, $medicalReportId);
+        $this->saveBookingReportAnswers($bookingReportId, $reportAnswers);
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([]));
+    }
+
+    private function saveBookingReport($bookingId, $medicalReportId)
+    {
+        $medicalReport = MedicalReports::find($medicalReportId);
+        $bookingMedicalReport = new BookingMedicalReports();
+        $bookingMedicalReport->service_booking_id = $bookingId;
+        $bookingMedicalReport->provider_id = Auth::id();
+        $bookingMedicalReport->medical_report_id = $medicalReport->id;
+        $bookingMedicalReport->is_approved = $medicalReport->is_approved;
+        $bookingMedicalReport->customer_can_view = $medicalReport->customer_can_view;
+        $bookingMedicalReport->save();
+        return $bookingMedicalReport->id;
+    }
+
+    private function saveBookingReportAnswers($bookingReportId, $ReportAnswers)
+    {
+        $data = [];
+        foreach ($ReportAnswers as $key => $value) {
+            $reportQuestion = MedicalReportsQuestions::find($key);
+            $data[] = [
+                "booking_report_id" => $bookingReportId,
+                "report_question_id" => $reportQuestion->id,
+                "title_ar" => $reportQuestion->title_ar,
+                "title_en" => $reportQuestion->title_en,
+                "options_ar" => $reportQuestion->options_ar,
+                "options_en" => $reportQuestion->options_en,
+                "is_required" => $reportQuestion->is_required,
+                "order" => $reportQuestion->order,
+                "pagination" => $reportQuestion->pagination,
+                "type" => $reportQuestion->type,
+                "answer" => serialize($value)
+            ];
+        }
+        return BookingMedicalReportsAnswers::insert($data);
     }
 
     public function verifyProviderCredentials(Request $request)
