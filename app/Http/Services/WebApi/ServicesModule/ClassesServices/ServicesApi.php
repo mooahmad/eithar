@@ -112,4 +112,16 @@ class ServicesApi extends Services
         return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
     }
 
+    /**
+     * @param $request
+     * @return \App\Helpers\ValidationError|string
+     */
+    public function changeItemStatus($request)
+    {
+        $validationObject = parent::changeItemStatus($request);
+        if ($validationObject->error == config('constants.responseStatus.success'))
+            return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
+    }
+
 }
