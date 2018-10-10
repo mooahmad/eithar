@@ -291,7 +291,9 @@ class Customer
             $serviceId = $servicesBooking->service_id;
             if ($serviceId != null) {
                 $service = Service::find($serviceId);
-            } else {
+            } elseif($serviceId == null && $servicesBooking->provider_id != null) {
+                $service = $servicesBooking->provider->services()->leftJoin('categories', 'services.category_id', '=', 'categories.id')->where('categories.category_parent_id', 1)->first();
+            }else{
                 $serviceBookingLaps = ServiceBookingLap::with('service')->where('service_booking_id', $servicesBooking->id)->get();
             }
             $serviceAppointments = $servicesBooking->service_appointments;
