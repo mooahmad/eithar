@@ -60,6 +60,7 @@ Route::middleware('auth:api')->group(function () {
 
 
     Route::group(['namespace' => 'WebApi\ServicesModule', 'prefix' => 'services'], (function () {
+        Route::post('/item-status', 'ServicesController@changeItemStatus');
         Route::get('/{id}/questionnaire/{page?}', 'ServicesController@getServiceQuestionnaire');
         Route::post('/lap/calendar', 'ServicesController@getLapCalendar');
         Route::post('/{id}/calendar', 'ServicesController@getServiceCalendar');
