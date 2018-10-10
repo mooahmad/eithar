@@ -73,6 +73,7 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/{id}/review', 'ServicesController@review');
         Route::post('/{id}/view', 'ServicesController@view');
         Route::post('/{id}', 'ServicesController@getService');
+        Route::post('/{id}', 'ServicesController@confirmItem');
     }));
 
     Route::group(['namespace' => 'WebApi\UsersModule', 'prefix' => 'providers'], (function () {
