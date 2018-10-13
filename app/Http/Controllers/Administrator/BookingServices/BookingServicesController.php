@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Administrator\BookingServices;
 
 use App\Helpers\Utilities;
 use App\Http\Controllers\Controller;
-use App\LapCalendar;
+use App\Models\LapCalendar;
 use App\Models\Customer;
 use App\Models\Provider;
 use App\Models\ProvidersCalendar;

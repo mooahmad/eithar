@@ -102,5 +102,7 @@ Route::middleware('auth:provider')->group(function () {
         Route::get('/bookings/{id}/reports', 'ProviderController@getBookingAvailableReports');
         Route::get('/bookings/getBookingReportQuestions/{ReportId}/{page}', 'ProviderController@getBookingReportQuestions');
         Route::post('/bookings/{bookingId}/addReport', 'ProviderController@addBookingReport');
+        Route::get('getBookings', 'ProviderController@getBookings');
+        Route::get('getBooking/{id}/{serviceType}', 'ProviderController@getBooking');
     }));
 });

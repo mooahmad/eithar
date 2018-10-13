@@ -9,7 +9,7 @@ use App\Http\Requests\Auth\RegisterCustomer;
 use App\Http\Requests\Auth\UpdateForgetPasswordRequest;
 use App\Http\Requests\Auth\VerifyCustomerEmail;
 use App\Http\Services\Auth\AbstractAuth\Registration;
-use App\LapCalendar;
+use App\Models\LapCalendar;
 use App\Mail\Auth\VerifyEmailCode;
 use App\Mail\Customer\ForgetPasswordMail;
 use App\Models\Category;
@@ -477,7 +477,7 @@ class Customer
                 $query->where('is_approved', 1)->where('customer_can_view', 1);
             }])->medicalReports;
             $reports->each(function ($report) use (&$medicalReports) {
-                $report->filled_file_path = Utilities::getFileUrl($report->filled_file_path);
+                $report->filled_file_path = Utilities::getFileUrl($report->file_path);
                 array_push($medicalReports, $report);
             });
         });

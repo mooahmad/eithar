@@ -11,7 +11,7 @@ use App\Http\Services\WebApi\CommonTraits\Reviews;
 use App\Http\Services\WebApi\CommonTraits\Views;
 use App\Http\Services\WebApi\ServicesModule\IServices\IService;
 use App\Http\Services\WebApi\UsersModule\AbstractUsers\Customer;
-use App\LapCalendar;
+use App\Models\LapCalendar;
 use App\Models\Currency;
 use App\Models\InvoiceItems;
 use App\Models\Provider;

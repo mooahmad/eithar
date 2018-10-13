@@ -79,4 +79,14 @@ class ProviderStrategy
         return $this->strategy->logoutProvider($request);
     }
 
+    public function getBookings(Request $request)
+    {
+        return $this->strategy->getBookings($request);
+    }
+
+    public function getBooking(Request $request, $id, $serviceType)
+    {
+        return $this->strategy->getBooking($request, $id, $serviceType);
+    }
+
 }

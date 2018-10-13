@@ -10,7 +10,7 @@ use App\Http\Requests\Services\CreateServiceRequest;
 use App\Http\Requests\Services\UpdateQuestionnaireRequest;
 use App\Http\Requests\Services\UpdateServiceRequest;
 use App\Http\Services\Adminstrator\ServiceModule\ClassesService\ServiceClass;
-use App\LapCalendar;
+use App\Models\LapCalendar;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\Country;

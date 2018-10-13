@@ -157,4 +157,9 @@ class Provider extends Authenticatable
     {
         return $this->hasOne('App\Models\PushNotification', 'provider_id', 'id');
     }
+
+    public function servicesBookings()
+    {
+        return $this->hasMany('App\Models\ServiceBooking', 'provider_id_assigned_by_admin', 'id');
+    }
 }
