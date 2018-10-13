@@ -300,14 +300,20 @@
             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                 <img alt="{{ config('app.name') }}" width="90px" class="img-circle" src="{{ asset('public/assets/layouts/layout/img/logo.png') }}" />
                 <span class="username username-hide-on-mobile"> {{ config('app.name') }} -  </span>
-                <span class="username username-hide-on-mobile"> {{ auth()->user()->name }} </span>
+                <span class="username username-hide-on-mobile"> {{ (auth()->user()) ? auth()->user()->name : auth()->guard('provider-web')->user()->full_name }} </span>
                 <i class="fa fa-angle-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-default">
                 <li>
-                    <a href="{{ url(AD.'/admins/'.auth()->user()->id.'/edit') }}">
-                        <i class="icon-user"></i> My Profile
-                    </a>
+                    @if(auth()->user())
+                        <a href="{{ url(AD.'/admins/'.auth()->user()->id.'/edit') }}">
+                            <i class="icon-user"></i> My Profile
+                        </a>
+                        @else
+                        <a href="{{ url(AD.'/providers/'.auth()->guard('provider-web')->user()->id.'/edit') }}">
+                            <i class="icon-user"></i> My Profile
+                        </a>
+                    @endif
                 </li>
                 <li>
                     <a href="app_cal endar.html">
@@ -331,9 +337,15 @@
                         <i class="icon-lock"></i> Lock Screen </a>
                 </li>
                 <li>
-                    <a href="{{ url(AD.'/logout') }}">
-                        <i class="icon-key"></i> {{ trans('admin.logout') }}
-                    </a>
+                    @if(auth()->user())
+                        <a href="{{ url(AD.'/logout') }}">
+                            <i class="icon-key"></i> {{ trans('admin.logout') }}
+                        </a>
+                    @else
+                        <a href="{{ url(AD.'/logout/provider') }}">
+                            <i class="icon-key"></i> {{ trans('admin.logout') }}
+                        </a>
+                    @endif
                 </li>
             </ul>
         </li>
