@@ -4,7 +4,7 @@ namespace App\Http\Services\Adminstrator\ServiceModule\ClassesService;
 
 
 use App\Helpers\Utilities;
-use App\LapCalendar;
+use App\Models\LapCalendar;
 use App\Models\MedicalReports;
 use App\Models\Questionnaire;
 use App\Models\Service;

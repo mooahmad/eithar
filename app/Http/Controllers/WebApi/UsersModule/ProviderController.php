@@ -84,8 +84,22 @@ class ProviderController extends Controller
     public function logoutProvider(Request $request)
     {
         // instantiate login strategy object using request type detection helper method
-        $loginStrategy = new ProviderStrategy(ApiHelpers::requestType($request));
-        return $loginStrategy->logoutProvider($request);
+        $providerStrategy = new ProviderStrategy(ApiHelpers::requestType($request));
+        return $providerStrategy->logoutProvider($request);
+    }
+
+    public function getBookings(Request $request)
+    {
+        // instantiate login strategy object using request type detection helper method
+        $providerStrategy = new ProviderStrategy(ApiHelpers::requestType($request));
+        return $providerStrategy->getBookings($request);
+    }
+
+    public function getBooking(Request $request, $id, $serviceType)
+    {
+        // instantiate login strategy object using request type detection helper method
+        $providerStrategy = new ProviderStrategy(ApiHelpers::requestType($request));
+        return $providerStrategy->getBooking($request, $id, $serviceType);
     }
 
 }

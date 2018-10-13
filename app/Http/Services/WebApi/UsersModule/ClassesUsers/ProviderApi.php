@@ -103,4 +103,20 @@ class ProviderApi extends Provider
             return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
         return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
     }
+
+    public function getBookings(Request $request)
+    {
+        $validationObject = parent::getBookings($request);
+        if ($validationObject->error == config('constants.responseStatus.success'))
+            return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
+    }
+
+    public function getBooking(Request $request, $id, $serviceType)
+    {
+        $validationObject = parent::getBooking($request, $id, $serviceType);
+        if ($validationObject->error == config('constants.responseStatus.success'))
+            return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
+    }
 }

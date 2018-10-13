@@ -8,7 +8,7 @@ use App\Helpers\Utilities;
 use App\Http\Services\WebApi\CategoriesModule\ICategories\ICategory;
 use App\Http\Services\WebApi\ServicesModule\AbstractServices\Services;
 use App\Http\Services\WebApi\UsersModule\AbstractUsers\Customer;
-use App\LapCalendar;
+use App\Models\LapCalendar;
 use App\Models\Category;
 use App\Models\Currency;
 use App\Models\Service;

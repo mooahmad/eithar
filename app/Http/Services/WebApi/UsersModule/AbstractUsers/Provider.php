@@ -6,12 +6,12 @@ namespace App\Http\Services\WebApi\UsersModule\AbstractUsers;
 use App\Helpers\ApiHelpers;
 use App\Helpers\Utilities;
 use App\Http\Requests\Auth\LoginProvider;
-use App\Http\Requests\Auth\RegisterProvider;
 use App\Http\Services\WebApi\CommonTraits\Follows;
 use App\Http\Services\WebApi\CommonTraits\Likes;
 use App\Http\Services\WebApi\CommonTraits\Ratings;
 use App\Http\Services\WebApi\CommonTraits\Reviews;
 use App\Http\Services\WebApi\CommonTraits\Views;
+use App\Models\LapCalendar;
 use App\Models\BookingMedicalReports;
 use App\Models\BookingMedicalReportsAnswers;
 use App\Models\Currency;
@@ -19,7 +19,11 @@ use App\Models\MedicalReports;
 use App\Models\MedicalReportsQuestions;
 use App\Models\ProvidersCalendar;
 use App\Models\PushNotification;
+use App\Models\Service;
 use App\Models\ServiceBooking;
+use App\Models\ServiceBookingAppointment;
+use App\Models\ServiceBookingLap;
+use App\Models\ServicesCalendar;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -271,5 +275,187 @@ class Provider
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([
             ]));
+    }
+
+    public function getBookings(Request $request)
+    {
+        $upCommingAppointments = [];
+        $passedAppointments = [];
+        $finalAppointments = [];
+        $servicesBookings = Auth::user()->load(['servicesBookings.service_appointments' => function ($query) {
+            $query->orderByRaw('service_booking_appointments.created_at DESC');
+        }])->servicesBookings;
+        foreach ($servicesBookings as $servicesBooking) {
+            $service = null;
+            $serviceBookingLaps = null;
+            $serviceId = $servicesBooking->service_id;
+            if ($serviceId != null) {
+                $service = Service::find($serviceId);
+            } elseif ($serviceId == null && $servicesBooking->provider_id != null) {
+                $service = $servicesBooking->provider->services()->leftJoin('categories', 'services.category_id', '=', 'categories.id')->where('categories.category_parent_id', 1)->first();
+            } else {
+                $serviceBookingLaps = ServiceBookingLap::with('service')->where('service_booking_id', $servicesBooking->id)->get();
+            }
+            $serviceAppointments = $servicesBooking->service_appointments;
+            $customer = $servicesBooking->customer;
+            foreach ($serviceAppointments as $serviceAppointment) {
+                if ($service != null) {
+                    //provider
+                    if ($service->type == 5) {
+                        $calendar = ProvidersCalendar::find($serviceAppointment->slot_id);
+                        $startDate = $startTime = $endTime = "Unknown";
+                        $upComming = 0;
+                        $isLocked = 1;
+                        if ($calendar) {
+                            $upComming = (Carbon::now() > Carbon::parse($calendar->start_date)) ? 0 : 1;
+                            $startDate = $calendar->start_date;
+                            $startTime = Carbon::parse($calendar->start_date)->format('g:i A');
+                            $endTime = Carbon::parse($calendar->end_date)->format('g:i A');
+                            $now = Carbon::now();
+                            $beforeStartDay = Carbon::parse($calendar->start_date)->subDays(1);
+                            $afterStartDay = Carbon::parse($calendar->start_date)->addDays(1);
+                            if ($now >= $beforeStartDay && $now <= $afterStartDay)
+                                $isLocked = 0;
+                        }
+                        $payLoad = [
+                            "id" => $serviceAppointment->id,
+                            "service_type" => $service->type,
+                            "service_name" => $service->name_en,
+                            "customer_name" => "{$customer->first_name} {$customer->middle_name} {$customer->last_name}",
+                            "upcoming" => $upComming,
+                            "start_date" => $startDate,
+                            "start_time" => $startTime,
+                            "end_time" => $endTime,
+                            "isLocked" => $isLocked
+                        ];
+                        //one and package
+                    } elseif ($service->type == 1 || $service->type == 2) {
+                        $calendar = ServicesCalendar::find($serviceAppointment->slot_id);
+                        $startDate = $startTime = $endTime = "Unknown";
+                        $upComming = 0;
+                        $isLocked = 1;
+                        if ($calendar) {
+                            $upComming = (Carbon::now() > Carbon::parse($calendar->start_date)) ? 0 : 1;
+                            $startDate = $calendar->start_date;
+                            $startTime = Carbon::parse($calendar->start_date)->format('g:i A');
+                            $endTime = Carbon::parse($calendar->end_date)->format('g:i A');
+                            $now = Carbon::now();
+                            $beforeStartDay = Carbon::parse($calendar->start_date)->subDays(1);
+                            $afterStartDay = Carbon::parse($calendar->start_date)->addDays(1);
+                            if ($now >= $beforeStartDay && $now <= $afterStartDay)
+                                $isLocked = 0;
+                        }
+                        $payLoad = [
+                            "id" => $serviceAppointment->id,
+                            "service_type" => $service->type,
+                            "service_name" => $service->name_en,
+                            "customer_name" => "{$customer->first_name} {$customer->middle_name} {$customer->last_name}",
+                            "upcoming" => $upComming,
+                            "start_date" => $startDate,
+                            "start_time" => $startTime,
+                            "end_time" => $endTime,
+                            "isLocked" => $isLocked
+                        ];
+                    }
+                } elseif ($serviceBookingLaps != null) {
+                    $calendar = LapCalendar::find($serviceAppointment->slot_id);
+                    $startDate = $startTime = $endTime = "Unknown";
+                    $upComming = 0;
+                    $isLocked = 1;
+                    if ($calendar) {
+                        $upComming = (Carbon::now() > Carbon::parse($calendar->start_date)) ? 0 : 1;
+                        $startDate = $calendar->start_date;
+                        $startTime = Carbon::parse($calendar->start_date)->format('g:i A');
+                        $endTime = Carbon::parse($calendar->end_date)->format('g:i A');
+                        $now = Carbon::now();
+                        $beforeStartDay = Carbon::parse($calendar->start_date)->subDays(1);
+                        $afterStartDay = Carbon::parse($calendar->start_date)->addDays(1);
+                        if ($now >= $beforeStartDay && $now <= $afterStartDay)
+                            $isLocked = 0;
+                    }
+                    $payLoad = [
+                        "id" => $serviceAppointment->id,
+                        "service_type" => 4,
+                        "service_name" => "Lap",
+                        "customer_name" => "{$customer->first_name} {$customer->middle_name} {$customer->last_name}",
+                        "upcoming" => $upComming,
+                        "start_date" => $startDate,
+                        "start_time" => $startTime,
+                        "end_time" => $endTime,
+                        "isLocked" => $isLocked
+                    ];
+                }
+                if ($payLoad["start_date"] != "Unknown") {
+                    if ($payLoad["upcoming"] == 1)
+                        $upCommingAppointments[] = $payLoad;
+                    else
+                        $passedAppointments[] = $payLoad;
+                }
+            }
+        }
+        $upCommingAppointments = collect($upCommingAppointments)->sortBy('start_date')->values()->all();
+        $passedAppointments = collect($passedAppointments)->sortBy('start_date')->reverse()->values()->all();
+        $appointments = collect(array_merge($upCommingAppointments, $passedAppointments));
+        $appointments->each(function ($appointment) use (&$finalAppointments) {
+            $appointment["start_date"] = Carbon::parse($appointment["start_date"])->format('l jS \\of F Y');
+            array_push($finalAppointments, $appointment);
+        });
+        return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
+            "bookings" => $finalAppointments
+        ]));
+    }
+
+    public function getBooking(Request $request, $id, $serviceType)
+    {
+        $appointment = ServiceBookingAppointment::find($id);
+        $calendar = [];
+        $services = [];
+        $totalBeforeTax = 0;
+        $serviceBooking = ServiceBooking::find($appointment->service_booking_id);
+        $customer = $serviceBooking->customer;
+        $vat = ($customer->is_saudi_nationality) ? 0 : config('constants.vat_percentage');
+        $promoCode = ($serviceBooking->promo_code != null) ? $serviceBooking->promo_code->code : "";
+        $currency = $serviceBooking->currency->name_eng;
+        $total = $serviceBooking->price;
+        if ($serviceType == 5) {
+            $providersCalendar = ProvidersCalendar::find($appointment->slot_id);
+            if ($providersCalendar) {
+                $providerService = $serviceBooking->provider->services()->leftJoin('categories', 'services.category_id', '=', 'categories.id')->where('categories.category_parent_id', 1)->first();
+                $calendar[] = ApiHelpers::reBuildCalendarSlot($providersCalendar);
+                $services [] = $providerService;
+                $totalBeforeTax = $providerService->price;
+            }
+        } elseif ($serviceType == 1 || $serviceType == 2) {
+            $servicesCalendar = ServicesCalendar::find($appointment->slot_id);
+            if ($servicesCalendar) {
+                $calendar[] = ApiHelpers::reBuildCalendarSlot($servicesCalendar);
+                $services [] = $serviceBooking->service;
+                $totalBeforeTax = $serviceBooking->service->price;
+            }
+        } elseif ($serviceType == 4) {
+            $lapClendar = LapCalendar::find($appointment->slot_id);
+            if ($lapClendar) {
+                $calendar[] = ApiHelpers::reBuildCalendarSlot($lapClendar);
+                $servicesLap = ServiceBookingLap::where('service_booking_id', $serviceBooking->id)->get();
+                foreach ($servicesLap as $serviceLap) {
+                    $services [] = $serviceLap->service;
+                    $totalBeforeTax += $serviceLap->service->price;
+                }
+            }
+        }
+        return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
+            "customer_picture" => Utilities::getFileUrl($customer->profile_picture_path),
+            "customer_name" => "{$customer->first_name} {$customer->middle_name} {$customer->last_name}",
+            "customer_number" => $customer->mobile_number,
+            "customer_address" => $serviceBooking->address,
+            "calendar" => $calendar,
+            "services" => $services,
+            "promo_code" => $promoCode,
+            "currency" => $currency,
+            "total_before_tax" => $totalBeforeTax,
+            "vat" => $vat,
+            "total" => $total
+        ]));
+
     }
 }
