@@ -280,12 +280,16 @@ class Provider
             ]));
     }
 
-    public function getBookings(Request $request)
+    public function getBookings(Request $request, $eitharId = null)
     {
         $upCommingAppointments = [];
         $passedAppointments = [];
         $finalAppointments = [];
-        $servicesBookings = Auth::user()->load(['servicesBookings.service_appointments' => function ($query) {
+        $servicesBookings = Auth::user()->load(['servicesBookings.service_appointments' => function ($query) use ($eitharId) {
+            if ($eitharId != null) {
+                $query->join('service_bookings', 'service_booking_appointments.service_booking_id', 'service_bookings.id');
+                $query->join('customers', 'service_bookings.customer_id', 'customers.id')->whereRaw("customers.eithar_id = '$eitharId'");
+            }
             $query->orderByRaw('service_booking_appointments.created_at DESC');
         }])->servicesBookings;
         foreach ($servicesBookings as $servicesBooking) {
