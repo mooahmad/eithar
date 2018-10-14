@@ -17,9 +17,10 @@ class CustomerPolicy
      * @param  \App\Models\Customer  $customer
      * @return mixed
      */
-    public function view(User $user, Customer $customer)
+    public function view(User $user)
     {
-        return true;
+        if ($user->user_type == config('constants.userTypes.superAdmin') || $user->user_type == config('constants.userTypes.customerService')) return true;
+        return false;
     }
 
     /**
@@ -30,7 +31,8 @@ class CustomerPolicy
      */
     public function create(User $user)
     {
-        return true;
+        if ($user->user_type == config('constants.userTypes.superAdmin') || $user->user_type == config('constants.userTypes.customerService')) return true;
+        return false;
     }
 
     /**
@@ -40,9 +42,10 @@ class CustomerPolicy
      * @param  \App\Models\Customer  $customer
      * @return mixed
      */
-    public function update(User $user, Customer $customer)
+    public function update(User $user)
     {
-        return true;
+        if ($user->user_type == config('constants.userTypes.superAdmin') || $user->user_type == config('constants.userTypes.customerService')) return true;
+        return false;
     }
 
     /**
@@ -52,9 +55,10 @@ class CustomerPolicy
      * @param  \App\Models\Customer  $customer
      * @return mixed
      */
-    public function delete(User $user, Customer $customer)
+    public function delete(User $user)
     {
-        return true;
+        if ($user->user_type == config('constants.userTypes.superAdmin') || $user->user_type == config('constants.userTypes.customerService')) return true;
+        return false;
     }
 
     /**
@@ -64,9 +68,10 @@ class CustomerPolicy
      * @param  \App\Models\Customer  $customer
      * @return mixed
      */
-    public function restore(User $user, Customer $customer)
+    public function restore(User $user)
     {
-        return true;
+        if ($user->user_type == config('constants.userTypes.superAdmin') || $user->user_type == config('constants.userTypes.customerService')) return true;
+        return false;
     }
 
     /**
@@ -76,8 +81,9 @@ class CustomerPolicy
      * @param  \App\Models\Customer  $customer
      * @return mixed
      */
-    public function forceDelete(User $user, Customer $customer)
+    public function forceDelete(User $user)
     {
-        return true;
+        if ($user->user_type == config('constants.userTypes.superAdmin') || $user->user_type == config('constants.userTypes.customerService')) return true;
+        return false;
     }
 }

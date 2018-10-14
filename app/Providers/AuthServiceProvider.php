@@ -95,6 +95,12 @@ class AuthServiceProvider extends ServiceProvider
 //        Invoices Policies
         Gate::resource('invoices', 'App\Policies\InvoicesPolicy');
 
+        // policies Meetings
+        Gate::define('meetings.view', 'App\Policies\BookingServicesPolicy@view');
+        Gate::define('meetings.create', 'App\Policies\BookingServicesPolicy@create');
+        Gate::define('meetings.update', 'App\Policies\BookingServicesPolicy@update');
+        Gate::define('meetings.delete', 'App\Policies\BookingServicesPolicy@delete');
+
 //        Customers Policies
         Gate::resource('customers', 'App\Policies\CustomerPolicy');
 

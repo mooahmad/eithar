@@ -215,7 +215,7 @@
         <!-- End Promo_codes Area -->
 
             <!-- Start Customers Area -->
-            {{--            @can('promo_code.view', new \App\Models\PromoCode())--}}
+            @can('customers.view')
             <li class="nav-item start {{ (Request::segment(2)=='customers') ? 'active' :'' }}">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-users"></i>
@@ -238,12 +238,10 @@
                     </li>
                 </ul>
             </li>
-            {{--@endcan--}}
+            @endcan
         <!-- End Customers Area -->
 
             <!-- Start Invoices Area -->
-            {{--            @can('promo_code.view', new \App\Models\PromoCode())--}}
-
             @can('promo_code.view', new \App\Models\PromoCode())
 
                 {{--<li class="nav-item start {{ (Request::segment(2)=='invoices') ? 'active' :'' }}">--}}
@@ -268,12 +266,11 @@
                 {{--</li>--}}
                 {{--</ul>--}}
                 {{--</li>--}}
-
-                {{--@endcan--}}
+                @endcan
             <!-- End Invoices Area -->
 
                 <!-- Start Booking Services Area -->
-                {{--            @can('promo_code.view', new \App\Models\PromoCode())--}}
+            @can('meetings.view')
                 <li class="nav-item start {{ (Request::segment(2)=='meetings') ? 'active' :'' }}">
                     <a href="javascript:;" class="nav-link nav-toggle">
                         <i class="fa fa-calendar"></i>
@@ -302,10 +299,9 @@
                         </li>
                     </ul>
                 </li>
-                {{--@endcan--}}
+                @endcan
             <!-- End Booking Services Area -->
 
-            @endcan
             <!-- Start Medical reports Area -->
             @can('medical_report.view', new \App\Models\MedicalReports())
                 <li class="nav-item start {{ (Request::segment(2)=='medical_reports') ? 'active' :'' }}">

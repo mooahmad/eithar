@@ -48,7 +48,7 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => ADN, 'prefix' => AD], 
     //logout
     Route::get('logout', 'AdminsController@logout')->name('Logout');
     // home
-    Route::get('home', 'AdminsController@index')->name('Home');
+    Route::get('home', 'AdminsController@home')->name('Home');
     // admins
     Route::resource('admins', 'AdminsController',
         ['names' => [
