@@ -79,6 +79,16 @@ class ProviderStrategy
         return $this->strategy->logoutProvider($request);
     }
 
+    public function forgetPassword(Request $request)
+    {
+        return $this->strategy->forgetPassword($request);
+    }
+
+    public function updateForgottenPassword(Request $request)
+    {
+        return $this->strategy->updateForgottenPassword($request);
+    }
+
     public function getBookings(Request $request, $eitharId = null)
     {
         return $this->strategy->getBookings($request, $eitharId);

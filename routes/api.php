@@ -24,6 +24,11 @@ Route::group(['namespace' => 'WebApi\UsersModule', 'prefix' => 'customers'], (fu
     Route::post('updateForgottenPassword', 'CustomerController@updateForgottenPassword');
 }));
 
+Route::group(['namespace' => 'WebApi\UsersModule', 'prefix' => 'providers'], (function () {
+    Route::post('forgetPassword', 'ProviderController@forgetPassword');
+    Route::post('updateForgottenPassword', 'ProviderController@updateForgottenPassword');
+}));
+
 Route::group(['namespace' => 'WebApi\CountriesModule', 'prefix' => 'countries'], (function () {
     Route::get('/', 'CountriesController@getCountries');
 }));

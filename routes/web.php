@@ -27,7 +27,13 @@ Route::group(['namespace' => FE], function () {
 });
 
 Auth::routes();
-
+Route::group(['namespace' => 'Auth'], function () {
+    Route::get('login/provider', 'LoginController@showProviderLogin')->name('provider_login');
+    Route::post('login/provider', 'LoginController@postLoginProvider')->name('post_provider_login');
+    Route::group(['middleware'=>'AdminAuth','prefix' => AD],function (){
+        Route::get('logout/provider', 'LoginController@logoutProvider');
+    });
+});
 Route::group(['prefix' => 'password'], function () {
     Route::view('forgotpassword', 'auth.passwords.forgotPassword')->name('forgotPassword');
     Route::view('resetpassword', 'auth.passwords.reset')->name('adminReset');

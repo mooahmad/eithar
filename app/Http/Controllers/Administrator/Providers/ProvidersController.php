@@ -97,9 +97,9 @@ class ProvidersController extends Controller
      */
     public function edit($id)
     {
-        if (Gate::denies('provider.update', new Provider())) {
-            return response()->view('errors.403', [], 403);
-        }
+//        if (Gate::denies('provider.update', new Provider())) {
+//            return response()->view('errors.403', [], 403);
+//        }
         $provider = Provider::FindOrFail($id);
         $currencies = Currency::all()->pluck(trans('admin.currency_name_col'), 'id')->toArray();
         $allServices = Service::all()->pluck('name_en', 'id')->toArray();

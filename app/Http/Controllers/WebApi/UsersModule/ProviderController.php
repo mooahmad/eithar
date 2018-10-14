@@ -88,6 +88,18 @@ class ProviderController extends Controller
         return $providerStrategy->logoutProvider($request);
     }
 
+    public function forgetPassword(Request $request)
+    {
+        $providerStrategy = new ProviderStrategy(ApiHelpers::requestType($request));
+        return $providerStrategy->forgetPassword($request);
+    }
+
+    public function updateForgottenPassword(Request $request)
+    {
+        $providerStrategy = new ProviderStrategy(ApiHelpers::requestType($request));
+        return $providerStrategy->updateForgottenPassword($request);
+    }
+
     public function getBookings(Request $request, $eitharId = null)
     {
         // instantiate login strategy object using request type detection helper method

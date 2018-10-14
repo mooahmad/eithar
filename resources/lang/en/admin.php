@@ -37,7 +37,7 @@ return [
     'edit' => 'Edit',
     'action' => 'Action',
     'logout' => 'Log Out',
-    'signin' => 'Sign in',
+    'signin' => 'Sign In As Super/Call Center Admin',
     'login' => 'Login',
     'forgot_password' => 'Forgot Password',
     'submit' => 'Submit',
@@ -215,5 +215,6 @@ return [
     'add_medical_report' => 'Add medical report',
     'show_medical_report' => 'Show medical report',
     'is_lap' => 'Is lap',
+    'provider_login' => 'Provider Login',
 
 ];
