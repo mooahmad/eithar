@@ -6,11 +6,13 @@ namespace App\Http\Services\WebApi\UsersModule\AbstractUsers;
 use App\Helpers\ApiHelpers;
 use App\Helpers\Utilities;
 use App\Http\Requests\Auth\LoginProvider;
+use App\Http\Requests\Auth\UpdateForgetPasswordRequest;
 use App\Http\Services\WebApi\CommonTraits\Follows;
 use App\Http\Services\WebApi\CommonTraits\Likes;
 use App\Http\Services\WebApi\CommonTraits\Ratings;
 use App\Http\Services\WebApi\CommonTraits\Reviews;
 use App\Http\Services\WebApi\CommonTraits\Views;
+use App\Mail\Customer\ForgetPasswordMail;
 use App\Models\LapCalendar;
 use App\Models\BookingMedicalReports;
 use App\Models\BookingMedicalReportsAnswers;
@@ -26,6 +28,7 @@ use App\Models\ServiceBookingLap;
 use App\Models\ServicesCalendar;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\MessageBag;
@@ -278,6 +281,59 @@ class Provider
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([
             ]));
+    }
+
+    public function forgetPassword(Request $request)
+    {
+        $isVerified = $this->validateForgetPassword($request);
+        if ($isVerified !== true)
+            return Utilities::getValidationError(config('constants.responseStatus.missingInput'), $isVerified->errors());
+        $provider = ProviderModel::where('mobile_number', $request->input('mobile'))->first();
+        if (!$provider)
+            return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
+        $encrytedCode = Utilities::quickRandom(6, true);
+        $provider->forget_password_code = $encrytedCode;
+        $provider->save();
+        Mail::to($provider->email)->send(new ForgetPasswordMail($provider));
+        return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
+
+    }
+
+    private function validateForgetPassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'mobile' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return $validator;
+        }
+        return true;
+    }
+
+    public function updateForgottenPassword(Request $request)
+    {
+        $isVerified = $this->validateUpdateForgetPassword($request);
+        if ($isVerified !== true)
+            return Utilities::getValidationError(config('constants.responseStatus.missingInput'), $isVerified->errors());
+        $provider = ProviderModel::where([['mobile_number', $request->input('mobile')], ['forget_password_code', $request->input('code')]])->first();
+        if (!$provider)
+            return Utilities::getValidationError(config('constants.responseStatus.userNotFound'),
+                new MessageBag([
+                    'message' => trans('errors.userNotFound')
+                ]));
+        $provider->password = Hash::make($request->input('password'));
+        $provider->save();
+        return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
+
+    }
+
+    private function validateUpdateForgetPassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), (new UpdateForgetPasswordRequest())->rules());
+        if ($validator->fails()) {
+            return $validator;
+        }
+        return true;
     }
 
     public function getBookings(Request $request, $eitharId = null)

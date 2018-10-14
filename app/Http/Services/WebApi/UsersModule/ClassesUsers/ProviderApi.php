@@ -104,6 +104,22 @@ class ProviderApi extends Provider
         return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
     }
 
+    public function forgetPassword(Request $request)
+    {
+        $validationObject = parent::forgetPassword($request);
+        if ($validationObject->error == config('constants.responseStatus.success'))
+            return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
+    }
+
+    public function updateForgottenPassword(Request $request)
+    {
+        $validationObject = parent::updateForgottenPassword($request);
+        if ($validationObject->error == config('constants.responseStatus.success'))
+            return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
+    }
+
     public function getBookings(Request $request, $eitharId = null)
     {
         $validationObject = parent::getBookings($request, $eitharId);

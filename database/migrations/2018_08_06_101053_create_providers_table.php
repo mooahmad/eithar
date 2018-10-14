@@ -29,7 +29,7 @@ class CreateProvidersTable extends Migration
             $table->integer('mobile_verified')->default(0);
             $table->string('mobile_code', 8)->nullable();
             $table->string('password');
-            $table->string('forget_password_code')->nullable();
+            $table->string('forget_password_code', 255)->nullable();
             $table->string('speciality_area_ar', 255)->nullable();
             $table->string('speciality_area_en', 255)->nullable();
             $table->string('profile_picture_path', 255)->nullable();
