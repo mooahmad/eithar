@@ -56,8 +56,8 @@
 <!-- BEGIN LOGIN -->
 <div class="content">
     <!-- BEGIN LOGIN FORM -->
-    {!! Form::open(['url'=>'login', 'class'=>'login-form']) !!}
-    <h3 class="form-title font-green">{{ trans('admin.signin') }}</h3>
+    {!! Form::open(['route'=>'post_provider_login', 'class'=>'login-form']) !!}
+    <h3 class="form-title font-green">{{ trans('admin.provider_login') }}</h3>
     @if(Session::has('error_login'))
         <div class="alert alert-danger">
             <button class="close" data-close="alert"></button>
@@ -79,8 +79,8 @@
 
     <div class="form-group">
         <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-        <label class="control-label visible-ie8 visible-ie9">{{ trans('admin.email') }}</label>
-        {!! Form::email('email', old('email'), array('class'=>'form-control form-control-solid placeholder-no-fix','placeholder'=>trans('admin.enter_email'),'required'=>'required', 'autocomplete'=>'off')) !!}
+        <label class="control-label visible-ie8 visible-ie9">{{ trans('admin.mobile') }}</label>
+        {!! Form::text('mobile_number', old('mobile_number'), array('class'=>'form-control form-control-solid placeholder-no-fix','placeholder'=>trans('admin.mobile'),'required'=>'required', 'autocomplete'=>'off')) !!}
     </div>
 
     <div class="form-group">
@@ -101,7 +101,7 @@
     </div>
     <div class="create-account">
         <p>
-            <a href="{{ route('provider_login') }}" id="register-btn" class="uppercase">Login As A Provider</a>
+            <a href="{{ url('login') }}" id="register-btn" class="uppercase">{{ trans('admin.signin') }}</a>
         </p>
     </div>
     {!! Form::close() !!}

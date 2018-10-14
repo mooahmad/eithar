@@ -50,6 +50,11 @@ return [
             'driver' => 'passport',
             'provider' => 'providers',
         ],
+
+        'provider-web' => [
+            'driver' => 'session',
+            'provider' => 'provider-web',
+        ],
     ],
 
     /*
@@ -81,6 +86,11 @@ return [
          ],
 
         'providers' => [
+            'driver' => 'eloquent',
+            'model' => \App\Models\Provider::class,
+        ],
+
+        'provider-web' => [
             'driver' => 'eloquent',
             'model' => \App\Models\Provider::class,
         ],
