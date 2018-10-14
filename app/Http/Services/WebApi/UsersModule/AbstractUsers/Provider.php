@@ -251,8 +251,9 @@ class Provider
     public function updateProviderToken(ProviderModel $provider, Request $request)
     {
         if ($provider->pushNotification)
-            $provider->pushNotification->delete();
-        $pushNotification = new PushNotification();
+            $pushNotification = $provider->pushNotification;
+        else
+            $pushNotification = new PushNotification();
         $pushNotification->provider_id = $provider->id;
         $pushNotification->imei = $request->input('imei');
         $pushNotification->device_type = $request->input('device_type');
@@ -271,18 +272,24 @@ class Provider
 
     public function logoutProvider(Request $request)
     {
-        Auth::user()->pushNotification()->delete();
+        $pushNotification = Auth::user()->pushNotification;
+        $pushNotification->token = null;
+        $pushNotification->save();
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([
             ]));
     }
 
-    public function getBookings(Request $request)
+    public function getBookings(Request $request, $eitharId = null)
     {
         $upCommingAppointments = [];
         $passedAppointments = [];
         $finalAppointments = [];
-        $servicesBookings = Auth::user()->load(['servicesBookings.service_appointments' => function ($query) {
+        $servicesBookings = Auth::user()->load(['servicesBookings.service_appointments' => function ($query) use ($eitharId) {
+            if ($eitharId != null) {
+                $query->join('service_bookings', 'service_booking_appointments.service_booking_id', 'service_bookings.id');
+                $query->join('customers', 'service_bookings.customer_id', 'customers.id')->whereRaw("customers.eithar_id = '$eitharId'");
+            }
             $query->orderByRaw('service_booking_appointments.created_at DESC');
         }])->servicesBookings;
         foreach ($servicesBookings as $servicesBooking) {

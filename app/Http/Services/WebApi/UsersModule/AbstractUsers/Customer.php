@@ -159,8 +159,9 @@ class Customer
     public function updateCustomerToken(CustomerModel $customer, Request $request)
     {
         if ($customer->pushNotification)
-            $customer->pushNotification->delete();
-        $pushNotification = new PushNotification();
+            $pushNotification = $customer->pushNotification;
+        else
+            $pushNotification = new PushNotification();
         $pushNotification->customer_id = $customer->id;
         $pushNotification->imei = $request->input('imei');
         $pushNotification->device_type = $request->input('device_type');
@@ -291,9 +292,9 @@ class Customer
             $serviceId = $servicesBooking->service_id;
             if ($serviceId != null) {
                 $service = Service::find($serviceId);
-            } elseif($serviceId == null && $servicesBooking->provider_id != null) {
+            } elseif ($serviceId == null && $servicesBooking->provider_id != null) {
                 $service = $servicesBooking->provider->services()->leftJoin('categories', 'services.category_id', '=', 'categories.id')->where('categories.category_parent_id', 1)->first();
-            }else{
+            } else {
                 $serviceBookingLaps = ServiceBookingLap::with('service')->where('service_booking_id', $servicesBooking->id)->get();
             }
             $serviceAppointments = $servicesBooking->service_appointments;
@@ -571,7 +572,9 @@ class Customer
 
     public function logoutCustomer(Request $request)
     {
-        Auth::user()->pushNotification()->delete();
+        $pushNotification = Auth::user()->pushNotification;
+        $pushNotification->token = null;
+        $pushNotification->save();
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([
             ]));
