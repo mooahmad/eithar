@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Helpers\ApiHelpers;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\ProviderLoginRequest;
 use App\Http\Services\Auth\ClassesAuth\LoginStrategy;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -71,4 +73,46 @@ class LoginController extends Controller
         return $loginStrategy->loginProvider($request);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showProviderLogin()
+    {
+        return view('auth.login_provider');
+    }
+
+    public function postLoginProvider(ProviderLoginRequest $request)
+    {
+        if ($this->hasTooManyLoginAttempts($request)) {
+            $this->fireLockoutEvent($request);
+            return $this->sendLockoutResponse($request);
+        }
+
+        if($request->input('remember') ==1)
+        {
+            $remember = true;
+        }else{
+            $remember = false;
+        }
+
+        if(!Auth::guard('provider-web')->attempt(['mobile_number'=>$request->input('mobile_number'),'password'=>$request->input('password'),'is_active'=>1],$remember))
+        {
+            $this->incrementLoginAttempts($request);
+            session()->flash('error_login',trans('admin.error_login'));
+            return back();
+        }
+        $request->session()->regenerate();
+        $this->clearLoginAttempts($request);
+        return redirect(AD.'/providers/'.Auth::guard('provider-web')->user()->id.'/edit');
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function logoutProvider()
+    {
+        Auth::guard('provider-web')->logout();
+        session()->flush();
+        return redirect()->route('provider_login');
+    }
 }
