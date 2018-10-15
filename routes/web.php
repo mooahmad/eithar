@@ -233,6 +233,15 @@ Route::group(['middleware' => 'AdminAuth', 'prefix' => AD], function () {
             ]]);
         Route::get('get-customers-Datatable', 'CustomersController@getCustomersDataTable')->name('get-customers-Datatable');
         Route::get('get-customer-appointments-Datatable/{id}', 'CustomersController@getCustomerAppointmentsDataTable')->name('get-customer-appointments-Datatable');
+
+        Route::resource('family-members', 'FamilyMemberController',
+            ['names' => [
+                'index' => 'all_family_members',
+                'create' => 'add_family_members',
+                'show' => 'show_family_members',
+                'edit' => 'edit_family_members',
+                'destroy' => 'delete_family_members'
+            ]]);
     });
 
     Route::group(['namespace' => BSN], function () {

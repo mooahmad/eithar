@@ -12,6 +12,7 @@ use App\Models\Settings;
 use App\Policies\AdminPolicy;
 use App\Policies\CategoryPolicy;
 use App\Policies\CustomerPolicy;
+use App\Policies\FamilyMemberPolicy;
 use App\Policies\InvoicesPolicy;
 use App\Policies\MedicalReportPolicy;
 use App\Policies\PromoCodesPolicy;
@@ -37,6 +38,7 @@ class AuthServiceProvider extends ServiceProvider
         PromoCode::class => PromoCodesPolicy::class,
         Invoice::class => InvoicesPolicy::class,
         Customer::class => CustomerPolicy::class,
+        Customer::class => FamilyMemberPolicy::class,
         MedicalReports::class => MedicalReportPolicy::class,
         Settings::class => SettingsPolicy::class,
     ];
@@ -103,6 +105,9 @@ class AuthServiceProvider extends ServiceProvider
 
 //        Customers Policies
         Gate::resource('customers', 'App\Policies\CustomerPolicy');
+
+//        Family Members Policies
+        Gate::resource('family_member', 'App\Policies\FamilyMemberPolicy');
 
 //        Service Booking Policies
         Gate::define('meetings.view','App\Policies\BookingServicesPolicy@view');

@@ -216,5 +216,8 @@ return [
     'show_medical_report' => 'Show medical report',
     'is_lap' => 'Is lap',
     'provider_login' => 'Provider Login',
-
+    'family_members' => 'Family Members',
+    'add_family_members' => 'Add Family Members',
+    'show_family_members' => 'Show Family Members',
+    'family-members' => 'Family Members',
 ];
