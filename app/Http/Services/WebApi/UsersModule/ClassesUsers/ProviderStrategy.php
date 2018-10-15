@@ -99,4 +99,9 @@ class ProviderStrategy
         return $this->strategy->getBooking($request, $id, $serviceType);
     }
 
+    public function requestUnlockBooking(Request $request, $id)
+    {
+        return $this->strategy->requestUnlockBooking($request, $id);
+    }
+
 }

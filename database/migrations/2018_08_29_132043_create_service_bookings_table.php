@@ -19,6 +19,8 @@ class CreateServiceBookingsTable extends Migration
             $table->unsignedInteger('service_id')->nullable();
             $table->unsignedInteger('provider_id')->nullable();
             $table->unsignedInteger('provider_id_assigned_by_admin')->nullable();
+            $table->integer('is_locked')->default(1);
+            $table->integer('unlock_request')->default(0);
             $table->unsignedInteger('promo_code_id')->nullable();
             $table->unsignedInteger('currency_id')->nullable();
             $table->unsignedInteger('family_member_id')->nullable();
