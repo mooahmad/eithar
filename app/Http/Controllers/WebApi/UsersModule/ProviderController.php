@@ -114,4 +114,10 @@ class ProviderController extends Controller
         return $providerStrategy->getBooking($request, $id, $serviceType);
     }
 
+    public function requestUnlockBooking(Request $request, $id)
+    {
+        $providerStrategy = new ProviderStrategy(ApiHelpers::requestType($request));
+        return $providerStrategy->requestUnlockBooking($request, $id);
+    }
+
 }

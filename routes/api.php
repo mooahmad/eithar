@@ -109,5 +109,6 @@ Route::middleware('auth:provider')->group(function () {
         Route::post('/bookings/{bookingId}/addReport', 'ProviderController@addBookingReport');
         Route::get('getBookings/{eitharId?}', 'ProviderController@getBookings');
         Route::get('getBooking/{id}/{serviceType}', 'ProviderController@getBooking');
+        Route::get('requestUnlockBooking/{id}', 'ProviderController@requestUnlockBooking');
     }));
 });

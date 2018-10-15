@@ -368,7 +368,7 @@ class Provider
                         $calendar = ProvidersCalendar::find($serviceAppointment->slot_id);
                         $startDate = $startTime = $endTime = "Unknown";
                         $upComming = 0;
-                        $isLocked = 1;
+                        $isLocked = $servicesBooking->is_locked;
                         if ($calendar) {
                             $upComming = (Carbon::now() > Carbon::parse($calendar->start_date)) ? 0 : 1;
                             $startDate = $calendar->start_date;
@@ -396,7 +396,7 @@ class Provider
                         $calendar = ServicesCalendar::find($serviceAppointment->slot_id);
                         $startDate = $startTime = $endTime = "Unknown";
                         $upComming = 0;
-                        $isLocked = 1;
+                        $isLocked = $servicesBooking->is_locked;
                         if ($calendar) {
                             $upComming = (Carbon::now() > Carbon::parse($calendar->start_date)) ? 0 : 1;
                             $startDate = $calendar->start_date;
@@ -424,7 +424,7 @@ class Provider
                     $calendar = LapCalendar::find($serviceAppointment->slot_id);
                     $startDate = $startTime = $endTime = "Unknown";
                     $upComming = 0;
-                    $isLocked = 1;
+                    $isLocked = $servicesBooking->is_locked;
                     if ($calendar) {
                         $upComming = (Carbon::now() > Carbon::parse($calendar->start_date)) ? 0 : 1;
                         $startDate = $calendar->start_date;
@@ -520,5 +520,14 @@ class Provider
             "total" => $total
         ]));
 
+    }
+
+    public function requestUnlockBooking(Request $request, $id)
+    {
+        $booking = ServiceBooking::find($id);
+        $booking->unlock_request = 1;
+        $booking->save();
+        return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
+        ]));
     }
 }
