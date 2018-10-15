@@ -104,4 +104,9 @@ class ProviderStrategy
         return $this->strategy->requestUnlockBooking($request, $id);
     }
 
+    public function getBookingQuestionnaireAnswer(Request $request, $id, $page = 1)
+    {
+        return $this->strategy->getBookingQuestionnaireAnswer($request, $id, $page);
+    }
+
 }
