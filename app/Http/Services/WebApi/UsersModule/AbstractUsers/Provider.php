@@ -23,6 +23,7 @@ use App\Models\ProvidersCalendar;
 use App\Models\PushNotification;
 use App\Models\Service;
 use App\Models\ServiceBooking;
+use App\Models\ServiceBookingAnswers;
 use App\Models\ServiceBookingAppointment;
 use App\Models\ServiceBookingLap;
 use App\Models\ServicesCalendar;
@@ -529,5 +530,25 @@ class Provider
         $booking->save();
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
         ]));
+    }
+
+    public function getBookingQuestionnaireAnswer(Request $request, $id, $page)
+    {
+        $pagesCount = ServiceBookingAnswers::where('service_booking_id', $id)->max('pagination');
+        $questionnaire = ServiceBookingAnswers::where([['service_booking_id', $id], ['pagination', $page]])->get();
+        $questionnaire->each(function ($questionnaire) {
+            $questionnaire->options_ar = empty(unserialize($questionnaire->options_ar)) ? [] : unserialize($questionnaire->options_ar);
+            $questionnaire->options_en = empty(unserialize($questionnaire->options_en)) ? [] : unserialize($questionnaire->options_en);
+            $questionnaire->addHidden([
+                'title_ar', 'title_en', 'subtitle_ar', 'subtitle_en',
+                'options_en', 'options_ar'
+            ]);
+        });
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([
+                "questionnaire" => $questionnaire,
+                "pagesCount" => $pagesCount,
+                "currentPage" => $page
+            ]));
     }
 }
