@@ -356,7 +356,7 @@ class Provider
             $serviceId = $servicesBooking->service_id;
             if ($serviceId != null) {
                 $service = Service::find($serviceId);
-            } elseif ($serviceId == null && $servicesBooking->provider_id != null) {
+            } elseif ($serviceId == null && $servicesBooking->provider_id != null && $servicesBooking->is_lap = 0) {
                 $service = $servicesBooking->provider->services()->leftJoin('categories', 'services.category_id', '=', 'categories.id')->where('categories.category_parent_id', 1)->first();
             } else {
                 $serviceBookingLaps = ServiceBookingLap::with('service')->where('service_booking_id', $servicesBooking->id)->get();
