@@ -146,6 +146,8 @@ class Services implements IService
         // service meetings table
         $isLap = ($serviceId == 0) ? 1 : 0;
         $providerId = $request->input('provider_id', null);
+        if($isLap)
+            $providerId = null;
         $serviceId = ($serviceId == 0 || $providerId != null) ? null : $serviceId;
         $providerAssignedId = $request->input('provider_assigned_id', null);
         $promoCodeId = $request->input('promo_code_id');
