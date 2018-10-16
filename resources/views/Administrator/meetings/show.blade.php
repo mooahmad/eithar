@@ -10,7 +10,6 @@
         <div class="invoice">
             <div class="row invoice-logo">
                 <div class="col-xs-6 invoice-logo-space">
-                    {{--<img src="{{ \App\Helpers\Utilities::getFileUrl($meetings->customer->image) }}" class="img-responsive" alt="" /> </div>--}}
                     <img src="{{ asset('public/assets/layouts/layout/img/logo.png') }}" class="img-responsive" alt="" /> </div>
                 <div class="col-xs-6">
                     <p> #{{ $booking->id }} / {{ $booking->created_at->format('l j F Y h:i A') }}
@@ -109,26 +108,28 @@
                                     <strong>Assigned Provider:</strong> {{ $booking->assigned_provider->full_name }}
                                 </li>
                                 @else
-                                @if(!empty($providers))
-                                    {!! Form::open(['method'=>'POST','url'=>'Administrator/meetings/'.$booking->id.'/assign-provider']) !!}
-                                            <label for="name" class="control-label">
-                                                Assign Provider To Meeting <span class="required"> * </span>
-                                            </label>
-                                            <div class="input-group">
-                                                <div class="input-icon">
-                                                    {!! Form::select('provider_id',$providers,'',['class'=>'form-control select2','required'=>'required']) !!}
+                                @can('meetings.update')
+                                    @if(!empty($providers))
+                                        {!! Form::open(['method'=>'POST','url'=>'Administrator/meetings/'.$booking->id.'/assign-provider']) !!}
+                                                <label for="name" class="control-label">
+                                                    Assign Provider To Meeting <span class="required"> * </span>
+                                                </label>
+                                                <div class="input-group">
+                                                    <div class="input-icon">
+                                                        {!! Form::select('provider_id',$providers,'',['class'=>'form-control select2','required'=>'required']) !!}
+                                                    </div>
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-success" type="submit">
+                                                            <i class="fa fa-user-md"></i> Assign
+                                                        </button>
+                                                    </span>
                                                 </div>
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-success" type="submit">
-                                                        <i class="fa fa-user-md"></i> Assign
-                                                    </button>
-                                                </span>
-                                            </div>
-                                            @if($errors->has('provider_id'))
-                                                <span class="help-block text-danger">{{ $errors->first('provider_id') }}</span>
-                                            @endif
-                                    {!! Form::close() !!}
-                                @endif
+                                                @if($errors->has('provider_id'))
+                                                    <span class="help-block text-danger">{{ $errors->first('provider_id') }}</span>
+                                                @endif
+                                        {!! Form::close() !!}
+                                    @endif
+                                @endcan
                             @endif
                         </ul>
                     </div>
@@ -148,9 +149,11 @@
                     <a class="btn btn-lg blue hidden-print margin-bottom-5" onclick="javascript:window.print();"> Print
                         <i class="fa fa-print"></i>
                     </a>
-                    <a class="btn btn-lg green hidden-print margin-bottom-5" href="{{ route('generate-invoice',['booking'=>$booking->id]) }}"> {{ ($booking->invoice) ? 'Show ' : 'Generate ' }} Invoice
-                        <i class="fa fa-check"></i>
-                    </a>
+                    @can('meetings.update')
+                        <a class="btn btn-lg green hidden-print margin-bottom-5" href="{{ route('generate-invoice',['booking'=>$booking->id]) }}"> {{ ($booking->invoice) ? 'Show ' : 'Generate ' }} Invoice
+                            <i class="fa fa-check"></i>
+                        </a>
+                    @endcan
                 </div>
             </div>
         </div>

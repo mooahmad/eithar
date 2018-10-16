@@ -6,6 +6,7 @@ use App\Helpers\Utilities;
 use App\Http\Controllers\Controller;
 use App\Models\LapCalendar;
 use App\Models\Customer;
+use App\Models\MedicalReports;
 use App\Models\Provider;
 use App\Models\ProvidersCalendar;
 use App\Models\ServiceBooking;
@@ -101,13 +102,15 @@ class BookingServicesController extends Controller
             })
             ->addColumn('actions', function ($item) {
                 $showURL = route('show-meeting-details',[$item->id]);
-                $medicalReportsURL = route('showMeetingReport',[$item->id]);
-                $addMedicalReportURL = route('createMeetingReport',[$item->id]);
                 $URLs = [
                     ['link'=>$showURL,'icon'=>'eye','color'=>'green'],
-                    ['link'=>$medicalReportsURL,'icon'=>'list'],
-                    ['link'=>$addMedicalReportURL,'icon'=>'plus','color'=>'blue'],
                 ];
+                if (Gate::allows('medical_report.view',new MedicalReports())){
+                    $medicalReportsURL = route('showMeetingReport',[$item->id]);
+                    $addMedicalReportURL = route('createMeetingReport',[$item->id]);
+                    $URLs[] = ['link'=>$medicalReportsURL,'icon'=>'list'];
+                    $URLs[] = ['link'=>$addMedicalReportURL,'icon'=>'plus','color'=>'blue'];
+                }
                 return View::make('Administrator.widgets.advancedActions', ['URLs'=>$URLs]);
             })
             ->rawColumns(['status','actions'])

@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Administrator\Customers;
 
 use App\Helpers\Utilities;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CustomerFamily\AddCustomerRequest;
+use App\Http\Services\Adminstrator\UsersModule\ClassesUsers\CustomersClass;
+use App\Models\City;
+use App\Models\Country;
 use App\Models\Customer;
 use App\Models\ServiceBooking;
 use Illuminate\Http\Request;
@@ -28,7 +32,6 @@ class CustomersController extends Controller
      */
     public function index()
     {
-//        Check Credentials
         if (Gate::denies('customers.view',new Customer())){
             return response()->view('errors.403',[],403);
         }
@@ -42,18 +45,46 @@ class CustomersController extends Controller
      */
     public function create()
     {
-        //
+        if (Gate::denies('customers.create',new Customer())){
+            return response()->view('errors.403',[],403);
+        }
+        $data = [
+            'countries'=>Country::all()->pluck('country_name_eng','id'),
+            'cities'=>City::all()->pluck('city_name_eng','id'),
+            'gender_types'=>config('constants.gender_desc')
+        ];
+        return view(AD . '.customers.form')->with($data);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param AddCustomerRequest $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddCustomerRequest $request)
     {
-        //
+        if (Gate::denies('customers.create',new Customer())){
+            return response()->view('errors.403',[],403);
+        }
+        $customer = CustomersClass::createOrUpdateCustomer(new Customer(),$request);
+        if ($request->hasFile('profile_picture_path')){
+            $avatar = Utilities::UploadFile($request->file('profile_picture_path'),'public/images/avatars');
+            if ($avatar){
+                $customer->profile_picture_path = $avatar;
+                $customer->save();
+            }
+        }
+
+        if ($request->hasFile('nationality_id_picture')){
+            $nationality_image = Utilities::UploadFile($request->file('nationality_id_picture'),'public/images/nationalities');
+            if ($nationality_image){
+                $customer->nationality_id_picture = $nationality_image;
+                $customer->save();
+            }
+        }
+        session()->flash('success_msg',trans('admin.success_message'));
+        return redirect()->route('show_customers');
     }
 
     /**
@@ -115,8 +146,8 @@ class CustomersController extends Controller
         $customers = Customer::where('id', '<>', 0);
         $dataTable = DataTables::of($customers)
             ->addColumn('actions', function ($item) {
-                $editURL = url(AD . '/customers/' . $item->id . '/edit');
-                $showURL = url(AD . '/customers/' . $item->id);
+                $editURL = url()->route('edit_customers',[$item->id]);
+                $showURL = url()->route('profile_customers',[$item->id]);
                 return View::make('Administrator.widgets.dataTablesActions', ['editURL' => $editURL, 'showURL' => $showURL]);
             })
             ->addColumn('image', function ($item) {

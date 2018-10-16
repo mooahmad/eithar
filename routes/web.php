@@ -227,8 +227,9 @@ Route::group(['middleware' => 'AdminAuth', 'prefix' => AD], function () {
             ['names' => [
                 'index' => 'show_customers',
                 'create' => 'add_customers',
-                'show' => 'show_customers',
+                'show' => 'profile_customers',
                 'edit' => 'edit_customers',
+                'update' => 'update_customers',
                 'destroy' => 'delete_customers'
             ]]);
         Route::get('get-customers-Datatable', 'CustomersController@getCustomersDataTable')->name('get-customers-Datatable');

@@ -227,4 +227,6 @@ return [
     'relation_type' => 'Relation Type',
     'address' => 'Address',
     'profile_picture' => 'Profile Picture',
+    'profile_customers' => 'Profile Customers',
+    'nationality_picture' => 'Nationality Picture',
 ];

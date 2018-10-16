@@ -205,4 +205,5 @@ return [
         'pending'=>1,
         'approved'=>2,
     ],
+    'DefaultPassword'=>'secret',
 ];

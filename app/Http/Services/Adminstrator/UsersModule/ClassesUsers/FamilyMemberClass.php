@@ -36,39 +36,4 @@ class FamilyMemberClass
         $familyMember->save();
         return $familyMember;
     }
-
-    /**
-     * @param Request $request
-     * @param $fileName
-     * @param $path
-     * @param User $user
-     * @return mixed
-     */
-    public static function uploadAdminImage(Request $request, $fileName, $path, User $user, $fieldName)
-    {
-        if ($request->hasFile($fileName)) {
-            $isValidImage = Utilities::validateImage($request, $fileName);
-            if (!$isValidImage)
-                return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
-                                                     new MessageBag([
-                                                                        "message" => trans('errors.errorUploadAvatar')
-                                                                    ]));
-            $isUploaded = Utilities::uploadFile($request->file($fileName), $path);
-            if (!$isUploaded)
-                return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
-                                                     new MessageBag([
-                                                                        "message" => trans('errors.errorUploadAvatar')
-                                                                    ]));
-            Utilities::DeleteFile($user->{$fieldName});
-            $user->{$fieldName} = $isUploaded;
-            if (!$user->save())
-                return Utilities::getValidationError(config('constants.responseStatus.errorUploadImage'),
-                                                     new MessageBag([
-                                                                        "message" => trans('errors.errorUploadAvatar')
-                                                                    ]));
-            return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
-        }
-        return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
-    }
-
 }

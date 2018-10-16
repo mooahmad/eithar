@@ -31,8 +31,7 @@ class BookingServicesPolicy
      */
     public function create(User $user)
     {
-        if ($user->user_type === config('constants.userTypes.superAdmin') || $user->user_type === config('constants.userTypes.constants.php')) return true;
-        return false;
+        if ($user->user_type === config('constants.userTypes.superAdmin')) return true;
     }
 
     /**
@@ -44,8 +43,7 @@ class BookingServicesPolicy
      */
     public function update(User $user)
     {
-        if ($user->user_type === config('constants.userTypes.superAdmin') || $user->user_type === config('constants.userTypes.constants.php')) return true;
-        return false;
+        if ($user->user_type === config('constants.userTypes.superAdmin')) return true;
     }
 
     /**
@@ -57,8 +55,7 @@ class BookingServicesPolicy
      */
     public function delete(User $user)
     {
-        if ($user->user_type === config('constants.userTypes.superAdmin') || $user->user_type === config('constants.userTypes.constants.php')) return true;
-        return false;
+        if ($user->user_type === config('constants.userTypes.superAdmin')) return true;
     }
 
     /**
@@ -70,8 +67,7 @@ class BookingServicesPolicy
      */
     public function restore(User $user)
     {
-        if ($user->user_type === config('constants.userTypes.superAdmin') || $user->user_type === config('constants.userTypes.constants.php')) return true;
-        return false;
+        if ($user->user_type === config('constants.userTypes.superAdmin')) return true;
     }
 
     /**
@@ -83,7 +79,6 @@ class BookingServicesPolicy
      */
     public function forceDelete(User $user)
     {
-        if ($user->user_type === config('constants.userTypes.superAdmin') || $user->user_type === config('constants.userTypes.constants.php')) return true;
-        return false;
+        if ($user->user_type === config('constants.userTypes.superAdmin')) return true;
     }
 }
