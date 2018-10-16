@@ -551,4 +551,20 @@ class Provider
                 "currentPage" => $page
             ]));
     }
+
+    public function getApprovedReports(Request $request, $id)
+    {
+        $medicalReports = [];
+        $booking = ServiceBooking::find($id);
+        $reports = $booking->load(['medicalReports' => function ($query) {
+            $query->where('is_approved', 1);
+        }])->medicalReports;
+        $reports->each(function ($report) use (&$medicalReports) {
+            $report->filled_file_path = Utilities::getFileUrl($report->file_path);
+            array_push($medicalReports, $report);
+        });
+        return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
+            "reports" => $medicalReports
+        ]));
+    }
 }
