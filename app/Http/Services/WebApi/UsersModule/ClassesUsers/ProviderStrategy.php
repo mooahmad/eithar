@@ -109,4 +109,13 @@ class ProviderStrategy
         return $this->strategy->getBookingQuestionnaireAnswer($request, $id, $page);
     }
 
+    public function getApprovedReports(Request $request, $id)
+    {
+        return $this->strategy->getApprovedReports($request, $id);
+    }
+
+    public function joinUs(Request $request)
+    {
+        return $this->strategy->joinUs($request);
+    }
 }

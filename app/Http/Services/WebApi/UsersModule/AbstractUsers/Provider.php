@@ -13,6 +13,7 @@ use App\Http\Services\WebApi\CommonTraits\Ratings;
 use App\Http\Services\WebApi\CommonTraits\Reviews;
 use App\Http\Services\WebApi\CommonTraits\Views;
 use App\Mail\Customer\ForgetPasswordMail;
+use App\Models\JoinUs;
 use App\Models\LapCalendar;
 use App\Models\BookingMedicalReports;
 use App\Models\BookingMedicalReportsAnswers;
@@ -550,5 +551,39 @@ class Provider
                 "pagesCount" => $pagesCount,
                 "currentPage" => $page
             ]));
+    }
+
+    public function getApprovedReports(Request $request, $id)
+    {
+        $medicalReports = [];
+        $booking = ServiceBooking::find($id);
+        $reports = $booking->load(['medicalReports' => function ($query) {
+            $query->where('is_approved', 1);
+        }])->medicalReports;
+        $reports->each(function ($report) use (&$medicalReports) {
+            $report->filled_file_path = Utilities::getFileUrl($report->file_path);
+            array_push($medicalReports, $report);
+        });
+        return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
+            "reports" => $medicalReports
+        ]));
+    }
+
+    public function joinUs(Request $request)
+    {
+        $fullName = $request->input('full_name');
+        $email = $request->input('email');
+        $mobile = $request->input('mobile_number');
+        $nationalId = $request->input('national_id');
+        $cityId = $request->input('city_id');
+        $joinUs = new JoinUs();
+        $joinUs->full_name = $fullName;
+        $joinUs->email = $email;
+        $joinUs->mobile_number = $mobile;
+        $joinUs->national_id = $nationalId;
+        $joinUs->city_id = $cityId;
+        $joinUs->save();
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([]));
     }
 }

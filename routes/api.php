@@ -27,6 +27,7 @@ Route::group(['namespace' => 'WebApi\UsersModule', 'prefix' => 'customers'], (fu
 Route::group(['namespace' => 'WebApi\UsersModule', 'prefix' => 'providers'], (function () {
     Route::post('forgetPassword', 'ProviderController@forgetPassword');
     Route::post('updateForgottenPassword', 'ProviderController@updateForgottenPassword');
+    Route::post('joinus', 'ProviderController@joinUs');
 }));
 
 Route::group(['namespace' => 'WebApi\CountriesModule', 'prefix' => 'countries'], (function () {
@@ -111,5 +112,6 @@ Route::middleware('auth:provider')->group(function () {
         Route::get('getBooking/{id}/{serviceType}', 'ProviderController@getBooking');
         Route::get('requestUnlockBooking/{id}', 'ProviderController@requestUnlockBooking');
         Route::get('getBookingQuestionnaireAnswer/{id}/{page}', 'ProviderController@getBookingQuestionnaireAnswer');
+        Route::get('getApprovedReports/{id}', 'ProviderController@getApprovedReports');
     }));
 });
