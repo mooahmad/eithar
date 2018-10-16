@@ -7,7 +7,7 @@
             <div class="portlet light bordered">
                 <div class="portlet-title">
                     <div class="btn-group">
-                        <a href="{{ url(AD.'/admins/create') }}" class="btn sbold green"> Add New <i
+                        <a href="{{ url()->route('add_family_members') }}" class="btn sbold green"> Add New <i
                                     class="fa fa-plus"></i></a>
                     </div>
                     <div id="dataTable-buttons" class="tools">
@@ -16,16 +16,19 @@
                 </div>
                 <div class="portlet-body">
                     <div class="table-responsive">
-                        <table id="data-table-admins" class="dataTable table table-bordered table-hover"
+                        <table id="data-table-family-members" class="dataTable table table-bordered table-hover"
                                width="100%">
                             <thead>
-                            <tr>
-                                <th>{{ trans('admin.id') }}</th>
-                                <th>{{ trans('admin.name') }}</th>
-                                <th>{{ trans('admin.mobile') }}</th>
-                                <th>{{ trans('admin.email') }}</th>
-                                <th>{{ trans('admin.actions') }}</th>
-                            </tr>
+                                <tr>
+                                    <th>{{ trans('admin.id') }}</th>
+                                    <th>{{ trans('admin.customers') }}</th>
+                                    <th>{{ trans('admin.full_name') }}</th>
+                                    <th>{{ trans('admin.relation_type') }}</th>
+                                    <th>{{ trans('admin.mobile') }}</th>
+                                    <th>{{ trans('admin.national_id') }}</th>
+                                    <th>{{ trans('admin.image') }}</th>
+                                    <th>{{ trans('admin.actions') }}</th>
+                                </tr>
                             </thead>
                             <tbody>
 
@@ -41,11 +44,10 @@
 @stop
 
 @section('script')
-    // declaring used variables
     <script>
-        var adminsDataTableURL = "{!! route('getAdminsDatatable') !!}";
-        var deleteAdminsURL    = "{!! route('deleteAdmins') !!}";
+        var familyMembersDataTableURL = "{!! route('get-family-members-Datatable') !!}";
+        var deleteFamilyMembersURL    = "{!! route('deleteFamilyMembers') !!}";
         var csrfToken          = "{!! csrf_token() !!}";
     </script>
-    <script src="{{ asset('public/js/custom/adminsDataTable.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/js/custom/familyMembersDataTable.js') }}" type="text/javascript"></script>
 @stop

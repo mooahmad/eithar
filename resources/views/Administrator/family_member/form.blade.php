@@ -11,19 +11,17 @@
                         <span class="caption-subject font-dark sbold uppercase">{{ Route::currentRouteName() }}</span>
                     </div>
                 </div>
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
+                @if(!empty($form_data))
+                    <div class="col-xs-6">
+                        @if(!empty($form_data->profile_picture_path))
+                            <img src="{{ \App\Helpers\Utilities::getFileUrl($form_data->profile_picture_path) }}" class="img-thumbnail" style="max-height: 120px !important;">
+                        @endif
                     </div>
                 @endif
                 <div class="portlet-body">
                     <!-- BEGIN FORM-->
                     @if(!empty($form_data))
-                        {!! Form::model($form_data,['files'=>true,'method'=>'PATCH','url'=>route('family-members',[$form_data->id]), 'id'=>'form_sample_3', 'class'=>'form-horizontal']) !!}
+                        {!! Form::model($form_data,['files'=>true,'method'=>'PATCH','url'=>route('update_family_members',['family_members'=>$form_data->id]), 'id'=>'form_sample_3', 'class'=>'form-horizontal']) !!}
                     @else
                         {!! Form::open(['files'=>true,'method'=>'POST','id'=>'form_sample_3','route'=>'family-members.store', 'class'=>'form-horizontal']) !!}
                     @endif

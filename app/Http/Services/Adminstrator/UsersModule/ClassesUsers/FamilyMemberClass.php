@@ -31,8 +31,8 @@ class FamilyMemberClass
         $familyMember->gender           = $request->input('gender');
         $familyMember->birthdate        = $request->input('birthdate');
         $familyMember->is_active        = $request->input('is_active');
-        $familyMember->is_saudi_nationality = $request->input('is_saudi_nationality');
         $familyMember->added_by         = Auth::user()->id;
+        $familyMember->is_saudi_nationality = $request->input('is_saudi_nationality');
         $familyMember->save();
         return $familyMember;
     }

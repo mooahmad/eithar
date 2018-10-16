@@ -240,8 +240,11 @@ Route::group(['middleware' => 'AdminAuth', 'prefix' => AD], function () {
                 'create' => 'add_family_members',
                 'show' => 'show_family_members',
                 'edit' => 'edit_family_members',
+                'update' => 'update_family_members',
                 'destroy' => 'delete_family_members'
             ]]);
+        Route::get('get-family-members-Datatable', 'FamilyMemberController@getFamilyMembersDataTable')->name('get-family-members-Datatable');
+        Route::post('delete-family-members', 'FamilyMemberController@deleteFamilyMembers')->name('deleteFamilyMembers');
     });
 
     Route::group(['namespace' => BSN], function () {

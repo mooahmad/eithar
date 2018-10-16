@@ -219,6 +219,8 @@ return [
     'family_members' => 'Family Members',
     'add_family_members' => 'Add Family Members',
     'show_family_members' => 'Show Family Members',
+    'all_family_members' => 'All Family Members',
+    'edit_family_members' => 'Edit Family Members',
     'family-members' => 'Family Members',
     'middle_name' => 'Middle Name',
     'last_name' => 'Last Name',
