@@ -113,4 +113,9 @@ class ProviderStrategy
     {
         return $this->strategy->getApprovedReports($request, $id);
     }
+
+    public function joinUs(Request $request)
+    {
+        return $this->strategy->joinUs($request);
+    }
 }

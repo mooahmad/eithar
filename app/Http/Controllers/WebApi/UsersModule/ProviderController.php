@@ -132,4 +132,10 @@ class ProviderController extends Controller
         return $providerStrategy->getApprovedReports($request, $id);
     }
 
+    public function joinUs(Request $request)
+    {
+        $providerStrategy = new ProviderStrategy(ApiHelpers::requestType($request));
+        return $providerStrategy->joinUs($request);
+    }
+
 }
