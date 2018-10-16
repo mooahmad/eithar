@@ -364,6 +364,7 @@ class Provider
             $serviceAppointments = $servicesBooking->service_appointments;
             $customer = $servicesBooking->customer;
             foreach ($serviceAppointments as $serviceAppointment) {
+                $payLoad = [];
                 if ($service != null) {
                     //provider
                     if ($service->type == 5) {
