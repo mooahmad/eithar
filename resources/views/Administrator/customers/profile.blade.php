@@ -82,11 +82,11 @@
                                         </p>
                                     @endif
                                     <ul class="list-inline-item list-group-item-info">
-                                        @if(count($customer->country))
+                                        @if(!empty($customer->country))
                                             <li>
                                                 <i class="fa fa-map-marker"></i>
                                                 {{ $customer->country->country_name_eng }} -
-                                                @if(count($customer->city)) {{ $customer->city->city_name_eng }} @endif
+                                                @if(!empty($customer->city)) {{ $customer->city->city_name_eng }} @endif
                                                 - {{ $customer->address }}
                                             </li>
                                         @endif
