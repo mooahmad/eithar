@@ -6,7 +6,7 @@ use App\User;
 use App\Models\Customer;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class CustomerPolicy
+class FamilyMemberPolicy
 {
     use HandlesAuthorization;
 
@@ -19,8 +19,7 @@ class CustomerPolicy
      */
     public function view(User $user)
     {
-        if ($user->user_type == config('constants.userTypes.superAdmin') || $user->user_type == config('constants.userTypes.customerService')) return true;
-        return false;
+        return $user->user_type === config('constants.userTypes.customerService');
     }
 
     /**
@@ -31,8 +30,7 @@ class CustomerPolicy
      */
     public function create(User $user)
     {
-        if ($user->user_type == config('constants.userTypes.superAdmin') || $user->user_type == config('constants.userTypes.customerService')) return true;
-        return false;
+        return $user->user_type === config('constants.userTypes.customerService');
     }
 
     /**
@@ -44,8 +42,7 @@ class CustomerPolicy
      */
     public function update(User $user)
     {
-        if ($user->user_type == config('constants.userTypes.superAdmin') || $user->user_type == config('constants.userTypes.customerService')) return true;
-        return false;
+        return $user->user_type === config('constants.userTypes.customerService');
     }
 
     /**
@@ -57,8 +54,7 @@ class CustomerPolicy
      */
     public function delete(User $user)
     {
-        if ($user->user_type == config('constants.userTypes.superAdmin') || $user->user_type == config('constants.userTypes.customerService')) return true;
-        return false;
+        return $user->user_type === config('constants.userTypes.customerService');
     }
 
     /**
@@ -70,8 +66,7 @@ class CustomerPolicy
      */
     public function restore(User $user)
     {
-        if ($user->user_type == config('constants.userTypes.superAdmin') || $user->user_type == config('constants.userTypes.customerService')) return true;
-        return false;
+        return $user->user_type === config('constants.userTypes.customerService');
     }
 
     /**
@@ -83,7 +78,6 @@ class CustomerPolicy
      */
     public function forceDelete(User $user)
     {
-        if ($user->user_type == config('constants.userTypes.superAdmin') || $user->user_type == config('constants.userTypes.customerService')) return true;
-        return false;
+        return $user->user_type === config('constants.userTypes.customerService');
     }
 }

@@ -177,6 +177,16 @@ return [
         "addItemToInvoice" => 7,
         "appointmentcanceled" => 8,
     ],
+    "pushTypesDesc" => [
+        1=>"Services",
+        2=>"Doctors",
+        3=>"Appointment Reminder",
+        4=>"Appointment Confirmed",
+        5=>"Medical Report Added",
+        6=>"Invoice Generated",
+        7=>"Add Item To Invoice",
+        8=>"Appointment Canceled",
+    ],
     'invoice_code' => 'INV-00',
     'payment_methods' => [
         1 => 'Cash',
@@ -205,4 +215,6 @@ return [
         'pending'=>1,
         'approved'=>2,
     ],
+    'DefaultPassword'=>'secret',
+    'CustomerEitharID'=>'ETHR-0000',
 ];

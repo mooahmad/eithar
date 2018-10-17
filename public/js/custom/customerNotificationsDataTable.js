@@ -1,9 +1,9 @@
-var mainTable = null;
+var mainTableNotifications = null;
 
-function datatableAppointments() {
-    $('#data-table-customer-appointments').dataTable().fnDestroy();
+function datatableNotifications() {
+    $('#data-table-customer-notifications').dataTable().fnDestroy();
     $.fn.dataTable.ext.errMode = 'throw';
-    mainTable = $('#data-table-customer-appointments').DataTable({
+    mainTableNotifications = $('#data-table-customer-notifications').DataTable({
         "bfilter": false,
         "dom": 'B f l t p r i',
         "paging": true,
@@ -18,10 +18,10 @@ function datatableAppointments() {
         order: [[0, 'asc']],
         buttons: [{
             extend: 'csvHtml5',
-            title: 'Customer report',
+            title: 'Customer Notifications Report',
             messageTop: 'Search result data',
             exportOptions: {
-                columns: [0, 2, 3]
+                columns: [0,1,2,3,5,6,7]
             },
             bom: true,
             charset: 'UTF-8'
@@ -30,23 +30,17 @@ function datatableAppointments() {
         processing: true,
         serverSide: true,
         ajax: {
-            url: indexURL
+            url: indexNotificationsURL
         },
         columns: [
-            {data: 'id', name: 'service_bookings.id'},
-            {data: 'service_name', name: 'service_bookings.service_id'},
-            {data: 'price', name: 'service_bookings.price'},
-            {data: 'status', name: 'service_bookings.status'},
-            {data: 'created_at', name: 'service_bookings.created_at'},
-            {
-                searchable: false,
-                orderable: false,
-                data: 'actions',
-                name: 'actions',
-                "render": function (data, type, full, meta) {
-                    return data;
-                }
-            }
+            {data: 'title'},
+            {data: 'notification_type'},
+            {data: 'description'},
+            {data: 'is_pushed'},
+            {data: 'is_emailed'},
+            {data: 'is_smsed'},
+            {data: 'send_at'},
+            {data: 'read_at'},
         ],
         "fnDrawCallback": function () {
             // fires after each search
@@ -62,5 +56,5 @@ function datatableAppointments() {
 }
 
 $(document).ready(function () {
-    datatableAppointments();
+    datatableNotifications();
 });

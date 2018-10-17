@@ -24,7 +24,15 @@ class AdminsController extends Controller
      */
     public function __construct()
     {
+        $this->middleware('AdminAuth');
+    }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function home()
+    {
+        return view(AD . '.home');
     }
 
     /**

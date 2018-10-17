@@ -215,7 +215,7 @@
         <!-- End Promo_codes Area -->
 
             <!-- Start Customers Area -->
-            {{--            @can('promo_code.view', new \App\Models\PromoCode())--}}
+            @can('customers.view')
             <li class="nav-item start {{ (Request::segment(2)=='customers') ? 'active' :'' }}">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-users"></i>
@@ -238,12 +238,37 @@
                     </li>
                 </ul>
             </li>
-            {{--@endcan--}}
-        <!-- End Customers Area -->
+            @endcan
+            <!-- End Customers Area -->
+
+            <!-- Start Family Members Area -->
+            @can('family_member.view')
+                <li class="nav-item start {{ (Request::segment(2)=='family-members') ? 'active' :'' }}">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-users"></i>
+                        <span class="title">{{ trans('admin.family_members') }}</span>
+                        <span class="selected"></span>
+                        <span class="arrow {{ (Request::segment(2)=='family-members') ? 'open' :'' }}"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item start {{ (Request::segment(2)=='family-members' && Request::segment(3)=='create') ? 'active' :'' }}">
+                            <a href="{{ url(AD.'/family-members/create') }}" class="nav-link ">
+                                <i class="fa fa-plus-circle"></i>
+                                <span class="title">{{ trans('admin.add_family_members') }}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item start {{ (Request::is(AD.'/family-members')) ? 'active' :'' }}">
+                            <a href="{{ url(AD.'/family-members') }}" class="nav-link ">
+                                <i class="fa fa-eye"></i>
+                                <span class="title">{{ trans('admin.show_family_members') }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            @endcan
+            <!-- End Family Members Area -->
 
             <!-- Start Invoices Area -->
-            {{--            @can('promo_code.view', new \App\Models\PromoCode())--}}
-
             @can('promo_code.view', new \App\Models\PromoCode())
 
                 {{--<li class="nav-item start {{ (Request::segment(2)=='invoices') ? 'active' :'' }}">--}}
@@ -268,12 +293,11 @@
                 {{--</li>--}}
                 {{--</ul>--}}
                 {{--</li>--}}
-
-                {{--@endcan--}}
+                @endcan
             <!-- End Invoices Area -->
 
                 <!-- Start Booking Services Area -->
-                {{--            @can('promo_code.view', new \App\Models\PromoCode())--}}
+            @can('meetings.view')
                 <li class="nav-item start {{ (Request::segment(2)=='meetings') ? 'active' :'' }}">
                     <a href="javascript:;" class="nav-link nav-toggle">
                         <i class="fa fa-calendar"></i>
@@ -302,10 +326,9 @@
                         </li>
                     </ul>
                 </li>
-                {{--@endcan--}}
+                @endcan
             <!-- End Booking Services Area -->
 
-            @endcan
             <!-- Start Medical reports Area -->
             @can('medical_report.view', new \App\Models\MedicalReports())
                 <li class="nav-item start {{ (Request::segment(2)=='medical_reports') ? 'active' :'' }}">
