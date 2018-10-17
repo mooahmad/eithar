@@ -229,4 +229,13 @@ return [
     'profile_picture' => 'Profile Picture',
     'profile_customers' => 'Profile Customers',
     'nationality_picture' => 'Nationality Picture',
+    'eithar_id' => 'Eithar ID',
+    'title' => 'Title',
+    'description' => 'Description',
+    'notification_type' => 'Notification Type',
+    'is_pushed' => 'Pushed',
+    'is_emailed' => 'Emailed',
+    'is_smsed' => 'SMS',
+    'send_at' => 'Sent At',
+    'read_at' => 'Read At',
 ];

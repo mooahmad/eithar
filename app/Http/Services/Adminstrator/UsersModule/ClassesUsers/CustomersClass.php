@@ -38,6 +38,9 @@ class CustomersClass
         $customer->added_by         = Auth::user()->id;
         $customer->is_saudi_nationality = $request->input('is_saudi_nationality');
         $customer->save();
+        if ($is_create){
+            $customer->eithar_id    = config('constants.CustomerEitharID').$customer->id;
+        }
         return $customer;
     }
 }

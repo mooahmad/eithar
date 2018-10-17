@@ -234,6 +234,7 @@ Route::group(['middleware' => 'AdminAuth', 'prefix' => AD], function () {
             ]]);
         Route::get('get-customers-Datatable', 'CustomersController@getCustomersDataTable')->name('get-customers-Datatable');
         Route::get('get-customer-appointments-Datatable/{id}', 'CustomersController@getCustomerAppointmentsDataTable')->name('get-customer-appointments-Datatable');
+        Route::get('get-customer-notifications-Datatable/{id}', 'CustomersController@getCustomerNotificationsDataTable')->name('get-customer-notifications-Datatable');
 
         Route::resource('family-members', 'FamilyMemberController',
             ['names' => [

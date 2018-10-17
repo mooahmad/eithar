@@ -124,9 +124,9 @@ class CustomersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param AddCustomerRequest $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function update(AddCustomerRequest $request, $id)
     {
@@ -233,6 +233,59 @@ class CustomersController extends Controller
                 return '<span class="label label-'.$status_type.' label-sm">'.$item->status_desc.'</span>';
             })
             ->rawColumns(['service_name','price','status','actions'])
+            ->make(true);
+        return $dataTable;
+    }
+
+    public function getCustomerNotificationsDataTable(Request $request)
+    {
+        $customer = Customer::findOrFail($request->id);
+        if (empty($customer->notifications)){
+            return null;
+        }
+//        $data = json_decode(json_encode($customer->notifications->data));
+        $dataTable = DataTables::of($customer->notifications)
+            ->addColumn('title',function ($item){
+                $data = json_decode(json_encode($item->data));
+                return $data->{'title_'.$data->lang};
+            })
+            ->addColumn('description',function ($item){
+                $data = json_decode(json_encode($item->data));
+                return $data->{'desc_'.$data->lang};
+            })
+            ->addColumn('notification_type',function ($item){
+                $data = json_decode(json_encode($item->data));
+                return config('constants.pushTypesDesc.'.$data->notification_type);
+            })
+            ->addColumn('is_smsed',function ($item){
+                if($item->is_smsed==1){
+                    return '<span class="label label-success label-sm">Sent</span>';
+                }else{
+                    return '<span class="label label-warning label-sm">Pending</span>';
+                }
+            })
+            ->addColumn('is_pushed',function ($item){
+                if($item->is_pushed==1){
+                    return '<span class="label label-success label-sm">Sent</span>';
+                }else{
+                    return '<span class="label label-warning label-sm">Pending</span>';
+                }
+            })
+            ->addColumn('is_emailed',function ($item){
+                if($item->is_emailed==1){
+                    return '<span class="label label-success label-sm">Sent</span>';
+                }else{
+                    return '<span class="label label-warning label-sm">Pending</span>';
+                }
+            })
+            ->addColumn('send_at',function ($item){
+                $data = json_decode(json_encode($item->data));
+                return $data->send_at;
+            })
+            ->addColumn('read_at',function ($item){
+                return $item->read_at;
+            })
+            ->rawColumns(['description','title','read_at','send_at','is_emailed','is_pushed','is_smsed','notification_type'])
             ->make(true);
         return $dataTable;
     }

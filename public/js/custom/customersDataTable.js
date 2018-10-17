@@ -26,23 +26,23 @@ function datatable() {
             bom: true,
             charset: 'UTF-8'
         },
-            {
-                className: 'deleteSelected',
-                text: 'Delete selected',
-                action: function () {
-                    var ids = [];
-                    var data = mainTable.rows('.selected').data();
-                    $(data).each(function () {
-                        var row = this;
-                        ids.push(row.id);
-                    });
-                    $('#btn-modal-delete').unbind('click');
-                    $('#btn-modal-delete').on('click', function () {
-                        deleteServicesRecords(ids)
-                    });
-                    $('#staticDeleteModal').modal();
-                }
-            }
+            // {
+            //     className: 'deleteSelected',
+            //     text: 'Delete selected',
+            //     action: function () {
+            //         var ids = [];
+            //         var data = mainTable.rows('.selected').data();
+            //         $(data).each(function () {
+            //             var row = this;
+            //             ids.push(row.id);
+            //         });
+            //         $('#btn-modal-delete').unbind('click');
+            //         $('#btn-modal-delete').on('click', function () {
+            //             deleteServicesRecords(ids)
+            //         });
+            //         $('#staticDeleteModal').modal();
+            //     }
+            // }
         ],
         processing: true,
         serverSide: true,
@@ -51,6 +51,7 @@ function datatable() {
         },
         columns: [
             {data: 'id', name: 'customers.id'},
+            {data: 'eithar_id', name: 'customers.eithar_id'},
             {data: 'full_name', name: 'customers.first_name'},
             {data: 'national_id', name: 'customers.national_id'},
             {data: 'mobile_number', name: 'customers.mobile_number'},
@@ -76,28 +77,27 @@ function datatable() {
         ],
         "fnDrawCallback": function () {
             // fires after each search
-
         }
         ,
         initComplete: function () {
             // fires after tables initiated
-            $('.deleteSelected').addClass('hidden');
+            // $('.deleteSelected').addClass('hidden');
             $(".dt-buttons").appendTo("#dataTable-buttons");
             $(".dt-buttons").show();
         }
     });
 
-    mainTable.on('select', function (e, dt, type, indexes) {
-        var count = mainTable.rows('.selected').count();
-        if (count > 0)
-            $('.deleteSelected').removeClass('hidden');
-
-    })
-        .on('deselect', function (e, dt, type, indexes) {
-            var count = mainTable.rows('.selected').count();
-            if (count === 0)
-                $('.deleteSelected').addClass('hidden');
-        });
+    // mainTable.on('select', function (e, dt, type, indexes) {
+    //     var count = mainTable.rows('.selected').count();
+    //     if (count > 0)
+    //         $('.deleteSelected').removeClass('hidden');
+    //
+    // })
+    //     .on('deselect', function (e, dt, type, indexes) {
+    //         var count = mainTable.rows('.selected').count();
+    //         if (count === 0)
+    //             $('.deleteSelected').addClass('hidden');
+    //     });
 }
 
 function deleteServicesRecords(ids) {
