@@ -48,7 +48,7 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => ADN, 'prefix' => AD], 
     //logout
     Route::get('logout', 'AdminsController@logout')->name('Logout');
     // home
-    Route::get('home', 'AdminsController@index')->name('Home');
+    Route::get('home', 'AdminsController@home')->name('Home');
     // admins
     Route::resource('admins', 'AdminsController',
         ['names' => [
@@ -227,12 +227,26 @@ Route::group(['middleware' => 'AdminAuth', 'prefix' => AD], function () {
             ['names' => [
                 'index' => 'show_customers',
                 'create' => 'add_customers',
-                'show' => 'show_customers',
+                'show' => 'profile_customers',
                 'edit' => 'edit_customers',
+                'update' => 'update_customers',
                 'destroy' => 'delete_customers'
             ]]);
         Route::get('get-customers-Datatable', 'CustomersController@getCustomersDataTable')->name('get-customers-Datatable');
         Route::get('get-customer-appointments-Datatable/{id}', 'CustomersController@getCustomerAppointmentsDataTable')->name('get-customer-appointments-Datatable');
+        Route::get('get-customer-notifications-Datatable/{id}', 'CustomersController@getCustomerNotificationsDataTable')->name('get-customer-notifications-Datatable');
+
+        Route::resource('family-members', 'FamilyMemberController',
+            ['names' => [
+                'index' => 'all_family_members',
+                'create' => 'add_family_members',
+                'show' => 'show_family_members',
+                'edit' => 'edit_family_members',
+                'update' => 'update_family_members',
+                'destroy' => 'delete_family_members'
+            ]]);
+        Route::get('get-family-members-Datatable', 'FamilyMemberController@getFamilyMembersDataTable')->name('get-family-members-Datatable');
+        Route::post('delete-family-members', 'FamilyMemberController@deleteFamilyMembers')->name('deleteFamilyMembers');
     });
 
     Route::group(['namespace' => BSN], function () {

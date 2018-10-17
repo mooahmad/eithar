@@ -17,9 +17,10 @@ class BookingServicesPolicy
      * @param  \App\Models\ServiceBooking  $serviceBooking
      * @return mixed
      */
-    public function view(User $user, ServiceBooking $serviceBooking)
+    public function view(User $user)
     {
-        return true;
+        if ($user->user_type == config('constants.userTypes.superAdmin') || $user->user_type == config('constants.userTypes.customerService')) return true;
+        return false;
     }
 
     /**
@@ -30,7 +31,7 @@ class BookingServicesPolicy
      */
     public function create(User $user)
     {
-        //
+        if ($user->user_type === config('constants.userTypes.superAdmin')) return true;
     }
 
     /**
@@ -40,9 +41,9 @@ class BookingServicesPolicy
      * @param  \App\Models\ServiceBooking  $serviceBooking
      * @return mixed
      */
-    public function update(User $user, ServiceBooking $serviceBooking)
+    public function update(User $user)
     {
-        //
+        if ($user->user_type === config('constants.userTypes.superAdmin')) return true;
     }
 
     /**
@@ -52,9 +53,9 @@ class BookingServicesPolicy
      * @param  \App\Models\ServiceBooking  $serviceBooking
      * @return mixed
      */
-    public function delete(User $user, ServiceBooking $serviceBooking)
+    public function delete(User $user)
     {
-        //
+        if ($user->user_type === config('constants.userTypes.superAdmin')) return true;
     }
 
     /**
@@ -64,9 +65,9 @@ class BookingServicesPolicy
      * @param  \App\Models\ServiceBooking  $serviceBooking
      * @return mixed
      */
-    public function restore(User $user, ServiceBooking $serviceBooking)
+    public function restore(User $user)
     {
-        //
+        if ($user->user_type === config('constants.userTypes.superAdmin')) return true;
     }
 
     /**
@@ -76,8 +77,8 @@ class BookingServicesPolicy
      * @param  \App\Models\ServiceBooking  $serviceBooking
      * @return mixed
      */
-    public function forceDelete(User $user, ServiceBooking $serviceBooking)
+    public function forceDelete(User $user)
     {
-        //
+        if ($user->user_type === config('constants.userTypes.superAdmin')) return true;
     }
 }

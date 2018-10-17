@@ -21,6 +21,7 @@
                             <thead>
                             <tr>
                                 <th>{{ trans('admin.id') }}</th>
+                                <th>{{ trans('admin.eithar_id') }}</th>
                                 <th>{{ trans('admin.full_name') }}</th>
                                 <th>{{ trans('admin.national_id') }}</th>
                                 <th>{{ trans('admin.mobile') }}</th>
@@ -44,9 +45,9 @@
 
 @section('script')
     <script>
-        var indexURL = "{!! route('get-customers-Datatable') !!}";
-        var deleteURL    = "{!! route('deleteServices') !!}";
-        var csrfToken          = "{!! csrf_token() !!}";
+        var indexURL  = "{!! route('get-customers-Datatable') !!}";
+        var deleteURL    = "{!! route('get-customers-Datatable') !!}";
+        var csrfToken = "{!! csrf_token() !!}";
     </script>
     <script src="{{ asset('public/js/custom/customersDataTable.js') }}" type="text/javascript"></script>
 @stop

@@ -1,9 +1,9 @@
 var mainTable = null;
 
 function datatable() {
-    $('#data-table-customers').dataTable().fnDestroy();
+    $('#data-table-family-members').dataTable().fnDestroy();
     $.fn.dataTable.ext.errMode = 'throw';
-    mainTable = $('#data-table-customers').DataTable({
+    mainTable = $('#data-table-family-members').DataTable({
         "bfilter": false,
         "dom": 'B f l t p r i',
         "paging": true,
@@ -18,44 +18,44 @@ function datatable() {
         order: [[0, 'asc']],
         buttons: [{
             extend: 'csvHtml5',
-            title: 'Customers report',
+            title: 'Family Members Report',
             messageTop: 'Search result data',
             exportOptions: {
-                columns: [0, 2, 3]
+                columns: [0,1,2,3,4,5]
             },
             bom: true,
             charset: 'UTF-8'
         },
-            // {
-            //     className: 'deleteSelected',
-            //     text: 'Delete selected',
-            //     action: function () {
-            //         var ids = [];
-            //         var data = mainTable.rows('.selected').data();
-            //         $(data).each(function () {
-            //             var row = this;
-            //             ids.push(row.id);
-            //         });
-            //         $('#btn-modal-delete').unbind('click');
-            //         $('#btn-modal-delete').on('click', function () {
-            //             deleteServicesRecords(ids)
-            //         });
-            //         $('#staticDeleteModal').modal();
-            //     }
-            // }
+            {
+                className: 'deleteSelected',
+                text: 'Delete selected',
+                action: function () {
+                    var ids = [];
+                    var data = mainTable.rows('.selected').data();
+                    $(data).each(function () {
+                        var row = this;
+                        ids.push(row.id);
+                    });
+                    $('#btn-modal-delete').unbind('click');
+                    $('#btn-modal-delete').on('click', function () {
+                        deleteFamilyMembersRecords(ids)
+                    });
+                    $('#staticDeleteModal').modal();
+                }
+            }
         ],
         processing: true,
         serverSide: true,
         ajax: {
-            url: indexURL
+            url: familyMembersDataTableURL
         },
         columns: [
-            {data: 'id', name: 'customers.id'},
-            {data: 'eithar_id', name: 'customers.eithar_id'},
-            {data: 'full_name', name: 'customers.first_name'},
-            {data: 'national_id', name: 'customers.national_id'},
-            {data: 'mobile_number', name: 'customers.mobile_number'},
-            {data: 'country', name: 'customers.country'},
+            {data: 'id', name: 'family_members.id'},
+            {data: 'parent', name: 'family_members.user_parent_id'},
+            {data: 'full_name', name: 'family_members.first_name'},
+            {data: 'relation_type', name: 'family_members.relation_type'},
+            {data: 'mobile_number', name: 'family_members.mobile_number'},
+            {data: 'national_id', name: 'family_members.national_id'},
             {
                 searchable: false,
                 orderable: false,
@@ -77,32 +77,33 @@ function datatable() {
         ],
         "fnDrawCallback": function () {
             // fires after each search
+
         }
         ,
         initComplete: function () {
             // fires after tables initiated
-            // $('.deleteSelected').addClass('hidden');
+            $('.deleteSelected').addClass('hidden');
             $(".dt-buttons").appendTo("#dataTable-buttons");
             $(".dt-buttons").show();
         }
     });
 
-    // mainTable.on('select', function (e, dt, type, indexes) {
-    //     var count = mainTable.rows('.selected').count();
-    //     if (count > 0)
-    //         $('.deleteSelected').removeClass('hidden');
-    //
-    // })
-    //     .on('deselect', function (e, dt, type, indexes) {
-    //         var count = mainTable.rows('.selected').count();
-    //         if (count === 0)
-    //             $('.deleteSelected').addClass('hidden');
-    //     });
+    mainTable.on('select', function (e, dt, type, indexes) {
+        var count = mainTable.rows('.selected').count();
+        if (count > 0)
+            $('.deleteSelected').removeClass('hidden');
+
+    })
+        .on('deselect', function (e, dt, type, indexes) {
+            var count = mainTable.rows('.selected').count();
+            if (count === 0)
+                $('.deleteSelected').addClass('hidden');
+        });
 }
 
-function deleteServicesRecords(ids) {
+function deleteFamilyMembersRecords(ids) {
     $.ajax({
-        url: deleteURL,
+        url: deleteFamilyMembersURL,
         type: "Post",
         data: {
             "_token": csrfToken,

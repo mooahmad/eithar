@@ -19,7 +19,7 @@ class ProviderPolicy
      */
     public function view(User $user, Provider $model)
     {
-        return true;
+        return $user->user_type === config('constants.userTypes.superAdmin');
     }
 
     /**
@@ -30,7 +30,7 @@ class ProviderPolicy
      */
     public function create(User $user)
     {
-        return true;
+        return $user->user_type === config('constants.userTypes.superAdmin');
     }
 
     /**
@@ -42,7 +42,7 @@ class ProviderPolicy
      */
     public function update(User $user, Provider $model)
     {
-        return true;
+        return $user->user_type === config('constants.userTypes.superAdmin');
     }
 
     /**
@@ -54,7 +54,7 @@ class ProviderPolicy
      */
     public function delete(User $user, Provider $model)
     {
-        return true;
+        return $user->user_type === config('constants.userTypes.superAdmin');
     }
 
     /**
@@ -66,7 +66,7 @@ class ProviderPolicy
      */
     public function restore(User $user, Provider $model)
     {
-        return true;
+        return $user->user_type === config('constants.userTypes.superAdmin');
     }
 
     /**
@@ -78,6 +78,6 @@ class ProviderPolicy
      */
     public function forceDelete(User $user, Provider $model)
     {
-        return true;
+        return $user->user_type === config('constants.userTypes.superAdmin');
     }
 }

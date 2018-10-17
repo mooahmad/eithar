@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Administrator\Customers;
 
 use App\Helpers\Utilities;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CustomerFamily\AddCustomerRequest;
+use App\Http\Services\Adminstrator\UsersModule\ClassesUsers\CustomersClass;
+use App\Models\City;
+use App\Models\Country;
 use App\Models\Customer;
 use App\Models\ServiceBooking;
 use Illuminate\Http\Request;
@@ -28,7 +32,6 @@ class CustomersController extends Controller
      */
     public function index()
     {
-//        Check Credentials
         if (Gate::denies('customers.view',new Customer())){
             return response()->view('errors.403',[],403);
         }
@@ -42,18 +45,46 @@ class CustomersController extends Controller
      */
     public function create()
     {
-        //
+        if (Gate::denies('customers.create',new Customer())){
+            return response()->view('errors.403',[],403);
+        }
+        $data = [
+            'countries'=>Country::all()->pluck('country_name_eng','id'),
+            'cities'=>City::all()->pluck('city_name_eng','id'),
+            'gender_types'=>config('constants.gender_desc')
+        ];
+        return view(AD . '.customers.form')->with($data);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param AddCustomerRequest $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddCustomerRequest $request)
     {
-        //
+        if (Gate::denies('customers.create',new Customer())){
+            return response()->view('errors.403',[],403);
+        }
+        $customer = CustomersClass::createOrUpdateCustomer(new Customer(),$request);
+        if ($request->hasFile('profile_picture_path')){
+            $avatar = Utilities::UploadFile($request->file('profile_picture_path'),'public/images/avatars');
+            if ($avatar){
+                $customer->profile_picture_path = $avatar;
+                $customer->save();
+            }
+        }
+
+        if ($request->hasFile('nationality_id_picture')){
+            $nationality_image = Utilities::UploadFile($request->file('nationality_id_picture'),'public/images/nationalities');
+            if ($nationality_image){
+                $customer->nationality_id_picture = $nationality_image;
+                $customer->save();
+            }
+        }
+        session()->flash('success_msg',trans('admin.success_message'));
+        return redirect()->route('show_customers');
     }
 
     /**
@@ -78,19 +109,49 @@ class CustomersController extends Controller
      */
     public function edit($id)
     {
-        //
+        if (Gate::denies('customers.update',new Customer())){
+            return response()->view('errors.403',[],403);
+        }
+        $data = [
+            'form_data'=>Customer::findOrFail($id),
+            'countries'=>Country::all()->pluck('country_name_eng','id'),
+            'cities'=>City::all()->pluck('city_name_eng','id'),
+            'gender_types'=>config('constants.gender_desc')
+        ];
+        return view(AD . '.customers.form')->with($data);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param AddCustomerRequest $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AddCustomerRequest $request, $id)
     {
-        //
+        if (Gate::denies('customers.update',new Customer())){
+            return response()->view('errors.403',[],403);
+        }
+        $customer_data = Customer::FindOrFail($id);
+        $customer = CustomersClass::createOrUpdateCustomer($customer_data,$request,false);
+        if ($request->hasFile('profile_picture_path')){
+            $avatar = Utilities::UploadFile($request->file('profile_picture_path'),'public/images/avatars',$customer_data->profile_picture_path);
+            if ($avatar){
+                $customer->profile_picture_path = $avatar;
+                $customer->save();
+            }
+        }
+
+        if ($request->hasFile('nationality_id_picture')){
+            $nationality_image = Utilities::UploadFile($request->file('nationality_id_picture'),'public/images/nationalities',$customer_data->nationality_id_picture);
+            if ($nationality_image){
+                $customer->nationality_id_picture = $nationality_image;
+                $customer->save();
+            }
+        }
+        session()->flash('success_msg',trans('admin.success_message'));
+        return redirect()->route('show_customers');
     }
 
     /**
@@ -115,8 +176,8 @@ class CustomersController extends Controller
         $customers = Customer::where('id', '<>', 0);
         $dataTable = DataTables::of($customers)
             ->addColumn('actions', function ($item) {
-                $editURL = url(AD . '/customers/' . $item->id . '/edit');
-                $showURL = url(AD . '/customers/' . $item->id);
+                $editURL = url()->route('edit_customers',[$item->id]);
+                $showURL = url()->route('profile_customers',[$item->id]);
                 return View::make('Administrator.widgets.dataTablesActions', ['editURL' => $editURL, 'showURL' => $showURL]);
             })
             ->addColumn('image', function ($item) {
@@ -147,18 +208,19 @@ class CustomersController extends Controller
      */
     public function getCustomerAppointmentsDataTable(Request $request)
     {
-        $Booking_services = ServiceBooking::where('id', '<>', 0)->where('customer_id',$request->id);
+        $Booking_services = ServiceBooking::where('id', '<>', 0)
+            ->where('customer_id',$request->id)
+            ->latest();
         $dataTable = DataTables::of($Booking_services)
             ->addColumn('actions', function ($item) {
                 $showURL = route('show-meeting-details',[$item->id]);
-
                 $URLs = [
-                    ['link'=>$showURL,'icon'=>'info'],
+                    ['link'=>$showURL,'icon'=>'eye','color'=>'green'],
                 ];
                 return View::make('Administrator.widgets.advancedActions', ['URLs'=>$URLs]);
             })
             ->addColumn('service_name',function ($item){
-                return ($item->service)? $item->service->name_en. '-'.$item->service->type_desc : '';
+                return ($item->service)? $item->service->name_en. '-'.$item->service->type_desc : 'Lab Service';
             })
             ->addColumn('price',function ($item){
                 $price = $item->price .' ';
@@ -169,9 +231,66 @@ class CustomersController extends Controller
                 $status_type = 'warning';
                 if($item->status==2){$status_type= 'success';}
                 if($item->status==3){$status_type= 'danger';}
-                return '<span class="label label-'.$status_type.' label-sm">'.$item->status_desc.'</span>';
+                return '<span class="label label-'.$status_type.' label-sm text-capitalize">'.$item->status_desc.'</span>';
             })
             ->rawColumns(['service_name','price','status','actions'])
+            ->make(true);
+        return $dataTable;
+    }
+
+    /**
+     * @param Request $request
+     * @return null
+     * @throws \Exception
+     */
+    public function getCustomerNotificationsDataTable(Request $request)
+    {
+        $customer = Customer::findOrFail($request->id);
+        if (empty($customer->notifications)){
+            return null;
+        }
+        $dataTable = DataTables::of($customer->notifications)
+            ->addColumn('title',function ($item){
+                $data = json_decode(json_encode($item->data));
+                return $data->{'title_'.$data->lang};
+            })
+            ->addColumn('description',function ($item){
+                $data = json_decode(json_encode($item->data));
+                return $data->{'desc_'.$data->lang};
+            })
+            ->addColumn('notification_type',function ($item){
+                $data = json_decode(json_encode($item->data));
+                return config('constants.pushTypesDesc.'.$data->notification_type);
+            })
+            ->addColumn('is_smsed',function ($item){
+                if($item->is_smsed==1){
+                    return '<span class="label label-success label-sm">Sent</span>';
+                }else{
+                    return '<span class="label label-warning label-sm">Pending</span>';
+                }
+            })
+            ->addColumn('is_pushed',function ($item){
+                if($item->is_pushed==1){
+                    return '<span class="label label-success label-sm">Sent</span>';
+                }else{
+                    return '<span class="label label-warning label-sm">Pending</span>';
+                }
+            })
+            ->addColumn('is_emailed',function ($item){
+                if($item->is_emailed==1){
+                    return '<span class="label label-success label-sm">Sent</span>';
+                }else{
+                    return '<span class="label label-warning label-sm">Pending</span>';
+                }
+            })
+            ->addColumn('send_at',function ($item){
+                $data = json_decode(json_encode($item->data));
+                return $data->send_at;
+            })
+            ->addColumn('read_at',function ($item){
+                return $item->read_at;
+            })
+            ->rawColumns(['description','title','read_at','send_at','is_emailed','is_pushed','is_smsed','notification_type'])
             ->make(true);
         return $dataTable;
     }

@@ -18,6 +18,9 @@ use Illuminate\Http\Request;
 
 class MedicalReportController extends Controller
 {
+    /**
+     * MedicalReportController constructor.
+     */
     public function __construct()
     {
         $this->middleware('AdminAuth');
