@@ -109,7 +109,16 @@ class CustomersController extends Controller
      */
     public function edit($id)
     {
-        //
+        if (Gate::denies('customers.update',new Customer())){
+            return response()->view('errors.403',[],403);
+        }
+        $data = [
+            'form_data'=>Customer::findOrFail($id),
+            'countries'=>Country::all()->pluck('country_name_eng','id'),
+            'cities'=>City::all()->pluck('city_name_eng','id'),
+            'gender_types'=>config('constants.gender_desc')
+        ];
+        return view(AD . '.customers.form')->with($data);
     }
 
     /**
@@ -119,9 +128,30 @@ class CustomersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AddCustomerRequest $request, $id)
     {
-        //
+        if (Gate::denies('customers.update',new Customer())){
+            return response()->view('errors.403',[],403);
+        }
+        $customer_data = Customer::FindOrFail($id);
+        $customer = CustomersClass::createOrUpdateCustomer($customer_data,$request,false);
+        if ($request->hasFile('profile_picture_path')){
+            $avatar = Utilities::UploadFile($request->file('profile_picture_path'),'public/images/avatars',$customer_data->profile_picture_path);
+            if ($avatar){
+                $customer->profile_picture_path = $avatar;
+                $customer->save();
+            }
+        }
+
+        if ($request->hasFile('nationality_id_picture')){
+            $nationality_image = Utilities::UploadFile($request->file('nationality_id_picture'),'public/images/nationalities',$customer_data->nationality_id_picture);
+            if ($nationality_image){
+                $customer->nationality_id_picture = $nationality_image;
+                $customer->save();
+            }
+        }
+        session()->flash('success_msg',trans('admin.success_message'));
+        return redirect()->route('show_customers');
     }
 
     /**

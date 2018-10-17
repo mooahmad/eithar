@@ -15,6 +15,15 @@
                     <div class="col-xs-6">
                         @if(!empty($form_data->profile_picture_path))
                             <img src="{{ \App\Helpers\Utilities::getFileUrl($form_data->profile_picture_path) }}" class="img-thumbnail" style="max-height: 120px !important;">
+                            <h5>Profile Picture</h5>
+                        @endif
+                    </div>
+                @endif
+                @if(!empty($form_data))
+                    <div class="col-xs-6">
+                        @if(!empty($form_data->nationality_id_picture))
+                            <img src="{{ \App\Helpers\Utilities::getFileUrl($form_data->nationality_id_picture) }}" class="img-thumbnail" style="max-height: 120px !important;">
+                            <h5>Nationality Picture</h5>
                         @endif
                     </div>
                 @endif

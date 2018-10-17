@@ -14,9 +14,10 @@ class CustomersClass
     /**
      * @param Customer $customer
      * @param $request
+     * @param bool $is_create
      * @return Customer
      */
-    public static function createOrUpdateCustomer(Customer $customer, $request)
+    public static function createOrUpdateCustomer(Customer $customer, $request,$is_create=true)
     {
         $customer->country_id       = $request->input('country_id');
         $customer->city_id          = $request->input('city_id');
@@ -25,7 +26,9 @@ class CustomersClass
         $customer->last_name        = $request->input('last_name');
         $customer->email            = $request->input('email');
         $customer->mobile_number    = $request->input('mobile_number');
-        $customer->password         = Hash::make($request->input('password'));
+        if ($is_create){
+            $customer->password     = Hash::make(config('constants.DefaultPassword'));
+        }
         $customer->national_id      = $request->input('national_id');
         $customer->address          = $request->input('address');
         $customer->gender           = $request->input('gender');
