@@ -18,10 +18,10 @@ function datatable() {
         order: [[0, 'asc']],
         buttons: [{
             extend: 'csvHtml5',
-            title: 'Family Members report',
+            title: 'Family Members Report',
             messageTop: 'Search result data',
             exportOptions: {
-                columns: [0, 2, 3, 4, 4]
+                columns: [0,1,2,3,4,5]
             },
             bom: true,
             charset: 'UTF-8'

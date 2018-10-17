@@ -199,7 +199,7 @@ class FamilyMemberController extends Controller
                 $showURL = route('show_family_members',[$item->id]);
                 $editURL = route('edit_family_members',[$item->id]);
                 $URLs = [
-                    ['link'=>$showURL,'icon'=>'eye','color'=>'green'],
+//                    ['link'=>$showURL,'icon'=>'eye','color'=>'green'],
                     ['link'=>$editURL,'icon'=>'edit','color'=>'purple'],
                 ];
                 return View::make('Administrator.widgets.advancedActions', ['URLs'=>$URLs]);

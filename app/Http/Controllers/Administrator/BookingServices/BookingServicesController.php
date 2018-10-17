@@ -95,7 +95,7 @@ class BookingServicesController extends Controller
                 $status_type = 'warning';
                 if($item->status==2){$status_type= 'success';}
                 if($item->status==3){$status_type= 'danger';}
-                return '<span class="label label-'.$status_type.' label-sm">'.$item->status_desc.'</span>';
+                return '<span class="label label-'.$status_type.' label-sm text-capitalize">'.$item->status_desc.'</span>';
             })
             ->editColumn('price',function ($item){
                 return $item->price .' '.$item->name_eng;

@@ -208,18 +208,19 @@ class CustomersController extends Controller
      */
     public function getCustomerAppointmentsDataTable(Request $request)
     {
-        $Booking_services = ServiceBooking::where('id', '<>', 0)->where('customer_id',$request->id);
+        $Booking_services = ServiceBooking::where('id', '<>', 0)
+            ->where('customer_id',$request->id)
+            ->latest();
         $dataTable = DataTables::of($Booking_services)
             ->addColumn('actions', function ($item) {
                 $showURL = route('show-meeting-details',[$item->id]);
-
                 $URLs = [
-                    ['link'=>$showURL,'icon'=>'info'],
+                    ['link'=>$showURL,'icon'=>'eye','color'=>'green'],
                 ];
                 return View::make('Administrator.widgets.advancedActions', ['URLs'=>$URLs]);
             })
             ->addColumn('service_name',function ($item){
-                return ($item->service)? $item->service->name_en. '-'.$item->service->type_desc : '';
+                return ($item->service)? $item->service->name_en. '-'.$item->service->type_desc : 'Lab Service';
             })
             ->addColumn('price',function ($item){
                 $price = $item->price .' ';
@@ -230,20 +231,24 @@ class CustomersController extends Controller
                 $status_type = 'warning';
                 if($item->status==2){$status_type= 'success';}
                 if($item->status==3){$status_type= 'danger';}
-                return '<span class="label label-'.$status_type.' label-sm">'.$item->status_desc.'</span>';
+                return '<span class="label label-'.$status_type.' label-sm text-capitalize">'.$item->status_desc.'</span>';
             })
             ->rawColumns(['service_name','price','status','actions'])
             ->make(true);
         return $dataTable;
     }
 
+    /**
+     * @param Request $request
+     * @return null
+     * @throws \Exception
+     */
     public function getCustomerNotificationsDataTable(Request $request)
     {
         $customer = Customer::findOrFail($request->id);
         if (empty($customer->notifications)){
             return null;
         }
-//        $data = json_decode(json_encode($customer->notifications->data));
         $dataTable = DataTables::of($customer->notifications)
             ->addColumn('title',function ($item){
                 $data = json_decode(json_encode($item->data));
