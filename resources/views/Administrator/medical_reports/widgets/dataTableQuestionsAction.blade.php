@@ -8,6 +8,11 @@
         </a>
     @endif
 @endif
+@if(isset($approveURL) && $approveURL != "")
+    <a href="{{ $approveURL }}" class="btn btn-outline btn-circle btn-sm green">
+        <i class="fa fa-check"></i>
+    </a>
+@endif
 @if(isset($editURL) && $editURL != "")
     @include('Administrator.widgets.dataTablesActions', ['editURL' => $editURL])
 @endif

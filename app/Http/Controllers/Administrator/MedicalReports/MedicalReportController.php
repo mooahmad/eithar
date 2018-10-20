@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Administrator\MedicalReports;
 
 
+use App\Helpers\Utilities;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MedicalReports\CreateMedicalReportRequest;
 use App\Http\Requests\MedicalReports\UpdateMedicalReportRequest;
@@ -12,7 +13,10 @@ use App\Models\BookingMedicalReportsAnswers;
 use App\Models\MedicalReports;
 use App\Models\MedicalReportsQuestions;
 use App\Models\Service;
+use Barryvdh\DomPDF\PDF;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Http\Request;
@@ -288,8 +292,9 @@ class MedicalReportController extends Controller
             ->addColumn('actions', function ($medicalReport) {
                 $medicalReportId = $medicalReport->id;
                 $questionsURL = url(AD . '/approve_medical_reports/' . $medicalReportId . '/questions_answers');
-                return View::make('Administrator.medical_reports.widgets.dataTableQuestionsAction', [
-                    'questionsURL' => $questionsURL]);
+                $approveURL = url(AD . '/approve_medical_reports/' . $medicalReportId . '/approve');
+                return View::make('Administrator.medical_reports.widgets.dataTableQuestionsAction',
+                    ['questionsURL' => $questionsURL, 'approveURL' => $approveURL]);
             })
             ->rawColumns(['actions'])
             ->make(true);
@@ -386,6 +391,23 @@ class MedicalReportController extends Controller
         }
         $ids = $request->input('ids');
         return BookingMedicalReportsAnswers::whereIn('id', $ids)->delete();
+    }
+
+    public function approveReport(Request $request, $medicalReportId)
+    {
+        $medicalReport = BookingMedicalReports::find($medicalReportId);
+        $answers = BookingMedicalReportsAnswers::where('booking_report_id', $medicalReportId)->get();
+        $answers->each(function ($answer) {
+            $answer->answer = unserialize($answer->answer);
+        });
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadView(AD . '.medical_reports.templates.medical_report_answers', ['answers' => $answers]);
+        Storage::disk('local')->put('public/medical_reports/' . $medicalReport->id . '.pdf', $pdf->output());
+        $medicalReport->file_path = 'public/medical_reports/' . $medicalReport->id . '.pdf';
+        $medicalReport->is_approved = 1;
+        $medicalReport->save();
+        session()->flash('success_msg', trans('admin.success_message'));
+        return redirect(AD . '/approve_medical_reports/');
     }
 
 }

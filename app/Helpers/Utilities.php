@@ -36,6 +36,7 @@ class Utilities
         return $file->store($path, $disk);
     }
 
+
     /**
      *  this function take image path and cut string by storage as default
      * @param $imagePath

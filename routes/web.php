@@ -203,6 +203,7 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => MRP, 'prefix' => AD], 
 
     // approve medical report
     Route::get('approve_medical_reports', 'MedicalReportController@indexApprove');
+    Route::get('approve_medical_reports/{medicalReportId}/approve', 'MedicalReportController@approveReport');
 
     // approve medical report datatable
     Route::get('approve_medical_reports_datatable', 'MedicalReportController@getApproveMedicalReportsDataTable')->name('getApproveMedicalReportsDataTable');
