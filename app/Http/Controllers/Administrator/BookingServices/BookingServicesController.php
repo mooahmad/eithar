@@ -33,10 +33,7 @@ class BookingServicesController extends Controller
         if (Gate::denies('meetings.view',new ServiceBooking())){
             return response()->view('errors.403',[],403);
         }
-        $data = [
-            'meeting_type' => $request->segment(3)
-        ];
-        return view(AD.'.meetings.index')->with($data);
+        return view(AD.'.meetings.index');
     }
 
     /**
@@ -65,19 +62,11 @@ class BookingServicesController extends Controller
      */
     public function getBookingServicesDataTable(Request $request)
     {
-//        By default get all upcoming meetings
-        $status = [config('constants.bookingStatus.inprogress')];
-
-        if ($request->meeting_type){
-            $status = [config('constants.bookingStatus.'.$request->meeting_type)];
-        }
-
         $items = ServiceBooking::where('service_bookings.id', '<>', 0)
-            ->whereIn('service_bookings.status',$status)
             ->leftjoin('services','service_bookings.service_id','services.id')
             ->join('customers','service_bookings.customer_id','customers.id')
             ->join('currencies','service_bookings.currency_id','currencies.id')
-            ->select(['service_bookings.id','service_bookings.status','service_bookings.price','service_bookings.status_desc','service_bookings.created_at','services.name_en','customers.first_name','customers.middle_name','customers.last_name','customers.national_id','customers.mobile_number','currencies.name_eng']);
+            ->select(['service_bookings.id','service_bookings.status','service_bookings.price','service_bookings.status_desc','service_bookings.created_at','services.name_en','customers.first_name','customers.middle_name','customers.last_name','customers.eithar_id','customers.national_id','customers.mobile_number','currencies.name_eng']);
         $dataTable = DataTables::of($items)
             ->editColumn('name_en',function ($item){
                 return ($item->name_en) ? $item->name_en : 'Lab Service';

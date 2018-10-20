@@ -17,9 +17,9 @@ class InvoicesPolicy
      * @param  \App\Models\Invoices  $invoices
      * @return mixed
      */
-    public function view(User $user, Invoices $invoices)
+    public function view(User $user)
     {
-        //
+        return $user->user_type === config('constants.userTypes.superAdmin');
     }
 
     /**
@@ -30,7 +30,7 @@ class InvoicesPolicy
      */
     public function create(User $user)
     {
-        return true;
+        return $user->user_type === config('constants.userTypes.superAdmin');
     }
 
     /**
@@ -40,9 +40,9 @@ class InvoicesPolicy
      * @param  \App\Models\Invoices  $invoices
      * @return mixed
      */
-    public function update(User $user, Invoices $invoices)
+    public function update(User $user)
     {
-        //
+        return $user->user_type === config('constants.userTypes.superAdmin');
     }
 
     /**
@@ -52,9 +52,9 @@ class InvoicesPolicy
      * @param  \App\Models\Invoices  $invoices
      * @return mixed
      */
-    public function delete(User $user, Invoices $invoices)
+    public function delete(User $user)
     {
-        //
+        return $user->user_type === config('constants.userTypes.superAdmin');
     }
 
     /**
@@ -64,9 +64,9 @@ class InvoicesPolicy
      * @param  \App\Models\Invoices  $invoices
      * @return mixed
      */
-    public function restore(User $user, Invoices $invoices)
+    public function restore(User $user)
     {
-        //
+        return $user->user_type === config('constants.userTypes.superAdmin');
     }
 
     /**
@@ -76,8 +76,8 @@ class InvoicesPolicy
      * @param  \App\Models\Invoices  $invoices
      * @return mixed
      */
-    public function forceDelete(User $user, Invoices $invoices)
+    public function forceDelete(User $user)
     {
-        //
+        return $user->user_type === config('constants.userTypes.superAdmin');
     }
 }

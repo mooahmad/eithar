@@ -215,11 +215,13 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => MMRP, 'prefix' => AD],
 
 Route::group(['middleware' => 'AdminAuth', 'prefix' => AD], function () {
     Route::group(['namespace' => INVN], function () {
-        Route::get('generate-invoice/{booking}', 'InvoicesController@index')->name('generate-invoice');
-        Route::post('invoice-add-item', 'InvoicesController@addItemToInvoice')->name('add-item-to-invoice');
-        Route::post('invoice-delete-item', 'InvoicesController@deleteItemToInvoice')->name('delete-item-to-invoice');
-        Route::get('invoice-pay/{invoice}', 'InvoicesController@showPayInvoice')->name('show-pay-invoice');
-        Route::post('invoice-pay', 'InvoicesController@storePayInvoice')->name('store-pay-invoice');
+        Route::get('invoices/generate/{booking}', 'InvoicesController@generateInvoice')->name('generate-invoice');
+        Route::post('invoices/add-item', 'InvoicesController@addItemToInvoice')->name('add-item-to-invoice');
+        Route::post('invoices/delete-item', 'InvoicesController@deleteItemToInvoice')->name('delete-item-to-invoice');
+        Route::get('invoices/pay/{invoice}', 'InvoicesController@showPayInvoice')->name('show-pay-invoice');
+        Route::post('invoices/pay', 'InvoicesController@storePayInvoice')->name('store-pay-invoice');
+        Route::get('invoices', 'InvoicesController@index')->name('show-invoices');
+        Route::get('get-invoices-Datatable', 'InvoicesController@getInvoicesDatatable')->name('get-invoices-Datatable');
     });
 
     Route::group(['namespace' => CUSN], function () {

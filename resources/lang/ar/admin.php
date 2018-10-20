@@ -238,4 +238,13 @@ return [
     'is_smsed' => 'SMS',
     'send_at' => 'Sent At',
     'read_at' => 'Read At',
+    'generate' => 'Generate',
+    'show-invoices' => 'Show Invoices',
+    'invoice_code' => 'Invoices Code',
+    'invoice_date' => 'Invoices Date',
+    'amount_original' => 'Amount Original',
+    'amount_after_discount' => 'Amount After Discount',
+    'amount_after_vat' => 'Amount After VAT',
+    'amount_final' => 'Amount Final',
+    'pay' => 'Pay',
 ];

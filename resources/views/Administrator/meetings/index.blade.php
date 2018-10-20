@@ -31,6 +31,7 @@
                                     <th>{{ trans('admin.full_name') }}</th>
                                     <th>{{ trans('admin.full_name') }}</th>
                                     <th>{{ trans('admin.national_id') }}</th>
+                                    <th>{{ trans('admin.eithar_id') }}</th>
                                     <th>{{ trans('admin.mobile') }}</th>
                                     <th>{{ trans('admin.price') }}</th>
                                     <th>{{ trans('admin.status') }}</th>
@@ -49,6 +50,7 @@
                                     <th>{{ trans('admin.full_name') }}</th>
                                     <th>{{ trans('admin.full_name') }}</th>
                                     <th>{{ trans('admin.national_id') }}</th>
+                                    <th>{{ trans('admin.eithar_id') }}</th>
                                     <th>{{ trans('admin.mobile') }}</th>
                                     <th>{{ trans('admin.price') }}</th>
                                     <th>{{ trans('admin.status') }}</th>
@@ -70,7 +72,6 @@
         var indexURL = "{!! route('get-meetings-Datatable') !!}";
         var deleteURL    = "{!! route('deleteServices') !!}";
         var csrfToken          = "{!! csrf_token() !!}";
-        var meeting_type          = "{{ $meeting_type }}";
     </script>
     <script src="{{ asset('public/js/custom/meetingsDataTable.js') }}"></script>
 @stop

@@ -22,6 +22,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\View;
+use Yajra\DataTables\DataTables;
 
 class InvoicesController extends Controller
 {
@@ -42,15 +44,25 @@ class InvoicesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ServiceBooking $booking)
+    public function index()
+    {
+        if (Gate::denies('invoices.view',new ServiceBooking())){
+            return response()->view('errors.403',[],403);
+        }
+        return view(AD . '.invoices.index');
+    }
+
+    /**
+     * @param ServiceBooking $booking
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function generateInvoice(ServiceBooking $booking)
     {
         $data = [
             'invoice'=>$this->createNewInvoice($booking),
-//            'services_items'=>Service::GetItemsServices()->get()->pluck('name_en','id')
             'services_items'=>Service::GetItemsServices()->get()->pluck('name_en','id')
         ];
-//        return $data['invoice']->items;
-        return view(AD . '.invoices.index')->with($data);
+        return view(AD . '.invoices.profile')->with($data);
     }
 
     /**
@@ -300,5 +312,57 @@ class InvoicesController extends Controller
             'amount_final'          => $amount_final,
         ]);
         return $invoice;
+    }
+
+    public function getInvoicesDatatable(Request $request)
+    {
+        $items = Invoice::where('invoices.id', '<>', 0)
+            ->leftjoin('customers','invoices.customer_id','customers.id')
+            ->join('currencies','invoices.currency_id','currencies.id')
+            ->select(['invoices.id','invoices.service_booking_id','invoices.is_paid','invoices.amount_original','invoices.amount_after_discount','invoices.amount_after_vat','invoices.invoice_code','invoices.invoice_date','invoices.amount_final','customers.first_name','customers.middle_name','customers.last_name','customers.eithar_id','customers.national_id','customers.mobile_number','currencies.name_eng']);
+        $dataTable = DataTables::of($items)
+            ->editColumn('full_name',function ($item){
+                return $item->first_name .' '. $item->middle_name .' '. $item->last_name;
+            })
+            ->editColumn('invoice_date',function ($item){
+                return $item->invoice_date->format('Y-m-d h:i A');
+            })
+            ->editColumn('amount_original',function ($item){
+                return $item->amount_original .' '.$item->name_eng;
+            })
+            ->editColumn('amount_after_discount',function ($item){
+                return $item->amount_after_discount .' '.$item->name_eng;
+            })
+            ->editColumn('amount_after_vat',function ($item){
+                return $item->amount_after_vat .' '.$item->name_eng;
+            })
+            ->editColumn('amount_final',function ($item){
+                return $item->amount_final .' '.$item->name_eng;
+            })
+            ->filterColumn('invoice_date', function ($query, $keyword) {
+                $query->whereRaw("DATE_FORMAT(invoices.invoice_date,'%m/%d/%Y') like ?", ["%$keyword%"]);
+            })
+            ->addColumn('status',function ($item){
+                if($item->is_paid==0){
+                    return '<span class="label label-warning label-sm text-capitalize">Pending</span>';
+                }else{
+                    return '<span class="label label-success label-sm text-capitalize">Paid</span>';
+                }
+            })
+            ->addColumn('actions', function ($item) {
+                $showURL = route('generate-invoice',[$item->service_booking_id]);
+                $URLs = [
+                    ['link'=>$showURL,'icon'=>'eye','color'=>'green'],
+                ];
+                if (Gate::allows('invoices.view')){
+                    $pay_invoice = route('show-pay-invoice',[$item->id]);
+                    $URLs[] = ['link'=>$pay_invoice,'icon'=>'money','color'=>'green'];
+                }
+                return View::make('Administrator.widgets.advancedActions', ['URLs'=>$URLs]);
+            })
+            ->rawColumns(['status','actions'])
+            ->make(true);
+
+        return $dataTable;
     }
 }

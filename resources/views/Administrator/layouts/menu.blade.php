@@ -268,35 +268,7 @@
             @endcan
             <!-- End Family Members Area -->
 
-            <!-- Start Invoices Area -->
-            @can('promo_code.view', new \App\Models\PromoCode())
-
-                {{--<li class="nav-item start {{ (Request::segment(2)=='invoices') ? 'active' :'' }}">--}}
-                {{--<a href="javascript:;" class="nav-link nav-toggle">--}}
-                {{--<i class="fa fa-file-pdf-o"></i>--}}
-                {{--<span class="title">{{ trans('admin.invoices') }}</span>--}}
-                {{--<span class="selected"></span>--}}
-                {{--<span class="arrow {{ (Request::segment(2)=='invoices') ? 'open' :'' }}"></span>--}}
-                {{--</a>--}}
-                {{--<ul class="sub-menu">--}}
-                {{--<li class="nav-item start {{ (Request::segment(2)=='invoices' && Request::segment(3)=='create') ? 'active' :'' }}">--}}
-                {{--<a href="{{ url(AD.'/invoices/create') }}" class="nav-link ">--}}
-                {{--<i class="fa fa-plus-circle"></i>--}}
-                {{--<span class="title">{{ trans('admin.add_invoices') }}</span>--}}
-                {{--</a>--}}
-                {{--</li>--}}
-                {{--<li class="nav-item start {{ (Request::is(AD.'/invoices')) ? 'active' :'' }}">--}}
-                {{--<a href="{{ url(AD.'/invoices') }}" class="nav-link ">--}}
-                {{--<i class="fa fa-eye"></i>--}}
-                {{--<span class="title">{{ trans('admin.show_invoices') }}</span>--}}
-                {{--</a>--}}
-                {{--</li>--}}
-                {{--</ul>--}}
-                {{--</li>--}}
-                @endcan
-            <!-- End Invoices Area -->
-
-                <!-- Start Booking Services Area -->
+            <!-- Start Booking Services Area -->
             @can('meetings.view')
                 <li class="nav-item start {{ (Request::segment(2)=='meetings') ? 'active' :'' }}">
                     <a href="javascript:;" class="nav-link nav-toggle">
@@ -328,6 +300,27 @@
                 </li>
                 @endcan
             <!-- End Booking Services Area -->
+
+            <!-- Start Invoices Area -->
+            @can('invoices.view')
+                <li class="nav-item start {{ (Request::segment(2)=='invoices') ? 'active' :'' }}">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-money"></i>
+                        <span class="title">{{ trans('admin.invoices') }}</span>
+                        <span class="selected"></span>
+                        <span class="arrow {{ (Request::segment(2)=='invoices') ? 'open' :'' }}"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item start {{ (Request::is(AD.'/invoices')) ? 'active' :'' }}">
+                            <a href="{{ url()->route('show-invoices') }}" class="nav-link ">
+                                <i class="fa fa-eye"></i>
+                                <span class="title">{{ trans('admin.show_invoices') }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            @endcan
+            <!-- End Invoices Area -->
 
             <!-- Start Medical reports Area -->
             @can('medical_report.view', new \App\Models\MedicalReports())
