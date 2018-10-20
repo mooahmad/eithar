@@ -4,6 +4,7 @@ namespace App\Http\Services\Adminstrator\MedicalReportModule\ClassesReport;
 
 
 use App\Helpers\Utilities;
+use App\Models\BookingMedicalReportsAnswers;
 use App\Models\MedicalReports;
 use App\Models\MedicalReportsQuestions;
 use Illuminate\Http\Request;
@@ -35,6 +36,21 @@ class MedicalReportClass
         $medicalReport->is_required = $request->input('is_required');
         $medicalReport->options_ar = serialize($request->input('options_ar', ''));
         $medicalReport->options_en = serialize($request->input('options_en', ''));
+        $medicalReport->pagination = $request->input('page');
+        $medicalReport->order = $request->input('order');
+        return $medicalReport->save();
+    }
+
+    public static function createOrUpdateMedicalReportApproveQuestion(BookingMedicalReportsAnswers $medicalReport, $request, $medicalReportId)
+    {
+        $medicalReport->booking_report_id = $medicalReportId;
+        $medicalReport->title_ar = $request->input('title_ar');
+        $medicalReport->title_en = $request->input('title_en');
+        $medicalReport->type = $request->input('type');
+        $medicalReport->is_required = $request->input('is_required');
+        $medicalReport->options_ar = serialize($request->input('options_ar', ''));
+        $medicalReport->options_en = serialize($request->input('options_en', ''));
+        $medicalReport->answer = serialize($request->input('answer', ''));
         $medicalReport->pagination = $request->input('page');
         $medicalReport->order = $request->input('order');
         return $medicalReport->save();

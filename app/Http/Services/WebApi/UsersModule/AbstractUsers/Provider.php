@@ -206,7 +206,7 @@ class Provider
         $bookingMedicalReport->service_booking_id = $bookingId;
         $bookingMedicalReport->provider_id = Auth::id();
         $bookingMedicalReport->medical_report_id = $medicalReport->id;
-        $bookingMedicalReport->is_approved = $medicalReport->is_approved;
+        $bookingMedicalReport->is_approved = 0;
         $bookingMedicalReport->customer_can_view = $medicalReport->customer_can_view;
         $bookingMedicalReport->save();
         return $bookingMedicalReport->id;

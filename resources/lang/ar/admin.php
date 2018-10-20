@@ -238,4 +238,7 @@ return [
     'is_smsed' => 'SMS',
     'send_at' => 'Sent At',
     'read_at' => 'Read At',
+    'approve_medical_reports' => 'Approve medical report',
+    'answer' => 'Answer',
+
 ];

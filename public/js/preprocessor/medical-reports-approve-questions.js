@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 74);
+/******/ 	return __webpack_require__(__webpack_require__.s = 99);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -47942,15 +47942,16 @@ module.exports = { "ar.admin": { "Lap": "Lab", "about": "About", "about_ar": "Ar
 
 /***/ }),
 /* 40 */,
-/* 41 */
+/* 41 */,
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(82)
+var __vue_script__ = __webpack_require__(107)
 /* template */
-var __vue_template__ = __webpack_require__(83)
+var __vue_template__ = __webpack_require__(108)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -47967,7 +47968,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/medical-reports/components/textInput.vue"
+Component.options.__file = "resources/assets/js/medical-reports-approve/components/textInput.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -47976,9 +47977,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-a761cbbc", Component.options)
+    hotAPI.createRecord("data-v-b487c6bc", Component.options)
   } else {
-    hotAPI.reload("data-v-a761cbbc", Component.options)
+    hotAPI.reload("data-v-b487c6bc", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -47989,7 +47990,6 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 42 */,
 /* 43 */,
 /* 44 */,
 /* 45 */,
@@ -48021,21 +48021,46 @@ module.exports = Component.exports
 /* 71 */,
 /* 72 */,
 /* 73 */,
-/* 74 */
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(75);
+module.exports = __webpack_require__(100);
 
 
 /***/ }),
-/* 75 */
+/* 100 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__vue_translations_js__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__vue_translations_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__vue_translations_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_app_vue__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_app_vue__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_app_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_app_vue__);
 __webpack_require__(13);
 
@@ -48063,15 +48088,15 @@ new Vue({
 });
 
 /***/ }),
-/* 76 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(77)
+var __vue_script__ = __webpack_require__(102)
 /* template */
-var __vue_template__ = __webpack_require__(98)
+var __vue_template__ = __webpack_require__(123)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48088,7 +48113,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/medical-reports/components/app.vue"
+Component.options.__file = "resources/assets/js/medical-reports-approve/components/app.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -48097,9 +48122,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7bd53166", Component.options)
+    hotAPI.createRecord("data-v-41d613e6", Component.options)
   } else {
-    hotAPI.reload("data-v-7bd53166", Component.options)
+    hotAPI.reload("data-v-41d613e6", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48110,12 +48135,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 77 */
+/* 102 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__swapper_vue__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__swapper_vue__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__swapper_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__swapper_vue__);
 //
 //
@@ -48134,15 +48159,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 78 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(79)
+var __vue_script__ = __webpack_require__(104)
 /* template */
-var __vue_template__ = __webpack_require__(97)
+var __vue_template__ = __webpack_require__(122)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48159,7 +48184,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/medical-reports/components/swapper.vue"
+Component.options.__file = "resources/assets/js/medical-reports-approve/components/swapper.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -48168,9 +48193,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-27aebeef", Component.options)
+    hotAPI.createRecord("data-v-657a616f", Component.options)
   } else {
-    hotAPI.reload("data-v-27aebeef", Component.options)
+    hotAPI.reload("data-v-657a616f", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48181,20 +48206,20 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 79 */
+/* 104 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__single__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__single__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__single___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__single__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__multiple__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__multiple__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__multiple___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__multiple__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__text__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__text__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__text___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__text__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__longText__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__longText__ = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__longText___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__longText__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dateTime__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dateTime__ = __webpack_require__(119);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dateTime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__dateTime__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_axios__);
@@ -48289,7 +48314,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var thisVue = this;
         var medicalReportId = $('input[name="id"]').val();
         if (medicalReportId != '') {
-            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post(baseUrl + '/Administrator/medical_reports/questions/options', {
+            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post(baseUrl + '/Administrator/approve_medical_reports/questions_answers/options', {
                 id: medicalReportId
             }).then(function (response) {
                 thisVue.data.medicalReport = response.data;
@@ -48311,15 +48336,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 80 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(81)
+var __vue_script__ = __webpack_require__(106)
 /* template */
-var __vue_template__ = __webpack_require__(84)
+var __vue_template__ = __webpack_require__(109)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48336,7 +48361,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/medical-reports/components/single.vue"
+Component.options.__file = "resources/assets/js/medical-reports-approve/components/single.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -48345,9 +48370,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-d97baada", Component.options)
+    hotAPI.createRecord("data-v-74383813", Component.options)
   } else {
-    hotAPI.reload("data-v-d97baada", Component.options)
+    hotAPI.reload("data-v-74383813", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48358,12 +48383,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 81 */
+/* 106 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__textInput__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__textInput__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__textInput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__textInput__);
 //
 //
@@ -48407,7 +48432,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 82 */
+/* 107 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48428,7 +48453,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 83 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48469,12 +48494,12 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-a761cbbc", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-b487c6bc", module.exports)
   }
 }
 
 /***/ }),
-/* 84 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48526,20 +48551,20 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-d97baada", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-74383813", module.exports)
   }
 }
 
 /***/ }),
-/* 85 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(86)
+var __vue_script__ = __webpack_require__(111)
 /* template */
-var __vue_template__ = __webpack_require__(87)
+var __vue_template__ = __webpack_require__(112)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48556,7 +48581,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/medical-reports/components/multiple.vue"
+Component.options.__file = "resources/assets/js/medical-reports-approve/components/multiple.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -48565,9 +48590,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-a455f0ca", Component.options)
+    hotAPI.createRecord("data-v-297db51b", Component.options)
   } else {
-    hotAPI.reload("data-v-a455f0ca", Component.options)
+    hotAPI.reload("data-v-297db51b", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48578,12 +48603,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 86 */
+/* 111 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__textInput__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__textInput__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__textInput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__textInput__);
 //
 //
@@ -48627,7 +48652,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 87 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48679,20 +48704,20 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-a455f0ca", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-297db51b", module.exports)
   }
 }
 
 /***/ }),
-/* 88 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(89)
+var __vue_script__ = __webpack_require__(114)
 /* template */
-var __vue_template__ = __webpack_require__(90)
+var __vue_template__ = __webpack_require__(115)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48709,7 +48734,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/medical-reports/components/text.vue"
+Component.options.__file = "resources/assets/js/medical-reports-approve/components/text.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -48718,9 +48743,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-fff97c90", Component.options)
+    hotAPI.createRecord("data-v-7a1eaf38", Component.options)
   } else {
-    hotAPI.reload("data-v-fff97c90", Component.options)
+    hotAPI.reload("data-v-7a1eaf38", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48731,7 +48756,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 89 */
+/* 114 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48745,7 +48770,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
-/* 90 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48760,20 +48785,20 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-fff97c90", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-7a1eaf38", module.exports)
   }
 }
 
 /***/ }),
-/* 91 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(92)
+var __vue_script__ = __webpack_require__(117)
 /* template */
-var __vue_template__ = __webpack_require__(93)
+var __vue_template__ = __webpack_require__(118)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48790,7 +48815,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/medical-reports/components/longText.vue"
+Component.options.__file = "resources/assets/js/medical-reports-approve/components/longText.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -48799,9 +48824,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-585e8258", Component.options)
+    hotAPI.createRecord("data-v-4f796c54", Component.options)
   } else {
-    hotAPI.reload("data-v-585e8258", Component.options)
+    hotAPI.reload("data-v-4f796c54", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48812,7 +48837,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 92 */
+/* 117 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48826,7 +48851,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
-/* 93 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48841,20 +48866,20 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-585e8258", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-4f796c54", module.exports)
   }
 }
 
 /***/ }),
-/* 94 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(95)
+var __vue_script__ = __webpack_require__(120)
 /* template */
-var __vue_template__ = __webpack_require__(96)
+var __vue_template__ = __webpack_require__(121)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48871,7 +48896,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/medical-reports/components/dateTime.vue"
+Component.options.__file = "resources/assets/js/medical-reports-approve/components/dateTime.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -48880,9 +48905,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7a1c58b4", Component.options)
+    hotAPI.createRecord("data-v-3e9a8126", Component.options)
   } else {
-    hotAPI.reload("data-v-7a1c58b4", Component.options)
+    hotAPI.reload("data-v-3e9a8126", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48893,7 +48918,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 95 */
+/* 120 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48907,7 +48932,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
-/* 96 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48922,12 +48947,12 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-7a1c58b4", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-3e9a8126", module.exports)
   }
 }
 
 /***/ }),
-/* 97 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -49052,12 +49077,12 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-27aebeef", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-657a616f", module.exports)
   }
 }
 
 /***/ }),
-/* 98 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -49072,7 +49097,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-7bd53166", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-41d613e6", module.exports)
   }
 }
 

@@ -37,7 +37,7 @@ class Registration implements IRegistration
                 new MessageBag([
                     "message" => trans('errors.operationFailed')
                 ]));
-        $newCustomer->eithar_id = "Etr-0000 {$newCustomer->id}";
+        $newCustomer->eithar_id = "Etr-0000{$newCustomer->id}";
         $newCustomer->save();
         $customerOperations = new \App\Http\Services\WebApi\UsersModule\AbstractUsers\Customer();
         $customerOperations->updateCustomerToken($newCustomer, $request);

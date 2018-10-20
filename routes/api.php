@@ -91,8 +91,6 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/{id}/rate', 'ProviderController@rate');
         Route::post('/{id}/review', 'ProviderController@review');
         Route::post('/{id}/view', 'ProviderController@view');
-        Route::get('/bookings/{id}/reports', 'ProviderController@getBookingAvailableReports');
-        Route::post('/bookings/{id}/addreport', 'ProviderController@addBookingReport');
     }));
 
     Route::group(['namespace' => 'WebApi\PromoCodesModule', 'prefix' => 'promo_codes'], (function () {

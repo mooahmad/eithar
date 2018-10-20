@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MedicalReports\CreateMedicalReportRequest;
 use App\Http\Requests\MedicalReports\UpdateMedicalReportRequest;
 use App\Http\Services\Adminstrator\MedicalReportModule\ClassesReport\MedicalReportClass;
+use App\Models\BookingMedicalReports;
+use App\Models\BookingMedicalReportsAnswers;
 use App\Models\MedicalReports;
 use App\Models\MedicalReportsQuestions;
 use App\Models\Service;
@@ -267,6 +269,123 @@ class MedicalReportController extends Controller
         $medicalReport->options_ar = unserialize($medicalReport->options_ar);
         $medicalReport->options_en = unserialize($medicalReport->options_en);
         return response()->json($medicalReport);
+    }
+
+    // approve medical reports section
+
+    public function indexApprove()
+    {
+        if (Gate::denies('medical_report.view', new MedicalReports())) {
+            return response()->view('errors.403', [], 403);
+        }
+        return view(AD . '.medical_reports.index_approve');
+    }
+
+    public function getApproveMedicalReportsDataTable()
+    {
+        $medicalReports = BookingMedicalReports::where('id', '<>', null)->where('is_approved', 0);
+        $dataTable = DataTables::of($medicalReports)
+            ->addColumn('actions', function ($medicalReport) {
+                $medicalReportId = $medicalReport->id;
+                $questionsURL = url(AD . '/approve_medical_reports/' . $medicalReportId . '/questions_answers');
+                return View::make('Administrator.medical_reports.widgets.dataTableQuestionsAction', [
+                    'questionsURL' => $questionsURL]);
+            })
+            ->rawColumns(['actions'])
+            ->make(true);
+        return $dataTable;
+    }
+
+    public function deleteMedicalReportsApprove(Request $request)
+    {
+        if (Gate::denies('medical_report.delete', new MedicalReports())) {
+            return response()->view('errors.403', [], 403);
+        }
+        $ids = $request->input('ids');
+        return BookingMedicalReports::whereIn('id', $ids)->delete();
+    }
+
+    // approve medical reports questions section
+
+    public function showMedicalReportsApproveQuestions($id)
+    {
+        $data = [
+            'medicalReportId' => $id,
+        ];
+        return view(AD . '.medical_reports.medical_reports_question_index_approve')->with($data);
+    }
+
+    public function getMedicalReportsApproveQuestionsDatatable($id)
+    {
+        $medicalReportsQuestions = BookingMedicalReportsAnswers::where('booking_report_id', $id);
+        $dataTable = DataTables::of($medicalReportsQuestions)
+            ->addColumn('actions', function ($medicalReportsQuestion) use ($id) {
+                $editURL = url(AD . '/approve_medical_reports/' . $id . '/questions_answers/' . $medicalReportsQuestion->id . '/edit');
+                return View::make('Administrator.widgets.dataTablesActions', ['editURL' => $editURL]);
+            })
+            ->rawColumns(['actions'])
+            ->make(true);
+        return $dataTable;
+    }
+
+    public function editMedicalReportsApproveQuestions(Request $request, $medicalReportId, $medicalReportQuestionId)
+    {
+        $pages = range(0, config('constants.max_questionnaire_pages'));
+        unset($pages[0]);
+        $unAvailablePages = BookingMedicalReportsAnswers::where('booking_report_id', $medicalReportId)
+            ->groupBy('pagination')
+            ->havingRaw('count(pagination) >= ' . config('constants.max_questionnaire_per_page'))
+            ->pluck('pagination')->toArray();
+        $medicalReportQuestion = BookingMedicalReportsAnswers::find($medicalReportQuestionId);
+        $medicalReportQuestion->answer = unserialize($medicalReportQuestion->answer);
+        $data = [
+            'medicalReportId' => $medicalReportId,
+            'pages' => $pages,
+            'unAvailablePages' => $unAvailablePages,
+            'medicalReportQuestion' => $medicalReportQuestion,
+            'formRoute' => route('updateMedicalReportsApproveQuestions', ['id' => $medicalReportId, 'medicalReportQuestionId' => $medicalReportQuestionId]),
+            'submitBtn' => trans('admin.update')
+        ];
+        return view(AD . '.medical_reports.medical_reports_question_form_approve')->with($data);
+    }
+
+    public function updateMedicalReportsApproveQuestions(UpdateMedicalReportRequest $request, $medicalReportId, $medicalReportQuestionId)
+    {
+        $medicalReportQuestion = BookingMedicalReportsAnswers::find($medicalReportQuestionId);
+        MedicalReportClass::createOrUpdateMedicalReportApproveQuestion($medicalReportQuestion, $request, $medicalReportId);
+        session()->flash('success_msg', trans('admin.success_message'));
+        return redirect(AD . '/approve_medical_reports/' . $medicalReportId . '/questions_answers');
+    }
+
+    public function getAvailableMedicalReportsApproveQuestionsPageOrders(Request $request, $medicalReportId, $page)
+    {
+        $ordersCount = range(0, config('constants.max_questionnaire_per_page'));
+        unset($ordersCount[0]);
+        $unAvailableOrders = BookingMedicalReportsAnswers::where([['booking_report_id', $medicalReportId], ['pagination', $page]])
+            ->pluck('order')->toArray();
+        $data = [
+            'ordersCount' => $ordersCount,
+            'unAvailableOrders' => $unAvailableOrders
+        ];
+        return response()->json($data);
+    }
+
+    public function getMedicalReportsApproveQuestionsOptions(Request $request)
+    {
+        $medicalReportId = $request->input('id');
+        $medicalReport = BookingMedicalReportsAnswers::find($medicalReportId);
+        $medicalReport->options_ar = unserialize($medicalReport->options_ar);
+        $medicalReport->options_en = unserialize($medicalReport->options_en);
+        return response()->json($medicalReport);
+    }
+
+    public function deleteMedicalReportsApproveQuestions(Request $request)
+    {
+        if (Gate::denies('service.delete', new Service())) {
+            return response()->view('errors.403', [], 403);
+        }
+        $ids = $request->input('ids');
+        return BookingMedicalReportsAnswers::whereIn('id', $ids)->delete();
     }
 
 }
