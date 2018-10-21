@@ -12,8 +12,11 @@ use App\Models\BookingMedicalReports;
 use App\Models\BookingMedicalReportsAnswers;
 use App\Models\MedicalReports;
 use App\Models\MedicalReportsQuestions;
+use App\Models\PushNotificationsTypes;
 use App\Models\Service;
+use App\Notifications\MedicalReportAdded;
 use Barryvdh\DomPDF\PDF;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
@@ -406,6 +409,12 @@ class MedicalReportController extends Controller
         $medicalReport->file_path = 'public/medical_reports/' . $medicalReport->id . '.pdf';
         $medicalReport->is_approved = 1;
         $medicalReport->save();
+        if($medicalReport->customer_can_view === 1){
+            $payload = PushNotificationsTypes::find(config('constants.pushTypes.medicalReportAdded'));
+            $payload->report_id   = $medicalReport->id;
+            $payload->send_at      = Carbon::now()->format('Y-m-d H:m:s');
+            $medicalReport->serviceBooking->customer->notify(new MedicalReportAdded($payload));
+        }
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/approve_medical_reports/');
     }

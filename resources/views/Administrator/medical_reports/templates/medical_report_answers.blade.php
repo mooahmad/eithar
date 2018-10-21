@@ -7,17 +7,39 @@
           name="description"/>
     <meta content="HUD Systems" name="author"/>
     <style>
+        /*important for arabic*/
         body {
             font-family: DejaVu Sans;
         }
     </style>
+    <style>
+        /*table style*/
+        .tr-margin{
+            margin: 5px;
+        }
+    </style>
+    <style>
+        /*general style*/
+        .heavy-font{
+            font-weight: bold;
+        }
+        .full-width{
+            width: 100%;
+        }
+        .text-center{
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
+<header class="full-width text-center">
+    <h4 class="heavy-font">Medical Report</h4>
+</header>
 <table>
     @foreach($answers as $answer)
-        <tr>
-            <td>{{ $answer->title_en }}</td>
-            <td>{{ $answer->answer }}</td>
+        <tr class="tr-margin">
+            <td colspan="2">{{ $answer->title_en }} :</td>
+            <td colspan="2">{{ $answer->answer }}</td>
         </tr>
     @endforeach
 </table>
