@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Administrator\MedicalReports;
 
 
-use App\Helpers\Utilities;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MedicalReports\CreateMedicalReportRequest;
 use App\Http\Requests\MedicalReports\UpdateMedicalReportRequest;
@@ -15,12 +14,11 @@ use App\Models\MedicalReportsQuestions;
 use App\Models\PushNotificationsTypes;
 use App\Models\Service;
 use App\Notifications\MedicalReportAdded;
-use Barryvdh\DomPDF\PDF;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
+use niklasravnsborg\LaravelPdf\Facades\Pdf;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Http\Request;
 
@@ -403,8 +401,7 @@ class MedicalReportController extends Controller
         $answers->each(function ($answer) {
             $answer->answer = unserialize($answer->answer);
         });
-        $pdf = App::make('dompdf.wrapper');
-        $pdf->loadView(AD . '.medical_reports.templates.medical_report_answers', ['answers' => $answers]);
+        $pdf = Pdf::loadView(AD . '.medical_reports.templates.medical_report_answers', ['answers' => $answers]);
         Storage::disk('local')->put('public/medical_reports/' . $medicalReport->id . '.pdf', $pdf->output());
         $medicalReport->file_path = 'public/medical_reports/' . $medicalReport->id . '.pdf';
         $medicalReport->is_approved = 1;

@@ -168,7 +168,7 @@ return [
         Mariuzzo\LaravelJsLocalization\LaravelJsLocalizationServiceProvider::class,
         Edujugon\PushNotification\Providers\PushNotificationServiceProvider::class,
         SMartins\PassportMultiauth\Providers\MultiauthServiceProvider::class,
-        Barryvdh\DomPDF\ServiceProvider::class,
+        niklasravnsborg\LaravelPdf\PdfServiceProvider::class
     ],
 
     /*
@@ -222,7 +222,7 @@ return [
         'Guzzle' => Kozz\Laravel\Facades\Guzzle::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'PushNotification' => Edujugon\PushNotification\Facades\PushNotification::class,
-        'PDF' => Barryvdh\DomPDF\Facade::class,
+        'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class
     ],
 
 ];

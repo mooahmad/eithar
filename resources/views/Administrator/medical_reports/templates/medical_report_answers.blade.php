@@ -9,7 +9,7 @@
     <style>
         /*important for arabic*/
         body {
-            font-family: DejaVu Sans;
+            font-family: 'examplefont', sans-serif;
         }
     </style>
     <style>
