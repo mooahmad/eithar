@@ -79,7 +79,7 @@
 
                                         <div class="form-group">
                                             <label for="name" class="control-label">
-                                                {{ trans('admin.desc_ar') }}
+                                                {{ trans('admin.desc_ar') }} <span class="hint required" style="display: none">Hint: add @day and @time to set them.</span>
                                             </label>
                                             {!! Form::textarea('desc_ar', '', array('id'=>'desc_ar', 'class'=>'form-control','rows' => 2)) !!}
                                             @if($errors->has('desc_ar'))
@@ -89,7 +89,7 @@
 
                                         <div class="form-group">
                                             <label for="name" class="control-label">
-                                                {{ trans('admin.desc_en') }}
+                                                {{ trans('admin.desc_en') }} <span class="hint required" style="display: none">Hint: add @day and @time to set them.</span>
                                             </label>
                                             {!! Form::textarea('desc_en', '', array('id'=>'desc_en', 'class'=>'form-control','rows' => 2)) !!}
                                             @if($errors->has('desc_en'))

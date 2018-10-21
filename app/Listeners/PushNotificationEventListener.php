@@ -42,7 +42,13 @@ class PushNotificationEventListener
                     ];
                     if (isset($data->service_type))
                         $details['service_type'] = $data->service_type;
-                    if($customer->pushNotification) {
+                    if (isset($data->appointment_date)) {
+                        $day = Carbon::parse($data->appointment_date)->format('Y-m-d');
+                        $time = Carbon::parse($data->appointment_date)->format('g:i A');
+                        $data->{'desc_' . $data->lang} = str_replace('@day', $day, $data->{'desc_' . $data->lang});
+                        $data->{'desc_' . $data->lang} = str_replace('@time', $time, $data->{'desc_' . $data->lang});
+                    }
+                    if ($customer->pushNotification) {
                         $tokens[] = $customer->pushNotification->token;
                         $pushData = Utilities::buildNotification($data->{'title_' . $data->lang}, $data->{'desc_' . $data->lang}, 0, $details);
                         Utilities::pushNotification($tokens, $pushData);

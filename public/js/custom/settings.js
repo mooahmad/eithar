@@ -8,6 +8,10 @@ $(document).ready(function () {
                 $('#pushTypeTitleEN').val(res.title_en);
                 $('#desc_ar').val(res.title_ar);
                 $('#desc_en').val(res.title_en);
+                if(res.type === 3 || res.type === 4 )
+                    $('.hint').show();
+                else
+                    $('.hint').hide();
             },
             error: function () {
 

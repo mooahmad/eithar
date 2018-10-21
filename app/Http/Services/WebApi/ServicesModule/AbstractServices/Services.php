@@ -208,6 +208,7 @@ class Services implements IService
         $pushTypeData = PushNotificationsTypes::find(config('constants.pushTypes.appointmentReminder'));
         $pushTypeData->service_type = $serviceType;
         $pushTypeData->booking_id = $appointmentId;
+        $pushTypeData->appointment_date = $startDate;
         $pushTypeData->send_at = Carbon::parse($startDate)->subHours(3)->format('Y-m-d H:m:s');
         if (strtotime($pushTypeData->send_at) > strtotime($now))
             Auth::user()->notify(new AppointmentReminder($pushTypeData));
@@ -292,18 +293,21 @@ class Services implements IService
             // push notification reminders
             if ($appointmentDate != null && $isLap) {
                 $pushTypeData->service_type = 4;
-                Auth::user()->notify(new AppointmentConfirmed($pushTypeData));
                 $startDate = LapCalendar::find($appointmentDate)->start_date;
+                $pushTypeData->appointment_date = $startDate;
+                Auth::user()->notify(new AppointmentConfirmed($pushTypeData));
                 $this->notifyBookingReminders($bookingAppointment->id, $startDate, 4);
             } elseif ($appointmentDate != null && $providerId == null && !$isLap) {
                 $pushTypeData->service_type = 1;
-                Auth::user()->notify(new AppointmentConfirmed($pushTypeData));
                 $startDate = ServicesCalendar::find($appointmentDate)->start_date;
+                $pushTypeData->appointment_date = $startDate;
+                Auth::user()->notify(new AppointmentConfirmed($pushTypeData));
                 $this->notifyBookingReminders($bookingAppointment->id, $startDate, 1);
             } elseif ($appointmentDate != null && $providerId != null && !$isLap) {
                 $pushTypeData->service_type = 5;
-                Auth::user()->notify(new AppointmentConfirmed($pushTypeData));
                 $startDate = ProvidersCalendar::find($appointmentDate)->start_date;
+                $pushTypeData->appointment_date = $startDate;
+                Auth::user()->notify(new AppointmentConfirmed($pushTypeData));
                 $this->notifyBookingReminders($bookingAppointment->id, $startDate, 5);
             }
         } elseif ($appointmentDates != []) {
@@ -315,6 +319,7 @@ class Services implements IService
                 // push notifications
                 $startDate = ServicesCalendar::find($appointmentDate)->start_date;
                 $pushTypeData->service_type = 2;
+                $pushTypeData->appointment_date = $startDate;
                 Auth::user()->notify(new AppointmentConfirmed($pushTypeData));
                 $this->notifyBookingReminders($serviceBookingAppointment->id, $startDate, 2);
             }
