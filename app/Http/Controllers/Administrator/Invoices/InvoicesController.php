@@ -46,7 +46,7 @@ class InvoicesController extends Controller
      */
     public function index()
     {
-        if (Gate::denies('invoices.view',new ServiceBooking())){
+        if (Gate::denies('invoices.view')){
             return response()->view('errors.403',[],403);
         }
         return view(AD . '.invoices.index');
@@ -123,6 +123,9 @@ class InvoicesController extends Controller
      */
     public function showPayInvoice(Invoice $invoice)
     {
+        if (Gate::denies('invoices.view')){
+            return response()->view('errors.403',[],403);
+        }
         if ($this->checkInvoiceItemsStatus($invoice)){
             session()->flash('error_msg', trans('admin.invoice_items_pending'));
             return redirect()->route('generate-invoice',['booking'=>$invoice->booking_service->id]);
@@ -143,6 +146,9 @@ class InvoicesController extends Controller
      */
     public function storePayInvoice(PayInvoiceRequest $request)
     {
+        if (Gate::denies('invoices.update')){
+            return response()->view('errors.403',[],403);
+        }
 //        Now update invoice to be paid
         $invoice = Invoice::findOrFail($request->input('invoice_id'));
         $invoice->update([
@@ -150,6 +156,7 @@ class InvoicesController extends Controller
            'payment_method'=>$request->input('payment_method'),
            'payment_transaction_number'=>$request->input('payment_transaction_number'),
            'provider_comment'=>$request->input('provider_comment'),
+           'admin_comment'=>$request->input('admin_comment'),
         ]);
 
         session()->flash('success_msg', trans('admin.success_message'));
@@ -342,7 +349,7 @@ class InvoicesController extends Controller
             ->filterColumn('invoice_date', function ($query, $keyword) {
                 $query->whereRaw("DATE_FORMAT(invoices.invoice_date,'%m/%d/%Y') like ?", ["%$keyword%"]);
             })
-            ->addColumn('status',function ($item){
+            ->addColumn('is_paid',function ($item){
                 if($item->is_paid==0){
                     return '<span class="label label-warning label-sm text-capitalize">Pending</span>';
                 }else{
@@ -350,17 +357,18 @@ class InvoicesController extends Controller
                 }
             })
             ->addColumn('actions', function ($item) {
-                $showURL = route('generate-invoice',[$item->service_booking_id]);
-                $URLs = [
-                    ['link'=>$showURL,'icon'=>'eye','color'=>'green'],
-                ];
-                if (Gate::allows('invoices.view')){
-                    $pay_invoice = route('show-pay-invoice',[$item->id]);
-                    $URLs[] = ['link'=>$pay_invoice,'icon'=>'money','color'=>'green'];
+                if (Gate::allows('invoices.view')) {
+                    if ($item->is_paid==0) {
+                        $pay_invoice = route('show-pay-invoice', [$item->id]);
+                        $URLs[] = ['link' => $pay_invoice, 'icon' => 'money'];
+                    }
+
+                    $showURL = route('generate-invoice', [$item->service_booking_id]);
+                    $URLs[] = ['link' => $showURL, 'icon' => 'eye', 'color' => 'green'];
+                    return View::make('Administrator.widgets.advancedActions', ['URLs'=>$URLs]);
                 }
-                return View::make('Administrator.widgets.advancedActions', ['URLs'=>$URLs]);
             })
-            ->rawColumns(['status','actions'])
+            ->rawColumns(['is_paid','actions'])
             ->make(true);
 
         return $dataTable;

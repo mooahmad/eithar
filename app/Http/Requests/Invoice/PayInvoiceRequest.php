@@ -32,6 +32,7 @@ class PayInvoiceRequest extends FormRequest
             ],
             'invoice_id'=>'required|integer',
             'provider_comment'=>'required|min:2',
+            'admin_comment'=>'required|min:2',
         ];
         if ($this->payment_method !=1){
             $rules['payment_transaction_number']='required';

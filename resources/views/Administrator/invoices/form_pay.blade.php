@@ -69,6 +69,23 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label for="admin_comment" class="col-md-3 control-label">
+                                {{ trans('admin.admin_comment') }} <span class="required">* </span>
+                            </label>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-user-md"></i>
+                                    </span>
+                                    {!! Form::textarea('admin_comment',old('admin_comment'), array('id'=>'admin_comment', 'class'=>'form-control','placeholder'=>trans('admin.admin_comment'),'required'=>'required')) !!}
+                                </div>
+                                @if($errors->has('admin_comment'))
+                                    <span class="help-block text-danger">{{ $errors->first('admin_comment') }}</span>
+                                @endif
+                            </div>
+                        </div>
+
                     </div>
                     <div class="form-actions">
                         <div class="row">

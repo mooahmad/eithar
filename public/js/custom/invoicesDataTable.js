@@ -43,7 +43,7 @@ function datatable() {
             {data: 'amount_after_discount', name: 'invoices.amount_after_discount'},
             {data: 'amount_after_vat', name: 'invoices.amount_after_vat'},
             {data: 'amount_final', name: 'invoices.amount_final'},
-            {data: 'status', name: 'invoices.is_paid'},
+            {data: 'is_paid', name: 'invoices.is_paid'},
             {data: 'invoice_date', name: 'invoices.invoice_date'},
             {
                 searchable: false,

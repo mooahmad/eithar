@@ -45,7 +45,6 @@ class BookingServicesController extends Controller
         if (Gate::denies('meetings.view',new ServiceBooking())){
             return response()->view('errors.403',[],403);
         }
-
         $data = [
             'booking'=>$booking,
             'booking_details'=>$this->getBookingDetails($booking),
@@ -130,11 +129,11 @@ class BookingServicesController extends Controller
             'price'=>$booking->price,
             'currency'=>$booking->currency->name_eng,
         ];
-
+        $service = $booking->service()->withTrashed()->first();
 //        in case Provider
-        if (!empty($booking->service) && $booking->service->type == 5){
+        if (!empty($service) && $service->type == 5){
             $provider_calendar = ProvidersCalendar::find($booking->service_appointments->first()->slot_id);
-            $booking_details['service_name']    = $booking->provider->full_name .' ('. $booking->service->type_desc.')';
+            $booking_details['service_name']    = $booking->provider->full_name .' ('. $service->type_desc.')';
             $booking_details['provider_id']     = [$booking->provider->id => $booking->provider->full_name];
             $booking_details['is_provider']     = true;
             $booking_details['original_amount'] = $booking->provider->price;
@@ -143,7 +142,7 @@ class BookingServicesController extends Controller
         }
 
 //        in case Lap Service
-        if (empty($booking->service) && $booking->is_lap==1){
+        if (empty($service) && $booking->is_lap==1){
             $lap_calendar = LapCalendar::findOrFail($booking->service_appointments->first()->slot_id);
             $lap_services = $booking->load('booking_lap_services.service')->booking_lap_services;
             $total_amount = 0;
@@ -161,12 +160,12 @@ class BookingServicesController extends Controller
         }
 
 //        in case one time visit and package
-        if (!empty($booking->service) && ($booking->service->type == 1 || $booking->service->type == 2)){
+        if (!empty($service) && ($service->type == 1 || $service->type == 2)){
             $package_oneTime_calendar = ServicesCalendar::findOrFail($booking->service_appointments->first()->slot_id);
-            $booking_details['service_name']    = $booking->service->name_en .' ('. $booking->service->type_desc.')';
-            $booking_details['service_id']      = [$booking->service->id => $booking->service->name_en];
-            $booking_details['service_price']   = [$booking->service->id => $booking->service->price];
-            $booking_details['original_amount'] = $booking->service->price;
+            $booking_details['service_name']    = $service->name_en .' ('. $service->type_desc.')';
+            $booking_details['service_id']      = [$service->id => $service->name_en];
+            $booking_details['service_price']   = [$service->id => $service->price];
+            $booking_details['original_amount'] = $service->price;
             $booking_details['start_date']      = Carbon::parse($package_oneTime_calendar->start_date)->format('Y-m-d h:i A');
             $booking_details['end_date']        = Carbon::parse($package_oneTime_calendar->end_date)->format('Y-m-d h:i A');
 

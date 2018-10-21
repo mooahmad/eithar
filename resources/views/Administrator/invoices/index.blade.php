@@ -24,7 +24,7 @@
                                     <th>{{ trans('admin.amount_after_discount') }}</th>
                                     <th>{{ trans('admin.amount_after_vat') }}</th>
                                     <th>{{ trans('admin.amount_final') }}</th>
-                                    <th>{{ trans('admin.status') }}</th>
+                                    <th>{{ trans('admin.is_paid') }}</th>
                                     <th>{{ trans('admin.invoice_date') }}</th>
                                     <th>{{ trans('admin.actions') }}</th>
                                 </tr>
@@ -44,7 +44,7 @@
                                 <th>{{ trans('admin.amount_after_discount') }}</th>
                                 <th>{{ trans('admin.amount_after_vat') }}</th>
                                 <th>{{ trans('admin.amount_final') }}</th>
-                                <th>{{ trans('admin.status') }}</th>
+                                <th>{{ trans('admin.is_paid') }}</th>
                                 <th>{{ trans('admin.invoice_date') }}</th>
                                 <th>{{ trans('admin.actions') }}</th>
                             </tr>
