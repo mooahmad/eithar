@@ -103,6 +103,7 @@ Route::middleware('auth:api')->group(function () {
 Route::middleware('auth:provider')->group(function () {
     Route::group(['namespace' => 'WebApi\UsersModule', 'prefix' => 'providers'], (function () {
         Route::get('logoutProvider', 'ProviderController@logoutProvider');
+        Route::post('editProfile', 'ProviderController@editProfile');
         Route::get('/bookings/{id}/reports', 'ProviderController@getBookingAvailableReports');
         Route::get('/bookings/getBookingReportQuestions/{ReportId}/{page}', 'ProviderController@getBookingReportQuestions');
         Route::post('/bookings/{bookingId}/addReport', 'ProviderController@addBookingReport');

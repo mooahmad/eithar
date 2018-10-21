@@ -118,4 +118,9 @@ class ProviderStrategy
     {
         return $this->strategy->joinUs($request);
     }
+
+    public function editProfile(Request $request)
+    {
+        return $this->strategy->editProfile($request);
+    }
 }

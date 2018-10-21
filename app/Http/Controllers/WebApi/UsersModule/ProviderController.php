@@ -138,4 +138,10 @@ class ProviderController extends Controller
         return $providerStrategy->joinUs($request);
     }
 
+    public function editProfile(Request $request)
+    {
+        $providerStrategy = new ProviderStrategy(ApiHelpers::requestType($request));
+        return $providerStrategy->editProfile($request);
+    }
+
 }

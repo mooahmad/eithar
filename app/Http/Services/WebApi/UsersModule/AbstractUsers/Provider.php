@@ -576,6 +576,7 @@ class Provider
         $email = $request->input('email');
         $mobile = $request->input('mobile_number');
         $nationalId = $request->input('national_id');
+        $speciality = $request->input('speciality');
         $cityId = $request->input('city_id');
         $joinUs = new JoinUs();
         $joinUs->full_name = $fullName;
@@ -583,7 +584,33 @@ class Provider
         $joinUs->mobile_number = $mobile;
         $joinUs->national_id = $nationalId;
         $joinUs->city_id = $cityId;
+        $joinUs->speciality = $speciality;
         $joinUs->save();
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([]));
+    }
+
+    public function editProfile(Request $request)
+    {
+        $provider = Auth::user();
+        $provider->title_ar = $request->input('title_ar');
+        $provider->title_en = $request->input('title_en');
+        $provider->first_name_ar = $request->input('first_name_ar');
+        $provider->first_name_en = $request->input('first_name_en');
+        $provider->last_name_ar = $request->input('last_name_ar');
+        $provider->last_name_en = $request->input('last_name_en');
+        $provider->email = $request->input('email');
+        $provider->mobile_number = $request->input('mobile_number');
+        $provider->speciality_area_ar = $request->input('speciality_area_ar');
+        $provider->speciality_area_en = $request->input('speciality_area_en');
+        $provider->video = $request->input('video');
+        $provider->about_ar = $request->input('about_ar');
+        $provider->about_en = $request->input('about_en');
+        $provider->experience_ar = $request->input('experience_ar');
+        $provider->experience_en = $request->input('experience_en');
+        $provider->education_ar = $request->input('education_ar');
+        $provider->education_en = $request->input('education_en');
+        $provider->save();
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([]));
     }

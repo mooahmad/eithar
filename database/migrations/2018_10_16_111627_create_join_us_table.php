@@ -19,6 +19,7 @@ class CreateJoinUsTable extends Migration
             $table->string('email', 255);
             $table->string('mobile_number', 255);
             $table->string('national_id', 255);
+            $table->string('speciality', 255)->nullable();
             $table->unsignedInteger('city_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
