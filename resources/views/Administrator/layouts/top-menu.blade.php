@@ -306,11 +306,11 @@
             <ul class="dropdown-menu dropdown-menu-default">
                 <li>
                     @if(auth()->user())
-                        <a href="{{ url(AD.'/admins/'.auth()->user()->id.'/edit') }}">
+                        <a href="{{ url()->route('edit_admin',[auth()->user()->id]) }}">
                             <i class="icon-user"></i> My Profile
                         </a>
                         @else
-                        <a href="{{ url(AD.'/providers/'.auth()->guard('provider-web')->user()->id.'/edit') }}">
+                        <a href="{{ url()->route('edit_provider',[auth()->guard('provider-web')->user()->id]) }}">
                             <i class="icon-user"></i> My Profile
                         </a>
                     @endif
@@ -338,11 +338,11 @@
                 </li>
                 <li>
                     @if(auth()->user())
-                        <a href="{{ url(AD.'/logout') }}">
+                        <a href="{{ url()->route('Logout') }}">
                             <i class="icon-key"></i> {{ trans('admin.logout') }}
                         </a>
                     @else
-                        <a href="{{ url(AD.'/logout/provider') }}">
+                        <a href="{{ url()->route('logout_provider') }}">
                             <i class="icon-key"></i> {{ trans('admin.logout') }}
                         </a>
                     @endif

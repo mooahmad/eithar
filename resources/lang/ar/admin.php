@@ -249,4 +249,5 @@ return [
     'pay' => 'Pay',
     'is_paid' => 'Is Paid',
     'admin_comment' => 'Admin Comment',
+    'edit_provider' => 'Edit Provider',
 ];

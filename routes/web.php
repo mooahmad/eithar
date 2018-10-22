@@ -30,8 +30,8 @@ Auth::routes();
 Route::group(['namespace' => 'Auth'], function () {
     Route::get('login/provider', 'LoginController@showProviderLogin')->name('provider_login');
     Route::post('login/provider', 'LoginController@postLoginProvider')->name('post_provider_login');
-    Route::group(['middleware'=>'AdminAuth','prefix' => AD],function (){
-        Route::get('logout/provider', 'LoginController@logoutProvider');
+    Route::group(['middleware'=>'ProviderAuth','prefix' => AD],function (){
+        Route::get('logout/provider', 'LoginController@logoutProvider')->name('logout_provider');
     });
 });
 Route::group(['prefix' => 'password'], function () {
@@ -43,7 +43,6 @@ Route::group(['prefix' => 'password'], function () {
     });
 });
 
-
 Route::group(['middleware' => 'AdminAuth', 'namespace' => ADN, 'prefix' => AD], function () {
     //logout
     Route::get('logout', 'AdminsController@logout')->name('Logout');
@@ -52,11 +51,11 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => ADN, 'prefix' => AD], 
     // admins
     Route::resource('admins', 'AdminsController',
         ['names' => [
-            'index' => 'show admin',
-            'create' => 'create admin',
-            'show' => 'show admin',
-            'edit' => 'edit admin',
-            'destroy' => 'delete admin'
+            'index' => 'show_admins',
+            'create' => 'create_admin',
+            'show' => 'show_admin',
+            'edit' => 'edit_admin',
+            'destroy' => 'delete_admin'
         ]]);
     Route::get('getadminsdatatable', 'AdminsController@getAdminsDataTable')->name('getAdminsDatatable');
     Route::post('deleteadmins', 'AdminsController@deleteAdmins')->name('deleteAdmins');
@@ -128,11 +127,11 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => SRVN, 'prefix' => AD],
 Route::group(['middleware' => 'AdminAuth', 'namespace' => PRON, 'prefix' => AD], function () {
     Route::resource('providers', 'ProvidersController',
         ['names' => [
-            'index' => 'show provider',
-            'create' => 'create provider',
-            'show' => 'show provider',
-            'edit' => 'edit provider',
-            'destroy' => 'delete provider'
+            'index' => 'show_providers',
+            'create' => 'create_provider',
+            'show' => 'show_provider',
+            'edit' => 'edit_provider',
+            'destroy' => 'delete_provider'
         ]]);
     Route::get('getprovidersdatatable', 'ProvidersController@getProvidersDataTable')->name('getProvidersDatatable');
     Route::post('deleteproviders', 'ProvidersController@deleteProviders')->name('deleteProviders');

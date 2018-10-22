@@ -9,7 +9,7 @@
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8"/>
-    <title>{{ Route::currentRouteName() }} | {{ config('app.name') }}</title>
+    <title>{{ trans('admin.'.Route::currentRouteName()) }} | {{ config('app.name') }}</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <meta content="Preview page of HUD Systems Admin Theme #1 for " name="description"/>
