@@ -14,6 +14,7 @@ use App\Http\Services\WebApi\UsersModule\AbstractUsers\Customer;
 use App\Models\LapCalendar;
 use App\Models\Currency;
 use App\Models\InvoiceItems;
+use App\Models\PromoCode;
 use App\Models\Provider;
 use App\Models\ProvidersCalendar;
 use App\Models\PushNotificationsTypes;
@@ -146,11 +147,11 @@ class Services implements IService
         // service meetings table
         $isLap = ($serviceId == 0) ? 1 : 0;
         $providerId = $request->input('provider_id', null);
-        if($isLap)
+        if ($isLap)
             $providerId = null;
         $serviceId = ($serviceId == 0 || $providerId != null) ? null : $serviceId;
         $providerAssignedId = $request->input('provider_assigned_id', null);
-        $promoCodeId = $request->input('promo_code_id');
+        $promoCode = $request->input('promo_code_id');
         $price = $request->input('price');
         $currencyId = $request->input('currency_id');
         $comment = $request->input('comment', '');
@@ -161,6 +162,10 @@ class Services implements IService
         $lapServicesIds = $request->input('lap_services_ids', []);
         if ($address == '')
             $address = Auth::user()->address;
+        $promoCodeData = PromoCode::where('code', $promoCode)->first();
+        $promoCodeId = null;
+        if ($promoCodeData)
+            $promoCodeId = $promoCodeData->id;
         $serviceBookingId = $this->saveServiceBooking($isLap, $providerId, $providerAssignedId, $serviceId, $promoCodeId, $price, $currencyId, $comment, $address, $familyMemberId, $status, $statusDescription, $lapServicesIds);
         // service meetings answers table
         $serviceQuestionnaireAnswers = $request->input('service_questionnaire_answers');
@@ -489,13 +494,13 @@ class Services implements IService
     public function changeItemStatus($request)
     {
         $invoice_item_id = $request->input('id');
-        $status          = $request->input('status');
-        if ($invoice_item_id>0 && in_array($status,[config('constants.items.pending'),config('constants.items.approved')])){
-            $invoice_item = InvoiceItems::where('id',$invoice_item_id)->update([
-                'status'=>$status
+        $status = $request->input('status');
+        if ($invoice_item_id > 0 && in_array($status, [config('constants.items.pending'), config('constants.items.approved')])) {
+            $invoice_item = InvoiceItems::where('id', $invoice_item_id)->update([
+                'status' => $status
             ]);
 
-            if ($invoice_item){
+            if ($invoice_item) {
                 return Utilities::getValidationError(config('constants.responseStatus.success'),
                     new MessageBag([]));
             }
