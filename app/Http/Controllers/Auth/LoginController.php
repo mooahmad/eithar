@@ -83,6 +83,9 @@ class LoginController extends Controller
      */
     public function showProviderLogin()
     {
+        if (\auth()->guard('provider-web')->user()){
+            return back();
+        }
         return view('auth.login_provider');
     }
 
@@ -105,7 +108,7 @@ class LoginController extends Controller
             $remember = false;
         }
 
-        if(!Auth::guard('provider-web')->attempt(['mobile_number'=>$request->input('mobile_number'),'password'=>$request->input('password'),'is_active'=>1],$remember))
+        if(!Auth::guard('provider-web')->attempt(['mobile_number'=>$request->input('mobile_number'),'password'=>$request->input('password'),'is_active'=>config('constants.provider.active')],$remember))
         {
             $this->incrementLoginAttempts($request);
             session()->flash('error_login',trans('admin.error_login'));

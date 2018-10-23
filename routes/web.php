@@ -34,6 +34,7 @@ Route::group(['namespace' => 'Auth'], function () {
         Route::get('logout/provider', 'LoginController@logoutProvider')->name('logout_provider');
     });
 });
+
 Route::group(['prefix' => 'password'], function () {
     Route::view('forgotpassword', 'auth.passwords.forgotPassword')->name('forgotPassword');
     Route::view('resetpassword', 'auth.passwords.reset')->name('adminReset');
@@ -248,6 +249,18 @@ Route::group(['middleware' => 'AdminAuth', 'prefix' => AD], function () {
             ]]);
         Route::get('get-family-members-Datatable', 'FamilyMemberController@getFamilyMembersDataTable')->name('get-family-members-Datatable');
         Route::post('delete-family-members', 'FamilyMemberController@deleteFamilyMembers')->name('deleteFamilyMembers');
+    });
+});
+
+Route::group(['prefix' => AD], function () {
+    Route::group(['namespace' => INVN], function () {
+        Route::get('invoices/generate/{booking}', 'InvoicesController@generateInvoice')->name('generate-invoice');
+        Route::post('invoices/add-item', 'InvoicesController@addItemToInvoice')->name('add-item-to-invoice');
+        Route::post('invoices/delete-item', 'InvoicesController@deleteItemToInvoice')->name('delete-item-to-invoice');
+        Route::get('invoices/pay/{invoice}', 'InvoicesController@showPayInvoice')->name('show-pay-invoice');
+        Route::post('invoices/pay', 'InvoicesController@storePayInvoice')->name('store-pay-invoice');
+        Route::get('invoices', 'InvoicesController@index')->name('show-invoices');
+        Route::get('get-invoices-Datatable', 'InvoicesController@getInvoicesDatatable')->name('get-invoices-Datatable');
     });
 
     Route::group(['namespace' => BSN], function () {
