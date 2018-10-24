@@ -153,4 +153,9 @@ class ProviderStrategy
     {
         return $this->strategy->addItemToInvoice($request, $bookingId);
     }
+
+    public function payInvoice(Request $request, $bookingId)
+    {
+        return $this->strategy->payInvoice($request, $bookingId);
+    }
 }
