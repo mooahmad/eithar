@@ -5,6 +5,7 @@ namespace App\Http\Services\WebApi\UsersModule\AbstractUsers;
 
 use App\Helpers\ApiHelpers;
 use App\Helpers\Utilities;
+use App\Http\Controllers\Administrator\BookingServices\BookingServicesController;
 use App\Http\Requests\Auth\LoginProvider;
 use App\Http\Requests\Auth\UpdateForgetPasswordRequest;
 use App\Http\Services\Adminstrator\InvoiceModule\ClassesInvoice\InvoiceClass;
@@ -15,6 +16,7 @@ use App\Http\Services\WebApi\CommonTraits\Reviews;
 use App\Http\Services\WebApi\CommonTraits\Views;
 use App\Http\Services\WebApi\PromoCodesModule\AbstractPromoCodes\PromoCodes;
 use App\Mail\Customer\ForgetPasswordMail;
+use App\Models\Invoice;
 use App\Models\JoinUs;
 use App\Models\LapCalendar;
 use App\Models\BookingMedicalReports;
@@ -25,12 +27,14 @@ use App\Models\MedicalReportsQuestions;
 use App\Models\PromoCode;
 use App\Models\ProvidersCalendar;
 use App\Models\PushNotification;
+use App\Models\PushNotificationsTypes;
 use App\Models\Service;
 use App\Models\ServiceBooking;
 use App\Models\ServiceBookingAnswers;
 use App\Models\ServiceBookingAppointment;
 use App\Models\ServiceBookingLap;
 use App\Models\ServicesCalendar;
+use App\Notifications\AddItemToInvoice;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -700,5 +704,38 @@ class Provider
             "vat" => $vat,
             "total" => $total
         ]));
+    }
+
+    public function addItemToInvoice(Request $request, $bookingId)
+    {
+        $appointment = ServiceBookingAppointment::find($bookingId);
+        $serviceBooking = ServiceBooking::find($appointment->service_booking_id);
+        $invoice = $serviceBooking->invoice;
+        $item    = Service::findOrFail($request->input('service_id'));
+
+//        Save new pending item to invoice
+        $invoiceClass = new InvoiceClass();
+        $invoice_item = $invoiceClass->saveInvoiceItem($invoice->id,$item->name_en,$item->id,null,config('constants.items.pending'),$item->price);
+
+        if (!$invoice_item){
+            return Utilities::getValidationError(config('constants.responseStatus.operationFailed'),
+                new MessageBag([
+                    "unable to add item"
+                ]));
+        }
+
+        //        Now calculate invoice amount
+        $invoiceClass = new InvoiceClass();
+        $booking = BookingServicesController::getBookingDetails($invoice->booking_service);
+        $amount = $invoiceClass->calculateInvoiceServicePrice($invoice->amount_original,$booking['promo_code_percentage'],$booking['vat_percentage'],$item->price);
+        $updated_invoice = $invoiceClass->updateInvoiceAmount($invoice,$amount['amount_original'],$amount['amount_after_discount'],$amount['amount_after_vat'],$amount['amount_final']);
+
+        //        TODO send notification to customer to approve new item added to invoice
+        $payload = PushNotificationsTypes::find(config('constants.pushTypes.addItemToInvoice'));
+        $payload->item_id   = $invoice_item->id;
+        $payload->send_at   = Carbon::now()->format('Y-m-d H:m:s');
+        $updated_invoice->customer->notify(new AddItemToInvoice($payload));
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([]));
     }
 }
