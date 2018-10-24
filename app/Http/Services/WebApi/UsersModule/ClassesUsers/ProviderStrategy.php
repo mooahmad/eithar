@@ -144,6 +144,11 @@ class ProviderStrategy
         return $this->strategy->getItemsForInvoice($request, $bookingId);
     }
 
+    public function deleteItemFromInvoice(Request $request, $bookingId)
+    {
+        return $this->strategy->deleteItemFromInvoice($request, $bookingId);
+    }
+
     public function addItemToInvoice(Request $request, $bookingId)
     {
         return $this->strategy->addItemToInvoice($request, $bookingId);

@@ -174,4 +174,10 @@ class ProviderController extends Controller
         return $providerStrategy->addItemToInvoice($request, $bookingId);
     }
 
+    public function deleteItemFromInvoice(Request $request, $bookingId)
+    {
+        $providerStrategy = new ProviderStrategy(ApiHelpers::requestType($request));
+        return $providerStrategy->deleteItemFromInvoice($request, $bookingId);
+    }
+
 }

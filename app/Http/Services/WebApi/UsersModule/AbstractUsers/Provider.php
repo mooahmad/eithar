@@ -17,6 +17,7 @@ use App\Http\Services\WebApi\CommonTraits\Views;
 use App\Http\Services\WebApi\PromoCodesModule\AbstractPromoCodes\PromoCodes;
 use App\Mail\Customer\ForgetPasswordMail;
 use App\Models\Invoice;
+use App\Models\InvoiceItems;
 use App\Models\JoinUs;
 use App\Models\LapCalendar;
 use App\Models\BookingMedicalReports;
@@ -750,6 +751,22 @@ class Provider
         $payload->item_id   = $invoice_item->id;
         $payload->send_at   = Carbon::now()->format('Y-m-d H:m:s');
         $updated_invoice->customer->notify(new AddItemToInvoice($payload));
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([]));
+    }
+
+    public function deleteItemFromInvoice(Request $request, $bookingId)
+    {
+        $invoice_item = InvoiceItems::findOrFail($request->input('invoice_item_id'));
+
+//        Now calculate invoice amount
+        $invoiceClass = new InvoiceClass();
+        $booking = BookingServicesController::getBookingDetails($invoice_item->invoice->booking_service);
+        $amount = $invoiceClass->calculateInvoiceServicePrice($invoice_item->invoice->amount_original,$booking['promo_code_percentage'],$booking['vat_percentage'],$invoice_item->service->price,'Delete');
+        $updated_invoice = $invoiceClass->updateInvoiceAmount($invoice_item->invoice,$amount['amount_original'],$amount['amount_after_discount'],$amount['amount_after_vat'],$amount['amount_final']);
+
+//        Now Delete this item
+        $invoice_item->forceDelete();
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([]));
     }
