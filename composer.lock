@@ -1,15 +1,11 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-    "hash": "ecc00ad82cccf90f7d1b580505542ba9",
-    "content-hash": "743d92033e5d74870ccba88fa8b9f3db",
-=======
+    "hash": "a72ddcdcb7391d43793f50abf268ce11",
     "content-hash": "549f16e32626636964f7df9b5dd803d5",
->>>>>>> ef3c25614391900ee8af783af4e06cbe2eaffdfc
     "packages": [
         {
             "name": "defuse/php-encryption",
@@ -1010,11 +1006,7 @@
                 "framework",
                 "laravel"
             ],
-<<<<<<< HEAD
-            "time": "2018-09-04 13:15:09"
-=======
-            "time": "2018-10-04T14:50:41+00:00"
->>>>>>> ef3c25614391900ee8af783af4e06cbe2eaffdfc
+            "time": "2018-10-04 14:50:41"
         },
         {
             "name": "laravel/passport",
@@ -1146,11 +1138,7 @@
                 "laravel",
                 "psysh"
             ],
-<<<<<<< HEAD
-            "time": "2018-05-17 13:42:07"
-=======
-            "time": "2018-10-12T19:39:35+00:00"
->>>>>>> ef3c25614391900ee8af783af4e06cbe2eaffdfc
+            "time": "2018-10-12 19:39:35"
         },
         {
             "name": "laravelcollective/html",
@@ -1410,11 +1398,7 @@
                 "sftp",
                 "storage"
             ],
-<<<<<<< HEAD
-            "time": "2018-09-14 15:30:29"
-=======
-            "time": "2018-10-15T13:53:10+00:00"
->>>>>>> ef3c25614391900ee8af783af4e06cbe2eaffdfc
+            "time": "2018-10-15 13:53:10"
         },
         {
             "name": "league/oauth2-server",
@@ -1713,7 +1697,7 @@
                 "php",
                 "utf-8"
             ],
-            "time": "2018-10-18T11:37:12+00:00"
+            "time": "2018-10-18 11:37:12"
         },
         {
             "name": "myclabs/deep-copy",
@@ -1761,7 +1745,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2018-06-11T23:09:50+00:00"
+            "time": "2018-06-11 23:09:50"
         },
         {
             "name": "nesbot/carbon",
@@ -1865,10 +1849,7 @@
                 "parser",
                 "php"
             ],
-<<<<<<< HEAD
-            "time": "2018-09-18 07:03:24"
-=======
-            "time": "2018-10-10T09:24:14+00:00"
+            "time": "2018-10-10 09:24:14"
         },
         {
             "name": "niklasravnsborg/laravel-pdf",
@@ -1914,8 +1895,7 @@
                 "mpdf",
                 "pdf"
             ],
-            "time": "2018-04-05T13:54:13+00:00"
->>>>>>> ef3c25614391900ee8af783af4e06cbe2eaffdfc
+            "time": "2018-04-05 13:54:13"
         },
         {
             "name": "paragonie/random_compat",
@@ -2320,11 +2300,7 @@
                 "interactive",
                 "shell"
             ],
-<<<<<<< HEAD
-            "time": "2018-09-05 11:40:09"
-=======
-            "time": "2018-10-13T15:16:03+00:00"
->>>>>>> ef3c25614391900ee8af783af4e06cbe2eaffdfc
+            "time": "2018-10-13 15:16:03"
         },
         {
             "name": "ramsey/uuid",
@@ -2455,7 +2431,7 @@
                 "fpdi",
                 "pdf"
             ],
-            "time": "2017-05-11T14:25:49+00:00"
+            "time": "2017-05-11 14:25:49"
         },
         {
             "name": "smartins/passport-multiauth",
@@ -2639,11 +2615,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-<<<<<<< HEAD
-            "time": "2018-09-30 03:38:13"
-=======
-            "time": "2018-10-03T08:15:46+00:00"
->>>>>>> ef3c25614391900ee8af783af4e06cbe2eaffdfc
+            "time": "2018-10-03 08:15:46"
         },
         {
             "name": "symfony/css-selector",
@@ -2696,11 +2668,7 @@
             ],
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
-<<<<<<< HEAD
-            "time": "2018-09-08 13:24:10"
-=======
-            "time": "2018-10-02T16:36:10+00:00"
->>>>>>> ef3c25614391900ee8af783af4e06cbe2eaffdfc
+            "time": "2018-10-02 16:36:10"
         },
         {
             "name": "symfony/debug",
@@ -2756,11 +2724,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-<<<<<<< HEAD
-            "time": "2018-09-22 19:04:12"
-=======
-            "time": "2018-10-02T16:36:10+00:00"
->>>>>>> ef3c25614391900ee8af783af4e06cbe2eaffdfc
+            "time": "2018-10-02 16:36:10"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -2872,11 +2836,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-<<<<<<< HEAD
-            "time": "2018-09-21 12:49:42"
-=======
-            "time": "2018-10-03T08:47:56+00:00"
->>>>>>> ef3c25614391900ee8af783af4e06cbe2eaffdfc
+            "time": "2018-10-03 08:47:56"
         },
         {
             "name": "symfony/http-foundation",
@@ -2930,11 +2890,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-<<<<<<< HEAD
-            "time": "2018-09-30 03:47:35"
-=======
-            "time": "2018-10-03T08:48:45+00:00"
->>>>>>> ef3c25614391900ee8af783af4e06cbe2eaffdfc
+            "time": "2018-10-03 08:48:45"
         },
         {
             "name": "symfony/http-kernel",
@@ -3021,11 +2977,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
-<<<<<<< HEAD
-            "time": "2018-09-30 05:05:39"
-=======
-            "time": "2018-10-03T12:53:38+00:00"
->>>>>>> ef3c25614391900ee8af783af4e06cbe2eaffdfc
+            "time": "2018-10-03 12:53:38"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -3246,11 +3198,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-<<<<<<< HEAD
-            "time": "2018-09-08 13:24:10"
-=======
-            "time": "2018-10-02T12:40:59+00:00"
->>>>>>> ef3c25614391900ee8af783af4e06cbe2eaffdfc
+            "time": "2018-10-02 12:40:59"
         },
         {
             "name": "symfony/psr-http-message-bridge",
@@ -3388,11 +3336,7 @@
                 "uri",
                 "url"
             ],
-<<<<<<< HEAD
-            "time": "2018-09-08 13:24:10"
-=======
-            "time": "2018-10-02T12:40:59+00:00"
->>>>>>> ef3c25614391900ee8af783af4e06cbe2eaffdfc
+            "time": "2018-10-02 12:40:59"
         },
         {
             "name": "symfony/translation",
@@ -3461,11 +3405,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-<<<<<<< HEAD
-            "time": "2018-09-21 12:49:42"
-=======
-            "time": "2018-10-02T16:36:10+00:00"
->>>>>>> ef3c25614391900ee8af783af4e06cbe2eaffdfc
+            "time": "2018-10-02 16:36:10"
         },
         {
             "name": "symfony/var-dumper",
@@ -3540,11 +3480,7 @@
                 "debug",
                 "dump"
             ],
-<<<<<<< HEAD
-            "time": "2018-09-18 12:45:12"
-=======
-            "time": "2018-10-02T16:36:10+00:00"
->>>>>>> ef3c25614391900ee8af783af4e06cbe2eaffdfc
+            "time": "2018-10-02 16:36:10"
         },
         {
             "name": "tedivm/jshrink",
@@ -3758,11 +3694,7 @@
                 "jquery",
                 "laravel"
             ],
-<<<<<<< HEAD
-            "time": "2018-09-05 05:43:38"
-=======
-            "time": "2018-10-05T06:10:33+00:00"
->>>>>>> ef3c25614391900ee8af783af4e06cbe2eaffdfc
+            "time": "2018-10-05 06:10:33"
         },
         {
             "name": "zendframework/zend-diactoros",
@@ -3886,16 +3818,16 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.3.0",
+            "version": "2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "a9f129b99df316f847584d482c89c14a9f796e2b"
+                "reference": "bc0fd11bc455cc20ee4b5edabc63ebbf859324c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/a9f129b99df316f847584d482c89c14a9f796e2b",
-                "reference": "a9f129b99df316f847584d482c89c14a9f796e2b",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/bc0fd11bc455cc20ee4b5edabc63ebbf859324c7",
+                "reference": "bc0fd11bc455cc20ee4b5edabc63ebbf859324c7",
                 "shasum": ""
             },
             "require": {
@@ -3943,11 +3875,7 @@
                 "throwable",
                 "whoops"
             ],
-<<<<<<< HEAD
-            "time": "2018-06-30 13:14:06"
-=======
-            "time": "2018-10-20T09:00:00+00:00"
->>>>>>> ef3c25614391900ee8af783af4e06cbe2eaffdfc
+            "time": "2018-10-23 09:00:00"
         },
         {
             "name": "fzaninotto/faker",
@@ -4110,59 +4038,7 @@
                 "test double",
                 "testing"
             ],
-<<<<<<< HEAD
-            "time": "2018-05-08 08:54:48"
-        },
-        {
-            "name": "myclabs/deep-copy",
-            "version": "1.8.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8",
-                "reference": "3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1"
-            },
-            "replace": {
-                "myclabs/deep-copy": "self.version"
-            },
-            "require-dev": {
-                "doctrine/collections": "^1.0",
-                "doctrine/common": "^2.6",
-                "phpunit/phpunit": "^7.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "DeepCopy\\": "src/DeepCopy/"
-                },
-                "files": [
-                    "src/DeepCopy/deep_copy.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Create deep copies (clones) of your objects",
-            "keywords": [
-                "clone",
-                "copy",
-                "duplicate",
-                "object",
-                "object graph"
-            ],
-            "time": "2018-06-11 23:09:50"
-=======
-            "time": "2018-10-02T21:52:37+00:00"
->>>>>>> ef3c25614391900ee8af783af4e06cbe2eaffdfc
+            "time": "2018-10-02 21:52:37"
         },
         {
             "name": "nunomaduro/collision",
@@ -4225,11 +4101,7 @@
                 "php",
                 "symfony"
             ],
-<<<<<<< HEAD
-            "time": "2018-06-16 22:05:52"
-=======
-            "time": "2018-10-03T20:01:54+00:00"
->>>>>>> ef3c25614391900ee8af783af4e06cbe2eaffdfc
+            "time": "2018-10-03 20:01:54"
         },
         {
             "name": "phar-io/manifest",
@@ -4550,16 +4422,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "6.1.1",
+            "version": "6.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "b097681a19a48e52706f57e47a09594bac4f7cab"
+                "reference": "4d3ae9b21a7d7e440bd0cf65565533117976859f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/b097681a19a48e52706f57e47a09594bac4f7cab",
-                "reference": "b097681a19a48e52706f57e47a09594bac4f7cab",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/4d3ae9b21a7d7e440bd0cf65565533117976859f",
+                "reference": "4d3ae9b21a7d7e440bd0cf65565533117976859f",
                 "shasum": ""
             },
             "require": {
@@ -4609,11 +4481,7 @@
                 "testing",
                 "xunit"
             ],
-<<<<<<< HEAD
-            "time": "2018-06-01 07:51:50"
-=======
-            "time": "2018-10-18T09:01:38+00:00"
->>>>>>> ef3c25614391900ee8af783af4e06cbe2eaffdfc
+            "time": "2018-10-23 05:59:32"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -4806,16 +4674,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "7.4.1",
+            "version": "7.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "c5a120ade60992bd671a912188ee9ee9f8083bbd"
+                "reference": "c151651fb6ed264038d486ea262e243af72e5e64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c5a120ade60992bd671a912188ee9ee9f8083bbd",
-                "reference": "c5a120ade60992bd671a912188ee9ee9f8083bbd",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c151651fb6ed264038d486ea262e243af72e5e64",
+                "reference": "c151651fb6ed264038d486ea262e243af72e5e64",
                 "shasum": ""
             },
             "require": {
@@ -4886,11 +4754,7 @@
                 "testing",
                 "xunit"
             ],
-<<<<<<< HEAD
-            "time": "2018-09-08 15:14:29"
-=======
-            "time": "2018-10-18T09:02:52+00:00"
->>>>>>> ef3c25614391900ee8af783af4e06cbe2eaffdfc
+            "time": "2018-10-23 05:57:41"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -5410,11 +5274,7 @@
             ],
             "description": "Provides a list of PHP built-in functions that operate on resources",
             "homepage": "https://www.github.com/sebastianbergmann/resource-operations",
-<<<<<<< HEAD
-            "time": "2015-07-28 20:34:47"
-=======
-            "time": "2018-10-04T04:07:39+00:00"
->>>>>>> ef3c25614391900ee8af783af4e06cbe2eaffdfc
+            "time": "2018-10-04 04:07:39"
         },
         {
             "name": "sebastian/version",
