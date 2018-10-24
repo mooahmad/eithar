@@ -97,7 +97,7 @@ class BookingServicesController extends Controller
                 $URLs = [
                     ['link'=>$showURL,'icon'=>'eye','color'=>'green'],
                 ];
-                if (Gate::allows('medical_report.view',new MedicalReports())){
+                if (Gate::allows('medical_report.view',new MedicalReports()) || Gate::forUser(auth()->guard('provider-web')->user())->allows('provider_guard.view')){
                     $medicalReportsURL = route('showMeetingReport',[$item->id]);
                     $addMedicalReportURL = route('createMeetingReport',[$item->id]);
                     $URLs[] = ['link'=>$medicalReportsURL,'icon'=>'list'];

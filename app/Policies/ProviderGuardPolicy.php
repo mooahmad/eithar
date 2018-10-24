@@ -19,6 +19,7 @@ class ProviderGuardPolicy
      */
     public function view(Provider $provider)
     {
+//        dd(Auth::user());
         return Auth::guard('provider-web')->user()->id === $provider->id;
     }
 

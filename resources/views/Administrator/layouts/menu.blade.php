@@ -372,55 +372,64 @@
             <!-- Start Providers Guard Area -->
             @if(auth()->guard('provider-web')->user())
                 @if(auth()->guard('provider-web')->user()->can('provider_guard.update'))
-                    <li class="nav-item start {{ (Request::segment(2)=='providers') ? 'active' :'' }}">
-                        <a href="javascript:;" class="nav-link nav-toggle">
-                            <i class="fa fa-user-secret"></i>
-                            <span class="title">{{ trans('admin.providers') }}</span>
-                            <span class="selected"></span>
-                            <span class="arrow {{ (Request::segment(2)=='providers') ? 'open' :'' }}"></span>
+                    <li class="nav-item start">
+                        <a href="{{ url()->route('edit_provider',[auth()->guard('provider-web')->user()->id]) }}" class="nav-link nav-toggle">
+                            <i class="fa fa-edit"></i>
+                            <span class="title">{{ trans('admin.edit_profile') }}</span>
                         </a>
-                        <ul class="sub-menu">
-                            <li class="nav-item start {{ (Request::is(AD.'/providers')) ? 'active' :'' }}">
-                                <a href="{{ url()->route('edit_provider',[auth()->guard('provider-web')->user()->id]) }}" class="nav-link ">
-                                    <i class="fa fa-edit"></i>
-                                    <span class="title">{{ trans('admin.edit_provider') }}</span>
-                                </a>
-                            </li>
-                        </ul>
+                    </li>
+                    <li class="nav-item start">
+                        <a href="{{ url()->route('showProviderCalendar',[auth()->guard('provider-web')->user()->id]) }}" class="">
+                            <i class="fa fa-eye"></i>
+                            <span class="title">{{ trans('admin.show_calendar') }}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item start">
+                        <a href="{{ url()->route('createProviderCalendar',[auth()->guard('provider-web')->user()->id]) }}">
+                            <i class="fa fa-plus-circle"></i>
+                            <span class="title">{{ trans('admin.add_calendar') }}</span>
+                        </a>
+                    </li>
                     </li>
                 @endif
 
                 <!-- Start Booking Services Area -->
-                    @if(auth()->guard('provider-web')->user()->can('provider_guard.view'))
-                        <li class="nav-item start {{ (Request::segment(2)=='meetings') ? 'active' :'' }}">
-                            <a href="javascript:;" class="nav-link nav-toggle">
-                                <i class="fa fa-calendar"></i>
-                                <span class="title">{{ trans('admin.booking_services') }}</span>
-                                <span class="selected"></span>
-                                <span class="arrow {{ (Request::segment(2)=='meetings') ? 'open' :'' }}"></span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li class="nav-item start {{ (Request::is(AD.'/meetings/canceled')) ? 'active' :'' }}">
-                                    <a href="{{ url(AD.'/meetings/canceled') }}" class="nav-link ">
-                                        <i class="fa fa-eye"></i>
-                                        <span class="title">{{ trans('admin.canceled_meetings') }}</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item start {{ (Request::is(AD.'/meetings/inprogress')) ? 'active' :'' }}">
-                                    <a href="{{ url(AD.'/meetings/inprogress') }}" class="nav-link ">
-                                        <i class="fa fa-eye"></i>
-                                        <span class="title">{{ trans('admin.inprogress_meetings') }}</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item start {{ (Request::is(AD.'/meetings/confirmed')) ? 'active' :'' }}">
-                                    <a href="{{ url(AD.'/meetings/confirmed') }}" class="nav-link ">
-                                        <i class="fa fa-eye"></i>
-                                        <span class="title">{{ trans('admin.confirmed_meetings') }}</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    @endif
+                @if(auth()->guard('provider-web')->user()->can('provider_guard.view'))
+                    <li class="nav-item start {{ (Request::segment(2)=='meetings') ? 'active' :'' }}">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="fa fa-calendar"></i>
+                            <span class="title">{{ trans('admin.booking_services') }}</span>
+                            <span class="selected"></span>
+                            <span class="arrow {{ (Request::segment(2)=='meetings') ? 'open' :'' }}"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item start {{ (Request::is(AD.'/meetings/canceled')) ? 'active' :'' }}">
+                                <a href="{{ url(AD.'/meetings/canceled') }}" class="nav-link ">
+                                    <i class="fa fa-eye"></i>
+                                    <span class="title">{{ trans('admin.canceled_meetings') }}</span>
+                                </a>
+                            </li>
+                            <li class="nav-item start {{ (Request::is(AD.'/meetings/inprogress')) ? 'active' :'' }}">
+                                <a href="{{ url(AD.'/meetings/inprogress') }}" class="nav-link ">
+                                    <i class="fa fa-eye"></i>
+                                    <span class="title">{{ trans('admin.inprogress_meetings') }}</span>
+                                </a>
+                            </li>
+                            <li class="nav-item start {{ (Request::is(AD.'/meetings/confirmed')) ? 'active' :'' }}">
+                                <a href="{{ url(AD.'/meetings/confirmed') }}" class="nav-link ">
+                                    <i class="fa fa-eye"></i>
+                                    <span class="title">{{ trans('admin.confirmed_meetings') }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item start {{ (Request::is(AD.'/invoices')) ? 'active' :'' }}">
+                        <a href="{{ url()->route('show-invoices') }}" class="nav-link">
+                            <i class="fa fa-money"></i>
+                            <span class="title">{{ trans('admin.show_invoices') }}</span>
+                        </a>
+                    </li>
+                @endif
                 <!-- End Booking Services Area -->
             @endif
         <!-- End Providers Guard Area -->

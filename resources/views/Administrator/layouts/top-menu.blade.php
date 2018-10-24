@@ -316,8 +316,15 @@
                     @endif
                 </li>
                 <li>
-                    <a href="app_cal endar.html">
-                        <i class="icon-calendar"></i> My Calendar </a>
+                    @if(auth()->user())
+                        <a href="{{ url()->route('show_providers') }}">
+                            <i class="icon-user"></i> My Providers
+                        </a>
+                    @else
+                        <a href="{{ url()->route('showProviderCalendar',[auth()->guard('provider-web')->user()->id]) }}">
+                            <i class="icon-user"></i> My Calendar
+                        </a>
+                    @endif
                 </li>
                 <li>
                     <a href="app_inbox.html">

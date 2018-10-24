@@ -116,6 +116,7 @@ class LoginController extends Controller
         }
         $request->session()->regenerate();
         $this->clearLoginAttempts($request);
+//        dd('done');
         return redirect()->route('edit_provider',[Auth::guard('provider-web')->user()->id]);
     }
 

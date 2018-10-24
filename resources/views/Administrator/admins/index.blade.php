@@ -41,7 +41,6 @@
 @stop
 
 @section('script')
-    // declaring used variables
     <script>
         var adminsDataTableURL = "{!! route('getAdminsDatatable') !!}";
         var deleteAdminsURL    = "{!! route('deleteAdmins') !!}";

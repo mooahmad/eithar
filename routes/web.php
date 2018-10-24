@@ -125,7 +125,7 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => SRVN, 'prefix' => AD],
     Route::post('deleteServiceLapCalendar', 'ServicesController@deleteLapCalendar')->name('deleteServiceLapCalendar');
 });
 
-Route::group(['middleware' => 'AdminAuth', 'namespace' => PRON, 'prefix' => AD], function () {
+Route::group(['namespace' => PRON, 'prefix' => AD], function () {
     Route::resource('providers', 'ProvidersController',
         ['names' => [
             'index' => 'show_providers',
@@ -202,28 +202,7 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => MRP, 'prefix' => AD], 
     Route::post('deletemedicalreportsquestions', 'MedicalReportController@deleteMedicalReportsQuestions')->name('deleteMedicalReportsQuestions');
 });
 
-Route::group(['middleware' => 'AdminAuth', 'namespace' => MMRP, 'prefix' => AD], function () {
-    Route::get('meetings/{id}/report', 'MeetingsMedicalReportController@index')->name('showMeetingReport');
-    Route::get('meetings/{id}/report/create', 'MeetingsMedicalReportController@create')->name('createMeetingReport');
-    Route::post('meetings/{id}/report/store', 'MeetingsMedicalReportController@store')->name('storeMeetingReport');
-    Route::get('meetings/{id}/report/{reportId}/edit', 'MeetingsMedicalReportController@edit')->name('editMeetingReport');
-    Route::post('meetings/{id}/report/{reportId}/update', 'MeetingsMedicalReportController@update')->name('updateMeetingReport');
-
-    Route::get('meetings/{id}/reports/datatable', 'MeetingsMedicalReportController@getMedicalReportsDataTable')->name('getMeetingsMedicalReportsDataTable');
-    Route::post('deleteMeetingReports', 'MeetingsMedicalReportController@deleteMedicalReports')->name('deleteMeetingsMedicalReports');
-});
-
 Route::group(['middleware' => 'AdminAuth', 'prefix' => AD], function () {
-    Route::group(['namespace' => INVN], function () {
-        Route::get('invoices/generate/{booking}', 'InvoicesController@generateInvoice')->name('generate-invoice');
-        Route::post('invoices/add-item', 'InvoicesController@addItemToInvoice')->name('add-item-to-invoice');
-        Route::post('invoices/delete-item', 'InvoicesController@deleteItemToInvoice')->name('delete-item-to-invoice');
-        Route::get('invoices/pay/{invoice}', 'InvoicesController@showPayInvoice')->name('show-pay-invoice');
-        Route::post('invoices/pay', 'InvoicesController@storePayInvoice')->name('store-pay-invoice');
-        Route::get('invoices', 'InvoicesController@index')->name('show-invoices');
-        Route::get('get-invoices-Datatable', 'InvoicesController@getInvoicesDatatable')->name('get-invoices-Datatable');
-    });
-
     Route::group(['namespace' => CUSN], function () {
         Route::resource('customers', 'CustomersController',
             ['names' => [
@@ -270,6 +249,17 @@ Route::group(['prefix' => AD], function () {
         Route::get('get-meetings-Dat    atable', 'BookingServicesController@getBookingServicesDataTable')->name('get-meetings-Datatable');
         Route::get('meetings/{booking}', 'BookingServicesController@show')->name('show-meeting-details');
         Route::post('meetings/{booking}/assign-provider', 'BookingServicesController@assignProviderToMeeting')->name('assign-provider-to-meeting');
+    });
+
+    Route::group(['namespace' => MMRP], function () {
+        Route::get('meetings/{id}/report', 'MeetingsMedicalReportController@index')->name('showMeetingReport');
+        Route::get('meetings/{id}/report/create', 'MeetingsMedicalReportController@create')->name('createMeetingReport');
+        Route::post('meetings/{id}/report/store', 'MeetingsMedicalReportController@store')->name('storeMeetingReport');
+        Route::get('meetings/{id}/report/{reportId}/edit', 'MeetingsMedicalReportController@edit')->name('editMeetingReport');
+        Route::post('meetings/{id}/report/{reportId}/update', 'MeetingsMedicalReportController@update')->name('updateMeetingReport');
+
+        Route::get('meetings/{id}/reports/datatable', 'MeetingsMedicalReportController@getMedicalReportsDataTable')->name('getMeetingsMedicalReportsDataTable');
+        Route::post('deleteMeetingReports', 'MeetingsMedicalReportController@deleteMedicalReports')->name('deleteMeetingsMedicalReports');
     });
 });
 

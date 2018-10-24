@@ -48,7 +48,6 @@
 @stop
 
 @section('script')
-    // declaring used variables
     <script>
         var calendarDataTableURL = "{!! route('getServiceCalendarDatatable', ['id' => $serviceID]) !!}";
         var deleteCalendarURL = "{!! route('deleteServiceCalendar') !!}";
