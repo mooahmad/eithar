@@ -17,6 +17,7 @@ use App\Http\Services\WebApi\CommonTraits\Views;
 use App\Http\Services\WebApi\PromoCodesModule\AbstractPromoCodes\PromoCodes;
 use App\Mail\Customer\ForgetPasswordMail;
 use App\Models\Invoice;
+use App\Models\InvoiceItems;
 use App\Models\JoinUs;
 use App\Models\LapCalendar;
 use App\Models\BookingMedicalReports;
@@ -690,7 +691,7 @@ class Provider
                 }
             }
         }
-        foreach ($invoiceItems as $invoiceItem){
+        foreach ($invoiceItems as $invoiceItem) {
             $service = $invoiceItem->service;
             $service->status = $invoiceItem->status;
             $services[] = $service;
@@ -720,9 +721,9 @@ class Provider
         $appointment = ServiceBookingAppointment::find($bookingId);
         $serviceBooking = ServiceBooking::find($appointment->service_booking_id);
         $invoice = $serviceBooking->invoice;
-        $item    = Service::findOrFail($request->input('service_id'));
+        $item = Service::findOrFail($request->input('service_id'));
 
-        if(!$invoice)
+        if (!$invoice)
             return Utilities::getValidationError(config('constants.responseStatus.operationFailed'),
                 new MessageBag([
                     "invoice not found"
@@ -730,9 +731,9 @@ class Provider
 
 //        Save new pending item to invoice
         $invoiceClass = new InvoiceClass();
-        $invoice_item = $invoiceClass->saveInvoiceItem($invoice->id,$item->name_en,$item->id,null,config('constants.items.pending'),$item->price);
+        $invoice_item = $invoiceClass->saveInvoiceItem($invoice->id, $item->name_en, $item->id, null, config('constants.items.pending'), $item->price);
 
-        if (!$invoice_item){
+        if (!$invoice_item) {
             return Utilities::getValidationError(config('constants.responseStatus.operationFailed'),
                 new MessageBag([
                     "unable to add item"
@@ -742,14 +743,50 @@ class Provider
         //        Now calculate invoice amount
         $invoiceClass = new InvoiceClass();
         $booking = BookingServicesController::getBookingDetails($invoice->booking_service);
-        $amount = $invoiceClass->calculateInvoiceServicePrice($invoice->amount_original,$booking['promo_code_percentage'],$booking['vat_percentage'],$item->price);
-        $updated_invoice = $invoiceClass->updateInvoiceAmount($invoice,$amount['amount_original'],$amount['amount_after_discount'],$amount['amount_after_vat'],$amount['amount_final']);
+        $amount = $invoiceClass->calculateInvoiceServicePrice($invoice->amount_original, $booking['promo_code_percentage'], $booking['vat_percentage'], $item->price);
+        $updated_invoice = $invoiceClass->updateInvoiceAmount($invoice, $amount['amount_original'], $amount['amount_after_discount'], $amount['amount_after_vat'], $amount['amount_final']);
 
         //        TODO send notification to customer to approve new item added to invoice
         $payload = PushNotificationsTypes::find(config('constants.pushTypes.addItemToInvoice'));
-        $payload->item_id   = $invoice_item->id;
-        $payload->send_at   = Carbon::now()->format('Y-m-d H:m:s');
+        $payload->item_id = $invoice_item->id;
+        $payload->send_at = Carbon::now()->format('Y-m-d H:m:s');
         $updated_invoice->customer->notify(new AddItemToInvoice($payload));
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([]));
+    }
+
+    public function deleteItemFromInvoice(Request $request, $bookingId)
+    {
+        $invoice_item = InvoiceItems::findOrFail($request->input('invoice_item_id'));
+
+//        Now calculate invoice amount
+        $invoiceClass = new InvoiceClass();
+        $booking = BookingServicesController::getBookingDetails($invoice_item->invoice->booking_service);
+        $amount = $invoiceClass->calculateInvoiceServicePrice($invoice_item->invoice->amount_original, $booking['promo_code_percentage'], $booking['vat_percentage'], $invoice_item->service->price, 'Delete');
+        $updated_invoice = $invoiceClass->updateInvoiceAmount($invoice_item->invoice, $amount['amount_original'], $amount['amount_after_discount'], $amount['amount_after_vat'], $amount['amount_final']);
+
+//        Now Delete this item
+        $invoice_item->forceDelete();
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([]));
+    }
+
+    public function payInvoice(Request $request, $bookingId)
+    {
+//        Now update invoice to be paid
+        $invoice = Invoice::findOrFail($request->input('invoice_id'));
+        $unConfirmedItems = $invoice->items()->where('status', 1)->get();
+        if(!$unConfirmedItems->isEmpty())
+            return Utilities::getValidationError(config('constants.responseStatus.operationFailed'),
+                new MessageBag([
+                    "please confirm or delete unconfirmed items"
+                ]));
+        $invoice->update([
+            'is_paid' => 1,
+            'payment_method' => $request->input('payment_method'),
+            'payment_transaction_number' => $request->input('payment_transaction_number'),
+            'provider_comment' => $request->input('provider_comment'),
+        ]);
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([]));
     }
