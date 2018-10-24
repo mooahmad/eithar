@@ -30,7 +30,7 @@ Auth::routes();
 Route::group(['namespace' => 'Auth'], function () {
     Route::get('login/provider', 'LoginController@showProviderLogin')->name('provider_login');
     Route::post('login/provider', 'LoginController@postLoginProvider')->name('post_provider_login');
-    Route::group(['middleware'=>'AdminAuth','prefix' => AD],function (){
+    Route::group(['middleware' => 'AdminAuth', 'prefix' => AD], function () {
         Route::get('logout/provider', 'LoginController@logoutProvider');
     });
 });
@@ -200,6 +200,27 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => MRP, 'prefix' => AD], 
     // medical reports questions datatable
     Route::post('medical_reports/{id}/getmedicalreportsquestionsdatatable', 'MedicalReportController@getMedicalReportsQuestionsDataTable')->name('getMedicalReportsQuestionsDataTable');
     Route::post('deletemedicalreportsquestions', 'MedicalReportController@deleteMedicalReportsQuestions')->name('deleteMedicalReportsQuestions');
+
+    // approve medical report
+    Route::get('approve_medical_reports', 'MedicalReportController@indexApprove');
+    Route::get('approve_medical_reports/{medicalReportId}/approve', 'MedicalReportController@approveReport');
+
+    // approve medical report datatable
+    Route::get('approve_medical_reports_datatable', 'MedicalReportController@getApproveMedicalReportsDataTable')->name('getApproveMedicalReportsDataTable');
+    Route::post('deletemedicalreportsapprove', 'MedicalReportController@deleteMedicalReportsApprove')->name('deleteMedicalReportsApprove');
+
+    // approve medical report questions answers
+    Route::get('approve_medical_reports/{id}/questions_answers', 'MedicalReportController@showMedicalReportsApproveQuestions')->name('showMedicalReportsApproveQuestions');
+    Route::get('approve_medical_reports/{id}/questions_answers/{medicalReportQuestionId}/edit', 'MedicalReportController@editMedicalReportsApproveQuestions')->name('editMedicalReportsApproveQuestions');
+    Route::post('approve_medical_reports/{id}/questions_answers/{medicalReportQuestionId}/update', 'MedicalReportController@updateMedicalReportsApproveQuestions')->name('updateMedicalReportsApproveQuestions');
+    Route::post('approve_medical_reports/questions_answers/options', 'MedicalReportController@getMedicalReportsApproveQuestionsOptions')->name('getMedicalReportsApproveQuestionsOptions');
+    Route::get('approve_medical_reports/{id}/questions_answers/{page}', 'MedicalReportController@getAvailableMedicalReportsApproveQuestionsPageOrders')->name('getAvailableMedicalReportsApproveQuestionsPageOrders');
+
+    // approve medical report questions answers datatable
+    Route::post('approve_medical_reports/{id}/getmedicalreportsapprovequestionsdatatable', 'MedicalReportController@getMedicalReportsApproveQuestionsDataTable')->name('getMedicalReportsApproveQuestionsDataTable');
+    Route::post('deletemedicalreportsapprovequestions', 'MedicalReportController@deleteMedicalReportsApproveQuestions')->name('deleteMedicalReportsApproveQuestions');
+
+
 });
 
 Route::group(['middleware' => 'AdminAuth', 'namespace' => MMRP, 'prefix' => AD], function () {

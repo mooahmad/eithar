@@ -351,6 +351,12 @@
                                 <span class="title">{{ trans('admin.show_medical_reports') }}</span>
                             </a>
                         </li>
+                        <li class="nav-item start {{ (Request::is(AD.'/approve_medical_reports')) ? 'active' :'' }}">
+                            <a href="{{ url(AD.'/approve_medical_reports') }}" class="nav-link ">
+                                <i class="icon-user"></i>
+                                <span class="title">{{ trans('admin.approve_medical_reports') }}</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
             @endcan

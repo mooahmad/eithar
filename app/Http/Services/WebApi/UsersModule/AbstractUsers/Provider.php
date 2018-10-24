@@ -7,11 +7,13 @@ use App\Helpers\ApiHelpers;
 use App\Helpers\Utilities;
 use App\Http\Requests\Auth\LoginProvider;
 use App\Http\Requests\Auth\UpdateForgetPasswordRequest;
+use App\Http\Services\Adminstrator\InvoiceModule\ClassesInvoice\InvoiceClass;
 use App\Http\Services\WebApi\CommonTraits\Follows;
 use App\Http\Services\WebApi\CommonTraits\Likes;
 use App\Http\Services\WebApi\CommonTraits\Ratings;
 use App\Http\Services\WebApi\CommonTraits\Reviews;
 use App\Http\Services\WebApi\CommonTraits\Views;
+use App\Http\Services\WebApi\PromoCodesModule\AbstractPromoCodes\PromoCodes;
 use App\Mail\Customer\ForgetPasswordMail;
 use App\Models\JoinUs;
 use App\Models\LapCalendar;
@@ -20,6 +22,7 @@ use App\Models\BookingMedicalReportsAnswers;
 use App\Models\Currency;
 use App\Models\MedicalReports;
 use App\Models\MedicalReportsQuestions;
+use App\Models\PromoCode;
 use App\Models\ProvidersCalendar;
 use App\Models\PushNotification;
 use App\Models\Service;
@@ -206,7 +209,7 @@ class Provider
         $bookingMedicalReport->service_booking_id = $bookingId;
         $bookingMedicalReport->provider_id = Auth::id();
         $bookingMedicalReport->medical_report_id = $medicalReport->id;
-        $bookingMedicalReport->is_approved = $medicalReport->is_approved;
+        $bookingMedicalReport->is_approved = 0;
         $bookingMedicalReport->customer_can_view = $medicalReport->customer_can_view;
         $bookingMedicalReport->save();
         return $bookingMedicalReport->id;
@@ -527,7 +530,8 @@ class Provider
 
     public function requestUnlockBooking(Request $request, $id)
     {
-        $booking = ServiceBooking::find($id);
+        $appointment = ServiceBookingAppointment::find($id);
+        $booking = ServiceBooking::find($appointment->service_booking_id);
         $booking->unlock_request = 1;
         $booking->save();
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
@@ -557,7 +561,8 @@ class Provider
     public function getApprovedReports(Request $request, $id)
     {
         $medicalReports = [];
-        $booking = ServiceBooking::find($id);
+        $appointment = ServiceBookingAppointment::find($id);
+        $booking = ServiceBooking::find($appointment->service_booking_id);
         $reports = $booking->load(['medicalReports' => function ($query) {
             $query->where('is_approved', 1);
         }])->medicalReports;
@@ -576,6 +581,7 @@ class Provider
         $email = $request->input('email');
         $mobile = $request->input('mobile_number');
         $nationalId = $request->input('national_id');
+        $speciality = $request->input('speciality');
         $cityId = $request->input('city_id');
         $joinUs = new JoinUs();
         $joinUs->full_name = $fullName;
@@ -583,8 +589,116 @@ class Provider
         $joinUs->mobile_number = $mobile;
         $joinUs->national_id = $nationalId;
         $joinUs->city_id = $cityId;
+        $joinUs->speciality = $speciality;
         $joinUs->save();
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([]));
+    }
+
+    public function editProfile(Request $request)
+    {
+        $provider = Auth::user();
+        $provider->title_ar = $request->input('title_ar');
+        $provider->title_en = $request->input('title_en');
+        $provider->first_name_ar = $request->input('first_name_ar');
+        $provider->first_name_en = $request->input('first_name_en');
+        $provider->last_name_ar = $request->input('last_name_ar');
+        $provider->last_name_en = $request->input('last_name_en');
+        $provider->email = $request->input('email');
+        $provider->mobile_number = $request->input('mobile_number');
+        $provider->speciality_area_ar = $request->input('speciality_area_ar');
+        $provider->speciality_area_en = $request->input('speciality_area_en');
+        $provider->video = $request->input('video');
+        $provider->about_ar = $request->input('about_ar');
+        $provider->about_en = $request->input('about_en');
+        $provider->experience_ar = $request->input('experience_ar');
+        $provider->experience_en = $request->input('experience_en');
+        $provider->education_ar = $request->input('education_ar');
+        $provider->education_en = $request->input('education_en');
+        $provider->save();
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([]));
+    }
+
+    public function updateInvoicePromocode(Request $request)
+    {
+        $promoCodes = new PromoCodes();
+        return $promoCodes->registerPromoCode($request);
+    }
+
+    public function confirmInvoice(Request $request, $bookingId)
+    {
+        $priceBeforeTax = $request->input('price_before_tax', null);
+        $promoCode = $request->input('promo_code', null);
+        $promoCodeData = PromoCode::where('code', $promoCode)->first();
+        $promoCodeId = null;
+        $appointment = ServiceBookingAppointment::find($bookingId);
+        $booking = ServiceBooking::find($appointment->service_booking_id);
+        if ($promoCodeData) {
+            $booking->promo_code_id = $promoCodeData->id;
+            $vat = 0;
+            if (!$booking->customer->is_saudi_nationality)
+                $vat = config('constants.vat_percentage');
+            $priceAfterTax = $priceBeforeTax + Utilities::calcPercentage($priceBeforeTax, $vat);
+            $totalPrice = $priceAfterTax - Utilities::calcPercentage($priceAfterTax, $promoCodeData->discount_percentage);
+            $booking->price = $totalPrice;
+            $booking->save();
+        }
+        $invoiceClass = new InvoiceClass();
+        $invoice = $invoiceClass->createNewInvoice($booking);
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([]));
+    }
+
+    public function getInvoice(Request $request, $bookingId, $serviceType)
+    {
+        $appointment = ServiceBookingAppointment::find($bookingId);
+        $calendar = [];
+        $services = [];
+        $totalBeforeTax = 0;
+        $serviceBooking = ServiceBooking::find($appointment->service_booking_id);
+        $customer = $serviceBooking->customer;
+        $vat = ($customer->is_saudi_nationality) ? 0 : config('constants.vat_percentage');
+        $promoCode = ($serviceBooking->promo_code != null) ? $serviceBooking->promo_code->code : "";
+        $currency = $serviceBooking->currency->name_eng;
+        $total = $serviceBooking->price;
+        $invoiceItems = $serviceBooking->invoice->items;
+        if ($serviceType == 5) {
+            $providersCalendar = ProvidersCalendar::find($appointment->slot_id);
+            if ($providersCalendar) {
+                $providerService = $serviceBooking->provider->services()->leftJoin('categories', 'services.category_id', '=', 'categories.id')->where('categories.category_parent_id', 1)->first();
+                $calendar[] = ApiHelpers::reBuildCalendarSlot($providersCalendar);
+                $totalBeforeTax = $providerService->price;
+            }
+        } elseif ($serviceType == 1 || $serviceType == 2) {
+            $servicesCalendar = ServicesCalendar::find($appointment->slot_id);
+            if ($servicesCalendar) {
+                $calendar[] = ApiHelpers::reBuildCalendarSlot($servicesCalendar);
+                $totalBeforeTax = $serviceBooking->service->price;
+            }
+        } elseif ($serviceType == 4) {
+            $lapClendar = LapCalendar::find($appointment->slot_id);
+            if ($lapClendar) {
+                $calendar[] = ApiHelpers::reBuildCalendarSlot($lapClendar);
+                $servicesLap = ServiceBookingLap::where('service_booking_id', $serviceBooking->id)->get();
+                foreach ($servicesLap as $serviceLap) {
+                    $totalBeforeTax += $serviceLap->service->price;
+                }
+            }
+        }
+        foreach ($invoiceItems as $invoiceItem){
+            $service = $invoiceItem->service;
+            $service->status = $invoiceItem->status;
+            $services[] = $service;
+        }
+        return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
+            "calendar" => $calendar,
+            "services" => $services,
+            "promo_code" => $promoCode,
+            "currency" => $currency,
+            "total_before_tax" => $totalBeforeTax,
+            "vat" => $vat,
+            "total" => $total
+        ]));
     }
 }

@@ -118,4 +118,24 @@ class ProviderStrategy
     {
         return $this->strategy->joinUs($request);
     }
+
+    public function editProfile(Request $request)
+    {
+        return $this->strategy->editProfile($request);
+    }
+
+    public function updateInvoicePromocode(Request $request)
+    {
+        return $this->strategy->updateInvoicePromocode($request);
+    }
+
+    public function confirmInvoice(Request $request, $bookingId)
+    {
+        return $this->strategy->confirmInvoice($request, $bookingId);
+    }
+
+    public function getInvoice(Request $request, $bookingId, $serviceType)
+    {
+        return $this->strategy->getInvoice($request, $bookingId, $serviceType);
+    }
 }

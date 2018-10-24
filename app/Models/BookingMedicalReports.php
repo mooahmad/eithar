@@ -13,4 +13,9 @@ class BookingMedicalReports extends Model
     protected $table = 'booking_medical_reports';
     protected $dateFormat = 'Y-m-d H:m:s';
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+
+    public function serviceBooking()
+    {
+        return $this->belongsTo(ServiceBooking::class,'service_booking_id','id');
+    }
 }

@@ -15,6 +15,7 @@
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.4.0",
         "mariuzzo/laravel-js-localization": "^1.4",
+        "niklasravnsborg/laravel-pdf": "^2.0",
         "smartins/passport-multiauth": "^3.0",
         "yajra/laravel-datatables-oracle": "~8.0"
     },

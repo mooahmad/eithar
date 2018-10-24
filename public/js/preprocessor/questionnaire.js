@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 42);
+/******/ 	return __webpack_require__(__webpack_require__.s = 43);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -47938,7 +47938,7 @@ module.exports = function spread(callback) {
 /* 39 */
 /***/ (function(module, exports) {
 
-module.exports = { "ar.admin": { "Lap": "Lab", "about": "About", "about_ar": "Arabic about", "about_en": "English about", "action": "Action", "actions": "Actions", "add_admin": "Add Admin", "add_calendar": "Add calendar", "add_category": "Add category", "add_customers": "Add Customer", "add_invoices": "Add Invoices", "add_medical_reports": "Add medical reports", "add_promo_code": "Add promo code", "add_provider": "Add provider", "add_questionnaire": "Add questionnaire", "add_service": "Add service", "admins": "Admins", "appear_on_website": "Appear on website", "benefits_ar": "Arabic benefits", "benefits_en": "English benefits", "birthdate": "Birth date", "booking-services": "Booking Services", "booking_services": "Booking Services", "cancel": "Cancel", "canceled": "Canceled", "canceled-meetings": "Canceled Meetings", "canceled_meetings": "Canceled Meetings", "cat_name_col": "category_name_ar", "categories": "Categories", "change_password": "Change Password", "cities": "Cities", "city": "City", "code": "code", "code_ar": "Arabic code", "code_en": "English code", "comment": "Comment", "confirm_delete": "Are You Sure?!", "confirmed": "Confirmed", "confirmed-meetings": "Confirmed Meetings", "confirmed_meetings": "Confirmed Meetings", "contract_expiry_date": "Contract expiry date", "contract_start_date": "Contract start date", "country": "Country", "country_name_col": "country_name_eng", "create": "Create", "currency": "Currency", "currency_name_col": "name_ara", "customerService": "Customer service", "customer_banner_path": "Customer app banner", "customer_can_view": "Customer can view", "customers": "Customers", "date_section": "Date section", "date_time": "Datetime", "default_language": "Default language", "delete": "Delete", "desc_ar": "Arabic description", "desc_en": "English description", "discount_percentage": "Discount percentage", "edit": "Edit", "edit_customers": "Edit Customer", "edit_invoices": "Edit Invoices", "education_ar": "Arabic education", "education_en": "English education", "email": "Email", "empty_data": "There is no data to show", "end_date": "End date", "end_time": "End Time", "enter_email": "Enter Admin Email", "enter_password": "Enter Admin Password", "error_login": "Please check your credentials", "error_message": "There is something went wrong", "experience_ar": "Arabic experience", "experience_en": "English experience", "expire_date": "Expire date", "female": "Female", "first_name": "First Name", "first_name_ar": "Arabic first name", "first_name_en": "English first name", "fname": "First Name", "forgot_password": "Forgot Password", "full_name": "Full Name", "gender": "Gender", "generate-invoice": "Generate Invoice ", "id": "ID", "image": "Image", "inprogress": "Inprogress", "inprogress-meetings": "Inprogress Meetings", "inprogress_meetings": "Inprogress Meetings", "invoice-pay": "Pay Invoice", "invoice_items_pending": "Please confirm all item in this invoice or delete them", "invoices": "Invoices", "is_active": "Is active", "is_approved": "Is approved", "is_available": "Is available", "is_doctor": "Is doctor", "is_general": "Is general", "is_item": "Is item", "is_required": "Is required", "is_saudi_nationality": "Saudi nationality", "items": "Items", "last_name_ar": "Arabic last name", "last_name_en": "English last name", "lname": "Last Name", "login": "Login", "logout": "Log Out", "long_text": "Long Text", "male": "Male", "medical_reports": "Medical reports", "meetings": "Meetings", "meetings-services": "Booking Services", "mname": "Middle Name", "mobile": "Mobile", "mobile_number": "Mobile number", "multiple_answer": "Multiple answers", "name": "Name", "name_ar": "Arabic name", "name_en": "English name", "national_id": "National ID", "nationality_id": "Nationality ID", "no": "No", "number_of_sessions": "Number of sessions", "number_of_visits": "Number of visits", "number_of_visits_per_week": "Number of visits per week", "number_of_weeks": "Number of weeks", "off": "Off", "on": "On", "order_on_page": "Order on page", "page": "page", "parent_cat": "Parent category", "password": "Password", "password_confirmation": "Confirm Password", "payment_method": "Payment Method", "payment_transaction_number": "Payment Transaction Number", "price": "Price", "promo_codes": "Promo codes", "provider_comment": "Provider Comment", "providers": "Providers", "pushNotificationsTypes": "Push notifications types", "pushTypeTitleAR": "Type title ar", "pushTypeTitleEN": "Type title en", "questionnaire": "Questionnaire", "rating": "Rating", "rating_levels": "Rating levels", "remember": "Remember me", "report": "Report", "reset_password": "Reset password", "save": "Save", "see_by_customer": "Customer can see", "select": "Select", "select_avatar": "Select Avatar", "select_date": "Select date", "select_nationality": "Select Nationality", "select_report": "Select report", "select_week_days": "Select days", "service": "Service", "serviceProvider": "Service provider", "service_name": "Service Name", "service_type": "Service type", "services": "Services", "settings": "Settings", "show-meeting-details": "Show Meeting Details", "show_admin": "Show Admin", "show_booking_services": "Show Booked Services", "show_calendar": "Show calendar", "show_category": "Show category", "show_customers": "Show Customers", "show_invoices": "Show Invoices", "show_medical_reports": "Show medical reports", "show_promo_code": "Show promo code", "show_provider": "Show provider", "show_questionnaire": "Show questionnaire", "show_service": "Show service", "signin": "Sign in", "single_answer": "Single answer", "speciality_area_ar": "Arabic speciality", "speciality_area_en": "English speciality", "srv_name_col": "name_ar", "start_date": "Start date", "start_time": "Start Time", "status": "Status", "submit": "Submit", "submitted_at": "Submitted At", "subtitle_ar": "Arabic subtitle", "subtitle_en": "English subtitle", "success_message": "Everything is okay, you are on the right path", "superAdmin": "Super admin", "symbol": "Symbol", "text": "Text", "time_before_next_visit": "Time before next visit", "title_ar": "Arabic title", "title_en": "English title", "type": "Type", "type_desc": "Type description", "type_description": "Type description", "update": "Update", "userType": "User type", "video": "Youtube ID", "visit_duration": "Visit duration", "whats_app_number": "What's app number", "yes": "Yes" }, "en.admin": { "Lap": "Lab", "about": "About", "about_ar": "Arabic about", "about_en": "English about", "action": "Action", "actions": "Actions", "add_admin": "Add Admin", "add_calendar": "Add calendar", "add_category": "Add category", "add_customers": "Add Customer", "add_invoices": "Add Invoices", "add_medical_reports": "Add medical reports", "add_promo_code": "Add promo code", "add_provider": "Add provider", "add_questionnaire": "Add questionnaire", "add_service": "Add service", "admins": "Admins", "appear_on_website": "Appear on website", "benefits_ar": "Arabic benefits", "benefits_en": "English benefits", "birthdate": "Birth date", "booking-services": "Booking Services", "booking_services": "Booking Services", "cancel": "Cancel", "canceled": "Canceled", "canceled-meetings": "Canceled Meetings", "canceled_meetings": "Canceled Meetings", "cat_name_col": "category_name_ar", "categories": "Categories", "change_password": "Change Password", "cities": "Cities", "city": "City", "code": "code", "code_ar": "Arabic code", "code_en": "English code", "comment": "Comment", "confirm_delete": "Are You Sure?!", "confirmed": "Confirmed", "confirmed-meetings": "Confirmed Meetings", "confirmed_meetings": "Confirmed Meetings", "contract_expiry_date": "Contract expiry date", "contract_start_date": "Contract start date", "country": "Country", "country_name_col": "country_name_eng", "create": "Create", "currency": "Currency", "currency_name_col": "name_ara", "customerService": "Customer service", "customer_banner_path": "Customer app banner", "customer_can_view": "Customer can view", "customers": "Customers", "date_section": "Date section", "date_time": "Datetime", "default_language": "Default language", "delete": "Delete", "desc_ar": "Arabic description", "desc_en": "English description", "discount_percentage": "Discount percentage", "edit": "Edit", "edit_customers": "Edit Customer", "edit_invoices": "Edit Invoices", "education_ar": "Arabic education", "education_en": "English education", "email": "Email", "empty_data": "There is no data to show", "end_date": "End date", "end_time": "End Time", "enter_email": "Enter Admin Email", "enter_password": "Enter Admin Password", "error_login": "Please check your credentials", "error_message": "There is something went wrong", "experience_ar": "Arabic experience", "experience_en": "English experience", "expire_date": "Expire date", "female": "Female", "first_name": "First Name", "first_name_ar": "Arabic first name", "first_name_en": "English first name", "fname": "First Name", "forgot_password": "Forgot Password", "full_name": "Full Name", "gender": "Gender", "generate-invoice": "Generate Invoice ", "id": "ID", "image": "Image", "inprogress": "Inprogress", "inprogress-meetings": "Inprogress Meetings", "inprogress_meetings": "Inprogress Meetings", "invoice-pay": "Pay Invoice", "invoice_items_pending": "Please confirm all item in this invoice or delete them", "invoices": "Invoices", "is_active": "Is active", "is_approved": "Is approved", "is_available": "Is available", "is_doctor": "Is doctor", "is_general": "Is general", "is_item": "Is item", "is_required": "Is required", "is_saudi_nationality": "Saudi nationality", "items": "Items", "last_name_ar": "Arabic last name", "last_name_en": "English last name", "lname": "Last Name", "login": "Login", "logout": "Log Out", "long_text": "Long Text", "male": "Male", "medical_reports": "Medical reports", "meetings": "Meetings", "meetings-services": "Booking Services", "mname": "Middle Name", "mobile": "Mobile", "mobile_number": "Mobile number", "multiple_answer": "Multiple answers", "name": "Name", "name_ar": "Arabic name", "name_en": "English name", "national_id": "National ID", "nationality_id": "Nationality ID", "no": "No", "number_of_sessions": "Number of sessions", "number_of_visits": "Number of visits", "number_of_visits_per_week": "Number of visits per week", "number_of_weeks": "Number of weeks", "off": "Off", "on": "On", "order_on_page": "Order on page", "page": "page", "parent_cat": "Parent category", "password": "Password", "password_confirmation": "Confirm Password", "payment_method": "Payment Method", "payment_transaction_number": "Payment Transaction Number", "price": "Price", "promo_codes": "Promo codes", "provider_comment": "Provider Comment", "providers": "Providers", "pushNotificationsTypes": "Push notifications types", "pushTypeTitleAR": "Type title ar", "pushTypeTitleEN": "Type title en", "questionnaire": "Questionnaire", "rating": "Rating", "rating_levels": "Rating levels", "remember": "Remember me", "report": "Report", "reset_password": "Reset password", "save": "Save", "see_by_customer": "Customer can see", "select": "Select", "select_avatar": "Select Avatar", "select_date": "Select date", "select_nationality": "Select Nationality", "select_report": "Select report", "select_week_days": "Select days", "service": "Service", "serviceProvider": "Service provider", "service_name": "Service Name", "service_type": "Service type", "services": "Services", "settings": "Settings", "show-meeting-details": "Show Meeting Details", "show_admin": "Show Admin", "show_booking_services": "Show Booked Services", "show_calendar": "Show calendar", "show_category": "Show category", "show_customers": "Show Customers", "show_invoices": "Show Invoices", "show_medical_reports": "Show medical reports", "show_promo_code": "Show promo code", "show_provider": "Show provider", "show_questionnaire": "Show questionnaire", "show_service": "Show service", "signin": "Sign in", "single_answer": "Single answer", "speciality_area_ar": "Arabic speciality", "speciality_area_en": "English speciality", "srv_name_col": "name_ar", "start_date": "Start date", "start_time": "Start Time", "status": "Status", "submit": "Submit", "submitted_at": "Submitted At", "subtitle_ar": "Arabic subtitle", "subtitle_en": "English subtitle", "success_message": "Everything is okay, you are on the right path", "superAdmin": "Super admin", "symbol": "Symbol", "text": "Text", "time_before_next_visit": "Time before next visit", "title_ar": "Arabic title", "title_en": "English title", "type": "Type", "type_desc": "Type description", "type_description": "Type description", "update": "Update", "userType": "User type", "video": "Youtube ID", "visit_duration": "Visit duration", "whats_app_number": "What's app number", "yes": "Yes" } };
+module.exports = { "ar.admin": { "Lap": "Lab", "about": "About", "about_ar": "Arabic about", "about_en": "English about", "action": "Action", "actions": "Actions", "add_admin": "Add Admin", "add_calendar": "Add calendar", "add_category": "Add category", "add_customers": "Add Customer", "add_family_members": "Add Family Members", "add_invoices": "Add Invoices", "add_medical_report": "Add medical report", "add_medical_reports": "Add medical reports", "add_promo_code": "Add promo code", "add_provider": "Add provider", "add_questionnaire": "Add questionnaire", "add_service": "Add service", "address": "Address", "admins": "Admins", "all_family_members": "All Family Members", "appear_on_website": "Appear on website", "approve_medical_reports": "Approve medical report", "benefits_ar": "Arabic benefits", "benefits_en": "English benefits", "birthdate": "Birthdate", "booking-services": "Booking Services", "booking_services": "Booking Services", "cancel": "Cancel", "canceled": "Canceled", "canceled-meetings": "Canceled Meetings", "canceled_meetings": "Canceled Meetings", "cat_name_col": "category_name_ar", "categories": "Categories", "change_password": "Change Password", "cities": "Cities", "city": "City", "code": "code", "code_ar": "Arabic code", "code_en": "English code", "comment": "Comment", "confirm_delete": "Are You Sure?!", "confirmed": "Confirmed", "confirmed-meetings": "Confirmed Meetings", "confirmed_meetings": "Confirmed Meetings", "contract_expiry_date": "Contract expiry date", "contract_start_date": "Contract start date", "country": "Country", "country_name_col": "country_name_eng", "create": "Create", "currency": "Currency", "currency_name_col": "name_ara", "customerService": "Customer service", "customer_banner_path": "Customer app banner", "customer_can_view": "Customer can view", "customers": "Customers", "date_section": "Date section", "date_time": "Datetime", "default_language": "Default language", "delete": "Delete", "desc_ar": "Arabic description", "desc_en": "English description", "description": "Description", "discount_percentage": "Discount percentage", "edit": "Edit", "edit_customers": "Edit Customer", "edit_family_members": "Edit Family Members", "edit_invoices": "Edit Invoices", "education_ar": "Arabic education", "education_en": "English education", "eithar_id": "Eithar ID", "email": "Email", "empty_data": "There is no data to show", "end_date": "End date", "end_time": "End Time", "enter_email": "Enter Admin Email", "enter_password": "Enter Admin Password", "error_login": "Please check your credentials", "error_message": "There is something went wrong", "experience_ar": "Arabic experience", "experience_en": "English experience", "expire_date": "Expire date", "family-members": "Family Members", "family_members": "Family Members", "female": "Female", "first_name": "First Name", "first_name_ar": "Arabic first name", "first_name_en": "English first name", "fname": "First Name", "forgot_password": "Forgot Password", "full_name": "Full Name", "gender": "Gender", "generate-invoice": "Generate Invoice ", "id": "ID", "image": "Image", "inprogress": "Inprogress", "inprogress-meetings": "Inprogress Meetings", "inprogress_meetings": "Inprogress Meetings", "invoice-pay": "Pay Invoice", "invoice_items_pending": "Please confirm all item in this invoice or delete them", "invoices": "Invoices", "is_active": "Is active", "is_approved": "Is approved", "is_available": "Is available", "is_doctor": "Is doctor", "is_emailed": "Emailed", "is_general": "Is general", "is_item": "Is item", "is_lap": "Is lap", "is_pushed": "Pushed", "is_required": "Is required", "is_saudi_nationality": "Saudi nationality", "is_smsed": "SMS", "items": "Items", "last_name": "Last Name", "last_name_ar": "Arabic last name", "last_name_en": "English last name", "lname": "Last Name", "login": "Login", "logout": "Log Out", "long_text": "Long Text", "male": "Male", "medical_reports": "Medical reports", "meetings": "Meetings", "meetings-services": "Booking Services", "middle_name": "Middle Name", "mname": "Middle Name", "mobile": "Mobile", "mobile_number": "Mobile number", "multiple_answer": "Multiple answers", "name": "Name", "name_ar": "Arabic name", "name_en": "English name", "national_id": "National ID", "nationality_id": "Nationality ID", "nationality_picture": "Nationality Picture", "no": "No", "notification_type": "Notification Type", "number_of_sessions": "Number of sessions", "number_of_visits": "Number of visits", "number_of_visits_per_week": "Number of visits per week", "number_of_weeks": "Number of weeks", "off": "Off", "on": "On", "order_on_page": "Order on page", "page": "page", "parent_cat": "Parent category", "password": "Password", "password_confirmation": "Confirm Password", "payment_method": "Payment Method", "payment_transaction_number": "Payment Transaction Number", "price": "Price", "profile_customers": "Profile Customers", "profile_picture": "Profile Picture", "promo_codes": "Promo codes", "provider_comment": "Provider Comment", "provider_login": "Provider Login", "providers": "Providers", "pushNotificationsTypes": "Push notifications types", "pushTypeTitleAR": "Type title ar", "pushTypeTitleEN": "Type title en", "questionnaire": "Questionnaire", "rating": "Rating", "rating_levels": "Rating levels", "read_at": "Read At", "relation_type": "Relation Type", "remember": "Remember me", "report": "Report", "reset_password": "Reset password", "save": "Save", "see_by_customer": "Customer can see", "select": "Select", "select_avatar": "Select Avatar", "select_date": "Select date", "select_nationality": "Select Nationality", "select_report": "Select report", "select_week_days": "Select days", "send_at": "Sent At", "service": "Service", "serviceProvider": "Service provider", "service_name": "Service Name", "service_type": "Service type", "services": "Services", "settings": "Settings", "show-meeting-details": "Show Meeting Details", "show_admin": "Show Admin", "show_booking_services": "Show Booked Services", "show_calendar": "Show calendar", "show_category": "Show category", "show_customers": "Show Customers", "show_family_members": "Show Family Members", "show_invoices": "Show Invoices", "show_medical_report": "Show medical report", "show_medical_reports": "Show medical reports", "show_promo_code": "Show promo code", "show_provider": "Show provider", "show_questionnaire": "Show questionnaire", "show_service": "Show service", "signin": "Sign In As Super\/Call Center Admin", "single_answer": "Single answer", "speciality_area_ar": "Arabic speciality", "speciality_area_en": "English speciality", "srv_name_col": "name_ar", "start_date": "Start date", "start_time": "Start Time", "status": "Status", "submit": "Submit", "submitted_at": "Submitted At", "subtitle_ar": "Arabic subtitle", "subtitle_en": "English subtitle", "success_message": "Everything is okay, you are on the right path", "superAdmin": "Super admin", "symbol": "Symbol", "text": "Text", "time_before_next_visit": "Time before next visit", "title": "Title", "title_ar": "Arabic title", "title_en": "English title", "type": "Type", "type_desc": "Type description", "type_description": "Type description", "update": "Update", "userType": "User type", "video": "Youtube ID", "visit_duration": "Visit duration", "whats_app_number": "What's app number", "yes": "Yes" }, "en.admin": { "Lap": "Lab", "about": "About", "about_ar": "Arabic about", "about_en": "English about", "action": "Action", "actions": "Actions", "add_admin": "Add Admin", "add_calendar": "Add calendar", "add_category": "Add category", "add_customers": "Add Customer", "add_family_members": "Add Family Members", "add_invoices": "Add Invoices", "add_medical_report": "Add medical report", "add_medical_reports": "Add medical reports", "add_promo_code": "Add promo code", "add_provider": "Add provider", "add_questionnaire": "Add questionnaire", "add_service": "Add service", "address": "Address", "admins": "Admins", "all_family_members": "All Family Members", "appear_on_website": "Appear on website", "approve_medical_reports": "Approve medical report", "benefits_ar": "Arabic benefits", "benefits_en": "English benefits", "birthdate": "Birthdate", "booking-services": "Booking Services", "booking_services": "Booking Services", "cancel": "Cancel", "canceled": "Canceled", "canceled-meetings": "Canceled Meetings", "canceled_meetings": "Canceled Meetings", "cat_name_col": "category_name_ar", "categories": "Categories", "change_password": "Change Password", "cities": "Cities", "city": "City", "code": "code", "code_ar": "Arabic code", "code_en": "English code", "comment": "Comment", "confirm_delete": "Are You Sure?!", "confirmed": "Confirmed", "confirmed-meetings": "Confirmed Meetings", "confirmed_meetings": "Confirmed Meetings", "contract_expiry_date": "Contract expiry date", "contract_start_date": "Contract start date", "country": "Country", "country_name_col": "country_name_eng", "create": "Create", "currency": "Currency", "currency_name_col": "name_ara", "customerService": "Customer service", "customer_banner_path": "Customer app banner", "customer_can_view": "Customer can view", "customers": "Customers", "date_section": "Date section", "date_time": "Datetime", "default_language": "Default language", "delete": "Delete", "desc_ar": "Arabic description", "desc_en": "English description", "discount_percentage": "Discount percentage", "edit": "Edit", "edit_customers": "Edit Customer", "edit_family_members": "Edit Family Members", "edit_invoices": "Edit Invoices", "education_ar": "Arabic education", "education_en": "English education", "email": "Email", "empty_data": "There is no data to show", "end_date": "End date", "end_time": "End Time", "enter_email": "Enter Admin Email", "enter_password": "Enter Admin Password", "error_login": "Please check your credentials", "error_message": "There is something went wrong", "experience_ar": "Arabic experience", "experience_en": "English experience", "expire_date": "Expire date", "family-members": "Family Members", "family_members": "Family Members", "female": "Female", "first_name": "First Name", "first_name_ar": "Arabic first name", "first_name_en": "English first name", "fname": "First Name", "forgot_password": "Forgot Password", "full_name": "Full Name", "gender": "Gender", "generate-invoice": "Generate Invoice ", "id": "ID", "image": "Image", "inprogress": "Inprogress", "inprogress-meetings": "Inprogress Meetings", "inprogress_meetings": "Inprogress Meetings", "invoice-pay": "Pay Invoice", "invoice_items_pending": "Please confirm all item in this invoice or delete them", "invoices": "Invoices", "is_active": "Is active", "is_approved": "Is approved", "is_available": "Is available", "is_doctor": "Is doctor", "is_general": "Is general", "is_item": "Is item", "is_lap": "Is lap", "is_required": "Is required", "is_saudi_nationality": "Saudi nationality", "items": "Items", "last_name": "Last Name", "last_name_ar": "Arabic last name", "last_name_en": "English last name", "lname": "Last Name", "login": "Login", "logout": "Log Out", "long_text": "Long Text", "male": "Male", "medical_reports": "Medical reports", "meetings": "Meetings", "meetings-services": "Booking Services", "middle_name": "Middle Name", "mname": "Middle Name", "mobile": "Mobile", "mobile_number": "Mobile number", "multiple_answer": "Multiple answers", "name": "Name", "name_ar": "Arabic name", "name_en": "English name", "national_id": "National ID", "nationality_id": "Nationality ID", "no": "No", "number_of_sessions": "Number of sessions", "number_of_visits": "Number of visits", "number_of_visits_per_week": "Number of visits per week", "number_of_weeks": "Number of weeks", "off": "Off", "on": "On", "order_on_page": "Order on page", "page": "page", "parent_cat": "Parent category", "password": "Password", "password_confirmation": "Confirm Password", "payment_method": "Payment Method", "payment_transaction_number": "Payment Transaction Number", "price": "Price", "profile_picture": "Profile Picture", "promo_codes": "Promo codes", "provider_comment": "Provider Comment", "provider_login": "Provider Login", "providers": "Providers", "pushNotificationsTypes": "Push notifications types", "pushTypeTitleAR": "Type title ar", "pushTypeTitleEN": "Type title en", "questionnaire": "Questionnaire", "rating": "Rating", "rating_levels": "Rating levels", "relation_type": "Relation Type", "remember": "Remember me", "report": "Report", "reset_password": "Reset password", "save": "Save", "see_by_customer": "Customer can see", "select": "Select", "select_avatar": "Select Avatar", "select_date": "Select date", "select_nationality": "Select Nationality", "select_report": "Select report", "select_week_days": "Select days", "service": "Service", "serviceProvider": "Service provider", "service_name": "Service Name", "service_type": "Service type", "services": "Services", "settings": "Settings", "show-meeting-details": "Show Meeting Details", "show_admin": "Show Admin", "show_booking_services": "Show Booked Services", "show_calendar": "Show calendar", "show_category": "Show category", "show_customers": "Show Customers", "show_family_members": "Show Family Members", "show_invoices": "Show Invoices", "show_medical_report": "Show medical report", "show_medical_reports": "Show medical reports", "show_promo_code": "Show promo code", "show_provider": "Show provider", "show_questionnaire": "Show questionnaire", "show_service": "Show service", "signin": "Sign In As Super\/Call Center Admin", "single_answer": "Single answer", "speciality_area_ar": "Arabic speciality", "speciality_area_en": "English speciality", "srv_name_col": "name_ar", "start_date": "Start date", "start_time": "Start Time", "status": "Status", "submit": "Submit", "submitted_at": "Submitted At", "subtitle_ar": "Arabic subtitle", "subtitle_en": "English subtitle", "success_message": "Everything is okay, you are on the right path", "superAdmin": "Super admin", "symbol": "Symbol", "text": "Text", "time_before_next_visit": "Time before next visit", "title_ar": "Arabic title", "title_en": "English title", "type": "Type", "type_desc": "Type description", "type_description": "Type description", "update": "Update", "userType": "User type", "video": "Youtube ID", "visit_duration": "Visit duration", "whats_app_number": "What's app number", "yes": "Yes" } };
 
 /***/ }),
 /* 40 */
@@ -47947,9 +47947,9 @@ module.exports = { "ar.admin": { "Lap": "Lab", "about": "About", "about_ar": "Ar
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(50)
+var __vue_script__ = __webpack_require__(51)
 /* template */
-var __vue_template__ = __webpack_require__(51)
+var __vue_template__ = __webpack_require__(52)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -47989,23 +47989,25 @@ module.exports = Component.exports
 
 /***/ }),
 /* 41 */,
-/* 42 */
+/* 42 */,
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(43);
-__webpack_require__(70);
-module.exports = __webpack_require__(71);
+__webpack_require__(44);
+__webpack_require__(71);
+__webpack_require__(72);
+module.exports = __webpack_require__(73);
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__vue_translations_js__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__vue_translations_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__vue_translations_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_app_vue__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_app_vue__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_app_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_app_vue__);
 __webpack_require__(13);
 
@@ -48033,15 +48035,15 @@ new Vue({
 });
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(45)
+var __vue_script__ = __webpack_require__(46)
 /* template */
-var __vue_template__ = __webpack_require__(69)
+var __vue_template__ = __webpack_require__(70)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48080,12 +48082,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__swapper_vue__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__swapper_vue__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__swapper_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__swapper_vue__);
 //
 //
@@ -48104,15 +48106,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(47)
+var __vue_script__ = __webpack_require__(48)
 /* template */
-var __vue_template__ = __webpack_require__(68)
+var __vue_template__ = __webpack_require__(69)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48151,22 +48153,22 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__single__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__single__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__single___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__single__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__multiple__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__multiple__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__multiple___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__multiple__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__text__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__text__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__text___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__text__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__longText__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__longText__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__longText___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__longText__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dateTime__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dateTime__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dateTime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__dateTime__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rating__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rating__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__rating__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_axios__);
@@ -48293,15 +48295,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(49)
+var __vue_script__ = __webpack_require__(50)
 /* template */
-var __vue_template__ = __webpack_require__(52)
+var __vue_template__ = __webpack_require__(53)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48340,7 +48342,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48389,7 +48391,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48410,7 +48412,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48456,7 +48458,7 @@ if (false) {
 }
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48513,15 +48515,15 @@ if (false) {
 }
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(54)
+var __vue_script__ = __webpack_require__(55)
 /* template */
-var __vue_template__ = __webpack_require__(55)
+var __vue_template__ = __webpack_require__(56)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48560,7 +48562,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48609,7 +48611,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48666,15 +48668,15 @@ if (false) {
 }
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(57)
+var __vue_script__ = __webpack_require__(58)
 /* template */
-var __vue_template__ = __webpack_require__(58)
+var __vue_template__ = __webpack_require__(59)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48713,7 +48715,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48727,7 +48729,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48747,15 +48749,15 @@ if (false) {
 }
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(60)
+var __vue_script__ = __webpack_require__(61)
 /* template */
-var __vue_template__ = __webpack_require__(61)
+var __vue_template__ = __webpack_require__(62)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48794,7 +48796,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48808,7 +48810,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48828,15 +48830,15 @@ if (false) {
 }
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(63)
+var __vue_script__ = __webpack_require__(64)
 /* template */
-var __vue_template__ = __webpack_require__(64)
+var __vue_template__ = __webpack_require__(65)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48875,7 +48877,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48889,7 +48891,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48909,15 +48911,15 @@ if (false) {
 }
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(66)
+var __vue_script__ = __webpack_require__(67)
 /* template */
-var __vue_template__ = __webpack_require__(67)
+var __vue_template__ = __webpack_require__(68)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48956,7 +48958,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49007,7 +49009,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -49067,7 +49069,7 @@ if (false) {
 }
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -49210,7 +49212,7 @@ if (false) {
 }
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -49230,13 +49232,19 @@ if (false) {
 }
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 71 */
+/* 72 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 73 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

@@ -167,4 +167,36 @@ class ProviderApi extends Provider
             return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
         return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
     }
+
+    public function editProfile(Request $request)
+    {
+        $validationObject = parent::editProfile($request);
+        if ($validationObject->error == config('constants.responseStatus.success'))
+            return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
+    }
+
+    public function updateInvoicePromocode(Request $request)
+    {
+        $validationObject = parent::updateInvoicePromocode($request);
+        if ($validationObject->error == config('constants.responseStatus.success'))
+            return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
+    }
+
+    public function confirmInvoice(Request $request, $bookingId)
+    {
+        $validationObject = parent::confirmInvoice($request, $bookingId);
+        if ($validationObject->error == config('constants.responseStatus.success'))
+            return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
+    }
+
+    public function getInvoice(Request $request, $bookingId, $serviceType)
+    {
+        $validationObject = parent::getInvoice($request, $bookingId, $serviceType);
+        if ($validationObject->error == config('constants.responseStatus.success'))
+            return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
+    }
 }

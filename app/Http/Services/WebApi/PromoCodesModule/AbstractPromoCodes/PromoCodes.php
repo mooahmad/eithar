@@ -11,7 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\MessageBag;
 
-abstract class PromoCodes implements IPromoCode
+class PromoCodes implements IPromoCode
 {
 
     public function registerPromoCode(Request $request)

@@ -138,4 +138,28 @@ class ProviderController extends Controller
         return $providerStrategy->joinUs($request);
     }
 
+    public function editProfile(Request $request)
+    {
+        $providerStrategy = new ProviderStrategy(ApiHelpers::requestType($request));
+        return $providerStrategy->editProfile($request);
+    }
+
+    public function updateInvoicePromocode(Request $request)
+    {
+        $providerStrategy = new ProviderStrategy(ApiHelpers::requestType($request));
+        return $providerStrategy->updateInvoicePromocode($request);
+    }
+
+    public function confirmInvoice(Request $request, $bookingId)
+    {
+        $providerStrategy = new ProviderStrategy(ApiHelpers::requestType($request));
+        return $providerStrategy->confirmInvoice($request, $bookingId);
+    }
+
+    public function getInvoice(Request $request, $bookingId, $serviceType)
+    {
+        $providerStrategy = new ProviderStrategy(ApiHelpers::requestType($request));
+        return $providerStrategy->getInvoice($request, $bookingId, $serviceType);
+    }
+
 }

@@ -91,8 +91,6 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/{id}/rate', 'ProviderController@rate');
         Route::post('/{id}/review', 'ProviderController@review');
         Route::post('/{id}/view', 'ProviderController@view');
-        Route::get('/bookings/{id}/reports', 'ProviderController@getBookingAvailableReports');
-        Route::post('/bookings/{id}/addreport', 'ProviderController@addBookingReport');
     }));
 
     Route::group(['namespace' => 'WebApi\PromoCodesModule', 'prefix' => 'promo_codes'], (function () {
@@ -105,9 +103,13 @@ Route::middleware('auth:api')->group(function () {
 Route::middleware('auth:provider')->group(function () {
     Route::group(['namespace' => 'WebApi\UsersModule', 'prefix' => 'providers'], (function () {
         Route::get('logoutProvider', 'ProviderController@logoutProvider');
+        Route::post('editProfile', 'ProviderController@editProfile');
         Route::get('/bookings/{id}/reports', 'ProviderController@getBookingAvailableReports');
         Route::get('/bookings/getBookingReportQuestions/{ReportId}/{page}', 'ProviderController@getBookingReportQuestions');
         Route::post('/bookings/{bookingId}/addReport', 'ProviderController@addBookingReport');
+        Route::post('/bookings/{id}/updateInvoicePromocode', 'ProviderController@updateInvoicePromocode');
+        Route::post('/bookings/{id}/confirmInvoice', 'ProviderController@confirmInvoice');
+        Route::get('/bookings/{id}/getInvoice/{serviceType}', 'ProviderController@getInvoice');
         Route::get('getBookings/{eitharId?}', 'ProviderController@getBookings');
         Route::get('getBooking/{id}/{serviceType}', 'ProviderController@getBooking');
         Route::get('requestUnlockBooking/{id}', 'ProviderController@requestUnlockBooking');

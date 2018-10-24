@@ -227,4 +227,7 @@ return [
     'relation_type' => 'Relation Type',
     'address' => 'Address',
     'profile_picture' => 'Profile Picture',
+    'approve_medical_reports' => 'Approve medical report',
+    'answer' => 'Answer',
+
 ];
