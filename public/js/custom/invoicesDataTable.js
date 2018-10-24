@@ -1,9 +1,9 @@
 var mainTable = null;
 
 function datatable() {
-    $('#data-table-meetings').dataTable().fnDestroy();
+    $('#data-table-invoices').dataTable().fnDestroy();
     $.fn.dataTable.ext.errMode = 'throw';
-    mainTable = $('#data-table-meetings').DataTable({
+    mainTable = $('#data-table-invoices').DataTable({
         "bfilter": true,
         "dom": 'B f l t p r i',
         "paging": true,
@@ -18,7 +18,7 @@ function datatable() {
             title: 'Meetings Report',
             messageTop: 'Search result data',
             exportOptions: {
-                columns: [0,1,2,3,4,5,6,7,8,9,10,11,12]
+                columns: [0,1,2,3,4,5,6,7,8,9,10,11]
             },
             bom: true,
             charset: 'UTF-8'
@@ -33,17 +33,18 @@ function datatable() {
             }
         },
         columns: [
-            {data: 'id', name: 'service_bookings.id'},
-            {data: 'name_en', name: 'services.name_en'},
-            {data: 'first_name', name: 'customers.first_name'},
-            {data: 'middle_name', name: 'customers.middle_name'},
-            {data: 'last_name', name: 'customers.last_name'},
+            {data: 'id', name: 'invoices.id'},
+            {data: 'full_name', name: 'invoices.full_name'},
             {data: 'national_id', name: 'customers.national_id'},
             {data: 'eithar_id', name: 'customers.eithar_id'},
+            {data: 'invoice_code', name: 'invoices.invoice_code'},
             {data: 'mobile_number', name: 'customers.mobile_number'},
-            {data: 'price', name: 'service_bookings.price'},
-            {data: 'status', name: 'service_bookings.status'},
-            {data: 'created_at', name: 'service_bookings.created_at'},
+            {data: 'amount_original', name: 'invoices.amount_original'},
+            {data: 'amount_after_discount', name: 'invoices.amount_after_discount'},
+            {data: 'amount_after_vat', name: 'invoices.amount_after_vat'},
+            {data: 'amount_final', name: 'invoices.amount_final'},
+            {data: 'is_paid', name: 'invoices.is_paid'},
+            {data: 'invoice_date', name: 'invoices.invoice_date'},
             {
                 searchable: false,
                 orderable: false,
@@ -54,48 +55,20 @@ function datatable() {
                 }
             }
         ],
-        columnDefs: [
-            {
-                "render": function ( data, type, row ) {
-                    return data + '-' +row['middle_name']+ '-' +row['last_name'];
-                },
-                "targets": 2
-            },
-            { "visible": false,  "targets": [ 3,4 ] }
-        ],
         "fnDrawCallback": function () {
             // fires after each search
         }
         ,
         initComplete: function () {
             // fires after tables initiated
-            $('.deleteSelected').addClass('hidden');
+            // $('.deleteSelected').addClass('hidden');
             $(".dt-buttons").appendTo("#dataTable-buttons");
             $(".dt-buttons").show();
 
-            // this.api().columns([1,5,6]).every( function () {
-            //     var column = this;
-            //         var select = $('<select class="btn btn-outline btn-circle btn-large blue-ebonyclay"><option value="">Advanced Filter</option></select>')
-            //         .appendTo( $(column.footer()).empty() )
-            //         .on( 'change', function () {
-            //             var val = $.fn.dataTable.util.escapeRegex(
-            //                 $(this).val()
-            //             );
-            //             column
-            //                 .search( val ? '^'+val+'$' : '', true, false )
-            //                 .draw();
-            //         } );
-            //
-            //     column.data().unique().sort().each( function ( d, j ) {
-            //         select.append( '<option value="'+d+'">'+d+'</option>' )
-            //     } );
-            // } );
-
-            this.api().columns([9]).every( function () {
-                var meeting_status = new Array();
-                meeting_status[1] = ["In Progress"];
-                meeting_status[2] = ["Confirmed"];
-                meeting_status[3] = ["Canceled"];
+            this.api().columns([10]).every( function () {
+                var invoice_pay = new Array();
+                invoice_pay[0] = ["Pending"];
+                invoice_pay[1] = ["Paid"];
                 var column = this;
                 var select = $('<select class="btn btn-outline btn-circle btn-large blue-ebonyclay"><option value="">Advanced Filter</option></select>')
                     .appendTo( $(column.footer()).empty() )
@@ -105,7 +78,7 @@ function datatable() {
                         );
                         column.search( this.value ).draw();
                     });
-                meeting_status.forEach( function ( value,key ) {
+                invoice_pay.forEach( function ( value,key ) {
                     select.append( '<option value="'+key+'">'+value+'</option>' )
                 } );
             } );
@@ -123,19 +96,6 @@ function datatable() {
         if (count === 0)
             $('.deleteSelected').addClass('hidden');
     });
-
-    // Apply the search
-    // mainTable.columns([0,1,2,3,4,5,6,7,8]).every( function () {
-    //     var that = this;
-    //
-    //     $( 'input', this.header() ).on( 'keyup change', function () {
-    //         if ( that.search() !== this.value ) {
-    //             that
-    //                 .search( this.value )
-    //                 .draw();
-    //         }
-    //     } );
-    // } );
 }
 
 $('#search-form').on('submit', function(e) {

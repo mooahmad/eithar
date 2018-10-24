@@ -22,15 +22,15 @@ class MeetingsMedicalReportController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('AdminAuth');
+        $this->middleware('AdminAuth')->except(['index','getMedicalReportsDataTable']);
     }
 
     public function index($id)
     {
-        if (Gate::denies('medical_report.view', new MedicalReports())) {
-            return response()->view('errors.403', [], 403);
+        if (Gate::allows('medical_report.view', new MedicalReports()) || Gate::forUser(auth()->guard('provider-web')->user())->allows('provider_guard.view')) {
+            return view(AD . '.meetings_medical_reports.index', ["meetingId" => $id]);
         }
-        return view(AD . '.meetings_medical_reports.index', ["meetingId" => $id]);
+        return response()->view('errors.403', [], 403);
     }
 
     /**

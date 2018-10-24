@@ -17,6 +17,7 @@ use App\Models\Service;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
@@ -30,7 +31,7 @@ class ProvidersController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('AdminAuth');
+//        $this->middleware('AdminAuth');
     }
 
     /**
@@ -94,12 +95,20 @@ class ProvidersController extends Controller
 
     /**
      * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function edit($id)
     {
-//        if (Gate::denies('provider.update', new Provider())) {
-//            return response()->view('errors.403', [], 403);
-//        }
+        if (Auth::user()){
+            if (Gate::denies('provider.update', new Provider())) {
+                return response()->view('errors.403', [], 403);
+            }
+        }
+        if (Auth::guard('provider-web')->user()){
+            if (Gate::forUser(Auth::guard('provider-web')->user())->denies('provider_guard.view')){
+                return response()->view('errors.403',[],403);
+            }
+        }
         $provider = Provider::FindOrFail($id);
         $currencies = Currency::all()->pluck(trans('admin.currency_name_col'), 'id')->toArray();
         $allServices = Service::all()->pluck('name_en', 'id')->toArray();
@@ -120,19 +129,31 @@ class ProvidersController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param UpdateProviderRequest $request
      * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function update(UpdateProviderRequest $request, $id)
     {
-        if (Gate::denies('provider.update', new Provider())) {
-            return response()->view('errors.403', [], 403);
+        if (Auth::user()){
+            if (Gate::denies('provider.update', new Provider())) {
+                return response()->view('errors.403', [], 403);
+            }
         }
+        if (Auth::guard('provider-web')->user()){
+            if (Gate::forUser(Auth::guard('provider-web')->user())->denies('provider_guard.update')){
+                return response()->view('errors.403',[],403);
+            }
+        }
+
         $provider = Provider::findOrFail($id);
         ProviderClass::createOrUpdate($provider, $request, false);
         ProviderClass::uploadImage($request, 'avatar', 'public/images/providers', $provider, 'profile_picture_path');
         session()->flash('success_msg', trans('admin.success_message'));
-        return redirect(AD . '/providers');
+        if (Auth::guard('provider-web')->user()){
+            return redirect()->route('edit_provider',[Auth::guard('provider-web')->user()->id]);
+        }
+        return redirect()->route('show_providers');
     }
 
     /**
@@ -178,6 +199,17 @@ class ProvidersController extends Controller
 
     public function showProviderCalendar($id)
     {
+        if (Auth::user()){
+            if (Gate::denies('provider.update', new Provider())) {
+                return response()->view('errors.403', [], 403);
+            }
+        }
+        if (Auth::guard('provider-web')->user()){
+            if (Gate::forUser(Auth::guard('provider-web')->user())->denies('provider_guard.update')){
+                return response()->view('errors.403',[],403);
+            }
+        }
+
         $calendarSections = config('constants.calendarSections');
         $data = [
             'providerID' => $id,
@@ -188,6 +220,17 @@ class ProvidersController extends Controller
 
     public function createProviderCalendar(Request $request, $providerId)
     {
+        if (Auth::user()){
+            if (Gate::denies('provider.update', new Provider())) {
+                return response()->view('errors.403', [], 403);
+            }
+        }
+        if (Auth::guard('provider-web')->user()){
+            if (Gate::forUser(Auth::guard('provider-web')->user())->denies('provider_guard.update')){
+                return response()->view('errors.403',[],403);
+            }
+        }
+
         $allWeekDays = ["saturday" => "saturday", "sunday" => "sunday",
             "monday" => "monday", "tuesday" => "tuesday", "wednesday" => "wednesday",
             "thursday" => "thursday", "friday" => "friday"];
@@ -204,6 +247,17 @@ class ProvidersController extends Controller
 
     public function storeProviderCalendar(CreateCalendarRequest $request, $providerId)
     {
+        if (Auth::user()){
+            if (Gate::denies('provider.update', new Provider())) {
+                return response()->view('errors.403', [], 403);
+            }
+        }
+        if (Auth::guard('provider-web')->user()){
+            if (Gate::forUser(Auth::guard('provider-web')->user())->denies('provider_guard.update')){
+                return response()->view('errors.403',[],403);
+            }
+        }
+
         $provider = Provider::find($providerId);
         $selectedDays = $request->input('week_days');
         $numberOfWeeks = $request->input('number_of_weeks');
@@ -240,6 +294,17 @@ class ProvidersController extends Controller
 
     public function editProviderCalendar(Request $request, $providerId, $calendarId)
     {
+        if (Auth::user()){
+            if (Gate::denies('provider.update', new Provider())) {
+                return response()->view('errors.403', [], 403);
+            }
+        }
+        if (Auth::guard('provider-web')->user()){
+            if (Gate::forUser(Auth::guard('provider-web')->user())->denies('provider_guard.update')){
+                return response()->view('errors.403',[],403);
+            }
+        }
+
         $calendar = ProvidersCalendar::find($calendarId);
         $data = [
             'calendar' => $calendar,
@@ -251,6 +316,17 @@ class ProvidersController extends Controller
 
     public function updateProviderCalendar(UpdateCalendarRequest $request, $providerId, $calendarId)
     {
+        if (Auth::user()){
+            if (Gate::denies('provider.update', new Provider())) {
+                return response()->view('errors.403', [], 403);
+            }
+        }
+        if (Auth::guard('provider-web')->user()){
+            if (Gate::forUser(Auth::guard('provider-web')->user())->denies('provider_guard.update')){
+                return response()->view('errors.403',[],403);
+            }
+        }
+
         $providerCalendar = ProvidersCalendar::find($calendarId);
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');

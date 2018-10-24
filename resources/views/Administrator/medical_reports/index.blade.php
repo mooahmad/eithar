@@ -41,7 +41,6 @@
 @stop
 
 @section('script')
-    // declaring used variables
     <script>
         var medicalReportsDataTableURL = "{!! route('getMedicalReportsDataTable') !!}";
         var deletemedicalReportsURL    = "{!! route('deleteMedicalReports') !!}";

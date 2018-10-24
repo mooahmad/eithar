@@ -154,6 +154,13 @@
                             <i class="fa fa-check"></i>
                         </a>
                     @endcan
+                    @if(auth()->guard('provider-web')->user())
+                        @if(auth()->guard('provider-web')->user()->can('provider_guard.update'))
+                            <a class="btn btn-lg green hidden-print margin-bottom-5" href="{{ route('generate-invoice',['booking'=>$booking->id]) }}"> {{ ($booking->invoice) ? 'Show ' : 'Generate ' }} Invoice
+                                <i class="fa fa-check"></i>
+                            </a>
+                        @endif
+                    @endif
                 </div>
             </div>
         </div>

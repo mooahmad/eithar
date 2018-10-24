@@ -31,11 +31,16 @@ class PayInvoiceRequest extends FormRequest
                 Rule::in([1,2,3,4]),
             ],
             'invoice_id'=>'required|integer',
-            'provider_comment'=>'required|min:2',
         ];
         if ($this->payment_method !=1){
             $rules['payment_transaction_number']='required';
 
+        }
+        if (auth()->guard('provider-web')->user()){
+            $rules['provider_comment']='required|min:2';
+        }
+        if (auth()->user()){
+            $rules['admin_comment']='required|min:2';
         }
         return $rules;
     }

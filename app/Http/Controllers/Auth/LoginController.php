@@ -58,6 +58,7 @@ class LoginController extends Controller
 
     /**
      * @param Request $request
+     * @return \App\Helpers\ValidationError|string
      */
     public function loginCustomer(Request $request)
     {
@@ -66,6 +67,10 @@ class LoginController extends Controller
         return $loginStrategy->loginCustomer($request);
     }
 
+    /**
+     * @param Request $request
+     * @return \App\Helpers\ValidationError|string
+     */
     public function loginProvider(Request $request)
     {
         // instantiate login strategy object using request type detection helper method
@@ -78,9 +83,17 @@ class LoginController extends Controller
      */
     public function showProviderLogin()
     {
+        if (\auth()->guard('provider-web')->user()){
+            return back();
+        }
         return view('auth.login_provider');
     }
 
+    /**
+     * @param ProviderLoginRequest $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|void
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function postLoginProvider(ProviderLoginRequest $request)
     {
         if ($this->hasTooManyLoginAttempts($request)) {
@@ -95,7 +108,7 @@ class LoginController extends Controller
             $remember = false;
         }
 
-        if(!Auth::guard('provider-web')->attempt(['mobile_number'=>$request->input('mobile_number'),'password'=>$request->input('password'),'is_active'=>1],$remember))
+        if(!Auth::guard('provider-web')->attempt(['mobile_number'=>$request->input('mobile_number'),'password'=>$request->input('password'),'is_active'=>config('constants.provider.active')],$remember))
         {
             $this->incrementLoginAttempts($request);
             session()->flash('error_login',trans('admin.error_login'));
@@ -103,7 +116,8 @@ class LoginController extends Controller
         }
         $request->session()->regenerate();
         $this->clearLoginAttempts($request);
-        return redirect(AD.'/providers/'.Auth::guard('provider-web')->user()->id.'/edit');
+//        dd('done');
+        return redirect()->route('edit_provider',[Auth::guard('provider-web')->user()->id]);
     }
 
     /**

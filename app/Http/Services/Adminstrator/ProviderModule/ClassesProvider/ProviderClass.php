@@ -10,6 +10,7 @@ use App\Models\ProviderService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\MessageBag;
 
@@ -25,25 +26,36 @@ class ProviderClass
         $provider->first_name_en = $request->input('first_name_en');
         $provider->last_name_ar = $request->input('last_name_ar');
         $provider->last_name_en = $request->input('last_name_en');
-        $provider->email = $request->input('email');
-        $provider->mobile_number = $request->input('mobile_number');
+
         if (!empty($request->input('password')) && $request->input('password') != "")
             $provider->password = Hash::make($request->input('password'));
         $provider->speciality_area_ar = $request->input('speciality_area_ar');
         $provider->speciality_area_en = $request->input('speciality_area_en');
         $provider->video = $request->input('video');
         $provider->price = $request->input('price');
-        $provider->rating = $request->input('rating');
         $provider->about_ar = $request->input('about_ar');
         $provider->about_en = $request->input('about_en');
         $provider->experience_ar = $request->input('experience_ar');
         $provider->experience_en = $request->input('experience_en');
         $provider->education_ar = $request->input('education_ar');
         $provider->education_en = $request->input('education_en');
-        $provider->is_active = $request->input('is_active');
-        $provider->is_doctor = $request->input('is_doctor');
-        $provider->contract_start_date = $request->input('contract_start_date');
-        $provider->contract_expiry_date = $request->input('contract_expiry_date');
+        if (Gate::denies('provider.update', new Provider())) {
+            $provider->is_active = $provider->is_active;
+            $provider->is_doctor = $provider->is_doctor;
+            $provider->email     = $provider->email;
+            $provider->rating    = $provider->rating;
+            $provider->mobile_number = $provider->mobile_number;
+            $provider->contract_start_date  = $provider->contract_start_date;
+            $provider->contract_expiry_date = $provider->contract_expiry_date;
+        }else{
+            $provider->is_active = $request->input('is_active');
+            $provider->is_doctor = $request->input('is_doctor');
+            $provider->email     = $request->input('email');
+            $provider->rating    = $request->input('rating');
+            $provider->mobile_number = $request->input('mobile_number');
+            $provider->contract_start_date  = $request->input('contract_start_date');
+            $provider->contract_expiry_date = $request->input('contract_expiry_date');
+        }
         $provider->visit_duration = $request->input('visit_duration');
         $provider->time_before_next_visit = $request->input('time_before_next_visit');
         if ($isCreate) {

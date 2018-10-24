@@ -23,6 +23,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\View;
+use Yajra\DataTables\DataTables;
 
 class InvoicesController extends Controller
 {
@@ -35,7 +37,7 @@ class InvoicesController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('AdminAuth');
+//        $this->middleware('AdminAuth');
     }
 
     /**
@@ -43,16 +45,28 @@ class InvoicesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ServiceBooking $booking)
+    public function index()
     {
-        $invoicClass = new InvoiceClass();
-        $data = [
-            'invoice'=>$invoicClass->createNewInvoice($booking),
-//            'services_items'=>Service::GetItemsServices()->get()->pluck('name_en','id')
-            'services_items'=>Service::GetItemsServices()->get()->pluck('name_en','id')
-        ];
-//        return $data['invoice']->items;
-        return view(AD . '.invoices.index')->with($data);
+        if (Gate::allows('invoices.view') || Gate::forUser(auth()->guard('provider-web')->user())->allows('provider_guard.view')){
+            return view(AD . '.invoices.index');
+        }
+        return response()->view('errors.403',[],403);
+    }
+
+    /**
+     * @param ServiceBooking $booking
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function generateInvoice(ServiceBooking $booking)
+    {
+        if (Gate::allows('invoices.view') || Gate::forUser(auth()->guard('provider-web')->user())->allows('provider_guard.view')){
+            $data = [
+                'invoice'=>$this->createNewInvoice($booking),
+                'services_items'=>Service::GetItemsServices()->get()->pluck('name_en','id')
+            ];
+            return view(AD . '.invoices.profile')->with($data);
+        }
+        return response()->view('errors.403',[],403);
     }
 
     /**
@@ -116,18 +130,27 @@ class InvoicesController extends Controller
      */
     public function showPayInvoice(Invoice $invoice)
     {
-        if ($this->checkInvoiceItemsStatus($invoice)){
-            session()->flash('error_msg', trans('admin.invoice_items_pending'));
-            return redirect()->route('generate-invoice',['booking'=>$invoice->booking_service->id]);
-        }
+        if (Gate::allows('invoices.view') || Gate::forUser(auth()->guard('provider-web')->user())->allows('provider_guard.view')) {
 
-        $data = [
-            'form_data'=>$invoice,
-            'payment_methods'=>config('constants.payment_methods'),
-            'formRoute'=>route('store-pay-invoice'),
-            'submitBtn'=>trans('admin.save')
-        ];
-        return view(AD . '.invoices.form_pay')->with($data);
+            if ($this->checkInvoiceItemsStatus($invoice)) {
+                session()->flash('error_msg', trans('admin.invoice_items_pending'));
+                return redirect()->route('generate-invoice', ['booking' => $invoice->booking_service->id]);
+            }
+
+            if ($invoice->is_paid == config('constants.invoice_paid.paid')) {
+                session()->flash('success_msg', trans('admin.invoice_paid'));
+                return redirect()->route('generate-invoice', ['booking' => $invoice->booking_service->id]);
+            }
+
+            $data = [
+                'form_data' => $invoice,
+                'payment_methods' => config('constants.payment_methods'),
+                'formRoute' => route('store-pay-invoice'),
+                'submitBtn' => trans('admin.save')
+            ];
+            return view(AD . '.invoices.form_pay')->with($data);
+        }
+        return response()->view('errors.403',[],403);
     }
 
     /**
@@ -136,17 +159,22 @@ class InvoicesController extends Controller
      */
     public function storePayInvoice(PayInvoiceRequest $request)
     {
-//        Now update invoice to be paid
-        $invoice = Invoice::findOrFail($request->input('invoice_id'));
-        $invoice->update([
-           'is_paid'=>1,
-           'payment_method'=>$request->input('payment_method'),
-           'payment_transaction_number'=>$request->input('payment_transaction_number'),
-           'provider_comment'=>$request->input('provider_comment'),
-        ]);
+        if (Gate::allows('invoices.update') || Gate::forUser(auth()->guard('provider-web')->user())->allows('provider_guard.view')) {
 
-        session()->flash('success_msg', trans('admin.success_message'));
-        return redirect()->route('generate-invoice',['booking'=>$invoice->booking_service->id]);
+//        Now update invoice to be paid
+            $invoice = Invoice::findOrFail($request->input('invoice_id'));
+            $invoice->update([
+                'is_paid' => config('constants.invoice_paid.paid'),
+                'payment_method' => $request->input('payment_method'),
+                'payment_transaction_number' => $request->input('payment_transaction_number'),
+                'provider_comment' => $request->input('provider_comment'),
+                'admin_comment' => $request->input('admin_comment'),
+            ]);
+
+            session()->flash('success_msg', trans('admin.success_message'));
+            return redirect()->route('generate-invoice', ['booking' => $invoice->booking_service->id]);
+        }
+        return response()->view('errors.403',[],403);
     }
 
     /**
@@ -160,4 +188,214 @@ class InvoicesController extends Controller
         return false;
     }
 
+    /**
+     * @param $booking
+     * @return Invoice|null
+     */
+    public function createNewInvoice($booking)
+    {
+//        check if empty booking details
+        if (!$booking) return null;
+//        check if booking has generated invoice
+        if (!empty($booking->invoice)) return $booking->invoice;
+
+        $add = new Invoice();
+        $add->service_booking_id   = $booking->id;
+        $add->customer_id          = $booking->customer_id;
+//        login Provider ID
+        if (auth()->guard('provider-web')->user()){
+            $add->provider_id      = auth()->guard('provider-web')->user()->id;
+        }
+        $add->currency_id          = $booking->currency_id;
+
+        $add->is_saudi_nationality = $booking->customer->is_saudi_nationality;
+        $add->invoice_code         = config('constants.invoice_code').$booking->id;
+        $add->admin_comment        = $booking->admin_comment;
+        $add->save();
+
+        $items = BookingServicesController::getBookingDetails($booking);
+        if ($items){
+//            Calculate amount of this invoice
+            if ($items['original_amount']){
+                $amount = $this->calculateInvoiceServicePrice($items['original_amount'],$items['promo_code_percentage'],$items['vat_percentage']);
+                if (!empty($amount)){
+                    $this->updateInvoiceAmount($add,$amount['amount_original'],$amount['amount_after_discount'],$amount['amount_after_vat'],$amount['amount_final']);
+                }
+            }
+
+//            in case customer book provider
+            if ($items['is_provider']){
+                foreach ($items['provider_id'] as $id=>$name){
+                    $this->saveInvoiceItem($add->id,$name,null,$id,config('constants.items.approved'),$items['original_amount']);
+                }
+            }
+
+//            in case customer book package/lap/on time visit
+            if ($items['service_id']){
+                foreach ($items['service_id'] as $id=>$name){
+                    $this->saveInvoiceItem($add->id,$name,$id,null,config('constants.items.approved'),$items['service_price'][$id]);
+                }
+            }
+        }
+
+        $add->refresh();
+
+//        TODO send notification to customer that Admin generate new invoice
+        $payload = PushNotificationsTypes::find(config('constants.pushTypes.invoiceGenerated'));
+        $payload->invoice_id   = $add->id;
+        $payload->send_at      = Carbon::now()->format('Y-m-d H:m:s');
+        $add->customer->notify(new InvoiceGenerated($payload));
+
+        return $add;
+    }
+
+    /**
+     * @param $invoice_id
+     * @param $service_name
+     * @param null $service_id
+     * @param null $provider_id
+     * @param int $status
+     * @param $price
+     * @return null
+     */
+    public function saveInvoiceItem($invoice_id,$service_name,$service_id=null,$provider_id=null,$status=1 ,$price)
+    {
+        if (!$invoice_id) return null;
+        return InvoiceItems::updateOrCreate([
+            'invoice_id'=>$invoice_id,
+            'item_desc_appear_in_invoice'=>$service_name,
+            'service_id'=>$service_id,
+            'provider_id'=>$provider_id,
+            'status'=>$status,
+            'price'=>$price,
+        ]);
+    }
+
+    /**
+     * @param $amount_original
+     * @param int $discount
+     * @param int $vat
+     * @param int $item_price
+     * @param string $operation
+     * @return array
+     *
+     * Use Add Or Delete Text when add/delete item from invoice
+     */
+    public function calculateInvoiceServicePrice($amount_original,$discount=0,$vat=0,$item_price=0,$operation='Add')
+    {
+        $this->amount_original       = $amount_original;
+
+        if ($operation == 'Add'){
+//            When Add new item to invoice
+            $this->amount_original   = $this->amount_original + $item_price;
+        }
+
+        if ($operation == 'Delete'){
+//            When Delete new item to invoice
+            $this->amount_original   = $this->amount_original - $item_price;
+        }
+
+        $this->amount_after_discount = $this->amount_original;
+        $this->amount_after_vat      = $this->amount_original;
+        $this->amount_final          = $this->amount_original;
+        if ($amount_original>0){
+            if ($discount>0){
+                $this->amount_after_discount = $this->amount_original - Utilities::calcPercentage($this->amount_original,$discount);
+                $this->amount_after_vat      = $this->amount_after_discount;
+                $this->amount_final          = $this->amount_after_discount;
+            }
+            if ($vat>0){
+                $this->amount_after_vat = $this->amount_after_discount + Utilities::calcPercentage($this->amount_after_discount,$vat);
+                $this->amount_final     = $this->amount_after_vat;
+            }
+        }
+        return $data = [
+            'amount_original'=>$this->amount_original,
+            'amount_after_discount'=>$this->amount_after_discount,
+            'amount_after_vat'=>$this->amount_after_vat,
+            'amount_final'=>$this->amount_final,
+        ];
+    }
+
+    /**
+     * @param $invoice
+     * @param $amount_original
+     * @param $amount_after_discount
+     * @param $amount_after_vat
+     * @param $amount_final
+     * @return null
+     */
+    public function updateInvoiceAmount($invoice,$amount_original,$amount_after_discount,$amount_after_vat,$amount_final)
+    {
+        if (empty($invoice)) return null;
+
+        $invoice->update([
+            'amount_original'       => $amount_original,
+            'amount_after_discount' => $amount_after_discount,
+            'amount_after_vat'      => $amount_after_vat,
+            'amount_final'          => $amount_final,
+        ]);
+        return $invoice;
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getInvoicesDatatable(Request $request)
+    {
+        $items = Invoice::where('invoices.id', '<>', 0);
+        if (auth()->guard('provider-web')->user()){
+            $items->where('invoices.provider_id',auth()->guard('provider-web')->user()->id);
+        }
+        $items->leftjoin('customers','invoices.customer_id','customers.id')
+            ->join('currencies','invoices.currency_id','currencies.id')
+            ->select(['invoices.id','invoices.service_booking_id','invoices.is_paid','invoices.amount_original','invoices.amount_after_discount','invoices.amount_after_vat','invoices.invoice_code','invoices.invoice_date','invoices.amount_final','customers.first_name','customers.middle_name','customers.last_name','customers.eithar_id','customers.national_id','customers.mobile_number','currencies.name_eng']);
+        $dataTable = DataTables::of($items)
+            ->editColumn('full_name',function ($item){
+                return $item->first_name .' '. $item->middle_name .' '. $item->last_name;
+            })
+            ->editColumn('invoice_date',function ($item){
+                return $item->invoice_date->format('Y-m-d h:i A');
+            })
+            ->editColumn('amount_original',function ($item){
+                return $item->amount_original .' '.$item->name_eng;
+            })
+            ->editColumn('amount_after_discount',function ($item){
+                return $item->amount_after_discount .' '.$item->name_eng;
+            })
+            ->editColumn('amount_after_vat',function ($item){
+                return $item->amount_after_vat .' '.$item->name_eng;
+            })
+            ->editColumn('amount_final',function ($item){
+                return $item->amount_final .' '.$item->name_eng;
+            })
+            ->filterColumn('invoice_date', function ($query, $keyword) {
+                $query->whereRaw("DATE_FORMAT(invoices.invoice_date,'%m/%d/%Y') like ?", ["%$keyword%"]);
+            })
+            ->addColumn('is_paid',function ($item){
+                if($item->is_paid==config('constants.invoice_paid.pending')){
+                    return '<span class="label label-warning label-sm text-capitalize">Pending</span>';
+                }else{
+                    return '<span class="label label-success label-sm text-capitalize">Paid</span>';
+                }
+            })
+            ->addColumn('actions', function ($item) {
+                if (Gate::allows('invoices.view') || Gate::forUser(auth()->guard('provider-web')->user())->allows('provider_guard.view')) {
+                    if ($item->is_paid==config('constants.invoice_paid.pending')) {
+                        $pay_invoice = route('show-pay-invoice', [$item->id]);
+                        $URLs[] = ['link' => $pay_invoice, 'icon' => 'money'];
+                    }
+
+                    $showURL = route('generate-invoice', [$item->service_booking_id]);
+                    $URLs[] = ['link' => $showURL, 'icon' => 'eye', 'color' => 'green'];
+                    return View::make('Administrator.widgets.advancedActions', ['URLs'=>$URLs]);
+                }
+            })
+            ->rawColumns(['is_paid','actions'])
+            ->make(true);
+
+        return $dataTable;
+    }
 }

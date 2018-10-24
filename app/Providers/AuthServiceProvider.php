@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Models\Invoice;
 use App\Models\MedicalReports;
 use App\Models\PromoCode;
+use App\Models\Provider;
 use App\Models\Service;
 use App\Models\Settings;
 use App\Policies\AdminPolicy;
@@ -16,6 +17,8 @@ use App\Policies\FamilyMemberPolicy;
 use App\Policies\InvoicesPolicy;
 use App\Policies\MedicalReportPolicy;
 use App\Policies\PromoCodesPolicy;
+use App\Policies\ProviderGuard;
+use App\Policies\ProviderGuardPolicy;
 use App\Policies\ServicePolicy;
 use App\Policies\SettingsPolicy;
 use App\User;
@@ -41,6 +44,7 @@ class AuthServiceProvider extends ServiceProvider
         Customer::class => FamilyMemberPolicy::class,
         MedicalReports::class => MedicalReportPolicy::class,
         Settings::class => SettingsPolicy::class,
+        Provider::class => ProviderGuardPolicy::class,
     ];
 
     /**
@@ -75,6 +79,12 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('provider.create', 'App\Policies\ProviderPolicy@create');
         Gate::define('provider.update', 'App\Policies\ProviderPolicy@update');
         Gate::define('provider.delete', 'App\Policies\ProviderPolicy@delete');
+
+        //Policies Provider Guard
+        Gate::define('provider_guard.view', 'App\Policies\ProviderGuardPolicy@view');
+        Gate::define('provider_guard.update', 'App\Policies\ProviderGuardPolicy@update');
+        Gate::define('provider_guard.create', 'App\Policies\ProviderGuardPolicy@create');
+        Gate::define('provider_guard.delete', 'App\Policies\ProviderGuardPolicy@delete');
 
         // policies promoCodes
         Gate::define('promo_code.view', 'App\Policies\PromoCodesPolicy@view');

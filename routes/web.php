@@ -30,10 +30,12 @@ Auth::routes();
 Route::group(['namespace' => 'Auth'], function () {
     Route::get('login/provider', 'LoginController@showProviderLogin')->name('provider_login');
     Route::post('login/provider', 'LoginController@postLoginProvider')->name('post_provider_login');
-    Route::group(['middleware' => 'AdminAuth', 'prefix' => AD], function () {
-        Route::get('logout/provider', 'LoginController@logoutProvider');
+
+    Route::group(['middleware'=>'ProviderAuth','prefix' => AD],function (){
+        Route::get('logout/provider', 'LoginController@logoutProvider')->name('logout_provider');
     });
 });
+
 Route::group(['prefix' => 'password'], function () {
     Route::view('forgotpassword', 'auth.passwords.forgotPassword')->name('forgotPassword');
     Route::view('resetpassword', 'auth.passwords.reset')->name('adminReset');
@@ -43,7 +45,6 @@ Route::group(['prefix' => 'password'], function () {
     });
 });
 
-
 Route::group(['middleware' => 'AdminAuth', 'namespace' => ADN, 'prefix' => AD], function () {
     //logout
     Route::get('logout', 'AdminsController@logout')->name('Logout');
@@ -52,11 +53,11 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => ADN, 'prefix' => AD], 
     // admins
     Route::resource('admins', 'AdminsController',
         ['names' => [
-            'index' => 'show admin',
-            'create' => 'create admin',
-            'show' => 'show admin',
-            'edit' => 'edit admin',
-            'destroy' => 'delete admin'
+            'index' => 'show_admins',
+            'create' => 'create_admin',
+            'show' => 'show_admin',
+            'edit' => 'edit_admin',
+            'destroy' => 'delete_admin'
         ]]);
     Route::get('getadminsdatatable', 'AdminsController@getAdminsDataTable')->name('getAdminsDatatable');
     Route::post('deleteadmins', 'AdminsController@deleteAdmins')->name('deleteAdmins');
@@ -125,14 +126,14 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => SRVN, 'prefix' => AD],
     Route::post('deleteServiceLapCalendar', 'ServicesController@deleteLapCalendar')->name('deleteServiceLapCalendar');
 });
 
-Route::group(['middleware' => 'AdminAuth', 'namespace' => PRON, 'prefix' => AD], function () {
+Route::group(['namespace' => PRON, 'prefix' => AD], function () {
     Route::resource('providers', 'ProvidersController',
         ['names' => [
-            'index' => 'show provider',
-            'create' => 'create provider',
-            'show' => 'show provider',
-            'edit' => 'edit provider',
-            'destroy' => 'delete provider'
+            'index' => 'show_providers',
+            'create' => 'create_provider',
+            'show' => 'show_provider',
+            'edit' => 'edit_provider',
+            'destroy' => 'delete_provider'
         ]]);
     Route::get('getprovidersdatatable', 'ProvidersController@getProvidersDataTable')->name('getProvidersDatatable');
     Route::post('deleteproviders', 'ProvidersController@deleteProviders')->name('deleteProviders');
@@ -223,26 +224,7 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => MRP, 'prefix' => AD], 
 
 });
 
-Route::group(['middleware' => 'AdminAuth', 'namespace' => MMRP, 'prefix' => AD], function () {
-    Route::get('meetings/{id}/report', 'MeetingsMedicalReportController@index')->name('showMeetingReport');
-    Route::get('meetings/{id}/report/create', 'MeetingsMedicalReportController@create')->name('createMeetingReport');
-    Route::post('meetings/{id}/report/store', 'MeetingsMedicalReportController@store')->name('storeMeetingReport');
-    Route::get('meetings/{id}/report/{reportId}/edit', 'MeetingsMedicalReportController@edit')->name('editMeetingReport');
-    Route::post('meetings/{id}/report/{reportId}/update', 'MeetingsMedicalReportController@update')->name('updateMeetingReport');
-
-    Route::get('meetings/{id}/reports/datatable', 'MeetingsMedicalReportController@getMedicalReportsDataTable')->name('getMeetingsMedicalReportsDataTable');
-    Route::post('deleteMeetingReports', 'MeetingsMedicalReportController@deleteMedicalReports')->name('deleteMeetingsMedicalReports');
-});
-
 Route::group(['middleware' => 'AdminAuth', 'prefix' => AD], function () {
-    Route::group(['namespace' => INVN], function () {
-        Route::get('generate-invoice/{booking}', 'InvoicesController@index')->name('generate-invoice');
-        Route::post('invoice-add-item', 'InvoicesController@addItemToInvoice')->name('add-item-to-invoice');
-        Route::post('invoice-delete-item', 'InvoicesController@deleteItemToInvoice')->name('delete-item-to-invoice');
-        Route::get('invoice-pay/{invoice}', 'InvoicesController@showPayInvoice')->name('show-pay-invoice');
-        Route::post('invoice-pay', 'InvoicesController@storePayInvoice')->name('store-pay-invoice');
-    });
-
     Route::group(['namespace' => CUSN], function () {
         Route::resource('customers', 'CustomersController',
             ['names' => [
@@ -269,14 +251,37 @@ Route::group(['middleware' => 'AdminAuth', 'prefix' => AD], function () {
         Route::get('get-family-members-Datatable', 'FamilyMemberController@getFamilyMembersDataTable')->name('get-family-members-Datatable');
         Route::post('delete-family-members', 'FamilyMemberController@deleteFamilyMembers')->name('deleteFamilyMembers');
     });
+});
+
+Route::group(['prefix' => AD], function () {
+    Route::group(['namespace' => INVN], function () {
+        Route::get('invoices/generate/{booking}', 'InvoicesController@generateInvoice')->name('generate-invoice');
+        Route::post('invoices/add-item', 'InvoicesController@addItemToInvoice')->name('add-item-to-invoice');
+        Route::post('invoices/delete-item', 'InvoicesController@deleteItemToInvoice')->name('delete-item-to-invoice');
+        Route::get('invoices/pay/{invoice}', 'InvoicesController@showPayInvoice')->name('show-pay-invoice');
+        Route::post('invoices/pay', 'InvoicesController@storePayInvoice')->name('store-pay-invoice');
+        Route::get('invoices', 'InvoicesController@index')->name('show-invoices');
+        Route::get('get-invoices-Datatable', 'InvoicesController@getInvoicesDatatable')->name('get-invoices-Datatable');
+    });
 
     Route::group(['namespace' => BSN], function () {
         Route::get('meetings/canceled', 'BookingServicesController@index')->name('meetings');
         Route::get('meetings/inprogress', 'BookingServicesController@index')->name('meetings');
         Route::get('meetings/confirmed', 'BookingServicesController@index')->name('meetings');
-        Route::get('get-meetings-Datatable', 'BookingServicesController@getBookingServicesDataTable')->name('get-meetings-Datatable');
+        Route::get('get-meetings-Dat    atable', 'BookingServicesController@getBookingServicesDataTable')->name('get-meetings-Datatable');
         Route::get('meetings/{booking}', 'BookingServicesController@show')->name('show-meeting-details');
         Route::post('meetings/{booking}/assign-provider', 'BookingServicesController@assignProviderToMeeting')->name('assign-provider-to-meeting');
+    });
+
+    Route::group(['namespace' => MMRP], function () {
+        Route::get('meetings/{id}/report', 'MeetingsMedicalReportController@index')->name('showMeetingReport');
+        Route::get('meetings/{id}/report/create', 'MeetingsMedicalReportController@create')->name('createMeetingReport');
+        Route::post('meetings/{id}/report/store', 'MeetingsMedicalReportController@store')->name('storeMeetingReport');
+        Route::get('meetings/{id}/report/{reportId}/edit', 'MeetingsMedicalReportController@edit')->name('editMeetingReport');
+        Route::post('meetings/{id}/report/{reportId}/update', 'MeetingsMedicalReportController@update')->name('updateMeetingReport');
+
+        Route::get('meetings/{id}/reports/datatable', 'MeetingsMedicalReportController@getMedicalReportsDataTable')->name('getMeetingsMedicalReportsDataTable');
+        Route::post('deleteMeetingReports', 'MeetingsMedicalReportController@deleteMedicalReports')->name('deleteMeetingsMedicalReports');
     });
 });
 

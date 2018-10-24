@@ -217,4 +217,8 @@ return [
     ],
     'DefaultPassword'=>'secret',
     'CustomerEitharID'=>'ETHR-0000',
+    'invoice_paid'=>[
+        'paid'=>1,
+        'pending'=>0
+    ]
 ];

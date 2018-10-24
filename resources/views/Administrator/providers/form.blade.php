@@ -117,6 +117,7 @@
                                             @endif
                                         </div>
 
+                                        @can('provider.view',new \App\Models\Provider())
                                         <div class="form-group">
                                             <label class="control-label">
                                                 {{ trans('admin.email') }} <span class="required"> * </span>
@@ -136,6 +137,7 @@
                                                 <span class="help-block text-danger">{{ $errors->first('mobile_number') }}</span>
                                             @endif
                                         </div>
+                                        @endcan
 
                                         <div class="form-group">
                                             <label class="control-label">
@@ -237,7 +239,7 @@
                                             <span class="help-block text-danger">{{ $errors->first('price') }}</span>
                                         @endif
                                     </div>
-
+                                    @can('provider.view',new \App\Models\Provider())
                                     <div class="form-group">
                                         <label for="name" class="control-label">
                                             {{ trans('admin.rating') }} <span class="required"> * </span>
@@ -247,6 +249,7 @@
                                             <span class="help-block text-danger">{{ $errors->first('rating') }}</span>
                                         @endif
                                     </div>
+                                    @endcan
 
                                     <div class="form-group">
                                         <label for="name" class="control-label">
@@ -307,7 +310,7 @@
                                             <span class="help-block text-danger">{{ $errors->first('education_en') }}</span>
                                         @endif
                                     </div>
-
+                                    @can('provider.view',new \App\Models\Provider())
                                     <div class="form-group">
                                         <label for="on"
                                                class="control-label">{{ trans('admin.is_active') }} </label>
@@ -373,7 +376,7 @@
                                             <span class="help-block text-danger">{{ $errors->first('contract_expiry_date') }}</span>
                                         @endif
                                     </div>
-
+                                    @endcan
                                     <div class="form-group">
                                         <label for="name" class="control-label">
                                             {{ trans('admin.visit_duration') }} <span style="color: grey">Hint: time in minutes</span> <span class="required"> * </span>

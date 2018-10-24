@@ -40,7 +40,6 @@
 @stop
 
 @section('script')
-    // declaring used variables
     <script>
         var promocodesDataTableURL = "{!! route('getPromoCodesDataTable') !!}";
         var deletePromoCodesURL    = "{!! route('deletePromoCodes') !!}";

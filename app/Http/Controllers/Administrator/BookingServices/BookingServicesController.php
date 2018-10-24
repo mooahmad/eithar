@@ -25,18 +25,15 @@ class BookingServicesController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('AdminAuth');
+//        $this->middleware(['ProviderAuth','AdminAuth']);
     }
 
     public function index(Request $request)
     {
-        if (Gate::denies('meetings.view',new ServiceBooking())){
-            return response()->view('errors.403',[],403);
+        if (Gate::allows('meetings.view',new ServiceBooking()) || Gate::forUser(auth()->guard('provider-web')->user())->allows('provider_guard.view')){
+            return view(AD.'.meetings.index');
         }
-        $data = [
-            'meeting_type' => $request->segment(3)
-        ];
-        return view(AD.'.meetings.index')->with($data);
+        return response()->view('errors.403',[],403);
     }
 
     /**
@@ -45,17 +42,16 @@ class BookingServicesController extends Controller
      */
     public function show(ServiceBooking $booking)
     {
-        if (Gate::denies('meetings.view',new ServiceBooking())){
-            return response()->view('errors.403',[],403);
+        if (Gate::allows('meetings.view',new ServiceBooking()) || Gate::forUser(auth()->guard('provider-web')->user())->allows('provider_guard.view')){
+            $data = [
+                'booking'=>$booking,
+                'booking_details'=>$this->getBookingDetails($booking),
+                'providers'=>Provider::GetActiveProviders()
+                    ->GetServiceProviders()->get()->pluck('full_name','id')
+            ];
+            return view(AD.'.meetings.show')->with($data);
         }
-
-        $data = [
-            'booking'=>$booking,
-            'booking_details'=>$this->getBookingDetails($booking),
-            'providers'=>Provider::GetActiveProviders()
-                ->GetServiceProviders()->get()->pluck('full_name','id')
-        ];
-        return view(AD.'.meetings.show')->with($data);
+        return response()->view('errors.403',[],403);
     }
 
     /**
@@ -65,19 +61,15 @@ class BookingServicesController extends Controller
      */
     public function getBookingServicesDataTable(Request $request)
     {
-//        By default get all upcoming meetings
-        $status = [config('constants.bookingStatus.inprogress')];
-
-        if ($request->meeting_type){
-            $status = [config('constants.bookingStatus.'.$request->meeting_type)];
+        $items = ServiceBooking::where('service_bookings.id', '<>', 0);
+        if (auth()->guard('provider-web')->user()){
+            $items->where('service_bookings.provider_id_assigned_by_admin',auth()->guard('provider-web')->user()->id)
+                ->orWhere('service_bookings.provider_id',auth()->guard('provider-web')->user()->id);
         }
-
-        $items = ServiceBooking::where('service_bookings.id', '<>', 0)
-            ->whereIn('service_bookings.status',$status)
-            ->leftjoin('services','service_bookings.service_id','services.id')
+        $items->leftjoin('services','service_bookings.service_id','services.id')
             ->join('customers','service_bookings.customer_id','customers.id')
             ->join('currencies','service_bookings.currency_id','currencies.id')
-            ->select(['service_bookings.id','service_bookings.status','service_bookings.price','service_bookings.status_desc','service_bookings.created_at','services.name_en','customers.first_name','customers.middle_name','customers.last_name','customers.national_id','customers.mobile_number','currencies.name_eng']);
+            ->select(['service_bookings.id','service_bookings.status','service_bookings.price','service_bookings.status_desc','service_bookings.created_at','services.name_en','customers.first_name','customers.middle_name','customers.last_name','customers.eithar_id','customers.national_id','customers.mobile_number','currencies.name_eng']);
         $dataTable = DataTables::of($items)
             ->editColumn('name_en',function ($item){
                 return ($item->name_en) ? $item->name_en : 'Lab Service';
@@ -105,7 +97,7 @@ class BookingServicesController extends Controller
                 $URLs = [
                     ['link'=>$showURL,'icon'=>'eye','color'=>'green'],
                 ];
-                if (Gate::allows('medical_report.view',new MedicalReports())){
+                if (Gate::allows('medical_report.view',new MedicalReports()) || Gate::forUser(auth()->guard('provider-web')->user())->allows('provider_guard.view')){
                     $medicalReportsURL = route('showMeetingReport',[$item->id]);
                     $addMedicalReportURL = route('createMeetingReport',[$item->id]);
                     $URLs[] = ['link'=>$medicalReportsURL,'icon'=>'list'];
@@ -141,11 +133,11 @@ class BookingServicesController extends Controller
             'price'=>$booking->price,
             'currency'=>$booking->currency->name_eng,
         ];
-
+        $service = $booking->service()->withTrashed()->first();
 //        in case Provider
-        if (!empty($booking->service) && $booking->service->type == 5){
+        if (!empty($service) && $service->type == 5){
             $provider_calendar = ProvidersCalendar::find($booking->service_appointments->first()->slot_id);
-            $booking_details['service_name']    = $booking->provider->full_name .' ('. $booking->service->type_desc.')';
+            $booking_details['service_name']    = $booking->provider->full_name .' ('. $service->type_desc.')';
             $booking_details['provider_id']     = [$booking->provider->id => $booking->provider->full_name];
             $booking_details['is_provider']     = true;
             $booking_details['original_amount'] = $booking->provider->price;
@@ -154,7 +146,7 @@ class BookingServicesController extends Controller
         }
 
 //        in case Lap Service
-        if (empty($booking->service) && $booking->is_lap==1){
+        if (empty($service) && $booking->is_lap==1){
             $lap_calendar = LapCalendar::findOrFail($booking->service_appointments->first()->slot_id);
             $lap_services = $booking->load('booking_lap_services.service')->booking_lap_services;
             $total_amount = 0;
@@ -172,12 +164,12 @@ class BookingServicesController extends Controller
         }
 
 //        in case one time visit and package
-        if (!empty($booking->service) && ($booking->service->type == 1 || $booking->service->type == 2)){
+        if (!empty($service) && ($service->type == 1 || $service->type == 2)){
             $package_oneTime_calendar = ServicesCalendar::findOrFail($booking->service_appointments->first()->slot_id);
-            $booking_details['service_name']    = $booking->service->name_en .' ('. $booking->service->type_desc.')';
-            $booking_details['service_id']      = [$booking->service->id => $booking->service->name_en];
-            $booking_details['service_price']   = [$booking->service->id => $booking->service->price];
-            $booking_details['original_amount'] = $booking->service->price;
+            $booking_details['service_name']    = $service->name_en .' ('. $service->type_desc.')';
+            $booking_details['service_id']      = [$service->id => $service->name_en];
+            $booking_details['service_price']   = [$service->id => $service->price];
+            $booking_details['original_amount'] = $service->price;
             $booking_details['start_date']      = Carbon::parse($package_oneTime_calendar->start_date)->format('Y-m-d h:i A');
             $booking_details['end_date']        = Carbon::parse($package_oneTime_calendar->end_date)->format('Y-m-d h:i A');
 

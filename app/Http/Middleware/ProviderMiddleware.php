@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class AdminsMiddleware
+class ProviderMiddleware
 {
     /**
      * Handle an incoming request.
@@ -14,13 +14,13 @@ class AdminsMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next, $guard = 'provider-web')
     {
-        if(!Auth::check()){
+        if (!Auth::guard($guard)->check()) {
             if ($request->ajax() || $request->wantsJson()) {
                 return response('Unauthorized.', 401);
             } else {
-                return redirect()->guest('login');
+                return redirect()->route('provider_login');
             }
         }
         return $next($request);

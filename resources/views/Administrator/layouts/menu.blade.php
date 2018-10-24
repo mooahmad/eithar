@@ -70,7 +70,7 @@
                     </ul>
                 </li>
             @endcan
-        <!-- End Admins Area -->
+            <!-- End Admins Area -->
             <!-- Start Categories Area -->
             @can('category.view', new \App\Models\Category())
                 <li class="nav-item start {{ (Request::segment(2)=='categories') ? 'active' :'' }}">
@@ -96,7 +96,7 @@
                     </ul>
                 </li>
             @endcan
-        <!-- End Categories Area -->
+            <!-- End Categories Area -->
             <!-- Start Lap Area -->
             @can('category.view', new \App\Models\Category())
                 <li class="nav-item start {{ ((Request::segment(2)=='services' && Request::segment(3)=='lap') || (Request::segment(2)=='lap' && Request::segment(3)=='calendar')) ? 'active' :'' }}">
@@ -134,7 +134,7 @@
                     </ul>
                 </li>
             @endcan
-        <!-- End Lap Area -->
+            <!-- End Lap Area -->
             <!-- Start Services Area -->
             @can('service.view', new \App\Models\Service())
                 <li class="nav-item start {{ (Request::segment(2)=='services'&& Request::segment(3)!='lap') ? 'active' :'' }}">
@@ -160,7 +160,7 @@
                     </ul>
                 </li>
             @endcan
-        <!-- End Services Area -->
+            <!-- End Services Area -->
             <!-- Start Providers Area -->
             @can('provider.view', new \App\Models\Provider())
                 <li class="nav-item start {{ (Request::segment(2)=='providers') ? 'active' :'' }}">
@@ -186,7 +186,7 @@
                     </ul>
                 </li>
             @endcan
-        <!-- End Providers Area -->
+            <!-- End Providers Area -->
             <!-- Start promo_codes Area -->
             @can('promo_code.view', new \App\Models\PromoCode())
                 <li class="nav-item start {{ (Request::segment(2)=='promo_codes') ? 'active' :'' }}">
@@ -212,7 +212,7 @@
                     </ul>
                 </li>
             @endcan
-        <!-- End Promo_codes Area -->
+            <!-- End Promo_codes Area -->
 
             <!-- Start Customers Area -->
             @can('customers.view')
@@ -268,35 +268,7 @@
             @endcan
             <!-- End Family Members Area -->
 
-            <!-- Start Invoices Area -->
-            @can('promo_code.view', new \App\Models\PromoCode())
-
-                {{--<li class="nav-item start {{ (Request::segment(2)=='invoices') ? 'active' :'' }}">--}}
-                {{--<a href="javascript:;" class="nav-link nav-toggle">--}}
-                {{--<i class="fa fa-file-pdf-o"></i>--}}
-                {{--<span class="title">{{ trans('admin.invoices') }}</span>--}}
-                {{--<span class="selected"></span>--}}
-                {{--<span class="arrow {{ (Request::segment(2)=='invoices') ? 'open' :'' }}"></span>--}}
-                {{--</a>--}}
-                {{--<ul class="sub-menu">--}}
-                {{--<li class="nav-item start {{ (Request::segment(2)=='invoices' && Request::segment(3)=='create') ? 'active' :'' }}">--}}
-                {{--<a href="{{ url(AD.'/invoices/create') }}" class="nav-link ">--}}
-                {{--<i class="fa fa-plus-circle"></i>--}}
-                {{--<span class="title">{{ trans('admin.add_invoices') }}</span>--}}
-                {{--</a>--}}
-                {{--</li>--}}
-                {{--<li class="nav-item start {{ (Request::is(AD.'/invoices')) ? 'active' :'' }}">--}}
-                {{--<a href="{{ url(AD.'/invoices') }}" class="nav-link ">--}}
-                {{--<i class="fa fa-eye"></i>--}}
-                {{--<span class="title">{{ trans('admin.show_invoices') }}</span>--}}
-                {{--</a>--}}
-                {{--</li>--}}
-                {{--</ul>--}}
-                {{--</li>--}}
-                @endcan
-            <!-- End Invoices Area -->
-
-                <!-- Start Booking Services Area -->
+            <!-- Start Booking Services Area -->
             @can('meetings.view')
                 <li class="nav-item start {{ (Request::segment(2)=='meetings') ? 'active' :'' }}">
                     <a href="javascript:;" class="nav-link nav-toggle">
@@ -329,6 +301,27 @@
                 @endcan
             <!-- End Booking Services Area -->
 
+            <!-- Start Invoices Area -->
+            @can('invoices.view')
+                <li class="nav-item start {{ (Request::segment(2)=='invoices') ? 'active' :'' }}">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-money"></i>
+                        <span class="title">{{ trans('admin.invoices') }}</span>
+                        <span class="selected"></span>
+                        <span class="arrow {{ (Request::segment(2)=='invoices') ? 'open' :'' }}"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item start {{ (Request::is(AD.'/invoices')) ? 'active' :'' }}">
+                            <a href="{{ url()->route('show-invoices') }}" class="nav-link ">
+                                <i class="fa fa-eye"></i>
+                                <span class="title">{{ trans('admin.show_invoices') }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            @endcan
+            <!-- End Invoices Area -->
+
             <!-- Start Medical reports Area -->
             @can('medical_report.view', new \App\Models\MedicalReports())
                 <li class="nav-item start {{ (Request::segment(2)=='medical_reports') ? 'active' :'' }}">
@@ -360,7 +353,7 @@
                     </ul>
                 </li>
             @endcan
-        <!-- End Medical reports Area -->
+            <!-- End Medical reports Area -->
             <!-- Start settings Area -->
             @can('settings.view', new \App\Models\Settings())
                 <li class="nav-item start {{ (Request::segment(2)=='settings') ? 'active' :'' }}">
@@ -379,8 +372,73 @@
                         </li>
                     </ul>
                 </li>
-        @endcan
-        <!-- End settings Area -->
+            @endcan
+            <!-- End settings Area -->
+
+            <!-- Start Providers Guard Area -->
+            @if(auth()->guard('provider-web')->user())
+                @if(auth()->guard('provider-web')->user()->can('provider_guard.update'))
+                    <li class="nav-item start">
+                        <a href="{{ url()->route('edit_provider',[auth()->guard('provider-web')->user()->id]) }}" class="nav-link nav-toggle">
+                            <i class="fa fa-edit"></i>
+                            <span class="title">{{ trans('admin.edit_profile') }}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item start">
+                        <a href="{{ url()->route('showProviderCalendar',[auth()->guard('provider-web')->user()->id]) }}" class="">
+                            <i class="fa fa-eye"></i>
+                            <span class="title">{{ trans('admin.show_calendar') }}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item start">
+                        <a href="{{ url()->route('createProviderCalendar',[auth()->guard('provider-web')->user()->id]) }}">
+                            <i class="fa fa-plus-circle"></i>
+                            <span class="title">{{ trans('admin.add_calendar') }}</span>
+                        </a>
+                    </li>
+                    </li>
+                @endif
+
+                <!-- Start Booking Services Area -->
+                @if(auth()->guard('provider-web')->user()->can('provider_guard.view'))
+                    <li class="nav-item start {{ (Request::segment(2)=='meetings') ? 'active' :'' }}">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="fa fa-calendar"></i>
+                            <span class="title">{{ trans('admin.booking_services') }}</span>
+                            <span class="selected"></span>
+                            <span class="arrow {{ (Request::segment(2)=='meetings') ? 'open' :'' }}"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item start {{ (Request::is(AD.'/meetings/canceled')) ? 'active' :'' }}">
+                                <a href="{{ url(AD.'/meetings/canceled') }}" class="nav-link ">
+                                    <i class="fa fa-eye"></i>
+                                    <span class="title">{{ trans('admin.canceled_meetings') }}</span>
+                                </a>
+                            </li>
+                            <li class="nav-item start {{ (Request::is(AD.'/meetings/inprogress')) ? 'active' :'' }}">
+                                <a href="{{ url(AD.'/meetings/inprogress') }}" class="nav-link ">
+                                    <i class="fa fa-eye"></i>
+                                    <span class="title">{{ trans('admin.inprogress_meetings') }}</span>
+                                </a>
+                            </li>
+                            <li class="nav-item start {{ (Request::is(AD.'/meetings/confirmed')) ? 'active' :'' }}">
+                                <a href="{{ url(AD.'/meetings/confirmed') }}" class="nav-link ">
+                                    <i class="fa fa-eye"></i>
+                                    <span class="title">{{ trans('admin.confirmed_meetings') }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item start {{ (Request::is(AD.'/invoices')) ? 'active' :'' }}">
+                        <a href="{{ url()->route('show-invoices') }}" class="nav-link">
+                            <i class="fa fa-money"></i>
+                            <span class="title">{{ trans('admin.show_invoices') }}</span>
+                        </a>
+                    </li>
+                @endif
+                <!-- End Booking Services Area -->
+            @endif
+        <!-- End Providers Guard Area -->
         </ul>
         <!-- END SIDEBAR MENU -->
     </div>
