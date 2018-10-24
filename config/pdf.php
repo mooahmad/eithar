@@ -8,5 +8,5 @@ return [
 	'keywords'              => '',
 	'creator'               => 'HuD Pdf',
 	'display_mode'          => 'fullpage',
-	'tempDir'               => base_path('../temp/')
+	'tempDir'               => public_path('temp')
 ];

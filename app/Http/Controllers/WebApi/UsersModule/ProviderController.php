@@ -162,6 +162,12 @@ class ProviderController extends Controller
         return $providerStrategy->getInvoice($request, $bookingId, $serviceType);
     }
 
+    public function getItemsForInvoice(Request $request, $bookingId)
+    {
+        $providerStrategy = new ProviderStrategy(ApiHelpers::requestType($request));
+        return $providerStrategy->getItemsForInvoice($request, $bookingId);
+    }
+
     public function addItemToInvoice(Request $request, $bookingId)
     {
         $providerStrategy = new ProviderStrategy(ApiHelpers::requestType($request));

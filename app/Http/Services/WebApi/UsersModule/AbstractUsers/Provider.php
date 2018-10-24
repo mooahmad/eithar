@@ -706,12 +706,27 @@ class Provider
         ]));
     }
 
+    public function getItemsForInvoice(Request $request, $bookingId)
+    {
+
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([
+                "items" => Service::GetItemsServices()->get()
+            ]));
+    }
+
     public function addItemToInvoice(Request $request, $bookingId)
     {
         $appointment = ServiceBookingAppointment::find($bookingId);
         $serviceBooking = ServiceBooking::find($appointment->service_booking_id);
         $invoice = $serviceBooking->invoice;
         $item    = Service::findOrFail($request->input('service_id'));
+
+        if(!$invoice)
+            return Utilities::getValidationError(config('constants.responseStatus.operationFailed'),
+                new MessageBag([
+                    "invoice not found"
+                ]));
 
 //        Save new pending item to invoice
         $invoiceClass = new InvoiceClass();

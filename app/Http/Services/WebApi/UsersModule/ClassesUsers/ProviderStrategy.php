@@ -139,6 +139,11 @@ class ProviderStrategy
         return $this->strategy->getInvoice($request, $bookingId, $serviceType);
     }
 
+    public function getItemsForInvoice(Request $request, $bookingId)
+    {
+        return $this->strategy->getItemsForInvoice($request, $bookingId);
+    }
+
     public function addItemToInvoice(Request $request, $bookingId)
     {
         return $this->strategy->addItemToInvoice($request, $bookingId);

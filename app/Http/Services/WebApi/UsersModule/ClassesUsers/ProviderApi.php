@@ -200,6 +200,14 @@ class ProviderApi extends Provider
         return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
     }
 
+    public function getItemsForInvoice(Request $request, $bookingId)
+    {
+        $validationObject = parent::getItemsForInvoice($request, $bookingId);
+        if ($validationObject->error == config('constants.responseStatus.success'))
+            return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
+    }
+
     public function addItemToInvoice(Request $request, $bookingId)
     {
         $validationObject = parent::addItemToInvoice($request, $bookingId);

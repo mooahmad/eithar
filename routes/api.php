@@ -110,7 +110,8 @@ Route::middleware('auth:provider')->group(function () {
         Route::post('/bookings/{id}/updateInvoicePromocode', 'ProviderController@updateInvoicePromocode');
         Route::post('/bookings/{id}/confirmInvoice', 'ProviderController@confirmInvoice');
         Route::get('/bookings/{id}/getInvoice/{serviceType}', 'ProviderController@getInvoice');
-        Route::get('/bookings/{id}/addItemToInvoice', 'ProviderController@addItemToInvoice');
+        Route::get('/bookings/{id}/getItemsForInvoice', 'ProviderController@getItemsForInvoice');
+        Route::post('/bookings/{id}/addItemToInvoice', 'ProviderController@addItemToInvoice');
         Route::get('getBookings/{eitharId?}', 'ProviderController@getBookings');
         Route::get('getBooking/{id}/{serviceType}', 'ProviderController@getBooking');
         Route::get('requestUnlockBooking/{id}', 'ProviderController@requestUnlockBooking');
