@@ -550,6 +550,7 @@ class Provider
         $questionnaire->each(function ($questionnaire) {
             $questionnaire->options_ar = empty(unserialize($questionnaire->options_ar)) ? [] : unserialize($questionnaire->options_ar);
             $questionnaire->options_en = empty(unserialize($questionnaire->options_en)) ? [] : unserialize($questionnaire->options_en);
+            $questionnaire->answer = empty(unserialize($questionnaire->answer)) ? [] : unserialize($questionnaire->answer);
             $questionnaire->addHidden([
                 'title_ar', 'title_en', 'subtitle_ar', 'subtitle_en',
                 'options_en', 'options_ar'
@@ -572,6 +573,8 @@ class Provider
             $query->where('is_approved', 1);
         }])->medicalReports;
         $reports->each(function ($report) use (&$medicalReports) {
+            $report->title = $report->medicalReport->title_en;
+            $report->category = "";
             $report->filled_file_path = Utilities::getFileUrl($report->file_path);
             array_push($medicalReports, $report);
         });
@@ -697,6 +700,10 @@ class Provider
             $services[] = $service;
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
+            "customer_picture" => Utilities::getFileUrl($customer->profile_picture_path),
+            "customer_name" => "{$customer->first_name} {$customer->middle_name} {$customer->last_name}",
+            "customer_number" => $customer->mobile_number,
+            "customer_address" => $serviceBooking->address,
             "calendar" => $calendar,
             "services" => $services,
             "promo_code" => $promoCode,

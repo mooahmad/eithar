@@ -18,4 +18,9 @@ class BookingMedicalReports extends Model
     {
         return $this->belongsTo(ServiceBooking::class,'service_booking_id','id');
     }
+
+    public function medicalReport()
+    {
+        return $this->belongsTo(MedicalReports::class,'medical_report_id','id');
+    }
 }
