@@ -17,12 +17,24 @@ define('MRP', 'Administrator\MedicalReports');
 define('MMRP', 'Administrator\MeetingsMedicalReports');
 define('SET', 'Administrator\Settings');
 
-//Frontend Routes
+/*-------------------------------------
+----------- Frontend Routes -----------
+-------------------------------------*/
 Route::group(['namespace' => FE], function () {
-    Route::group(['middleware' => 'Language', 'prefix' => Request::segment(1)], function () {
-        Route::group(['prefix' => session()->get('lang')], function () {
-            Route::get('/', 'FrontendController@index')->name('home');
+    Route::group(['middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ],'prefix' => LaravelLocalization::setLocale()], function () {
+        Route::get('/', 'FrontendController@index')->name('home');
+
+        Route::group(['namespace'=>'CategoriesFront'],function (){
+            Route::group(['prefix'=>'categories'], function (){
+               Route::get('doctors','CategoriesFrontController@showDoctorsSubCategories')->name('doctors_category');
+                Route::get('lap','CategoriesFrontController@showLapSubCategories')->name('lap_category');
+                Route::get('physiotherapy','CategoriesFrontController@showPhysiotherapySubCategories')->name('physiotherapy_category');
+                Route::get('nurse','CategoriesFrontController@showNurseSubCategories')->name('nurse_category');
+                Route::get('women','CategoriesFrontController@showWomenSubCategories')->name('women_category');
+            });
+//            Route::get('categories/{category}/{name}', 'CategoriesFrontController@showSubCategories')->name('show-subcategories');
         });
+
     });
 });
 
