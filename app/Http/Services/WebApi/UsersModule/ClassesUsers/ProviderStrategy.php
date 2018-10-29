@@ -161,7 +161,7 @@ class ProviderStrategy
 
     public function getDrivers(Request $request)
     {
-        return $this->strategy->getDrivers($request, $bookingId);
+        return $this->strategy->getDrivers($request);
     }
 
     public function bindDriverToAppointment(Request $request, $bookingId)
