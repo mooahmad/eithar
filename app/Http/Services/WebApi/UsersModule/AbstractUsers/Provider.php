@@ -44,6 +44,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\MessageBag;
 use App\Models\Provider as ProviderModel;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Driver;
+use App\Models\DriverTrips;
 
 
 class Provider
@@ -794,6 +796,25 @@ class Provider
             'payment_transaction_number' => $request->input('payment_transaction_number'),
             'provider_comment' => $request->input('provider_comment'),
         ]);
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([]));
+    }
+
+    public function getDrivers(Request $request)
+    {
+        return Utilities::getValidationError(config('constants.responseStatus.success'),
+            new MessageBag([
+                "drivers" => Driver::where('status', 1)->get()
+            ]));
+    }
+
+    public function bindDriverToAppointment(Request $request, $bookingId)
+    {
+        $driverTrip = new DriverTrips();
+        $driverTrip->driver_id = $request->input('driver_id');
+        $driverTrip->appointment_id = $bookingId;
+        $driverTrip->comment = $request->input('comment', '');
+        $driverTrip->save();
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([]));
     }

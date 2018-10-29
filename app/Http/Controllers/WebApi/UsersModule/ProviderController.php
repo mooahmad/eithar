@@ -186,4 +186,16 @@ class ProviderController extends Controller
         return $providerStrategy->payInvoice($request, $bookingId);
     }
 
+    public function getDrivers(Request $request)
+    {
+        $providerStrategy = new ProviderStrategy(ApiHelpers::requestType($request));
+        return $providerStrategy->getDrivers($request);
+    }
+
+    public function bindDriverToAppointment(Request $request, $bookingId)
+    {
+        $providerStrategy = new ProviderStrategy(ApiHelpers::requestType($request));
+        return $providerStrategy->bindDriverToAppointment($request, $bookingId);
+    }
+
 }

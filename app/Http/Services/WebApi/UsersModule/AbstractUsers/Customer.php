@@ -487,16 +487,6 @@ class Customer
         ]));
     }
 
-    public function confirmBookingItem(Request $request, $itemId)
-    {
-        $status = $request->input('status', 2);
-        $item = InvoiceItems::find($itemId);
-        $item->status = $status;
-        $item->save();
-        return Utilities::getValidationError(config('constants.responseStatus.success'),
-            new MessageBag([]));
-    }
-
     public function search(Request $request, $keyword)
     {
         $results = [];

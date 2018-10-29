@@ -158,4 +158,14 @@ class ProviderStrategy
     {
         return $this->strategy->payInvoice($request, $bookingId);
     }
+
+    public function getDrivers(Request $request)
+    {
+        return $this->strategy->getDrivers($request, $bookingId);
+    }
+
+    public function bindDriverToAppointment(Request $request, $bookingId)
+    {
+        return $this->strategy->bindDriverToAppointment($request, $bookingId);
+    }
 }

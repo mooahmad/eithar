@@ -55,7 +55,6 @@ Route::middleware('auth:api')->group(function () {
         Route::get('getAppointments/{id}/{servicetype}', 'CustomerController@getCustomerAppointment');
         Route::get('getNotifications', 'CustomerController@getCustomerNotifications');
         Route::get('getMedicalReports', 'CustomerController@getCustomerMedicalReports');
-        Route::post('bookingItem/{id}/confirmItem', 'CustomerController@confirmBookingItem');
         Route::get('search/{keyword}', 'CustomerController@search');
     }));
 
@@ -119,5 +118,7 @@ Route::middleware('auth:provider')->group(function () {
         Route::get('requestUnlockBooking/{id}', 'ProviderController@requestUnlockBooking');
         Route::get('getBookingQuestionnaireAnswer/{id}/{page}', 'ProviderController@getBookingQuestionnaireAnswer');
         Route::get('getApprovedReports/{id}', 'ProviderController@getApprovedReports');
+        Route::get('getDrivers', 'ProviderController@getDrivers');
+        Route::post('/bookings/{id}/bindDriverToAppointment', 'ProviderController@bindDriverToAppointment');
     }));
 });
