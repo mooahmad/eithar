@@ -46,6 +46,7 @@ use App\Models\Provider as ProviderModel;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Driver;
 use App\Models\DriverTrips;
+use App\Http\Services\WebApi\CategoriesModule\AbstractCategories\Categories;
 
 
 class Provider
@@ -397,6 +398,7 @@ class Provider
                             "id" => $serviceAppointment->id,
                             "service_type" => $service->type,
                             "service_name" => $service->name_en,
+                            "service_image" => $service->ProfilePicturePath,
                             "customer_name" => "{$customer->first_name} {$customer->middle_name} {$customer->last_name}",
                             "upcoming" => $upComming,
                             "start_date" => $startDate,
@@ -425,6 +427,7 @@ class Provider
                             "id" => $serviceAppointment->id,
                             "service_type" => $service->type,
                             "service_name" => $service->name_en,
+                            "service_image" => $service->ProfilePicturePath,
                             "customer_name" => "{$customer->first_name} {$customer->middle_name} {$customer->last_name}",
                             "upcoming" => $upComming,
                             "start_date" => $startDate,
@@ -453,6 +456,7 @@ class Provider
                         "id" => $serviceAppointment->id,
                         "service_type" => 4,
                         "service_name" => "Lap",
+                        "service_image" => Categories::find(2)->ProfilePicturePath,
                         "customer_name" => "{$customer->first_name} {$customer->middle_name} {$customer->last_name}",
                         "upcoming" => $upComming,
                         "start_date" => $startDate,
