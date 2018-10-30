@@ -114,7 +114,7 @@ Route::middleware('auth:provider')->group(function () {
         Route::post('/bookings/{id}/deleteItemFromInvoice', 'ProviderController@deleteItemFromInvoice');
         Route::post('/bookings/{id}/payInvoice', 'ProviderController@payInvoice');
         Route::get('getBookings/{eitharId?}', 'ProviderController@getBookings');
-        Route::get('getBooking/{id}/{serviceType}', 'ProviderController@getBooking');
+        Route::post('getBooking/{id}/{serviceType}', 'ProviderController@getBooking');
         Route::get('requestUnlockBooking/{id}', 'ProviderController@requestUnlockBooking');
         Route::get('getBookingQuestionnaireAnswer/{id}/{page}', 'ProviderController@getBookingQuestionnaireAnswer');
         Route::get('getApprovedReports/{id}', 'ProviderController@getApprovedReports');

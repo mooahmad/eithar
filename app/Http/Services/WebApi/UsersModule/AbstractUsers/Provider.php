@@ -487,6 +487,7 @@ class Provider
 
     public function getBooking(Request $request, $id, $serviceType)
     {
+        $this->confirmInvoice($request, $id);
         $appointment = ServiceBookingAppointment::find($id);
         $calendar = [];
         $services = [];
@@ -497,19 +498,18 @@ class Provider
         $promoCode = ($serviceBooking->promo_code != null) ? $serviceBooking->promo_code->code : "";
         $currency = $serviceBooking->currency->name_eng;
         $total = $serviceBooking->price;
+        $invoiceItems = $serviceBooking->invoice->items;
         if ($serviceType == 5) {
             $providersCalendar = ProvidersCalendar::find($appointment->slot_id);
             if ($providersCalendar) {
                 $providerService = $serviceBooking->provider->services()->leftJoin('categories', 'services.category_id', '=', 'categories.id')->where('categories.category_parent_id', 1)->first();
                 $calendar[] = ApiHelpers::reBuildCalendarSlot($providersCalendar);
-                $services [] = $providerService;
                 $totalBeforeTax = $providerService->price;
             }
         } elseif ($serviceType == 1 || $serviceType == 2) {
             $servicesCalendar = ServicesCalendar::find($appointment->slot_id);
             if ($servicesCalendar) {
                 $calendar[] = ApiHelpers::reBuildCalendarSlot($servicesCalendar);
-                $services [] = $serviceBooking->service;
                 $totalBeforeTax = $serviceBooking->service->price;
             }
         } elseif ($serviceType == 4) {
@@ -518,10 +518,16 @@ class Provider
                 $calendar[] = ApiHelpers::reBuildCalendarSlot($lapClendar);
                 $servicesLap = ServiceBookingLap::where('service_booking_id', $serviceBooking->id)->get();
                 foreach ($servicesLap as $serviceLap) {
-                    $services [] = $serviceLap->service;
                     $totalBeforeTax += $serviceLap->service->price;
                 }
             }
+        }
+        foreach ($invoiceItems as $invoiceItem) {
+            $service = $invoiceItem->service;
+            $service->status = $invoiceItem->status;
+            $service->service_id = $service->id;
+            $service->id = $invoiceItem->id;
+            $services[] = $service;
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
             "customer_picture" => Utilities::getFileUrl($customer->profile_picture_path),
