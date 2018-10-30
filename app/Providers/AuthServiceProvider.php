@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Category;
 use App\Models\Customer;
+use App\Models\Driver;
 use App\Models\Invoice;
 use App\Models\MedicalReports;
 use App\Models\PromoCode;
@@ -13,17 +14,17 @@ use App\Models\Settings;
 use App\Policies\AdminPolicy;
 use App\Policies\CategoryPolicy;
 use App\Policies\CustomerPolicy;
+use App\Policies\DriverPolicy;
 use App\Policies\FamilyMemberPolicy;
 use App\Policies\InvoicesPolicy;
 use App\Policies\MedicalReportPolicy;
 use App\Policies\PromoCodesPolicy;
-use App\Policies\ProviderGuard;
 use App\Policies\ProviderGuardPolicy;
 use App\Policies\ServicePolicy;
 use App\Policies\SettingsPolicy;
 use App\User;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Laravel\Passport\Passport;
 
@@ -45,6 +46,7 @@ class AuthServiceProvider extends ServiceProvider
         MedicalReports::class => MedicalReportPolicy::class,
         Settings::class => SettingsPolicy::class,
         Provider::class => ProviderGuardPolicy::class,
+        Driver::class => DriverPolicy::class,
     ];
 
     /**
@@ -98,6 +100,12 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('medical_report.update', 'App\Policies\MedicalReportPolicy@update');
         Gate::define('medical_report.delete', 'App\Policies\MedicalReportPolicy@delete');
 
+        // policies categories
+        Gate::define('drivers.view', 'App\Policies\DriverPolicy@view');
+        Gate::define('drivers.create', 'App\Policies\DriverPolicy@create');
+        Gate::define('drivers.update', 'App\Policies\DriverPolicy@update');
+        Gate::define('drivers.delete', 'App\Policies\DriverPolicy@delete');
+
         // policies settings
         Gate::define('settings.view', 'App\Policies\SettingsPolicy@view');
         Gate::define('settings.create', 'App\Policies\SettingsPolicy@create');
@@ -120,7 +128,7 @@ class AuthServiceProvider extends ServiceProvider
         Gate::resource('family_member', 'App\Policies\FamilyMemberPolicy');
 
 //        Service Booking Policies
-        Gate::define('meetings.view','App\Policies\BookingServicesPolicy@view');
+        Gate::define('meetings.view', 'App\Policies\BookingServicesPolicy@view');
 
         // passport
         Passport::routes();

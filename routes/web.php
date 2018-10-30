@@ -16,6 +16,8 @@ define('BSN', 'Administrator\BookingServices');
 define('MRP', 'Administrator\MedicalReports');
 define('MMRP', 'Administrator\MeetingsMedicalReports');
 define('SET', 'Administrator\Settings');
+define('DRV', 'Administrator\Drivers');
+
 
 //Frontend Routes
 Route::group(['namespace' => FE], function () {
@@ -285,3 +287,15 @@ Route::group(['prefix' => AD], function () {
     });
 });
 
+Route::group(['middleware' => 'AdminAuth', 'namespace' => DRV, 'prefix' => AD], function () {
+    Route::resource('drivers', 'DriversController',
+        ['names' => [
+            'index' => 'show drivers',
+            'create' => 'create drivers',
+            'show' => 'show drivers',
+            'edit' => 'edit drivers',
+            'destroy' => 'delete drivers'
+        ]]);
+    Route::get('getdriversdatatable', 'DriversController@getDriversDataTable')->name('getDriversDatatable');
+    Route::post('deletedrivers', 'DriversController@deleteDrivers')->name('deleteDrivers');
+});

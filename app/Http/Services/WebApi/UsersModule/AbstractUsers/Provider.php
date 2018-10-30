@@ -703,6 +703,8 @@ class Provider
         foreach ($invoiceItems as $invoiceItem) {
             $service = $invoiceItem->service;
             $service->status = $invoiceItem->status;
+            $service->service_id = $service->id;
+            $service->id = $invoiceItem->id;
             $services[] = $service;
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([

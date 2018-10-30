@@ -354,6 +354,32 @@
                 </li>
             @endcan
             <!-- End Medical reports Area -->
+                        <!-- Start Drivers Area -->
+                        @can('drivers.view', new \App\Models\Driver())
+                        <li class="nav-item start {{ (Request::segment(2)=='drivers') ? 'active' :'' }}">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="fa fa-user-secret"></i>
+                                <span class="title">{{ trans('admin.drivers') }}</span>
+                                <span class="selected"></span>
+                                <span class="arrow {{ (Request::segment(2)=='drivers') ? 'open' :'' }}"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item start {{ (Request::segment(2)=='drivers' && Request::segment(3)=='create') ? 'active' :'' }}">
+                                    <a href="{{ url(AD.'/drivers/create') }}" class="nav-link ">
+                                        <i class="fa fa-plus-circle"></i>
+                                        <span class="title">{{ trans('admin.add_driver') }}</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item start {{ (Request::is(AD.'/drivers')) ? 'active' :'' }}">
+                                    <a href="{{ url(AD.'/drivers') }}" class="nav-link ">
+                                        <i class="icon-user"></i>
+                                        <span class="title">{{ trans('admin.show_driver') }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endcan
+                    <!-- End Drivers Area -->
             <!-- Start settings Area -->
             @can('settings.view', new \App\Models\Settings())
                 <li class="nav-item start {{ (Request::segment(2)=='settings') ? 'active' :'' }}">
