@@ -32,6 +32,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\MessageBag;
+use App\Notifications\ApproveItemToInvoice;
 
 class Services implements IService
 {
@@ -192,15 +193,13 @@ class Services implements IService
         $pushTypeData->send_at = Carbon::now()->format('Y-m-d H:m:s');
         Auth::user()->notify(new AppointmentCanceled($pushTypeData));
 
-        if ($booking->service) {
-            $serviceType = $booking->service->type;
-            if ($serviceType == 5) {
+        $assignedProvider = $booking->assigned_provider;
+        $assignedProvider->notify(new AppointmentCanceled($pushTypeData));
+
+        if ($booking->provider) {
                 $slot = ProvidersCalendar::find($appointment->slot_id);
                 $slot->is_available = 1;
                 $slot->save();
-                $provider = Provider::find($booking->provider_id);
-                $provider->notify(new AppointmentCanceled($pushTypeData));
-            }
         }
 
         return Utilities::getValidationError(config('constants.responseStatus.success'),
@@ -501,6 +500,11 @@ class Services implements IService
             ]);
 
             if ($invoice_item) {
+                $provider = $invoice_item->invoice->provider;
+                $pushTypeData = PushNotificationsTypes::find(config('constants.pushTypes.approveItemToInvoice'));
+                $pushTypeData->item_id = $invoice_item_id;
+                $pushTypeData->send_at = Carbon::now()->format('Y-m-d H:m:s');
+                $provider->notify(new ApproveItemToInvoice($pushTypeData));
                 return Utilities::getValidationError(config('constants.responseStatus.success'),
                     new MessageBag([]));
             }

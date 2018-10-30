@@ -76,5 +76,13 @@ class PushNotificationsTypesSeeder extends Seeder
             'desc_en' => 'Appointment has been canceled',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
         ]);
+        DB::table('push_notifications_types')->insert([
+            'type' => 9,
+            'title_ar' => 'موافقه خدمة جديدة',
+            'title_en' => 'Approve Item To Invoice',
+            'desc_ar' => 'لقد تم الموافقه باضافه خدمه على الفاتور',
+            'desc_en' => 'adding item to invoice has been approved.',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+        ]);
     }
 }
