@@ -198,4 +198,10 @@ class ProviderController extends Controller
         return $providerStrategy->bindDriverToAppointment($request, $bookingId);
     }
 
+    public function getProviderNotifications(Request $request)
+    {
+        $providerStrategy = new ProviderStrategy(ApiHelpers::requestType($request));
+        return $providerStrategy->getProviderNotifications($request);
+    }
+
 }

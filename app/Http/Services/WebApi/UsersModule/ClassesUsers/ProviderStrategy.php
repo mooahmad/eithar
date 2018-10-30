@@ -168,4 +168,9 @@ class ProviderStrategy
     {
         return $this->strategy->bindDriverToAppointment($request, $bookingId);
     }
+
+    public function getProviderNotifications(Request $request)
+    {
+        return $this->strategy->getProviderNotifications($request);
+    }
 }

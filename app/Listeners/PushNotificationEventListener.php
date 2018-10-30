@@ -8,6 +8,7 @@ use App\Models\Customer;
 use Carbon\Carbon;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Models\Provider;
 
 class PushNotificationEventListener
 {
@@ -31,8 +32,15 @@ class PushNotificationEventListener
     {
         $now = Carbon::now()->format('Y-m-d H:m:s');
         $customers = Customer::all();
-        $customers->each(function ($customer) use ($now) {
-            $customer->notifications()->where('is_pushed', 0)->orderBy('created_at', 'asc')->get()->each(function ($notification) use ($now, $customer) {
+        $providers = Provider::all();
+        $this->fireOnModels($customers);
+        $this->fireOnModels($providers);
+    }
+
+    protected function fireOnModels($models)
+    {
+        $models->each(function ($model) use ($now) {
+            $model->notifications()->where('is_pushed', 0)->orderBy('created_at', 'asc')->get()->each(function ($notification) use ($now, $model) {
                 $data = json_decode(json_encode($notification->data));
                 if (strtotime($data->send_at) <= strtotime($now)) {
                     $details = [
@@ -48,8 +56,8 @@ class PushNotificationEventListener
                         $data->{'desc_' . $data->lang} = str_replace('@day', $day, $data->{'desc_' . $data->lang});
                         $data->{'desc_' . $data->lang} = str_replace('@time', $time, $data->{'desc_' . $data->lang});
                     }
-                    if ($customer->pushNotification) {
-                        $tokens[] = $customer->pushNotification->token;
+                    if ($model->pushNotification) {
+                        $tokens[] = $model->pushNotification->token;
                         $pushData = Utilities::buildNotification($data->{'title_' . $data->lang}, $data->{'desc_' . $data->lang}, 0, $details);
                         Utilities::pushNotification($tokens, $pushData);
                         $notification->is_pushed = 1;

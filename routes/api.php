@@ -120,5 +120,6 @@ Route::middleware('auth:provider')->group(function () {
         Route::get('getApprovedReports/{id}', 'ProviderController@getApprovedReports');
         Route::get('getDrivers', 'ProviderController@getDrivers');
         Route::post('/bookings/{id}/bindDriverToAppointment', 'ProviderController@bindDriverToAppointment');
+        Route::get('getNotifications', 'ProviderController@getProviderNotifications');
     }));
 });
