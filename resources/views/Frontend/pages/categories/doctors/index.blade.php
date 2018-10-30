@@ -41,7 +41,7 @@
                                 <div class="doctor_block">
                                     <a href="#" class="doctor_img">
                                         <span class="more_details"> التفاصيل</span>
-                                        <img src="img/doctor.png" alt="">
+                                        <img src="{{ asset('public/Frontend/img/doctor.png') }}" alt="">
                                     </a>
                                     <div class="doctor_description">
                                         <aside class="name">
@@ -53,17 +53,17 @@
                                         <div class="rate_content">
                                             <aside>
                                                 <span> 50</span>
-                                                <img src="img/icon/share.png" alt="">
+                                                <img src="{{ asset('public/Frontend/img/icon/share.png') }}" alt="">
                                             </aside>
 
                                             <aside>
                                                 <span> 50</span>
-                                                <img src="img/icon/star.png" alt="">
+                                                <img src="{{ asset('public/Frontend/img/icon/star.png') }}" alt="">
                                             </aside>
 
                                             <aside>
                                                 <span> 50</span>
-                                                <img src="img/icon/like.png" alt="">
+                                                <img src="{{ asset('public/Frontend/img/icon/like.png') }}" alt="">
                                             </aside>
 
                                         </div>
@@ -77,7 +77,7 @@
                                 <div class="doctor_block">
                                     <a href="#" class="doctor_img">
                                         <span class="more_details"> التفاصيل</span>
-                                        <img src="img/doctor.png" alt="">
+                                        <img src="{{ asset('public/Frontend/img/doctor.png') }}" alt="">
                                     </a>
                                     <div class="doctor_description">
                                         <aside class="name">
@@ -89,17 +89,17 @@
                                         <div class="rate_content">
                                             <aside>
                                                 <span> 50</span>
-                                                <img src="img/icon/share.png" alt="">
+                                                <img src="{{ asset('public/Frontend/img/icon/share.png') }}" alt="">
                                             </aside>
 
                                             <aside>
                                                 <span> 50</span>
-                                                <img src="img/icon/star.png" alt="">
+                                                <img src="{{ asset('public/Frontend/img/icon/star.png') }}" alt="">
                                             </aside>
 
                                             <aside>
                                                 <span> 50</span>
-                                                <img src="img/icon/like.png" alt="">
+                                                <img src="{{ asset('public/Frontend/img/icon/like.png') }}" alt="">
                                             </aside>
 
                                         </div>
@@ -107,14 +107,12 @@
                                 </div>
                             </div>
                             <!-- End Doctor Block-->
-
-
                             <!-- Start Doctor Block-->
                             <div class="col-sm-12 col-md-6 col-lg-3">
                                 <div class="doctor_block">
                                     <a href="#" class="doctor_img">
                                         <span class="more_details"> التفاصيل</span>
-                                        <img src="img/doctor.png" alt="">
+                                        <img src="{{ asset('public/Frontend/img/doctor.png') }}" alt="">
                                     </a>
                                     <div class="doctor_description">
                                         <aside class="name">
@@ -126,53 +124,17 @@
                                         <div class="rate_content">
                                             <aside>
                                                 <span> 50</span>
-                                                <img src="img/icon/share.png" alt="">
+                                                <img src="{{ asset('public/Frontend/img/icon/share.png') }}" alt="">
                                             </aside>
 
                                             <aside>
                                                 <span> 50</span>
-                                                <img src="img/icon/star.png" alt="">
+                                                <img src="{{ asset('public/Frontend/img/icon/star.png') }}" alt="">
                                             </aside>
 
                                             <aside>
                                                 <span> 50</span>
-                                                <img src="img/icon/like.png" alt="">
-                                            </aside>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Doctor Block-->
-
-                            <!-- Start Doctor Block-->
-                            <div class="col-sm-12 col-md-6 col-lg-3">
-                                <div class="doctor_block">
-                                    <a href="#" class="doctor_img">
-                                        <span class="more_details"> التفاصيل</span>
-                                        <img src="img/doctor.png" alt="">
-                                    </a>
-                                    <div class="doctor_description">
-                                        <aside class="name">
-                                            <h2> د/ حسناء محمد ابو تريكة
-                                            </h2>
-                                            <span> مسالك بولية</span>
-                                        </aside>
-
-                                        <div class="rate_content">
-                                            <aside>
-                                                <span> 50</span>
-                                                <img src="img/icon/share.png" alt="">
-                                            </aside>
-
-                                            <aside>
-                                                <span> 50</span>
-                                                <img src="img/icon/star.png" alt="">
-                                            </aside>
-
-                                            <aside>
-                                                <span> 50</span>
-                                                <img src="img/icon/like.png" alt="">
+                                                <img src="{{ asset('public/Frontend/img/icon/like.png') }}" alt="">
                                             </aside>
 
                                         </div>
