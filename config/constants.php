@@ -176,6 +176,7 @@ return [
         "invoiceGenerated" => 6,
         "addItemToInvoice" => 7,
         "appointmentcanceled" => 8,
+        "assignProviderToMeeting" => 9,
     ],
     "pushTypesDesc" => [
         1=>"Services",
