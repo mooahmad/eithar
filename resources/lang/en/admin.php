@@ -260,4 +260,13 @@ return [
     'edit_profile' => 'Edit Profile',
     'createProviderCalendar' => 'Create Provider Calendar',
     'showMeetingReport' => 'Show Meeting Report',
+    'drivers' => 'Drivers',
+    'add_driver' => 'Add drivers',
+    'show_driver' => 'Show drivers',
+    'car_type' => 'Car type',
+    'identity' => 'Identity',
+    'nationalId' => 'National Id',
+    'carType' => 'Car type',
+    'carColor' => 'Car color',
+    'carPlateNumber' => 'Car plate number',
 ];

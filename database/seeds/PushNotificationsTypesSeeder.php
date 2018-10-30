@@ -78,7 +78,15 @@ class PushNotificationsTypesSeeder extends Seeder
         ]);
         DB::table('push_notifications_types')->insert([
             'type' => 9,
-            'title_ar' => 'الغاء موعد',
+            'title_ar' => 'موافقه خدمة جديدة',
+            'title_en' => 'Approve Item To Invoice',
+            'desc_ar' => 'لقد تم الموافقه باضافه خدمه على الفاتور',
+            'desc_en' => 'adding item to invoice has been approved.',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('push_notifications_types')->insert([
+            'type' => 10,
+            'title_ar' => 'تعيين دكتور للاجتماع',
             'title_en' => 'تعيين دكتور للاجتماع',
             'desc_ar' => 'تعيين دكتور للاجتماع',
             'desc_en' => 'Assign Provider To Meeting',

@@ -176,7 +176,8 @@ return [
         "invoiceGenerated" => 6,
         "addItemToInvoice" => 7,
         "appointmentcanceled" => 8,
-        "assignProviderToMeeting" => 9,
+        "approveItemToInvoice" => 9,
+        "assignProviderToMeeting" => 10,
     ],
     "pushTypesDesc" => [
         1=>"Services",
@@ -187,6 +188,7 @@ return [
         6=>"Invoice Generated",
         7=>"Add Item To Invoice",
         8=>"Appointment Canceled",
+        9=> "Approve Item To Invoice",
     ],
     'invoice_code' => 'INV-00',
     'payment_methods' => [
