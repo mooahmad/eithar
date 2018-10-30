@@ -36,39 +36,7 @@
 
 
     <!--=03= Start Search Subheader-->
-    <div class="serach_subheader">
-        <div class="container">
-            <div class="serach_subheader-content">
-                <form>
-                    <aside class="serach_subheader-department">
-                        <input type="button" class="department_button" value=" رعاية اولادي">
-                        <input type="button" class="department_button" value="ممرضات ">
-                        <input type="button" class="department_button" value="علاج طبيعي ">
-                        <input type="button" class="department_button" value=" المـــعامل">
-                        <input type="button" class="department_button" value="الأطباء ">
-                    </aside>
-                    <aside class="serach_subheader-searsh">
-                        <button type="submit" class="fas fa-search"></button>
-                        <input type="text" placeholder="بحث">
-                        <div class="serach_subheader-select">
-                            <select>
-                                <option> دكتور</option>
-                                <option> دكتور</option>
-                                <option> دكتور</option>
-                            </select>
-
-                            <select>
-                                <option> دكتور</option>
-                                <option> دكتور</option>
-                                <option> دكتور</option>
-                            </select>
-                        </div>
-
-                    </aside>
-                </form>
-            </div>
-        </div>
-    </div>
+    @include(FE.'.layouts.search')
     <!--=03= End Search Subheader-->
 
     <!--=04= Start About Us-->
@@ -80,18 +48,14 @@
                         <img src="{{ asset('public/Frontend/img/bg/bg-about-us.png') }}" alt="{{ trans('main.site_name') }}">
                     </aside>
                 </div>
-
                 <div class="col-sm-12  col-lg-6">
                     <aside>
-                        <h2 class="home_page-title"> من نحن ؟</h2>
-                        <p class="paragraph_global">
-                            لوريم إيبسوم(Lorem Ipsum) هو ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر. كان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة برص مجموعة من الأحرف بشكل عشوائي أخذتها من نص، لتكوّن كتيّب بمثابة دليل أو مرجع شكلي لهذه الأحرف. خمسة قرون من الزمن لم تقضي على هذا النص، بل انه حتى صار مستخدماً وبشكله الأصلي في الطباعة والتنضيد الإلكتروني. انتشر بشكل كبير في ستينيّات هذا القرن مع إصدار رقائق "ليتراسيت" (Letraset) البلاستيكية تحوي مقاطع من هذا النص، وعاد لينتشر مرة أخرى مؤخراَ مع ظهور برامج النشر الإلكتروني مثل "ألدوس بايج مايكر" (Aldus PageMaker) والتي حوت أيضاً على نسخ من نص لوريم إيبسوم
-                        </p>
-                        <a href="#" class="button"> المزيد</a>
+                        <h2 class="home_page-title">{{ trans('main.who_we_are') }}</h2>
+                        <p class="paragraph_global">{{ trans('main.who_we_are_text') }}</p>
+                        <a href="{{ url(LaravelLocalization::getCurrentLocale()) }}" class="button">{{ trans('main.more') }}</a>
                     </aside>
                 </div>
             </div>
-
         </div>
     </section>
     <!--=04= End About Us-->
@@ -100,97 +64,111 @@
     <section class="home_page-section home_page-services">
         <div class="container-fluid">
             <aside class="services_title">
-                <h2 class="home_page-title"> خــدمــاتنا</h2>
-                <p class="paragraph_global">
-                    وريم إيبسوم(Lorem Ipsum) هو ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر. كان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة برص مجموعة من الأحرف
-                </p>
+                <h2 class="home_page-title">{{ trans('main.our_services') }}</h2>
+                <p class="paragraph_global">{{ trans('main.our_services_text') }}</p>
             </aside>
             <div class="row">
-                <!--Start Block 1-->
+                {{--@isset($main_categories)--}}
+                    {{--@foreach($main_categories as $main_category)--}}
+                        {{--<div class="col-sm-12 col-md-6 col-lg-4">--}}
+                            {{--<div class="services_block">--}}
+                                {{--<aside class="services_block-icon">--}}
+                                    {{--<img alt="{{ $main_category->{'category_name_'.LaravelLocalization::getCurrentLocale()} }}" src="{{ $main_category->profile_picture_path }}">--}}
+                                {{--</aside>--}}
+                                {{--<aside class="services_block-paragraph">--}}
+                                    {{--<h3>{{ $main_category->{'category_name_'.LaravelLocalization::getCurrentLocale()} }}</h3>--}}
+                                    {{--<p class="paragraph_global">{{ $main_category->{'description_'.LaravelLocalization::getCurrentLocale()} }}</p>--}}
+                                    {{--<a href="{{ url(LaravelLocalization::getCurrentLocale().'/categories/'.$main_category->id.'/'.str_replace(' ','-',$main_category->{'category_name_'.LaravelLocalization::getCurrentLocale()})) }}" class="button">{{ trans('main.more') }}</a>--}}
+                                {{--</aside>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--@endforeach--}}
+                {{--@endisset--}}
+
+                <!--Start Doctors-->
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="services_block">
                         <aside class="services_block-icon">
-                            <img alt="{{ trans('main.site_name') }}" src="{{ asset('public/Frontend/img/icon/services-doctor.png') }}">
+                            <img alt="{{ trans('main.doctors') }}" src="{{ asset('public/Frontend/img/icon/services-doctor.png') }}">
                         </aside>
                         <aside class="services_block-paragraph">
-                            <h3> الاطباء</h3>
+                            <h3>{{ trans('main.doctors') }}</h3>
                             <p class="paragraph_global">
                                 وريم إيبسوم(Lorem Ipsum) هو ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر. كان لوريم إيبسوم ولايزال المعيار
                             </p>
-                            <a href="#" class="button"> المزيد</a>
+                            <a href="{{ url()->route('doctors_category') }}" class="button">{{ trans('main.more') }}</a>
                         </aside>
                     </div>
                 </div>
-                <!--End Block 1-->
+                <!--End Doctors-->
 
-                <!--Start Block 2-->
+                <!--Start Lap-->
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="services_block">
                         <aside class="services_block-icon">
-                            <img alt="{{ trans('main.site_name') }}" src="{{ asset('public/Frontend/img/icon/services-lab.png') }}">
+                            <img alt="{{ trans('main.lap') }}" src="{{ asset('public/Frontend/img/icon/services-lab.png') }}">
                         </aside>
                         <aside class="services_block-paragraph">
-                            <h3> المعامل</h3>
+                            <h3>{{ trans('main.lap') }}</h3>
                             <p class="paragraph_global">
                                 وريم إيبسوم(Lorem Ipsum) هو ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر. كان لوريم إيبسوم ولايزال المعيار
                             </p>
-                            <a href="#" class="button"> المزيد</a>
+                            <a href="{{ url()->route('lap_category') }}" class="button">{{ trans('main.more') }}</a>
                         </aside>
                     </div>
                 </div>
-                <!--End Block 2-->
+                <!--End Lap-->
 
-                <!--Start Block 3-->
+                <!--Start Nurse-->
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="services_block">
                         <aside class="services_block-icon">
-                            <img alt="{{ trans('main.site_name') }}" src="{{ asset('public/Frontend/img/icon/services-nurse.png') }}">
+                            <img alt="{{ trans('main.nurse') }}" src="{{ asset('public/Frontend/img/icon/services-nurse.png') }}">
                         </aside>
                         <aside class="services_block-paragraph">
-                            <h3> الممرضات</h3>
+                            <h3>{{ trans('main.nurse') }}</h3>
                             <p class="paragraph_global">
                                 وريم إيبسوم(Lorem Ipsum) هو ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر. كان لوريم إيبسوم ولايزال المعيار
                             </p>
-                            <a href="#" class="button"> المزيد</a>
+                            <a href="{{ url()->route('nurse_category') }}" class="button">{{ trans('main.more') }}</a>
                         </aside>
                     </div>
                 </div>
-                <!--End Block 3-->
+                <!--End Nurse-->
 
-                <!--Start Block 4-->
+                <!--Start Physiotherapy-->
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="services_block">
                         <aside class="services_block-icon">
-                            <img alt="{{ trans('main.site_name') }}" src="{{ asset('public/Frontend/img/icon/services-therapy.png') }}">
+                            <img alt="{{ trans('main.physiotherapy') }}" src="{{ asset('public/Frontend/img/icon/services-therapy.png') }}">
                         </aside>
                         <aside class="services_block-paragraph">
-                            <h3> علاج طبيعي</h3>
+                            <h3>{{ trans('main.physiotherapy') }}</h3>
                             <p class="paragraph_global">
                                 وريم إيبسوم(Lorem Ipsum) هو ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر. كان لوريم إيبسوم ولايزال المعيار
                             </p>
-                            <a href="#" class="button"> المزيد</a>
+                            <a href="{{ url()->route('physiotherapy_category') }}" class="button">{{ trans('main.more') }}</a>
                         </aside>
                     </div>
                 </div>
-                <!--End Block 4-->
+                <!--End Physiotherapy-->
 
-
-                <!--Start Block 5-->
+                <!--Start Women-->
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="services_block">
                         <aside class="services_block-icon">
-                            <img alt="{{ trans('main.site_name') }}" src="{{ asset('public/Frontend/img/icon/services-childern.png') }}">
+                            <img alt="{{ trans('main.women') }}" src="{{ asset('public/Frontend/img/icon/services-childern.png') }}">
                         </aside>
                         <aside class="services_block-paragraph">
-                            <h3> رعاية الأطفال</h3>
+                            <h3>{{ trans('main.women') }}</h3>
                             <p class="paragraph_global">
                                 وريم إيبسوم(Lorem Ipsum) هو ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر. كان لوريم إيبسوم ولايزال المعيار
                             </p>
-                            <a href="#" class="button"> المزيد</a>
+                            <a href="{{ url()->route('women_category') }}" class="button">{{ trans('main.more') }}</a>
                         </aside>
                     </div>
                 </div>
-                <!--End Block 5-->
+                <!--End Women-->
             </div>
         </div>
     </section>

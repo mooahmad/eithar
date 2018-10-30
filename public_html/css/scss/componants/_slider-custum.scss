@@ -1,214 +1,248 @@
 /*Custum Slider Button**/
 
 .slider_custum_button {
-    .slick-arrow:focus {
-        outline: none !important;
-    }
-    .slick-arrow {
-        font-size: 0;
-        border: 0;
-        height: 40px;
-        width: 40px;
-        line-height: 40px;
-        text-align: center;
-        background-color: #fff;
-        border: 1px solid $secondColor;
-        position: relative;
+  .slick-arrow:focus {
+    outline: none !important;
+  }
 
-        cursor: pointer;
+  .slick-arrow {
+    font-size: 0;
+    border: 0;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid $secondColor;
+    position: relative;
+    cursor: pointer;
+  }
 
-    }
+  .slick-arrow {
+    z-index: 9;
+    top: 30%;
+    position: absolute;
+  }
 
-    .slick-arrow {
-        z-index: 9;
-        top: 50%;
-        position: absolute
-    }
+  .slick-arrow:before {
+    position: absolute;
+    display: block;
+    color: #17112d;
+    font-size: 13px;
+    right: 15px;
+    font-family: 'Font Awesome\ 5 Free';
+    font-weight: 900;
+  }
 
-    .slick-arrow:before {
-        position: absolute;
-        display: block;
-        color: #17112d;
-        font-size: 13px;
-        right: 15px;
-        font-family: 'Font Awesome\ 5 Free';
-        font-weight: 900;
-    }
+  .slick-arrow:hover {
+    background-color: #17112d;
+  }
 
-    .slick-arrow:hover {
-        background-color: #17112d;
-    }
+  .slick-arrow:hover:before {
+    color: #fff;
+  }
 
-    .slick-arrow:hover:before {
-        color: #fff
-    }
+  .slick-prev:before {
+    content: "\f053";
+  }
 
-    .slick-prev:before {
-        content: "\f053";
-    }
+  .slick-next:before {
+    content: "\f054";
+  }
 
-    .slick-next:before {
-        content: "\f054";
-    }
+  .slick-prev {
+    left: 15px;
+  }
 
-    .slick-prev {
-        left: 15px;
-    }
-
-    .slick-next {
-        right: 15px;
-    }
+  .slick-next {
+    right: 15px;
+  }
 }
+/*ٍStart Providr Page*/
+.department_slider {
+  .slick-arrow {
+    background-color: transparent;
+    border: 1px solid transparent;
 
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  .slick-arrow:hover:before {
+    color: $mainColor;
+  }
+
+  .slick-arrow:before {
+    color: $secondColor;
+    font-size: 30px;
+  }
+
+  .slick-prev {
+    @media (max-width:$lg) {
+      left: 0;
+    }
+    @media (min-width:$lg) {
+      left: -30px;
+    }
+  }
+
+  .slick-next {
+    @media (max-width:$lg) {
+      right: 0;
+    }
+    @media (min-width:$lg) {
+      right: -30px;
+    }
+  }
+}
+/*End Providr Page*/
 /*Custum Slider Button Webiners**/
-
 .webinars_slider-js {
+  .slick-arrow {
+    background-color: #fff;
+    border: 1px solid $secondColor;
+  }
 
-    .slick-arrow {
-        background-color: #fff;
-        border: 1px solid $secondColor;
+  .slick-arrow {
+    top: -70px;
+    @extend %transition;
+    @media (max-width: $sm) {
+      top: -100px;
     }
+  }
 
-    .slick-arrow {
-        top: -70px;
-        @extend %transition;
-        @media (max-width: $sm) {
-            top:-100px;
-        }
+  .slick-arrow:before {
+    color: $secondColor;
+    @extend %transition;
+  }
 
-    }
+  .slick-arrow:hover {
+    background-color: $secondColor;
+  }
 
-    .slick-arrow:before {
-        color: $secondColor;
-        @extend %transition;
-    }
+  .slick-arrow:hover:before {
+    color: #fff;
+  }
 
-    .slick-arrow:hover {
-        background-color: $secondColor;
-    }
+  .slick-prev {
+    left: 15px;
+  }
 
-    .slick-arrow:hover:before {
-        color: #fff
-    }
-
-
-    .slick-prev {
-        left: 15px;
-    }
-
-    .slick-next {
-        right: 15px;
-    }
+  .slick-next {
+    right: 15px;
+  }
 }
-
 /*Custum Slider Button Our Company**/
 
 .our_company-js {
+  .slick-arrow {
+    background-color: #fff;
+    border: 1px solid $secondColor;
+  }
 
-    .slick-arrow {
-        background-color: #fff;
-        border: 1px solid $secondColor;
-    }
+  .slick-arrow {
+    @extend %transition;
+    top: 45%;
+  }
 
-    .slick-arrow {
-        @extend %transition;
-        top: 45%;
-    }
+  .slick-arrow:before {
+    color: $secondColor;
+    @extend %transition;
+  }
 
-    .slick-arrow:before {
-        color: $secondColor;
-        @extend %transition;
-    }
+  .slick-arrow:hover {
+    background-color: $secondColor;
+  }
 
-    .slick-arrow:hover {
-        background-color: $secondColor;
-    }
+  .slick-arrow:hover:before {
+    color: #fff;
+  }
 
-    .slick-arrow:hover:before {
-        color: #fff
-    }
+  .slick-prev {
+    left: 10px;
+  }
 
-    .slick-prev {
-        left: 10px;
-    }
-
-    .slick-next {
-        right: 10px;
-    }
+  .slick-next {
+    right: 10px;
+  }
 }
-
 /*********Slider Style For Single Page Slider************/
 
 .slider_dots {
-    .slick-dots {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        li {
-            display: inline-block;
-            cursor: pointer;
-            button {
-                font-size: 0;
-                border: 0;
-                height: 3px;
-                width: 15px;
-                background-color: #ccc;
-                margin: 0 3px;
-                cursor: pointer;
-                border-radius: 100px;
-                &:focus {
-                    outline: none !important;
-                }
+  .slick-dots {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 
-            }
+    li {
+      display: inline-block;
+      cursor: pointer;
+
+      button {
+        font-size: 0;
+        border: 0;
+        height: 3px;
+        width: 15px;
+        background-color: #ccc;
+        margin: 0 3px;
+        cursor: pointer;
+        border-radius: 100px;
+
+        &:focus {
+          outline: none !important;
         }
-        .slick-active {
-            button {
-                background-color: $mainColor;
-                width: 20px;
-            }
-        }
+      }
     }
-}
 
+    .slick-active {
+      button {
+        background-color: $mainColor;
+        width: 20px;
+      }
+    }
+  }
+}
 /**Header Slider Dotes****/
 
 .header_slider {
-    .slick-dots {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        text-align: center;
-        bottom: 100px;
-        position: relative;
-        @media (min-width: $lg) {
-            bottom: 300px;
-        }
-        li {
-            display: inline-block;
-            cursor: pointer;
-            button {
-                font-size: 0;
-                border: 0;
-                height: 12px;
-                width: 12px;
-                margin: 0 10px;
-                cursor: pointer;
-                border-radius: 100%;
-                background-color: #fff;
-                &:focus {
-                    outline: none !important;
-                }
-
-            }
-        }
-        .slick-active {
-            button {
-                width: 20px;
-                border-radius: 3px;
-                width: 30px;
-
-            }
-        }
+  .slick-dots {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    bottom: 100px;
+    position: relative;
+    @media (min-width: $lg) {
+      bottom: 300px;
     }
+
+    li {
+      display: inline-block;
+      cursor: pointer;
+
+      button {
+        font-size: 0;
+        border: 0;
+        height: 12px;
+        width: 12px;
+        margin: 0 10px;
+        cursor: pointer;
+        border-radius: 100%;
+        background-color: #fff;
+
+        &:focus {
+          outline: none !important;
+        }
+      }
+    }
+
+    .slick-active {
+      button {
+        width: 20px;
+        border-radius: 3px;
+        width: 30px;
+      }
+    }
+  }
 }

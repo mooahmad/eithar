@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="rtl">
+<html lang="{{LaravelLocalization::getCurrentLocale()}}" dir="{{LaravelLocalization::getCurrentLocaleDirection()}}">
 
 <head>
     <meta charset="utf-8">
@@ -16,13 +16,13 @@
 
     <link rel="stylesheet" href="{{ asset('public/Frontend/css/fontawesome-all.css') }}" />
     <link rel="stylesheet" href="{{ asset('public/Frontend/css/bootstrap.min.css') }}" />
-    @if(session()->get('lang') =='ar')
+    @if(LaravelLocalization::getCurrentLocale() =='ar')
         <link rel="stylesheet" href="{{ asset('public/Frontend/css/bootstrap-rtl.min.css') }}" />
     @endif
     <link rel="stylesheet" href="{{ asset('public/Frontend/css/slick.css') }}" />
 
     <link rel="stylesheet" href="{{ asset('public/Frontend/css/them.css') }}" />
-    @if(session()->get('lang') =='ar')
+    @if(LaravelLocalization::getCurrentLocale() =='ar')
         <link rel="stylesheet" href="{{ asset('public/Frontend/css/them.rtl.css') }}" />
     @endif
 

@@ -83,4 +83,12 @@ class Category extends Model
         return $this->belongsTo('App\Models\Category', 'category_parent_id', 'id');
     }
 
+    /**
+     * @return mixed
+     */
+    public function scopeGetParentCategories()
+    {
+        return $this->whereNull('category_parent_id')->take(5);
+    }
+
 }

@@ -1,19 +1,9 @@
 /***Navigation Layout****/
-
 @import "layout/navigation.scss";
-@import "layout/navbar.scss";
-
-/***Header Layout****/
-
-@import "layout/header-slider.scss";
-
-/*Home Page*/
-
+@import "layout/navbar.scss"; /***Header Layout****/
+@import "layout/header-slider.scss"; /*Home Page*/
 @import "page/homepage.scss";
-
-
-/*Single Pages*/
-
-/***Footer Layout****/
-
+@import "page/provider.scss";
+@import "page/profile-doctor.scss";
+@import "page/booking-docotr.scss";
 @import "layout/footer.scss";
