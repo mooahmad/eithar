@@ -487,7 +487,6 @@ class Provider
 
     public function getBooking(Request $request, $id, $serviceType)
     {
-        $this->confirmInvoice($request, $id);
         $appointment = ServiceBookingAppointment::find($id);
         $calendar = [];
         $services = [];
@@ -529,6 +528,8 @@ class Provider
             $service->id = $invoiceItem->id;
             $services[] = $service;
         }
+        $invoiceClass = new InvoiceClass();
+        $invoice = $invoiceClass->createNewInvoice($booking);
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
             "customer_picture" => Utilities::getFileUrl($customer->profile_picture_path),
             "customer_name" => "{$customer->first_name} {$customer->middle_name} {$customer->last_name}",
@@ -664,8 +665,6 @@ class Provider
             $booking->price = $totalPrice;
             $booking->save();
         }
-        $invoiceClass = new InvoiceClass();
-        $invoice = $invoiceClass->createNewInvoice($booking);
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([]));
     }
