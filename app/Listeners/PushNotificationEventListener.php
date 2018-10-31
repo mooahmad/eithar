@@ -43,7 +43,7 @@ class PushNotificationEventListener
     public static function fireOnModel($serverCloudKey, $model)
     {
         $now = Carbon::now()->format('Y-m-d H:m:s');
-        $model->notifications()->where('is_pushed', 0)->orderBy('created_at', 'asc')->get()->each(function ($notification) use ($now, $model) {
+        $model->notifications()->where('is_pushed', 0)->orderBy('created_at', 'asc')->get()->each(function ($notification) use ($serverCloudKey, $now, $model) {
             $data = json_decode(json_encode($notification->data));
             if (strtotime($data->send_at) <= strtotime($now)) {
                 $details = [
