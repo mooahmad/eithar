@@ -89,9 +89,9 @@ class ProviderStrategy
         return $this->strategy->updateForgottenPassword($request);
     }
 
-    public function getBookings(Request $request, $eitharId = null)
+    public function getBookings(Request $request, $page = 1, $eitharId = null)
     {
-        return $this->strategy->getBookings($request, $eitharId);
+        return $this->strategy->getBookings($request, $page, $eitharId);
     }
 
     public function getBooking(Request $request, $id, $serviceType)
@@ -169,8 +169,8 @@ class ProviderStrategy
         return $this->strategy->bindDriverToAppointment($request, $bookingId);
     }
 
-    public function getProviderNotifications(Request $request)
+    public function getProviderNotifications(Request $request, $page = 1)
     {
-        return $this->strategy->getProviderNotifications($request);
+        return $this->strategy->getProviderNotifications($request, $page);
     }
 }

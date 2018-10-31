@@ -100,11 +100,11 @@ class ProviderController extends Controller
         return $providerStrategy->updateForgottenPassword($request);
     }
 
-    public function getBookings(Request $request, $eitharId = null)
+    public function getBookings(Request $request, $page = 1, $eitharId = null)
     {
         // instantiate login strategy object using request type detection helper method
         $providerStrategy = new ProviderStrategy(ApiHelpers::requestType($request));
-        return $providerStrategy->getBookings($request, $eitharId);
+        return $providerStrategy->getBookings($request, $page, $eitharId);
     }
 
     public function getBooking(Request $request, $id, $serviceType)
@@ -198,10 +198,10 @@ class ProviderController extends Controller
         return $providerStrategy->bindDriverToAppointment($request, $bookingId);
     }
 
-    public function getProviderNotifications(Request $request)
+    public function getProviderNotifications(Request $request, $page = 1)
     {
         $providerStrategy = new ProviderStrategy(ApiHelpers::requestType($request));
-        return $providerStrategy->getProviderNotifications($request);
+        return $providerStrategy->getProviderNotifications($request, $page);
     }
 
 }

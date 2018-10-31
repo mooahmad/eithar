@@ -120,9 +120,9 @@ class ProviderApi extends Provider
         return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
     }
 
-    public function getBookings(Request $request, $eitharId = null)
+    public function getBookings(Request $request, $page = 1, $eitharId = null)
     {
-        $validationObject = parent::getBookings($request, $eitharId);
+        $validationObject = parent::getBookings($request, $page, $eitharId);
         if ($validationObject->error == config('constants.responseStatus.success'))
             return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
         return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
@@ -248,9 +248,9 @@ class ProviderApi extends Provider
         return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
     }
 
-    public function getProviderNotifications(Request $request)
+    public function getProviderNotifications(Request $request, $page = 1)
     {
-        $validationObject = parent::getProviderNotifications($request);
+        $validationObject = parent::getProviderNotifications($request, $page);
         if ($validationObject->error == config('constants.responseStatus.success'))
             return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
         return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);

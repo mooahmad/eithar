@@ -349,18 +349,19 @@ class Provider
         return true;
     }
 
-    public function getBookings(Request $request, $eitharId = null)
+    public function getBookings(Request $request, $page = 1, $eitharId = null)
     {
         $upCommingAppointments = [];
         $passedAppointments = [];
         $finalAppointments = [];
+        $page -= 1;
         $servicesBookings = Auth::user()->load(['servicesBookings.service_appointments' => function ($query) use ($eitharId) {
             if ($eitharId != null) {
                 $query->join('service_bookings', 'service_booking_appointments.service_booking_id', 'service_bookings.id');
                 $query->join('customers', 'service_bookings.customer_id', 'customers.id')->whereRaw("customers.eithar_id = '$eitharId'");
             }
             $query->orderByRaw('service_booking_appointments.created_at DESC');
-        }])->servicesBookings;
+        }])->servicesBookings()->skip($page * config('constants.paggination_items_per_page'))->take(config('constants.paggination_items_per_page'))->get();
         foreach ($servicesBookings as $servicesBooking) {
             $service = null;
             $serviceBookingLaps = null;
@@ -833,9 +834,11 @@ class Provider
             new MessageBag([]));
     }
 
-    public function getProviderNotifications(Request $request)
+    public function getProviderNotifications(Request $request, $page = 1)
     {
-        $notifications = Auth::user()->notifications()->where('is_pushed', 1)->get();
+        $page -= 1;
+        $notifications = Auth::user()->notifications()->where('is_pushed', 1)
+        ->skip($page * config('constants.paggination_items_per_page'))->take(config('constants.paggination_items_per_page'))->get();
         $returnNotifications = [];
         foreach ($notifications as $notification) {
             $notificationData = json_decode(json_encode($notification->data));
