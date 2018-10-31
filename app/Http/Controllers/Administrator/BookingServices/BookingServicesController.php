@@ -9,8 +9,10 @@ use App\Models\Customer;
 use App\Models\MedicalReports;
 use App\Models\Provider;
 use App\Models\ProvidersCalendar;
+use App\Models\PushNotificationsTypes;
 use App\Models\ServiceBooking;
 use App\Models\ServicesCalendar;
+use App\Notifications\AssignProviderToMeeting;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -192,7 +194,14 @@ class BookingServicesController extends Controller
         }
 
         if ($request->booking){
-            ServiceBooking::where('id',$request->booking)->update(['provider_id_assigned_by_admin'=>$request->input('provider_id')]);
+            $booking = ServiceBooking::findOrFail($request->booking);
+            $booking->update(['provider_id_assigned_by_admin'=>$request->input('provider_id')]);
+//            TODO send notification to customer that Admin generate new invoice
+            $payload = PushNotificationsTypes::find(config('constants.pushTypes.assignProviderToMeeting'));
+            $payload->booking_id   = $booking->id;
+            $payload->language     = ($booking->customer->default_language) ? $booking->customer->default_language : 'en';
+            $payload->send_at      = Carbon::now()->format('Y-m-d H:m:s');
+            return $booking->assigned_provider->notify(new AssignProviderToMeeting($payload));
         }
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/meetings/'.$request->booking);
