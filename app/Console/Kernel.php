@@ -28,17 +28,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call(function () {
             event(new PushNotificationEvent());
-        })->everyMinute();
 
-        $schedule->call(function (){
             event(new SendEmailsEvent());
-        })->everyMinute();
 
-        $schedule->call(function (){
             event(new SendSMSEvent());
-        })->everyMinute();
     }
 
     /**
