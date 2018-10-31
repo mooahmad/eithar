@@ -1,10 +1,9 @@
-@import "helpers/variables.scss"; /**Start Arabic Menu**/
-
+@import "helpers/variables.scss";
+/**Start Arabic Menu**/
 body {
   text-align: right !important;
 }
 /*=03= Start Search Subheader*/
-
 .serach_subheader {
   .serach_subheader-searsh {
     button {
@@ -24,7 +23,6 @@ body {
 }
 /*=03= Start Search Subheader*/
 /*05=Start Services*/
-
 .home_page-services {
   .services_block {
     margin-right: 50px;
@@ -43,7 +41,6 @@ body {
 }
 /*05=End Services*/
 /*06= Start Services Oorder*/
-
 .services_order {
   .location {
     i {
@@ -57,7 +54,6 @@ body {
 }
 /*06= Start Services Order*/
 /**Footer**/
-
 footer {
   .footer_subscribe {
     button {
@@ -72,13 +68,13 @@ footer {
 }
 /*05=End Services*/
 /*Start Booking Doctor*/
+
 .wizard .checkbox_input {
   margin-left: 12px;
   margin-right: 0;
 }
 /*End Booking Doctor*/
 /*Start Custume Select Button*/
-
 .custum_select {
   &:before {
     left: 20px;
@@ -86,8 +82,16 @@ footer {
     /*Change*/
   }
 }
+/*Start Menue*/
+.navbar_menu {
+  /*Menu For Mobile*/
+  @media (max-width: $lg) {
+    right: -260px;
+    left: auto;
+    /*Change*/
+  }
+}
 /*****Font******/
-
 a,
 button,
 h1,

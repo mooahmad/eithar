@@ -34,4 +34,6 @@ return [
     'physiotherapy_category'        => 'قسم العلاج الطبيعي',
     'women'                         => 'النساء',
     'women_category'                => 'قسم النساء',
+    'about_us'                      => 'من نحن',
+    'privacy_and_conditions'        => 'الخصوصية والشروط',
 ];

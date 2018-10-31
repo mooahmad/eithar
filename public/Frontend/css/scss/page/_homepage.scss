@@ -1,10 +1,10 @@
 @import "helpers/variables.scss";
 @import "componants/buttons.scss";
-@import "componants/slider-custum.scss";
-/**********/
+@import "componants/slider-custum.scss"; /**********/
 /*02= Start Header Search Subheader*/
 /*02=End Header Search Subheader*/
 /*=03= Start Search Subheader*/
+
 .serach_subheader {
   @media (min-width: $lg) {
     margin-top: -180px;
@@ -85,7 +85,7 @@
       top: 4px;
       cursor: pointer;
       padding: 0 6px;
-      border-radius: 0 $borderRadius $borderRadius 0;
+      border-radius: $borderRadius;
       /*change*/
       right: 4px;
       /*Change*/
@@ -117,9 +117,11 @@
 }
 /*=03= Start Search Subheader*/
 /*04=Start About Us*/
+
 .home-page-aboutus {}
 /*04=End About Us*/
 /*05=Start Services*/
+
 .home_page-services {
   padding: 50pz 0 20px;
   overflow: hidden;
@@ -194,6 +196,7 @@
 }
 /*05=End Services*/
 /*06= Start Services Oorder*/
+
 .services_order {
   .services_order-img {
     @media(max-width: $lg) {
