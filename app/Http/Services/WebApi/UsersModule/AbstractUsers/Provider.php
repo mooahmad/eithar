@@ -529,7 +529,7 @@ class Provider
             $services[] = $service;
         }
         $invoiceClass = new InvoiceClass();
-        $invoice = $invoiceClass->createNewInvoice($booking);
+        $invoice = $invoiceClass->createNewInvoice($serviceBooking);
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
             "customer_picture" => Utilities::getFileUrl($customer->profile_picture_path),
             "customer_name" => "{$customer->first_name} {$customer->middle_name} {$customer->last_name}",
