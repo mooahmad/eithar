@@ -665,6 +665,9 @@ class Provider
             $booking->price = $totalPrice;
             $booking->save();
         }
+        $booking->invoice()->delete();
+        $invoiceClass = new InvoiceClass();
+        $invoice = $invoiceClass->createNewInvoice($booking);
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([]));
     }

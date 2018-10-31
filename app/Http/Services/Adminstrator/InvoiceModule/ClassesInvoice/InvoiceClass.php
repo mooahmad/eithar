@@ -2,7 +2,6 @@
 
 namespace App\Http\Services\Adminstrator\InvoiceModule\ClassesInvoice;
 
-
 use App\Helpers\Utilities;
 use App\Http\Controllers\Administrator\BookingServices\BookingServicesController;
 use App\Models\Invoice;
@@ -10,9 +9,7 @@ use App\Models\InvoiceItems;
 use App\Models\PushNotificationsTypes;
 use App\Notifications\InvoiceGenerated;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\MessageBag;
 
 class InvoiceClass
 {
@@ -24,43 +21,50 @@ class InvoiceClass
     public function createNewInvoice($booking)
     {
 //        check if empty booking details
-        if (!$booking) return null;
+        if (!$booking) {
+            return null;
+        }
+
 //        check if booking has generated invoice
-        if (!empty($booking->invoice)) return $booking->invoice;
+        if (!empty($booking->invoice)) {
+            return $booking->invoice;
+        }
 
         $add = new Invoice();
-        $add->service_booking_id   = $booking->id;
-        $add->customer_id          = $booking->customer_id;
+        $add->service_booking_id = $booking->id;
+        $add->customer_id = $booking->customer_id;
 //        login Provider ID
-        $add->provider_id          = auth()->user()->id;
-        $add->currency_id          = $booking->currency_id;
+        if (auth()->guard('provider-web')->user()) {
+            $add->provider_id = auth()->guard('provider-web')->user()->id;
+        }
+        $add->currency_id = $booking->currency_id;
 
         $add->is_saudi_nationality = $booking->customer->is_saudi_nationality;
-        $add->invoice_code         = config('constants.invoice_code').$booking->id;
-        $add->admin_comment        = $booking->admin_comment;
+        $add->invoice_code = config('constants.invoice_code') . $booking->id;
+        $add->admin_comment = $booking->admin_comment;
         $add->save();
 
         $items = BookingServicesController::getBookingDetails($booking);
-        if ($items){
+        if ($items) {
 //            Calculate amount of this invoice
-            if ($items['original_amount']){
-                $amount = $this->calculateInvoiceServicePrice($items['original_amount'],$items['promo_code_percentage'],$items['vat_percentage']);
-                if (!empty($amount)){
-                    $this->updateInvoiceAmount($add,$amount['amount_original'],$amount['amount_after_discount'],$amount['amount_after_vat'],$amount['amount_final']);
+            if ($items['original_amount']) {
+                $amount = $this->calculateInvoiceServicePrice($items['original_amount'], $items['promo_code_percentage'], $items['vat_percentage']);
+                if (!empty($amount)) {
+                    $this->updateInvoiceAmount($add, $amount['amount_original'], $amount['amount_after_discount'], $amount['amount_after_vat'], $amount['amount_final']);
                 }
             }
 
 //            in case customer book provider
-            if ($items['is_provider']){
-                foreach ($items['provider_id'] as $id=>$name){
-                    $this->saveInvoiceItem($add->id,$name,null,$id,config('constants.items.approved'),$items['original_amount']);
+            if ($items['is_provider']) {
+                foreach ($items['provider_id'] as $id => $name) {
+                    $this->saveInvoiceItem($add->id, $name, null, $id, config('constants.items.approved'), $items['original_amount']);
                 }
             }
 
 //            in case customer book package/lap/on time visit
-            if ($items['service_id']){
-                foreach ($items['service_id'] as $id=>$name){
-                    $this->saveInvoiceItem($add->id,$name,$id,null,config('constants.items.approved'),$items['service_price'][$id]);
+            if ($items['service_id']) {
+                foreach ($items['service_id'] as $id => $name) {
+                    $this->saveInvoiceItem($add->id, $name, $id, null, config('constants.items.approved'), $items['service_price'][$id]);
                 }
             }
 
@@ -70,8 +74,8 @@ class InvoiceClass
 
         //        TODO send notification to customer that Admin generate new invoice
         $payload = PushNotificationsTypes::find(config('constants.pushTypes.invoiceGenerated'));
-        $payload->invoice_id   = $add->id;
-        $payload->send_at      = Carbon::now()->format('Y-m-d H:m:s');
+        $payload->invoice_id = $add->id;
+        $payload->send_at = Carbon::now()->format('Y-m-d H:m:s');
         $add->customer->notify(new InvoiceGenerated($payload));
 
         return $add;
@@ -87,39 +91,39 @@ class InvoiceClass
      *
      * Use Add Or Delete Text when add/delete item from invoice
      */
-    public function calculateInvoiceServicePrice($amount_original,$discount=0,$vat=0,$item_price=0,$operation='Add')
+    public function calculateInvoiceServicePrice($amount_original, $discount = 0, $vat = 0, $item_price = 0, $operation = 'Add')
     {
-        $this->amount_original       = $amount_original;
+        $this->amount_original = $amount_original;
 
-        if ($operation == 'Add'){
+        if ($operation == 'Add') {
 //            When Add new item to invoice
-            $this->amount_original   = $this->amount_original + $item_price;
+            $this->amount_original = $this->amount_original + $item_price;
         }
 
-        if ($operation == 'Delete'){
+        if ($operation == 'Delete') {
 //            When Delete new item to invoice
-            $this->amount_original   = $this->amount_original - $item_price;
+            $this->amount_original = $this->amount_original - $item_price;
         }
 
         $this->amount_after_discount = $this->amount_original;
-        $this->amount_after_vat      = $this->amount_original;
-        $this->amount_final          = $this->amount_original;
-        if ($amount_original>0){
-            if ($discount>0){
-                $this->amount_after_discount = $this->amount_original - Utilities::calcPercentage($this->amount_original,$discount);
-                $this->amount_after_vat      = $this->amount_after_discount;
-                $this->amount_final          = $this->amount_after_discount;
+        $this->amount_after_vat = $this->amount_original;
+        $this->amount_final = $this->amount_original;
+        if ($amount_original > 0) {
+            if ($discount > 0) {
+                $this->amount_after_discount = $this->amount_original - Utilities::calcPercentage($this->amount_original, $discount);
+                $this->amount_after_vat = $this->amount_after_discount;
+                $this->amount_final = $this->amount_after_discount;
             }
-            if ($vat>0){
-                $this->amount_after_vat = $this->amount_after_discount + Utilities::calcPercentage($this->amount_after_discount,$vat);
-                $this->amount_final     = $this->amount_after_vat;
+            if ($vat > 0) {
+                $this->amount_after_vat = $this->amount_after_discount + Utilities::calcPercentage($this->amount_after_discount, $vat);
+                $this->amount_final = $this->amount_after_vat;
             }
         }
         return $data = [
-            'amount_original'=>$this->amount_original,
-            'amount_after_discount'=>$this->amount_after_discount,
-            'amount_after_vat'=>$this->amount_after_vat,
-            'amount_final'=>$this->amount_final,
+            'amount_original' => $this->amount_original,
+            'amount_after_discount' => $this->amount_after_discount,
+            'amount_after_vat' => $this->amount_after_vat,
+            'amount_final' => $this->amount_final,
         ];
     }
 
@@ -131,15 +135,17 @@ class InvoiceClass
      * @param $amount_final
      * @return null
      */
-    public function updateInvoiceAmount($invoice,$amount_original,$amount_after_discount,$amount_after_vat,$amount_final)
+    public function updateInvoiceAmount($invoice, $amount_original, $amount_after_discount, $amount_after_vat, $amount_final)
     {
-        if (empty($invoice)) return null;
+        if (empty($invoice)) {
+            return null;
+        }
 
         $invoice->update([
-            'amount_original'       => $amount_original,
+            'amount_original' => $amount_original,
             'amount_after_discount' => $amount_after_discount,
-            'amount_after_vat'      => $amount_after_vat,
-            'amount_final'          => $amount_final,
+            'amount_after_vat' => $amount_after_vat,
+            'amount_final' => $amount_final,
         ]);
         return $invoice;
     }
@@ -153,16 +159,19 @@ class InvoiceClass
      * @param $price
      * @return null
      */
-    public function saveInvoiceItem($invoice_id,$service_name,$service_id=null,$provider_id=null,$status=1 ,$price)
+    public function saveInvoiceItem($invoice_id, $service_name, $service_id = null, $provider_id = null, $status = 1, $price)
     {
-        if (!$invoice_id) return null;
+        if (!$invoice_id) {
+            return null;
+        }
+
         return InvoiceItems::updateOrCreate([
-            'invoice_id'=>$invoice_id,
-            'item_desc_appear_in_invoice'=>$service_name,
-            'service_id'=>$service_id,
-            'provider_id'=>$provider_id,
-            'status'=>$status,
-            'price'=>$price,
+            'invoice_id' => $invoice_id,
+            'item_desc_appear_in_invoice' => $service_name,
+            'service_id' => $service_id,
+            'provider_id' => $provider_id,
+            'status' => $status,
+            'price' => $price,
         ]);
     }
 
