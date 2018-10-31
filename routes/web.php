@@ -26,6 +26,7 @@ Route::group(['namespace' => FE], function () {
     Route::group(['middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ],'prefix' => LaravelLocalization::setLocale()], function () {
         Route::get('/', 'FrontendController@index')->name('home');
         Route::get('about-us', 'FrontendController@AboutUs')->name('about_us');
+        Route::get('privacy-and-conditions', 'FrontendController@PrivacyAndConditions')->name('privacy_and_conditions');
 
         Route::group(['namespace'=>'CategoriesFront'],function (){
             Route::group(['prefix'=>'categories'], function (){

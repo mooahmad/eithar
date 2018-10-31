@@ -36,4 +36,12 @@ class FrontendController extends Controller
     {
         return view(FE.'.pages.static.about_us');
     }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function PrivacyAndConditions()
+    {
+        return view(FE.'.pages.static.privacy_and_conditions');
+    }
 }

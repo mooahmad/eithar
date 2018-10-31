@@ -35,4 +35,5 @@ return [
     'women'                         => 'Women',
     'women_category'                => 'Women Category',
     'about_us'                      => 'About Us',
+    'privacy_and_conditions'        => 'Privacy And Conditions',
 ];
