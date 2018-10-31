@@ -408,7 +408,7 @@ $(function() {
       }
     }
   });
-  /**Start Custum Calender**/
+  /**End Custum Calender**/
   /***Start Wizured Form for Booking***/
   //Initialize tooltips
   $('.nav-tabs > li a[title]').tooltip();

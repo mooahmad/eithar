@@ -52,7 +52,7 @@ $(function() {
   $(".navbar_button").click(function() {
     $(".navbar_overlay").fadeIn();
     $(".navbar_menu").animate({
-      right: 0 //Change
+      left: 0 //Change
     }, 500);
 
   });
@@ -61,7 +61,7 @@ $(function() {
   $(".navbar_overlay").click(function() {
     $(this).fadeOut("slow");
     $(".navbar_overlay").animate({
-      left: -260 //Change
+      right: 260 //Change
     }, 500);
 
   });
