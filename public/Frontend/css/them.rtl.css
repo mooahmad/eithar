@@ -34,6 +34,14 @@ img {
   margin: 0;
   padding: 0; }
 
+.list_inline {
+  padding-left: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+  .list_inline li {
+    display: inline-block; }
+
 a,
 a:hover {
   text-decoration: none; }
@@ -194,6 +202,15 @@ footer .footer_subscribe button {
   left: 20px;
   right: auto;
   /*Change*/ }
+
+/*Start Menue*/
+.navbar_menu {
+  /*Menu For Mobile*/ }
+  @media (max-width: 992px) {
+    .navbar_menu {
+      right: -260px;
+      left: auto;
+      /*Change*/ } }
 
 /*****Font******/
 a,

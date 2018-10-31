@@ -28,4 +28,12 @@ class FrontendController extends Controller
         ];
         return view(FE.'.index')->with($data);
     }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function AboutUs()
+    {
+        return view(FE.'.pages.static.about_us');
+    }
 }
