@@ -11,9 +11,10 @@ use App\Http\Services\WebApi\CommonTraits\Reviews;
 use App\Http\Services\WebApi\CommonTraits\Views;
 use App\Http\Services\WebApi\ServicesModule\IServices\IService;
 use App\Http\Services\WebApi\UsersModule\AbstractUsers\Customer;
-use App\Models\LapCalendar;
+use App\Listeners\PushNotificationEventListener;
 use App\Models\Currency;
 use App\Models\InvoiceItems;
+use App\Models\LapCalendar;
 use App\Models\PromoCode;
 use App\Models\Provider;
 use App\Models\ProvidersCalendar;
@@ -28,11 +29,11 @@ use App\Models\ServicesCalendar;
 use App\Notifications\AppointmentCanceled;
 use App\Notifications\AppointmentConfirmed;
 use App\Notifications\AppointmentReminder;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-use Illuminate\Support\MessageBag;
 use App\Notifications\ApproveItemToInvoice;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\MessageBag;
 
 class Services implements IService
 {
@@ -45,7 +46,7 @@ class Services implements IService
         $services = $services->each(function ($service) use ($day) {
             $service->addHidden([
                 'name_en', 'name_ar',
-                'desc_en', 'desc_ar', 'calendar'
+                'desc_en', 'desc_ar', 'calendar',
             ]);
         });
         return $services;
@@ -61,14 +62,14 @@ class Services implements IService
             $questionnaire->options_en = empty(unserialize($questionnaire->options_en)) ? [] : unserialize($questionnaire->options_en);
             $questionnaire->addHidden([
                 'title_ar', 'title_en', 'subtitle_ar', 'subtitle_en',
-                'options_en', 'options_ar'
+                'options_en', 'options_ar',
             ]);
         });
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([
                 "questionnaire" => $questionnaire,
                 "pagesCount" => $pagesCount,
-                "currentPage" => $page
+                "currentPage" => $page,
             ]));
     }
 
@@ -82,8 +83,10 @@ class Services implements IService
                 $query->where('city_id', '=', Auth::user()->city_id)
                     ->where('start_date', 'Like', "%$day%")
                     ->where('is_available', 1);
-                if (!empty($bookedSlotsIds))
+                if (!empty($bookedSlotsIds)) {
                     $query->whereRaw("services_calendars.id NOT IN (" . implode(',', $bookedSlotsIds) . ")");
+                }
+
             }]);
             $service->calendar_dates = ApiHelpers::reBuildCalendar($day, $service->calendar);
         } elseif ($service->type == 1) {
@@ -95,18 +98,22 @@ class Services implements IService
                         ->where('services_calendars.is_available', 1)
                         ->orderBy('services_calendars.start_date', 'asc')
                         ->first();
-                    if (!$date)
+                    if (!$date) {
                         $day = Carbon::today()->format('Y-m-d');
-                    else
+                    } else {
                         $day = Carbon::parse($date->start_date)->format('Y-m-d');
+                    }
+
                     $query->where('services_calendars.city_id', '=', Auth::user()->city_id)
                         ->where('services_calendars.start_date', 'like', "%$day%");
                 } else {
                     $query->where('services_calendars.city_id', '=', Auth::user()->city_id)
                         ->where('services_calendars.start_date', 'like', "%$day%");
                 }
-                if (!empty($bookedSlotsIds))
+                if (!empty($bookedSlotsIds)) {
                     $query->whereRaw("services_calendars.id NOT IN (" . implode(',', $bookedSlotsIds) . ")");
+                }
+
             }]);
             $service->calendar_dates = ApiHelpers::reBuildCalendar($day, $service->calendar);
         }
@@ -126,15 +133,19 @@ class Services implements IService
                 ->whereRaw("lap_calendars.id NOT IN (" . implode(',', $bookedSlotsIds) . ")")
                 ->orderBy('start_date', 'asc')
                 ->first();
-            if (!$date)
+            if (!$date) {
                 $day = Carbon::today()->format('Y-m-d');
-            else
+            } else {
                 $day = Carbon::parse($date->start_date)->format('Y-m-d');
+            }
+
         }
         $lapCalendars = LapCalendar::where('city_id', '=', Auth::user()->city_id)
             ->where('start_date', 'like', "%$day%");
-        if (!empty($bookedSlotsIds) && $bookedSlotsIds[0] != null)
+        if (!empty($bookedSlotsIds) && $bookedSlotsIds[0] != null) {
             $lapCalendars->whereRaw("lap_calendars.id NOT IN (" . implode(',', $bookedSlotsIds) . ")");
+        }
+
         $lapCalendars->get();
         $lapCalendar = ApiHelpers::reBuildCalendar($day, $lapCalendars);
         return Utilities::getValidationError(config('constants.responseStatus.success'),
@@ -148,8 +159,10 @@ class Services implements IService
         // service meetings table
         $isLap = ($serviceId == 0) ? 1 : 0;
         $providerId = $request->input('provider_id', null);
-        if ($isLap)
+        if ($isLap) {
             $providerId = null;
+        }
+
         $serviceId = ($serviceId == 0 || $providerId != null) ? null : $serviceId;
         $providerAssignedId = $request->input('provider_assigned_id', null);
         $promoCode = $request->input('promo_code_id');
@@ -161,12 +174,16 @@ class Services implements IService
         $status = config('constants.bookingStatus.inprogress');
         $statusDescription = "inprogress";
         $lapServicesIds = $request->input('lap_services_ids', []);
-        if ($address == '')
+        if ($address == '') {
             $address = Auth::user()->address;
+        }
+
         $promoCodeData = PromoCode::where('code', $promoCode)->first();
         $promoCodeId = null;
-        if ($promoCodeData)
+        if ($promoCodeData) {
             $promoCodeId = $promoCodeData->id;
+        }
+
         $serviceBookingId = $this->saveServiceBooking($isLap, $providerId, $providerAssignedId, $serviceId, $promoCodeId, $price, $currencyId, $comment, $address, $familyMemberId, $status, $statusDescription, $lapServicesIds);
         // service meetings answers table
         $serviceQuestionnaireAnswers = $request->input('service_questionnaire_answers');
@@ -175,8 +192,11 @@ class Services implements IService
         $appointmentDate = $request->input('slot_id', null);
         $appointmentPackageDates = $request->input('slot_ids', []);
         $this->saveBookingAppointments($isLap, $providerId, $serviceBookingId, $appointmentDate, $appointmentPackageDates);
-        if ($providerId != null)
+        if ($providerId != null) {
             $this->updateSlotStatus($appointmentDate, 0);
+        }
+
+        PushNotificationEventListener::fireOnModel(Auth::user());
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([]));
     }
@@ -197,9 +217,9 @@ class Services implements IService
         $assignedProvider->notify(new AppointmentCanceled($pushTypeData));
 
         if ($booking->provider) {
-                $slot = ProvidersCalendar::find($appointment->slot_id);
-                $slot->is_available = 1;
-                $slot->save();
+            $slot = ProvidersCalendar::find($appointment->slot_id);
+            $slot->is_available = 1;
+            $slot->save();
         }
 
         return Utilities::getValidationError(config('constants.responseStatus.success'),
@@ -214,14 +234,20 @@ class Services implements IService
         $pushTypeData->booking_id = $appointmentId;
         $pushTypeData->appointment_date = $startDate;
         $pushTypeData->send_at = Carbon::parse($startDate)->subHours(3)->format('Y-m-d H:m:s');
-        if (strtotime($pushTypeData->send_at) > strtotime($now))
+        if (strtotime($pushTypeData->send_at) > strtotime($now)) {
             Auth::user()->notify(new AppointmentReminder($pushTypeData));
+        }
+
         $pushTypeData->send_at = Carbon::parse($startDate)->subHours(24)->format('Y-m-d H:m:s');
-        if (strtotime($pushTypeData->send_at) > strtotime($now))
+        if (strtotime($pushTypeData->send_at) > strtotime($now)) {
             Auth::user()->notify(new AppointmentReminder($pushTypeData));
+        }
+
         $pushTypeData->send_at = Carbon::parse($startDate)->subHours(72)->format('Y-m-d H:m:s');
-        if (strtotime($pushTypeData->send_at) > strtotime($now))
+        if (strtotime($pushTypeData->send_at) > strtotime($now)) {
             Auth::user()->notify(new AppointmentReminder($pushTypeData));
+        }
+
     }
 
     private function updateSlotStatus($slotId, $isAvailsble)
@@ -250,8 +276,10 @@ class Services implements IService
         $booking->save();
         if ($serviceId == 0) {
             $data = [];
-            foreach ($lapServicesIds as $lapServicesId)
+            foreach ($lapServicesIds as $lapServicesId) {
                 $data[] = ["service_booking_id" => $booking->id, "service_id" => $lapServicesId];
+            }
+
             ServiceBookingLap::insert($data);
         }
         return $booking->id;
@@ -277,7 +305,7 @@ class Services implements IService
                 "order" => $questionnaire->order,
                 "pagination" => $questionnaire->pagination,
                 "type" => $questionnaire->type,
-                "answer" => serialize($value)
+                "answer" => serialize($value),
             ];
         }
         return ServiceBookingAnswers::insert($data);
@@ -390,13 +418,17 @@ class Services implements IService
         $day = $request->input('day');
         $service = Service::find($id);
         $service->vat = 0;
-        if (!Auth::user()->is_saudi_nationality)
+        if (!Auth::user()->is_saudi_nationality) {
             $service->vat = config('constants.vat_percentage');
+        }
+
         $service->currency_name = Currency::find($service->currency_id)->name_eng;
         $service->total_price = $service->price + Utilities::calcPercentage($service->price, $service->vat);
         $isLap = false;
-        if ($service->type == 4)
+        if ($service->type == 4) {
             $isLap = true;
+        }
+
         $bookedSlotsIds = (new Customer())->getBookedSlots($isLap);
         if ($service->type == 4) {
             if (empty($day)) {
@@ -404,15 +436,19 @@ class Services implements IService
                     ->where('is_available', 1)
                     ->orderBy('start_date', 'asc')
                     ->first();
-                if (!$date)
+                if (!$date) {
                     $day = Carbon::today()->format('Y-m-d');
-                else
+                } else {
                     $day = Carbon::parse($date->start_date)->format('Y-m-d');
+                }
+
             }
             $lapCalendars = LapCalendar::where('city_id', '=', Auth::user()->city_id)
                 ->where('start_date', 'like', "%$day%");
-            if (!empty($bookedSlotsIds) && $bookedSlotsIds[0] != null)
+            if (!empty($bookedSlotsIds) && $bookedSlotsIds[0] != null) {
                 $lapCalendars->whereRaw("lap_calendars.id NOT IN (" . implode(',', $bookedSlotsIds) . ")");
+            }
+
             $lapCalendars->get();
             $service->calendar_dates = ApiHelpers::reBuildCalendar($day, $lapCalendars);
         } elseif ($service->type == 2) {
@@ -426,8 +462,10 @@ class Services implements IService
                 $query->where('city_id', '=', Auth::user()->city_id)
                     ->where('start_date', '>', Carbon::now()->addHours(2)->format('Y-m-d H:m:s'))
                     ->where('is_available', 1);
-                if (!empty($bookedSlotsIds))
+                if (!empty($bookedSlotsIds)) {
                     $query->whereRaw("services_calendars.id NOT IN (" . implode(',', $bookedSlotsIds) . ")");
+                }
+
             }]);
             foreach ($service->calendar as $date) {
                 $currentWeek = Carbon::parse($date->start_date)->weekOfYear;
@@ -441,15 +479,19 @@ class Services implements IService
                         }
                     }
                 } else {
-                    if (!in_array($day, $availableDays))
+                    if (!in_array($day, $availableDays)) {
                         array_push($availableDays, $day);
+                    }
+
                     $currentWeekOfYear = $currentWeek;
                     $numberOfDaysInCurrentWeek = 0;
                 }
             }
             for ($i = 0; $i < $numberOfVisits; $i++) {
-                if (!isset($availableDays[$i]))
+                if (!isset($availableDays[$i])) {
                     break;
+                }
+
                 $currentCalendar = ApiHelpers::reBuildCalendar($availableDays[$i], $service->calendar);
                 array_push($packageCalendar, $currentCalendar);
             }
@@ -463,25 +505,29 @@ class Services implements IService
                         ->where('services_calendars.is_available', 1)
                         ->orderBy('services_calendars.start_date', 'asc')
                         ->first();
-                    if (!$date)
+                    if (!$date) {
                         $day = Carbon::today()->format('Y-m-d');
-                    else
+                    } else {
                         $day = Carbon::parse($date->start_date)->format('Y-m-d');
+                    }
+
                     $query->where('services_calendars.city_id', '=', Auth::user()->city_id)
                         ->where('services_calendars.start_date', 'like', "%$day%");
                 } else {
                     $query->where('services_calendars.city_id', '=', Auth::user()->city_id)
                         ->where('services_calendars.start_date', 'like', "%$day%");
                 }
-                if (!empty($bookedSlotsIds))
+                if (!empty($bookedSlotsIds)) {
                     $query->whereRaw("services_calendars.id NOT IN (" . implode(',', $bookedSlotsIds) . ")");
+                }
+
             }]);
             $service->calendar_dates = ApiHelpers::reBuildCalendar($day, $service->calendar);
         }
         $service->addHidden(['calendar']);
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([
-                "service" => $service
+                "service" => $service,
             ]));
 
     }
@@ -496,7 +542,7 @@ class Services implements IService
         $status = $request->input('status');
         if ($invoice_item_id > 0 && in_array($status, [config('constants.items.pending'), config('constants.items.approved')])) {
             $invoice_item = InvoiceItems::where('id', $invoice_item_id)->update([
-                'status' => $status
+                'status' => $status,
             ]);
 
             if ($invoice_item) {
@@ -512,7 +558,7 @@ class Services implements IService
 
         return Utilities::getValidationError(config('constants.responseStatus.operationFailed'),
             new MessageBag([
-                "message" => "Invalid item and status"
+                "message" => "Invalid item and status",
             ]));
     }
 }
