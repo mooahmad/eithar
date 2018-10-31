@@ -196,7 +196,7 @@ class Services implements IService
             $this->updateSlotStatus($appointmentDate, 0);
         }
 
-        PushNotificationEventListener::fireOnModel(Auth::user());
+        PushNotificationEventListener::fireOnModel(config('constants.customer_message_cloud'), Auth::user());
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([]));
     }

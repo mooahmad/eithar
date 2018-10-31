@@ -563,7 +563,7 @@ class Provider
         $questionnaire->each(function ($questionnaire) {
             $questionnaire->options_ar = empty(unserialize($questionnaire->options_ar)) ? [] : unserialize($questionnaire->options_ar);
             $questionnaire->options_en = empty(unserialize($questionnaire->options_en)) ? [] : unserialize($questionnaire->options_en);
-            $questionnaire->answer = empty(unserialize($questionnaire->answer)) ? [] : unserialize($questionnaire->answer);
+            $questionnaire->answer = empty(unserialize($questionnaire->answer)) ? "" : unserialize($questionnaire->answer);
             $questionnaire->addHidden([
                 'title_ar', 'title_en', 'subtitle_ar', 'subtitle_en',
                 'options_en', 'options_ar'

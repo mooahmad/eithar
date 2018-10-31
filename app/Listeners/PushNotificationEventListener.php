@@ -31,16 +31,16 @@ class PushNotificationEventListener
         $customers = Customer::all();
         $providers = Provider::all();
         $customers->each(function ($customer) {
-            self::fireOnModel($customer);
+            self::fireOnModel(config('constants.customer_message_cloud'), $customer);
         });
 
         $providers->each(function ($provider) {
-            self::fireOnModel($provider);
+            self::fireOnModel(config('constants.provider_message_cloud'), $provider);
         });
 
     }
 
-    public static function fireOnModel($model)
+    public static function fireOnModel($serverCloudKey, $model)
     {
         $now = Carbon::now()->format('Y-m-d H:m:s');
         $model->notifications()->where('is_pushed', 0)->orderBy('created_at', 'asc')->get()->each(function ($notification) use ($now, $model) {
@@ -64,7 +64,7 @@ class PushNotificationEventListener
                 if ($model->pushNotification) {
                     $tokens[] = $model->pushNotification->token;
                     $pushData = Utilities::buildNotification($data->{'title_' . $data->lang}, $data->{'desc_' . $data->lang}, 0, $details);
-                    Utilities::pushNotification($tokens, $pushData);
+                    Utilities::pushNotification($serverCloudKey, $tokens, $pushData);
                     $notification->is_pushed = 1;
                     $notification->save();
                 }

@@ -223,5 +223,7 @@ return [
     'invoice_paid'=>[
         'paid'=>1,
         'pending'=>0
-    ]
+    ],
+    'customer_message_cloud' => 'AAAAAldQN2A:APA91bE_JM-ZP2LgFXflnT5oG1gINc6ZUdEpkywNUjhZ_sdc402aJFVUCqQWJwug2umLX0-mfTUILaG-BfXBJ150GcxPFICS0qhTxn7gUvWDvaZTDDcNFSOcKs6p-vSZtDrFHeNV5oS3',
+    'provider_message_cloud' => 'AAAAyUDBn-A:APA91bE6U2AdfemfC-LjLNZ1DZpWXYlm0LLoSSdrLltePvh-1mWQ9VmD6xo7EHx_yQgPPR3K0SP6dauwTv6o_8zCVVHZV7J43qAx24vW-eiwI8GaEQEBzcBYc-N-8i37bZVM9CaBR_fm',
 ];

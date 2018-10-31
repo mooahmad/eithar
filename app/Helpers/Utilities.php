@@ -133,10 +133,11 @@ class Utilities
         return $times;
     }
 
-    public static function pushNotification($tokens, $data)
+    public static function pushNotification($serverApiKey, $tokens, $data)
     {
         $push = new PushNotification('fcm');
         $push->setUrl(env('FIREBASE_URL', 'https://fcm.googleapis.com/fcm/send'));
+        $push->setApiKey($serverApiKey);
         $push->setMessage($data);
         $push->setDevicesToken($tokens);
         return $push->send()->getFeedback();
