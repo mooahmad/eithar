@@ -750,9 +750,17 @@ class Provider
         }
         foreach ($invoiceItems as $invoiceItem) {
             $service = $invoiceItem->service;
-            $service->status = $invoiceItem->status;
-            $service->service_id = $service->id;
-            $service->id = $invoiceItem->id;
+            if (empty($service)) {
+                $service = $invoiceItem->provider;
+                $service->name = $service->full_name;
+            }
+            $service = [
+                "id" => $invoiceItem->id,
+                "name" => $service->name,
+                "price" => $service->price,
+                "status" => $invoiceItem->status,
+                "visit_duration" => $service->visit_duration,
+            ];
             $services[] = $service;
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
