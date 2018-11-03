@@ -4,7 +4,6 @@
 /*02= Start Header Search Subheader*/
 /*02=End Header Search Subheader*/
 /*=03= Start Search Subheader*/
-
 .serach_subheader {
   @media (min-width: $lg) {
     margin-top: -180px;
@@ -117,11 +116,9 @@
 }
 /*=03= Start Search Subheader*/
 /*04=Start About Us*/
-
 .home-page-aboutus {}
 /*04=End About Us*/
 /*05=Start Services*/
-
 .home_page-services {
   padding: 50pz 0 20px;
   overflow: hidden;
@@ -154,6 +151,7 @@
     display: flex;
     align-items: center;
     position: relative;
+    min-height: 326px;
     margin-bottom: 40px;
     margin-left: 50px;
     /*Change*/
@@ -196,7 +194,6 @@
 }
 /*05=End Services*/
 /*06= Start Services Oorder*/
-
 .services_order {
   .services_order-img {
     @media(max-width: $lg) {

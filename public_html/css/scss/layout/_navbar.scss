@@ -1,5 +1,5 @@
-@import "helpers/variables.scss";
-/**Start Navbar**/
+@import "helpers/variables.scss"; /**Start Navbar**/
+
 .navbar {
   &.fixed {
     position: fixed;
@@ -48,10 +48,23 @@
 .menu_content {
   display: flex;
   justify-content: space-between;
+  border-radius: $borderRadius;
   @media (min-width:$lg) {
     background-color: #fff;
   }
-  border-radius: $borderRadius;
+  @media (max-width:$lg) {
+    position: relative;
+  }
+
+  .languge_button {
+    @media (max-width: $lg) {
+      position: absolute;
+      top: 200px;
+      z-index: 99999;
+      background-color: #fff;
+      color: $mainColor;
+    }
+  }
 }
 
 .navbar_brand {
@@ -90,7 +103,6 @@
   }
   /*Menu For Mobile*/
   @media (max-width: $lg) {
-    overflow-y: auto;
     width: 260px;
     height: 100vh;
     position: fixed;
@@ -193,6 +205,7 @@
 }
 /**End Dropdown link**/
 /***Start navbar_dropdown**/
+
 .navbar_dropdown-menu {
   /*Dropdown Menu For Descktop*/
   @media (min-width: $lg) {
@@ -260,6 +273,7 @@
 }
 /***End navbar_dropdown**/
 /****Button***/
+
 .navbar_button {
   line-height: 100px;
   font-size: 22px;
@@ -289,6 +303,7 @@
 }
 /**End Navbar**/
 /****Head of All Pages******/
+
 .head_page {
   height: 150px;
   display: flex;
