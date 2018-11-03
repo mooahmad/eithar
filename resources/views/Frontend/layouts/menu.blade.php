@@ -12,7 +12,7 @@
                 <div class="menu_content">
                     <ul class="navbar_menu list-unstyled ">
                         <li><a href="{{ url()->route('home') }}" title="{{ trans('main.home') }}">{{ trans('main.home') }}</a></li>
-                        <li><a href="{{ url()->route('home') }}" title="{{ trans('main.about_us') }}">{{ trans('main.about_us') }}</a></li>
+                        <li><a href="{{ url()->route('about_us') }}" title="{{ trans('main.about_us') }}">{{ trans('main.about_us') }}</a></li>
                         <li><a href="{{ url()->route('home') }}" title="{{ trans('main.contact_us') }}">{{ trans('main.our_services') }}</a></li>
                         <li><a href="{{ url()->route('home') }}" title="{{ trans('main.contact_us') }}">{{ trans('main.contact_us') }}</a></li>
                     </ul>
