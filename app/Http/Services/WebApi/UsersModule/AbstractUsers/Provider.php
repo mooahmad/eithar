@@ -498,7 +498,6 @@ class Provider
         $promoCode = ($serviceBooking->promo_code != null) ? $serviceBooking->promo_code->code : "";
         $currency = $serviceBooking->currency->name_eng;
         $total = $serviceBooking->price;
-        $invoiceItems = $serviceBooking->invoice->items;
         if ($serviceType == 5) {
             $providersCalendar = ProvidersCalendar::find($appointment->slot_id);
             if ($providersCalendar) {
@@ -522,6 +521,9 @@ class Provider
                 }
             }
         }
+        $invoiceClass = new InvoiceClass();
+        $invoice = $invoiceClass->createNewInvoice($serviceBooking);
+        $invoiceItems = $serviceBooking->invoice->items;
         foreach ($invoiceItems as $invoiceItem) {
             $service = $invoiceItem->service;
             $service->status = $invoiceItem->status;
@@ -529,8 +531,6 @@ class Provider
             $service->id = $invoiceItem->id;
             $services[] = $service;
         }
-        $invoiceClass = new InvoiceClass();
-        $invoice = $invoiceClass->createNewInvoice($serviceBooking);
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
             "customer_picture" => Utilities::getFileUrl($customer->profile_picture_path),
             "customer_name" => "{$customer->first_name} {$customer->middle_name} {$customer->last_name}",
