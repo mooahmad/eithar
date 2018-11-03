@@ -2,13 +2,13 @@
 
 namespace App\Http\Services\WebApi\UsersModule\AbstractUsers;
 
-
 use App\Helpers\ApiHelpers;
 use App\Helpers\Utilities;
 use App\Http\Controllers\Administrator\BookingServices\BookingServicesController;
 use App\Http\Requests\Auth\LoginProvider;
 use App\Http\Requests\Auth\UpdateForgetPasswordRequest;
 use App\Http\Services\Adminstrator\InvoiceModule\ClassesInvoice\InvoiceClass;
+use App\Http\Services\WebApi\CategoriesModule\AbstractCategories\Categories;
 use App\Http\Services\WebApi\CommonTraits\Follows;
 use App\Http\Services\WebApi\CommonTraits\Likes;
 use App\Http\Services\WebApi\CommonTraits\Ratings;
@@ -16,16 +16,19 @@ use App\Http\Services\WebApi\CommonTraits\Reviews;
 use App\Http\Services\WebApi\CommonTraits\Views;
 use App\Http\Services\WebApi\PromoCodesModule\AbstractPromoCodes\PromoCodes;
 use App\Mail\Customer\ForgetPasswordMail;
+use App\Models\BookingMedicalReports;
+use App\Models\BookingMedicalReportsAnswers;
+use App\Models\Currency;
+use App\Models\Driver;
+use App\Models\DriverTrips;
 use App\Models\Invoice;
 use App\Models\InvoiceItems;
 use App\Models\JoinUs;
 use App\Models\LapCalendar;
-use App\Models\BookingMedicalReports;
-use App\Models\BookingMedicalReportsAnswers;
-use App\Models\Currency;
 use App\Models\MedicalReports;
 use App\Models\MedicalReportsQuestions;
 use App\Models\PromoCode;
+use App\Models\Provider as ProviderModel;
 use App\Models\ProvidersCalendar;
 use App\Models\PushNotification;
 use App\Models\PushNotificationsTypes;
@@ -38,16 +41,11 @@ use App\Models\ServicesCalendar;
 use App\Notifications\AddItemToInvoice;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\MessageBag;
-use App\Models\Provider as ProviderModel;
-use Illuminate\Support\Facades\Hash;
-use App\Models\Driver;
-use App\Models\DriverTrips;
-use App\Http\Services\WebApi\CategoriesModule\AbstractCategories\Categories;
-
 
 class Provider
 {
@@ -63,10 +61,12 @@ class Provider
                     ->where('is_available', 1)
                     ->orderBy('start_date', 'asc')
                     ->first();
-                if (!$date)
+                if (!$date) {
                     $day = Carbon::today()->format('Y-m-d');
-                else
+                } else {
                     $day = Carbon::parse($date->start_date)->format('Y-m-d');
+                }
+
                 $query->where('providers_calendars.start_date', 'like', "%$day%")
                     ->where('providers_calendars.start_date', '>', Carbon::now()->format('Y-m-d H:m:s'))
                     ->where('providers_calendars.is_available', 1);
@@ -79,27 +79,31 @@ class Provider
         $provider->addHidden([
             'title_ar', 'title_en', 'first_name_ar', 'first_name_en',
             'last_name_ar', 'last_name_en', 'speciality_area_ar', 'speciality_area_en',
-            'about_ar', 'about_en', 'experience_ar', 'experience_en', 'education_ar', 'education_en', 'calendar'
+            'about_ar', 'about_en', 'experience_ar', 'experience_en', 'education_ar', 'education_en', 'calendar',
         ]);
         $provider->cities = $provider->cities->each(function ($city) {
             $city->addHidden([
-                'city_name_ara', 'city_name_eng'
+                'city_name_ara', 'city_name_eng',
             ]);
         });
         $provider->services->each(function ($service) use (&$provider) {
-            if ($service->category->category_parent_id == config('constants.categories.Doctor'))
+            if ($service->category->category_parent_id == config('constants.categories.Doctor')) {
                 $provider->category_name = $service->category->name;
+            }
+
         });
         $provider->currency_name = Currency::find($provider->currency_id)->name_eng;
         $provider->calendar_dates = ApiHelpers::reBuildCalendar($day, $provider->calendar);
         $provider->vat = 0;
-        if (!Auth::user()->is_saudi_nationality)
+        if (!Auth::user()->is_saudi_nationality) {
             $provider->vat = config('constants.vat_percentage');
+        }
+
         $provider->total_price = $provider->price + Utilities::calcPercentage($provider->price, $provider->vat);
         $this->view($providerId, config('constants.transactionsTypes.provider'), '');
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([
-                "provider" => $provider
+                "provider" => $provider,
             ]));
     }
 
@@ -176,7 +180,7 @@ class Provider
         })->get();
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([
-                "reports" => $MedicalReports
+                "reports" => $MedicalReports,
             ]));
     }
 
@@ -189,14 +193,14 @@ class Provider
             $medicalReportsQuestion->options_en = empty(unserialize($medicalReportsQuestion->options_en)) ? [] : unserialize($medicalReportsQuestion->options_en);
             $medicalReportsQuestion->addHidden([
                 'title_ar', 'title_en',
-                'options_en', 'options_ar'
+                'options_en', 'options_ar',
             ]);
         });
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([
                 "medicalReportsQuestions" => $medicalReportsQuestions,
                 "pagesCount" => $pagesCount,
-                "currentPage" => $page
+                "currentPage" => $page,
             ]));
     }
 
@@ -239,7 +243,7 @@ class Provider
                 "order" => $reportQuestion->order,
                 "pagination" => $reportQuestion->pagination,
                 "type" => $reportQuestion->type,
-                "answer" => serialize($value)
+                "answer" => serialize($value),
             ];
         }
         return BookingMedicalReportsAnswers::insert($data);
@@ -257,19 +261,25 @@ class Provider
     public function isProviderExists(Request $request)
     {
         $provider = ProviderModel::where('mobile_number', $request->input('mobile'))->first();
-        if (!$provider)
+        if (!$provider) {
             return false;
-        if (!Hash::check($request->input('password'), $provider->password))
+        }
+
+        if (!Hash::check($request->input('password'), $provider->password)) {
             return false;
+        }
+
         return $provider;
     }
 
     public function updateProviderToken(ProviderModel $provider, Request $request)
     {
-        if ($provider->pushNotification)
+        if ($provider->pushNotification) {
             $pushNotification = $provider->pushNotification;
-        else
+        } else {
             $pushNotification = new PushNotification();
+        }
+
         $pushNotification->provider_id = $provider->id;
         $pushNotification->imei = $request->input('imei');
         $pushNotification->device_type = $request->input('device_type');
@@ -281,8 +291,10 @@ class Provider
     public function updateLastLoginDate(ProviderModel $provider)
     {
         $provider->last_login_date = Carbon::now();
-        if (!$provider->save())
+        if (!$provider->save()) {
             return false;
+        }
+
         return true;
     }
 
@@ -299,11 +311,15 @@ class Provider
     public function forgetPassword(Request $request)
     {
         $isVerified = $this->validateForgetPassword($request);
-        if ($isVerified !== true)
+        if ($isVerified !== true) {
             return Utilities::getValidationError(config('constants.responseStatus.missingInput'), $isVerified->errors());
+        }
+
         $provider = ProviderModel::where('mobile_number', $request->input('mobile'))->first();
-        if (!$provider)
+        if (!$provider) {
             return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
+        }
+
         $encrytedCode = Utilities::quickRandom(6, true);
         $provider->forget_password_code = $encrytedCode;
         $provider->save();
@@ -326,14 +342,18 @@ class Provider
     public function updateForgottenPassword(Request $request)
     {
         $isVerified = $this->validateUpdateForgetPassword($request);
-        if ($isVerified !== true)
+        if ($isVerified !== true) {
             return Utilities::getValidationError(config('constants.responseStatus.missingInput'), $isVerified->errors());
+        }
+
         $provider = ProviderModel::where([['mobile_number', $request->input('mobile')], ['forget_password_code', $request->input('code')]])->first();
-        if (!$provider)
+        if (!$provider) {
             return Utilities::getValidationError(config('constants.responseStatus.userNotFound'),
                 new MessageBag([
-                    'message' => trans('errors.userNotFound')
+                    'message' => trans('errors.userNotFound'),
                 ]));
+        }
+
         $provider->password = Hash::make($request->input('password'));
         $provider->save();
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
@@ -392,20 +412,22 @@ class Provider
                             $now = Carbon::now();
                             $beforeStartDay = Carbon::parse($calendar->start_date)->subDays(1);
                             $afterStartDay = Carbon::parse($calendar->start_date)->addDays(1);
-                            if ($now >= $beforeStartDay && $now <= $afterStartDay)
+                            if ($now >= $beforeStartDay && $now <= $afterStartDay) {
                                 $isLocked = 0;
+                            }
+
                         }
                         $payLoad = [
                             "id" => $serviceAppointment->id,
                             "service_type" => $service->type,
                             "service_name" => $service->name_en,
-                            "service_image" => $service->ProfilePicturePath,
+                            "service_image" => $service->profile_picture_path,
                             "customer_name" => "{$customer->first_name} {$customer->middle_name} {$customer->last_name}",
                             "upcoming" => $upComming,
                             "start_date" => $startDate,
                             "start_time" => $startTime,
                             "end_time" => $endTime,
-                            "isLocked" => $isLocked
+                            "isLocked" => $isLocked,
                         ];
                         //one and package
                     } elseif ($service->type == 1 || $service->type == 2) {
@@ -421,20 +443,22 @@ class Provider
                             $now = Carbon::now();
                             $beforeStartDay = Carbon::parse($calendar->start_date)->subDays(1);
                             $afterStartDay = Carbon::parse($calendar->start_date)->addDays(1);
-                            if ($now >= $beforeStartDay && $now <= $afterStartDay)
+                            if ($now >= $beforeStartDay && $now <= $afterStartDay) {
                                 $isLocked = 0;
+                            }
+
                         }
                         $payLoad = [
                             "id" => $serviceAppointment->id,
                             "service_type" => $service->type,
                             "service_name" => $service->name_en,
-                            "service_image" => $service->ProfilePicturePath,
+                            "service_image" => $service->profile_picture_path,
                             "customer_name" => "{$customer->first_name} {$customer->middle_name} {$customer->last_name}",
                             "upcoming" => $upComming,
                             "start_date" => $startDate,
                             "start_time" => $startTime,
                             "end_time" => $endTime,
-                            "isLocked" => $isLocked
+                            "isLocked" => $isLocked,
                         ];
                     }
                 } elseif ($serviceBookingLaps != null) {
@@ -450,27 +474,31 @@ class Provider
                         $now = Carbon::now();
                         $beforeStartDay = Carbon::parse($calendar->start_date)->subDays(1);
                         $afterStartDay = Carbon::parse($calendar->start_date)->addDays(1);
-                        if ($now >= $beforeStartDay && $now <= $afterStartDay)
+                        if ($now >= $beforeStartDay && $now <= $afterStartDay) {
                             $isLocked = 0;
+                        }
+
                     }
                     $payLoad = [
                         "id" => $serviceAppointment->id,
                         "service_type" => 4,
                         "service_name" => "Lap",
-                        "service_image" => Categories::find(2)->ProfilePicturePath,
+                        "service_image" => Categories::find(2)->profile_picture_path,
                         "customer_name" => "{$customer->first_name} {$customer->middle_name} {$customer->last_name}",
                         "upcoming" => $upComming,
                         "start_date" => $startDate,
                         "start_time" => $startTime,
                         "end_time" => $endTime,
-                        "isLocked" => $isLocked
+                        "isLocked" => $isLocked,
                     ];
                 }
                 if ($payLoad["start_date"] != "Unknown") {
-                    if ($payLoad["upcoming"] == 1)
+                    if ($payLoad["upcoming"] == 1) {
                         $upCommingAppointments[] = $payLoad;
-                    else
+                    } else {
                         $passedAppointments[] = $payLoad;
+                    }
+
                 }
             }
         }
@@ -482,7 +510,7 @@ class Provider
             array_push($finalAppointments, $appointment);
         });
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
-            "bookings" => $finalAppointments
+            "bookings" => $finalAppointments,
         ]));
     }
 
@@ -521,14 +549,23 @@ class Provider
                 }
             }
         }
+        $serviceBooking->invoice()->forceDelete();
         $invoiceClass = new InvoiceClass();
         $invoice = $invoiceClass->createNewInvoice($serviceBooking);
-        $invoiceItems = $serviceBooking->invoice->items;
+        $invoiceItems = $invoice->items;
         foreach ($invoiceItems as $invoiceItem) {
             $service = $invoiceItem->service;
-            $service->status = $invoiceItem->status;
-            $service->service_id = $service->id;
-            $service->id = $invoiceItem->id;
+            if (empty($service)) {
+                $service = $invoiceItem->provider;
+                $service->name = $service->full_name;
+            }
+            $service = [
+                "id" => $invoiceItem->id,
+                "name" => $service->name,
+                "price" => $service->price,
+                "status" => $invoiceItem->status,
+                "visit_duration" => $service->visit_duration,
+            ];
             $services[] = $service;
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
@@ -542,7 +579,7 @@ class Provider
             "currency" => $currency,
             "total_before_tax" => $totalBeforeTax,
             "vat" => $vat,
-            "total" => $total
+            "total" => $total,
         ]));
 
     }
@@ -567,14 +604,14 @@ class Provider
             $questionnaire->answer = empty(unserialize($questionnaire->answer)) ? "" : unserialize($questionnaire->answer);
             $questionnaire->addHidden([
                 'title_ar', 'title_en', 'subtitle_ar', 'subtitle_en',
-                'options_en', 'options_ar'
+                'options_en', 'options_ar',
             ]);
         });
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([
                 "questionnaire" => $questionnaire,
                 "pagesCount" => $pagesCount,
-                "currentPage" => $page
+                "currentPage" => $page,
             ]));
     }
 
@@ -593,7 +630,7 @@ class Provider
             array_push($medicalReports, $report);
         });
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
-            "reports" => $medicalReports
+            "reports" => $medicalReports,
         ]));
     }
 
@@ -659,14 +696,16 @@ class Provider
         if ($promoCodeData) {
             $booking->promo_code_id = $promoCodeData->id;
             $vat = 0;
-            if (!$booking->customer->is_saudi_nationality)
+            if (!$booking->customer->is_saudi_nationality) {
                 $vat = config('constants.vat_percentage');
+            }
+
             $priceAfterTax = $priceBeforeTax + Utilities::calcPercentage($priceBeforeTax, $vat);
             $totalPrice = $priceAfterTax - Utilities::calcPercentage($priceAfterTax, $promoCodeData->discount_percentage);
             $booking->price = $totalPrice;
             $booking->save();
         }
-        $booking->invoice()->delete();
+        $booking->invoice()->forceDelete();
         $invoiceClass = new InvoiceClass();
         $invoice = $invoiceClass->createNewInvoice($booking);
         return Utilities::getValidationError(config('constants.responseStatus.success'),
@@ -727,7 +766,8 @@ class Provider
             "currency" => $currency,
             "total_before_tax" => $totalBeforeTax,
             "vat" => $vat,
-            "total" => $total
+            "total" => $total,
+            "invoice_id" => $serviceBooking->invoice->id
         ]));
     }
 
@@ -736,7 +776,7 @@ class Provider
 
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([
-                "items" => Service::GetItemsServices()->get()
+                "items" => Service::GetItemsServices()->get(),
             ]));
     }
 
@@ -747,11 +787,12 @@ class Provider
         $invoice = $serviceBooking->invoice;
         $item = Service::findOrFail($request->input('service_id'));
 
-        if (!$invoice)
+        if (!$invoice) {
             return Utilities::getValidationError(config('constants.responseStatus.operationFailed'),
                 new MessageBag([
-                    "invoice not found"
+                    "invoice not found",
                 ]));
+        }
 
 //        Save new pending item to invoice
         $invoiceClass = new InvoiceClass();
@@ -760,7 +801,7 @@ class Provider
         if (!$invoice_item) {
             return Utilities::getValidationError(config('constants.responseStatus.operationFailed'),
                 new MessageBag([
-                    "unable to add item"
+                    "unable to add item",
                 ]));
         }
 
@@ -800,11 +841,13 @@ class Provider
 //        Now update invoice to be paid
         $invoice = Invoice::findOrFail($request->input('invoice_id'));
         $unConfirmedItems = $invoice->items()->where('status', 1)->get();
-        if(!$unConfirmedItems->isEmpty())
+        if (!$unConfirmedItems->isEmpty()) {
             return Utilities::getValidationError(config('constants.responseStatus.operationFailed'),
                 new MessageBag([
-                    "please confirm or delete unconfirmed items"
+                    "please confirm or delete unconfirmed items",
                 ]));
+        }
+
         $invoice->update([
             'is_paid' => 1,
             'payment_method' => $request->input('payment_method'),
@@ -819,7 +862,7 @@ class Provider
     {
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([
-                "drivers" => Driver::where('status', 1)->get()
+                "drivers" => Driver::where('status', 1)->get(),
             ]));
     }
 
@@ -838,7 +881,7 @@ class Provider
     {
         $page -= 1;
         $notifications = Auth::user()->notifications()->where('is_pushed', 1)
-        ->skip($page * config('constants.paggination_items_per_page'))->take(config('constants.paggination_items_per_page'))->get();
+            ->skip($page * config('constants.paggination_items_per_page'))->take(config('constants.paggination_items_per_page'))->get();
         $returnNotifications = [];
         foreach ($notifications as $notification) {
             $notificationData = json_decode(json_encode($notification->data));
@@ -846,8 +889,10 @@ class Provider
             $data->title = $notificationData->{'title_' . App::getLocale()};
             $data->description = $notificationData->{'desc_' . App::getLocale()};
             $data->notification_type = $notificationData->notification_type;
-            if (isset($notificationData->service_type))
+            if (isset($notificationData->service_type)) {
                 $data->service_type = $notificationData->service_type;
+            }
+
             $data->related_id = $notificationData->related_id;
             $data->send_at = $notificationData->send_at;
             $data->is_read = ($notification->read_at == null) ? 0 : 1;
@@ -855,7 +900,7 @@ class Provider
         }
         $notifications->markAsRead();
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
-            "notifications" => $returnNotifications
+            "notifications" => $returnNotifications,
         ]));
     }
 }

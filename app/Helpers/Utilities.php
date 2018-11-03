@@ -70,7 +70,7 @@ class Utilities
             return $fullFilePath;
         $exists = Storage::disk($disk)->exists($fullFilePath);
         if (!$exists)
-            return false;
+            return "";
         if ($temporaryTimeMinutes)
             $url = Storage::temporaryUrl(
                 $fullFilePath, now()->addMinutes($temporaryTimeMinutes)

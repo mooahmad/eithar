@@ -135,9 +135,9 @@ class BookingServicesController extends Controller
         ];
         $service = $booking->service()->withTrashed()->first();
 //        in case Provider
-        if (!empty($service) && $service->type == 5){
+        if (empty($booking->service_id) && !empty($booking->provider_id)  && $booking->is_lap == 0){
             $provider_calendar = ProvidersCalendar::find($booking->service_appointments->first()->slot_id);
-            $booking_details['service_name']    = $booking->provider->full_name .' ('. $service->type_desc.')';
+            $booking_details['service_name']    = $booking->provider->full_name;
             $booking_details['provider_id']     = [$booking->provider->id => $booking->provider->full_name];
             $booking_details['is_provider']     = true;
             $booking_details['original_amount'] = $booking->provider->price;
