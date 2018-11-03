@@ -65,9 +65,9 @@ class CustomerApi extends Customer
         return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
     }
 
-    public function getCustomerAppointments(Request $request)
+    public function getCustomerAppointments(Request $request, $page = 1)
     {
-        $validationObject = parent::getCustomerAppointments($request);
+        $validationObject = parent::getCustomerAppointments($request, $page);
         if ($validationObject->error == config('constants.responseStatus.success'))
             return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
         return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
@@ -81,9 +81,9 @@ class CustomerApi extends Customer
         return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
     }
 
-    public function getCustomerNotifications(Request $request)
+    public function getCustomerNotifications(Request $request, $page = 1)
     {
-        $validationObject = parent::getCustomerNotifications($request);
+        $validationObject = parent::getCustomerNotifications($request, $page);
         if ($validationObject->error == config('constants.responseStatus.success'))
             return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
         return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);

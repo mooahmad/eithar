@@ -90,10 +90,10 @@ class CustomerController extends Controller
         return $customerFamily->getFamilyMembers($request);
     }
 
-    public function getCustomerAppointments(Request $request)
+    public function getCustomerAppointments(Request $request, $page = 1)
     {
         $customer = new CustomerStrategy(ApiHelpers::requestType($request));
-        return $customer->getCustomerAppointments($request);
+        return $customer->getCustomerAppointments($request, $page);
     }
 
     public function getCustomerAppointment(Request $request, $id, $serviceType)
@@ -102,10 +102,10 @@ class CustomerController extends Controller
         return $customer->getCustomerAppointment($request, $id, $serviceType);
     }
 
-    public function getCustomerNotifications(Request $request)
+    public function getCustomerNotifications(Request $request, $page = 1)
     {
         $customer = new CustomerStrategy(ApiHelpers::requestType($request));
-        return $customer->getCustomerNotifications($request);
+        return $customer->getCustomerNotifications($request, $page);
     }
 
     public function getCustomerMedicalReports(Request $request)

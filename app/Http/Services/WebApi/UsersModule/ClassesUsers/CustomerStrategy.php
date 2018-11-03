@@ -65,9 +65,9 @@ class CustomerStrategy
         return $this->strategy->resendEmailVerificationCode($request);
     }
 
-    public function getCustomerAppointments(Request $request)
+    public function getCustomerAppointments(Request $request, $page = 1)
     {
-        return $this->strategy->getCustomerAppointments($request);
+        return $this->strategy->getCustomerAppointments($request, $page);
     }
 
     public function getCustomerAppointment(Request $request, $id, $serviceType)
@@ -75,9 +75,9 @@ class CustomerStrategy
         return $this->strategy->getCustomerAppointment($request, $id, $serviceType);
     }
 
-    public function getCustomerNotifications(Request $request)
+    public function getCustomerNotifications(Request $request, $page = 1)
     {
-        return $this->strategy->getCustomerNotifications($request);
+        return $this->strategy->getCustomerNotifications($request, $page);
     }
 
     public function getCustomerMedicalReports(Request $request)

@@ -30,7 +30,7 @@ class CreateCustomersTable extends Migration
             $table->integer('registration_source')->nullable();
             $table->string('registration_source_desc',100)->nullable();
             $table->integer('gender')->default(0);
-            $table->integer('default_language')->nullable();
+            $table->string('default_language')->default('en')->nullable();
             $table->string('profile_picture_path',255)->nullable();
             $table->string('nationality_id_picture',255)->nullable();
             $table->date('birthdate')->nullable();

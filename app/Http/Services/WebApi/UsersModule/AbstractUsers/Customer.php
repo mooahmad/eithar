@@ -278,14 +278,15 @@ class Customer
 
     }
 
-    public function getCustomerAppointments(Request $request)
+    public function getCustomerAppointments(Request $request, $page = 1)
     {
         $upCommingAppointments = [];
         $passedAppointments = [];
         $finalAppointments = [];
+        $page -= 1;
         $servicesBookings = Auth::user()->load(['servicesBooking.service_appointments' => function ($query) {
             $query->orderByRaw('service_booking_appointments.created_at DESC');
-        }])->servicesBooking;
+        }])->servicesBooking()->skip($page * config('constants.paggination_items_per_page'))->take(config('constants.paggination_items_per_page'))->get();
         foreach ($servicesBookings as $servicesBooking) {
             $service = null;
             $serviceBookingLaps = null;
@@ -446,9 +447,11 @@ class Customer
         return $query->pluck('slot_id')->toArray();
     }
 
-    public function getCustomerNotifications(Request $request)
+    public function getCustomerNotifications(Request $request, $page = 1)
     {
-        $notifications = Auth::user()->notifications()->where('is_pushed', 1)->get();
+        $page -= 1;
+        $notifications = Auth::user()->notifications()->where('is_pushed', 1)
+        ->skip($page * config('constants.paggination_items_per_page'))->take(config('constants.paggination_items_per_page'))->get();
         $returnNotifications = [];
         foreach ($notifications as $notification) {
             $notificationData = json_decode(json_encode($notification->data));

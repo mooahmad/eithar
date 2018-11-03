@@ -51,9 +51,9 @@ Route::middleware('auth:api')->group(function () {
         Route::post('getFamilyMember', 'CustomerController@getCustomerFamilyMember');
         Route::post('deleteFamilyMember', 'CustomerController@deleteCustomerFamilyMember');
         Route::get('getFamilyMembers', 'CustomerController@getCustomerFamilyMembers');
-        Route::get('getAppointments', 'CustomerController@getCustomerAppointments');
+        Route::get('getAppointments/{page?}', 'CustomerController@getCustomerAppointments');
         Route::get('getAppointments/{id}/{servicetype}', 'CustomerController@getCustomerAppointment');
-        Route::get('getNotifications', 'CustomerController@getCustomerNotifications');
+        Route::get('getNotifications/{page?}', 'CustomerController@getCustomerNotifications');
         Route::get('getMedicalReports', 'CustomerController@getCustomerMedicalReports');
         Route::get('search/{keyword}', 'CustomerController@search');
     }));
@@ -113,13 +113,13 @@ Route::middleware('auth:provider')->group(function () {
         Route::post('/bookings/{id}/addItemToInvoice', 'ProviderController@addItemToInvoice');
         Route::post('/bookings/{id}/deleteItemFromInvoice', 'ProviderController@deleteItemFromInvoice');
         Route::post('/bookings/{id}/payInvoice', 'ProviderController@payInvoice');
-        Route::get('getBookings/{eitharId?}', 'ProviderController@getBookings');
+        Route::get('getBookings/{page?}/{eitharId?}', 'ProviderController@getBookings');
         Route::get('getBooking/{id}/{serviceType}', 'ProviderController@getBooking');
         Route::get('requestUnlockBooking/{id}', 'ProviderController@requestUnlockBooking');
         Route::get('getBookingQuestionnaireAnswer/{id}/{page}', 'ProviderController@getBookingQuestionnaireAnswer');
         Route::get('getApprovedReports/{id}', 'ProviderController@getApprovedReports');
         Route::get('getDrivers', 'ProviderController@getDrivers');
         Route::post('/bookings/{id}/bindDriverToAppointment', 'ProviderController@bindDriverToAppointment');
-        Route::get('getNotifications', 'ProviderController@getProviderNotifications');
+        Route::get('getNotifications/{page?}', 'ProviderController@getProviderNotifications');
     }));
 });
