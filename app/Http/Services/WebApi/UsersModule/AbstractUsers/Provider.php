@@ -851,8 +851,8 @@ class Provider
         $invoice->update([
             'is_paid' => 1,
             'payment_method' => $request->input('payment_method'),
-            'payment_transaction_number' => $request->input('payment_transaction_number'),
-            'provider_comment' => $request->input('provider_comment'),
+            'payment_transaction_number' => $request->input('payment_transaction_number', null),
+            'provider_comment' => $request->input('provider_comment', ""),
         ]);
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([]));
