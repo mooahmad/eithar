@@ -549,9 +549,13 @@ class Provider
                 }
             }
         }
+        if(!$serviceBooking->invoice){
         $serviceBooking->invoice()->forceDelete();
         $invoiceClass = new InvoiceClass();
         $invoice = $invoiceClass->createNewInvoice($serviceBooking);
+        }else{
+            $invoice = $serviceBooking->invoice;
+        }
         $invoiceItems = $invoice->items;
         foreach ($invoiceItems as $invoiceItem) {
             $service = $invoiceItem->service;
@@ -580,6 +584,7 @@ class Provider
             "total_before_tax" => $totalBeforeTax,
             "vat" => $vat,
             "total" => $total,
+            "invoice_id" => $invoice->id
         ]));
 
     }
