@@ -294,7 +294,8 @@ class Customer
             if ($serviceId != null) {
                 $service = Service::find($serviceId);
             } elseif ($serviceId == null && $servicesBooking->provider_id != null) {
-                $service = $servicesBooking->provider->services()->leftJoin('categories', 'services.category_id', '=', 'categories.id')->where('categories.category_parent_id', 1)->first();
+                $service = $servicesBooking->provider;
+                $service->type = 5;
             } else {
                 $serviceBookingLaps = ServiceBookingLap::with('service')->where('service_booking_id', $servicesBooking->id)->get();
             }
@@ -314,7 +315,7 @@ class Customer
                         $payLoad = [
                             "id" => $serviceAppointment->id,
                             "service_type" => $service->type,
-                            "service_name" => $service->name_en,
+                            "service_name" => $service->full_name,
                             "upcoming" => $upComming,
                             "start_date" => $startDate,
                             "start_time" => $startTime
@@ -390,7 +391,7 @@ class Customer
         if ($serviceType == 5) {
             $providersCalendar = ProvidersCalendar::find($appointment->slot_id);
             if ($providersCalendar) {
-                $providerService = $serviceBooking->provider->services()->leftJoin('categories', 'services.category_id', '=', 'categories.id')->where('categories.category_parent_id', 1)->first();
+                $providerService = $serviceBooking->provider;
                 $calendar[] = ApiHelpers::reBuildCalendarSlot($providersCalendar);
                 $services [] = $providerService;
                 $totalBeforeTax = $providerService->price;

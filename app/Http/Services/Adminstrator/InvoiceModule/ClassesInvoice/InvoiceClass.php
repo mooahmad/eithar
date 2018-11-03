@@ -29,7 +29,7 @@ class InvoiceClass
         if (!empty($booking->invoice)) {
             return $booking->invoice;
         }
-
+        
         $add = new Invoice();
         $add->service_booking_id = $booking->id;
         $add->customer_id = $booking->customer_id;

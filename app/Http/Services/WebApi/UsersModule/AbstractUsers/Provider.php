@@ -86,12 +86,7 @@ class Provider
                 'city_name_ara', 'city_name_eng',
             ]);
         });
-        $provider->services->each(function ($service) use (&$provider) {
-            if ($service->category->category_parent_id == config('constants.categories.Doctor')) {
-                $provider->category_name = $service->category->name;
-            }
-
-        });
+        $provider->category_name = "Doctor";
         $provider->currency_name = Currency::find($provider->currency_id)->name_eng;
         $provider->calendar_dates = ApiHelpers::reBuildCalendar($day, $provider->calendar);
         $provider->vat = 0;
@@ -389,7 +384,8 @@ class Provider
             if ($serviceId != null) {
                 $service = Service::find($serviceId);
             } elseif ($serviceId == null && $servicesBooking->provider_id != null && $servicesBooking->is_lap == 0) {
-                $service = $servicesBooking->provider->services()->leftJoin('categories', 'services.category_id', '=', 'categories.id')->where('categories.category_parent_id', 1)->first();
+                $service = $servicesBooking->provider;
+                $service->type = 5;
             } else {
                 $serviceBookingLaps = ServiceBookingLap::with('service')->where('service_booking_id', $servicesBooking->id)->get();
             }
@@ -420,7 +416,7 @@ class Provider
                         $payLoad = [
                             "id" => $serviceAppointment->id,
                             "service_type" => $service->type,
-                            "service_name" => $service->name_en,
+                            "service_name" => $service->full_name,
                             "service_image" => $service->profile_picture_path,
                             "customer_name" => "{$customer->first_name} {$customer->middle_name} {$customer->last_name}",
                             "upcoming" => $upComming,
@@ -529,7 +525,7 @@ class Provider
         if ($serviceType == 5) {
             $providersCalendar = ProvidersCalendar::find($appointment->slot_id);
             if ($providersCalendar) {
-                $providerService = $serviceBooking->provider->services()->leftJoin('categories', 'services.category_id', '=', 'categories.id')->where('categories.category_parent_id', 1)->first();
+                $providerService = $serviceBooking->provider;
                 $calendar[] = ApiHelpers::reBuildCalendarSlot($providersCalendar);
                 $totalBeforeTax = $providerService->price;
             }
@@ -550,7 +546,6 @@ class Provider
             }
         }
         if(!$serviceBooking->invoice){
-        $serviceBooking->invoice()->forceDelete();
         $invoiceClass = new InvoiceClass();
         $invoice = $invoiceClass->createNewInvoice($serviceBooking);
         }else{
@@ -710,9 +705,15 @@ class Provider
             $booking->price = $totalPrice;
             $booking->save();
         }
+        $items = $booking->invoice->items;
         $booking->invoice()->forceDelete();
+        $booking->invoice = null;
         $invoiceClass = new InvoiceClass();
         $invoice = $invoiceClass->createNewInvoice($booking);
+        foreach($items as $item){
+            if($item->service && $item->service->type == 3)
+            $invoice_item = $invoiceClass->saveInvoiceItem($invoice->id, $item->name_en, $item->service_id, null, config('constants.items.pending'), $item->price);
+        }
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([]));
     }
@@ -733,7 +734,7 @@ class Provider
         if ($serviceType == 5) {
             $providersCalendar = ProvidersCalendar::find($appointment->slot_id);
             if ($providersCalendar) {
-                $providerService = $serviceBooking->provider->services()->leftJoin('categories', 'services.category_id', '=', 'categories.id')->where('categories.category_parent_id', 1)->first();
+                $providerService = $serviceBooking->provider;
                 $calendar[] = ApiHelpers::reBuildCalendarSlot($providersCalendar);
                 $totalBeforeTax = $providerService->price;
             }
@@ -799,7 +800,7 @@ class Provider
         $serviceBooking = ServiceBooking::find($appointment->service_booking_id);
         $invoice = $serviceBooking->invoice;
         $item = Service::findOrFail($request->input('service_id'));
-
+        
         if (!$invoice) {
             return Utilities::getValidationError(config('constants.responseStatus.operationFailed'),
                 new MessageBag([
