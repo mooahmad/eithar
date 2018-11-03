@@ -69,6 +69,8 @@
         <script src="{{ asset('public/Frontend/js/slick.js') }}"></script>
         @if(LaravelLocalization::getCurrentLocale() =='ar')
             <script src="{{ asset('public/Frontend/js/script-rtl.js') }}"></script>
+            @else
+            <script src="{{ asset('public/Frontend/js/script.js') }}"></script>
         @endif
         @yield('js')
     </body>
