@@ -38,7 +38,6 @@ Route::group(['namespace' => FE], function () {
             });
 //            Route::get('categories/{category}/{name}', 'CategoriesFrontController@showSubCategories')->name('show-subcategories');
         });
-
     });
 });
 

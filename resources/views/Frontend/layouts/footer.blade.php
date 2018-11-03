@@ -6,7 +6,7 @@
                         <img src="{{ asset('public/Frontend/img/logo.png') }}" alt="{{ trans('main.site_name') }}">
                     </aside>
                     <div class="row">
-                        <div class="col-sm-12 col-md-6 col-lg-4">
+                        <div class="col-sm-12 col-md-6 col-lg-3">
                             <p class="paragraph_global">{{ trans('main.about_us_text') }}</p>
                         </div>
 
@@ -20,13 +20,23 @@
                             {!! Form::close() !!}
                         </div>
 
-                        <div class="col-sm-12 col-md-6 col-lg-4">
+                        <div class="col-sm-12 col-md-6 col-lg-3">
                             <h2>{{ trans('main.contact_us') }}</h2>
                             <p class="paragraph_global"> {{ trans('main.hotline_text') }} <bdi>009651800082</bdi></p>
                             <ul class="list-unstyled about_us">
                                 <li> {{ trans('main.reporting_service') }} <bdi> 0096597225234</bdi></li>
                                 <li> {{ trans('main.technical_support_service') }} <bdi> 0096596699477</bdi> </li>
                                 <li>{{ trans('main.request_special_link') }}<bdi> 0096597277745</bdi> </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 col-lg-2">
+                            <h2>{{ trans('main.important_links') }}</h2>
+                            <ul class="list-unstyled">
+                                <li><a href="{{ url()->route('about_us') }}">{{ trans('main.about_company') }}</a></li>
+                                <li><a href="{{ url()->route('privacy_and_conditions') }}">{{ trans('main.privacy_and_conditions') }}</a></li>
+                                <li><a href="#">{{ trans('main.customer_terms_and_conditions') }}</a></li>
+                                <li><a href="#">{{ trans('main.faq') }}</a></li>
                             </ul>
                         </div>
                     </div>
