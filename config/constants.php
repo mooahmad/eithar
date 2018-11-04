@@ -189,6 +189,7 @@ return [
         7=>"Add Item To Invoice",
         8=>"Appointment Canceled",
         9=> "Approve Item To Invoice",
+        10 => "assign Provider To Meeting",
     ],
     'invoice_code' => 'INV-00',
     'payment_methods' => [
