@@ -709,7 +709,7 @@ class Provider
         $add = $booking->invoice;
         $add->service_booking_id = $booking->id;
         $add->customer_id = $booking->customer_id;
-//        login Provider ID
+        //login Provider ID
         if (auth()->guard('provider-web')->user()) {
             $add->provider_id = auth()->guard('provider-web')->user()->id;
         }
@@ -720,7 +720,7 @@ class Provider
         $add->admin_comment = $booking->admin_comment;
         $add->save();
         $items = BookingServicesController::getBookingDetails($booking);
-//            Calculate amount of this invoice
+        //Calculate amount of this invoice
         if ($items['original_amount']) {
             $amount = $this->calculateInvoiceServicePrice($items['original_amount'], $items['promo_code_percentage'], $items['vat_percentage']);
             if (!empty($amount)) {
