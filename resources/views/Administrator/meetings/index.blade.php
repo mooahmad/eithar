@@ -35,6 +35,7 @@
                                     <th>{{ trans('admin.mobile') }}</th>
                                     <th>{{ trans('admin.price') }}</th>
                                     <th>{{ trans('admin.status') }}</th>
+                                    <th>{{ trans('admin.unlock_request') }}</th>
                                     <th>{{ trans('admin.submitted_at') }}</th>
                                     <th>{{ trans('admin.actions') }}</th>
                                 </tr>
@@ -54,6 +55,7 @@
                                     <th>{{ trans('admin.mobile') }}</th>
                                     <th>{{ trans('admin.price') }}</th>
                                     <th>{{ trans('admin.status') }}</th>
+                                    <th>{{ trans('admin.unlock_request') }}</th>
                                     <th>{{ trans('admin.submitted_at') }}</th>
                                     <th>{{ trans('admin.actions') }}</th>
                                 </tr>

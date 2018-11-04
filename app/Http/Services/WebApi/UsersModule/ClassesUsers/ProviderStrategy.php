@@ -173,4 +173,9 @@ class ProviderStrategy
     {
         return $this->strategy->getProviderNotifications($request, $page);
     }
+
+    public function getCloseBookings(Request $request, $page = 1)
+    {
+        return $this->strategy->getCloseBookings($request, $page);
+    }
 }

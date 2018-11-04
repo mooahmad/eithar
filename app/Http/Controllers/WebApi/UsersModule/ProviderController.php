@@ -204,4 +204,11 @@ class ProviderController extends Controller
         return $providerStrategy->getProviderNotifications($request, $page);
     }
 
+    public function getCloseBookings(Request $request, $page = 1)
+    {
+        // instantiate login strategy object using request type detection helper method
+        $providerStrategy = new ProviderStrategy(ApiHelpers::requestType($request));
+        return $providerStrategy->getCloseBookings($request, $page);
+    }
+
 }

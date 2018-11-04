@@ -43,6 +43,10 @@ function datatable() {
             {data: 'mobile_number', name: 'customers.mobile_number'},
             {data: 'price', name: 'service_bookings.price'},
             {data: 'status', name: 'service_bookings.status'},
+            {data: 'unlock_request', name: 'service_bookings.unlock_request',
+            "render": function (data, type, full, meta) {
+                return (data == 1)? "yes" : "no";
+            }},
             {data: 'created_at', name: 'service_bookings.created_at'},
             {
                 searchable: false,
@@ -108,6 +112,19 @@ function datatable() {
                 meeting_status.forEach( function ( value,key ) {
                     select.append( '<option value="'+key+'">'+value+'</option>' )
                 } );
+            } );
+            this.api().columns([10]).every( function () {
+                var column = this;
+                var select = $('<select id ="unlock-request" class="btn btn-outline btn-circle btn-large blue-ebonyclay"><option value="">Advanced Filter</option></select>')
+                    .appendTo( $(column.footer()).empty() );
+                    $('#unlock-request').on('change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+                        column.search( val ).draw();
+                    });
+                    select.append( '<option value="1">yes</option>' );
+                    select.append( '<option value="0">no</option>' );
             } );
         }
     });

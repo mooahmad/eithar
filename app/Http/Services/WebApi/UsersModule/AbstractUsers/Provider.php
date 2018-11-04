@@ -917,4 +917,120 @@ class Provider
             "notifications" => $returnNotifications,
         ]));
     }
+
+    public function getCloseBookings(Request $request, $page = 1)
+    {
+        $appointments = [];
+        $finalAppointments = [];
+        $page -= 1;
+        $servicesBookings = Auth::user()->load(['servicesBookings.service_appointments' => function ($query) {
+            $query->orderByRaw('service_booking_appointments.created_at DESC');
+        }])->servicesBookings()->skip($page * config('constants.paggination_items_per_page'))->take(config('constants.paggination_items_per_page'))->get();
+        foreach ($servicesBookings as $servicesBooking) {
+            $service = null;
+            $serviceBookingLaps = null;
+            $serviceId = $servicesBooking->service_id;
+            if ($serviceId != null) {
+                $service = Service::find($serviceId);
+            } elseif ($serviceId == null && $servicesBooking->provider_id != null && $servicesBooking->is_lap == 0) {
+                $service = $servicesBooking->provider;
+                $service->type = 5;
+            } else {
+                $serviceBookingLaps = ServiceBookingLap::with('service')->where('service_booking_id', $servicesBooking->id)->get();
+            }
+            $serviceAppointments = $servicesBooking->service_appointments;
+            $customer = $servicesBooking->customer;
+            foreach ($serviceAppointments as $serviceAppointment) {
+                $payLoad = [];
+                if ($service != null) {
+                    //provider
+                    if ($service->type == 5) {
+                        $calendar = ProvidersCalendar::find($serviceAppointment->slot_id);
+                        $startDate = $startTime = $endTime = "Unknown";
+                        if ($calendar) {
+                            $startDate = $calendar->start_date;
+                            $startTime = Carbon::parse($calendar->start_date)->format('g:i A');
+                            $endTime = Carbon::parse($calendar->end_date)->format('g:i A');
+                            $now = Carbon::now();
+                            $nowPlusHours = Carbon::now()->addHours(3);
+                            $afterStartDay = Carbon::parse($calendar->start_date);
+                            if (!($now <= $afterStartDay && $nowPlusHours >= $afterStartDay)) {
+                                $startDate = "Unknown";
+                            }
+                        }
+                        $payLoad = [
+                            "id" => $serviceAppointment->id,
+                            "service_type" => $service->type,
+                            "service_name" => $service->full_name,
+                            "service_image" => $service->profile_picture_path,
+                            "customer_name" => "{$customer->first_name} {$customer->middle_name} {$customer->last_name}",
+                            "start_date" => $startDate,
+                            "start_time" => $startTime,
+                            "end_time" => $endTime,
+                        ];
+                        //one and package
+                    } elseif ($service->type == 1 || $service->type == 2) {
+                        $calendar = ServicesCalendar::find($serviceAppointment->slot_id);
+                        $startDate = $startTime = $endTime = "Unknown";
+                        if ($calendar) {
+                            $startDate = $calendar->start_date;
+                            $startTime = Carbon::parse($calendar->start_date)->format('g:i A');
+                            $endTime = Carbon::parse($calendar->end_date)->format('g:i A');
+                            $now = Carbon::now();
+                            $nowPlusHours = Carbon::now()->addHours(3);
+                            $afterStartDay = Carbon::parse($calendar->start_date);
+                            if (!($now <= $afterStartDay && $nowPlusHours >= $afterStartDay)) {
+                                $startDate = "Unknown";
+                            }
+                        }
+                        $payLoad = [
+                            "id" => $serviceAppointment->id,
+                            "service_type" => $service->type,
+                            "service_name" => $service->name_en,
+                            "service_image" => $service->profile_picture_path,
+                            "customer_name" => "{$customer->first_name} {$customer->middle_name} {$customer->last_name}",
+                            "start_date" => $startDate,
+                            "start_time" => $startTime,
+                            "end_time" => $endTime,
+                        ];
+                    }
+                } elseif ($serviceBookingLaps != null) {
+                    $calendar = LapCalendar::find($serviceAppointment->slot_id);
+                    $startDate = $startTime = $endTime = "Unknown";
+                    if ($calendar) {
+                        $startDate = $calendar->start_date;
+                        $startTime = Carbon::parse($calendar->start_date)->format('g:i A');
+                        $endTime = Carbon::parse($calendar->end_date)->format('g:i A');
+                        $now = Carbon::now();
+                        $nowPlusHours = Carbon::now()->addHours(3);
+                        $afterStartDay = Carbon::parse($calendar->start_date);
+                        if (!($now <= $afterStartDay && $nowPlusHours >= $afterStartDay)) {
+                            $startDate = "Unknown";
+                        }
+                    }
+                    $payLoad = [
+                        "id" => $serviceAppointment->id,
+                        "service_type" => 4,
+                        "service_name" => "Lap",
+                        "service_image" => Categories::find(2)->profile_picture_path,
+                        "customer_name" => "{$customer->first_name} {$customer->middle_name} {$customer->last_name}",
+                        "start_date" => $startDate,
+                        "start_time" => $startTime,
+                        "end_time" => $endTime,
+                    ];
+                }
+                if ($payLoad["start_date"] != "Unknown") {
+                        $appointments[] = $payLoad;
+                }
+            }
+        }
+        $appointments = collect($appointments);
+        $appointments->each(function ($appointment) use (&$finalAppointments) {
+            $appointment["start_date"] = Carbon::parse($appointment["start_date"])->format('l jS \\of F Y');
+            array_push($finalAppointments, $appointment);
+        });
+        return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
+            "bookings" => $finalAppointments,
+        ]));
+    }
 }

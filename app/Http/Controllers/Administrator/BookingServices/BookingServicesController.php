@@ -71,7 +71,7 @@ class BookingServicesController extends Controller
         $items->leftjoin('services','service_bookings.service_id','services.id')
             ->join('customers','service_bookings.customer_id','customers.id')
             ->join('currencies','service_bookings.currency_id','currencies.id')
-            ->select(['service_bookings.id','service_bookings.status','service_bookings.price','service_bookings.status_desc','service_bookings.created_at','services.name_en','customers.first_name','customers.middle_name','customers.last_name','customers.eithar_id','customers.national_id','customers.mobile_number','currencies.name_eng']);
+            ->select(['service_bookings.id','service_bookings.status', 'service_bookings.unlock_request','service_bookings.price','service_bookings.status_desc','service_bookings.created_at','services.name_en','customers.first_name','customers.middle_name','customers.last_name','customers.eithar_id','customers.national_id','customers.mobile_number','currencies.name_eng']);
         $dataTable = DataTables::of($items)
             ->editColumn('name_en',function ($item){
                 return ($item->name_en) ? $item->name_en : 'Lab Service';
@@ -95,10 +95,14 @@ class BookingServicesController extends Controller
                 return $item->price .' '.$item->name_eng;
             })
             ->addColumn('actions', function ($item) {
-                $showURL = route('show-meeting-details',[$item->id]);
+                $showURL = route('show-meeting-details',[ "id" => $item->id]);
                 $URLs = [
                     ['link'=>$showURL,'icon'=>'eye','color'=>'green'],
                 ];
+                if($item->unlock_request == 1){
+                    $unlockURL =route('approve-unlock',[$item->id]);
+                    $URLs[] = ['link'=>$unlockURL,'icon'=>'check','color'=>'red'];
+                }
                 if (Gate::allows('medical_report.view',new MedicalReports()) || Gate::forUser(auth()->guard('provider-web')->user())->allows('provider_guard.view')){
                     $medicalReportsURL = route('showMeetingReport',[$item->id]);
                     $addMedicalReportURL = route('createMeetingReport',[$item->id]);
@@ -205,5 +209,14 @@ class BookingServicesController extends Controller
         }
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect(AD . '/meetings/'.$request->booking);
+    }
+
+    public function approveUnlock(Request $request, $bookingId)
+    {
+        $booking = ServiceBooking::findOrFail($bookingId);
+        $booking->unlock_request = 0;
+        $booking->is_locked = 0;
+        $booking->save();
+        return redirect()->route("meetings");
     }
 }

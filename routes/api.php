@@ -121,5 +121,6 @@ Route::middleware('auth:provider')->group(function () {
         Route::get('getDrivers', 'ProviderController@getDrivers');
         Route::post('/bookings/{id}/bindDriverToAppointment', 'ProviderController@bindDriverToAppointment');
         Route::get('getNotifications/{page?}', 'ProviderController@getProviderNotifications');
+        Route::get('getCloseBookings/{page?}', 'ProviderController@getCloseBookings');
     }));
 });
