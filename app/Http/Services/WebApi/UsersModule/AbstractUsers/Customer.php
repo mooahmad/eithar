@@ -391,16 +391,31 @@ class Customer
         if ($serviceType == 5) {
             $providersCalendar = ProvidersCalendar::find($appointment->slot_id);
             if ($providersCalendar) {
-                $providerService = $serviceBooking->provider;
+                $provider = $serviceBooking->provider;
                 $calendar[] = ApiHelpers::reBuildCalendarSlot($providersCalendar);
-                $services [] = $providerService;
+                $service = [
+                    "id" => $provider->id,
+                    "name" => $provider->full_name,
+                    "visit_duration" => $provider->visit_duration,
+                    "price" => $provider->price,
+                    "service_type" => 5
+                 ];
+                $services [] = $Service;
                 $totalBeforeTax = $providerService->price;
             }
         } elseif ($serviceType == 1 || $serviceType == 2) {
             $servicesCalendar = ServicesCalendar::find($appointment->slot_id);
             if ($servicesCalendar) {
                 $calendar[] = ApiHelpers::reBuildCalendarSlot($servicesCalendar);
-                $services [] = $serviceBooking->service;
+                $service = $serviceBooking->service;
+                $service = [
+                    "id" => $service->id,
+                    "name" => $service->name,
+                    "visit_duration" => $service->visit_duration,
+                    "price" => $service->price,
+                    "service_type" => $serviceType
+                 ];
+                $services [] = $service;
                 $totalBeforeTax = $serviceBooking->service->price;
             }
         } elseif ($serviceType == 4) {
@@ -409,8 +424,16 @@ class Customer
                 $calendar[] = ApiHelpers::reBuildCalendarSlot($lapClendar);
                 $servicesLap = ServiceBookingLap::where('service_booking_id', $serviceBooking->id)->get();
                 foreach ($servicesLap as $serviceLap) {
-                    $services [] = $serviceLap->service;
-                    $totalBeforeTax += $serviceLap->service->price;
+                    $serviceLap = $serviceLap->service;
+                    $service = [
+                        "id" => $serviceLap->id,
+                        "name" => $serviceLap->name,
+                        "visit_duration" => $serviceLap->visit_duration,
+                        "price" => $serviceLap->price,
+                        "service_type" => $serviceType
+                     ];
+                    $services [] = $service;
+                    $totalBeforeTax += $serviceLap->price;
                 }
             }
         }
