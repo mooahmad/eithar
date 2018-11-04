@@ -71,11 +71,20 @@ class InvoiceClass
         }
 
         $add->refresh();
+        $bookingService = $booking->service;
+        $serviceType = null;
+        if (empty($booking->service_id) && !empty($booking->provider_id) && $booking->is_lap == 0) {
+            $serviceType = 5;
+        } else if (!empty($bookingService) && ($bookingService->type == 1 || $bookingService->type == 2)) {
+            $serviceType = $bookingService->type;
+        } else if (empty($bookingService->service) && $booking->is_lap == 1) {
+            $serviceType = 4;
+        }
 
         //        TODO send notification to customer that Admin generate new invoice
         $payload = PushNotificationsTypes::find(config('constants.pushTypes.invoiceGenerated'));
         $payload->invoice_id = $add->id;
-        $payload->service_type   = $add->service->type;
+        $payload->service_type = $serviceType;
         $payload->send_at = Carbon::now()->format('Y-m-d H:m:s');
         $add->customer->notify(new InvoiceGenerated($payload));
 
