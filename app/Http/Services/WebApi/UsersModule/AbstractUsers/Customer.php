@@ -400,7 +400,7 @@ class Customer
                     "price" => $provider->price,
                     "service_type" => 5
                  ];
-                $services [] = $Service;
+                $services [] = $service;
                 $totalBeforeTax = $providerService->price;
             }
         } elseif ($serviceType == 1 || $serviceType == 2) {
