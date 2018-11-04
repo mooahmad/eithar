@@ -760,6 +760,11 @@ class Provider
                 $service = $invoiceItem->provider;
                 $service->name = $service->full_name;
             }
+            if($invoiceItem->status == config('constants.items.pending'))
+            return Utilities::getValidationError(config('constants.responseStatus.operationFailed'),
+            new MessageBag([
+                               "message" => trans('errors.errorItemNotConfirmed')
+                           ]));
             $service = [
                 "id" => $invoiceItem->id,
                 "name" => $service->name,
