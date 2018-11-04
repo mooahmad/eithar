@@ -545,10 +545,10 @@ class Provider
                 }
             }
         }
-        if(!$serviceBooking->invoice){
-        $invoiceClass = new InvoiceClass();
-        $invoice = $invoiceClass->createNewInvoice($serviceBooking);
-        }else{
+        if (!$serviceBooking->invoice) {
+            $invoiceClass = new InvoiceClass();
+            $invoice = $invoiceClass->createNewInvoice($serviceBooking);
+        } else {
             $invoice = $serviceBooking->invoice;
         }
         $invoiceItems = $invoice->items;
@@ -579,7 +579,7 @@ class Provider
             "total_before_tax" => $totalBeforeTax,
             "vat" => $vat,
             "total" => $total,
-            "invoice_id" => $invoice->id
+            "invoice_id" => $invoice->id,
         ]));
 
     }
@@ -705,14 +705,27 @@ class Provider
             $booking->price = $totalPrice;
             $booking->save();
         }
-        $items = $booking->invoice->items;
-        $booking->invoice()->forceDelete();
-        $booking->invoice = null;
-        $invoiceClass = new InvoiceClass();
-        $invoice = $invoiceClass->createNewInvoice($booking);
-        foreach($items as $item){
-            if($item->service && $item->service->type == 3)
-            $invoice_item = $invoiceClass->saveInvoiceItem($invoice->id, $item->name_en, $item->service_id, null, config('constants.items.pending'), $item->price);
+        // update invoice
+        $add = $booking->invoice;
+        $add->service_booking_id = $booking->id;
+        $add->customer_id = $booking->customer_id;
+//        login Provider ID
+        if (auth()->guard('provider-web')->user()) {
+            $add->provider_id = auth()->guard('provider-web')->user()->id;
+        }
+        $add->currency_id = $booking->currency_id;
+
+        $add->is_saudi_nationality = $booking->customer->is_saudi_nationality;
+        $add->invoice_code = config('constants.invoice_code') . $booking->id;
+        $add->admin_comment = $booking->admin_comment;
+        $add->save();
+        $items = BookingServicesController::getBookingDetails($booking);
+//            Calculate amount of this invoice
+        if ($items['original_amount']) {
+            $amount = $this->calculateInvoiceServicePrice($items['original_amount'], $items['promo_code_percentage'], $items['vat_percentage']);
+            if (!empty($amount)) {
+                $this->updateInvoiceAmount($add, $amount['amount_original'], $amount['amount_after_discount'], $amount['amount_after_vat'], $amount['amount_final']);
+            }
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([]));
@@ -760,11 +773,13 @@ class Provider
                 $service = $invoiceItem->provider;
                 $service->name = $service->full_name;
             }
-            if($invoiceItem->status == config('constants.items.pending'))
-            return Utilities::getValidationError(config('constants.responseStatus.operationFailed'),
-            new MessageBag([
-                               "message" => trans('errors.errorItemNotConfirmed')
-                           ]));
+            if ($invoiceItem->status == config('constants.items.pending')) {
+                return Utilities::getValidationError(config('constants.responseStatus.operationFailed'),
+                    new MessageBag([
+                        "message" => trans('errors.errorItemNotConfirmed'),
+                    ]));
+            }
+
             $service = [
                 "id" => $invoiceItem->id,
                 "name" => $service->name,
@@ -786,7 +801,7 @@ class Provider
             "total_before_tax" => $totalBeforeTax,
             "vat" => $vat,
             "total" => $total,
-            "invoice_id" => $serviceBooking->invoice->id
+            "invoice_id" => $serviceBooking->invoice->id,
         ]));
     }
 
@@ -805,7 +820,7 @@ class Provider
         $serviceBooking = ServiceBooking::find($appointment->service_booking_id);
         $invoice = $serviceBooking->invoice;
         $item = Service::findOrFail($request->input('service_id'));
-        
+
         if (!$invoice) {
             return Utilities::getValidationError(config('constants.responseStatus.operationFailed'),
                 new MessageBag([
@@ -1025,7 +1040,7 @@ class Provider
                     ];
                 }
                 if ($payLoad["start_date"] != "Unknown") {
-                        $appointments[] = $payLoad;
+                    $appointments[] = $payLoad;
                 }
             }
         }
