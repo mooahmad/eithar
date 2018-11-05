@@ -16,27 +16,29 @@ class SendingEmailClass
 {
 
     /**
-     * @param $customer
+     * @param $model
      * @param $notification
      * @return bool
      */
-    public static function prepareEmail($customer,$notification)
+    public static function prepareEmail($model,$notification)
     {
         $notification_data = json_decode(json_encode($notification->data));
-        if (!$notification_data->notification_type || $notification_data->notification_type<1 || $notification_data->notification_type>7) return false;
+        if (!$notification_data->notification_type || $notification_data->notification_type<1 || $notification_data->notification_type>10) return false;
 
+//        Invoice Generated
         if ($notification_data->notification_type == config('constants.pushTypes.invoiceGenerated')){
             try{
-                Mail::to($customer)->send(new GenerateInvoice($customer,$notification_data));
+                Mail::to($model)->send(new GenerateInvoice($model,$notification_data));
                 return true;
             }catch (\Exception $exception){
                 return false;
             }
         }
 
+//        Add Item ToInvoice
         if ($notification_data->notification_type == config('constants.pushTypes.addItemToInvoice')){
             try{
-                Mail::to($customer)->send(new AddItemToInvoice($customer,$notification_data));
+                Mail::to($model)->send(new AddItemToInvoice($model,$notification_data));
                 return true;
             }catch (\Exception $exception){
                 return false;

@@ -35,6 +35,7 @@ class GenerateInvoice extends Mailable
             ->with([
             'customer'=>$this->customer,
             'notification'=>$this->notification,
+            'lang'=>($this->notification->lang)? $this->notification->lang : 'ar',
             'invoice'=>$this->invoice
         ]);
     }

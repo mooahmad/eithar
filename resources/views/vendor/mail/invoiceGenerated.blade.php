@@ -1,137 +1,281 @@
 @extends('vendor.mail.layouts.master')
 
 @section('content')
-    <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="90%" style="margin: auto;" class="email-container">
+    <!-- Start Table Header-->
+    <table border="0" cellspacing="0" align="center"
+           style="background-color:#fff;border-radius:10px; min-width:750px;  padding:20px;">
+        <!-- Start Head-->
         <tr>
-            <td bgcolor="#ffffff" style="padding: 40px 40px 20px; text-align: left;">
-                <h4 style="margin: 0; font-family: sans-serif; font-size: 24px; line-height: 27px; color: #333333; font-weight: normal;"><strong>To</strong> {{ $customer->full_name }}</h4>
+            <th style=" width:30%"></th>
+            <!--Logo-->
+            <th>
+                <a href="{{ url('/') }}"> <img src="{{ asset('public/email/logo2.png') }}" alt="Eithar" style="
+                   height:40px;
+                   width:80px;
+                 "></a>
+            </th>
+            <th>Receipt</th>
+        </tr>
+        <!-- End Head-->
+        <!-- Start Sub Header-->
+        <tr>
+            <td>
+                <span>{{ $customer->full_name }}</span>
             </td>
-            <td bgcolor="#ffffff" style="padding: 40px 40px 20px; text-align: right;">
-                <h4 style="margin: 0; font-family: sans-serif; font-size: 24px; line-height: 27px; color: #333333; font-weight: normal;"><strong>From</strong>  Eithar Home Care Company
-                    King Salman road<br/>
-                    RIYADH RIYADH 6761-12458<br/>
-                    SAUDI ARABIA<br/>
-                    Telephone : +966118103234<br/>
-                </h4>
+            <td></td>
+            <td>
+                @if($lang == 'ar')
+                    <ul style="list-style: none outside none;">
+                        <li><span>من/ شركة ايثار الأولى للخدمات الطبية</span></li>
+                        <li><span>طريق الملك سلمان حي الملقا</span></li>
+                        <li><span><bdi>+966118103234 </bdi> هاتف</span></li>
+                    </ul>
+                @else
+                    <ul style="list-style: none outside none;">
+                        <li><span>From/ Eithar Home Care Company</span></li>
+                        <li><span>King Salman road RIYADH RIYADH 6761-12458 SAUDI ARABIA</span></li>
+                        <li><span>Telephone: <bdi>+966118103234 </bdi></span></li>
+                    </ul>
+                @endif
             </td>
         </tr>
+        <!-- End Sub Header-->
+        <!--Start -->
         <tr>
-            <td bgcolor="#ffffff" style="padding: 0 40px 40px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; text-align: left;" colspan="2">
-                <h4 style="margin: 0;">
-                    <strong>Invoice Number:</strong> {{ $invoice->invoice_code }}
-                </h4>
-                <h4 style="margin: 0;">
-                    <strong>Issued:</strong> {{ $invoice->invoice_date->format('l j F Y h:i A') }}
-                </h4>
+            <td></td>
+            <td></td>
+            <td>
+                <ul style="list-style: none outside none;">
+                    <li>
+                        <span style="color:#07A7E2">{{ $invoice->invoice_code }}</span>
+                        @if($lang == 'ar')
+                            <span style="font-size:22px; color:#000; font-weight:600;padding:14px 0;"> رقم الفاتورة </span>
+                            @else
+                            <span style="font-size:22px; color:#000; font-weight:600;padding:14px 0;"> Invoice Number: </span>
+                        @endif
+                    </li>
+                    <li>
+                        <span style="color:#07A7E2">{{ $invoice->invoice_date->format('l j F Y h:i A') }}</span>
+                        @if($lang == 'ar')
+                            <span style="font-size:22px; color:#000; font-weight:600;padding:14px 0;"> تاريخ الفاتورة </span>
+                        @else
+                            <span style="font-size:22px; color:#000; font-weight:600;padding:14px 0;">Issued Date:</span>
+                        @endif
+                    </li>
+                </ul>
             </td>
         </tr>
+        <!--End -->
     </table>
+    <!--End Table Header-->
 
-    <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="90%" style="margin: auto;" class="email-container">
-        <thead bgcolor="#ffffff" style="padding: 40px 40px 20px; text-align: center;">
-            <th><h4>Description</h4></th>
-            <th><h4>Quantity</h4></th>
-            <th><h4>Unit Price</h4></th>
-            <th><h4>Status</h4></th>
+    <!-- Start Price Table -->
+    @if($lang == 'ar')
+        <table border="0" cellspacing="0" align="center" style="text-align:center;background-color:#fff; min-width:750px;  padding:20px;">
+        <thead style="text-align:center">
+            <tr>
+                <th style="padding:10px; border:1px solid #ddd">وصف</th>
+                <th style="border:1px solid #ddd">العدد</th>
+                <th style="border:1px solid #ddd">سعر الوحدة</th>
+                <th style="border:1px solid #ddd">الحالة</th>
+            </tr>
         </thead>
-        <tbody>
+        <tbody style="
+          text-align:center">
+        @if(!empty($invoice->items))
+            @foreach($invoice->items as $item)
+                <tr>
+                    <td style="padding:10px;border:1px solid #ddd">{{ $item->item_desc_appear_in_invoice }}</td>
+                    <td style="border:1px solid #ddd">1</td>
+                    <td style="border:1px solid #ddd">{{ $item->price }}</td>
+                    <td style="border:1px solid #ddd">
+                        @if(($item->status == 2))
+                            تمت الموافقة
+                        @else
+                            قيد الانتظار
+                        @endif
+                    </td>
+                </tr>
+            @endforeach
+        @endif
+
+        <tr style="margin:30px;
+      display:flex;
+    justify-content: space-between;
+       font-weight:600; font-size:24px;
+;
+       ">
+            <td> <span style="color:#07A7E2"><bdi> {{ $invoice->amount_original }} {{ ($invoice->currency) ? $invoice->currency->name_eng : '' }}</bdi></span></td>
+            <td></td>
+            <td></td>
+            <td>السعر الأساسي</td>
+        </tr>
+
+        <tr style="margin:30px;
+      display:flex;
+    justify-content: space-between;
+       font-weight:600; font-size:24px;
+;
+       ">
+            <td> <span style="color:#07A7E2"><bdi> {{ ($invoice->booking_service->promo_code) ? $invoice->booking_service->promo_code->discount_percentage .' %' : '0 %'}}</bdi></span></td>
+            <td></td>
+            <td></td>
+            <td>الخصم</td>
+        </tr>
+
+        <tr style="margin:30px;
+      display:flex;
+    justify-content: space-between;
+       font-weight:600; font-size:24px;
+;
+       ">
+            <td> <span style="color:#07A7E2"><bdi> {{ $invoice->amount_after_discount }} {{ ($invoice->currency) ? $invoice->currency->name_eng : '' }}</bdi></span></td>
+            <td></td>
+            <td></td>
+            <td>السعر بعد الخصم</td>
+        </tr>
+
+        <tr style="margin:30px;
+      display:flex;
+    justify-content: space-between;
+       font-weight:600; font-size:24px;
+;
+       ">
+            <td> <span style="color:#07A7E2"><bdi> {{ ($invoice->is_saudi_nationality == 1) ? 'معفاة من الضرائب' : config('constants.vat_percentage').' %' }}</bdi></span></td>
+            <td></td>
+            <td></td>
+            <td>الضرائب</td>
+        </tr>
+
+        <tr style="margin:30px;
+      display:flex;
+    justify-content: space-between;
+       font-weight:600; font-size:24px;
+;
+       ">
+            <td> <span style="color:#07A7E2"><bdi> {{ $invoice->amount_after_vat }} {{ ($invoice->currency) ? $invoice->currency->name_eng : '' }}</bdi></span></td>
+            <td></td>
+            <td></td>
+            <td> السعر بعد الضرائب</td>
+        </tr>
+
+        <tr style="margin:30px;
+      display:flex;
+    justify-content: space-between;
+       font-weight:600; font-size:24px;
+;
+       ">
+            <td> <span style="color:#07A7E2"><bdi> {{ $invoice->amount_final }} {{ ($invoice->currency) ? $invoice->currency->name_eng : '' }}</bdi></span></td>
+            <td></td>
+            <td></td>
+            <td>السعر النهائي</td>
+        </tr>
+
+        </tbody>
+    </table>
+    @else
+        <table border="0" cellspacing="0" align="center" style="text-align:center;background-color:#fff; min-width:750px;  padding:20px;">
+            <thead style="text-align:center">
+            <tr>
+                <th style="padding:10px; border:1px solid #ddd">Description</th>
+                <th style="border:1px solid #ddd">Quantity</th>
+                <th style="border:1px solid #ddd">Unit Price</th>
+                <th style="border:1px solid #ddd">Status</th>
+            </tr>
+            </thead>
+            <tbody style="
+          text-align:center">
             @if(!empty($invoice->items))
                 @foreach($invoice->items as $item)
                     <tr>
-                        <td bgcolor="#ffffff" style="padding: 40px 40px 20px; text-align: center;">
-                            <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;">{{ $item->item_desc_appear_in_invoice }}</p>
-                        </td>
-                        <td bgcolor="#ffffff" style="padding: 5px 5px 10px; text-align: center;">
-                            <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;">1</p>
-                        </td>
-                        <td bgcolor="#ffffff" style="padding: 5px 5px 10px; text-align: center;">
-                            <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;">{{ $item->price }}</p>
-                        </td>
-                        <td bgcolor="#ffffff" style="padding: 5px 5px 10px; text-align: center;">
-                        @if(($item->status == 2))
-                                <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;">Approved</p>
+                        <td style="padding:10px;border:1px solid #ddd">{{ $item->item_desc_appear_in_invoice }}</td>
+                        <td style="border:1px solid #ddd">1</td>
+                        <td style="border:1px solid #ddd">{{ $item->price }}</td>
+                        <td style="border:1px solid #ddd">
+                            @if(($item->status == 2))
+                                Approved
                             @else
-                                <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;">Pending</p>
+                                Pending
                             @endif
                         </td>
                     </tr>
                 @endforeach
             @endif
-            <tr>
-                <td colspan="4" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
-                    <hr>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" bgcolor="#ffffff"></td>
-                <td colspan="2" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
-                    <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;">Original Amount: {{ $invoice->amount_original }}</p>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" bgcolor="#ffffff"></td>
-                <td colspan="2" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
-                    <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;">Discount: {{ ($invoice->booking_service->promo_code) ? $invoice->booking_service->promo_code->discount_percentage .' %' : '0 %'}}</p>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;"></td>
-                <td colspan="2" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
-                    <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;">Amount After Discount: {{ $invoice->amount_after_discount }}</p>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;"></td>
-                <td colspan="2" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
-                    <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;">Tax: {{ ($invoice->is_saudi_nationality == 1) ? 'Tax Exempt' : config('constants.vat_percentage').' %' }}</p>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;"></td>
-                <td colspan="2" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
-                    <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;">Amount After V.A.T: {{ $invoice->amount_after_vat }}</p>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;"></td>
-                <td colspan="2" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
-                    <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;">Amount Due: {{ $invoice->amount_final }} {{ ($invoice->currency) ? $invoice->currency->name_eng : '' }}</p>
-                </td>
+
+            <tr style="margin:30px;
+      display:flex;
+    justify-content: space-between;
+       font-weight:600; font-size:24px;
+;
+       ">
+                <td> <span style="color:#07A7E2"><bdi> {{ $invoice->amount_original }} {{ ($invoice->currency) ? $invoice->currency->name_eng : '' }}</bdi></span></td>
+                <td></td>
+                <td></td>
+                <td>Original Amount:</td>
             </tr>
 
-            <tr>
-                <td colspan="4" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
-                    <hr>
-                </td>
+            <tr style="margin:30px;
+      display:flex;
+    justify-content: space-between;
+       font-weight:600; font-size:24px;
+;
+       ">
+                <td> <span style="color:#07A7E2"><bdi> {{ ($invoice->booking_service->promo_code) ? $invoice->booking_service->promo_code->discount_percentage .' %' : '0 %'}}</bdi></span></td>
+                <td></td>
+                <td></td>
+                <td>Discount:</td>
             </tr>
 
-            @if($invoice->is_paid==1)
-                <tr>
-                    <td colspan="4" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
-                        <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;"><strong>Payment Status:</strong> Paid</p>
-                    </td>
-                </tr>
+            <tr style="margin:30px;
+      display:flex;
+    justify-content: space-between;
+       font-weight:600; font-size:24px;
+;
+       ">
+                <td> <span style="color:#07A7E2"><bdi> {{ $invoice->amount_after_discount }} {{ ($invoice->currency) ? $invoice->currency->name_eng : '' }}</bdi></span></td>
+                <td></td>
+                <td></td>
+                <td>Amount After Discount</td>
+            </tr>
 
-                <tr>
-                    <td colspan="4" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
-                        <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;"><strong>Payment Type:</strong> {{ config('constants.payment_methods.'.$invoice->payment_method) }}</p>
-                    </td>
-                </tr>
+            <tr style="margin:30px;
+      display:flex;
+    justify-content: space-between;
+       font-weight:600; font-size:24px;
+;
+       ">
+                <td> <span style="color:#07A7E2"><bdi> {{ ($invoice->is_saudi_nationality == 1) ? 'معفاة من الضرائب' : config('constants.vat_percentage').' %' }}</bdi></span></td>
+                <td></td>
+                <td></td>
+                <td>Tax:</td>
+            </tr>
 
-                @if($invoice->payment_method !=1)
-                    <tr>
-                        <td colspan="4" bgcolor="#ffffff" style="padding: 5px 40px 5px; text-align: left;">
-                            <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;"><strong><strong>Payment Transaction Number:</strong> {{ $invoice->payment_transaction_number }}</p>
-                        </td>
-                    </tr>
-                @endif
-                @else
-                    <tr>
-                        <td colspan="4" bgcolor="#ffffff" style="padding: 5px 40px 40px; text-align: left;">
-                            <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;"><strong>Payment Status:</strong> Pending</p>
-                        </td>
-                    </tr>
-            @endif
-        </tbody>
-    </table>
+            <tr style="margin:30px;
+      display:flex;
+    justify-content: space-between;
+       font-weight:600; font-size:24px;
+;
+       ">
+                <td> <span style="color:#07A7E2"><bdi> {{ $invoice->amount_after_vat }} {{ ($invoice->currency) ? $invoice->currency->name_eng : '' }}</bdi></span></td>
+                <td></td>
+                <td></td>
+                <td>Amount After V.A.T:</td>
+            </tr>
+
+            <tr style="margin:30px;
+      display:flex;
+    justify-content: space-between;
+       font-weight:600; font-size:24px;
+;
+       ">
+                <td> <span style="color:#07A7E2"><bdi> {{ $invoice->amount_final }} {{ ($invoice->currency) ? $invoice->currency->name_eng : '' }}</bdi></span></td>
+                <td></td>
+                <td></td>
+                <td>Amount Due:</td>
+            </tr>
+
+            </tbody>
+        </table>
+    @endif
+    <!-- End Price Table -->
 @endsection
