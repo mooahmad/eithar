@@ -9,6 +9,7 @@ use App\Mail\Invoice\GenerateInvoice;
 use App\Mail\Meeting\AppointmentCanceled;
 use App\Mail\Meeting\AppointmentConfirmed;
 use App\Mail\Meeting\AppointmentReminder;
+use App\Mail\Meeting\AssignProviderToMeeting;
 use App\Mail\Meeting\MedicalReportAdded;
 use App\Models\MedicalReports;
 use Illuminate\Http\Request;
@@ -80,6 +81,16 @@ class SendingEmailClass
         if ($notification_data->notification_type == config('constants.pushTypes.medicalReportAdded')){
             try{
                 Mail::to($model)->send(new MedicalReportAdded($model,$notification_data));
+                return true;
+            }catch (\Exception $exception){
+                return false;
+            }
+        }
+
+//        Assign Provider To Meeting
+        if ($notification_data->notification_type == config('constants.pushTypes.assignProviderToMeeting')){
+            try{
+                Mail::to($model)->send(new AssignProviderToMeeting($model,$notification_data));
                 return true;
             }catch (\Exception $exception){
                 return false;

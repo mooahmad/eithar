@@ -7,8 +7,8 @@
             <thead>
             <tr>
                 <th>
-                    <span> <img src="{{ asset('public/email/reminder.png') }}" alt="Eithar"> </span>
-                    <p>Reminder Email</p>
+                    <span> <img src="{{ asset('public/email/application.png') }}" alt="Eithar"> </span>
+                    <p>Assign Provider</p>
                     <p>شكراً لاختيارك خدمات إيثار </p>
                 </th>
             </tr>
@@ -22,9 +22,10 @@
             <tr style="text-align:center;">
                 <td colspan="2">
                     <p style="font-size:20px; color:#07A7E2;">
-                        هذه رسالة تذكيرية للزيارة. وسوف يتواصل معك مندوب إيثار قبل الموعد المحدد
+                        A new visit request has been submitted
                     </p>
                 </td>
+
             </tr>
             <!--End Row Title-->
         </table>
@@ -36,8 +37,8 @@
             <thead>
             <tr>
                 <th>
-                    <span> <img src="{{ asset('public/email/reminder.png') }}" alt="Eithar"> </span>
-                    <p> Reminder Email</p>
+                    <span> <img src="{{ asset('public/email/application.png') }}" alt="Eithar"> </span>
+                    <p>Assign Provider</p>
                     <p>Thank you for using Eithar </p>
                 </th>
             </tr>
@@ -51,7 +52,7 @@
             <tr style="text-align:center;">
                 <td colspan="2">
                     <p style="font-size:20px; color:#07A7E2;">
-                        هذه رسالة تذكيرية للزيارة . وسوف يتواصل معك مندوب إيثار قبل الموعد المحدد
+                        A new visit request has been submitted
                     </p>
                 </td>
             </tr>
