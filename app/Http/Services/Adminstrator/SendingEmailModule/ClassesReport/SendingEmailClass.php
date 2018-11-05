@@ -6,6 +6,10 @@ namespace App\Http\Services\Adminstrator\SendingEmailModule\ClassesReport;
 use App\Helpers\Utilities;
 use App\Mail\Invoice\AddItemToInvoice;
 use App\Mail\Invoice\GenerateInvoice;
+use App\Mail\Meeting\AppointmentCanceled;
+use App\Mail\Meeting\AppointmentConfirmed;
+use App\Mail\Meeting\AppointmentReminder;
+use App\Mail\Meeting\MedicalReportAdded;
 use App\Models\MedicalReports;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -44,6 +48,44 @@ class SendingEmailClass
                 return false;
             }
         }
+
+//        Appointment Reminder
+        if ($notification_data->notification_type == config('constants.pushTypes.appointmentReminder')){
+            try{
+                Mail::to($model)->send(new AppointmentReminder($model,$notification_data));
+                return true;
+            }catch (\Exception $exception){
+                return false;
+            }
+        }
+//        Appointment Confirmed
+        if ($notification_data->notification_type == config('constants.pushTypes.appointmentConfirmed')){
+            try{
+                Mail::to($model)->send(new AppointmentConfirmed($model,$notification_data));
+                return true;
+            }catch (\Exception $exception){
+                return false;
+            }
+        }
+//        Appointment Canceled
+        if ($notification_data->notification_type == config('constants.pushTypes.appointmentcanceled')){
+            try{
+                Mail::to($model)->send(new AppointmentCanceled($model,$notification_data));
+                return true;
+            }catch (\Exception $exception){
+                return false;
+            }
+        }
+//        Medical Report Added
+        if ($notification_data->notification_type == config('constants.pushTypes.medicalReportAdded')){
+            try{
+                Mail::to($model)->send(new MedicalReportAdded($model,$notification_data));
+                return true;
+            }catch (\Exception $exception){
+                return false;
+            }
+        }
+
         return false;
     }
 }

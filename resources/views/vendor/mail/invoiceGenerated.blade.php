@@ -9,7 +9,7 @@
             <th style=" width:30%"></th>
             <!--Logo-->
             <th>
-                <a href="{{ url('/') }}"> <img src="{{ asset('public/email/logo2.png') }}" alt="Eithar" style="
+                <a href="{{ url('/') }}"> <img src="{{ asset('/public/email/logo2.png') }}" alt="Eithar" style="
                    height:40px;
                    width:80px;
                  "></a>

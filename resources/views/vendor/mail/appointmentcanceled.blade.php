@@ -7,8 +7,8 @@
             <thead>
             <tr>
                 <th>
-                    <span> <img src="{{ asset('public/email/verified.png') }}" alt="Eithar"> </span>
-                    <p>Confirmation Email</p>
+                    <span> <img src="{{ asset('public/email/cancel.png') }}" alt="Eithar"> </span>
+                    <p>Appointment Canceled</p>
                     <p>شكراً لاختيارك خدمات إيثار </p>
                 </th>
             </tr>
@@ -22,10 +22,9 @@
             <tr style="text-align:center;">
                 <td colspan="2">
                     <p style="font-size:20px; color:#07A7E2;">
-                        الزيارة رقم 254 تم تأكيدها وسوف يتواصل معك مندوب إيثار في أسرع
+                        تم إلغاء الزيارة
                     </p>
                 </td>
-
             </tr>
             <!--End Row Title-->
         </table>
@@ -37,8 +36,8 @@
             <thead>
             <tr>
                 <th>
-                    <span> <img src="{{ asset('public/email/verified.png') }}" alt="Eithar"> </span>
-                    <p>Confirmation Email</p>
+                    <span> <img src="{{ asset('public/email/cancel.png') }}" alt="Eithar"> </span>
+                    <p> Appointment Canceled</p>
                     <p>Thank you for using Eithar </p>
                 </th>
             </tr>
@@ -52,7 +51,7 @@
             <tr style="text-align:center;">
                 <td colspan="2">
                     <p style="font-size:20px; color:#07A7E2;">
-                        الزيارة رقم 254 تم تأكيدها وسوف يتواصل معك مندوب إيثار في أسرع
+                        Appointment Canceled
                     </p>
                 </td>
             </tr>

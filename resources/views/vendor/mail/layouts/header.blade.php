@@ -8,4 +8,4 @@
     <title>Eithar</title>
 </head>
 <body style="margin:0; padding:0; background:#ddd; min-width:750px;" align="center">
-    <table border="0" cellspacing="0" align="center" style="background-color:#07A7-E2; min-width:750px;text-align:right; padding:20px;"></table>
+    <table border="0" cellspacing="0" align="center" style="background-color:#07A7E2; min-width:750px;text-align:right; padding:20px;"></table>

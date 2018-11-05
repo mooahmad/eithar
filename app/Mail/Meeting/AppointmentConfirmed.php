@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Mail\Invoice;
+namespace App\Mail\Meeting;
 
-use App\Models\InvoiceItems;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class AddItemToInvoice extends Mailable
+class AppointmentConfirmed extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -21,7 +20,6 @@ class AddItemToInvoice extends Mailable
     {
         $this->customer     = $customer;
         $this->notification = $notification_data;
-        $this->item         = InvoiceItems::findOrFail($notification_data->related_id);
     }
 
     /**
@@ -31,12 +29,11 @@ class AddItemToInvoice extends Mailable
      */
     public function build()
     {
-        return $this->view('vendor.mail.addItemToInvoice')
+        return $this->view('vendor.mail.appointmentConfirmed')
             ->with([
                 'customer'=>$this->customer,
                 'notification'=>$this->notification,
                 'lang'=>($this->notification->lang)? $this->notification->lang : 'ar',
-                'item'=>$this->item
             ]);
     }
 }
