@@ -1,60 +1,104 @@
 @extends('vendor.mail.layouts.master')
 
 @section('content')
-    <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="90%" style="margin: auto;" class="email-container">
-        <tr>
-            <td align="top" bgcolor="#ffffff" style="padding: 20px 20px 20px; text-align: left;">
-                <h4 style="margin: 0; font-family: sans-serif; line-height: 15px; color: #333333; font-weight: normal;"><strong>To</strong> {{ $customer->full_name }}</h4>
-            </td>
-            <td bgcolor="#ffffff" style="padding: 40px 40px 20px; text-align: right;">
-                <h4 style="margin: 0; font-family: sans-serif; line-height: 17px; color: #333333; font-weight: normal;"><strong>From</strong>  Eithar Home Care Company
-                    King Salman road<br/>
-                    RIYADH RIYADH 6761-12458<br/>
-                    SAUDI ARABIA<br/>
-                    Telephone : +966118103234<br/>
-                </h4>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" bgcolor="#ffffff" style="padding: 20px 20px 20px; text-align: left;">
-                <h4 style="margin: 0; font-family: sans-serif; line-height: 15px; color: #333333; font-weight: normal;">Dear {{ $customer->full_name }},</h4>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" bgcolor="#ffffff" style="padding: 20px 20px 20px; text-align: left;">
-                <h4 style="margin: 0; font-family: sans-serif; line-height: 15px; color: #333333; font-weight: normal;">Please confirm this item</h4>
-            </td>
-        </tr>
-    </table>
+    @if($lang == 'ar')
+        <!-- Start Table Header-->
+        <table border="0" cellspacing="0" align="center" style="background-color:#07A7E2; min-width:750px;text-align:center;color:#fff; padding: 20px 0;">
+            <thead>
+            <tr>
+                <th>
+                    <span> <img src="{{ asset('public/email/customer.png') }}" alt="Eithar"> </span>
+                    <p> Services added </p>
+                    <p>شكراً لاختيارك خدمات إيثار </p>
+                </th>
+            </tr>
+            </thead>
+        </table>
+        <!-- End Table Header-->
 
-    <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="90%" style="margin: auto;" class="email-container">
-        <thead bgcolor="#ffffff" style="padding: 40px 40px 20px; text-align: center;">
-            <th><h4>Description</h4></th>
-            <th><h4>Quantity</h4></th>
-            <th><h4>Unit Price</h4></th>
-            <th><h4>Status</h4></th>
-        </thead>
-        <tbody>
-            @if(!empty($item))
-                <tr>
-                    <td bgcolor="#ffffff" style="padding: 20px 20px 20px; text-align: center;">
-                        <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;">{{ $item->item_desc_appear_in_invoice }}</p>
-                    </td>
-                    <td bgcolor="#ffffff" style="padding: 20px 20px 20px; text-align: center;">
-                        <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;">1</p>
-                    </td>
-                    <td bgcolor="#ffffff" style="padding: 20px 20px 20px; text-align: center;">
-                        <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;">{{ $item->price }}</p>
-                    </td>
-                    <td bgcolor="#ffffff" style="padding: 20px 20px 20px; text-align: center;">
-                        @if(($item->status == 2))
-                            <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;">Approved</p>
-                        @else
-                            <p style="margin: 0; font-family: sans-serif; font-size: 18px; line-height: 27px; color: #333333; font-weight: normal;">Pending</p>
-                        @endif
+        <!--Start Table Body-->
+        @if(!empty($item))
+            <table border="0" cellspacing="0" align="center" style="text-align:center; background-color:#fff; min-width:750px; padding:20px 0;">
+                <!--Start Row Title-->
+                <tr style="text-align:center;">
+                    <td colspan="2">
+                        <p style="font-size:20px; color:#07A7E2;">
+                            تم إضافة هذه الخدمات على الفاتورة
+                        </p>
                     </td>
                 </tr>
-            @endif
-        </tbody>
-    </table>
+                <!--End Row Title-->
+                <!-- Start Table Services Added-->
+                <tr>
+                    <td colspan=" 2"> <span style="font-size:20px;display:block;padding-top:20px;padding-bottom:5px;color:#000;"> تم إضافة هذه الخدمات على الفاتورة </span> </td>
+                </tr>
+                <tr>
+                    <td>{{ $item->price }}</td>
+                    <td>{{ $item->item_desc_appear_in_invoice }}</td>
+                </tr>
+                <!-- End Table Services Added-->
+
+                <!--Start Row Sub Title-->
+                <tr style="text-align:center;">
+                    <td colspan="2">
+                        <p style="font-size:20px;line-height: 28px;">
+                            يرجى الضغط على <a href="#" style="color:#07A7E2; display:inline-block"> هذا الرابط</a> للموافقة على هذه الخدمات
+                        </p>
+                    </td>
+                </tr>
+                <!--End Row Sub Title-->
+            </table>
+        @endif
+        <!--End Table Body-->
+
+        @else
+        <!-- Start Table Header-->
+        <table border="0" cellspacing="0" align="center" style="background-color:#07A7E2; min-width:750px;text-align:center;color:#fff; padding: 20px 0;">
+            <thead>
+            <tr>
+                <th>
+                    <span> <img src="{{ asset('public/email/customer.png') }}" alt="Eithar"> </span>
+                    <p> Services added </p>
+                    <p>Thank you for using Eithar</p>
+                </th>
+            </tr>
+            </thead>
+        </table>
+        <!-- End Table Header-->
+
+        <!--Start Table Body-->
+        @if(!empty($item))
+            <table border="0" cellspacing="0" align="center" style="text-align:center; background-color:#fff; min-width:750px; padding:20px 0;">
+                <!--Start Row Title-->
+                <tr style="text-align:center;">
+                    <td colspan="2">
+                        <p style="font-size:20px; color:#07A7E2;">
+                            تم إضافة هذه الخدمات على الفاتورة
+                        </p>
+                    </td>
+                </tr>
+                <!--End Row Title-->
+                <!-- Start Table Services Added-->
+                <tr>
+                    <td colspan=" 2"> <span style="font-size:20px;display:block;padding-top:20px;padding-bottom:5px;color:#000;"> تم إضافة هذه الخدمات على الفاتورة </span> </td>
+                </tr>
+                <tr>
+                    <td>{{ $item->price }}</td>
+                    <td>{{ $item->item_desc_appear_in_invoice }}</td>
+                </tr>
+                <!-- End Table Services Added-->
+
+                <!--Start Row Sub Title-->
+                <tr style="text-align:center;">
+                    <td colspan="2">
+                        <p style="font-size:20px;line-height: 28px;">
+                            يرجى الضغط على <a href="#" style="color:#07A7E2; display:inline-block"> هذا الرابط</a> للموافقة على هذه الخدمات
+                        </p>
+                    </td>
+                </tr>
+                <!--End Row Sub Title-->
+            </table>
+        @endif
+        <!--End Table Body-->
+    @endif
 @endsection
