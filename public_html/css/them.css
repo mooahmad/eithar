@@ -1764,11 +1764,15 @@ th {
       .home_page-services .services_block:hover h3 {
         color: #07A7E3; }
       .home_page-services .services_block:hover .services_block-icon {
+        background-color: #07A7E3;
         transform: scale(1.2); }
 
 .services_block-icon {
   height: 100px;
   width: 100px;
+  border-radius: 100%;
+  border: 2px solid #ddd;
+  background-color: #044E80;
   position: absolute;
   left: -15%;
   /*Change*/ }
