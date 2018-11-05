@@ -193,7 +193,7 @@ class Provider
         });
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([
-                "medicalReportsQuestions" => $medicalReportsQuestions,
+                "questionnaire" => $medicalReportsQuestions,
                 "pagesCount" => $pagesCount,
                 "currentPage" => $page,
             ]));
