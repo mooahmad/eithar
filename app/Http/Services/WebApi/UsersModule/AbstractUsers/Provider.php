@@ -580,6 +580,8 @@ class Provider
             "vat" => $vat,
             "total" => $total,
             "invoice_id" => $invoice->id,
+            "is_paid" => $serviceBooking->invoice->is_paid,
+            "booking_status" => $serviceBooking->status,
         ]));
 
     }
@@ -802,6 +804,8 @@ class Provider
             "vat" => $vat,
             "total" => $total,
             "invoice_id" => $serviceBooking->invoice->id,
+            "is_paid" => $serviceBooking->invoice->is_paid,
+            "booking_status" => $serviceBooking->status,
         ]));
     }
 
@@ -886,7 +890,7 @@ class Provider
         $booking->status = config('constants.bookingStatus.confirmed');
         $booking->status_desc = "finished";
         $booking->save();
-        
+
         $invoice->update([
             'is_paid' => 1,
             'payment_method' => $request->input('payment_method'),
