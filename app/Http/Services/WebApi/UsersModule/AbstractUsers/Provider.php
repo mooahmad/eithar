@@ -714,17 +714,17 @@ class Provider
             $add->provider_id = auth()->guard('provider-web')->user()->id;
         }
         $add->currency_id = $booking->currency_id;
-
         $add->is_saudi_nationality = $booking->customer->is_saudi_nationality;
         $add->invoice_code = config('constants.invoice_code') . $booking->id;
         $add->admin_comment = $booking->admin_comment;
         $add->save();
         $items = BookingServicesController::getBookingDetails($booking);
+        $invoiceClass = new InvoiceClass();
         //Calculate amount of this invoice
         if ($items['original_amount']) {
-            $amount = $this->calculateInvoiceServicePrice($items['original_amount'], $items['promo_code_percentage'], $items['vat_percentage']);
+            $amount = $invoiceClass->calculateInvoiceServicePrice($items['original_amount'], $items['promo_code_percentage'], $items['vat_percentage']);
             if (!empty($amount)) {
-                $this->updateInvoiceAmount($add, $amount['amount_original'], $amount['amount_after_discount'], $amount['amount_after_vat'], $amount['amount_final']);
+                $invoiceClass->updateInvoiceAmount($add, $amount['amount_original'], $amount['amount_after_discount'], $amount['amount_after_vat'], $amount['amount_final']);
             }
         }
         return Utilities::getValidationError(config('constants.responseStatus.success'),
