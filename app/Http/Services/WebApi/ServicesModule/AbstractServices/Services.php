@@ -340,6 +340,7 @@ class Services implements IService
                 $startDate = ProvidersCalendar::find($appointmentDate)->start_date;
                 $pushTypeData->appointment_date = $startDate;
                 Auth::user()->notify(new AppointmentConfirmed($pushTypeData));
+                Provider::find($providerId)->notify(new AppointmentConfirmed($pushTypeData));
                 $this->notifyBookingReminders($bookingAppointment->id, $startDate, 5);
             }
         } elseif ($appointmentDates != []) {

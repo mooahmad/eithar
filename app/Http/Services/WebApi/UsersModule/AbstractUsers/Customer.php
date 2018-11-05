@@ -490,7 +490,7 @@ class Customer
             $data->is_read = ($notification->read_at == null) ? 0 : 1;
             array_push($returnNotifications, $data);
         }
-        Auth::user()->notifications()->markAsRead();
+        Auth::user()->notifications->markAsRead();
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
             "notifications" => $returnNotifications
         ]));
