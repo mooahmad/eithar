@@ -40,6 +40,22 @@ class ServiceBookingAnswers extends Model
         return $attributes;
     }
 
+    public function getTitleAttribute()
+    {
+        if(App::isLocale('en'))
+            return $this->title_en;
+        else
+            return $this->title_ar;
+    }
+
+    public function getSubtitleAttribute()
+    {
+        if(App::isLocale('en'))
+            return $this->subtitle_en;
+        else
+            return $this->subtitle_ar;
+    }
+
     public function getOptionsAttribute()
     {
         if(App::isLocale('en'))
