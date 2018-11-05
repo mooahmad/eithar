@@ -882,6 +882,11 @@ class Provider
                 ]));
         }
 
+        $booking = $invoice->booking_service;
+        $booking->status = config('constants.bookingStatus.confirmed');
+        $booking->status_desc = "finished";
+        $booking->save();
+        
         $invoice->update([
             'is_paid' => 1,
             'payment_method' => $request->input('payment_method'),

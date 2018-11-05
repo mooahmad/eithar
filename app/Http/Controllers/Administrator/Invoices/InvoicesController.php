@@ -162,6 +162,10 @@ class InvoicesController extends Controller
 
 //        Now update invoice to be paid
             $invoice = Invoice::findOrFail($request->input('invoice_id'));
+            $booking = $invoice->booking_service;
+            $booking->status = config('constants.bookingStatus.confirmed');
+            $booking->status_desc = "finished";
+            $booking->save();
             $invoice->update([
                 'is_paid' => config('constants.invoice_paid.paid'),
                 'payment_method' => $request->input('payment_method'),
