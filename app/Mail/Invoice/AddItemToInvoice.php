@@ -35,6 +35,7 @@ class AddItemToInvoice extends Mailable
             ->with([
                 'customer'=>$this->customer,
                 'notification'=>$this->notification,
+                'lang'=>($this->notification->lang)? $this->notification->lang : 'ar',
                 'item'=>$this->item
             ]);
     }

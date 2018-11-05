@@ -1764,11 +1764,15 @@ th {
       .home_page-services .services_block:hover h3 {
         color: #07A7E3; }
       .home_page-services .services_block:hover .services_block-icon {
+        background-color: #07A7E3;
         transform: scale(1.2); }
 
 .services_block-icon {
   height: 100px;
   width: 100px;
+  border-radius: 100%;
+  border: 2px solid #ddd;
+  background-color: #044E80;
   position: absolute;
   left: -15%;
   /*Change*/ }
@@ -4643,6 +4647,15 @@ th {
     width: 30px; }
 
 /**********/
+.about_us-page section {
+  margin: 30px 0; }
+.about_us-page .home_page-title {
+  font-size: 35px;
+  color: #044E80; }
+.about_us-page .our_mission-block h3 {
+  color: #EC0707; }
+.about_us-page .our_mission-block h4 {
+  color: #07A7E3; }
 .about_us-page .about_us-img {
   height: 300px;
   width: 100%; }
@@ -4650,15 +4663,16 @@ th {
     max-height: 100%;
     min-height: 300px;
     min-width: 300px; }
-.about_us-page .home-page-aboutus {
-  margin: 30px 0;
-  padding: 20px 0; }
 
 .aboutus_page-block2 {
-  background-color: #91C3C0;
   color: #fff; }
   .aboutus_page-block2 .home_page-title {
     color: #fff; }
+  .aboutus_page-block2 .our_team-container {
+    background-color: #07A7E3;
+    padding: 50px;
+    border-top-left-radius: 150px;
+    border-bottom-right-radius: 150px; }
   .aboutus_page-block2 .paragraph_global {
     color: #fff; }
 
