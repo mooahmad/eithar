@@ -1,28 +1,37 @@
 @extends('vendor.mail.layouts.master')
 
 @section('content')
+    <table border="0" cellspacing="0" align="center" style="background-color:#07A7E2; min-width:750px;text-align:center;color:#fff; padding: 20px 0;">
+        <thead>
+        <tr>
+            <th>
+                <span> <img src="logo1.png" alt="" style="
+                       height:40px;
+                       width:80px;
+                     "> </span>
+                <p>Thank you for using Eithar </p>
+            </th>
+        </tr>
+        </thead>
+    </table>
     <!-- Start Table Header-->
-    <table border="0" cellspacing="0" align="center"
-           style="background-color:#fff;border-radius:10px; min-width:750px;  padding:20px;">
+    <table border="0" cellspacing="0" align="center" style="background-color:#fff; min-width:750px;  padding:20px;">
         <!-- Start Head-->
         <tr>
-            <th style=" width:30%"></th>
             <!--Logo-->
-            <th>
-                <a href="{{ url('/') }}"> <img src="{{ asset('/public/email/logo2.png') }}" alt="Eithar" style="
-                   height:40px;
-                   width:80px;
-                 "></a>
-            </th>
-            <th>Receipt</th>
+            <td colspan="3">
+                <p style="display:flex; justify-content:space-between; margin:0 20px;">
+                    <a href="{{ url('/') }}"> <img src="{{ asset('/public/email/logo2.png') }}" alt="Eithar" style="
+                       height:40px;
+                       width:80px;
+                     "></a>
+                    <span>Receipt</span>
+                </p>
+            </td>
         </tr>
         <!-- End Head-->
         <!-- Start Sub Header-->
         <tr>
-            <td>
-                <span>{{ $customer->full_name }}</span>
-            </td>
-            <td></td>
             <td>
                 @if($lang == 'ar')
                     <ul style="list-style: none outside none;">
@@ -38,21 +47,23 @@
                     </ul>
                 @endif
             </td>
+            <td></td>
+            <td>
+                <span>{{ $customer->full_name }}</span>
+            </td>
         </tr>
         <!-- End Sub Header-->
         <!--Start -->
         <tr>
-            <td></td>
-            <td></td>
             <td>
                 <ul style="list-style: none outside none;">
                     <li>
-                        <span style="color:#07A7E2">{{ $invoice->invoice_code }}</span>
                         @if($lang == 'ar')
                             <span style="font-size:22px; color:#000; font-weight:600;padding:14px 0;"> رقم الفاتورة </span>
                             @else
-                            <span style="font-size:22px; color:#000; font-weight:600;padding:14px 0;"> Invoice Number: </span>
+                            <span style="font-size:22px; color:#000; font-weight:600;padding:14px 0;">Invoice Number: </span>
                         @endif
+                        <span style="color:#07A7E2">{{ $invoice->invoice_code }}</span>
                     </li>
                     <li>
                         <span style="color:#07A7E2">{{ $invoice->invoice_date->format('l j F Y h:i A') }}</span>
@@ -61,6 +72,7 @@
                         @else
                             <span style="font-size:22px; color:#000; font-weight:600;padding:14px 0;">Issued Date:</span>
                         @endif
+                        <span style="color:#07A7E2">{{ $invoice->invoice_date->format('l j F Y h:i A') }}</span>
                     </li>
                 </ul>
             </td>
