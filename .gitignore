@@ -12,4 +12,4 @@ npm-debug.log
 yarn-error.log
 .env
 composer.lock
-/Tracking/node_modules
+/track/node_modules
