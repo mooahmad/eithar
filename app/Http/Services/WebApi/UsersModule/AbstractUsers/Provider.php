@@ -39,6 +39,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\BookingMedicalReportsAnswers;
 use App\Http\Services\WebApi\CommonTraits\Likes;
 use App\Http\Services\WebApi\CommonTraits\Views;
+use App\Listeners\PushNotificationEventListener;
 use App\Http\Services\WebApi\CommonTraits\Follows;
 use App\Http\Services\WebApi\CommonTraits\Ratings;
 use App\Http\Services\WebApi\CommonTraits\Reviews;
@@ -850,11 +851,13 @@ class Provider
         $amount = $invoiceClass->calculateInvoiceServicePrice($invoice->amount_original, $booking['promo_code_percentage'], $booking['vat_percentage'], $item->price);
         $updated_invoice = $invoiceClass->updateInvoiceAmount($invoice, $amount['amount_original'], $amount['amount_after_discount'], $amount['amount_after_vat'], $amount['amount_final']);
 
+        $customer = $updated_invoice->customer;
         //        TODO send notification to customer to approve new item added to invoice
         $payload = PushNotificationsTypes::find(config('constants.pushTypes.addItemToInvoice'));
         $payload->item_id = $invoice_item->id;
         $payload->send_at = Carbon::now()->format('Y-m-d H:m:s');
-        $updated_invoice->customer->notify(new AddItemToInvoice($payload));
+        $customer->notify(new AddItemToInvoice($payload));
+        PushNotificationEventListener::fireOnModel(config('constants.customer_message_cloud'), $customer);
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([]));
     }

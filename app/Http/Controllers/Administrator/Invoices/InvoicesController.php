@@ -92,11 +92,13 @@ class InvoicesController extends Controller
         $amount = $invoiceClass->calculateInvoiceServicePrice($invoice->amount_original, $booking['promo_code_percentage'], $booking['vat_percentage'], $item->price);
         $updated_invoice = $invoiceClass->updateInvoiceAmount($invoice, $amount['amount_original'], $amount['amount_after_discount'], $amount['amount_after_vat'], $amount['amount_final']);
 
-//        TODO send notification to customer to approve new item added to invoice
+        $customer = $updated_invoice->customer;
+        //        TODO send notification to customer to approve new item added to invoice
         $payload = PushNotificationsTypes::find(config('constants.pushTypes.addItemToInvoice'));
         $payload->item_id = $invoice_item->id;
         $payload->send_at = Carbon::now()->format('Y-m-d H:m:s');
-        $updated_invoice->customer->notify(new AddItemToInvoice($payload));
+        $customer->notify(new AddItemToInvoice($payload));
+        PushNotificationEventListener::fireOnModel(config('constants.customer_message_cloud'), $customer);
 
         session()->flash('success_msg', trans('admin.success_message'));
         return redirect()->route('generate-invoice', ['booking' => $updated_invoice->booking_service->id]);
