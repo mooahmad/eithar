@@ -554,6 +554,7 @@ class Services implements IService
                 $pushTypeData->item_id = $invoice_item_id;
                 $pushTypeData->send_at = Carbon::now()->format('Y-m-d H:m:s');
                 $provider->notify(new ApproveItemToInvoice($pushTypeData));
+                PushNotificationEventListener::fireOnModel(config('constants.provider_message_cloud'), $provider);
                 return Utilities::getValidationError(config('constants.responseStatus.success'),
                     new MessageBag([]));
             }
