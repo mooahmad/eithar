@@ -34,9 +34,7 @@ class InvoiceClass
         $add->service_booking_id = $booking->id;
         $add->customer_id = $booking->customer_id;
 //        login Provider ID
-        if (auth()->guard('provider-web')->user()) {
-            $add->provider_id = auth()->guard('provider-web')->user()->id;
-        }
+        $add->provider_id = Auth::id();
         $add->currency_id = $booking->currency_id;
 
         $add->is_saudi_nationality = $booking->customer->is_saudi_nationality;
