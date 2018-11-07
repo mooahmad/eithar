@@ -35,7 +35,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js') }}"></script>
     <![endif]-->
 
-    <link rel="shortcut icon" type="image/png" href="{{ asset('public/assets/layouts/layout/img/logo_icon.ico') }}"/>
+    <link rel="shortcut icon" type="image/png" href="{{ asset('public/Frontend/img/fivicon.png') }}"/>
 
     @yield('style')
 

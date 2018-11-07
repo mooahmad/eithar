@@ -96,7 +96,8 @@ Like: https://www.facebook.com/consultrust/
           type="text/css" id="style_color"/>
     <link href="{{ asset('public/assets/layouts/layout/css/custom.min.css') }}" rel="stylesheet" type="text/css"/>
     <!-- END THEME LAYOUT STYLES -->
-    <link rel="shortcut icon" href="{{ asset('public/assets/layouts/layout/img/logo_icon.ico') }}"/>
+    {{--<link rel="shortcut icon" href="{{ asset('public/assets/layouts/layout/img/logo_icon.ico') }}"/>--}}
+    <link rel="shortcut icon" type="image/png" href="{{ asset('public/Frontend/img/fivicon.png') }}"/>
     <!-- DataTables STYLES -->
     <link href="{{ asset('public/DataTables/datatables.min.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('public/DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css"/>
