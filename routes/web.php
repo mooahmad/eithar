@@ -23,7 +23,7 @@ define('DRV', 'Administrator\Drivers');
 ----------- Frontend Routes -----------
 -------------------------------------*/
 Route::group(['namespace' => FE], function () {
-    Route::group(['middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ],'prefix' => LaravelLocalization::setLocale()], function () {
+//    Route::group(['middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ],'prefix' => LaravelLocalization::setLocale()], function () {
         Route::get('/', 'FrontendController@index')->name('home');
         Route::get('about-us', 'FrontendController@AboutUs')->name('about_us');
         Route::get('privacy-and-conditions', 'FrontendController@PrivacyAndConditions')->name('privacy_and_conditions');
@@ -38,7 +38,7 @@ Route::group(['namespace' => FE], function () {
             });
 //            Route::get('categories/{category}/{name}', 'CategoriesFrontController@showSubCategories')->name('show-subcategories');
         });
-    });
+//    });
 });
 
 Auth::routes();
