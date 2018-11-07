@@ -58,7 +58,7 @@ class AddItemToInvoice extends Notification
             'desc_ar' => $this->payload->desc_ar,
             'desc_en' => $this->payload->desc_en,
             'notification_type' => config('constants.pushTypes.addItemToInvoice'),
-            'related_id' => $this->payload->item_id,
+            'related_id' => (int) $this->payload->item_id,
             'send_at' => $this->payload->send_at,
             'lang'    => App::getLocale(),
         ];

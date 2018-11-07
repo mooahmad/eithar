@@ -59,7 +59,7 @@ class AppointmentCanceled extends Notification
             'desc_en' => $this->payload->desc_en,
             'notification_type' => config('constants.pushTypes.appointmentcanceled'),
             'service_type' => $this->payload->service_type,
-            'related_id' => $this->payload->appointment_id,
+            'related_id' => (int) $this->payload->appointment_id,
             'send_at' => $this->payload->send_at,
             'lang'    => App::getLocale(),
         ];

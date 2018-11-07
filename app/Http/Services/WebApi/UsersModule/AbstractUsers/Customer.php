@@ -505,6 +505,8 @@ class Customer
                 $query->where('is_approved', 1)->where('customer_can_view', 1);
             }])->medicalReports;
             $reports->each(function ($report) use (&$medicalReports) {
+                $report->title = $report->medicalReport->title_en;
+                $report->category = "";
                 $report->filled_file_path = Utilities::getFileUrl($report->file_path);
                 array_push($medicalReports, $report);
             });

@@ -25,7 +25,7 @@
     <script>
         function connectToSocket(bookingId) {
             // establishing connection to socket server using websocket type
-            const serverConnection = io('http://localhost:8989/track_provider', {
+            const serverConnection = io('ws://localhost:7878/track_provider', {
                 transports: ['websocket']
             });
             // on connecting to server display connected then ask to join room

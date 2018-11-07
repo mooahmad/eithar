@@ -59,7 +59,7 @@ class InvoiceGenerated extends Notification
             'desc_en' => $this->payload->desc_en,
             'notification_type' => config('constants.pushTypes.invoiceGenerated'),
             'service_type' => $this->payload->service_type,
-            'related_id' => $this->payload->invoice_id,
+            'related_id' => (int) $this->payload->invoice_id,
             'send_at' => $this->payload->send_at,
             'lang'    => App::getLocale(),
         ];

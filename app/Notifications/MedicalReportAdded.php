@@ -58,7 +58,7 @@ class MedicalReportAdded extends Notification
             'desc_ar' => $this->payload->desc_ar,
             'desc_en' => $this->payload->desc_en,
             'notification_type' => config('constants.pushTypes.medicalReportAdded'),
-            'related_id' => $this->payload->report_id,
+            'related_id' => (int) $this->payload->report_id,
             'send_at' => $this->payload->send_at,
             'lang'    => App::getLocale(),
         ];
