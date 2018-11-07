@@ -401,7 +401,7 @@ class Customer
                     "service_type" => 5
                  ];
                 $services [] = $service;
-                $totalBeforeTax = $providerService->price;
+                $totalBeforeTax = $provider->price;
             }
         } elseif ($serviceType == 1 || $serviceType == 2) {
             $servicesCalendar = ServicesCalendar::find($appointment->slot_id);
@@ -416,7 +416,7 @@ class Customer
                     "service_type" => $serviceType
                  ];
                 $services [] = $service;
-                $totalBeforeTax = $serviceBooking->service->price;
+                $totalBeforeTax = $service->price;
             }
         } elseif ($serviceType == 4) {
             $lapClendar = LapCalendar::find($appointment->slot_id);
