@@ -27,7 +27,7 @@ function Worker() {
         
         // On disconnect  send everyone that user is disconnected
         socket.on('disconnect', () => {
-            socketServer.publish('chat', { id: 'global', text: 'User is disconnected' })
+
         })
     })
 }

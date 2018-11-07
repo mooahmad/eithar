@@ -606,6 +606,11 @@ class Provider
             $questionnaire->options_ar = empty(unserialize($questionnaire->options_ar)) ? [] : unserialize($questionnaire->options_ar);
             $questionnaire->options_en = empty(unserialize($questionnaire->options_en)) ? [] : unserialize($questionnaire->options_en);
             $questionnaire->answer = empty(unserialize($questionnaire->answer)) ? "" : unserialize($questionnaire->answer);
+            $questionnaire->answerArray = empty(unserialize($questionnaire->answer)) ? [] : unserialize($questionnaire->answer);
+            if($questionnaire->type == 1 || $questionnaire->type == 2)
+            $questionnaire->answer = "";
+            else
+            $questionnaire->answerArray = [];
             $questionnaire->addHidden([
                 'title_ar', 'title_en', 'subtitle_ar', 'subtitle_en',
                 'options_en', 'options_ar',
