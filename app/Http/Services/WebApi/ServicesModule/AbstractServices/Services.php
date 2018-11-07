@@ -544,7 +544,9 @@ class Services implements IService
         $invoice_item_id = $request->input('id');
         $status = $request->input('status');
         if ($invoice_item_id > 0 && in_array($status, [config('constants.items.pending'), config('constants.items.approved')])) {
-            $invoice_item = InvoiceItems::find($invoice_item_id);
+            $invoice_item = InvoiceItems::withTrashed()
+            ->where('id', $invoice_item_id)
+            ->get()->first();
             $invoice_item->status = $status;
             $invoice_item->save();
 

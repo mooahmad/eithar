@@ -873,7 +873,7 @@ class Provider
         $updated_invoice = $invoiceClass->updateInvoiceAmount($invoice_item->invoice, $amount['amount_original'], $amount['amount_after_discount'], $amount['amount_after_vat'], $amount['amount_final']);
 
 //        Now Delete this item
-        $invoice_item->forceDelete();
+        $invoice_item->delete();
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([]));
     }
