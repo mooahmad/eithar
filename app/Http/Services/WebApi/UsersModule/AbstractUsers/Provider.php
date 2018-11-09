@@ -603,10 +603,11 @@ class Provider
         $pagesCount = ServiceBookingAnswers::where('service_booking_id', $id)->max('pagination');
         $questionnaire = ServiceBookingAnswers::where([['service_booking_id', $id], ['pagination', $page]])->get();
         $questionnaire->each(function ($questionnaire) {
+            $answer = $questionnaire->answer;
             $questionnaire->options_ar = empty(unserialize($questionnaire->options_ar)) ? [] : unserialize($questionnaire->options_ar);
             $questionnaire->options_en = empty(unserialize($questionnaire->options_en)) ? [] : unserialize($questionnaire->options_en);
-            $questionnaire->answer = empty(unserialize($questionnaire->answer)) ? "" : unserialize($questionnaire->answer);
-            $questionnaire->answerArray = empty(unserialize($questionnaire->answer)) ? [] : unserialize($questionnaire->answer);
+            $questionnaire->answer = empty(unserialize($answer)) ? "" : unserialize($answer);
+            $questionnaire->answerArray = empty(unserialize($answer)) ? [] : unserialize($answer);
             if($questionnaire->type == 1 || $questionnaire->type == 2)
             $questionnaire->answer = "";
             else
