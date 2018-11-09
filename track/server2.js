@@ -6,6 +6,7 @@ const ClusterWS = require('clusterws')
 var cws = new ClusterWS({
     worker: Worker,
     workers: 2,
+    host: '0.0.0.0',
     port: process.env.PORT || 9090
 })
 
