@@ -48,7 +48,7 @@
 <script src="node_modules/socket.io-client/dist/socket.io.js"></script>
 <script>
     var bookingId = 100;
-    const serverConnection = io('ws://13.57.87.177:7878/track_provider', {
+    const serverConnection = io('ws://13.57.87.177:9090/track_provider', {
         transports: ['websocket']
     });
     // on connecting to server display connected then ask to join room
