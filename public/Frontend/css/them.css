@@ -71,8 +71,6 @@ a:hover {
 /*Start Glopal Form*/
 .glopal_form {
   background: #fff;
-  box-shadow: 0 0 10px rgba(18, 68, 98, 0.42);
-  border-radius: 10px;
   padding: 30px 15px;
   /*End Glopal Form*/ }
   @media (max-width: 576px) {
@@ -97,8 +95,12 @@ a:hover {
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
     border-radius: 10px;
-    padding: 4px 10px;
-    margin-bottom: 20px; }
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
   .glopal_form textarea {
     height: 120px; }
   .glopal_form .button-blue {
@@ -143,6 +145,19 @@ a:hover {
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
 a,
 button,
 h1,
@@ -233,8 +248,6 @@ a:hover {
 /*Start Glopal Form*/
 .glopal_form {
   background: #fff;
-  box-shadow: 0 0 10px rgba(18, 68, 98, 0.42);
-  border-radius: 10px;
   padding: 30px 15px;
   /*End Glopal Form*/ }
   @media (max-width: 576px) {
@@ -259,8 +272,12 @@ a:hover {
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
     border-radius: 10px;
-    padding: 4px 10px;
-    margin-bottom: 20px; }
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
   .glopal_form textarea {
     height: 120px; }
   .glopal_form .button-blue {
@@ -305,6 +322,19 @@ a:hover {
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
 a,
 button,
 h1,
@@ -532,8 +562,6 @@ a:hover {
 /*Start Glopal Form*/
 .glopal_form {
   background: #fff;
-  box-shadow: 0 0 10px rgba(18, 68, 98, 0.42);
-  border-radius: 10px;
   padding: 30px 15px;
   /*End Glopal Form*/ }
   @media (max-width: 576px) {
@@ -558,8 +586,12 @@ a:hover {
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
     border-radius: 10px;
-    padding: 4px 10px;
-    margin-bottom: 20px; }
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
   .glopal_form textarea {
     height: 120px; }
   .glopal_form .button-blue {
@@ -604,6 +636,19 @@ a:hover {
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
 a,
 button,
 h1,
@@ -948,8 +993,6 @@ a:hover {
 /*Start Glopal Form*/
 .glopal_form {
   background: #fff;
-  box-shadow: 0 0 10px rgba(18, 68, 98, 0.42);
-  border-radius: 10px;
   padding: 30px 15px;
   /*End Glopal Form*/ }
   @media (max-width: 576px) {
@@ -974,8 +1017,12 @@ a:hover {
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
     border-radius: 10px;
-    padding: 4px 10px;
-    margin-bottom: 20px; }
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
   .glopal_form textarea {
     height: 120px; }
   .glopal_form .button-blue {
@@ -1020,6 +1067,19 @@ a:hover {
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
 a,
 button,
 h1,
@@ -1149,8 +1209,6 @@ a:hover {
 /*Start Glopal Form*/
 .glopal_form {
   background: #fff;
-  box-shadow: 0 0 10px rgba(18, 68, 98, 0.42);
-  border-radius: 10px;
   padding: 30px 15px;
   /*End Glopal Form*/ }
   @media (max-width: 576px) {
@@ -1175,8 +1233,12 @@ a:hover {
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
     border-radius: 10px;
-    padding: 4px 10px;
-    margin-bottom: 20px; }
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
   .glopal_form textarea {
     height: 120px; }
   .glopal_form .button-blue {
@@ -1221,6 +1283,19 @@ a:hover {
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
 a,
 button,
 h1,
@@ -1311,8 +1386,6 @@ a:hover {
 /*Start Glopal Form*/
 .glopal_form {
   background: #fff;
-  box-shadow: 0 0 10px rgba(18, 68, 98, 0.42);
-  border-radius: 10px;
   padding: 30px 15px;
   /*End Glopal Form*/ }
   @media (max-width: 576px) {
@@ -1337,8 +1410,12 @@ a:hover {
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
     border-radius: 10px;
-    padding: 4px 10px;
-    margin-bottom: 20px; }
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
   .glopal_form textarea {
     height: 120px; }
   .glopal_form .button-blue {
@@ -1383,6 +1460,19 @@ a:hover {
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
 a,
 button,
 h1,
@@ -1941,8 +2031,6 @@ a:hover {
 /*Start Glopal Form*/
 .glopal_form {
   background: #fff;
-  box-shadow: 0 0 10px rgba(18, 68, 98, 0.42);
-  border-radius: 10px;
   padding: 30px 15px;
   /*End Glopal Form*/ }
   @media (max-width: 576px) {
@@ -1967,8 +2055,12 @@ a:hover {
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
     border-radius: 10px;
-    padding: 4px 10px;
-    margin-bottom: 20px; }
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
   .glopal_form textarea {
     height: 120px; }
   .glopal_form .button-blue {
@@ -2013,6 +2105,19 @@ a:hover {
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
 a,
 button,
 h1,
@@ -2103,8 +2208,6 @@ a:hover {
 /*Start Glopal Form*/
 .glopal_form {
   background: #fff;
-  box-shadow: 0 0 10px rgba(18, 68, 98, 0.42);
-  border-radius: 10px;
   padding: 30px 15px;
   /*End Glopal Form*/ }
   @media (max-width: 576px) {
@@ -2129,8 +2232,12 @@ a:hover {
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
     border-radius: 10px;
-    padding: 4px 10px;
-    margin-bottom: 20px; }
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
   .glopal_form textarea {
     height: 120px; }
   .glopal_form .button-blue {
@@ -2175,6 +2282,19 @@ a:hover {
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
 a,
 button,
 h1,
@@ -2351,8 +2471,6 @@ a:hover {
 /*Start Glopal Form*/
 .glopal_form {
   background: #fff;
-  box-shadow: 0 0 10px rgba(18, 68, 98, 0.42);
-  border-radius: 10px;
   padding: 30px 15px;
   /*End Glopal Form*/ }
   @media (max-width: 576px) {
@@ -2377,8 +2495,12 @@ a:hover {
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
     border-radius: 10px;
-    padding: 4px 10px;
-    margin-bottom: 20px; }
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
   .glopal_form textarea {
     height: 120px; }
   .glopal_form .button-blue {
@@ -2423,6 +2545,19 @@ a:hover {
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
 a,
 button,
 h1,
@@ -2802,8 +2937,6 @@ a:hover {
 /*Start Glopal Form*/
 .glopal_form {
   background: #fff;
-  box-shadow: 0 0 10px rgba(18, 68, 98, 0.42);
-  border-radius: 10px;
   padding: 30px 15px;
   /*End Glopal Form*/ }
   @media (max-width: 576px) {
@@ -2828,8 +2961,12 @@ a:hover {
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
     border-radius: 10px;
-    padding: 4px 10px;
-    margin-bottom: 20px; }
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
   .glopal_form textarea {
     height: 120px; }
   .glopal_form .button-blue {
@@ -2874,6 +3011,19 @@ a:hover {
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
 a,
 button,
 h1,
@@ -2964,8 +3114,6 @@ a:hover {
 /*Start Glopal Form*/
 .glopal_form {
   background: #fff;
-  box-shadow: 0 0 10px rgba(18, 68, 98, 0.42);
-  border-radius: 10px;
   padding: 30px 15px;
   /*End Glopal Form*/ }
   @media (max-width: 576px) {
@@ -2990,8 +3138,12 @@ a:hover {
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
     border-radius: 10px;
-    padding: 4px 10px;
-    margin-bottom: 20px; }
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
   .glopal_form textarea {
     height: 120px; }
   .glopal_form .button-blue {
@@ -3036,6 +3188,19 @@ a:hover {
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
 a,
 button,
 h1,
@@ -3366,8 +3531,6 @@ a:hover {
 /*Start Glopal Form*/
 .glopal_form {
   background: #fff;
-  box-shadow: 0 0 10px rgba(18, 68, 98, 0.42);
-  border-radius: 10px;
   padding: 30px 15px;
   /*End Glopal Form*/ }
   @media (max-width: 576px) {
@@ -3392,8 +3555,12 @@ a:hover {
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
     border-radius: 10px;
-    padding: 4px 10px;
-    margin-bottom: 20px; }
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
   .glopal_form textarea {
     height: 120px; }
   .glopal_form .button-blue {
@@ -3438,6 +3605,19 @@ a:hover {
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
 a,
 button,
 h1,
@@ -3996,8 +4176,6 @@ a:hover {
 /*Start Glopal Form*/
 .glopal_form {
   background: #fff;
-  box-shadow: 0 0 10px rgba(18, 68, 98, 0.42);
-  border-radius: 10px;
   padding: 30px 15px;
   /*End Glopal Form*/ }
   @media (max-width: 576px) {
@@ -4022,8 +4200,12 @@ a:hover {
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
     border-radius: 10px;
-    padding: 4px 10px;
-    margin-bottom: 20px; }
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
   .glopal_form textarea {
     height: 120px; }
   .glopal_form .button-blue {
@@ -4068,6 +4250,19 @@ a:hover {
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
 a,
 button,
 h1,
@@ -4158,8 +4353,6 @@ a:hover {
 /*Start Glopal Form*/
 .glopal_form {
   background: #fff;
-  box-shadow: 0 0 10px rgba(18, 68, 98, 0.42);
-  border-radius: 10px;
   padding: 30px 15px;
   /*End Glopal Form*/ }
   @media (max-width: 576px) {
@@ -4184,8 +4377,12 @@ a:hover {
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
     border-radius: 10px;
-    padding: 4px 10px;
-    margin-bottom: 20px; }
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
   .glopal_form textarea {
     height: 120px; }
   .glopal_form .button-blue {
@@ -4230,6 +4427,19 @@ a:hover {
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
 a,
 button,
 h1,
@@ -4406,8 +4616,6 @@ a:hover {
 /*Start Glopal Form*/
 .glopal_form {
   background: #fff;
-  box-shadow: 0 0 10px rgba(18, 68, 98, 0.42);
-  border-radius: 10px;
   padding: 30px 15px;
   /*End Glopal Form*/ }
   @media (max-width: 576px) {
@@ -4432,8 +4640,12 @@ a:hover {
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
     border-radius: 10px;
-    padding: 4px 10px;
-    margin-bottom: 20px; }
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
   .glopal_form textarea {
     height: 120px; }
   .glopal_form .button-blue {
@@ -4478,6 +4690,19 @@ a:hover {
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
 a,
 button,
 h1,
@@ -4792,8 +5017,6 @@ a:hover {
 /*Start Glopal Form*/
 .glopal_form {
   background: #fff;
-  box-shadow: 0 0 10px rgba(18, 68, 98, 0.42);
-  border-radius: 10px;
   padding: 30px 15px;
   /*End Glopal Form*/ }
   @media (max-width: 576px) {
@@ -4818,8 +5041,12 @@ a:hover {
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
     border-radius: 10px;
-    padding: 4px 10px;
-    margin-bottom: 20px; }
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
   .glopal_form textarea {
     height: 120px; }
   .glopal_form .button-blue {
@@ -4864,6 +5091,19 @@ a:hover {
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
 a,
 button,
 h1,
@@ -4954,8 +5194,6 @@ a:hover {
 /*Start Glopal Form*/
 .glopal_form {
   background: #fff;
-  box-shadow: 0 0 10px rgba(18, 68, 98, 0.42);
-  border-radius: 10px;
   padding: 30px 15px;
   /*End Glopal Form*/ }
   @media (max-width: 576px) {
@@ -4980,8 +5218,12 @@ a:hover {
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
     border-radius: 10px;
-    padding: 4px 10px;
-    margin-bottom: 20px; }
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
   .glopal_form textarea {
     height: 120px; }
   .glopal_form .button-blue {
@@ -5026,6 +5268,19 @@ a:hover {
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
 a,
 button,
 h1,
@@ -5202,8 +5457,6 @@ a:hover {
 /*Start Glopal Form*/
 .glopal_form {
   background: #fff;
-  box-shadow: 0 0 10px rgba(18, 68, 98, 0.42);
-  border-radius: 10px;
   padding: 30px 15px;
   /*End Glopal Form*/ }
   @media (max-width: 576px) {
@@ -5228,8 +5481,12 @@ a:hover {
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
     border-radius: 10px;
-    padding: 4px 10px;
-    margin-bottom: 20px; }
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
   .glopal_form textarea {
     height: 120px; }
   .glopal_form .button-blue {
@@ -5274,6 +5531,19 @@ a:hover {
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
 a,
 button,
 h1,
@@ -5566,8 +5836,6 @@ a:hover {
 /*Start Glopal Form*/
 .glopal_form {
   background: #fff;
-  box-shadow: 0 0 10px rgba(18, 68, 98, 0.42);
-  border-radius: 10px;
   padding: 30px 15px;
   /*End Glopal Form*/ }
   @media (max-width: 576px) {
@@ -5592,8 +5860,12 @@ a:hover {
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
     border-radius: 10px;
-    padding: 4px 10px;
-    margin-bottom: 20px; }
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
   .glopal_form textarea {
     height: 120px; }
   .glopal_form .button-blue {
@@ -5638,6 +5910,19 @@ a:hover {
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
 a,
 button,
 h1,
@@ -5728,8 +6013,6 @@ a:hover {
 /*Start Glopal Form*/
 .glopal_form {
   background: #fff;
-  box-shadow: 0 0 10px rgba(18, 68, 98, 0.42);
-  border-radius: 10px;
   padding: 30px 15px;
   /*End Glopal Form*/ }
   @media (max-width: 576px) {
@@ -5754,8 +6037,12 @@ a:hover {
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
     border-radius: 10px;
-    padding: 4px 10px;
-    margin-bottom: 20px; }
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
   .glopal_form textarea {
     height: 120px; }
   .glopal_form .button-blue {
@@ -5800,6 +6087,19 @@ a:hover {
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
 a,
 button,
 h1,
@@ -5976,8 +6276,6 @@ a:hover {
 /*Start Glopal Form*/
 .glopal_form {
   background: #fff;
-  box-shadow: 0 0 10px rgba(18, 68, 98, 0.42);
-  border-radius: 10px;
   padding: 30px 15px;
   /*End Glopal Form*/ }
   @media (max-width: 576px) {
@@ -6002,8 +6300,12 @@ a:hover {
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
     border-radius: 10px;
-    padding: 4px 10px;
-    margin-bottom: 20px; }
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
   .glopal_form textarea {
     height: 120px; }
   .glopal_form .button-blue {
@@ -6048,6 +6350,19 @@ a:hover {
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
 a,
 button,
 h1,
@@ -6395,8 +6710,6 @@ a:hover {
 /*Start Glopal Form*/
 .glopal_form {
   background: #fff;
-  box-shadow: 0 0 10px rgba(18, 68, 98, 0.42);
-  border-radius: 10px;
   padding: 30px 15px;
   /*End Glopal Form*/ }
   @media (max-width: 576px) {
@@ -6421,8 +6734,12 @@ a:hover {
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
     border-radius: 10px;
-    padding: 4px 10px;
-    margin-bottom: 20px; }
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
   .glopal_form textarea {
     height: 120px; }
   .glopal_form .button-blue {
@@ -6467,6 +6784,19 @@ a:hover {
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
 a,
 button,
 h1,
@@ -6557,8 +6887,6 @@ a:hover {
 /*Start Glopal Form*/
 .glopal_form {
   background: #fff;
-  box-shadow: 0 0 10px rgba(18, 68, 98, 0.42);
-  border-radius: 10px;
   padding: 30px 15px;
   /*End Glopal Form*/ }
   @media (max-width: 576px) {
@@ -6583,8 +6911,12 @@ a:hover {
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
     border-radius: 10px;
-    padding: 4px 10px;
-    margin-bottom: 20px; }
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
   .glopal_form textarea {
     height: 120px; }
   .glopal_form .button-blue {
@@ -6629,6 +6961,19 @@ a:hover {
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
 a,
 button,
 h1,
@@ -6805,8 +7150,6 @@ a:hover {
 /*Start Glopal Form*/
 .glopal_form {
   background: #fff;
-  box-shadow: 0 0 10px rgba(18, 68, 98, 0.42);
-  border-radius: 10px;
   padding: 30px 15px;
   /*End Glopal Form*/ }
   @media (max-width: 576px) {
@@ -6831,8 +7174,12 @@ a:hover {
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
     border-radius: 10px;
-    padding: 4px 10px;
-    margin-bottom: 20px; }
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
   .glopal_form textarea {
     height: 120px; }
   .glopal_form .button-blue {
@@ -6877,6 +7224,19 @@ a:hover {
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
 a,
 button,
 h1,
@@ -7086,32 +7446,31 @@ th {
 /**********/
 /** Registration Popup**/
 /*Start General Style in all Popup*/
+.modal .glopal_form {
+  box-shadow: none; }
+  .modal .glopal_form input {
+    font-size: 14px; }
 .modal .modal-content {
-  background-color: #F5F6FF; }
+  background-color: #fff; }
   .modal .modal-content .close {
     color: #f00; }
   .modal .modal-content .modal-body .title {
-    text-align: center;
     font-size: 30px;
-    color: #f00;
-    margin-bottom: 30px; }
+    color: #333; }
   .modal .modal-content .modal-body .sub_title {
-    text-align: center;
     font-size: 20px;
     color: #f00; }
   .modal .modal-content .modal-body .paragraph_link {
-    color: #f00;
-    text-align: center; }
+    color: #f00; }
     .modal .modal-content .modal-body .paragraph_link a {
       color: #044E80; }
       .modal .modal-content .modal-body .paragraph_link a:hover {
         color: #f00; }
   .modal .modal-content .modal-body .sign_button-content {
-    display: block;
-    text-align: center; }
+    display: block; }
   .modal .modal-content .modal-body .middel_form {
     width: 400px;
-    margin: 0 auto; }
+    margin: 0; }
 
 /*Footer of Registration Screen*/
 .modal-footer span {
@@ -7134,76 +7493,87 @@ th {
 /*End of Registration Screen*/
 /*End General Style in all Popup*/
 /*=01=Start Popup Creat Account */
-#creat_account .modal-body {
-  text-align: center; }
-  #creat_account .modal-body .list_registration-with li {
-    margin: 16px 0; }
-    #creat_account .modal-body .list_registration-with li:nth-of-type(1) a {
-      background-color: #ea4335; }
-    #creat_account .modal-body .list_registration-with li:nth-of-type(2) a {
-      background-color: #00a0dc; }
-    #creat_account .modal-body .list_registration-with li:nth-of-type(3) a {
-      background-color: #3b5998; }
-    #creat_account .modal-body .list_registration-with li:nth-of-type(4) a {
-      background-color: #f00; }
-    #creat_account .modal-body .list_registration-with li a {
+#creat_account .modal-body .list_registration-with li {
+  margin: 16px 0; }
+  #creat_account .modal-body .list_registration-with li:nth-of-type(1) a {
+    background-color: #ea4335; }
+  #creat_account .modal-body .list_registration-with li:nth-of-type(2) a {
+    background-color: #00a0dc; }
+  #creat_account .modal-body .list_registration-with li:nth-of-type(3) a {
+    background-color: #3b5998; }
+  #creat_account .modal-body .list_registration-with li:nth-of-type(4) a {
+    background-color: #f00; }
+  #creat_account .modal-body .list_registration-with li a {
+    display: inline-block;
+    padding: 14px 20px;
+    border-radius: 30px;
+    background-color: #f00;
+    color: #fff;
+    width: 400px; }
+    #creat_account .modal-body .list_registration-with li a:hover {
+      border-radius: 0; }
+    #creat_account .modal-body .list_registration-with li a i {
       display: inline-block;
-      padding: 14px 20px;
-      border-radius: 30px;
-      background-color: #f00;
-      color: #fff;
-      width: 400px; }
-      #creat_account .modal-body .list_registration-with li a:hover {
-        border-radius: 0; }
-      #creat_account .modal-body .list_registration-with li a i {
-        display: inline-block;
-        font-size: 22px; }
-      #creat_account .modal-body .list_registration-with li a span {
-        margin: 0 8px; }
-  #creat_account .modal-body .accept_rols {
-    margin-top: 40px; }
+      font-size: 22px; }
+    #creat_account .modal-body .list_registration-with li a span {
+      margin: 0 8px; }
+#creat_account .modal-body .accept_rols {
+  margin-top: 40px; }
 
 /*=01=End  Popup Creat Account */
 /*=02=Start Popup Sign Up */
 /*=02=End  Popup Sign Up */
 /*=03=Start Popup Sign In*/
 #sign_in .glopal_form {
-  width: 400px;
-  margin: 0 auto; }
-  #sign_in .glopal_form input {
-    margin: 0; }
+  width: 400px; }
+  @media (max-width: 992px) {
+    #sign_in .glopal_form {
+      width: 100%; } }
   #sign_in .glopal_form label {
     margin-top: 20px; }
-#sign_in .modal-body .forget_password {
-  margin-bottom: 30px;
-  text-align: right; }
-#sign_in .modal-body .sign_with-social {
-  text-align: center;
-  padding: 30px 0; }
-  #sign_in .modal-body .sign_with-social .paragraph_link {
-    margin-bottom: 10px; }
-  #sign_in .modal-body .sign_with-social h2 {
-    font-size: 16px;
-    color: #f00;
-    margin-bottom: 30px; }
-  #sign_in .modal-body .sign_with-social ul li {
-    padding: 10px 16px;
-    border-radius: 30px;
-    margin: 0 8px; }
-    #sign_in .modal-body .sign_with-social ul li:nth-of-type(1) {
-      background-color: #ea4335; }
-    #sign_in .modal-body .sign_with-social ul li:nth-of-type(2) {
-      background-color: #1da1f2; }
-    #sign_in .modal-body .sign_with-social ul li:nth-of-type(3) {
-      background-color: #3b5998; }
-    #sign_in .modal-body .sign_with-social ul li:hover {
-      border-radius: 0; }
-    #sign_in .modal-body .sign_with-social ul li a i {
-      font-size: 22px;
-      margin: 0 4px;
-      color: #fff; }
-    #sign_in .modal-body .sign_with-social ul li a span {
-      color: #fff; }
+#sign_in .forget_rememper {
+  display: flex;
+  justify-content: space-between; }
+  #sign_in .forget_rememper a {
+    font-size: 12px; }
+#sign_in .modal-body {
+  display: flex;
+  justify-content: center; }
+  #sign_in .modal-body .form_man img {
+    height: 400px; }
+  @media (max-width: 992px) {
+    #sign_in .modal-body .form_man {
+      display: none; } }
+  #sign_in .modal-body .button {
+    width: 100%; }
+  #sign_in .modal-body .forget_password {
+    margin-bottom: 20px; }
+  #sign_in .modal-body .sign_with-social {
+    padding: 30px 0; }
+    #sign_in .modal-body .sign_with-social .paragraph_link {
+      margin: 15px 0; }
+    #sign_in .modal-body .sign_with-social h2 {
+      font-size: 16px;
+      color: #f00;
+      margin-bottom: 30px; }
+    #sign_in .modal-body .sign_with-social ul li {
+      padding: 10px 16px;
+      border-radius: 30px;
+      margin: 0 8px; }
+      #sign_in .modal-body .sign_with-social ul li:nth-of-type(1) {
+        background-color: #ea4335; }
+      #sign_in .modal-body .sign_with-social ul li:nth-of-type(2) {
+        background-color: #1da1f2; }
+      #sign_in .modal-body .sign_with-social ul li:nth-of-type(3) {
+        background-color: #3b5998; }
+      #sign_in .modal-body .sign_with-social ul li:hover {
+        border-radius: 0; }
+      #sign_in .modal-body .sign_with-social ul li a i {
+        font-size: 22px;
+        margin: 0 4px;
+        color: #fff; }
+      #sign_in .modal-body .sign_with-social ul li a span {
+        color: #fff; }
 
 /*=03=End Popup Sign In*/
 /*Media Query*/
@@ -7277,8 +7647,6 @@ a:hover {
 /*Start Glopal Form*/
 .glopal_form {
   background: #fff;
-  box-shadow: 0 0 10px rgba(18, 68, 98, 0.42);
-  border-radius: 10px;
   padding: 30px 15px;
   /*End Glopal Form*/ }
   @media (max-width: 576px) {
@@ -7303,8 +7671,12 @@ a:hover {
     border: 1px solid rgba(18, 68, 98, 0.23);
     width: 100%;
     border-radius: 10px;
-    padding: 4px 10px;
-    margin-bottom: 20px; }
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
   .glopal_form textarea {
     height: 120px; }
   .glopal_form .button-blue {
@@ -7349,6 +7721,19 @@ a:hover {
 /*****Font******/
 /****Start Font Face*******/
 /**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
 a,
 button,
 h1,
@@ -7439,8 +7824,8 @@ footer {
     color: #fff;
     display: block; }
     footer ul li bdi {
-      color: #07A7E3;
-      font-weight: bold; }
+      color: #fff;
+      font-size: 18px; }
     footer ul li a {
       color: #fff;
       font-size: 16px; }
@@ -7461,7 +7846,7 @@ footer {
     font-size: 14px;
     font-size: 18px; }
     .social_media li a:hover {
-      color: #07A7E3; }
+      color: #f00; }
 
 /***Start Button Go Up**/
 .go_up {

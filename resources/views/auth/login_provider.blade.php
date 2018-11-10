@@ -42,7 +42,7 @@
     <!-- END PAGE LEVEL STYLES -->
     <!-- BEGIN THEME LAYOUT STYLES -->
     <!-- END THEME LAYOUT STYLES -->
-    <link rel="shortcut icon" href="{{ asset('public/assets/layouts/layout/img/logo_icon.ico') }}"/>
+    <link rel="shortcut icon" type="image/png" href="{{ asset('public/Frontend/img/fivicon.png') }}"/>
 </head>
 
 <!-- END HEAD -->

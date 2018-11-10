@@ -51,10 +51,11 @@
                 <ul class="social_media list-unstyled">
                     <li> تواصل معنا </li>
 
-                    <li> <a href="#" target="_blank" title="snapchat " class="fab fa-snapchat-ghost"></a></li>
-                    <li> <a href="#" target="_blank" title="twitter " class="fab fa-twitter"></a></li>
-                    <li> <a href="#" target="_blank" title="instagram" class="fab fa-instagram"></a></li>
-                    <li> <a href="#" target="_blank" title="youtube" class="fab fa-youtube"></a></li>
+                    <li> <a href="https://wa.me/966505998864" target="_blank" title="whatsapp " class="fab  fa-whatsapp"></a></li>
+                    <li> <a href="https://twitter.com/EitharHomeCare" target="_blank" title="twitter " class="fab fa-twitter"></a></li>
+                    <li> <a href="https://www.instagram.com/EitharHomeCare" target="_blank" title="instagram" class="fab fa-instagram"></a></li>
+                    <li> <a href="tel:920010893" target="_blank" title="Phone Number" class="fas fa-phone"></a></li>
+
                 </ul>
 
 
@@ -374,11 +375,13 @@
 
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <h2> الاتصــال بنا</h2>
-                    <p class="paragraph_global"> يسعدنا أن نبقيك ثابتًا وعلى خدمتك على الرقم الساخن: 009651800082</p>
+                    <p class="paragraph_global">
+
+                        يسعدنا أن نبقيك ثابتًا وعلى خدمتك على الرقم الساخن:
+                        <bdi> 920010893</bdi>
+                    </p>
                     <ul class="list-unstyled about_us">
-                        <li> خدمة الإبلاغ : <bdi> 0096597225234</bdi></li>
-                        <li> خدمة الدعم الفني : <bdi> 0096596699477</bdi> </li>
-                        <li>طلب رابط خاص : <bdi> 0096597277745</bdi> </li>
+                        <li> خدمة الدعم الفني : <bdi> 966505998864 </bdi> </li>
                     </ul>
 
                 </div>
@@ -389,10 +392,10 @@
                 <div class="container">
                     <ul class="social_media list-unstyled">
 
-                        <li> <a href="#" target="_blank" title="snapchat " class="fab fa-snapchat-ghost"></a></li>
-                        <li> <a href="#" target="_blank" title="twitter " class="fab fa-twitter"></a></li>
-                        <li> <a href="#" target="_blank" title="instagram" class="fab fa-instagram"></a></li>
-                        <li> <a href="#" target="_blank" title="youtube" class="fab fa-youtube"></a></li>
+                        <li> <a href="https://wa.me/966505998864" target="_blank" title="whatsapp " class="fab  fa-whatsapp"></a></li>
+                        <li> <a href="https://twitter.com/EitharHomeCare" target="_blank" title="twitter " class="fab fa-twitter"></a></li>
+                        <li> <a href="https://www.instagram.com/EitharHomeCare" target="_blank" title="instagram" class="fab fa-instagram"></a></li>
+                        <li> <a href="tel:920010893" target="_blank" title="Phone Number" class="fas fa-phone"></a></li>
                     </ul>
                     <span> جميع الحقوق محفوظة ايثــار © 2018</span>
                 </div>
