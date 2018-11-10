@@ -2,13 +2,14 @@
 
 namespace App\Listeners;
 
-use App\Events\SendSMSEvent;
-use App\Http\Services\Adminstrator\SendingSMSModule\ClassesReport\SendingSMSClass;
+use Carbon\Carbon;
 use App\Models\Customer;
 use App\Models\Provider;
-use Carbon\Carbon;
+use App\Events\SendSMSEvent;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Http\Services\Adminstrator\SendingSMSModule\ClassesReport\SendingSMSClass;
 
 class SendSMSEventListener
 {
@@ -30,6 +31,9 @@ class SendSMSEventListener
      */
     public function handle(SendSMSEvent $event)
     {
+        if (!Schema::hasTable('customers')) {
+            return false;
+        }
         $customers = Customer::all();
         $providers = Provider::all();
 

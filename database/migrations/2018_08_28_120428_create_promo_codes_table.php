@@ -24,7 +24,7 @@ class CreatePromoCodesTable extends Migration
             $table->dateTime('end_date')->nullable();
             $table->integer('type')->default(1);
             $table->longText('type_description')->nullable();
-            $table->string('code', 255)->unique();
+            $table->string('code', 100);
             $table->integer('discount_percentage')->default(0);
             $table->longText('comment')->nullable();
             $table->integer('is_approved')->default(0);
@@ -39,7 +39,7 @@ class CreatePromoCodesTable extends Migration
                 ->on('users')
                 ->onUpdate('set null')
                 ->onDelete('set null');
-
+                $table->unique('code', 'code_unique');
         });
     }
 
@@ -53,6 +53,7 @@ class CreatePromoCodesTable extends Migration
         // relations
         Schema::table('promo_codes', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
+            $table->dropUnique('code_unique');
         });
         Schema::dropIfExists('promo_codes');
     }

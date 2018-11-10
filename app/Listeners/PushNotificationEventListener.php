@@ -7,6 +7,7 @@ use App\Helpers\Utilities;
 use App\Models\Customer;
 use App\Models\Provider;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Schema;
 
 class PushNotificationEventListener
 {
@@ -28,6 +29,10 @@ class PushNotificationEventListener
      */
     public function handle(PushNotificationEvent $event)
     {
+        if (!Schema::hasTable('customers')) {
+            return false;
+        }
+
         $customers = Customer::all();
         $providers = Provider::all();
         $customers->each(function ($customer) {

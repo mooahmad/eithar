@@ -2,14 +2,15 @@
 
 namespace App\Listeners;
 
-use App\Events\SendEmailsEvent;
-use App\Helpers\Utilities;
-use App\Http\Services\Adminstrator\SendingEmailModule\ClassesReport\SendingEmailClass;
+use Carbon\Carbon;
 use App\Models\Customer;
 use App\Models\Provider;
-use Carbon\Carbon;
+use App\Helpers\Utilities;
+use App\Events\SendEmailsEvent;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Http\Services\Adminstrator\SendingEmailModule\ClassesReport\SendingEmailClass;
 
 class SendEmailsEventListener
 {
@@ -31,6 +32,9 @@ class SendEmailsEventListener
      */
     public function handle(SendEmailsEvent $event)
     {
+        if (!Schema::hasTable('customers')) {
+            return false;
+        }
         $customers = Customer::all();
         $providers = Provider::all();
 
