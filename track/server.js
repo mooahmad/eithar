@@ -1,9 +1,9 @@
 var express = require('express');
 var app = require('http').createServer(express);
 var io = require('socket.io')(app);
-const prodPort = 8989;
-const devPort = 7878;
-const testPort = 6767;
+const prodPort = 9090;
+const devPort = 9090;
+const testPort = 9090;
 var port = devPort;
 process.argv.forEach(function (val, index, array) {
     if (val === "-prod")
@@ -11,7 +11,7 @@ process.argv.forEach(function (val, index, array) {
     if (val === "-test")
         port = testPort;
 });
-app.listen(port);
+app.listen(port, '0.0.0.0');
 
 
 // creating namespace called track_provider on socket server
