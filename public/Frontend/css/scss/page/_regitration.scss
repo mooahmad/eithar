@@ -1,0 +1,266 @@
+@import "helpers/variables.scss";
+@import "componants/buttons.scss";
+@import "componants/keyframs.scss";
+@import "componants/slider-custum.scss";
+/**********/
+
+/** Registration Popup**/
+
+/*Start General Style in all Popup*/
+
+.modal {
+    .glopal_form {
+        box-shadow: none;
+
+        input {
+            font-size: 14px;
+        }
+    }
+
+    .modal-content {
+        background-color: #fff;
+
+        .close {
+            color: #f00;
+        }
+
+        .modal-body {
+            .title {
+                font-size: 30px;
+                color: #333;
+            }
+
+            .sub_title {
+                font-size: 20px;
+                color: $pColor;
+            }
+
+            .paragraph_link {
+                color: $pColor;
+
+                a {
+                    color: $mainColor;
+                    @extend %transition;
+
+                    &:hover {
+                        color: $redColor;
+                    }
+                }
+            }
+
+            .sign_button-content {
+                display: block;
+
+            }
+
+            .middel_form {
+                width: 400px;
+                margin: 0;
+            }
+        }
+    }
+}
+
+/*Footer of Registration Screen*/
+
+.modal-footer {
+    span {
+        color: $darkColor;
+        position: relative;
+        margin: 0 16px;
+        @extend %transition;
+        cursor: pointer;
+
+        &:hover {
+            color: $redColor;
+        }
+
+        &:before {
+            position: absolute;
+            display: block;
+            content: "\f30b";
+            font-family: 'Font Awesome\ 5 Free';
+            font-weight: 900;
+            top: 5px;
+            right: -20px;
+            left: auto;
+        }
+    }
+}
+
+/*End of Registration Screen*/
+
+/*End General Style in all Popup*/
+
+/*=01=Start Popup Creat Account */
+
+#creat_account {
+    .modal-body {
+        .list_registration-with {
+            li {
+                margin: 16px 0;
+
+                &:nth-of-type(1) {
+                    a {
+                        background-color: $google;
+                    }
+                }
+
+                &:nth-of-type(2) {
+                    a {
+                        background-color: $linkedin;
+                    }
+                }
+
+                &:nth-of-type(3) {
+                    a {
+                        background-color: $facebook;
+                    }
+                }
+
+                &:nth-of-type(4) {
+                    a {
+                        background-color: $pColor;
+                    }
+                }
+
+                a {
+                    display: inline-block;
+                    padding: 14px 20px;
+                    border-radius: 30px;
+                    background-color: #f00;
+                    color: #fff;
+                    width: 400px;
+                    @extend %transition;
+
+                    &:hover {
+                        border-radius: 0;
+                    }
+
+                    i {
+                        display: inline-block; // margin: 0 6px;
+                        font-size: 22px;
+                    }
+
+                    span {
+                        margin: 0 8px;
+                    }
+                }
+            }
+        }
+
+        .have_account {
+            a {}
+        }
+
+        .accept_rols {
+            margin-top: 40px;
+        }
+    }
+}
+
+/*=01=End  Popup Creat Account */
+
+/*=02=Start Popup Sign Up */
+
+#sign_up {
+    .glopal_form {}
+}
+
+/*=02=End  Popup Sign Up */
+
+/*=03=Start Popup Sign In*/
+
+#sign_in {
+    .glopal_form {
+        width: 400px;
+        @media (max-width: $lg) {
+            width: 100%;
+        }
+
+        label {
+            margin-top: 20px;
+        }
+    }
+
+    .forget_rememper {
+        display: flex;
+        justify-content: space-between;
+
+        a {
+            font-size: 12px;
+        }
+    }
+
+    .modal-body {
+        display: flex;
+        justify-content: center;
+        .form_man {
+            img {
+                height: 400px;
+            }
+            @media (max-width: $lg) {
+                display: none;
+            }
+        }
+        .button {
+            width: 100%;
+        }
+        .forget_password {
+            margin-bottom: 20px;
+        }
+
+        .sign_with-social {
+            padding: 30px 0;
+
+            .paragraph_link {
+                margin: 15px 0;
+            }
+
+            h2 {
+                font-size: 16px;
+                color: $redColor;
+                margin-bottom: 30px;
+            }
+
+            ul {
+                li {
+                    padding: 10px 16px;
+                    border-radius: 30px;
+                    margin: 0 8px;
+                    @extend %transition;
+
+                    &:nth-of-type(1) {
+                        background-color: $google;
+                    }
+
+                    &:nth-of-type(2) {
+                        background-color: $twitter;
+                    }
+
+                    &:nth-of-type(3) {
+                        background-color: $facebook;
+                    }
+
+                    &:hover {
+                        border-radius: 0;
+                    }
+
+                    a {
+                        i {
+                            font-size: 22px;
+                            margin: 0 4px;
+                            color: #fff;
+                        }
+
+                        span {
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*=03=End Popup Sign In*/

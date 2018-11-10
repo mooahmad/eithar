@@ -192,6 +192,13 @@ $(function() {
     }, 1000)
   });
 
+  //Button Click To Scroll to Down
+  $(".down_icon").on('click', function() {
+    $('html,body').animate({
+      scrollTop: 600
+    }, 1000)
+  });
+
   /*Start Profile Doctor */
   $(".rate_content .fa-heart,.rate_content .fa-star").click(function() {
     $(this).toggleClass("active");

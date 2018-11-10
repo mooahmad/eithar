@@ -35,6 +35,7 @@ class VerifyEmailCode extends Mailable
                     ->with([
                                'customerName'  => $this->user->first_name .' '. $this->user->middle_name . ' ' .$this->user->last_name,
                                'customerCode' => $this->user->email_code,
+                               'lang'=>($this->user->default_language == 0) ? 'ar' : 'en',
                            ]);
     }
 }
