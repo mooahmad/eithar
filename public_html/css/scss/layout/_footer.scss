@@ -99,8 +99,8 @@ footer {
       display: block;
 
       bdi {
-        color: $secondColor;
-        font-weight: bold;
+        color: #fff;
+        font-size: 18px;
       }
 
       a {
@@ -145,12 +145,13 @@ footer {
 
       &:hover {
         //                background-color: $secondColor;
-        color: $secondColor;
+        color: #f00;
       }
     }
   }
 }
 /***Start Button Go Up**/
+
 .go_up {
   position: fixed;
   z-index: 999;
@@ -175,6 +176,7 @@ footer {
   }
 }
 /**Start Copyright Section**/
+
 .copyright {
   padding: 10px 0;
   background-color: #093550;
