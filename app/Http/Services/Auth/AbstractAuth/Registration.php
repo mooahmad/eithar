@@ -61,7 +61,7 @@ class Registration implements IRegistration
         $customerData = ApiHelpers::getCustomerImages($customerData);
         $customerData->company_number = $settings->mobile_number;
         $customerData->company_whats_app_number = $settings->whats_app_number;
-        $customerData->company_customer_banner = Utilities::getFileUrl($settings->customer_banner_path);
+        $customerData->company_customer_banner = ($settings->customer_banner_path)?Utilities::getFileUrl($settings->customer_banner_path): "";
         $customerData->notifications_count = $customer->unreadnotifications->count();
         if (!Auth::check())
             $customerData = ApiHelpers::getCustomerWithToken($customerData);
