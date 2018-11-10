@@ -35,6 +35,7 @@ class ForgetPasswordMail extends Mailable
                     ->with([
                                'customerName'  => $this->user->first_name . ' ' .$this->user->last_name,
                                'customerCode' => $this->user->forget_password_code,
+                               'lang'=>($this->user->default_language == 0) ? 'ar' : 'en',
                            ]);
     }
 }
