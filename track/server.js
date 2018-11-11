@@ -43,5 +43,6 @@ var trackProvider = io.of('/track_provider').on('connection', function (clientSo
             clientSocket.disconnect(true);
         }, 5000);
     });
+    console.log('New one is connected');
 });
 console.log('your on port ' + port);
