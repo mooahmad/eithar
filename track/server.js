@@ -1,11 +1,8 @@
 var express = require('express')();
-var app = require('http').createServer(express);
+var app = require('http').Server(express);
 var io = require('socket.io')(app, {
     serveClient: true,
-    // below are engine.IO options
-    pingInterval: 10000,
-    pingTimeout: 5000,
-    cookie: false,
+    cookie: true,
     transports: ['websocket']
   });
 const prodPort = 9090;
@@ -51,5 +48,8 @@ var trackProvider = io.of('/track_provider').on('connection', function (clientSo
         }, 5000);
     });
     console.log('New one is connected');
+    clientSocket.on('message', function (msg) {
+        clientSocket.send(msg);
+     });
 });
 console.log('your on port ' + port);
