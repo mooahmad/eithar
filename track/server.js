@@ -1,6 +1,13 @@
-var express = require('express');
+var express = require('express')();
 var app = require('http').createServer(express);
-var io = require('socket.io')(app);
+var io = require('socket.io')(app, {
+    serveClient: true,
+    // below are engine.IO options
+    pingInterval: 10000,
+    pingTimeout: 5000,
+    cookie: false,
+    transports: ['websocket']
+  });
 const prodPort = 9090;
 const devPort = 9090;
 const testPort = 9090;
