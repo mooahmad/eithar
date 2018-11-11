@@ -46,4 +46,5 @@ return [
     'customer_terms_and_conditions' => 'Customer Terms And Conditions',
     'faq'                           => 'FAQ',
     'about_company'                 => 'About Company',
+    'details'                       => 'Details',
 ];

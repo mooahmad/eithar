@@ -23,7 +23,7 @@ define('DRV', 'Administrator\Drivers');
 ----------- Frontend Routes -----------
 -------------------------------------*/
 Route::group(['namespace' => FE], function () {
-//    Route::group(['middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ],'prefix' => LaravelLocalization::setLocale()], function () {
+    Route::group(['middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ],'prefix' => LaravelLocalization::setLocale()], function () {
         Route::get('/', 'FrontendController@index')->name('home');
         Route::get('about-us', 'FrontendController@AboutUs')->name('about_us');
         Route::get('privacy-and-conditions', 'FrontendController@PrivacyAndConditions')->name('privacy_and_conditions');
@@ -35,10 +35,11 @@ Route::group(['namespace' => FE], function () {
                 Route::get('physiotherapy','CategoriesFrontController@showPhysiotherapySubCategories')->name('physiotherapy_category');
                 Route::get('nurse','CategoriesFrontController@showNurseSubCategories')->name('nurse_category');
                 Route::get('women','CategoriesFrontController@showWomenSubCategories')->name('women_category');
+                Route::post('subcategory-providers-list','CategoriesFrontController@getSubCategoryProvidersList')->name('get_subcategory_providers_list');
             });
 //            Route::get('categories/{category}/{name}', 'CategoriesFrontController@showSubCategories')->name('show-subcategories');
         });
-//    });
+    });
 });
 
 Auth::routes();

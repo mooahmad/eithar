@@ -46,4 +46,5 @@ return [
     'customer_terms_and_conditions' => ' الشروط والأحكام للعميل',
     'faq'                           => 'الأسئلة الشائعة',
     'about_company'                 => 'عن الشركة',
+    'details'                       => 'التفاصيل',
 ];

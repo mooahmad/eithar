@@ -26,7 +26,7 @@ class FrontendController extends Controller
         $data = [
             'main_categories'=>Category::GetParentCategories()->get(),
         ];
-        return view(FE.'.landing_page')->with($data);
+//        return view(FE.'.landing_page')->with($data);
         return view(FE.'.index')->with($data);
     }
 
