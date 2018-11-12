@@ -29,6 +29,7 @@ class CreateFamilyMembersTable extends Migration
             $table->integer('is_active')->default(0);
             $table->integer('is_saudi_nationality')->default(1);
             $table->longText('address')->nullable();
+            $table->integer('added_by')->nullable();
             $table->softDeletes();
             $table->unique('mobile_number');
             $table->timestamps();

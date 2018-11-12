@@ -1,8 +1,6 @@
-@extends('vendor.mail.layouts.layoutv1')
-
-@section('title', 'Eithar')
-
+@extends('vendor.mail.layouts.master')
 @section('content')
-    <p>hi, {{ $customerName }}</p>
+    <p>Hi, {{ $customerName }}</p>
     <p>your code is {{ $customerCode }}</p>
 @endsection
+

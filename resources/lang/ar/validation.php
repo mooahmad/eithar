@@ -167,6 +167,15 @@ return [
         ],
         'email_code' => [
             'required' => 'الكود مطلوب'
+        ],
+        'customer_id' => [
+            'required' => 'رقم العميل مطلوب'
+        ],
+        'member_id' => [
+            'required' => 'رقم العضو مطلوب'
+        ],
+        'code' => [
+            'required' => 'الرمز مطلوب'
         ]
 
     ],

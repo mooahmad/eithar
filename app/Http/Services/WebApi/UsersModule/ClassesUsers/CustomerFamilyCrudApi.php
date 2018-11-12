@@ -39,4 +39,12 @@ class CustomerFamilyCrudApi extends CustomerFamilyCrud
             return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
         return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
     }
+
+    public function getFamilyMembers(Request $request)
+    {
+        $validationObject = parent::getFamilyMembers($request);
+        if ($validationObject->error == config('constants.responseStatus.success'))
+            return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
+        return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
+    }
 }

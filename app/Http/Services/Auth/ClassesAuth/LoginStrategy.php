@@ -26,4 +26,10 @@ class LoginStrategy
     {
         return $this->strategy->loginCustomer($request);
     }
+
+    public function loginProvider(Request $request)
+    {
+        return $this->strategy->loginProvider($request);
+    }
+
 }

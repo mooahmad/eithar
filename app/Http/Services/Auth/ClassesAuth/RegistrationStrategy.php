@@ -10,7 +10,8 @@ class RegistrationStrategy
     private $strategy = NULL;
 
     // creates instance of registration class depends on strategy type and saves it to strategy variable
-    public function __construct($strategyType) {
+    public function __construct($strategyType)
+    {
         switch ($strategyType) {
             case config('constants.requestTypes.web'):
                 $this->strategy = new RegistrationWeb();
@@ -23,6 +24,6 @@ class RegistrationStrategy
 
     public function registerCustomer(Request $customerData)
     {
-      return $this->strategy->registerCustomer($customerData);
+        return $this->strategy->registerCustomer($customerData);
     }
 }

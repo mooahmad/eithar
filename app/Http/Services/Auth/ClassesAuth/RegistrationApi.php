@@ -17,5 +17,4 @@ class RegistrationApi extends Registration
             return ApiHelpers::success($validationObject->error, $validationObject->errorMessages);
         return ApiHelpers::fail($validationObject->error, $validationObject->errorMessages);
     }
-
 }

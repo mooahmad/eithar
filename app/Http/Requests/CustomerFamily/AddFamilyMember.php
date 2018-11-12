@@ -24,7 +24,6 @@ class AddFamilyMember extends FormRequest
     public function rules()
     {
         return [
-            'customer_id'   => 'required',
             'first_name'    => 'required',
             'middle_name'   => 'required',
             'last_name'     => 'required',

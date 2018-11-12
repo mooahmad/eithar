@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ar',
 
     /*
     |--------------------------------------------------------------------------
@@ -92,6 +92,8 @@ return [
     */
 
     'fallback_locale' => 'en',
+
+    'locals' => ['en','ar'],
 
     /*
     |--------------------------------------------------------------------------
@@ -161,6 +163,13 @@ return [
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Kozz\Laravel\Providers\Guzzle::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
+        SMartins\PassportMultiauth\Providers\MultiauthServiceProvider::class,
+        Mariuzzo\LaravelJsLocalization\LaravelJsLocalizationServiceProvider::class,
+        Edujugon\PushNotification\Providers\PushNotificationServiceProvider::class,
+        SMartins\PassportMultiauth\Providers\MultiauthServiceProvider::class,
+        niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
+        Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
     ],
 
     /*
@@ -212,6 +221,10 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Guzzle' => Kozz\Laravel\Facades\Guzzle::class,
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'PushNotification' => Edujugon\PushNotification\Facades\PushNotification::class,
+        'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class,
+        'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
     ],
 
 ];

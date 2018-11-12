@@ -2,8 +2,15 @@
 
 namespace App\Exceptions;
 
+use Dotenv\Exception\ValidationException;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Session\TokenMismatchException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -27,14 +34,13 @@ class Handler extends ExceptionHandler
     ];
 
     /**
-     * Report or log an exception.
-     *
-     * @param  \Exception  $exception
-     * @return void
+     * @param Exception $exception
+     * @return \Illuminate\Http\Response|mixed
+     * @throws Exception
      */
     public function report(Exception $exception)
     {
-        parent::report($exception);
+        return parent::report($exception);
     }
 
     /**
@@ -46,11 +52,6 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if($exception instanceof \Illuminate\Auth\AuthenticationException ){
-
-            return response('unauthorized', 401);
-
-        }
         return parent::render($request, $exception);
     }
 }

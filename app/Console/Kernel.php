@@ -2,6 +2,10 @@
 
 namespace App\Console;
 
+use App\Events\PushNotificationEvent;
+use App\Events\SendEmailsEvent;
+use App\Events\SendSMSEvent;
+use function foo\func;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -24,8 +28,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+            event(new PushNotificationEvent());
+
+            event(new SendEmailsEvent());
+
+            event(new SendSMSEvent());
     }
 
     /**

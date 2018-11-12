@@ -12,16 +12,16 @@ class VerifyEmailCode extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $customer;
+    public $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Customer $customer)
+    public function __construct($user)
     {
-        $this->customer = $customer;
+        $this->user = $user;
     }
 
     /**
@@ -33,8 +33,9 @@ class VerifyEmailCode extends Mailable
     {
         return $this->view('vendor.mail.verifyemail.template')
                     ->with([
-                               'customerName'  => $this->customer->first_name . ' ' .$this->customer->last_name,
-                               'customerCode' => $this->customer->email_code,
+                               'customerName'  => $this->user->first_name .' '. $this->user->middle_name . ' ' .$this->user->last_name,
+                               'customerCode' => $this->user->email_code,
+                               'lang'=>($this->user->default_language == 0) ? 'ar' : 'en',
                            ]);
     }
 }

@@ -11,6 +11,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call(OAuthSeeder::class);
+         $this->call([
+             OAuthSeeder::class,
+             UsersSeeder::class,
+             CategoriesSeeder::class,
+             CountriesSeeder::class,
+             CitiesSeeder::class,
+             CurrenciesSeeder::class,
+             PushNotificationsTypesSeeder::class,
+             SettingsSeeder::class,
+         ]);
     }
 }

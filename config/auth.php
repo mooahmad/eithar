@@ -45,6 +45,16 @@ return [
             'driver' => 'passport',
             'provider' => 'customers',
         ],
+
+        'provider' => [
+            'driver' => 'passport',
+            'provider' => 'providers',
+        ],
+
+        'provider-web' => [
+            'driver' => 'session',
+            'provider' => 'provider-web',
+        ],
     ],
 
     /*
@@ -74,6 +84,16 @@ return [
              'driver' => 'eloquent',
              'model' => App\Models\Customer::class,
          ],
+
+        'providers' => [
+            'driver' => 'eloquent',
+            'model' => \App\Models\Provider::class,
+        ],
+
+        'provider-web' => [
+            'driver' => 'eloquent',
+            'model' => \App\Models\Provider::class,
+        ],
     ],
 
     /*

@@ -11,9 +11,10 @@ class Customer extends Authenticatable
 {
     use HasApiTokens, Notifiable, SoftDeletes;
 
-    public $timestamps = false;
+    public $timestamps = true;
     protected $table = 'customers';
-    protected $dateFormat = 'U';
+    protected $dateFormat = 'Y-m-d H:m:s';
+    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     /**
      * The attributes that are mass assignable.
@@ -32,4 +33,53 @@ class Customer extends Authenticatable
     protected $hidden = [
         'password', 'remember_token', 'email_code', 'mobile_code', 'deleted_at', 'created_at', 'updated_at'
     ];
+
+    public function routeNotificationForMail($notification)
+    {
+        return $this->email;
+    }
+
+    /**
+     * return active customers
+     * @return mixed
+     */
+    public function scopeGetActiveCustomers()
+    {
+        return $this->where('mobile_verified', 1);
+    }
+
+    /**
+     * return customer full name with nationality ID
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        return "{$this->first_name} {$this->middle_name} {$this->last_name}";
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'city_id', 'id');
+    }
+
+    public function servicesBooking()
+    {
+        return $this->hasMany('App\Models\ServiceBooking', 'customer_id', 'id');
+    }
+
+    public function pushNotification()
+    {
+        return $this->hasOne('App\Models\PushNotification', 'customer_id', 'id');
+    }
 }

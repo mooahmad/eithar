@@ -30,6 +30,11 @@ class CustomerStrategy
         return $this->strategy->uploadCustomerNationalIDImage($request, $fileName, $customer);
     }
 
+    public function editCustomer(Request $request)
+    {
+        return $this->strategy->editCustomer($request);
+    }
+
     public function updateLastLoginDate(Customer $customer)
     {
         return $this->strategy->updateLastLoginDate($customer);
@@ -43,5 +48,50 @@ class CustomerStrategy
     public function verifyCustomerEmail(Request $request)
     {
         return $this->strategy->verifyCustomerEmail($request);
+    }
+
+    public function forgetPassword(Request $request)
+    {
+        return $this->strategy->forgetPassword($request);
+    }
+
+    public function updateForgottenPassword(Request $request)
+    {
+        return $this->strategy->updateForgottenPassword($request);
+    }
+
+    public function resendEmailVerificationCode(Request $request)
+    {
+        return $this->strategy->resendEmailVerificationCode($request);
+    }
+
+    public function getCustomerAppointments(Request $request, $page = 1)
+    {
+        return $this->strategy->getCustomerAppointments($request, $page);
+    }
+
+    public function getCustomerAppointment(Request $request, $id, $serviceType)
+    {
+        return $this->strategy->getCustomerAppointment($request, $id, $serviceType);
+    }
+
+    public function getCustomerNotifications(Request $request, $page = 1)
+    {
+        return $this->strategy->getCustomerNotifications($request, $page);
+    }
+
+    public function getCustomerMedicalReports(Request $request)
+    {
+        return $this->strategy->getCustomerMedicalReports($request);
+    }
+
+    public function search(Request $request, $keyword)
+    {
+        return $this->strategy->search($request, $keyword);
+    }
+
+    public function logoutCustomer(Request $request)
+    {
+        return $this->strategy->logoutCustomer($request);
     }
 }

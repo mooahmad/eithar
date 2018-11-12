@@ -2,6 +2,9 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AdminsMiddleware;
+use App\Http\Middleware\Language;
+use App\Http\Middleware\ProviderMiddleware;
 use App\Http\Middleware\SetLang;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Laravel\Passport\Http\Middleware\CheckClientCredentials;
@@ -54,7 +57,8 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
+        //'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
+        'auth' => \SMartins\PassportMultiauth\Http\Middleware\MultiAuthenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
@@ -65,5 +69,13 @@ class Kernel extends HttpKernel
         'setLang' => SetLang::class,
         'scopes' => \Laravel\Passport\Http\Middleware\CheckScopes::class,
         'scope' => \Laravel\Passport\Http\Middleware\CheckForAnyScope::class,
+        'AdminAuth' => AdminsMiddleware::class,
+        'ProviderAuth' => ProviderMiddleware::class,
+        'Language'=>Language::class,
+        'oauth.providers' => \SMartins\PassportMultiauth\Http\Middleware\AddCustomProvider::class,
+        'localize' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,
+        'localizationRedirect' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter::class,
+        'localeSessionRedirect' => \Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect::class,
+        'localeViewPath' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class
     ];
 }

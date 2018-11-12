@@ -25,4 +25,9 @@ class CustomerFamilyCrudWeb extends CustomerFamilyCrud
     {
         $data = parent::deleteFamilyMember();
     }
+
+    public function getFamilyMembers()
+    {
+        $data = parent::getFamilyMembers();
+    }
 }

@@ -10,9 +10,10 @@ class Role extends Model
 {
     use SoftDeletes;
 
-    public $timestamps = false;
+    public $timestamps = true;
     protected $table = 'roles';
-    protected $dateFormat = 'U';
+    protected $dateFormat = 'Y-m-d H:m:s';
+    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     public function users()
     {
