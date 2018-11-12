@@ -16,6 +16,7 @@ process.argv.forEach(function (val, index, array) {
         port = testPort;
 });
 app.listen(port, '0.0.0.0');
+io.attach(app);
 
 
 // creating namespace called track_provider on socket server
