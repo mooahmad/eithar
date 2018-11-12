@@ -7,20 +7,7 @@ const io = require('socket.io')(app, {
   });
 const redisAdapter = require('socket.io-redis');
 const Redis = require('ioredis');
-const startupNodes = [
-    {
-      port: 6380,
-      host: '127.0.0.1'
-    },
-    {
-      port: 6381,
-      host: '127.0.0.1'
-    }
-  ];
-io.adapter(redisAdapter({
-        pubClient: new Redis.Cluster(startupNodes),
-        subClient: new Redis.Cluster(startupNodes)
-      }));
+io.adapter(redisAdapter({ host: 'http://13.57.87.177', port: 6379 }));
 const prodPort = 9090;
 const devPort = 9090;
 const testPort = 9090;
@@ -34,7 +21,7 @@ process.argv.forEach(function (val, index, array) {
 app.listen(port, '0.0.0.0');
 
 // creating namespace called track_provider on socket server
-var trackProvider = io.of('/track_provider').on('connection', function (clientSocket) {
+var trackProvider = io.of('/track_provider').adapter.on('connection', function (clientSocket) {
     // requesting to join a room in namespace then send to all in room that new member joined
     clientSocket.on('joining', (roomName, fn) => {
         clientSocket.join(roomName, () => {
