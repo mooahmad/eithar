@@ -47,4 +47,13 @@ return [
     'faq'                           => 'FAQ',
     'about_company'                 => 'About Company',
     'details'                       => 'Details',
+    'login'                         => 'Login',
+    'customer_login'                => 'Login',
+    'mobile_number'                 => 'Mobile Number',
+    'password'                      => 'Password',
+    'remember_me'                   => 'Remember Me',
+    'forget_password'               => 'Forget Password ?',
+    'submit'                        => 'Submit',
+    'no_have_account'               => 'Don\'t have an account?',
+    'register'                      => 'Register Now?',
 ];

@@ -47,4 +47,13 @@ return [
     'faq'                           => 'الأسئلة الشائعة',
     'about_company'                 => 'عن الشركة',
     'details'                       => 'التفاصيل',
+    'login'                         => 'تسجيل الدخول',
+    'customer_login'                => 'تسجيل الدخول',
+    'mobile_number'                 => 'رقم الجوال',
+    'password'                      => 'كلمة المرور',
+    'remember_me'                   => 'تذكرنى دائماً',
+    'forget_password'               => 'نسيت كلمه السر؟',
+    'submit'                        => 'دخول',
+    'no_have_account'               => 'لا تملك حساب بعد؟',
+    'register'                      => 'انشأ حساب؟',
 ];

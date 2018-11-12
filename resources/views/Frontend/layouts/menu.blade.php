@@ -15,9 +15,10 @@
                         <li><a href="{{ url()->route('about_us') }}" title="{{ trans('main.about_us') }}">{{ trans('main.about_us') }}</a></li>
                         <li><a href="{{ url()->route('home') }}" title="{{ trans('main.contact_us') }}">{{ trans('main.our_services') }}</a></li>
                         <li><a href="{{ url()->route('home') }}" title="{{ trans('main.contact_us') }}">{{ trans('main.contact_us') }}</a></li>
+                        <li><a href="{{ url()->route('customer_login') }}" title="{{ trans('main.login') }}">{{ trans('main.login') }}</a></li>
                     </ul>
 
-                    @if(LaravelLocalization::getCurrentLocale() == 'ar')
+                @if(LaravelLocalization::getCurrentLocale() == 'ar')
                         <a rel="alternate" hreflang="en" href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}" class="languge_button button">النسخة الانجليزية</a>
                         @else
                         <a rel="alternate" hreflang="ar" href="{{ LaravelLocalization::getLocalizedURL('ar', null, [], true) }}" class="languge_button button">النسخة العربية</a>
