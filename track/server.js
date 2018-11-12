@@ -6,7 +6,21 @@ const io = require('socket.io')(app, {
     transports: ['websocket']
   });
 const redisAdapter = require('socket.io-redis');
-io.adapter(redisAdapter({ host: 'localhost', port: 6379 }));
+const Redis = require('ioredis');
+const startupNodes = [
+    {
+      port: 6380,
+      host: '127.0.0.1'
+    },
+    {
+      port: 6381,
+      host: '127.0.0.1'
+    }
+  ];
+io.adapter(redisAdapter({
+        pubClient: new Redis.Cluster(startupNodes),
+        subClient: new Redis.Cluster(startupNodes)
+      }));
 const prodPort = 9090;
 const devPort = 9090;
 const testPort = 9090;
@@ -18,8 +32,6 @@ process.argv.forEach(function (val, index, array) {
         port = testPort;
 });
 app.listen(port, '0.0.0.0');
-io.attach(app);
-
 
 // creating namespace called track_provider on socket server
 var trackProvider = io.of('/track_provider').on('connection', function (clientSocket) {
