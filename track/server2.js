@@ -23,7 +23,7 @@ function Worker() {
     httpServer.on('request', app.callback())
 
     // Socket part (listen on connection to the socket)
-    var trackProvider = socketServer.of('/track_provider').on('connection', function (clientSocket) {
+    var trackProvider = socketServer.on('connection', function (clientSocket) {
         // requesting to join a room in namespace then send to all in room that new member joined
         clientSocket.on('joining', (roomName, fn) => {
             clientSocket.join(roomName, () => {

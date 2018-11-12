@@ -1,10 +1,12 @@
-var express = require('express')();
-var app = require('http').Server(express);
-var io = require('socket.io')(app, {
+const express = require('express')();
+const app = require('http').Server(express);
+const io = require('socket.io')(app, {
     serveClient: true,
     cookie: true,
     transports: ['websocket']
   });
+const redisAdapter = require('socket.io-redis');
+io.adapter(redisAdapter({ host: 'localhost', port: 6379 }));
 const prodPort = 9090;
 const devPort = 9090;
 const testPort = 9090;
