@@ -24,36 +24,36 @@ function Worker() {
 
     // Socket part (listen on connection to the socket)
     var trackProvider = socketServer.on('connection', function (clientSocket) {
-        // requesting to join a room in namespace then send to all in room that new member joined
-        clientSocket.on('joining', (roomName, fn) => {
-            clientSocket.join(roomName, () => {
-                trackProvider.to(roomName).emit('toEveryOneOnRoom', 'new member joined to room');
-            });
-            // call back function to current member that he joined
-            fn('you have joined room number: ' + roomName + '  with id: ' + clientSocket.id);
+        // // requesting to join a room in namespace then send to all in room that new member joined
+        // clientSocket.on('joining', (roomName, fn) => {
+        //     clientSocket.join(roomName, () => {
+        //         trackProvider.to(roomName).emit('toEveryOneOnRoom', 'new member joined to room');
+        //     });
+        //     // call back function to current member that he joined
+        //     fn('you have joined room number: ' + roomName + '  with id: ' + clientSocket.id);
     
-            clientSocket.on('sending-provider-location', (roomName, locationJson, fn) => {
-                trackProvider.to(roomName).emit('current-provider-location', locationJson);
-                fn('location has been sent.');
-            });
-        });
-        // on leaving the room
-        clientSocket.on('leaving', (roomName, fn) => {
-            clientSocket.leave(roomName, () => {
-                trackProvider.to(roomName).emit('toEveryOneOnRoom', clientSocket.id + ' leaved the room');
-            });
-            fn('you have leaved room number: ' + roomName);
-        });
-        // on disconnecting from server
-        clientSocket.on('disconnect', (reason) => {
-            setTimeout(() => {
-                clientSocket.broadcast.emit('toEveryOneOnServer', clientSocket.id + ' disconnected for ' + reason);
-                clientSocket.disconnect(true);
-            }, 5000);
-        });
-        console.log('New one is connected');
-        clientSocket.on('message', function (msg) {
-            clientSocket.send(msg);
-         });
+        //     clientSocket.on('sending-provider-location', (roomName, locationJson, fn) => {
+        //         trackProvider.to(roomName).emit('current-provider-location', locationJson);
+        //         fn('location has been sent.');
+        //     });
+        // });
+        // // on leaving the room
+        // clientSocket.on('leaving', (roomName, fn) => {
+        //     clientSocket.leave(roomName, () => {
+        //         trackProvider.to(roomName).emit('toEveryOneOnRoom', clientSocket.id + ' leaved the room');
+        //     });
+        //     fn('you have leaved room number: ' + roomName);
+        // });
+        // // on disconnecting from server
+        // clientSocket.on('disconnect', (reason) => {
+        //     setTimeout(() => {
+        //         clientSocket.broadcast.emit('toEveryOneOnServer', clientSocket.id + ' disconnected for ' + reason);
+        //         clientSocket.disconnect(true);
+        //     }, 5000);
+        // });
+        // console.log('New one is connected');
+        // clientSocket.on('message', function (msg) {
+        //     clientSocket.send(msg);
+        //  });
     });
 }
