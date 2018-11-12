@@ -51,7 +51,7 @@ var serverName = process.env.NAME || 'Unknown';
 // });
 // console.log('your on port ' + port);
 
-var cluster  = require('cluster'), _portSocket  = 8080, _portRedis   = 6379, _HostRedis   = 'localhost';
+var cluster  = require('cluster'), _portSocket  = 9090, _portRedis   = 6379, _HostRedis   = 'localhost';
 
 if (cluster.isMaster) {	
 	var server = require('http').createServer(), socketIO = require('socket.io').listen(server), redis = require('socket.io-redis');	
