@@ -7,7 +7,7 @@ const io = require('socket.io')(app, {
   });
 const redisAdapter = require('socket.io-redis');
 const Redis = require('ioredis');
-io.adapter(redisAdapter({ host: 'http://13.57.87.177', port: 6379 }));
+io.adapter(redisAdapter({ host: 'localhost', port: 6379 }));
 const prodPort = 9090;
 const devPort = 9090;
 const testPort = 9090;
