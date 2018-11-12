@@ -13,6 +13,8 @@ server.listen(port, function () {
   console.log('Hello, I\'m %s, how can I help?', serverName);
 });
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 // creating namespace called track_provider on socket server
 var trackProvider = io.on('connection', function (clientSocket) {
