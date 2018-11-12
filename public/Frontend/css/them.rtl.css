@@ -77,6 +77,8 @@ a:hover {
     text-indent: 8px;
     margin-bottom: 30px;
     font-size: 14px; }
+  .glopal_form .custum_upload-button {
+    position: relative; }
   .glopal_form .row div:last-child {
     margin: 0; }
   .glopal_form textarea {
@@ -136,6 +138,8 @@ a:hover {
     height: 15px;
     cursor: pointer; }
 
+/*Start Custum Upload Button*/
+/*Start Custum Upload Button*/
 a,
 button,
 h1,
