@@ -1,13 +1,12 @@
-const express = require('express')();
-const app = require('http').Server(express);
-const io = require('socket.io')(app, {
+var express = require('express');
+var Express = express();
+Express.use(express.static('public'));
+var app = require('http').createServer(Express);
+var io = require('socket.io')(app, {
     serveClient: true,
     cookie: true,
     transports: ['websocket']
   });
-const redisAdapter = require('socket.io-redis');
-const Redis = require('ioredis');
-io.adapter(redisAdapter({ host: 'localhost', port: 6379 }));
 const prodPort = 9090;
 const devPort = 9090;
 const testPort = 9090;
@@ -20,8 +19,9 @@ process.argv.forEach(function (val, index, array) {
 });
 app.listen(port, '0.0.0.0');
 
+
 // creating namespace called track_provider on socket server
-var trackProvider = io.of('/track_provider').adapter.on('connection', function (clientSocket) {
+var trackProvider = io.of('/track_provider').on('connection', function (clientSocket) {
     // requesting to join a room in namespace then send to all in room that new member joined
     clientSocket.on('joining', (roomName, fn) => {
         clientSocket.join(roomName, () => {
@@ -50,8 +50,5 @@ var trackProvider = io.of('/track_provider').adapter.on('connection', function (
         }, 5000);
     });
     console.log('New one is connected');
-    clientSocket.on('message', function (msg) {
-        clientSocket.send(msg);
-     });
 });
 console.log('your on port ' + port);
