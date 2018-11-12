@@ -1,27 +1,21 @@
 var express = require('express');
-var Express = express();
-Express.use(express.static('public'));
-var app = require('http').createServer(Express);
-var io = require('socket.io')(app, {
-    serveClient: true,
-    cookie: true,
-    transports: ['websocket']
-  });
-const prodPort = 9090;
-const devPort = 9090;
-const testPort = 9090;
-var port = devPort;
-process.argv.forEach(function (val, index, array) {
-    if (val === "-prod")
-        port = prodPort;
-    if (val === "-test")
-        port = testPort;
+var app = express();
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
+var redis = require('socket.io-redis');
+var port = process.env.PORT || 9090;
+var serverName = process.env.NAME || 'Unknown';
+
+io.adapter(redis({ host: 'redis', port: 6379 }));
+
+server.listen(port, function () {
+  console.log('Server listening at port %d', port);
+  console.log('Hello, I\'m %s, how can I help?', serverName);
 });
-app.listen(port, '0.0.0.0');
 
 
 // creating namespace called track_provider on socket server
-var trackProvider = io.of('/track_provider').on('connection', function (clientSocket) {
+var trackProvider = io.on('connection', function (clientSocket) {
     // requesting to join a room in namespace then send to all in room that new member joined
     clientSocket.on('joining', (roomName, fn) => {
         clientSocket.join(roomName, () => {

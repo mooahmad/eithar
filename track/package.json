@@ -10,10 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "clusterws": "^3.2.0",
-    "clusterws-client-js": "^3.0.6",
     "express": "^4.16.4",
     "socket.io": "^2.1.1",
-    "socket.io-client": "^2.1.1"
+    "socket.io-client": "^2.1.1",
+    "socket.io-redis": "^5.2.0"
   }
 }
