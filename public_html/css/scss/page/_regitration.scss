@@ -4,7 +4,11 @@
 @import "componants/slider-custum.scss"; /**********/
 /** Registration Popup**/
 /*Start General Style in all Popup*/
-.modal {
+.registration_content {
+  margin-top: -250px;
+  position: relative;
+  z-index: 9;
+
   .glopal_form {
     box-shadow: none;
 
