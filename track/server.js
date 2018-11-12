@@ -6,7 +6,7 @@ var redis = require('socket.io-redis');
 var port = process.env.PORT || 9090;
 var serverName = process.env.NAME || 'Unknown';
 
-io.adapter(redis({ host: 'redis', port: 6379 }));
+io.adapter(redis({ host: 'localhost', port: 6379 }));
 
 server.listen(port, function () {
   console.log('Server listening at port %d', port);
