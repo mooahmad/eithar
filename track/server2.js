@@ -5,7 +5,7 @@ const ClusterWS = require('clusterws')
 // Create ClusterWS with 2 workers (why 2 just for this example usually you will get amount of cpus)
 var cws = new ClusterWS({
     worker: Worker,
-    workers: 2,
+    workers: 10,
     host: '0.0.0.0',
     port: process.env.PORT || 9090
 })
@@ -23,12 +23,37 @@ function Worker() {
     httpServer.on('request', app.callback())
 
     // Socket part (listen on connection to the socket)
-    socketServer.on('connection', (socket) => {
-        // On connection publish message that user is connected to everyone who is subscribed to chat channel
-        
-        // On disconnect  send everyone that user is disconnected
-        socket.on('disconnect', () => {
-
-        })
-    })
+    var trackProvider = socketServer.on('connection', function (clientSocket) {
+        // requesting to join a room in namespace then send to all in room that new member joined
+        clientSocket.on('joining', (roomName, fn) => {
+            clientSocket.join(roomName, () => {
+                trackProvider.to(roomName).emit('toEveryOneOnRoom', 'new member joined to room');
+            });
+            // call back function to current member that he joined
+            fn('you have joined room number: ' + roomName + '  with id: ' + clientSocket.id);
+    
+            clientSocket.on('sending-provider-location', (roomName, locationJson, fn) => {
+                trackProvider.to(roomName).emit('current-provider-location', locationJson);
+                fn('location has been sent.');
+            });
+        });
+        // on leaving the room
+        clientSocket.on('leaving', (roomName, fn) => {
+            clientSocket.leave(roomName, () => {
+                trackProvider.to(roomName).emit('toEveryOneOnRoom', clientSocket.id + ' leaved the room');
+            });
+            fn('you have leaved room number: ' + roomName);
+        });
+        // on disconnecting from server
+        clientSocket.on('disconnect', (reason) => {
+            setTimeout(() => {
+                clientSocket.broadcast.emit('toEveryOneOnServer', clientSocket.id + ' disconnected for ' + reason);
+                clientSocket.disconnect(true);
+            }, 5000);
+        });
+        console.log('New one is connected');
+        clientSocket.on('message', function (msg) {
+            clientSocket.send(msg);
+         });
+    });
 }

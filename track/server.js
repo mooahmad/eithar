@@ -1,6 +1,12 @@
-var express = require('express');
-var app = require('http').createServer(express);
-var io = require('socket.io')(app);
+const express = require('express')();
+const app = require('http').Server(express);
+const io = require('socket.io')(app, {
+    serveClient: true,
+    cookie: true,
+    transports: ['websocket']
+  });
+const redisAdapter = require('socket.io-redis');
+io.adapter(redisAdapter({ host: 'localhost', port: 6379 }));
 const prodPort = 9090;
 const devPort = 9090;
 const testPort = 9090;
@@ -12,6 +18,7 @@ process.argv.forEach(function (val, index, array) {
         port = testPort;
 });
 app.listen(port, '0.0.0.0');
+io.attach(app);
 
 
 // creating namespace called track_provider on socket server
@@ -43,5 +50,9 @@ var trackProvider = io.of('/track_provider').on('connection', function (clientSo
             clientSocket.disconnect(true);
         }, 5000);
     });
+    console.log('New one is connected');
+    clientSocket.on('message', function (msg) {
+        clientSocket.send(msg);
+     });
 });
 console.log('your on port ' + port);
