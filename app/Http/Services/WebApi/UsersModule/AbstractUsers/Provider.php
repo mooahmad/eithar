@@ -608,7 +608,7 @@ class Provider
             $questionnaire->options_en = empty(unserialize($questionnaire->options_en)) ? [] : unserialize($questionnaire->options_en);
             $questionnaire->answer = empty(unserialize($answer)) ? "" : unserialize($answer);
             $questionnaire->answerArray = empty(unserialize($answer)) ? [] : unserialize($answer);
-            if($questionnaire->type == 1 || $questionnaire->type == 2)
+            if($questionnaire->type == 0 || $questionnaire->type == 1)
             $questionnaire->answer = "";
             else
             $questionnaire->answerArray = [];
@@ -993,6 +993,7 @@ class Provider
                             $now = Carbon::now();
                             $nowPlusHours = Carbon::now()->addHours(3);
                             $afterStartDay = Carbon::parse($calendar->start_date);
+                            dd("now:  ". $now . "  plus3:  ". "  startTime:  ". $afterStartDay);
                             if (!($now <= $afterStartDay && $nowPlusHours >= $afterStartDay)) {
                                 $startDate = "Unknown";
                             }
