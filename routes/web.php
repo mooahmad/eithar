@@ -36,18 +36,24 @@ Route::group(['namespace' => FE], function () {
                 Route::group(['middleware'=>'CustomerWebAuth'],function (){
                     Route::get('logout', 'LoginFrontController@logoutCustomer')->name('customer_logout');
                 });
-                
+
             });
         });
 
         Route::group(['namespace'=>'CategoriesFront'],function (){
             Route::group(['prefix'=>'categories'], function (){
+
                 Route::get('doctors','CategoriesFrontController@showDoctorsSubCategories')->name('doctors_category');
+                Route::group(['namespace'=>'Doctors'],function (){
+                    Route::get('doctors/{id}/{name?}','DoctorsCategoryController@showDoctorProfile')->name('doctor_profile');
+                });
+
                 Route::get('lap','CategoriesFrontController@showLapSubCategories')->name('lap_category');
                 Route::get('physiotherapy','CategoriesFrontController@showPhysiotherapySubCategories')->name('physiotherapy_category');
                 Route::get('nurse','CategoriesFrontController@showNurseSubCategories')->name('nurse_category');
                 Route::get('women','CategoriesFrontController@showWomenSubCategories')->name('women_category');
                 Route::post('subcategory-providers-list','CategoriesFrontController@getSubCategoryProvidersList')->name('get_subcategory_providers_list');
+
             });
 //            Route::get('categories/{category}/{name}', 'CategoriesFrontController@showSubCategories')->name('show-subcategories');
         });

@@ -22,8 +22,7 @@ class CategoriesFrontController extends Controller
     public function showDoctorsSubCategories()
     {
         $category = Category::whereNull('category_parent_id')
-            ->where('id',config('constants.categories.Doctor'))
-            ->first();
+            ->find(config('constants.categories.Doctor'));
         if (!$category) return redirect()->route('home');
         $data = [
             'main_categories'=>Category::GetParentCategories()->get(),
@@ -93,6 +92,10 @@ class CategoriesFrontController extends Controller
         return $subcategories;
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
     public function getSubCategoryProvidersList(Request $request)
     {
         if ($request->ajax()){
@@ -122,7 +125,7 @@ class CategoriesFrontController extends Controller
                     ->where('provider_cities.city_id',auth()->guard('customer-web')->user()->city_id);
             }
 
-            $providers = $query->get();
+            $providers = $query->select(['providers.*'])->get();
             if (count($providers)){
                 $html = $this->buildHTMLProviderList($providers,$subcategory_id);
                 $data = [
@@ -151,7 +154,7 @@ class CategoriesFrontController extends Controller
             $num_rating      = $provider->no_of_ratings;
             $num_views       = $provider->no_of_views;
             $image           = $provider->profile_picture_path;
-            $url             = url()->route('home');
+            $url             = url()->route('doctor_profile',['id'=>$provider->id,'name'=>Utilities::beautyName($full_name)]);
 
             $html_list .= '<div class="col-sm-12 col-md-6 col-lg-3">
                                 <div class="doctor_block">

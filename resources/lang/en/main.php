@@ -58,4 +58,6 @@ return [
     'register'                      => 'Register Now?',
     'error_login'                   => 'Please check your credentials',
     'logout'                        => 'Logout',
+    'KSA'                           => 'Saudi Arabia',
+    'about_provider'                => 'About Provider',
 ];

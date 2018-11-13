@@ -188,4 +188,12 @@ class Utilities
         return redirect($redirect_to);
     }
 
+    /**
+     * @param $name
+     * @return mixed
+     */
+    public static function beautyName($name)
+    {
+        return str_replace(' ','-',$name);
+    }
 }
