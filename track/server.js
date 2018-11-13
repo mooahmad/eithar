@@ -32,8 +32,8 @@ var trackProvider = io.on('connection', function (clientSocket) {
         clientSocket.on('sending-provider-location', (roomName, locationJson, fn) => {
             trackProvider.to(roomName).emit('current-provider-location', locationJson);
             if(fn)
-            fn('location has been sent.');
-            console.log(clientSocket.id + ' location has been sent.');
+            fn('location '+ JSON.stringify(locationJson) + ' has been sent.' );
+            console.log(clientSocket.id + ' location '+ JSON.stringify(locationJson) + ' has been sent.');
         });
     });
     // on leaving the room
