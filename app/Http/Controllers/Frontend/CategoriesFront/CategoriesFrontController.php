@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Frontend\CategoriesFront;
 use App\Helpers\Utilities;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Models\Customer;
 use App\Models\Provider;
 use App\Models\Service;
 use Illuminate\Http\Request;
@@ -14,7 +13,7 @@ class CategoriesFrontController extends Controller
 {
     public function __construct()
     {
-        $this->customer = Customer::first();
+
     }
 
     /**
@@ -100,7 +99,7 @@ class CategoriesFrontController extends Controller
             $subcategory_id = (int)$request->input('subcategory_id');
             $data = [
                 'result'=>false,
-                'list'=>$this->customer,
+                'list'=>'',
                 'id'=>$subcategory_id
             ];
 
@@ -108,20 +107,22 @@ class CategoriesFrontController extends Controller
                 return response($data);
             }
 
-            //get customer city
-            $city_id = $this->customer->city_id;
-
             //get subcategory services with providers
             $services = Service::where('category_id',$subcategory_id)
                 ->where('type','!=',3)->get()->pluck('id');
 
-            $providers = Provider::GetActiveProviders()
-                    ->where('is_doctor',config('constants.provider.doctor'))
-                    ->join('provider_services','providers.id','=','provider_services.provider_id')
-                    ->whereIn('provider_services.service_id',$services)
-                    ->join('provider_cities','providers.id','=','provider_cities.provider_id')
-                    ->where('provider_cities.city_id',$city_id)
-                    ->get();
+            $query = Provider::GetActiveProviders()
+                    ->where('is_doctor',config('constants.provider.doctor'));
+
+            $query->join('provider_services','providers.id','=','provider_services.provider_id')
+                    ->whereIn('provider_services.service_id',$services);
+
+            if (auth()->guard('customer-web')->check() && auth()->guard('customer-web')->user()->city_id){
+                $query->join('provider_cities','providers.id','=','provider_cities.provider_id')
+                    ->where('provider_cities.city_id',auth()->guard('customer-web')->user()->city_id);
+            }
+
+            $providers = $query->get();
             if (count($providers)){
                 $html = $this->buildHTMLProviderList($providers,$subcategory_id);
                 $data = [
@@ -142,6 +143,7 @@ class CategoriesFrontController extends Controller
     public function buildHTMLProviderList($providers,$subcategory_id)
     {
         $html_list = '<div class="list_doctor subCategory_'.$subcategory_id.'"> <div class="container"><div class="row">';
+
         foreach ($providers as $provider){
             $full_name       = $provider->full_name;
             $speciality_area = $provider->speciality_area;

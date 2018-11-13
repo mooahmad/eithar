@@ -17,7 +17,7 @@ $(document).ready(function () {
                 }
             },
             error: function (data) {
-                alert(data.result);
+                console.log('something went wrong.');
             }
         });
     }
