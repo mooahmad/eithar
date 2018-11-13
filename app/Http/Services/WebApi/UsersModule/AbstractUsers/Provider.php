@@ -993,7 +993,7 @@ class Provider
                             $now = Carbon::now();
                             $nowPlusHours = Carbon::now()->addHours(3);
                             $afterStartDay = Carbon::parse($calendar->start_date);
-                            dd("now:  ". $now . "  plus3:  ". $nowPlusHours . "  startTime:  ". $afterStartDay);
+                            dd("now:  ". $now . "  plus3:  ". $nowPlusHours . "  startTime:  ". $afterStartDay . " original: ". $calendar->start_date);
                             if (!($now <= $afterStartDay && $nowPlusHours >= $afterStartDay)) {
                                 $startDate = "Unknown";
                             }
