@@ -4,7 +4,6 @@ var path = require('path');
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var redis = require('socket.io-redis');
-var cluster  = require('cluster');
 var port = process.env.PORT || 9090;
 var serverName = process.env.NAME || 'Unknown';
 
