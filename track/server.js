@@ -23,13 +23,17 @@ var trackProvider = io.on('connection', function (clientSocket) {
     clientSocket.on('joining', (roomName, fn) => {
         clientSocket.join(roomName, () => {
             trackProvider.to(roomName).emit('toEveryOneOnRoom', 'new member joined to room');
+            console.log(clientSocket.id + ' joined to room');
         });
         // call back function to current member that he joined
+        if(fn)
         fn('you have joined room number: ' + roomName + '  with id: ' + clientSocket.id);
 
         clientSocket.on('sending-provider-location', (roomName, locationJson, fn) => {
             trackProvider.to(roomName).emit('current-provider-location', locationJson);
+            if(fn)
             fn('location has been sent.');
+            console.log(clientSocket.id + ' location has been sent.');
         });
     });
     // on leaving the room
@@ -37,14 +41,16 @@ var trackProvider = io.on('connection', function (clientSocket) {
         clientSocket.leave(roomName, () => {
             trackProvider.to(roomName).emit('toEveryOneOnRoom', clientSocket.id + ' leaved the room');
         });
+        if(fn)
         fn('you have leaved room number: ' + roomName);
+        console.log(clientSocket.id + ' have leaved room number: ' + roomName);
     });
     // on disconnecting from server
     clientSocket.on('disconnect', (reason) => {
         setTimeout(() => {
             clientSocket.broadcast.emit('toEveryOneOnServer', clientSocket.id + ' disconnected for ' + reason);
             clientSocket.disconnect(true);
-        }, 5000);
+        }, 1000);
     });
     console.log('New one is connected');
 });
