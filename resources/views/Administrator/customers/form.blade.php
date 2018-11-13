@@ -151,6 +151,9 @@
                                     </span>
                                     {!! Form::text('mobile_number',old('mobile_number'), array('id'=>'mobile_number', 'class'=>'form-control','required'=>'required','placeholder'=>trans('admin.mobile_number'))) !!}
                                 </div>
+                                <div class="margin-bottom-25 margin-top-20">
+                                    <span class="note note-warning note-bordered">Enter Mobile Number Start with =<strong>{{ config('constants.MobileNumberStart') }}</strong></span>
+                                </div>
                                 @if($errors->has('mobile_number'))
                                     <span class="help-block text-danger">{{ $errors->first('mobile_number') }}</span>
                                 @endif

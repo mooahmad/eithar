@@ -33,6 +33,7 @@ Route::group(['namespace' => FE], function () {
             Route::group(['prefix'=>'customer'], function (){
                 Route::get('login', 'LoginFrontController@showCustomerLogin')->name('customer_login');
                 Route::post('login', 'LoginFrontController@customerLogin')->name('customer_login_post');
+                Route::get('logout', 'LoginFrontController@logoutCustomer')->name('customer_logout');
             });
         });
 

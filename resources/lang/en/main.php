@@ -56,4 +56,6 @@ return [
     'submit'                        => 'Submit',
     'no_have_account'               => 'Don\'t have an account?',
     'register'                      => 'Register Now?',
+    'error_login'                   => 'Please check your credentials',
+    'logout'                        => 'Logout',
 ];

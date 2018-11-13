@@ -16,6 +16,22 @@
                             <!-- Start Form content-->
                             <div class="form_content">
                                 <h2 class="title">{{ trans('main.login') }}</h2>
+                                @if(Session::has('error_login'))
+                                    <div class="alert alert-danger">
+                                        <button class="close" data-close="alert"></button>
+                                        <span>{{ session()->get('error_login') }}</span>
+                                    </div>
+                                @endif
+                                @if(count($errors))
+                                    <div class="alert alert-danger">
+                                        <button class="close" data-close="alert"></button>
+                                        <ul>
+                                            @foreach($errors->all() as $error)
+                                                <li>{{$error}}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                                 {!! Form::open(['url'=>url()->route('customer_login_post'),'class'=>'glopal_form middel_form']) !!}
                                     <div class="phone_number">
                                         <aside class="phone_number-key"> <bdi> +966 </bdi> </aside>

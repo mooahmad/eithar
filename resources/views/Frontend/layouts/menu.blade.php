@@ -15,7 +15,11 @@
                         <li><a href="{{ url()->route('about_us') }}" title="{{ trans('main.about_us') }}">{{ trans('main.about_us') }}</a></li>
                         <li><a href="{{ url()->route('home') }}" title="{{ trans('main.contact_us') }}">{{ trans('main.our_services') }}</a></li>
                         <li><a href="{{ url()->route('home') }}" title="{{ trans('main.contact_us') }}">{{ trans('main.contact_us') }}</a></li>
-                        <li><a href="{{ url()->route('customer_login') }}" title="{{ trans('main.login') }}">{{ trans('main.login') }}</a></li>
+                        @if(auth()->guard('customer-web')->check())
+                            <li><a href="{{ url()->route('customer_logout') }}" title="{{ trans('main.logout') }}">{{ trans('main.logout') }}</a></li>
+                        @else
+                            <li><a href="{{ url()->route('customer_login') }}" title="{{ trans('main.login') }}">{{ trans('main.login') }}</a></li>
+                        @endif
                     </ul>
 
                 @if(LaravelLocalization::getCurrentLocale() == 'ar')

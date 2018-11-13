@@ -220,6 +220,7 @@ return [
         'approved'=>2,
     ],
     'DefaultPassword'=>'secret',
+    'MobileNumberStart'=>'966',
     'CustomerEitharID'=>'ETHR-0000',
     'invoice_paid'=>[
         'paid'=>1,
