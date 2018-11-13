@@ -372,6 +372,13 @@ class Provider
         $passedAppointments = [];
         $finalAppointments = [];
         $page -= 1;
+        $servicesBookingsMaxPages = ceil(Auth::user()->load(['servicesBookings.service_appointments' => function ($query) use ($eitharId) {
+            if ($eitharId != null) {
+                $query->join('service_bookings', 'service_booking_appointments.service_booking_id', 'service_bookings.id');
+                $query->join('customers', 'service_bookings.customer_id', 'customers.id')->whereRaw("customers.eithar_id = '$eitharId'");
+            }
+            $query->orderByRaw('service_booking_appointments.created_at DESC');
+        }])->servicesBookings()->count()/config('constants.paggination_items_per_page'));
         $servicesBookings = Auth::user()->load(['servicesBookings.service_appointments' => function ($query) use ($eitharId) {
             if ($eitharId != null) {
                 $query->join('service_bookings', 'service_booking_appointments.service_booking_id', 'service_bookings.id');
@@ -509,6 +516,7 @@ class Provider
         });
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
             "bookings" => $finalAppointments,
+            "max_pages" => $servicesBookingsMaxPages
         ]));
     }
 
@@ -933,6 +941,7 @@ class Provider
     public function getProviderNotifications(Request $request, $page = 1)
     {
         $page -= 1;
+        $notificationsMaxPages = ceil(Auth::user()->notifications()->where('is_pushed', 1)->count()/config('constants.paggination_items_per_page'));
         $notifications = Auth::user()->notifications()->where('is_pushed', 1)
             ->skip($page * config('constants.paggination_items_per_page'))->take(config('constants.paggination_items_per_page'))->get();
         $returnNotifications = [];
@@ -954,6 +963,7 @@ class Provider
         $notifications->markAsRead();
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
             "notifications" => $returnNotifications,
+            "max_pages" => $notificationsMaxPages
         ]));
     }
 
@@ -962,6 +972,9 @@ class Provider
         $appointments = [];
         $finalAppointments = [];
         $page -= 1;
+        $servicesBookingsMaxPages = ceil(Auth::user()->load(['servicesBookings.service_appointments' => function ($query) {
+            $query->orderByRaw('service_booking_appointments.created_at DESC');
+        }])->servicesBookings()->count()/config('constants.paggination_items_per_page'));
         $servicesBookings = Auth::user()->load(['servicesBookings.service_appointments' => function ($query) {
             $query->orderByRaw('service_booking_appointments.created_at DESC');
         }])->servicesBookings()->skip($page * config('constants.paggination_items_per_page'))->take(config('constants.paggination_items_per_page'))->get();
@@ -1071,6 +1084,7 @@ class Provider
         });
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
             "bookings" => $finalAppointments,
+            "max_pages" => $servicesBookingsMaxPages
         ]));
     }
 }

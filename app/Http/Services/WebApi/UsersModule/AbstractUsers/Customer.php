@@ -284,6 +284,9 @@ class Customer
         $passedAppointments = [];
         $finalAppointments = [];
         $page -= 1;
+        $servicesBookingsMaxPages = ceil(Auth::user()->load(['servicesBooking.service_appointments' => function ($query) {
+            $query->orderByRaw('service_booking_appointments.created_at DESC');
+        }])->servicesBooking()->count()/config('constants.paggination_items_per_page'));
         $servicesBookings = Auth::user()->load(['servicesBooking.service_appointments' => function ($query) {
             $query->orderByRaw('service_booking_appointments.created_at DESC');
         }])->servicesBooking()->skip($page * config('constants.paggination_items_per_page'))->take(config('constants.paggination_items_per_page'))->get();
@@ -373,7 +376,8 @@ class Customer
             array_push($finalAppointments, $appointment);
         });
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
-            "appointments" => $finalAppointments
+            "appointments" => $finalAppointments,
+            "max_pages" => $servicesBookingsMaxPages
         ]));
     }
 
@@ -474,6 +478,7 @@ class Customer
     public function getCustomerNotifications(Request $request, $page = 1)
     {
         $page -= 1;
+        $notificationsMaxPages = ceil(Auth::user()->notifications()->where('is_pushed', 1)->count()/config('constants.paggination_items_per_page'));
         $notifications = Auth::user()->notifications()->where('is_pushed', 1)
         ->skip($page * config('constants.paggination_items_per_page'))->take(config('constants.paggination_items_per_page'))->get();
         $returnNotifications = [];
@@ -492,7 +497,8 @@ class Customer
         }
         Auth::user()->notifications->markAsRead();
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([
-            "notifications" => $returnNotifications
+            "notifications" => $returnNotifications,
+            "max_pages" => $notificationsMaxPages
         ]));
     }
 
