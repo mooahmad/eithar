@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\AdminsMiddleware;
+use App\Http\Middleware\CustomerWebAuth;
 use App\Http\Middleware\Language;
 use App\Http\Middleware\ProviderMiddleware;
 use App\Http\Middleware\SetLang;
@@ -76,6 +77,7 @@ class Kernel extends HttpKernel
         'localize' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,
         'localizationRedirect' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter::class,
         'localeSessionRedirect' => \Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect::class,
-        'localeViewPath' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class
+        'localeViewPath' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
+        'CustomerWebAuth'=>CustomerWebAuth::class
     ];
 }

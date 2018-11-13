@@ -27,13 +27,16 @@ Route::group(['namespace' => FE], function () {
         Route::get('/', 'FrontendController@index')->name('home');
         Route::get('about-us', 'FrontendController@AboutUs')->name('about_us');
         Route::get('privacy-and-conditions', 'FrontendController@PrivacyAndConditions')->name('privacy_and_conditions');
-//        Route::get('customer/login', 'FrontendController@showCustomerLogin')->name('customer_login');
 
         Route::group(['namespace'=>'CustomerFront'],function (){
             Route::group(['prefix'=>'customer'], function (){
                 Route::get('login', 'LoginFrontController@showCustomerLogin')->name('customer_login');
                 Route::post('login', 'LoginFrontController@customerLogin')->name('customer_login_post');
-                Route::get('logout', 'LoginFrontController@logoutCustomer')->name('customer_logout');
+
+                Route::group(['middleware'=>'CustomerWebAuth'],function (){
+                    Route::get('logout', 'LoginFrontController@logoutCustomer')->name('customer_logout');
+                });
+                
             });
         });
 
