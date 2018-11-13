@@ -991,9 +991,9 @@ class Provider
                             $startTime = Carbon::parse($calendar->start_date)->format('g:i A');
                             $endTime = Carbon::parse($calendar->end_date)->format('g:i A');
                             $now = Carbon::now();
-                            $nowPlusHours = Carbon::now()->addHours(3);
+                            //$nowPlusHours = Carbon::now()->addHours(3);
+                            $nowPlusHours = Carbon::now()->addDays(6);
                             $afterStartDay = Carbon::parse($calendar->start_date);
-                            dd("id: ".$serviceAppointment->slot_id." now:  ". $now . "  plus3:  ". $nowPlusHours . "  startTime:  ". $afterStartDay . " original: ". $calendar->start_date);
                             if (!($now <= $afterStartDay && $nowPlusHours >= $afterStartDay)) {
                                 $startDate = "Unknown";
                             }
