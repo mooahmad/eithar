@@ -10,9 +10,9 @@
     {{--Meta tags for sharing on social media--}}
     <meta property="og:url"           content="{{ url()->current() }}" />
     <meta property="og:type"          content="article" />
-    <meta property="og:title"         content="@if(session()->has('share-title')) {{ session()->get('share-title') }} @endif" />
-    <meta property="og:description"   content="@if(session()->has('share-description')) {{ session()->get('share-description') }} @endif" />
-    <meta property="og:image"         content="@if(session()->has('share-image')) {{ session()->get('share-image') }} @endif" />
+    <meta property="og:title"         content="@if(session()->has('share_title')) {{ session()->get('share_title') }} @endif" />
+    <meta property="og:description"   content="@if(session()->has('share_description')) {{ session()->get('share_description') }} @endif" />
+    <meta property="og:image"         content="@if(session()->has('share_image')) {{ session()->get('share_image') }} @endif" />
 
     <link rel="stylesheet" href="{{ asset('public/Frontend/css/fontawesome-all.css') }}" />
     <link rel="stylesheet" href="{{ asset('public/Frontend/css/bootstrap.min.css') }}" />

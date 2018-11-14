@@ -196,4 +196,16 @@ class Utilities
     {
         return str_replace(' ','-',$name);
     }
+
+    /**
+     * @param null $share_title
+     * @param null $share_description
+     * @param null $share_image
+     */
+    public static function setMetaTagsAttributes($share_title=null,$share_description=null,$share_image=null)
+    {
+        session()->flash('share_title',$share_title);
+        session()->flash('share_description',strip_tags(str_limit($share_description,200)));
+        session()->flash('share_image',$share_image);
+    }
 }

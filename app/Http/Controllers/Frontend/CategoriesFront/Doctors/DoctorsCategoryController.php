@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend\CategoriesFront\Doctors;
 
+use App\Helpers\Utilities;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Provider;
@@ -19,11 +20,19 @@ class DoctorsCategoryController extends Controller
 
     public function showDoctorProfile(Request $request)
     {
-        $provider = $this->checkProviderProfile($request->id);
+        $provider = $this->checkProviderProfile($request->provider_id);
+        $subcategory = Category::findOrfail($request->subcategory_id);
+
         if (!$provider) return redirect()->route('doctors_category');
+// set meta tags
+        Utilities::setMetaTagsAttributes($provider->full_name,$provider->about,$provider->profile_picture_path);
+
+//        TODO increase number of views for provider
+
         $data = [
             'main_categories'=>Category::GetParentCategories()->get(),
             'provider'=>$provider,
+            'subcategory'=>$subcategory
         ];
         return view(FE.'.pages.providers.profile')->with($data);
     }

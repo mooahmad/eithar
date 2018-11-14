@@ -60,4 +60,7 @@ return [
     'logout'                        => 'Logout',
     'KSA'                           => 'Saudi Arabia',
     'about_provider'                => 'About Provider',
+    'doctor_profile'                => 'Provider Profile',
+    'experience'                    => 'Experience',
+    'education'                     => 'Education',
 ];

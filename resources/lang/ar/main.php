@@ -60,4 +60,7 @@ return [
     'logout'                        => 'تسجيل الخروج',
     'KSA'                           => 'المملكة العربية السعودية',
     'about_provider'                => 'عن الدكتور',
+    'doctor_profile'                => 'Provider Profile',
+    'experience'                    => 'الخبرات والمهارات',
+    'education'                     => 'الدراسة',
 ];

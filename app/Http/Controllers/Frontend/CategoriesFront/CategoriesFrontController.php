@@ -99,26 +99,28 @@ class CategoriesFrontController extends Controller
     public function getSubCategoryProvidersList(Request $request)
     {
         if ($request->ajax()){
-            $subcategory_id = (int)$request->input('subcategory_id');
+            $subcategory = Category::findOrFail($request->input('subcategory_id'));
             $data = [
                 'result'=>false,
                 'list'=>'',
-                'id'=>$subcategory_id
+                'id'=>''
             ];
 
-            if (empty($subcategory_id) || ! is_int($subcategory_id) || $subcategory_id<1){
+            if (empty($subcategory)){
                 return response($data);
             }
 
             //get subcategory services with providers
-            $services = Service::where('category_id',$subcategory_id)
+            $services = $subcategory->services()
                 ->where('type','!=',3)->get()->pluck('id');
 
             $query = Provider::GetActiveProviders()
                     ->where('is_doctor',config('constants.provider.doctor'));
 
-            $query->join('provider_services','providers.id','=','provider_services.provider_id')
+            if (!empty($services)){
+                $query->join('provider_services','providers.id','=','provider_services.provider_id')
                     ->whereIn('provider_services.service_id',$services);
+            }
 
             if (auth()->guard('customer-web')->check() && auth()->guard('customer-web')->user()->city_id){
                 $query->join('provider_cities','providers.id','=','provider_cities.provider_id')
@@ -127,11 +129,11 @@ class CategoriesFrontController extends Controller
 
             $providers = $query->select(['providers.*'])->get();
             if (count($providers)){
-                $html = $this->buildHTMLProviderList($providers,$subcategory_id);
+                $html = $this->buildHTMLProviderList($providers,$subcategory);
                 $data = [
                     'result'=>true,
                     'list'=>$html,
-                    'id'=>$subcategory_id
+                    'id'=>$subcategory->id
                 ];
             }
             return response($data);
@@ -140,12 +142,12 @@ class CategoriesFrontController extends Controller
 
     /**
      * @param $providers
-     * @param $subcategory_id
+     * @param $subcategory
      * @return string
      */
-    public function buildHTMLProviderList($providers,$subcategory_id)
+    public function buildHTMLProviderList($providers,$subcategory)
     {
-        $html_list = '<div class="list_doctor subCategory_'.$subcategory_id.'"> <div class="container"><div class="row">';
+        $html_list = '<div class="list_doctor subCategory_'.$subcategory->id.'"> <div class="container"><div class="row">';
 
         foreach ($providers as $provider){
             $full_name       = $provider->full_name;
@@ -154,7 +156,7 @@ class CategoriesFrontController extends Controller
             $num_rating      = $provider->no_of_ratings;
             $num_views       = $provider->no_of_views;
             $image           = $provider->profile_picture_path;
-            $url             = url()->route('doctor_profile',['id'=>$provider->id,'name'=>Utilities::beautyName($full_name)]);
+            $url             = url()->route('doctor_profile',['subcategory_id'=>$subcategory->id,'subcategory_name'=>Utilities::beautyName($subcategory->name),'provider_id'=>$provider->id,'provider_name'=>Utilities::beautyName($full_name)]);
 
             $html_list .= '<div class="col-sm-12 col-md-6 col-lg-3">
                                 <div class="doctor_block">

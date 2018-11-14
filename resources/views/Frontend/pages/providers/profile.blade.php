@@ -20,31 +20,30 @@
                             </div>
                             <div class="doctor_info-description">
                                 <h2>{{ $provider->full_name }}</h2>
-                                <span>{{ $provider->speciality_area }}</span>
+                                <span>{{ $subcategory->name }}</span>
                                 <h3>{{ trans('main.KSA') }}</h3>
                                 <span>{{ $provider->speciality_area }}</span>
                                 <div class="social_media-content">
                                     <ul class="social_media list-unstyled">
-                                        <li> <a href="#" target="_blank" title="Facebook" class="fab fa-facebook-f"></a></li>
-                                        <li> <a href="#" target="_blank" title="snapchat " class="fab fa-snapchat-ghost"></a></li>
-                                        <li> <a href="#" target="_blank" title="twitter " class="fab fa-twitter"></a></li>
-                                        <li> <a href="#" target="_blank" title="instagram" class="fab fa-instagram"></a></li>
-                                        <li> <a href="#" target="_blank" title="youtube" class="fab fa-youtube"></a></li>
+                                        <li> <a href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}" target="_blank" title="Facebook" class="fab fa-facebook-f"></a></li>
+                                        <li> <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ url()->current() }}&title={{ $provider->full_name }}&summary={{ \App\Helpers\Utilities::beautyName($provider->about) }}&source={{ trans('main.site_name') }}" target="_blank" title="{{ trans('main.site_name') }}" class="fab fa-linkedin-in"></a></li>
+                                        <li> <a href="https://twitter.com/share?url={{ url()->current() }}" target="_blank" title="twitter " class="fab fa-twitter"></a></li>
+                                        <li> <a href="https://plus.google.com/share?url={{url()->current()}}" target="_blank" title="GooglePlus" class="fab fa-google-plus-g"></a></li>
                                     </ul>
                                 </div>
                                 <div class="rate_content">
                                     <aside>
-                                        <span> 50</span>
+                                        <span>{{ $provider->no_of_views }}</span>
                                         <i class="far fa-share-square"></i>
                                     </aside>
 
                                     <aside>
-                                        <span> 50</span>
+                                        <span>{{ $provider->no_of_ratings }}</span>
                                         <i class="far fa-star"></i>
                                     </aside>
 
                                     <aside>
-                                        <span> 50</span>
+                                        <span>{{ $provider->no_of_likes }}</span>
                                         <i class="far fa-heart"></i>
                                     </aside>
                                 </div>
@@ -75,62 +74,47 @@
                                 <p class="description">{{ $provider->about }}</div>
                             <div class="row">
                                 <div class="col-sm-12 col-md-10">
-
                                     <!-- Start Docotor Skills-->
                                     <div class="doctor_education">
-                                        <h2 class="title"> الخبرات والمهارات</h2>
-                                        <p class="list_info"> تخصص الطب؛ قد يقول البعض تخصصًا فرعيًا للطب الباطني ، الذي يتعامل مع تشخيص وعلاج الأمراض المرتبطة بالهرمونات.
-                                        </p>
+                                        <h2 class="title">{{ trans('main.experience') }}</h2>
+                                        <p class="list-info">{{ $provider->experience }}</p>
                                     </div>
                                     <!-- End Docotor Skills-->
 
                                     <!-- Start Docotor Skills-->
                                     <div class="doctor_education">
-                                        <h2 class="title"> الخبرات والمهارات</h2>
-                                        <p class="list-info"> تخصص الطب؛ قد يقول البعض تخصصًا فرعيًا للطب الباطني ، الذي يتعامل مع تشخيص وعلاج الأمراض المرتبطة بالهرمونات.
-                                        </p>
+                                        <h2 class="title">{{ trans('main.education') }}</h2>
+                                        <p class="list-info">{{ $provider->education }}</p>
                                     </div>
                                     <!-- End Docotor Skills-->
-
-                                    <!-- Start Docotor Skills-->
-                                    <div class="doctor_education">
-                                        <h2 class="title"> الخبرات والمهارات</h2>
-                                        <p class="list-info"> تخصص الطب؛ قد يقول البعض تخصصًا فرعيًا للطب الباطني ، الذي يتعامل مع تشخيص وعلاج الأمراض المرتبطة بالهرمونات.
-                                        </p>
-                                    </div>
-                                    <!-- End Docotor Skills-->
-
                                 </div>
-                                <div class="col-sm-12 col-md-2">
-                                    <div class="doctor_video">
-                                        <!-- Button to Open the Modal -->
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                                            <img src="img/icon/play-video.png" alt="">
-                                        </button>
-
-                                        <!-- The Modal -->
-                                        <div class="modal" id="myModal">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-
-                                                    <!-- Modal Header -->
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                @if($provider->video)
+                                    <div class="col-sm-12 col-md-2">
+                                        <div class="doctor_video">
+                                            <!-- Button to Open the Modal -->
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                                <img src="{{ asset('public/Frontend/img/icon/play-video.png') }}" alt="{{ $provider->full_name }}">
+                                            </button>
+                                            <!-- The Modal -->
+                                            <div class="modal" id="myModal">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <!-- Modal Header -->
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        </div>
+                                                        <!-- Modal body -->
+                                                        <div class="modal-body">
+                                                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/{{ $provider->video }}?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                                        </div>
                                                     </div>
-
-                                                    <!-- Modal body -->
-                                                    <div class="modal-body">
-                                                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/23ruEfLScnM?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> </div>
                                                 </div>
+                                                <!-- End Model-->
                                             </div>
-                                            <!-- End Model-->
                                         </div>
                                     </div>
-                                </div>
-
-
+                                @endif
                             </div>
-
                         </div>
                         <!--=02=End Doctor Profile-->
                     </div>
@@ -143,9 +127,9 @@
 @stop
 
 @section('js')
-    <script>
-        var url = "{{ url()->route('get_subcategory_providers_list') }}";
-        var _token = "{{ csrf_token() }}";
-    </script>
-    <script src="{{ asset('public/Frontend/custom/get_providers.js') }}" type="text/javascript"></script>
+    {{--<script>--}}
+        {{--var url = "{{ url()->route('get_subcategory_providers_list') }}";--}}
+        {{--var _token = "{{ csrf_token() }}";--}}
+    {{--</script>--}}
+    {{--<script src="{{ asset('public/Frontend/custom/get_providers.js') }}" type="text/javascript"></script>--}}
 @stop
