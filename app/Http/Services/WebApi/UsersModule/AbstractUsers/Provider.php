@@ -1020,6 +1020,7 @@ class Provider
                             "start_date" => $startDate,
                             "start_time" => $startTime,
                             "end_time" => $endTime,
+                            "customer_position" => $customer->position
                         ];
                         //one and package
                     } elseif ($service->type == 1 || $service->type == 2) {
@@ -1045,6 +1046,7 @@ class Provider
                             "start_date" => $startDate,
                             "start_time" => $startTime,
                             "end_time" => $endTime,
+                            "customer_position" => $customer->position
                         ];
                     }
                 } elseif ($serviceBookingLaps != null) {
@@ -1070,6 +1072,7 @@ class Provider
                         "start_date" => $startDate,
                         "start_time" => $startTime,
                         "end_time" => $endTime,
+                        "customer_position" => $customer->position
                     ];
                 }
                 if ($payLoad["start_date"] != "Unknown") {
