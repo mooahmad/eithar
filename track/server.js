@@ -22,8 +22,8 @@ var trackProvider = io.on('connection', function (clientSocket) {
     // requesting to join a room in namespace then send to all in room that new member joined
     clientSocket.on('joining', (roomName, fn) => {
         clientSocket.join(roomName, () => {
-            var now = new Date().getDay + '-' +new Date().getMonth + '-' + new Date().getFullYear+ ' ' +new Date().getHours() + ':' + new Date().getMinutes + ':' +new Date().getSeconds;
-            trackProvider.to(roomName).emit('toEveryOneOnRoom', 'new member joined to room' + roomName + 'at ' + now);
+            var now = new Date().getDay() + '-' +new Date().getMonth() + '-' + new Date().getFullYear()+ ' ' +new Date().getHours() + ':' + new Date().getMinutes() + ':' +new Date().getSeconds();
+            trackProvider.to(roomName).emit('toEveryOneOnRoom', 'new member joined to room ' + roomName + ' at ' + now);
             console.log(clientSocket.id + ' joined to room' + roomName + 'at ' + now);
         });
         // call back function to current member that he joined
@@ -31,7 +31,7 @@ var trackProvider = io.on('connection', function (clientSocket) {
         fn('you have joined room number: ' + roomName + '  with id: ' + clientSocket.id);
 
         clientSocket.on('sending-provider-location', (roomName, locationJson, fn) => {
-            var now = new Date().getDay + '-' +new Date().getMonth + '-' + new Date().getFullYear+ ' ' +new Date().getHours() + ':' + new Date().getMinutes + ':' +new Date().getSeconds;
+            var now = new Date().getDay() + '-' +new Date().getMonth() + '-' + new Date().getFullYear()+ ' ' +new Date().getHours() + ':' + new Date().getMinutes() + ':' +new Date().getSeconds();
             trackProvider.to(roomName).emit('current-provider-location', locationJson);
             if(fn)
             fn('location '+ JSON.stringify(locationJson) + ' has been sent at ' + now );
@@ -54,6 +54,7 @@ var trackProvider = io.on('connection', function (clientSocket) {
             clientSocket.disconnect(true);
         }, 1000);
     });
-    console.log('New one is connected');
+    var now = new Date().getDay() + '-' +new Date().getMonth() + '-' + new Date().getFullYear()+ ' ' +new Date().getHours() + ':' + new Date().getMinutes() + ':' +new Date().getSeconds();
+    console.log('New one is connected to server at ' + now);
 });
 console.log('your on port ' + port);
