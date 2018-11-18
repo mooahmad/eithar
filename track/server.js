@@ -22,18 +22,20 @@ var trackProvider = io.on('connection', function (clientSocket) {
     // requesting to join a room in namespace then send to all in room that new member joined
     clientSocket.on('joining', (roomName, fn) => {
         clientSocket.join(roomName, () => {
-            trackProvider.to(roomName).emit('toEveryOneOnRoom', 'new member joined to room');
-            console.log(clientSocket.id + ' joined to room');
+            var now = new Date().getDay + '-' +new Date().getMonth + '-' + new Date().getFullYear+ ' ' +new Date().getHours() + ':' + new Date().getMinutes + ':' +new Date().getSeconds;
+            trackProvider.to(roomName).emit('toEveryOneOnRoom', 'new member joined to room' + roomName + 'at ' + now);
+            console.log(clientSocket.id + ' joined to room' + roomName + 'at ' + now);
         });
         // call back function to current member that he joined
         if(fn)
         fn('you have joined room number: ' + roomName + '  with id: ' + clientSocket.id);
 
         clientSocket.on('sending-provider-location', (roomName, locationJson, fn) => {
+            var now = new Date().getDay + '-' +new Date().getMonth + '-' + new Date().getFullYear+ ' ' +new Date().getHours() + ':' + new Date().getMinutes + ':' +new Date().getSeconds;
             trackProvider.to(roomName).emit('current-provider-location', locationJson);
             if(fn)
-            fn('location '+ JSON.stringify(locationJson) + ' has been sent.' );
-            console.log(clientSocket.id + ' location '+ JSON.stringify(locationJson) + ' has been sent.');
+            fn('location '+ JSON.stringify(locationJson) + ' has been sent at ' + now );
+            console.log(clientSocket.id + ' location '+ JSON.stringify(locationJson) + ' has been sent at ' + now);
         });
     });
     // on leaving the room
