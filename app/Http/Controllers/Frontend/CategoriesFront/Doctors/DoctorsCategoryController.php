@@ -4,12 +4,16 @@ namespace App\Http\Controllers\Frontend\CategoriesFront\Doctors;
 
 use App\Helpers\Utilities;
 use App\Http\Controllers\Controller;
+use App\Http\Services\WebApi\CommonTraits\Views;
 use App\Models\Category;
 use App\Models\Provider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DoctorsCategoryController extends Controller
 {
+    use Views;
+
     /**
      * DoctorsCategoryController constructor.
      */
@@ -33,6 +37,9 @@ class DoctorsCategoryController extends Controller
         Utilities::setMetaTagsAttributes($provider->full_name,$provider->about,$provider->profile_picture_path);
 
 //        TODO increase number of views for provider
+        if (Auth::guard('customer-web')->user()){
+            $this->view($provider->id,config('constants.transactionsTypes.provider'),'View');
+        }
 
         $data = [
             'main_categories'=>Category::GetParentCategories()->get(),
