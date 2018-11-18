@@ -21,7 +21,15 @@
                             <div class="doctor_info-description">
                                 <h2>{{ $provider->full_name }}</h2>
                                 <span>{{ $subcategory->name }}</span>
-                                <h3>{{ trans('main.KSA') }}</h3>
+                                <h3>
+                                    @if($provider->cities)
+                                        (
+                                        @foreach($provider->cities as $city)
+                                            {{ $city->name }} {{ ($loop->last) ? '' : '-' }}
+                                        @endforeach
+                                        )
+                                    @endif
+                                </h3>
                                 <span>{{ $provider->speciality_area }}</span>
                                 <div class="social_media-content">
                                     <ul class="social_media list-unstyled">
@@ -50,13 +58,11 @@
 
                                 <div class="rate_area">
                                     <ul class="list-unstyled rate_area-stars">
-                                        <li> <img src="img/icon/star_rate.png" alt=""> </li>
-                                        <li> <img src="img/icon/star_rate.png" alt=""> </li>
-                                        <li> <img src="img/icon/star_rate.png" alt=""> </li>
-                                        <li> <img src="img/icon/star_rate.png" alt=""> </li>
-                                        <li> <img src="img/icon/star_rate.png" alt=""> </li>
+                                        {!! \App\Helpers\Utilities::stars($provider->no_of_ratings) !!}
                                     </ul>
-                                    <span>4.5 of 5 (رؤية الملف 250 )</span>
+                                    <span>( {{ ($provider->ratings) ? count($provider->ratings) : '' }} )</span>
+                                    <span>of 5</span>
+                                    <span>{{ $provider->no_of_ratings }}</span>
                                 </div>
                             </div>
                         </div>

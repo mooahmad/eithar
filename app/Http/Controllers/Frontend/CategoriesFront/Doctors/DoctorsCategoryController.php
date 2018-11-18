@@ -18,9 +18,14 @@ class DoctorsCategoryController extends Controller
         //
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function showDoctorProfile(Request $request)
     {
         $provider = $this->checkProviderProfile($request->provider_id);
+
         $subcategory = Category::findOrfail($request->subcategory_id);
 
         if (!$provider) return redirect()->route('doctors_category');

@@ -162,4 +162,14 @@ class Provider extends Authenticatable
     {
         return $this->hasMany('App\Models\ServiceBooking', 'provider_id_assigned_by_admin', 'id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function ratings()
+    {
+        return $this->hasMany(TransactionsUsers::class,'service_provider_id','id')
+            ->where('type',config('constants.transactionsTypes.provider'))
+            ->where('transaction_type',config('constants.transactions.rate'));
+    }
 }

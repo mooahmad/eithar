@@ -208,4 +208,37 @@ class Utilities
         session()->flash('share_description',strip_tags(str_limit($share_description,200)));
         session()->flash('share_image',$share_image);
     }
+
+    /**
+     * @param $number_views
+     * @return string
+     */
+    public static function stars($number_views)
+    {
+        $whole = floor($number_views);
+        $fraction = $number_views - $whole;
+
+        $decimal=0;
+        if($fraction < .25){
+            $decimal=0;
+        }elseif($fraction >= .25 && $fraction < .75){
+            $decimal=.50;
+        }elseif($fraction >= .75){
+            $decimal=1;
+        }
+        $r = $whole + $decimal;
+
+        //As we sometimes round up, we split again
+        $stars="";
+        $newwhole = floor($r);
+        $fraction = $r - $newwhole;
+
+        for($s=1;$s<=$newwhole;$s++){
+            $stars .= '<span class="fa fa-star"></span>';
+        }
+        if($fraction==.5){
+            $stars .= '<span class="fa fa-star-half"></span>';
+        }
+        return $stars;
+    }
 }
