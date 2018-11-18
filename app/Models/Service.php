@@ -71,7 +71,6 @@ class Service extends Model
         return $this->belongsTo('App\Models\Category', 'category_id', 'id');
     }
 
-
     /**
      * get Services that type is Item
      * @return mixed
@@ -97,5 +96,13 @@ class Service extends Model
     public function getProfilePicturePathAttribute($value)
     {
         return Utilities::getFileUrl($value, null, 'local', false);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function questionnaire()
+    {
+        return $this->hasMany(Questionnaire::class,'service_id','id');
     }
 }

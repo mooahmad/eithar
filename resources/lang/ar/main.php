@@ -63,4 +63,8 @@ return [
     'doctor_profile'                => 'Provider Profile',
     'experience'                    => 'الخبرات والمهارات',
     'education'                     => 'الدراسة',
+    'book_now'                      => 'احجز الان',
+    'doctor_booking_meeting'        => 'حجز موعد مع الدكتور',
+    'family_member'                 => 'عضو العائلة',
+    'address'                       => 'العنوان',
 ];

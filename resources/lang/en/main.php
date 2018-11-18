@@ -63,4 +63,8 @@ return [
     'doctor_profile'                => 'Provider Profile',
     'experience'                    => 'Experience',
     'education'                     => 'Education',
+    'book_now'                      => 'Book Now',
+    'doctor_booking_meeting'        => 'Book Meeting',
+    'family_member'                 => 'Family Member',
+    'address'                       => 'Address',
 ];

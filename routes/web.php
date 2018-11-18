@@ -45,7 +45,8 @@ Route::group(['namespace' => FE], function () {
 
                 Route::get('doctors','CategoriesFrontController@showDoctorsSubCategories')->name('doctors_category');
                 Route::group(['namespace'=>'Doctors'],function (){
-                    Route::get('doctors/{subcategory_id}/{subcategory_name}/doctor/{provider_id}/{provider_name?}','DoctorsCategoryController@showDoctorProfile')->name('doctor_profile');
+                    Route::get('doctors/{subcategory_id}/{subcategory_name}/doctor/{provider_id}/{provider_name}','DoctorsCategoryController@showDoctorProfile')->name('doctor_profile');
+                    Route::get('doctors/{subcategory_id}/{subcategory_name}/doctor/{provider_id}/{provider_name}/book','DoctorsCategoryController@showDoctorQuestionnaireCalendar')->name('doctor_booking_meeting');
                 });
 
                 Route::get('lap','CategoriesFrontController@showLapSubCategories')->name('lap_category');

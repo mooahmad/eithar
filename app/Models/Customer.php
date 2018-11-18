@@ -49,7 +49,7 @@ class Customer extends Authenticatable
     }
 
     /**
-     * return customer full name with nationality ID
+     * return customer full name
      * @return string
      */
     public function getFullNameAttribute()
@@ -81,5 +81,13 @@ class Customer extends Authenticatable
     public function pushNotification()
     {
         return $this->hasOne('App\Models\PushNotification', 'customer_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function family_members()
+    {
+        return $this->hasMany(FamilyMember::class,'user_parent_id','id');
     }
 }

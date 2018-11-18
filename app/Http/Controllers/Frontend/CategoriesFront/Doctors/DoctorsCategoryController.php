@@ -49,6 +49,29 @@ class DoctorsCategoryController extends Controller
         return view(FE.'.pages.providers.profile')->with($data);
     }
 
+    public function showDoctorQuestionnaireCalendar(Request $request)
+    {
+        $provider = $this->checkProviderProfile($request->provider_id);
+
+        $subcategory = Category::findOrfail($request->subcategory_id);
+
+        if (!$provider || !Auth::guard('customer-web')->check()) return redirect()->route('doctors_category');
+
+//      set meta tags
+        Utilities::setMetaTagsAttributes($provider->full_name,$provider->about,$provider->profile_picture_path);
+
+        $family_members = Auth::guard('customer-web')->user()->family_members->pluck('full_name','id');
+
+        $questionnaire  = $provider->services->where('type',5)->first()->questionnaire;
+        $data = [
+            'main_categories'=>Category::GetParentCategories()->get(),
+            'provider'=>$provider,
+            'subcategory'=>$subcategory,
+            'family_members'=>$family_members,
+            'questionnaire'=>$questionnaire,
+        ];
+        return view(FE.'.pages.providers.calendar_questionnaire')->with($data);
+    }
     /**
      * @param $provider_id
      * @return mixed
