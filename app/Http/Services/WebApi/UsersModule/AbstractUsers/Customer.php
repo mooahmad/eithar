@@ -386,9 +386,12 @@ class Customer
         $appointment = ServiceBookingAppointment::find($id);
         $calendar = [];
         $services = [];
-        $vat = (Auth::user()->is_saudi_nationality) ? 0 : config('constants.vat_percentage');
+        $customer = Auth::user();
+        $vat = ($customer->is_saudi_nationality) ? 0 : config('constants.vat_percentage');
         $totalBeforeTax = 0;
         $serviceBooking = ServiceBooking::find($appointment->service_booking_id);
+        if($serviceBooking->family_member_id)
+        $customer->position = CustomerModel::find($serviceBooking->family_member_id)->position;
         $promoCode = ($serviceBooking->promo_code != null) ? $serviceBooking->promo_code->code : "";
         $currency = $serviceBooking->currency->name_eng;
         $total = $serviceBooking->price;
@@ -448,7 +451,8 @@ class Customer
             "currency" => $currency,
             "total_before_tax" => $totalBeforeTax,
             "vat" => $vat,
-            "total" => $total
+            "total" => $total,
+            "position" => $customer->position
         ]));
     }
 

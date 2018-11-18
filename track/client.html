@@ -45,7 +45,7 @@
                 // if location message sent to the room
                 serverConnection.on('current-provider-location', (data) => {
                     //current location of provider
-                    calcRoute(new google.maps.LatLng(data.lat, data.lng), new google.maps.LatLng(41.850033, -87.6500523));
+                    calcRoute(new google.maps.LatLng(data.lat, data.lng), new google.maps.LatLng(29.982862, 31.282501));
                     console.log(data);
                 });
             });
@@ -78,14 +78,14 @@
         function initMap() {
             directionsService = new google.maps.DirectionsService();
             directionsDisplay = new google.maps.DirectionsRenderer();
-            chicago = new google.maps.LatLng(41.850033, -87.6500523);
+            chicago = new google.maps.LatLng(29.982862, 31.282501);
             var mapOptions = {
                 zoom: 7,
                 center: chicago
             }
             map = new google.maps.Map(document.getElementById('map'), mapOptions);
             directionsDisplay.setMap(map);
-            connectToSocket("100");
+            connectToSocket("14");
         }
 
         function calcRoute(start, end) {

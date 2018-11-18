@@ -24,7 +24,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
 <script>
     function initMap() {
-        chicago = new google.maps.LatLng(41.850033, -87.6500523);
+        chicago = new google.maps.LatLng(29.959888, 31.507266);
         var mapOptions = {
             zoom: 7,
             center: chicago
@@ -39,7 +39,7 @@
                 position: location,
                 map: map
             });
-            serverConnection.emit('sending-provider-location', 100, location, (data) => {
+            serverConnection.emit('sending-provider-location', 14, location, (data) => {
                 console.log(data);
             });
         }
@@ -47,7 +47,7 @@
 </script>
 <script src="node_modules/socket.io-client/dist/socket.io.js"></script>
 <script>
-    var bookingId = 100;
+    var bookingId = 14;
     const serverConnection = io('ws://13.57.87.177:9090', {
         transports: ['websocket']
     });
