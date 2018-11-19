@@ -56,3 +56,21 @@ pre {
 .rating-stars ul > li.star.selected > i.fa {
     color: #FF912C;
 }
+
+.rating-stars {
+    i {
+        position: relative;
+        input {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background: #f00;
+            top: 0;
+            right: 0;
+            left: 0;
+            opacity: 0;
+        }
+    }
+
+
+}

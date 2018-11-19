@@ -1,172 +1,178 @@
 @import "helpers/variables.scss";
 @import "componants/buttons.scss";
 @import "componants/keyframs.scss";
-@import "componants/slider-custum.scss"; /**********/
+@import "componants/slider-custum.scss";
+/**********/
+
 // Start Provider Pages
-
 .doctor_info-block {
-  border: 1px solid #ddd;
-  border-radius: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 
-  .doctor_pic {
-    max-height: 230px;
-    margin-bottom: 15px;
+    .doctor_pic {
+        max-height: 230px;
+        margin-bottom: 15px;
 
-    img {
-      display: block;
-      max-height: 100%;
-      max-width: 100%;
-    }
-  }
-
-  .doctor_info-description {
-    text-align: center;
-
-    h2 {
-      margin: 0;
-      font-size: 20px;
+        img {
+            display: block;
+            max-height: 100%;
+            max-width: 100%;
+        }
     }
 
-    h3 {
-      margin: 0;
-      font-size: 14px;
-      color: #0A982B;
-    }
+    .doctor_info-description {
+        text-align: center;
 
-    span {
-      margin: 10px 0;
-      display: inline-block;
-    }
+        h2 {
+            margin: 0;
+            font-size: 20px;
+        }
 
-    .rate_content {
-      padding: 0 20px;
-      margin: 30px 0;
-
-      aside {
-        cursor: pointer;
+        h3 {
+            margin: 0;
+            font-size: 14px;
+            color: #0A982B;
+        }
 
         span {
-          color: #7D7D7D;
-          margin: 0 8px;
+            margin: 10px 0;
+            display: inline-block;
         }
 
-        i {
-          font-size: 20px;
-          color: #a5a5a5;
+        .rate_content {
+            padding: 0 20px;
+            margin: 30px 0;
 
-          &.fa-heart {
-            &.active {
-              color: #f00;
-            }
+            aside {
+                cursor: pointer;
 
-            &:hover {
-              color: #f00;
-            }
-          }
+                span {
+                    color: #7D7D7D;
+                    margin: 0 8px;
+                }
 
-          &.fa-star {
-            &.active {
-              color: #ffda44;
-            }
+                i {
+                    font-size: 20px;
+                    color: #a5a5a5;
 
-            &:hover {
-              color: #ffda44;
+                    &.fa-heart {
+                        &.active {
+                            color: #f00;
+                        }
+
+                        &:hover {
+                            color: #f00;
+                        }
+                    }
+
+                    &.fa-star {
+                        &.active {
+                            color: #ffda44;
+                        }
+
+                        &:hover {
+                            color: #ffda44;
+                        }
+                    }
+                }
             }
-          }
         }
-      }
+
+        .rate_area {
+            background-color: #07A7E2;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            padding: 20px 0;
+
+            .rate_area-stars {
+                li {
+                    display: inline-block;
+                    i {
+                        color: #fff;
+                    }
+                }
+                margin-bottom: 15px;
+            }
+
+            span {
+                color: #fff;
+                margin: 0;
+                font-size: 14px;
+            }
+        }
     }
-
-    .rate_area {
-      background-color: #07A7E2;
-      border-bottom-left-radius: 5px;
-      border-bottom-right-radius: 5px;
-      padding: 20px 0;
-
-      .rate_area-stars {
-        li {
-          display: inline-block;
-        }
-        margin-bottom: 15px;
-      }
-
-      span {
-        color: #fff;
-        margin: 0;
-        font-size: 14px;
-      }
-    }
-  }
 }
 
 .register_button {
-  width: 100%;
-  text-align: center;
-  margin: 15px 0;
+    width: 100%;
+    text-align: center;
+    margin: 15px 0;
 }
+
 /*Start Doctor description*/
 
 .doctor_description {
-  .title {
-    font-size: 22px;
-    margin: 0;
-    color: $secondColor;
-  }
-
-  p {
-    margin: 20px 0;
-    font-size: 16px;
-    line-height: 30px;
-  }
-
-  .about_doctor {}
-
-  .doctor_education {
-    .list_info {
-      position: relative;
-
-      &:before {
-        position: absolute;
-        display: block;
-        position: absolute;
-        content: "\f100";
-      }
-    }
-  }
-
-  .doctor_video {
-    iframe {
-      height: 250px;
-      width: 100%;
+    .title {
+        font-size: 22px;
+        margin: 0;
+        color: $secondColor;
     }
 
-    .btn {
-      height: 100px;
-      width: 100px;
-      line-height: 50px;
-      border-radius: 100%;
-      text-align: center;
-      background-color: $secondColor;
-      animation: move 1s linear infinite;
-      @extend %transition;
-
-      &:hover {
-        background-color: $mainColor;
-      }
+    p {
+        margin: 20px 0;
+        font-size: 16px;
+        line-height: 30px;
     }
 
-    .modal-body {
-      min-height: 250px;
+    .about_doctor {}
+
+    .doctor_education {
+        .list_info {
+            position: relative;
+
+            &:before {
+                position: absolute;
+                display: block;
+                position: absolute;
+                content: "\f100";
+            }
+        }
     }
-  }
+
+    .doctor_video {
+        iframe {
+            height: 250px;
+            width: 100%;
+        }
+
+        .btn {
+            height: 100px;
+            width: 100px;
+            line-height: 50px;
+            border-radius: 100%;
+            text-align: center;
+            background-color: $secondColor;
+            animation: move 1s linear infinite;
+            @extend %transition;
+
+            &:hover {
+                background-color: $mainColor;
+            }
+        }
+
+        .modal-body {
+            min-height: 250px;
+        }
+    }
 }
 
 .social_media-content {
-  position: absolute;
-  padding: 4px;
-  margin: 1px 10px 10px 0;
-  border-radius: 5px;
-  border: 1px solid #ddd;
-  display: none;
+    position: absolute;
+    padding: 4px;
+    margin: 1px 10px 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    display: none;
 }
+
 /*End Doctor description*/
