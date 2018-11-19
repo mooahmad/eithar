@@ -37,67 +37,70 @@
                                         <!-- Start Input-->
                                         <div class="col-sm-12 col-md-4 ">
                                             <span class="tag_name">{{ trans('main.address') }} :</span>
-                                            {!! Form::text('address',old('address')) !!}
-                                            {{--<input type="text" name="" value="">--}}
+                                            <aside class="your_map">
+                                                {!! Form::text('address',old('address')) !!}
+                                                <button class="open_your-map" type="button">
+                                                    <i class="fas fa-map-marker-alt"></i>
+                                                </button>
+                                            </aside>
                                         </div>
                                         <!-- End Input-->
 
-                                        <!-- Start Input-->
-                                        <div class="col-sm-12 col-md-6 col-lg-4">
-                                            <span class="button"> اختر المعاد الذى يناسبك
-                                              <i class="fas fa-calendar-alt"></i>
-                                            </span>
-                                        </div>
                                         <!-- End Input-->
-                                        <!-- Start Input-->
                                         <div class="col-sm-12  col-lg-7">
-                                            <!-- Start Custum Calender-->
-                                            <div id="calender-wrapper">
-                                                <div id="calender-title" class="disable-select flex row center-v around">
-                                                    <div id="left" class="flex row center-vh">
-                                                        <span class="arrow"><</span>
+                                            <!-- Start Custom Calender-->
+                                            <div class="calender_content block">
+                                                <h6 class="time">المواعيد بتوقيت <span>( القاهرة )</span></h6>
+                                                <div id="calender-wrapper">
+                                                    <div class="disable-select flex row center-v around" id="calender-title">
+                                                        <div class="flex row center-vh" id="left"><span class="arrow"><</span></div>
+                                                        <p class="flex row center-vh"></p>
+                                                        <div class="flex row center-vh" id="right"><span class="arrow">></span></div>
                                                     </div>
-                                                    <p class="flex row center-vh">
-                                                    </p>
-                                                    <div id="right" class="flex row center-vh">
-                                                        <span class="arrow">></span>
+                                                    <div class="flex row center-vh colorRed disable-select" id="days">
+                                                        <p>MON</p>
+                                                        <p>TUE</p>
+                                                        <p>WEDS</p>
+                                                        <p>THURS</p>
+                                                        <p>FRI</p>
+                                                        <p>SAT</p>
+                                                        <p>SUN</p>
                                                     </div>
+                                                    <div class="flex row wrap disable-select" id="calender-content"> </div>
                                                 </div>
-                                                <div id="days" class="flex row center-vh colorRed disable-select">
-                                                    <p>MON</p>
-                                                    <p>TUE</p>
-                                                    <p>WEDS</p>
-                                                    <p>THURS</p>
-                                                    <p>FRI</p>
-                                                    <p>SAT</p>
-                                                    <p>SUN</p>
+                                                <div class="available_dates-list">
+                                                    <h5 class="available_dates-title"></h5>
+                                                    <ul class="list-unstyled ">
+                                                        <li class="available_dates-content">
+                                                            <aside class="available_dates-details"><i class="far fa-clock"></i><span>١٢:٠٠ ص - ٠١:٠٠ صاحجز الان (60 دقيقة)</span></aside>
+                                                            <aside class="available_dates-add">
+                                                                <input class="date_selected-js" data-id="date1" type="checkbox" name="gender" value="male">
+                                                                <label>أضف الى القائمة</label>
+                                                            </aside>
+                                                        </li>
+                                                        <li class="available_dates-content">
+                                                            <aside class="available_dates-details"><i class="far fa-clock"></i><span>gggggggg</span></aside>
+                                                            <aside class="available_dates-add">
+                                                                <input class="date_selected-js" data-id="date2" type="checkbox" name="gender" value="male">
+                                                                <label>أضف الى القائمة</label>
+                                                            </aside>
+                                                        </li>
+                                                        <li class="available_dates-content">
+                                                            <aside class="available_dates-details"><i class="far fa-clock"></i><span>gggggggg</span></aside>
+                                                            <aside class="available_dates-add">
+                                                                <input class="date_selected-js" data-id="date3" type="checkbox" name="gender" value="male">
+                                                                <label>أضف الى القائمة</label>
+                                                            </aside>
+                                                        </li>
+                                                    </ul>
                                                 </div>
-                                                <div id="calender-content" class="flex row wrap disable-select">
+                                                <div class="menu_selected-dates">
+                                                    <h2 class="home_page-title">قائمة المواعيد المختارة</h2>
+                                                    <ul class="list-unstyled "> </ul>
                                                 </div>
-
-
                                             </div>
-                                            <!-- End Custum Calender-->
+                                            <!--End Calender For Programing-->
                                         </div>
-                                        <!-- End Input-->
-                                        <!-- Start Block For Apper Booking Date-->
-                                        <div class="colsm-12 col-lg-5">
-                                            <div class="booking_date-time">
-                                                <ul class="booke list-unstyled">
-                                                    <li>
-                                                        <span>
-                                                          <i class="far fa-calendar-alt"></i>
-                                                          14 / 10 /2018
-                                                        </span>
-                                                        <span>
-                                                          <i class="far fa-clock"></i>
-                                                          20:00 am
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <!-- End Block For Apper Booking Date-->
                                     </div>
 
                                     @include(FE.'.pages.providers.draw_questionnaire')
@@ -121,5 +124,5 @@
         {{--var url = "{{ url()->route('get_subcategory_providers_list') }}";--}}
         {{--var _token = "{{ csrf_token() }}";--}}
     {{--</script>--}}
-    {{--<script src="{{ asset('public/Frontend/custom/get_providers.js') }}" type="text/javascript"></script>--}}
+    <script src="{{ asset('public/Frontend/js/custum-calender.js') }}" type="text/javascript"></script>
 @stop

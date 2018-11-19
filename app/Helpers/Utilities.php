@@ -234,10 +234,10 @@ class Utilities
         $fraction = $r - $newwhole;
 
         for($s=1;$s<=$newwhole;$s++){
-            $stars .= '<span class="fa fa-star"></span>';
+            $stars .= '<li> <i class="fa fa-star fa-fw"></i> </li>';
         }
         if($fraction==.5){
-            $stars .= '<span class="fa fa-star-half"></span>';
+            $stars .= '<li> <i class="fa fa-star-half fa-fw"></i> </li>';
         }
         return $stars;
     }
