@@ -63,12 +63,13 @@ class DoctorsCategoryController extends Controller
         $family_members = Auth::guard('customer-web')->user()->family_members->pluck('full_name','id');
 
         $questionnaire  = $provider->services->where('type',5)->first()->questionnaire;
+//        return $questionnaire->groupBy(['pagination']);
         $data = [
             'main_categories'=>Category::GetParentCategories()->get(),
             'provider'=>$provider,
             'subcategory'=>$subcategory,
             'family_members'=>$family_members,
-            'questionnaire'=>$questionnaire,
+            'questionnaire'=>$questionnaire->groupBy(['pagination']),
         ];
         return view(FE.'.pages.providers.calendar_questionnaire')->with($data);
     }
@@ -79,5 +80,20 @@ class DoctorsCategoryController extends Controller
     public function checkProviderProfile($provider_id)
     {
         return Provider::GetActiveProviders()->find($provider_id);
+    }
+
+    public function drawQuestionnaire($questionnaire)
+    {
+//        return $questionnaire->groupBy(['pagination']);
+        foreach ($questionnaire->groupBy(['pagination']) as $item=>$value){
+            foreach ($value as $question){
+//                draw_questionnaire
+            }
+        }
+    }
+
+    public function book(Request $request)
+    {
+        return $request->all();
     }
 }

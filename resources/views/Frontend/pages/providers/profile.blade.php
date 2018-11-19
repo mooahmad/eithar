@@ -18,6 +18,8 @@
                         <!-- Button Book Now-->
                         @if(auth()->guard('customer-web')->check())
                             <a href="{{ url()->route('doctor_booking_meeting',['subcategory_id'=>$subcategory->id,'subcategory_name'=>\App\Helpers\Utilities::beautyName($subcategory->name),'provider_id'=>$provider->id,'provider_name'=>\App\Helpers\Utilities::beautyName($provider->full_name) ]) }}" class="button register_button">{{ trans('main.book_now') }}</a>
+                        @else
+                            <a href="{{ url()->route('customer_login') }}" class="button register_button">{{ trans('main.book_now') }}</a>
                         @endif
                     </div>
                     <!--=01=End Doctor Profile-->
