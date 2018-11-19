@@ -27,27 +27,35 @@
             @foreach($questions as $question)
                 @if($question->type ==0)
                     {{--Text Input--}}
-                    <div class="col-sm-12 col-md-6s">
-                        <h3>{{ $question->title }}</h3>
-                        @foreach(unserialize($question->options) as $radio_number=>$radio_value)
-                            <input type="radio" name="answer[{{$question->id}}]" value="{{$radio_number}}" placeholder="{{$question->subtitle}}" {{ ($question->is_required==1)?'required' : '' }}> {{$radio_value}}
-                        @endforeach
+                    <div class="col-sm-12 col-md-6">
+                        <div class="check_content">
+                            <h3>{{ $question->title }}</h3>
+                            <aside class="radio_input">
+                                @foreach(unserialize($question->options) as $radio_number=>$radio_value)
+                                    <label for="IDR{{$radio_number}}"><input id="IDR{{$radio_number}}" type="radio" name="answer[{{$question->id}}]" value="{{$radio_number}}" placeholder="{{$question->subtitle}}" {{ ($question->is_required==1)?'required' : '' }}>
+                                        <span>{{$radio_value}}</span>
+                                    </label>
+                                @endforeach
+                            </aside>
+                        </div>
                     </div>
                 @endif
 
                 @if($question->type ==1)
                     {{--Text Input--}}
-                    <div class="col-sm-12 col-md-6s">
+                    <div class="col-sm-12 col-md-6">
                         <h3>{{ $question->title }}</h3>
                         @foreach(unserialize($question->options) as $checkbox_number=>$checkbox_value)
-                            <input type="checkbox" name="answer[{{$question->id}}][]" value="{{$checkbox_number}}" placeholder="{{$question->subtitle}}" {{ ($question->is_required==1)?'required' : '' }}> {{$checkbox_value}}
+                            <label class="checkbox_input"><input type="checkbox" name="answer[{{$question->id}}][]" value="{{$checkbox_number}}" placeholder="{{$question->subtitle}}" {{ ($question->is_required==1)?'required' : '' }}>
+                                <span>{{$checkbox_value}}</span>
+                            </label>
                         @endforeach
                     </div>
                 @endif
 
                 @if($question->type ==2)
                     {{--Text Input--}}
-                    <div class="col-sm-12 col-md-6s">
+                    <div class="col-sm-12 col-md-6">
                         <h3>{{ $question->title }}</h3>
                         <input type="text" name="answer[{{$question->id}}]" placeholder="{{$question->subtitle}}" {{ ($question->is_required==1)?'required' : '' }}>
                     </div>
@@ -55,7 +63,7 @@
 
                 @if($question->type ==3)
                     {{--Text Input--}}
-                    <div class="col-sm-12 col-md-6s">
+                    <div class="col-sm-12 col-md-6">
                         <h3>{{ $question->title }}</h3>
                         <textarea name="answer[{{$question->id}}]" placeholder="{{$question->subtitle}}" {{ ($question->is_required==1)?'required' : '' }}></textarea>
                     </div>
@@ -63,7 +71,7 @@
 
                 @if($question->type ==4)
                     {{--Text Input--}}
-                    <div class="col-sm-12 col-md-6s">
+                    <div class="col-sm-12 col-md-6">
                         <h3>{{ $question->title }}</h3>
                         <input type="date" name="answer[{{$question->id}}]" placeholder="{{$question->subtitle}}" {{ ($question->is_required==1)?'required' : '' }}>
                     </div>
@@ -71,9 +79,25 @@
 
                 @if($question->type ==5)
                     {{--Text Input--}}
-                    <div class="col-sm-12 col-md-6s">
-                        <h3>{{ $question->title }}</h3>
-                        <input type="number" max="{{ $question->rating_levels }}" name="answer[{{$question->id}}]" placeholder="{{$question->subtitle}}" {{ ($question->is_required==1)?'required' : '' }}>
+                    <div class="col-sm-12 col-md-6">
+                        {{--@if($question->rating_symbol == 1)--}}
+                            <h3>{{ $question->title }}</h3>
+                            <input type="number" max="{{ $question->rating_levels }}" name="answer[{{$question->id}}]" placeholder="{{$question->subtitle}}" {{ ($question->is_required==1)?'required' : '' }}>
+                        {{--@else--}}
+                            {{--<div class="rating_area">--}}
+                                {{--<h3>{{ $question->title }}</h3>--}}
+                                {{--<section class='rating-widget'>--}}
+                                    {{--<!-- Rating Stars Box -->--}}
+                                    {{--<div class='rating-stars'>--}}
+                                        {{--<ul id='stars'>--}}
+                                            {{--<li class='star' title='Poor' data-value='1'>--}}
+                                                {{--<i class='fa fa-star fa-fw'></i>--}}
+                                            {{--</li>--}}
+                                        {{--</ul>--}}
+                                    {{--</div>--}}
+                                {{--</section>--}}
+                            {{--</div>--}}
+                        {{--@endif--}}
                     </div>
                 @endif
             @endforeach

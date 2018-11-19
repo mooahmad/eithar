@@ -3931,6 +3931,229 @@ input {
   box-shadow: 0 0 13px 4px rgba(0, 0, 0, 0.14);
   cursor: pointer; }
 
+/*Media Query*/
+/*Box Shadow*/
+/***Container Widt***/
+@media (min-width: 992px) {
+  .container {
+    max-width: 1170px; } }
+
+/*Glopal Style*/
+img {
+  max-width: 100%;
+  height: auto; }
+
+[data-src] {
+  -webkit-background-size: cover;
+  background-size: cover; }
+
+/********Glopal Class******/
+.home_page-title {
+  color: #333333;
+  font-size: 26px;
+  margin-bottom: 25px; }
+
+.paragraph_global {
+  color: #333333;
+  font-size: 16px;
+  line-height: 34px; }
+
+.home_page-section {
+  padding: 50px 0; }
+
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+.list_inline {
+  padding-left: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+  .list_inline li {
+    display: inline-block; }
+
+a,
+a:hover {
+  text-decoration: none; }
+
+.button, .button-blue, .advanced_search-button,
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+  transition: all ease-in-out 0.3s; }
+
+.head_page:before, .header_slider .header:before {
+  position: absolute;
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0; }
+
+.advanced_search-button:before,
+.our_student-button:before, .glopal_form-:before {
+  position: absolute;
+  display: block;
+  font-family: 'Font Awesome\ 5 Free';
+  font-weight: 900; }
+
+/*Start Glopal Form*/
+.glopal_form {
+  background: #fff;
+  padding: 30px 15px;
+  /*End Glopal Form*/ }
+  @media (max-width: 576px) {
+    .glopal_form {
+      margin-top: 30px; } }
+  .glopal_form select {
+    width: 100%;
+    color: #044E80;
+    cursor: pointer; }
+  .glopal_form label {
+    display: block;
+    font-size: 12px; }
+  .glopal_form input:focus,
+  .glopal_form select:focus,
+  .glopal_form textarea:focus {
+    outline: none !important;
+    border-color: #07A7E3; }
+  .glopal_form input,
+  .glopal_form select,
+  .glopal_form textarea {
+    border: none;
+    border: 1px solid rgba(18, 68, 98, 0.23);
+    width: 100%;
+    border-radius: 10px;
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .custum_upload-button {
+    position: relative; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
+  .glopal_form textarea {
+    height: 120px; }
+  .glopal_form .button-blue {
+    border: none;
+    cursor: pointer; }
+
+.single_page-content {
+  padding: 50px 0; }
+
+/*Start Custume Select Button*/
+.custum_select {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  cursor: pointer; }
+  .custum_select:before {
+    display: block;
+    position: absolute;
+    content: "\f0dd";
+    font-family: 'Font Awesome\ 5 Free';
+    font-weight: 900;
+    font-size: 22px;
+    top: 2px;
+    z-index: 1;
+    color: #40446A;
+    right: 20px;
+    left: auto;
+    /*Change*/ }
+  .custum_select select {
+    height: 40px;
+    width: 100%;
+    padding: 0 14px;
+    z-index: 3;
+    position: relative;
+    background: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none; }
+
+/*End Custume Select Button*/
+/*****Font******/
+/****Start Font Face*******/
+/**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
+/*Start Custum Upload Button*/
+/*Start Custum Upload Button*/
+a,
+button,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+label,
+li,
+p,
+select,
+span,
+td,
+textarea,
+th {
+  font-family: 'Montserrat', sans-serif; }
+
+/**Start Navbar**/
+a:hover {
+  color: #2196f3; }
+
+pre {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  color: #333;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #F5F5F5;
+  border: 1px solid #CCC;
+  border-radius: 4px; }
+
+/* Rating Star Widgets Style */
+.rating-stars ul {
+  list-style-type: none;
+  padding: 0;
+  -moz-user-select: none;
+  -webkit-user-select: none; }
+
+.rating-stars ul > li.star {
+  display: inline-block; }
+
+/* Idle State of the stars */
+.rating-stars ul > li.star > i.fa {
+  font-size: 16px;
+  /* Change the size of the stars */
+  color: #ccc;
+  /* Color on idle state */ }
+
+/* Hover state of the stars */
+.rating-stars ul > li.star.hover > i.fa {
+  color: #FFCC36; }
+
+/* Selected state of the stars */
+.rating-stars ul > li.star.selected > i.fa {
+  color: #FF912C; }
+
 /**********/
 /*Start wizard Form*/
 /*Start Wizard Custum*/
