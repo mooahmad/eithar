@@ -3,12 +3,35 @@
 @import "componants/slider-custum.scss";
 @import "componants/custum-calender.scss";
 @import "layout/rating.scss";
+@import "layout/custum-calender.scss";
 /**********/
 
 // Start Provider Pages
 /*Start wizard Form*/
 
 /*Start Wizard Custum*/
+
+.your_map {
+    display: flex;
+    justify-content: center;
+
+    .open_your-map {
+        margin: 0 5px;
+        border: 0;
+        background-color: $secondColor;
+        width: 40px;
+        @extend %transition;
+        border-radius: 5px;
+        &:hover {
+            background-color: $mainColor;
+        }
+        i {
+            color: #fff;
+        }
+
+    }
+}
+
 
 .wizard {
     div[class*="col"] {
