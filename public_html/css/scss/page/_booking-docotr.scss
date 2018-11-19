@@ -1,300 +1,309 @@
 @import "helpers/variables.scss";
 @import "componants/buttons.scss";
 @import "componants/slider-custum.scss";
-@import "componants/custum-calender.scss"; /**********/
+@import "componants/custum-calender.scss";
+@import "layout/rating.scss";
+/**********/
+
 // Start Provider Pages
 /*Start wizard Form*/
+
 /*Start Wizard Custum*/
+
 .wizard {
-  div[class*="col"] {
-    margin-top: 30px;
-  }
-
-  .tag_name {
-    font-size: 14px;
-    margin-bottom: 12px;
-    display: inline-block;
-  }
-
-  input {
-    width: 100%;
-    height: 40px;
-    border: 1px solid rgba(0,0,0,0.2);
-    border-radius: $borderRadius;
-
-    &:focus {
-      outline: none!important;
+    div[class*="col"] {
+        margin-top: 30px;
     }
-  }
 
-  .tab-pane {
-    border: 1px solid rgba(0,0,0,0.2);
-    border-radius: $borderRadius;
-    padding: 30px 10px;
-  }
-
-  .list-inline {
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-
-    .button {
-      display: inline-block;
+    .tag_name {
+        font-size: 14px;
+        margin-bottom: 12px;
+        display: inline-block;
     }
-  }
-
-  h3 {
-    font-size: 18px;
-    color: $secondColor;
-    margin: 0 0 20px;
-  }
-
-  textarea {
-    &:focus {
-      outline: none!important;
-    }
-    border-radius: $borderRadius;
-    width: 100%;
-    min-height: 120px;
-    border: 1px solid #ccc;
-  }
-
-  .checkbox_input {
-    margin-right: 12px;
-    margin-left: 0;
 
     input {
-      width: 16px;
-      height: 16px;
-      cursor: pointer;
+        width: 100%;
+        height: 40px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: $borderRadius;
+
+        &:focus {
+            outline: none !important;
+        }
     }
 
-    span {
-      font-size: 12px;
-    }
-  }
-
-  .check_content {
-    margin-top: 14px;
-    display: flex;
-    justify-content: space-between;
-
-    h5 {
-      font-size: 16px;
+    .tab-pane {
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: $borderRadius;
+        padding: 30px 10px;
     }
 
-    .radio_input {
-      display: flex;
+    .list-inline {
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
 
-      label {
-        margin: 0 20px;
+        .button {
+            display: inline-block;
+        }
+    }
+
+    h3 {
+        font-size: 18px;
+        color: $secondColor;
+        margin: 0 0 20px;
+    }
+
+    textarea {
+        &:focus {
+            outline: none !important;
+        }
+        border-radius: $borderRadius;
+        width: 100%;
+        min-height: 120px;
+        border: 1px solid #ccc;
+    }
+
+    .checkbox_input {
+        margin-right: 12px;
+        margin-left: 0;
 
         input {
-          cursor: pointer;
-          margin: 0 8px;
-          height: 15px;
-          width: 15px;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
         }
-      }
+
+        span {
+            font-size: 12px;
+        }
     }
-  }
-  /*Start Step 3*/
-  .booking_content {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    align-content: center;
-    flex-wrap: wrap;
 
-    aside {
-      i {
-        font-size: 30px;
-        margin: 0 8px;
-        color: $secondColor;
-      }
+    .check_content {
+        margin-top: 14px;
+        display: flex;
+        justify-content: space-between;
 
-      span {}
+        h5 {
+            font-size: 16px;
+        }
+
+        .radio_input {
+            display: flex;
+
+            label {
+                margin: 0 20px;
+
+                input {
+                    cursor: pointer;
+                    margin: 0 8px;
+                    height: 15px;
+                    width: 15px;
+                }
+            }
+        }
     }
-  }
+    /*Start Step 3*/
+    .booking_content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        flex-wrap: wrap;
 
-  .table {
-    border: 1px solid rgba(0,0,0,0.2);
-    border-radius: $borderRadius;
-    margin: 30px 0;
+        aside {
+            i {
+                font-size: 30px;
+                margin: 0 8px;
+                color: $secondColor;
+            }
 
-    span {
-      color: #f00;
-      font-size: 16px;
-      color: $secondColor;
+            span {}
+        }
     }
-  }
 
-  .input_content {
-    input {
-      &:focus {
-        outline: none!important;
-        border-color: $secondColor;
-      }
-      width: 250px;
-      padding: 0 4px;
-      border-radius: $borderRadius;
-      border: 1px solid rgba(0,0,0,0.2);
-      height: 35px;
+    .table {
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: $borderRadius;
+        margin: 30px 0;
+
+        span {
+            color: #f00;
+            font-size: 16px;
+            color: $secondColor;
+        }
     }
-  }
-  /*End Step 3*/
+
+    .input_content {
+        input {
+            &:focus {
+                outline: none !important;
+                border-color: $secondColor;
+            }
+            width: 250px;
+            padding: 0 4px;
+            border-radius: $borderRadius;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            height: 35px;
+        }
+    }
+    /*End Step 3*/
 }
-/*End Wizard Custum*/
-.wizard {
-  margin: 20px auto;
-  background: #fff;
 
-  select {
-    &:focus {
-      outline: none!important;
+/*End Wizard Custum*/
+
+.wizard {
+    margin: 20px auto;
+    background: #fff;
+
+    select {
+        &:focus {
+            outline: none !important;
+        }
+        cursor: pointer;
+        border-radius: $borderRadius;
     }
-    cursor: pointer;
-    border-radius: $borderRadius;
-  }
 }
 
 .wizard .nav-tabs {
-  position: relative;
-  margin: 40px auto 0;
-  border-bottom-color: #e0e0e0;
+    position: relative;
+    margin: 40px auto 0;
+    border-bottom-color: #e0e0e0;
 }
 
 .wizard > div.wizard-inner {
-  position: relative;
+    position: relative;
 }
 
 .connecting-line {
-  height: 2px;
-  background: #e0e0e0;
-  position: absolute;
-  width: 80%;
-  margin: 0 auto;
-  left: 0;
-  right: 0;
-  top: 50%;
-  z-index: 1;
+    height: 2px;
+    background: #e0e0e0;
+    position: absolute;
+    width: 80%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 50%;
+    z-index: 1;
 }
 
 .wizard .nav-tabs > li.active > a,
 .wizard .nav-tabs > li.active > a:focus,
 .wizard .nav-tabs > li.active > a:hover {
-  color: #555555;
-  cursor: default;
-  border: 0;
-  border-bottom-color: transparent;
+    color: #555555;
+    cursor: default;
+    border: 0;
+    border-bottom-color: transparent;
 }
 
 span.round-tab {
-  width: 70px;
-  height: 70px;
-  line-height: 70px;
-  display: inline-block;
-  border-radius: 100px;
-  background: #fff;
-  border: 2px solid #e0e0e0;
-  z-index: 2;
-  position: absolute;
-  left: 0;
-  text-align: center;
-  font-size: 25px;
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    display: inline-block;
+    border-radius: 100px;
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    text-align: center;
+    font-size: 25px;
 }
 
 span.round-tab i {
-  color: #555555;
-  font-size: 30px;
+    color: #555555;
+    font-size: 30px;
 }
 
 .wizard li.active span.round-tab {
-  background: #fff;
-  border: 2px solid #5bc0de;
+    background: #fff;
+    border: 2px solid #5bc0de;
 }
 
 .wizard li.active span.round-tab i {
-  color: #5bc0de;
+    color: #5bc0de;
 }
 
 span.round-tab:hover {
-  color: #333;
-  border: 2px solid #333;
+    color: #333;
+    border: 2px solid #333;
 }
 
 .wizard .nav-tabs > li {
-  width: 25%;
+    width: 25%;
 }
 
 .wizard li:after {
-  content: " ";
-  position: absolute;
-  left: 46%;
-  opacity: 0;
-  margin: 0 auto;
-  bottom: 0;
-  border: 5px solid transparent;
-  border-bottom-color: #5bc0de;
-  transition: 0.1s ease-in-out;
+    content: " ";
+    position: absolute;
+    left: 46%;
+    opacity: 0;
+    margin: 0 auto;
+    bottom: 0;
+    border: 5px solid transparent;
+    border-bottom-color: #5bc0de;
+    transition: 0.1s ease-in-out;
 }
 
 .wizard li.active:after {
-  content: " ";
-  position: absolute;
-  left: 46%;
-  opacity: 1;
-  margin: 0 auto;
-  bottom: 0;
-  border: 10px solid transparent;
-  border-bottom-color: #5bc0de;
+    content: " ";
+    position: absolute;
+    left: 46%;
+    opacity: 1;
+    margin: 0 auto;
+    bottom: 0;
+    border: 10px solid transparent;
+    border-bottom-color: #5bc0de;
 }
 
 .wizard .nav-tabs > li a {
-  width: 70px;
-  height: 70px;
-  margin: 20px auto;
-  border-radius: 100%;
-  padding: 0;
+    width: 70px;
+    height: 70px;
+    margin: 20px auto;
+    border-radius: 100%;
+    padding: 0;
 }
 
 .wizard .nav-tabs > li a:hover {
-  background: transparent;
+    background: transparent;
 }
 
 .wizard .tab-pane {
-  position: relative;
-  padding-top: 50px;
+    position: relative;
+    padding-top: 50px;
 }
 
 .wizard h3 {
-  margin-top: 0;
+    margin-top: 0;
 }
-@media(max-width : 585px) {
-  .wizard {
-    width: 90%;
-    height: auto !important;
-  }
 
-  span.round-tab {
-    font-size: 16px;
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-  }
+@media(max-width: 585px) {
+    .wizard {
+        width: 90%;
+        height: auto !important;
+    }
 
-  .wizard .nav-tabs > li a {
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-  }
+    span.round-tab {
+        font-size: 16px;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+    }
 
-  .wizard li.active:after {
-    content: " ";
-    position: absolute;
-    left: 35%;
-  }
+    .wizard .nav-tabs > li a {
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+    }
+
+    .wizard li.active:after {
+        content: " ";
+        position: absolute;
+        left: 35%;
+    }
 }
+
 /*End wizard Form*/
