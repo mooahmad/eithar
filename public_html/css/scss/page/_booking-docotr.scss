@@ -37,7 +37,33 @@
     div[class*="col"] {
         margin-top: 30px;
     }
+    .input_content {
+        display: flex;
+        justify-content: space-between;
+        button {
+            margin: 0 8px;
+            padding: 0;
+            min-width: 130px;
+        }
 
+    }
+
+    /*Start Price*/
+    .price {
+        .price_title {
+            display: inline;
+        }
+        .price_value {
+            color: #fff;
+            display: inline-block;
+            border: 1px solid $mainColor;
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            color: $mainColor;
+        }
+    }
+    /*End Price*/
     .tag_name {
         font-size: 14px;
         margin-bottom: 12px;
