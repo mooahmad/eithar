@@ -273,6 +273,9 @@ input {
     &.active {
         .month-selector {
             background: $secondColor;
+            p {
+                color: #fff;
+            }
         }
     }
 
@@ -298,9 +301,15 @@ input {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    &:hover {
+        p {
+            color: #fff;
+        }
+    }
 
     p {
-        font-size: 20px;
+        font-size: 18px;
+
     }
 }
 
@@ -362,7 +371,7 @@ input {
     display: none;
 
     .available_dates-title {
-        color: $darkColor;
+        color: $mainColor;
         font-size: 22px;
     }
 
@@ -383,7 +392,9 @@ input {
                 }
 
                 label {
-                    color: $mainColor;
+                    color: $secondColor;
+                    font-weight: 500;
+                    font-size: 14px;
                 }
             }
         }
@@ -396,6 +407,10 @@ input {
 
 .menu_selected-dates {
     margin: 20px 0;
+    .home_page-title {
+        color: $mainColor;
+        font-size: 22px;
+    }
 
     .selected_dates-content {
         display: flex;
@@ -417,6 +432,7 @@ input {
 
         .selected_dates-add {
             color: $redColor;
+            cursor: pointer;
 
             .date_remove-js {
                 margin: 0 4px;

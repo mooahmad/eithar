@@ -4554,6 +4554,8 @@ input {
   transition: 0.4s; }
   .month.active .month-selector {
     background: #07A7E3; }
+    .month.active .month-selector p {
+      color: #fff; }
   .month p {
     font-size: 20px; }
 
@@ -4573,8 +4575,10 @@ input {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%); }
+  .month-selector:hover p {
+    color: #fff; }
   .month-selector p {
-    font-size: 20px; }
+    font-size: 18px; }
 
 .month-selector.clicked {
   background: #FF6B6B;
@@ -4619,7 +4623,7 @@ input {
   margin: 20px 0;
   display: none; }
   .available_dates-list .available_dates-title {
-    color: #000;
+    color: #044E80;
     font-size: 22px; }
   .available_dates-list ul .available_dates-content {
     display: flex;
@@ -4631,12 +4635,17 @@ input {
       cursor: pointer;
       outline: #044E80; }
     .available_dates-list ul .available_dates-content .available_dates-add label {
-      color: #044E80; }
+      color: #07A7E3;
+      font-weight: 500;
+      font-size: 14px; }
 
 /*End Available Dates*/
 /*┘ìStart Selected Dtate*/
 .menu_selected-dates {
   margin: 20px 0; }
+  .menu_selected-dates .home_page-title {
+    color: #044E80;
+    font-size: 22px; }
   .menu_selected-dates .selected_dates-content {
     display: flex;
     justify-content: space-between; }
@@ -4647,7 +4656,8 @@ input {
       margin: 0 4px;
       color: #000; }
     .menu_selected-dates .selected_dates-content .selected_dates-add {
-      color: #f00; }
+      color: #f00;
+      cursor: pointer; }
       .menu_selected-dates .selected_dates-content .selected_dates-add .date_remove-js {
         margin: 0 4px;
         display: inline-block;
@@ -4678,10 +4688,29 @@ input {
       color: #fff; }
 
 .wizard {
+  /*Start Price*/
+  /*End Price*/
   /*Start Step 3*/
   /*End Step 3*/ }
   .wizard div[class*="col"] {
     margin-top: 30px; }
+  .wizard .input_content {
+    display: flex;
+    justify-content: space-between; }
+    .wizard .input_content button {
+      margin: 0 8px;
+      padding: 0;
+      min-width: 130px; }
+  .wizard .price .price_title {
+    display: inline; }
+  .wizard .price .price_value {
+    color: #fff;
+    display: inline-block;
+    border: 1px solid #044E80;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #044E80; }
   .wizard .tag_name {
     font-size: 14px;
     margin-bottom: 12px;
