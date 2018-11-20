@@ -67,4 +67,6 @@ return [
     'doctor_booking_meeting'        => 'Book Meeting',
     'family_member'                 => 'Family Member',
     'address'                       => 'Address',
+    'register_now'                  => 'Register',
+    'customer_sign_up'              => 'Customer Sign Up',
 ];

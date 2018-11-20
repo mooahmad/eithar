@@ -130,8 +130,9 @@ $(function () {
             $(selectedDate).appendTo("#selected_dates-details-" + counter);
             counter++;
             // Remove Selected Dates
-            $(".date_remove-js").on('click', function () {
+            $(".selected_dates-add").on('click', function () {
                 $(this).parents(".selected_dates-content").hide();
+
             });
 
         } else {

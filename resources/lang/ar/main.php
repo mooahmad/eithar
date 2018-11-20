@@ -67,4 +67,6 @@ return [
     'doctor_booking_meeting'        => 'حجز موعد مع الدكتور',
     'family_member'                 => 'عضو العائلة',
     'address'                       => 'العنوان',
+    'register_now'                  => 'انشاء حساب جديد',
+    'customer_sign_up'              => 'انشاء حساب جديد',
 ];

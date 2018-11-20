@@ -32,6 +32,8 @@ Route::group(['namespace' => FE], function () {
             Route::group(['prefix'=>'customer'], function (){
                 Route::get('login', 'LoginFrontController@showCustomerLogin')->name('customer_login');
                 Route::post('login', 'LoginFrontController@customerLogin')->name('customer_login_post');
+                Route::get('sign-up', 'SignUpFrontController@showCustomerSignUp')->name('customer_sign_up');
+                Route::post('sign-up', 'SignUpFrontController@customerSignUp')->name('customer_sign_up_post');
 
                 Route::group(['middleware'=>'CustomerWebAuth'],function (){
                     Route::get('logout', 'LoginFrontController@logoutCustomer')->name('customer_logout');

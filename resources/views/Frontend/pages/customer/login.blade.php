@@ -52,7 +52,7 @@
                                     <aside class="sign_button-content">
                                         <button class="button" type="submit">{{ trans('main.submit') }}</button>
                                     </aside>
-                                    <p class="paragraph_link">{{ trans('main.no_have_account') }}<a href="{{ url()->route('home') }}"> {{ trans('main.register') }}</a></p>
+                                    <p class="paragraph_link">{{ trans('main.no_have_account') }}<a href="{{ url()->route('customer_sign_up') }}"> {{ trans('main.register') }}</a></p>
                                 {!! Form::close() !!}
                             </div>
                             <!-- End  Form content-->
