@@ -161,7 +161,7 @@ class Provider
     public function getBookingAvailableReports($request, $bookingId)
     {
         $servicesIds = [];
-        $booking = ServiceBooking::find($bookingId);
+        $booking = ServiceBookingAppointment::find($bookingId)->servicesBooking;
         if ($booking->service_id == null) {
             $lapServices = $booking->booking_lap_services;
             $lapServices->each(function ($lapService) use (&$servicesIds) {
