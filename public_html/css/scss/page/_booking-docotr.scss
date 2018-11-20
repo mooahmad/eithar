@@ -356,3 +356,47 @@ span.round-tab:hover {
 }
 
 /*End wizard Form*/
+
+/*Start Popup*/
+
+.confirmation_code {
+    .modal-dialog {
+        max-width: 400px;
+    }
+    .model_code {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        align-content: flex-start;
+    }
+    .send_code {
+        font-size: 18px;
+        color: #f00;
+        margin-bottom: 30px;
+    }
+}
+
+.successful_confirmation {
+    .modal-dialog {
+        max-width: 400px;
+    }
+    .model_code {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        align-content: flex-start;
+    }
+    .send_code {
+        font-size: 18px;
+        color: $secondColor;
+        margin-bottom: 30px;
+    }
+    .button {
+        background-color: $secondColor;
+        padding: 10px;
+        min-width: 120px;
+
+    }
+}
+
+/*End Popup*/
