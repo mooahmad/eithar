@@ -104,6 +104,8 @@
             getAvailableSlotsURL = "{{ url()->route('getAvailableSlots') }}",
             _token = "{{ csrf_token() }}",
             provider_id = "{{ $provider->id }}";
+            var transMonthNames = "{{ implode(',',config('constants.monthNames_'.LaravelLocalization::getCurrentLocale())) }}";
+            var transdayNames = "{{ implode(',',config('constants.dayNames_'.LaravelLocalization::getCurrentLocale())) }}";
     </script>
 {{--    <script src="{{ asset('public/Frontend/js/custum-calender.js') }}" type="text/javascript"></script>--}}
     <script src="{{ asset('public/Frontend/js/dev-calender.js') }}" type="text/javascript"></script>

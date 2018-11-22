@@ -11,11 +11,13 @@ $(function () {
     var lastClickedDay;
     var startDate = "";
     var endDate = "";
-    var monthNames = ["January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-  ];
+    var monthNames = transMonthNames.split(',');
+    var dayNames = transdayNames.split(',');
+  //   var monthNames = ["January", "February", "March", "April", "May", "June",
+  //   "July", "August", "September", "October", "November", "December"
+  // ];
     var monthShortNames = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
-    var dayNames = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+    // var dayNames = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
     var bookedDates = [];
     var selectedDates = [];
 
@@ -86,6 +88,11 @@ $(function () {
         $("#calender-title p").html(monthNames[currentMonth].toUpperCase());
         $("#calender-content").html("");
 
+        $('#days').empty();
+        $.each(dayNames, function(k, day){
+            $('#days').append('<p>'+day+'</p>');
+        });
+
         for (var i = 1; i < firstDayOffset(new Date()); i++) {
             $("#calender-content").append("<div class='month flex center-vh'></div>");
         }
@@ -123,11 +130,9 @@ $(function () {
     // Add Selected Date To Date List
     var counter = 0;
     $(".date_selected-js").on('click', function () {
-        alert('mono');
         $(this).prop('disabled', 'true');
         if ($(this).is(':checked')) {
             var selectedDate = $(this).parent(".available_dates-add").siblings(".available_dates-details").html();
-            alert(selectedDate);
             var dateMove = "<li class='selected_dates-content'><aside id='selected_dates-details-" + counter + "'></aside><aside class='selected_dates-add'><i class='fas fa-times date_remove-js'></i><label>حذف من القائمة</label></aside></li>";
             $(dateMove).appendTo(".menu_selected-dates ul");
             $(selectedDate).appendTo("#selected_dates-details-" + counter);
