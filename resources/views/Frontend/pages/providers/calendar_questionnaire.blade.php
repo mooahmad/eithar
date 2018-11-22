@@ -73,10 +73,10 @@
                                                     <ul id="SlotsList" class="list-unstyled">
                                                     </ul>
                                                 </div>
-                                                <div class="menu_selected-dates">
-                                                    <h2 class="home_page-title">{{ trans('main.appointment_selected_list') }}</h2>
-                                                    <ul class="list-unstyled"> </ul>
-                                                </div>
+                                                {{--<div class="menu_selected-dates">--}}
+                                                    {{--<h2 class="home_page-title">{{ trans('main.appointment_selected_list') }}</h2>--}}
+                                                    {{--<ul class="list-unstyled"> </ul>--}}
+                                                {{--</div>--}}
                                             </div>
                                             <!--End Calender For Programing-->
                                         </div>

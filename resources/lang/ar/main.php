@@ -72,4 +72,5 @@ return [
     'timezone'                      => 'المواعيد بتوقيت',
     'add_to_menu'                   => 'أضف الى القائمة',
     'appointment_selected_list'     => 'قائمة المواعيد المختارة',
+    'select_appointment'            => 'أختر ميعاد الزيارة',
 ];

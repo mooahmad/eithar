@@ -46,7 +46,7 @@
                     <div class="col-sm-12 col-md-6">
                         <h3>{{ $question->title }}</h3>
                         @foreach(unserialize($question->options) as $checkbox_number=>$checkbox_value)
-                            <label class="checkbox_input"><input type="checkbox" name="answer[{{$question->id}}][]" value="{{$checkbox_number}}" placeholder="{{$question->subtitle}}" {{ ($question->is_required==1)?'required' : '' }}>
+                            <label class="checkbox_input"><input type="checkbox" name="answer[{{$question->id}}][]" value="{{$checkbox_number}}" placeholder="{{$question->subtitle}}">
                                 <span>{{$checkbox_value}}</span>
                             </label>
                         @endforeach

@@ -72,4 +72,5 @@ return [
     'timezone'                      => 'Timezone',
     'add_to_menu'                   => 'Add To Menu',
     'appointment_selected_list'     => 'Appointment Selected List',
+    'select_appointment'            => 'Select Appointment',
 ];

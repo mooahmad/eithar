@@ -155,12 +155,12 @@ class DoctorsCategoryController extends Controller
             $html.='
                 <li class="available_dates-content">
                     <aside class="available_dates-details">
-                        <i class="far fa-clock"></i> <span>'.Carbon::parse($slot->start_date)->format("H:i").'</span>
+                        <i class="far fa-clock"></i> <span>'.Carbon::parse($slot->start_date)->format("H:i").'
                         : '.Carbon::parse($slot->end_date)->format("H:i").'</span>
                     </aside>
                     <aside class="available_dates-add">
-                        <input class="date_selected-js" data-id="date'.$slot->id.'" type="checkbox" name="selected_date" value="'.$slot->id.'">
-                        <label>'.trans('main.add_to_menu').'</label>
+                        <input id="'.$slot->id.'" class="date_selected-js" data-id="date'.$slot->id.'" type="radio" name="slot_id" value="'.$slot->id.'">
+                        <label for="'.$slot->id.'">'.trans('main.select_appointment').'</label>
                     </aside>
                 </li>
             ';

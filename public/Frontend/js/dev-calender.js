@@ -123,10 +123,11 @@ $(function () {
     // Add Selected Date To Date List
     var counter = 0;
     $(".date_selected-js").on('click', function () {
-
+        alert('mono');
         $(this).prop('disabled', 'true');
         if ($(this).is(':checked')) {
             var selectedDate = $(this).parent(".available_dates-add").siblings(".available_dates-details").html();
+            alert(selectedDate);
             var dateMove = "<li class='selected_dates-content'><aside id='selected_dates-details-" + counter + "'></aside><aside class='selected_dates-add'><i class='fas fa-times date_remove-js'></i><label>حذف من القائمة</label></aside></li>";
             $(dateMove).appendTo(".menu_selected-dates ul");
             $(selectedDate).appendTo("#selected_dates-details-" + counter);
@@ -281,4 +282,23 @@ $(function () {
             }
         });
     }
+
+
 });
+
+// function selectAppointment(event) {
+//     $(event).prop('disabled', 'true');
+//     if ($(event).is(':checked')) {
+//         var selectedDate = $(event).parent(".available_dates-add").siblings(".available_dates-details").html();
+//         var dateMove = "<li class='selected_dates-content'><aside id='selected_dates-details-" + $(event).val() + "'></aside><aside class='selected_dates-add'><i class='fas fa-times date_remove-js'></i><label>حذف من القائمة</label></aside></li>";
+//         $(dateMove).appendTo(".menu_selected-dates ul");
+//         $(selectedDate).appendTo("#selected_dates-details-" + $(event).val());
+//
+//         // Remove Selected Dates
+//         $(".selected_dates-add").on('click', function () {
+//             $(this).parents(".selected_dates-content").hide();
+//         });
+//     } else {
+//         // $("#selected_dates-content-" + counter).fadeOut();
+//     }
+// }
