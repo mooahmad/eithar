@@ -69,4 +69,7 @@ return [
     'address'                       => 'العنوان',
     'register_now'                  => 'انشاء حساب جديد',
     'customer_sign_up'              => 'انشاء حساب جديد',
+    'timezone'                      => 'المواعيد بتوقيت',
+    'add_to_menu'                   => 'أضف الى القائمة',
+    'appointment_selected_list'     => 'قائمة المواعيد المختارة',
 ];

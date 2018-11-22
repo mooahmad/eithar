@@ -50,7 +50,7 @@
                                         <div class="col-sm-12  col-lg-7">
                                             <!-- Start Custom Calender-->
                                             <div class="calender_content block">
-                                                <h6 class="time">المواعيد بتوقيت <span>( القاهرة )</span></h6>
+                                                <h6 class="time">{{ trans('main.timezone') }} <span>( {{ trans('main.KSA') }} )</span></h6>
                                                 <div id="calender-wrapper">
                                                     <div class="disable-select flex row center-v around" id="calender-title">
                                                         <div class="flex row center-vh" id="left"><span class="arrow"><</span></div>
@@ -70,33 +70,12 @@
                                                 </div>
                                                 <div class="available_dates-list">
                                                     <h5 class="available_dates-title"></h5>
-                                                    <ul class="list-unstyled ">
-                                                        <li class="available_dates-content">
-                                                            <aside class="available_dates-details"><i class="far fa-clock"></i><span>١٢:٠٠ ص - ٠١:٠٠ صاحجز الان (60 دقيقة)</span></aside>
-                                                            <aside class="available_dates-add">
-                                                                <input class="date_selected-js" data-id="date1" type="checkbox" name="gender" value="male">
-                                                                <label>أضف الى القائمة</label>
-                                                            </aside>
-                                                        </li>
-                                                        <li class="available_dates-content">
-                                                            <aside class="available_dates-details"><i class="far fa-clock"></i><span>gggggggg</span></aside>
-                                                            <aside class="available_dates-add">
-                                                                <input class="date_selected-js" data-id="date2" type="checkbox" name="gender" value="male">
-                                                                <label>أضف الى القائمة</label>
-                                                            </aside>
-                                                        </li>
-                                                        <li class="available_dates-content">
-                                                            <aside class="available_dates-details"><i class="far fa-clock"></i><span>gggggggg</span></aside>
-                                                            <aside class="available_dates-add">
-                                                                <input class="date_selected-js" data-id="date3" type="checkbox" name="gender" value="male">
-                                                                <label>أضف الى القائمة</label>
-                                                            </aside>
-                                                        </li>
+                                                    <ul id="SlotsList" class="list-unstyled">
                                                     </ul>
                                                 </div>
                                                 <div class="menu_selected-dates">
-                                                    <h2 class="home_page-title">قائمة المواعيد المختارة</h2>
-                                                    <ul class="list-unstyled "> </ul>
+                                                    <h2 class="home_page-title">{{ trans('main.appointment_selected_list') }}</h2>
+                                                    <ul class="list-unstyled"> </ul>
                                                 </div>
                                             </div>
                                             <!--End Calender For Programing-->
@@ -120,9 +99,12 @@
 @stop
 
 @section('js')
-    {{--<script>--}}
-        {{--var url = "{{ url()->route('get_subcategory_providers_list') }}";--}}
-        {{--var _token = "{{ csrf_token() }}";--}}
-    {{--</script>--}}
-    <script src="{{ asset('public/Frontend/js/custum-calender.js') }}" type="text/javascript"></script>
+    <script>
+        var getCalendarDaysURL = "{{ url()->route('getCalendarDays') }}",
+            getAvailableSlotsURL = "{{ url()->route('getAvailableSlots') }}",
+            _token = "{{ csrf_token() }}",
+            provider_id = "{{ $provider->id }}";
+    </script>
+{{--    <script src="{{ asset('public/Frontend/js/custum-calender.js') }}" type="text/javascript"></script>--}}
+    <script src="{{ asset('public/Frontend/js/dev-calender.js') }}" type="text/javascript"></script>
 @stop

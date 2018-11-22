@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Services\WebApi\CommonTraits\Views;
 use App\Models\Category;
 use App\Models\Provider;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,6 +50,10 @@ class DoctorsCategoryController extends Controller
         return view(FE.'.pages.providers.profile')->with($data);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function showDoctorQuestionnaireCalendar(Request $request)
     {
         $provider = $this->checkProviderProfile($request->provider_id);
@@ -56,6 +61,7 @@ class DoctorsCategoryController extends Controller
         $subcategory = Category::findOrfail($request->subcategory_id);
 
         if (!$provider || !Auth::guard('customer-web')->check()) return redirect()->route('doctors_category');
+//        return $this->getProviderCalendar($provider);
 
 //      set meta tags
         Utilities::setMetaTagsAttributes($provider->full_name,$provider->about,$provider->profile_picture_path);
@@ -82,18 +88,83 @@ class DoctorsCategoryController extends Controller
         return Provider::GetActiveProviders()->find($provider_id);
     }
 
-    public function drawQuestionnaire($questionnaire)
-    {
-//        return $questionnaire->groupBy(['pagination']);
-        foreach ($questionnaire->groupBy(['pagination']) as $item=>$value){
-            foreach ($value as $question){
-//                draw_questionnaire
-            }
-        }
-    }
-
     public function book(Request $request)
     {
         return $request->all();
+    }
+
+    /**
+     * @param $provider
+     * @return mixed
+     */
+    public function getProviderCalendar($provider)
+    {
+        return $provider->calendar
+            ->where('is_available',1)
+            ->where('start_date','>=',Carbon::now()->addHours(2)->format('Y-m-d H:m:s'));
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getCalendarDays(Request $request)
+    {
+        if ($request->ajax()){
+            $provider = $this->checkProviderProfile($request->input('provider_id'));
+            if (!$provider) return response()->json(['result'=>false,'data'=>null]);
+
+            $calendar = $this->getProviderCalendar($provider);
+            if (!$calendar) return response()->json(['result'=>false,'data'=>null]);
+
+            return response()->json(['result'=>true,'data'=>$calendar->groupBy(['start_day'])]);
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getAvailableSlots(Request $request)
+    {
+        if ($request->ajax()){
+            $provider = $this->checkProviderProfile($request->input('provider_id'));
+            if (!$provider) return response()->json(['result'=>false,'data'=>null]);
+
+            $from = Carbon::parse($request->input('selected_day'). ' 00:00:00')->format('Y-m-d H:i:s');
+            $to   = Carbon::parse($request->input('selected_day'). ' 23:59:00')->format('Y-m-d H:i:s');
+            $slots = $provider->calendar
+                ->where('is_available',1)
+                ->where('start_date','>', $from)
+                ->where('start_date','<', $to)
+                ->where('start_date','>=',Carbon::now()->addHours(2)->format('Y-m-d H:m:s'));
+            if (count($slots)<1) return response()->json(['result'=>false,'data'=>null]);
+
+            return response()->json(['result'=>true,'data'=>$this->drawAvailableSlots($slots)]);
+        }
+    }
+
+    /**
+     * @param $slots
+     * @return string
+     */
+    public function drawAvailableSlots($slots)
+    {
+        $html = '';
+        foreach ($slots as $slot){
+            $html.='
+                <li class="available_dates-content">
+                    <aside class="available_dates-details">
+                        <i class="far fa-clock"></i> <span>'.Carbon::parse($slot->start_date)->format("H:i").'</span>
+                        : '.Carbon::parse($slot->end_date)->format("H:i").'</span>
+                    </aside>
+                    <aside class="available_dates-add">
+                        <input class="date_selected-js" data-id="date'.$slot->id.'" type="checkbox" name="selected_date" value="'.$slot->id.'">
+                        <label>'.trans('main.add_to_menu').'</label>
+                    </aside>
+                </li>
+            ';
+        }
+        return $html;
     }
 }

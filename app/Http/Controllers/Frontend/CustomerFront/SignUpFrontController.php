@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class SignUpFrontController extends Controller
 {
+    /**
+     * SignUpFrontController constructor.
+     */
     public function __construct()
     {
         $this->middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']);

@@ -50,6 +50,8 @@ Route::group(['namespace' => FE], function () {
                     Route::get('doctors/{subcategory_id}/{subcategory_name}/doctor/{provider_id}/{provider_name}','DoctorsCategoryController@showDoctorProfile')->name('doctor_profile');
                     Route::get('doctors/{subcategory_id}/{subcategory_name}/doctor/{provider_id}/{provider_name}/book','DoctorsCategoryController@showDoctorQuestionnaireCalendar')->name('doctor_booking_meeting');
                     Route::post('doctors/book-provider-meeting','DoctorsCategoryController@book')->name('book_provider_meeting');
+                    Route::post('doctors/getCalendarDays','DoctorsCategoryController@getCalendarDays')->name('getCalendarDays');
+                    Route::post('doctors/getAvailableSlots','DoctorsCategoryController@getAvailableSlots')->name('getAvailableSlots');
                 });
 
                 Route::get('lap','CategoriesFrontController@showLapSubCategories')->name('lap_category');
