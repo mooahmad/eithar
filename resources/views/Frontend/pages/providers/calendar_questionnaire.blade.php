@@ -57,15 +57,7 @@
                                                         <p class="flex row center-vh"></p>
                                                         <div class="flex row center-vh" id="right"><span class="arrow">></span></div>
                                                     </div>
-                                                    <div class="flex row center-vh colorRed disable-select" id="days">
-                                                        <p>MON</p>
-                                                        <p>TUE</p>
-                                                        <p>WEDS</p>
-                                                        <p>THURS</p>
-                                                        <p>FRI</p>
-                                                        <p>SAT</p>
-                                                        <p>SUN</p>
-                                                    </div>
+                                                    <div class="flex row center-vh colorRed disable-select" id="days"></div>
                                                     <div class="flex row wrap disable-select" id="calender-content"> </div>
                                                 </div>
                                                 <div class="available_dates-list">
