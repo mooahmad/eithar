@@ -110,14 +110,14 @@
     <div class="tab-pane" role="tabpanel" id="complete">
             <!-- Start Time Booking-->
             <div class="booking_content">
-                <aside class="">
+                <aside id="DayBooked">
                     <i class="far fa-calendar-alt"></i>
-                    <span> 02 -نوفمبر - 2017 </span>
+                    <span id="DayBooked"></span>
                 </aside>
 
-                <aside class="">
+                <aside id="TimeBooked">
                     <i class="far fa-clock"></i>
-                    <span> من الساعة 11 صباحا </span>
+                    <span></span>
                 </aside>
             </div>
             <!-- End Time Booking-->
@@ -125,52 +125,41 @@
             <!-- Start Table Details Booking-->
             <table class="table">
                 <thead>
-
-                <tr>
-                    <th>الخدمــات</th>
-                    <th>الوقت</th>
-                    <th>السعر</th>
-                </tr>
-
+                    <tr>
+                        <th>{{ trans('main.services') }}</th>
+                        <th>{{ trans('main.time') }}</th>
+                        <th>{{ trans('main.price') }}</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>فحص اسبوعى</td>
-                    <td>15 دقيقة </td>
-                    <td> <span> 200 ريال</span> </td>
-                </tr>
-                <tr>
-                    <td>فحص اسبوعى</td>
-                    <td>15 دقيقة </td>
-                    <td> <span> 200 ريال</span> </td>
-                </tr>
-
+                    <tr>
+                        <td>فحص اسبوعى</td>
+                        <td>15 دقيقة </td>
+                        <td> <span>{{ $provider->price }}</span> </td>
+                    </tr>
                 </tbody>
             </table>
             <!-- End Table Details Booking-->
-
             <div class="row">
-                <div class="col-sm-12 col-nd-6 ">
-
-                </div>
                 <div class="col-sm-12 col-md-6 ">
-                    <div class="input_content">
-                        <span> رمز ترويجي</span>
-                        <input type="text" name="" value="">
-                    </div>
+                    <aside class="price">
+                        <h3 class="price_title">{{ trans('main.total_amount') }}</h3>
+                        <span class="price_value"> 254  </span>
+                    </aside>
                 </div>
 
                 <div class="col-sm-12 col-md-6 ">
+                    <h3>{{ trans('main.promo_code') }}</h3>
                     <div class="input_content">
-                        <span>القيمة المضافة</span>
                         <input type="text" name="" value="">
+                        <button type="button" class="button">{{ trans('main.submit_code') }}</button>
                     </div>
                 </div>
             </div>
             <ul class="list-inline ">
-                <button class="button" type="submit" name="button"> تأكيد الحجز</button>
+                <button class="button" type="submit" name="button">{{ trans('main.confirm_appointment') }}</button>
             </ul>
-</div>
-    <div class="clearfix"></div>
-</div>
+    </div>
+        <div class="clearfix"></div>
+    </div>
 @endif
