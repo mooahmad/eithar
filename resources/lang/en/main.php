@@ -82,4 +82,7 @@ return [
     'confirm_appointment'           => 'Confirm Appointment',
     'minutes'                       => 'Minutes',
     'home_visit'                    => 'Home Visit',
+    'error_message'                 => 'There is something went wrong',
+    'invalid_promo_code'            => 'Invalid Promo Code',
+    'valid_promo_code'              => 'Valid Promo Code',
 ];

@@ -159,10 +159,8 @@
                         <button type="button" class="button" onclick="CheckPromoCode(this);">{{ trans('main.submit_code') }}</button>
                     </div>
                 </div>
-                <div class="col-xs-12">
-                    <div id="PromoCodeErrors" class="text-danger">
-                        <span>defde</span>
-                    </div>
+                <div class="col-xs-12 text-center">
+                    <div id="PromoCodeErrors" class="text-danger"></div>
                 </div>
             </div>
             <ul class="list-inline ">

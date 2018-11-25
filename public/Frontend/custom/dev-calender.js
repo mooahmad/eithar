@@ -299,21 +299,19 @@ function selectAppointment(event) {
 }
 
 function CheckPromoCode(event) {
-    alert('lolo');
-    alert($('#PromoCodeID').val());
     $.post(CheckPromoCodeURL, {
         'service_id' : provider_id,
         'type' : 'Provider',
         'promo_code' : $('#PromoCodeID').val(),
         '_token': _token,
-    }, function(slots){
-        $(".available_dates-title").empty();
-        $("#DayBooked span").empty();
-        $('#SlotsList').empty();
-        if (slots.result){
-            $("#DayBooked span").text(selected_day);
-            $(".available_dates-title").text(selected_day);
-            $('#SlotsList').html(slots.data);
+        'dataType': "json",
+    }, function(data){
+        $("#PromoCodeErrors").empty();
+
+        if (data.result){
+            $("#PromoCodeSuccess").empty();
+        }else {
+            $("#PromoCodeErrors").html(data.message);
         }
     });
 }

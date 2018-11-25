@@ -82,4 +82,7 @@ return [
     'confirm_appointment'           => 'تأكيد الحجز',
     'minutes'                       => 'دقيقة',
     'home_visit'                    => 'زيارة منزلية',
+    'error_message'                 => 'حدث خطأ ما !',
+    'invalid_promo_code'            => 'الكود الذي أدخلته غير صحيح',
+    'valid_promo_code'              => 'الكود الذي أدخلته صحيح',
 ];

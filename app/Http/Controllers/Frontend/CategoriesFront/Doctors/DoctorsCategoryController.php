@@ -7,10 +7,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\CheckPromoCodeRequest;
 use App\Http\Services\WebApi\CommonTraits\Views;
 use App\Models\Category;
+use App\Models\PromoCode;
 use App\Models\Provider;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Validator;
 
 class DoctorsCategoryController extends Controller
 {
@@ -170,10 +173,44 @@ class DoctorsCategoryController extends Controller
         return $html;
     }
 
-    public function checkPromoCode(CheckPromoCodeRequest $request)
+    public function checkPromoCode(Request $request)
     {
         if ($request->ajax()){
-            return $request->all();
+            $validator = Validator::make($request->all(),(new CheckPromoCodeRequest())->rules());
+            if ($validator->fails()){
+                return response()->json([
+                    'result' => false,
+                    'message' => trans('main.error_message'),
+                    'data' => ''
+                ]);
+            }
+
+            $promo_code = PromoCode::ActivePromoCode()->where('code',$request->input('promo_code'))->first();
+            if (!$promo_code){
+                return response()->json([
+                    'result' => false,
+                    'message' => trans('main.invalid_promo_code'),
+                    'data' => ''
+                ]);
+            }
+
+            if ($request->input('type') == 'Provider'){
+                $service = $this->checkProviderProfile($request->input('service_id'));
+            }
+
+            if (!$service) {
+                return response()->json([
+                    'result' => false,
+                    'message' => trans('main.error_message'),
+                    'data' => ''
+                ]);
+            }
+
+            return response()->json([
+                'result' => true,
+                'message' => trans('main.valid_promo_code'),
+                'data' => $service->price - Utilities::calcPercentage($service->price, $promo_code->discount_percentage)
+            ]);
         }
     }
 }
