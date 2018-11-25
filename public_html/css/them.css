@@ -4925,6 +4925,36 @@ span.round-tab:hover {
     position: absolute;
     left: 35%; } }
 /*End wizard Form*/
+/*Start Popup*/
+.confirmation_code .modal-dialog {
+  max-width: 400px; }
+.confirmation_code .model_code {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start; }
+.confirmation_code .send_code {
+  font-size: 18px;
+  color: #f00;
+  margin-bottom: 30px; }
+
+.successful_confirmation .modal-dialog {
+  max-width: 400px; }
+.successful_confirmation .model_code {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start; }
+.successful_confirmation .send_code {
+  font-size: 18px;
+  color: #07A7E3;
+  margin-bottom: 30px; }
+.successful_confirmation .button {
+  background-color: #07A7E3;
+  padding: 10px;
+  min-width: 120px; }
+
+/*End Popup*/
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/

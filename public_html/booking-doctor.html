@@ -747,7 +747,8 @@
 
                                         </div>
                                         <ul class="list-inline ">
-                                            <button class="button" type="button" name="button"> تأكيد الحجز</button>
+                                            <button class="button" type="button" name="button" data-toggle="modal" data-target="#reservation_confirmation"> تأكيد الحجز</button>
+
 
                                         </ul>
                                     </div>
@@ -765,6 +766,90 @@
         <!--=02=Start Doctor Profile -->
     </div>
     <!-- End Single Page -->
+
+
+
+    <!--=01=Start Popup confirmation_code-->
+    <div class="confirmation_code">
+        <div class="container">
+            <!-- The Modal -->
+            <div class="modal fade" id="reservation_confirmation">
+                <div class="modal-dialog ">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <button class="close fas fa-times" type="button" data-dismiss="modal"> </button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body model_code">
+
+                            <!-- Start Form content-->
+                            <div class="form_content">
+                                <form class="glopal_form middel_form " action="index.html" method="post">
+                                    <h5 class="send_code"> انقر فوق تأكيد الحجز </h5>
+                                    <!-- End List icon Registration -->
+                                    <aside class="sign_button-content">
+                                        <button class="button" type="submit" data-dismiss="modal" data-toggle="modal" data-target="#successful_confirmation"> تأكيد الحجز </button>
+                                    </aside>
+
+
+
+
+                                </form>
+                            </div>
+                            <!-- End  Form content-->
+                            <aside class="form_man">
+                                <img src="img/confirm.png" alt="">
+                            </aside>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--=01= Send Code confirmation_code -->
+
+
+
+    <!--=02=Start Popup successful_confirmatione-->
+    <div class="successful_confirmation">
+        <div class="container">
+            <!-- The Modal -->
+            <div class="modal fade" id="successful_confirmation">
+                <div class="modal-dialog ">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <button class="close fas fa-times" type="button" data-dismiss="modal"> </button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body model_code">
+
+                            <!-- Start Form content-->
+                            <div class="form_content">
+                                <form class="glopal_form middel_form " action="index.html" method="post">
+                                    <h5 class="send_code"> تأكيد الحجز </h5>
+                                    <!-- End List icon Registration -->
+                                    <aside class="sign_button-content">
+                                        <button class="button" type="submit"> تم التأكيد بنجاح</button>
+                                    </aside>
+
+                                </form>
+                            </div>
+                            <!-- End  Form content-->
+                            <aside class="form_man">
+                                <img src="img/successful_code.png" alt="">
+                            </aside>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--=02= Send Code successful_confirmation -->
+
 
     <!-- Start Footer -->
     <footer>
