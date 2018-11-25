@@ -155,8 +155,13 @@
                 <div class="col-sm-12 col-md-6 ">
                     <h3>{{ trans('main.promo_code') }}</h3>
                     <div class="input_content">
-                        <input type="text" name="" value="">
-                        <button type="button" class="button">{{ trans('main.submit_code') }}</button>
+                        <input type="text" id="PromoCodeID" name="promo_code" value="">
+                        <button type="button" class="button" onclick="CheckPromoCode(this);">{{ trans('main.submit_code') }}</button>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div id="PromoCodeErrors" class="text-danger">
+                        <span>defde</span>
                     </div>
                 </div>
             </div>

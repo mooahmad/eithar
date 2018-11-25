@@ -94,6 +94,7 @@
     <script>
         var getCalendarDaysURL = "{{ url()->route('getCalendarDays') }}",
             getAvailableSlotsURL = "{{ url()->route('getAvailableSlots') }}",
+            CheckPromoCodeURL = "{{ url()->route('checkPromoCode') }}",
             _token = "{{ csrf_token() }}",
             provider_id = "{{ $provider->id }}";
             var transMonthNames = "{{ implode(',',config('constants.monthNames_'.LaravelLocalization::getCurrentLocale())) }}";

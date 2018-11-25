@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend\CategoriesFront\Doctors;
 
 use App\Helpers\Utilities;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Frontend\CheckPromoCodeRequest;
 use App\Http\Services\WebApi\CommonTraits\Views;
 use App\Models\Category;
 use App\Models\Provider;
@@ -167,5 +168,12 @@ class DoctorsCategoryController extends Controller
             ';
         }
         return $html;
+    }
+
+    public function checkPromoCode(CheckPromoCodeRequest $request)
+    {
+        if ($request->ajax()){
+            return $request->all();
+        }
     }
 }
