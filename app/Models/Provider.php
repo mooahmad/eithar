@@ -172,4 +172,12 @@ class Provider extends Authenticatable
             ->where('type',config('constants.transactionsTypes.provider'))
             ->where('transaction_type',config('constants.transactions.rate'));
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function currency()
+    {
+        return $this->belongsTo(Currency::class,'currency_id','id');
+    }
 }

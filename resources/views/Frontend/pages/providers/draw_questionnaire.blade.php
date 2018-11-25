@@ -26,7 +26,7 @@
             <div class="row">
             @foreach($questions as $question)
                 @if($question->type ==0)
-                    {{--Text Input--}}
+                    {{--Radio Input--}}
                     <div class="col-sm-12 col-md-6">
                         <div class="check_content">
                             <h3>{{ $question->title }}</h3>
@@ -42,7 +42,7 @@
                 @endif
 
                 @if($question->type ==1)
-                    {{--Text Input--}}
+                    {{--checkbox Input--}}
                     <div class="col-sm-12 col-md-6">
                         <h3>{{ $question->title }}</h3>
                         @foreach(unserialize($question->options) as $checkbox_number=>$checkbox_value)
@@ -62,7 +62,7 @@
                 @endif
 
                 @if($question->type ==3)
-                    {{--Text Input--}}
+                    {{--Textarea Input--}}
                     <div class="col-sm-12 col-md-6">
                         <h3>{{ $question->title }}</h3>
                         <textarea name="answer[{{$question->id}}]" placeholder="{{$question->subtitle}}" {{ ($question->is_required==1)?'required' : '' }}></textarea>
@@ -70,7 +70,7 @@
                 @endif
 
                 @if($question->type ==4)
-                    {{--Text Input--}}
+                    {{--Date Input--}}
                     <div class="col-sm-12 col-md-6">
                         <h3>{{ $question->title }}</h3>
                         <input type="date" name="answer[{{$question->id}}]" placeholder="{{$question->subtitle}}" {{ ($question->is_required==1)?'required' : '' }}>
@@ -78,26 +78,30 @@
                 @endif
 
                 @if($question->type ==5)
-                    {{--Text Input--}}
+                    {{--Rating Input--}}
                     <div class="col-sm-12 col-md-6">
-                        {{--@if($question->rating_symbol == 1)--}}
+                        @if($question->rating_symbol == 1)
                             <h3>{{ $question->title }}</h3>
                             <input type="number" max="{{ $question->rating_levels }}" name="answer[{{$question->id}}]" placeholder="{{$question->subtitle}}" {{ ($question->is_required==1)?'required' : '' }}>
-                        {{--@else--}}
-                            {{--<div class="rating_area">--}}
-                                {{--<h3>{{ $question->title }}</h3>--}}
-                                {{--<section class='rating-widget'>--}}
-                                    {{--<!-- Rating Stars Box -->--}}
-                                    {{--<div class='rating-stars'>--}}
-                                        {{--<ul id='stars'>--}}
-                                            {{--<li class='star' title='Poor' data-value='1'>--}}
-                                                {{--<i class='fa fa-star fa-fw'></i>--}}
-                                            {{--</li>--}}
-                                        {{--</ul>--}}
-                                    {{--</div>--}}
-                                {{--</section>--}}
-                            {{--</div>--}}
-                        {{--@endif--}}
+                        @else
+                            <div class="rating_area">
+                                <h3>{{ $question->title }}</h3>
+                                <section class='rating-widget'>
+                                    <!-- Rating Stars Box -->
+                                    <div class='rating-stars'>
+                                        <ul id='stars'>
+                                            @for ($i = 1; $i <= $question->rating_levels; $i++)
+                                                <li class="star fa" title="{{$i}}" data-value="{{$i}}">
+                                                    <i class="fa fa-star fa-fw">
+                                                        <input type="radio" name="answer[{{$question->id}}]" value="{{$i}}">
+                                                    </i>
+                                                </li>
+                                            @endfor
+                                        </ul>
+                                    </div>
+                                </section>
+                            </div>
+                        @endif
                     </div>
                 @endif
             @endforeach
@@ -133,9 +137,9 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>فحص اسبوعى</td>
-                        <td>15 دقيقة </td>
-                        <td> <span>{{ $provider->price }}</span> </td>
+                        <td>{{ trans('main.home_visit') }}</td>
+                        <td>{{ $provider->visit_duration }} {{ trans('main.minutes') }}</td>
+                        <td> <span>{{ $provider->price }} {{ ($provider->currency) ? $provider->currency->name : ''}}</span> </td>
                     </tr>
                 </tbody>
             </table>

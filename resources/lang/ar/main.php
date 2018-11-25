@@ -73,4 +73,13 @@ return [
     'add_to_menu'                   => 'أضف الى القائمة',
     'appointment_selected_list'     => 'قائمة المواعيد المختارة',
     'select_appointment'            => 'أختر ميعاد الزيارة',
+    'services'                      => 'الخدمــات',
+    'time'                          => 'الوقت',
+    'price'                         => 'السعر',
+    'total_amount'                  => 'السعر النهائى',
+    'promo_code'                    => 'رمز ترويجي',
+    'submit_code'                   => 'تأكيد الرمز',
+    'confirm_appointment'           => 'تأكيد الحجز',
+    'minutes'                       => 'دقيقة',
+    'home_visit'                    => 'زيارة منزلية',
 ];

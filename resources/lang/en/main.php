@@ -73,4 +73,13 @@ return [
     'add_to_menu'                   => 'Add To Menu',
     'appointment_selected_list'     => 'Appointment Selected List',
     'select_appointment'            => 'Select Appointment',
+    'services'                      => 'Services',
+    'time'                          => 'Time',
+    'price'                         => 'Price',
+    'total_amount'                  => 'Total Amount',
+    'promo_code'                    => 'Promo Code',
+    'submit_code'                   => 'Submit Code',
+    'confirm_appointment'           => 'Confirm Appointment',
+    'minutes'                       => 'Minutes',
+    'home_visit'                    => 'Home Visit',
 ];

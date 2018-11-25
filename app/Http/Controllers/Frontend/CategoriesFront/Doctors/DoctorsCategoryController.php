@@ -151,15 +151,16 @@ class DoctorsCategoryController extends Controller
     public function drawAvailableSlots($slots)
     {
         $html = '';
+        $appointment = '';
         foreach ($slots as $slot){
+            $appointment = Carbon::parse($slot->start_date)->format("H:i") . ' : ' . Carbon::parse($slot->end_date)->format("H:i");
             $html.='
                 <li class="available_dates-content">
                     <aside class="available_dates-details">
-                        <i class="far fa-clock"></i> <span>'.Carbon::parse($slot->start_date)->format("H:i").'
-                        : '.Carbon::parse($slot->end_date)->format("H:i").'</span>
+                        <i class="far fa-clock"></i> <span>'.$appointment.'</span>
                     </aside>
                     <aside class="available_dates-add">
-                        <input id="'.$slot->id.'" class="date_selected-js" data-id="date'.$slot->id.'" type="radio" name="slot_id" value="'.$slot->id.'">
+                        <input id="'.$slot->id.'" class="date_selected-js" data-id="date'.$slot->id.'" data-value="'.$appointment.'" type="radio" name="slot_id" value="'.$slot->id.'" onclick="selectAppointment(this);">
                         <label for="'.$slot->id.'">'.trans('main.select_appointment').'</label>
                     </aside>
                 </li>
