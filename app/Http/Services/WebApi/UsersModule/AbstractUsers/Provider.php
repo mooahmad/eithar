@@ -1016,10 +1016,12 @@ class Provider
                             "service_type" => $service->type,
                             "service_name" => $service->full_name,
                             "service_image" => $service->profile_picture_path,
-                            "customer_name" => "{$customer->first_name} {$customer->middle_name} {$customer->last_name}",
                             "start_date" => $startDate,
                             "start_time" => $startTime,
                             "end_time" => $endTime,
+                            "customer_name" => "{$customer->first_name} {$customer->middle_name} {$customer->last_name}",
+                            "customer_image" => Utilities::getFileUrl($customer->profile_picture_path),
+                            "customer_mobile" => $customer->mobile_number,
                             "customer_position" => $customer->position
                         ];
                         //one and package
@@ -1042,10 +1044,12 @@ class Provider
                             "service_type" => $service->type,
                             "service_name" => $service->name_en,
                             "service_image" => $service->profile_picture_path,
-                            "customer_name" => "{$customer->first_name} {$customer->middle_name} {$customer->last_name}",
                             "start_date" => $startDate,
                             "start_time" => $startTime,
                             "end_time" => $endTime,
+                            "customer_name" => "{$customer->first_name} {$customer->middle_name} {$customer->last_name}",
+                            "customer_image" => Utilities::getFileUrl($customer->profile_picture_path),
+                            "customer_mobile" => $customer->mobile_number,
                             "customer_position" => $customer->position
                         ];
                     }
@@ -1068,10 +1072,12 @@ class Provider
                         "service_type" => 4,
                         "service_name" => "Lap",
                         "service_image" => Categories::find(2)->profile_picture_path,
-                        "customer_name" => "{$customer->first_name} {$customer->middle_name} {$customer->last_name}",
                         "start_date" => $startDate,
                         "start_time" => $startTime,
                         "end_time" => $endTime,
+                        "customer_name" => "{$customer->first_name} {$customer->middle_name} {$customer->last_name}",
+                        "customer_image" => Utilities::getFileUrl($customer->profile_picture_path),
+                        "customer_mobile" => $customer->mobile_number,
                         "customer_position" => $customer->position
                     ];
                 }

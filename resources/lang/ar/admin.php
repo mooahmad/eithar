@@ -269,5 +269,7 @@ return [
     'carType' => 'Car type',
     'carColor' => 'Car color',
     'carPlateNumber' => 'Car plate number',
-    'unlock_request' => 'Unlock request'
+    'unlock_request' => 'Unlock request',
+    'joinus' => 'Join us',
+
 ];

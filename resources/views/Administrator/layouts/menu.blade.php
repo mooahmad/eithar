@@ -380,6 +380,26 @@
                         </li>
                     @endcan
                     <!-- End Drivers Area -->
+                                <!-- Start joinus Area -->
+            @can('settings.view', new \App\Models\Settings())
+            <li class="nav-item start {{ (Request::segment(2)=='joinus') ? 'active' :'' }}">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-user-secret"></i>
+                    <span class="title">{{ trans('admin.joinus') }}</span>
+                    <span class="selected"></span>
+                    <span class="arrow {{ (Request::segment(2)=='joinus') ? 'open' :'' }}"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item start {{ (Request::is(AD.'/settings')) ? 'active' :'' }}">
+                        <a href="{{ url(AD.'/joinus') }}" class="nav-link ">
+                            <i class="fa fa-eye"></i>
+                            <span class="title">{{ trans('admin.joinus') }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        @endcan
+        <!-- End joinus Area -->
             <!-- Start settings Area -->
             @can('settings.view', new \App\Models\Settings())
                 <li class="nav-item start {{ (Request::segment(2)=='settings') ? 'active' :'' }}">

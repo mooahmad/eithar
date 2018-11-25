@@ -137,7 +137,7 @@ class AuthServiceProvider extends ServiceProvider
 
         Passport::tokensExpireIn(now()->addMinutes(60));
 
-        Passport::refreshTokensExpireIn(now()->addMinutes(50));
+        // Passport::refreshTokensExpireIn(now()->addMinutes(50));
 
         // Middleware `oauth.providers` middleware defined on $routeMiddleware above
         Route::group(['middleware' => 'oauth.providers'], function () {

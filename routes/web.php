@@ -16,6 +16,7 @@ define('BSN', 'Administrator\BookingServices');
 define('MRP', 'Administrator\MedicalReports');
 define('MMRP', 'Administrator\MeetingsMedicalReports');
 define('SET', 'Administrator\Settings');
+define('JUS', 'Administrator\Joinus');
 define('DRV', 'Administrator\Drivers');
 
 
@@ -188,6 +189,18 @@ Route::group(['middleware' => 'AdminAuth', 'namespace' => SET, 'prefix' => AD], 
             'destroy' => 'delete settings'
         ]]);
     Route::get('getPushType/{id}', 'SettingsController@getPushType');
+});
+
+Route::group(['middleware' => 'AdminAuth', 'namespace' => JUS, 'prefix' => AD], function () {
+    Route::resource('joinus', 'JoinusController',
+        ['names' => [
+            'index' => 'show joinus',
+            'create' => 'create joinus',
+            'show' => 'show joinus',
+            'edit' => 'edit joinus',
+            'destroy' => 'delete joinus'
+        ]]);
+    Route::get('getjoinusdataTable', 'JoinusController@getJoinusDataTable')->name('getJoinusDataTable');
 });
 
 Route::group(['middleware' => 'AdminAuth', 'namespace' => MRP, 'prefix' => AD], function () {
