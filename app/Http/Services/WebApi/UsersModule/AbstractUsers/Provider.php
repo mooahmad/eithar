@@ -976,7 +976,7 @@ class Provider
             $query->orderByRaw('service_booking_appointments.created_at DESC');
         }])->servicesBookings()->count()/config('constants.paggination_items_per_page'));
         $servicesBookings = Auth::user()->load(['servicesBookings.service_appointments' => function ($query) {
-            $query->orderByRaw('service_booking_appointments.created_at DESC');
+            $query->whereRaw('service_bookings.status = 1')->orderByRaw('service_booking_appointments.created_at DESC');
         }])->servicesBookings()->skip($page * config('constants.paggination_items_per_page'))->take(config('constants.paggination_items_per_page'))->get();
         foreach ($servicesBookings as $servicesBooking) {
             $service = null;
