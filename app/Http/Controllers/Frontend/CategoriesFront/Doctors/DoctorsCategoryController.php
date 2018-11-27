@@ -4,12 +4,22 @@ namespace App\Http\Controllers\Frontend\CategoriesFront\Doctors;
 
 use App\Helpers\Utilities;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Frontend\BookAppointmentProviderRequest;
 use App\Http\Requests\Frontend\CheckPromoCodeRequest;
 use App\Http\Services\Adminstrator\InvoiceModule\ClassesInvoice\InvoiceClass;
 use App\Http\Services\WebApi\CommonTraits\Views;
+use App\Listeners\PushNotificationEventListener;
 use App\Models\Category;
 use App\Models\PromoCode;
 use App\Models\Provider;
+use App\Models\ProvidersCalendar;
+use App\Models\PushNotificationsTypes;
+use App\Models\Questionnaire;
+use App\Models\ServiceBooking;
+use App\Models\ServiceBookingAnswers;
+use App\Models\ServiceBookingAppointment;
+use App\Notifications\AppointmentConfirmed;
+use App\Notifications\AppointmentReminder;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -93,9 +103,41 @@ class DoctorsCategoryController extends Controller
         return Provider::GetActiveProviders()->find($provider_id);
     }
 
-    public function book(Request $request)
+    public function book(BookAppointmentProviderRequest $request)
     {
-        return $request->all();
+//        return $request->all();
+        $provider = $this->checkProviderProfile($request->input('provider_id'));
+
+        $category = Category::findOrFail($request->input('subcategory_id'));
+        $service_id    = null;
+        $promo_code_id = null;
+
+        if ($category){
+            $service_id = $category->services->first()->id;
+        }
+
+        if ($request->has('promo_code')){
+            $promo_code = $this->checkPromoCode($request->input('promo_code'));
+            if ($promo_code){
+                $promo_code_id = $promo_code->id;
+            }
+        }
+
+        $customer = \auth()->guard('customer-web')->user();
+        $family_member = $request->input('family_member_id');
+        $is_lap = 0;
+        $address = (!empty($request->input('address'))) ? $request->input('address') : $customer->address;
+        $comment = $request->input('comment');
+        $status = config('constants.bookingStatus.inprogress');
+        $status_desc = "inprogress";
+        $booking = $this->saveProviderBooking($customer->id,$service_id,$provider->id,$promo_code_id,$provider->currency->id,$family_member,$is_lap,$provider->price,$comment,$address,$status,$status_desc);
+        if ($booking){
+            $booking_answers = $this->saveBookingAnswers($booking->id,$request->input('answer'));
+            $this->saveBookingAppointments($provider,$booking->id,$request->input('slot_id'));
+            PushNotificationEventListener::fireOnModel(config('constants.customer_message_cloud'), $customer);
+        }
+        session()->flash('success_message',trans('main.booked_appointment_success'));
+        return redirect()->route('doctor_booking_meeting',['subcategory_id'=>$category->id,'subcategory_name'=>Utilities::beautyName($category->name),'provider_id'=>$provider->id,'provider_name'=>Utilities::beautyName($provider->full_name) ]);
     }
 
     /**
@@ -174,7 +216,11 @@ class DoctorsCategoryController extends Controller
         return $html;
     }
 
-    public function checkPromoCode(Request $request)
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function checkPromoCodeAndGetAmount(Request $request)
     {
         if ($request->ajax()){
             $validator = Validator::make($request->all(),(new CheckPromoCodeRequest())->rules());
@@ -187,7 +233,7 @@ class DoctorsCategoryController extends Controller
                 ]);
             }
 
-            $promo_code = PromoCode::ActivePromoCode()->where('code',$request->input('promo_code'))->first();
+            $promo_code = $this->checkPromoCode($request->input('promo_code'));
             if (!$promo_code){
                 return response()->json([
                     'result' => false,
@@ -218,5 +264,138 @@ class DoctorsCategoryController extends Controller
                 'currency' => ($service->currency) ? $service->currency->name : ''
             ]);
         }
+    }
+
+    /**
+     * @param $code
+     * @return mixed
+     */
+    public function checkPromoCode($code)
+    {
+        return PromoCode::ActivePromoCode()->where('code',$code)->first();
+    }
+
+    /**
+     * @param $customer_id
+     * @param $service_id
+     * @param $provider_id
+     * @param $promo_code_id
+     * @param $currency_id
+     * @param $family_member_id
+     * @param $is_lap
+     * @param $price
+     * @param $comment
+     * @param $address
+     * @param $status
+     * @param $status_desc
+     * @return ServiceBooking
+     */
+    public function saveProviderBooking($customer_id,$service_id,$provider_id,$promo_code_id,$currency_id,$family_member_id,$is_lap,$price,$comment,$address,$status,$status_desc)
+    {
+        $booking = new ServiceBooking();
+        $booking->customer_id       = $customer_id;
+        $booking->service_id        = $service_id;
+        $booking->provider_id       = $provider_id;
+        $booking->promo_code_id     = $promo_code_id;
+        $booking->currency_id       = $currency_id;
+        $booking->family_member_id  = $family_member_id;
+        $booking->is_lap            = $is_lap;
+        $booking->price             = $price;
+        $booking->comment           = $comment;
+        $booking->address           = $address;
+        $booking->status            = $status;
+        $booking->status_desc       = $status_desc;
+        $booking->save();
+        return $booking;
+    }
+
+    /**
+     * @param $booking_id
+     * @param $Answers
+     * @return mixed
+     */
+    public function saveBookingAnswers($booking_id, $Answers)
+    {
+        $data = [];
+        foreach ($Answers as $key => $value) {
+            $questionnaire = Questionnaire::find($key);
+            $data[] = [
+                "service_booking_id" => $booking_id,
+                "service_questionnaire_id" => $questionnaire->id,
+                "title_ar" => $questionnaire->title_ar,
+                "title_en" => $questionnaire->title_en,
+                "subtitle_ar" => $questionnaire->subtitle_ar,
+                "subtitle_en" => $questionnaire->subtitle_en,
+                "options_ar" => $questionnaire->options_ar,
+                "options_en" => $questionnaire->options_en,
+                "is_required" => $questionnaire->is_required,
+                "rating_levels" => $questionnaire->rating_levels,
+                "rating_symbol" => $questionnaire->rating_symbol,
+                "order" => $questionnaire->order,
+                "pagination" => $questionnaire->pagination,
+                "type" => $questionnaire->type,
+                "answer" => serialize($value),
+            ];
+        }
+        return ServiceBookingAnswers::insert($data);
+    }
+
+    /**
+     * @param $provider
+     * @param $booking_Id
+     * @param $slot_id
+     * @return bool
+     */
+    public function saveBookingAppointments($provider, $booking_Id,$slot_id)
+    {
+        $pushTypeData = PushNotificationsTypes::find(config('constants.pushTypes.appointmentConfirmed'));
+        $bookingAppointment = new ServiceBookingAppointment();
+        $bookingAppointment->service_booking_id = $booking_Id;
+        $bookingAppointment->slot_id = $slot_id;
+        $bookingAppointment->save();
+
+        // push notification confirmation
+        $pushTypeData->booking_id = $bookingAppointment->id;
+        $pushTypeData->send_at = Carbon::now()->format('Y-m-d H:m:s');
+
+        $pushTypeData->service_type = 5;
+        $slot = ProvidersCalendar::find($slot_id);
+        $slot->is_available = 0;
+        $slot->save();
+        $pushTypeData->appointment_date = $slot->start_date;
+        \auth()->guard('customer-web')->user()->notify(new AppointmentConfirmed($pushTypeData));
+        $provider->notify(new AppointmentConfirmed($pushTypeData));
+        PushNotificationEventListener::fireOnModel(config('constants.provider_message_cloud'), $provider);
+        $this->notifyBookingReminders($bookingAppointment->id, $slot->start_date, 5);
+        return true;
+    }
+
+    /**
+     * @param $appointmentId
+     * @param $startDate
+     * @param $serviceType
+     */
+    public function notifyBookingReminders($appointmentId, $startDate, $serviceType)
+    {
+        $now = Carbon::now()->format('Y-m-d H:m:s');
+        $pushTypeData = PushNotificationsTypes::find(config('constants.pushTypes.appointmentReminder'));
+        $pushTypeData->service_type = $serviceType;
+        $pushTypeData->booking_id = $appointmentId;
+        $pushTypeData->appointment_date = $startDate;
+        $pushTypeData->send_at = Carbon::parse($startDate)->subHours(3)->format('Y-m-d H:m:s');
+        if (strtotime($pushTypeData->send_at) > strtotime($now)) {
+            \auth()->guard('customer-web')->user()->notify(new AppointmentReminder($pushTypeData));
+        }
+
+        $pushTypeData->send_at = Carbon::parse($startDate)->subHours(24)->format('Y-m-d H:m:s');
+        if (strtotime($pushTypeData->send_at) > strtotime($now)) {
+            \auth()->guard('customer-web')->user()->notify(new AppointmentReminder($pushTypeData));
+        }
+
+        $pushTypeData->send_at = Carbon::parse($startDate)->subHours(72)->format('Y-m-d H:m:s');
+        if (strtotime($pushTypeData->send_at) > strtotime($now)) {
+            \auth()->guard('customer-web')->user()->notify(new AppointmentReminder($pushTypeData));
+        }
+
     }
 }

@@ -91,4 +91,8 @@ return [
     'amount_final'                  => 'Amount Final',
     'press_confirm_appointment'     => 'Press Confirm Appointment',
     'save_and_complete'             => 'Save And Complete',
+    'select_slot'                   => 'Select visit date',
+    'select_provider'               => 'Select Provider',
+    'comment'                       => 'Comment',
+    'booked_appointment_success'    => 'Booking successful',
 ];

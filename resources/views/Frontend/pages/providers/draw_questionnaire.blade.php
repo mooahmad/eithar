@@ -32,7 +32,8 @@
                             <h3>{{ $question->title }} {!! ($question->is_required==1)?'<span class="text-danger">*</span>' : '' !!}</h3>
                             <aside class="radio_input">
                                 @foreach(unserialize($question->options) as $radio_number=>$radio_value)
-                                    <label for="IDR{{$radio_number}}"><input id="IDR{{$radio_number}}" type="radio" name="answer[{{$question->id}}]" value="{{$radio_number}}" placeholder="{{$question->subtitle}}">
+                                    <label for="IDR{{$radio_number}}">
+                                        {!! Form::radio('answer['.$question->id.']',$radio_number,false,['id'=>'IDR'.$radio_number,'placeholder'=>$question->subtitle]) !!}
                                         <span>{{$radio_value}}</span>
                                     </label>
                                 @endforeach
@@ -46,7 +47,8 @@
                     <div class="col-sm-12 col-md-6">
                         <h3>{{ $question->title }} {!! ($question->is_required==1)?'<span class="text-danger">*</span>' : '' !!}</h3>
                         @foreach(unserialize($question->options) as $checkbox_number=>$checkbox_value)
-                            <label class="checkbox_input"><input type="checkbox" name="answer[{{$question->id}}][]" value="{{$checkbox_number}}" placeholder="{{$question->subtitle}}">
+                            <label class="checkbox_input">
+                                {!! Form::checkbox('answer['.$question->id.'][]',$checkbox_number,false,['placeholder'=>$question->subtitle]) !!}
                                 <span>{{$checkbox_value}}</span>
                             </label>
                         @endforeach
@@ -57,7 +59,7 @@
                     {{--Text Input--}}
                     <div class="col-sm-12 col-md-6">
                         <h3>{{ $question->title }} {!! ($question->is_required==1)?'<span class="text-danger">*</span>' : '' !!}</h3>
-                        <input type="text" name="answer[{{$question->id}}]" placeholder="{{$question->subtitle}}" {{ ($question->is_required==1)?'required' : '' }}>
+                        {!! Form::text('answer['.$question->id.']',old('answer['.$question->id.']'),['placeholder'=>$question->subtitle,($question->is_required==1)?'required' : '']) !!}
                     </div>
                 @endif
 
@@ -65,7 +67,7 @@
                     {{--Textarea Input--}}
                     <div class="col-sm-12 col-md-6">
                         <h3>{{ $question->title }} {!! ($question->is_required==1)?'<span class="text-danger">*</span>' : '' !!}</h3>
-                        <textarea name="answer[{{$question->id}}]" placeholder="{{$question->subtitle}}" {{ ($question->is_required==1)?'required' : '' }}></textarea>
+                        {!! Form::textarea('answer['.$question->id.']',old('answer['.$question->id.']'),['placeholder'=>$question->subtitle,($question->is_required==1)?'required' : '']) !!}
                     </div>
                 @endif
 
@@ -73,7 +75,7 @@
                     {{--Date Input--}}
                     <div class="col-sm-12 col-md-6">
                         <h3>{{ $question->title }} {!! ($question->is_required==1)?'<span class="text-danger">*</span>' : '' !!}</h3>
-                        <input type="date" name="answer[{{$question->id}}]" placeholder="{{$question->subtitle}}" {{ ($question->is_required==1)?'required' : '' }}>
+                        {!! Form::text('answer['.$question->id.']',old('answer['.$question->id.']'),['class'=>'date_picker','placeholder'=>$question->subtitle,($question->is_required==1)?'required' : '']) !!}
                     </div>
                 @endif
 
@@ -82,7 +84,7 @@
                     <div class="col-sm-12 col-md-6">
                         @if($question->rating_symbol == 1)
                             <h3>{{ $question->title }} {!! ($question->is_required==1)?'<span class="text-danger">*</span>' : '' !!}</h3>
-                            <input type="number" max="{{ $question->rating_levels }}" name="answer[{{$question->id}}]" placeholder="{{$question->subtitle}}" {{ ($question->is_required==1)?'required' : '' }}>
+                            {!! Form::number('answer['.$question->id.']',old('answer['.$question->id.']'),['max'=>$question->rating_levels,'placeholder'=>$question->subtitle,($question->is_required==1)?'required' : '']) !!}
                         @else
                             <div class="rating_area">
                                 <h3>{{ $question->title }} {!! ($question->is_required==1)?'<span class="text-danger">*</span>' : '' !!}</h3>
@@ -93,7 +95,7 @@
                                             @for ($i = 1; $i <= $question->rating_levels; $i++)
                                                 <li class="star fa" title="{{$i}}" data-value="{{$i}}">
                                                     <i class="fa fa-star fa-fw">
-                                                        <input type="radio" name="answer[{{$question->id}}]" value="{{$i}}">
+                                                        {!! Form::radio('answer['.$question->id.']',$i,false) !!}
                                                     </i>
                                                 </li>
                                             @endfor
@@ -167,8 +169,12 @@
                 <div class="col-sm-12 col-md-6 ">
                     <h3>{{ trans('main.promo_code') }}</h3>
                     <div class="input_content">
-                        <input type="text" id="PromoCodeID" name="promo_code" value="">
+                        {!! Form::text('promo_code',old('promo_code'),['id'=>'PromoCodeID']) !!}
                         <button type="button" class="button" onclick="CheckPromoCode(this);">{{ trans('main.submit_code') }}</button>
+                    </div>
+                    <h3>{{ trans('main.comment') }}</h3>
+                    <div class="input_content">
+                        {!! Form::textarea('comment',old('comment'),['placeholder'=>trans('main.comment')]) !!}
                     </div>
                 </div>
                 <div class="col-xs-12">
@@ -179,45 +185,9 @@
                 </div>
             </div>
             <ul class="list-inline ">
-                {{--<button class="button" type="submit" name="button" data-toggle="modal" data-target="#reservation_confirmation">{{ trans('main.confirm_appointment') }}</button>--}}
                 <button class="button" type="button" name="button" onclick="validateForm();">{{ trans('main.confirm_appointment') }}</button>
             </ul>
     </div>
         <div class="clearfix"></div>
     </div>
-
-    <!--=01=Start Popup confirmation_code-->
-    <div class="confirmation_code">
-        <div class="container">
-            <!-- The Modal -->
-            <div class="modal fade" id="reservation_confirmation">
-                <div class="modal-dialog ">
-                    <div class="modal-content">
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                            <button class="close fas fa-times" type="button" data-dismiss="modal"> </button>
-                        </div>
-                        <!-- Modal body -->
-                        <div class="modal-body model_code">
-                            <!-- Start Form content-->
-                            <div class="form_content">
-                                <form class="glopal_form middel_form ">
-                                    <h5 class="send_code"> {{ trans('main.press_confirm_appointment') }} </h5>
-                                    <!-- End List icon Registration -->
-                                    <aside class="sign_button-content">
-                                        <button class="button" type="button" onclick="submitQuestionnaireForm();">{{ trans('main.confirm_appointment') }}</button>
-                                    </aside>
-                                </form>
-                            </div>
-                            <!-- End  Form content-->
-                            <aside class="form_man">
-                                <img src="{{ asset('public/Frontend/img/confirm.png') }}" alt="{{ trans('main.site_name') }}">
-                            </aside>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--=01= Send Code confirmation_code -->
 @endif

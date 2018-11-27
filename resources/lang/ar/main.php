@@ -91,4 +91,8 @@ return [
     'amount_final'                  => 'السعر النهائى',
     'press_confirm_appointment'     => 'انقر فوق تأكيد الحجز',
     'save_and_complete'             => 'حفظ واستكمال',
+    'select_slot'                   => 'أختر ميعاد الزيارة',
+    'select_provider'               => 'أختر الدكتور',
+    'comment'                       => 'التعليق',
+    'booked_appointment_success'    => 'تم حجز الموعد بنجاح',
 ];
