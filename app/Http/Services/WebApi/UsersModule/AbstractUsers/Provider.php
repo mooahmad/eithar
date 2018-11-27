@@ -1004,8 +1004,7 @@ class Provider
                             $startTime = Carbon::parse($calendar->start_date)->format('g:i A');
                             $endTime = Carbon::parse($calendar->end_date)->format('g:i A');
                             $now = Carbon::now();
-                            //$nowPlusHours = Carbon::now()->addHours(3);
-                            $nowPlusHours = Carbon::now()->addDays(6);
+                            $nowPlusHours = Carbon::now()->addHours(3);
                             $afterStartDay = Carbon::parse($calendar->start_date);
                             if (!($now <= $afterStartDay && $nowPlusHours >= $afterStartDay)) {
                                 $startDate = "Unknown";
