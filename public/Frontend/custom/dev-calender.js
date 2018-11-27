@@ -306,12 +306,33 @@ function CheckPromoCode(event) {
         '_token': _token,
         'dataType': "json",
     }, function(data){
-        $("#PromoCodeErrors").empty();
-
-        if (data.result){
-            $("#PromoCodeSuccess").empty();
-        }else {
-            $("#PromoCodeErrors").html(data.message);
-        }
+        clearAmountAndPromoMessageValue();
+        setAmountAndPromoMessageValue(data);
     });
+}
+
+function clearAmountAndPromoMessageValue() {
+    $("#PromoCodeMessage").empty();
+    $("#PromoCodeMessage").removeClass('text-success');
+    $("#PromoCodeMessage").removeClass('text-danger');
+
+    $(".amount_original").empty();
+    $(".amount_after_discount").empty();
+    $(".amount_after_vat").empty();
+    $(".amount_final").empty();
+}
+
+function setAmountAndPromoMessageValue(data) {
+    if (data.result){
+        $("#PromoCodeMessage").addClass('text-success');
+        $("#PromoCodeMessage").html(data.message);
+
+        $(".amount_original").text(data.data.amount_original +' '+data.currency);
+        $(".amount_after_discount").text(data.data.amount_after_discount +' '+data.currency);
+        $(".amount_after_vat").text(data.data.amount_after_vat +' '+data.currency);
+        $(".amount_final").text(data.data.amount_final +' '+data.currency);
+    }else {
+        $("#PromoCodeMessage").addClass('text-danger');
+        $("#PromoCodeMessage").html(data.message);
+    }
 }

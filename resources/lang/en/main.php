@@ -85,4 +85,9 @@ return [
     'error_message'                 => 'There is something went wrong',
     'invalid_promo_code'            => 'Invalid Promo Code',
     'valid_promo_code'              => 'Valid Promo Code',
+    'amount_original'               => 'Amount Original',
+    'amount_after_discount'         => 'Amount After Discount',
+    'amount_after_vat'              => 'Amount After VAT',
+    'amount_final'                  => 'Amount Final',
+    'press_confirm_appointment'     => 'Press Confirm Appointment',
 ];

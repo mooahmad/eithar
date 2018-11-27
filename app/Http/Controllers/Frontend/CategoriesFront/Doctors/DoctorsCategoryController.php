@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend\CategoriesFront\Doctors;
 use App\Helpers\Utilities;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\CheckPromoCodeRequest;
+use App\Http\Services\Adminstrator\InvoiceModule\ClassesInvoice\InvoiceClass;
 use App\Http\Services\WebApi\CommonTraits\Views;
 use App\Models\Category;
 use App\Models\PromoCode;
@@ -181,7 +182,8 @@ class DoctorsCategoryController extends Controller
                 return response()->json([
                     'result' => false,
                     'message' => trans('main.error_message'),
-                    'data' => ''
+                    'data' => '',
+                    'currency'=>''
                 ]);
             }
 
@@ -190,7 +192,8 @@ class DoctorsCategoryController extends Controller
                 return response()->json([
                     'result' => false,
                     'message' => trans('main.invalid_promo_code'),
-                    'data' => ''
+                    'data' => '',
+                    'currency'=>''
                 ]);
             }
 
@@ -202,14 +205,17 @@ class DoctorsCategoryController extends Controller
                 return response()->json([
                     'result' => false,
                     'message' => trans('main.error_message'),
-                    'data' => ''
+                    'data' => '',
+                    'currency'=>''
                 ]);
             }
 
+            $amount = (new InvoiceClass())->calculateInvoiceServicePrice($service->price,$promo_code->discount_percentage,Utilities::GetCustomerVAT());
             return response()->json([
                 'result' => true,
                 'message' => trans('main.valid_promo_code'),
-                'data' => $service->price - Utilities::calcPercentage($service->price, $promo_code->discount_percentage)
+                'data' => $amount,
+                'currency' => ($service->currency) ? $service->currency->name : ''
             ]);
         }
     }

@@ -241,4 +241,18 @@ class Utilities
         }
         return $stars;
     }
+
+    /**
+     * @return \Illuminate\Config\Repository|int|mixed
+     */
+    public static function GetCustomerVAT()
+    {
+        $vat = 0;
+        if (auth()->guard('customer-web')->check()){
+            if (auth()->guard('customer-web')->user()->is_saudi_nationality == 0){
+                $vat = config('constants.vat_percentage');
+            }
+        }
+        return $vat;
+    }
 }

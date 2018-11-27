@@ -147,8 +147,20 @@
             <div class="row">
                 <div class="col-sm-12 col-md-6 ">
                     <aside class="price">
-                        <h3 class="price_title">{{ trans('main.total_amount') }}</h3>
-                        <span class="price_value"> 254  </span>
+                        <h3 class="price_title">{{ trans('main.amount_original') }}:</h3>
+                        <span class="price_value amount_original"></span>
+                    </aside>
+                    <aside class="price">
+                        <h3 class="price_title">{{ trans('main.amount_after_discount') }}:</h3>
+                        <span class="price_value amount_after_discount"></span>
+                    </aside>
+                    <aside class="price">
+                        <h3 class="price_title">{{ trans('main.amount_after_vat') }}:</h3>
+                        <span class="price_value amount_after_vat"></span>
+                    </aside>
+                    <aside class="price">
+                        <h3 class="price_title">{{ trans('main.amount_final') }}:</h3>
+                        <span class="price_value amount_final"></span>
                     </aside>
                 </div>
 
@@ -160,13 +172,48 @@
                     </div>
                 </div>
                 <div class="col-xs-12 text-center">
-                    <div id="PromoCodeErrors" class="text-danger"></div>
+                    <div id="PromoCodeMessage"></div>
                 </div>
             </div>
             <ul class="list-inline ">
-                <button class="button" type="submit" name="button">{{ trans('main.confirm_appointment') }}</button>
+                <button class="button" type="submit" name="button" data-toggle="modal" data-target="#reservation_confirmation">{{ trans('main.confirm_appointment') }}</button>
             </ul>
     </div>
         <div class="clearfix"></div>
     </div>
+
+    <!--=01=Start Popup confirmation_code-->
+    <div class="confirmation_code">
+        <div class="container">
+            <!-- The Modal -->
+            <div class="modal fade" id="reservation_confirmation">
+                <div class="modal-dialog ">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <button class="close fas fa-times" type="button" data-dismiss="modal"> </button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body model_code">
+                            <!-- Start Form content-->
+                            <div class="form_content">
+                                <form class="glopal_form middel_form " action="index.html" method="post">
+                                    <h5 class="send_code"> {{ trans('main.press_confirm_appointment') }} </h5>
+                                    <!-- End List icon Registration -->
+                                    <aside class="sign_button-content">
+                                        <button class="button" type="button" data-dismiss="modal">{{ trans('main.confirm_appointment') }}</button>
+                                    </aside>
+                                </form>
+                            </div>
+                            <!-- End  Form content-->
+                            <aside class="form_man">
+                                <img src="{{ asset('public/Frontend/img/confirm.png') }}" alt="{{ trans('main.site_name') }}">
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--=01= Send Code confirmation_code -->
 @endif

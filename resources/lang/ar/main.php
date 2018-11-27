@@ -85,4 +85,9 @@ return [
     'error_message'                 => 'حدث خطأ ما !',
     'invalid_promo_code'            => 'الكود الذي أدخلته غير صحيح',
     'valid_promo_code'              => 'الكود الذي أدخلته صحيح',
+    'amount_original'               => 'السعر الأساسي',
+    'amount_after_discount'         => 'السعر بعد الخصم',
+    'amount_after_vat'              => 'السعر بعد القيمة المضافة',
+    'amount_final'                  => 'السعر النهائى',
+    'press_confirm_appointment'     => 'انقر فوق تأكيد الحجز',
 ];
