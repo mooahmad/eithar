@@ -90,4 +90,5 @@ return [
     'amount_after_vat'              => 'Amount After VAT',
     'amount_final'                  => 'Amount Final',
     'press_confirm_appointment'     => 'Press Confirm Appointment',
+    'save_and_complete'             => 'Save And Complete',
 ];

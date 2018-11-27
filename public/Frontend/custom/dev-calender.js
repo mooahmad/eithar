@@ -336,3 +336,25 @@ function setAmountAndPromoMessageValue(data) {
         $("#PromoCodeMessage").html(data.message);
     }
 }
+
+function validateForm() {
+    $("#validationError").parent('div').addClass('hidden');
+    $("#validationError").html('');
+    var inputs, index,error_message='';
+    inputs = document.getElementById("QuestionnaireForm").querySelectorAll("[required]");
+    for (index = 0; index < inputs.length; ++index) {
+        if (document.forms["QuestionnaireForm"][inputs[index].attributes['name'].value].value == "") {
+            error_message += '<li>'+inputs[index].attributes['placeholder'].value+'</li>'
+        }
+    }
+    if (error_message){
+        $("#validationError").parent('div').removeClass('hidden');
+        $("#validationError").html(error_message);
+    }else {
+        $('#reservation_confirmation').modal('show');
+    }
+}
+
+function submitQuestionnaireForm() {
+    document.getElementById("QuestionnaireForm").submit();
+}

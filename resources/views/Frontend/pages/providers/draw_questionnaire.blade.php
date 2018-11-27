@@ -29,10 +29,10 @@
                     {{--Radio Input--}}
                     <div class="col-sm-12 col-md-6">
                         <div class="check_content">
-                            <h3>{{ $question->title }}</h3>
+                            <h3>{{ $question->title }} {!! ($question->is_required==1)?'<span class="text-danger">*</span>' : '' !!}</h3>
                             <aside class="radio_input">
                                 @foreach(unserialize($question->options) as $radio_number=>$radio_value)
-                                    <label for="IDR{{$radio_number}}"><input id="IDR{{$radio_number}}" type="radio" name="answer[{{$question->id}}]" value="{{$radio_number}}" placeholder="{{$question->subtitle}}" {{ ($question->is_required==1)?'required' : '' }}>
+                                    <label for="IDR{{$radio_number}}"><input id="IDR{{$radio_number}}" type="radio" name="answer[{{$question->id}}]" value="{{$radio_number}}" placeholder="{{$question->subtitle}}">
                                         <span>{{$radio_value}}</span>
                                     </label>
                                 @endforeach
@@ -44,7 +44,7 @@
                 @if($question->type ==1)
                     {{--checkbox Input--}}
                     <div class="col-sm-12 col-md-6">
-                        <h3>{{ $question->title }}</h3>
+                        <h3>{{ $question->title }} {!! ($question->is_required==1)?'<span class="text-danger">*</span>' : '' !!}</h3>
                         @foreach(unserialize($question->options) as $checkbox_number=>$checkbox_value)
                             <label class="checkbox_input"><input type="checkbox" name="answer[{{$question->id}}][]" value="{{$checkbox_number}}" placeholder="{{$question->subtitle}}">
                                 <span>{{$checkbox_value}}</span>
@@ -56,7 +56,7 @@
                 @if($question->type ==2)
                     {{--Text Input--}}
                     <div class="col-sm-12 col-md-6">
-                        <h3>{{ $question->title }}</h3>
+                        <h3>{{ $question->title }} {!! ($question->is_required==1)?'<span class="text-danger">*</span>' : '' !!}</h3>
                         <input type="text" name="answer[{{$question->id}}]" placeholder="{{$question->subtitle}}" {{ ($question->is_required==1)?'required' : '' }}>
                     </div>
                 @endif
@@ -64,7 +64,7 @@
                 @if($question->type ==3)
                     {{--Textarea Input--}}
                     <div class="col-sm-12 col-md-6">
-                        <h3>{{ $question->title }}</h3>
+                        <h3>{{ $question->title }} {!! ($question->is_required==1)?'<span class="text-danger">*</span>' : '' !!}</h3>
                         <textarea name="answer[{{$question->id}}]" placeholder="{{$question->subtitle}}" {{ ($question->is_required==1)?'required' : '' }}></textarea>
                     </div>
                 @endif
@@ -72,7 +72,7 @@
                 @if($question->type ==4)
                     {{--Date Input--}}
                     <div class="col-sm-12 col-md-6">
-                        <h3>{{ $question->title }}</h3>
+                        <h3>{{ $question->title }} {!! ($question->is_required==1)?'<span class="text-danger">*</span>' : '' !!}</h3>
                         <input type="date" name="answer[{{$question->id}}]" placeholder="{{$question->subtitle}}" {{ ($question->is_required==1)?'required' : '' }}>
                     </div>
                 @endif
@@ -81,11 +81,11 @@
                     {{--Rating Input--}}
                     <div class="col-sm-12 col-md-6">
                         @if($question->rating_symbol == 1)
-                            <h3>{{ $question->title }}</h3>
+                            <h3>{{ $question->title }} {!! ($question->is_required==1)?'<span class="text-danger">*</span>' : '' !!}</h3>
                             <input type="number" max="{{ $question->rating_levels }}" name="answer[{{$question->id}}]" placeholder="{{$question->subtitle}}" {{ ($question->is_required==1)?'required' : '' }}>
                         @else
                             <div class="rating_area">
-                                <h3>{{ $question->title }}</h3>
+                                <h3>{{ $question->title }} {!! ($question->is_required==1)?'<span class="text-danger">*</span>' : '' !!}</h3>
                                 <section class='rating-widget'>
                                     <!-- Rating Stars Box -->
                                     <div class='rating-stars'>
@@ -107,7 +107,7 @@
             @endforeach
             </div>
             <ul class="list-inline ">
-                <li><button type="button" class="button next-step">حفظ واستكمال</button></li>
+                <li><button type="button" class="button next-step">{{ trans('main.save_and_complete') }}</button></li>
             </ul>
         </div>
     @endforeach
@@ -171,12 +171,16 @@
                         <button type="button" class="button" onclick="CheckPromoCode(this);">{{ trans('main.submit_code') }}</button>
                     </div>
                 </div>
-                <div class="col-xs-12 text-center">
-                    <div id="PromoCodeMessage"></div>
+                <div class="col-xs-12">
+                    <div id="PromoCodeMessage" class="text-center"></div>
+                    <div class="alert alert-danger hidden">
+                        <ul id="validationError"></ul>
+                    </div>
                 </div>
             </div>
             <ul class="list-inline ">
-                <button class="button" type="submit" name="button" data-toggle="modal" data-target="#reservation_confirmation">{{ trans('main.confirm_appointment') }}</button>
+                {{--<button class="button" type="submit" name="button" data-toggle="modal" data-target="#reservation_confirmation">{{ trans('main.confirm_appointment') }}</button>--}}
+                <button class="button" type="button" name="button" onclick="validateForm();">{{ trans('main.confirm_appointment') }}</button>
             </ul>
     </div>
         <div class="clearfix"></div>
@@ -197,11 +201,11 @@
                         <div class="modal-body model_code">
                             <!-- Start Form content-->
                             <div class="form_content">
-                                <form class="glopal_form middel_form " action="index.html" method="post">
+                                <form class="glopal_form middel_form ">
                                     <h5 class="send_code"> {{ trans('main.press_confirm_appointment') }} </h5>
                                     <!-- End List icon Registration -->
                                     <aside class="sign_button-content">
-                                        <button class="button" type="button" data-dismiss="modal">{{ trans('main.confirm_appointment') }}</button>
+                                        <button class="button" type="button" onclick="submitQuestionnaireForm();">{{ trans('main.confirm_appointment') }}</button>
                                     </aside>
                                 </form>
                             </div>

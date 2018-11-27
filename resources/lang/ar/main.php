@@ -90,4 +90,5 @@ return [
     'amount_after_vat'              => 'السعر بعد القيمة المضافة',
     'amount_final'                  => 'السعر النهائى',
     'press_confirm_appointment'     => 'انقر فوق تأكيد الحجز',
+    'save_and_complete'             => 'حفظ واستكمال',
 ];
