@@ -16,7 +16,7 @@
 
   .our_mission-block {
     h3 {
-      color: #EC0707;
+      color: $mainColor;
     }
 
     h4 {
@@ -37,21 +37,18 @@
 }
 
 .aboutus_page-block2 {
-  color: #fff;
 
   .home_page-title {
-    color: #fff;
   }
 
   .our_team-container {
-    background-color: $secondColor;
+  
     padding: 50px;
     border-top-left-radius: 150px;
     border-bottom-right-radius: 150px;
   }
 
   .paragraph_global {
-    color: #fff;
   }
 }
 /*Start Contact with us Content*/

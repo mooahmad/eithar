@@ -40,7 +40,10 @@
                 <div class="logo">
                     <img src="{{ asset('public/Frontend/img/logo/logo.png') }}" alt="">
                 </div>
-                <h1> الرعاية التزام </h1>
+                <h1> دامك بخير
+                    <br>
+                    ايثار بخير
+                </h1>
                 <p> قريباً </p>
 
                 <div class="header_button-content">
@@ -50,17 +53,12 @@
 
                 <ul class="social_media list-unstyled">
                     <li> تواصل معنا </li>
-
                     <li> <a href="https://wa.me/966505998864" target="_blank" title="whatsapp " class="fab  fa-whatsapp"></a></li>
                     <li> <a href="https://twitter.com/EitharHomeCare" target="_blank" title="twitter " class="fab fa-twitter"></a></li>
                     <li> <a href="https://www.instagram.com/EitharHomeCare" target="_blank" title="instagram" class="fab fa-instagram"></a></li>
                     <li> <a href="tel:920010893" target="_blank" title="Phone Number" class="fas fa-phone"></a></li>
-
                 </ul>
-
-
                 <!-- End Head of Comming Soon-->
-
             </div>
         </div>
         <div class="down_icon">
