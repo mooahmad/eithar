@@ -46,8 +46,10 @@
 
   h1 {
     font-size: 34px;
+    line-height: 30px;
     @media (min-width:$lg) {
       margin: 40px 0;
+      line-height: 46px
     }
   }
 

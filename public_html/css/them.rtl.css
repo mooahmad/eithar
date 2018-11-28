@@ -56,7 +56,7 @@ a:hover {
       margin-top: 30px; } }
   .glopal_form select {
     width: 100%;
-    color: #044E80;
+    color: #044D7F;
     cursor: pointer; }
   .glopal_form label {
     display: block;
@@ -65,7 +65,7 @@ a:hover {
   .glopal_form select:focus,
   .glopal_form textarea:focus {
     outline: none !important;
-    border-color: #07A7E3; }
+    border-color: #0095D9; }
   .glopal_form input,
   .glopal_form select,
   .glopal_form textarea {
@@ -197,7 +197,7 @@ body {
   top: 8px;
   right: auto;
   left: 8px;
-  color: #044E80; }
+  color: #044D7F; }
 
 /*06= Start Services Order*/
 /**Footer**/
