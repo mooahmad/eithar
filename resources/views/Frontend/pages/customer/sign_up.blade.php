@@ -33,61 +33,78 @@
                                 </div>
                             @endif
                             <!-- Start Form content-->
-                            {!! Form::open(['url'=>url()->route('customer_sign_up_post'),'class'=>'glopal_form']) !!}
+                            {!! Form::open(['files' => true,'url'=>url()->route('customer_sign_up_post'),'class'=>'glopal_form']) !!}
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12 col-lg-6">
-                                        <input value="" placeholder=" الاسم الاول">
+                                        {!! Form::text('first_name',old('first_name'),['placeholder'=>trans('main.first_name'),'required']) !!}
                                     </div>
 
                                     <div class="col-sm-12 col-md-12 col-lg-6">
-                                        <input value="" placeholder="الاسم الثانى">
+                                        {!! Form::text('middle_name',old('middle_name'),['placeholder'=>trans('main.middle_name'),'required']) !!}
                                     </div>
                                     <div class="col-sm-12 col-md-12 ">
-                                        <input value="" placeholder="الاسم الاخير ">
+                                        {!! Form::text('last_name',old('last_name'),['placeholder'=>trans('main.last_name'),'required']) !!}
                                     </div>
 
                                     <div class="col-sm-12 col-md-12 col-lg-6">
-                                        <input value="" placeholder="البريد الإلكترونى">
+                                        {!! Form::text('email',old('email'),['placeholder'=>trans('main.email'),'required']) !!}
                                     </div>
+
                                     <div class="col-sm-12 col-md-12 col-lg-6">
                                         <div class="custum_select">
-                                            <select class="" name="">
-                                                <option value=""> النوع </option>
-                                                <option value=""> ذكر </option>
-                                                <option value=""> أنثى </option>
-                                            </select>
+                                            {!! Form::select('gender',$gender,old('gender'),['placeholder'=>trans('main.gender'),'required']) !!}
                                         </div>
                                     </div>
+
                                     <div class="col-sm-12">
                                         <div class="phone_number ">
                                             <aside class="phone_number-key"> <bdi> +966 </bdi> </aside>
-                                            <input value="" type="text" placeholder="رقم الجوال">
+                                            {!! Form::text('mobile_number',old('mobile_number'),['placeholder'=>trans('main.mobile_number'),'required']) !!}
                                         </div>
 
                                     </div>
-                                    <div class="col-sm-12 col-md-12 col-lg-6">
-                                        <input value="" type="text" placeholder="رقم الهوية">
+
+                                    <div class="col-sm-12 col-md-12 col-lg-12">
+                                        {!! Form::text('national_id',old('national_id'),['placeholder'=>trans('main.national_id'),'required']) !!}
                                     </div>
-                                    <div class="col-sm-12 col-md-12 col-lg-6">
-                                        <input type="file" name="filename2">
+
+                                    <div class="col-sm-12 col-md-12 col-lg-12">
+                                        <div class="phone_number">
+                                            <aside class="phone_number-key">{{ trans('main.nationality_id_picture') }}</aside>
+                                            {!! Form::file('nationality_id_picture',old('nationality_id_picture'),['placeholder'=>trans('main.nationality_id_picture'),'required']) !!}
+                                        </div>
                                     </div>
-                                    <div class="col-sm-12">
+
+                                    <div class="col-sm-12 col-md-12 col-lg-6">
                                         <div class="phone_number ">
-                                            <aside class="phone_number-key"> <span> المملكة العربية السعودية </span> </aside>
                                             <div class="custum_select">
-                                                <select class="" name="">
-                                                    <option value=""> الرياض </option>
-                                                    <option value=""> جدة </option>
-                                                </select>
+                                                {!! Form::select('country_id',$countries,old('country_id'),['id'=>'country_id','required','onchange'=>'changeCountry(this);']) !!}
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-12 ">
-                                        <textarea name="name" rows="8" cols="80"></textarea>
+
+                                    <div class="col-sm-12 col-md-12 col-lg-6">
+                                        <div class="phone_number ">
+                                            <div class="custum_select">
+                                                {!! Form::select('city_id',$cities,old('city_id'),['id'=>'city_id','placeholder'=>trans('main.city'),'required']) !!}
+                                            </div>
+                                        </div>
                                     </div>
 
-                                    <div class="col-sm-12 col-md-12 ">
-                                        <input type="file" name="filename2" placeholder="صورة الملف الشخصى">
+                                    <div class="col-sm-12 col-md-6">
+                                        {!! Form::text('address',old('address'),['placeholder'=>trans('main.address'),'required']) !!}
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        {!! Form::text('position',old('position'),['placeholder'=>trans('main.position'),'required']) !!}
+                                    </div>
+                                    <div class="col-sm-12 col-md-12">
+                                        <div class="phone_number">
+                                            <aside class="phone_number-key">{{ trans('main.profile_picture') }}</aside>
+                                            {!! Form::file('profile_picture_path',old('profile_picture_path'),['placeholder'=>trans('main.profile_picture'),'required']) !!}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        {!! Form::textarea('about',old('about'),['cols'=>80,'rows'=>8,'placeholder'=>trans('main.about')]) !!}
                                     </div>
                                 </div>
                                 <!-- End List icon Registration -->
@@ -103,4 +120,30 @@
         <!--=03=End Popup Sign In -->
     </div>
     <!-- End Single Page -->
+@stop
+
+@section('js')
+    <script>
+        function changeCountry(event) {
+            var country_id = $(event).val();
+            $.ajax({
+                url: "{{ url()->route('get_country_cities') }}",
+                type: "post",
+                data:{country_id:country_id,_token:"{!! csrf_token() !!}"},
+                success: function (data) {
+                    if (data.result){
+                        $('#city_id').empty();
+                        $('#city_id').html(data.list);
+                    }
+                },
+                error: function (data) {
+                    alert('something went wrong.');
+                }
+            });
+        }
+
+        $(function() {
+            changeCountry($("#country_id"));
+        });
+    </script>
 @stop

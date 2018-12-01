@@ -34,6 +34,7 @@ Route::group(['namespace' => FE], function () {
                 Route::post('login', 'LoginFrontController@customerLogin')->name('customer_login_post');
                 Route::get('sign-up', 'SignUpFrontController@showCustomerSignUp')->name('customer_sign_up');
                 Route::post('sign-up', 'SignUpFrontController@customerSignUp')->name('customer_sign_up_post');
+                Route::post('get-country-cities', 'SignUpFrontController@getCountryCities')->name('get_country_cities');
 
                 Route::group(['middleware'=>'CustomerWebAuth'],function (){
                     Route::get('logout', 'LoginFrontController@logoutCustomer')->name('customer_logout');

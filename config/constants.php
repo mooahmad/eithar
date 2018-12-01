@@ -22,6 +22,16 @@ return [
         1 => "Male",
         2 => "Female",
     ],
+    "gender_desc_en" => [
+        0 => "None",
+        1 => "Male",
+        2 => "Female",
+    ],
+    "gender_desc_ar" => [
+        0 => "لا شئ",
+        1 => "ذكر",
+        2 => "أنثي",
+    ],
     "customerMemberRelations" => [
         "father" => 1,
         "mother" => 2,
