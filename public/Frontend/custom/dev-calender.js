@@ -81,7 +81,6 @@ $(function () {
     //   $("#enddate").html(endDate.toString().split(' ').slice(0, 4).join(' '));
     // }
 
-
     function displayCalender() {
         var days = daysInMonth(currentMonth + 1);
 
@@ -97,16 +96,12 @@ $(function () {
             $("#calender-content").append("<div class='month flex center-vh'></div>");
         }
         for (var i = 1; i <= days; i++) {
-            var day = new Date(currentYear, currentMonth, i).getDay(),
-                day_id = currentYear + "-" + monthShortNames[currentMonth] + "-" + i,
+            var day = new Date(currentYear, currentMonth, i),
+                day_id = currentYear + "-" + monthShortNames[currentMonth] + "-" + ("0" + day.getDate()).slice(-2),
                 string = "<div class='month' data-id='"+day_id+"'><div id='" + day_id + "'class='month-selector flex center-vh clickable'><span class='day_avilable '>0</span><p>" + i + "</p></div></div>";
             // My Custum Var
-
             // var string = "<div class='month'><div id='" + dayNames[day] + "-" + i + "-" + monthNames[currentMonth] + "-" + currentYear + "'class='month-selector flex center-vh clickable' onclick='monthClick(this)'><span class='day_avilable '>5</span><p>" + i + "</p></div></div>";
-
             $("#calender-content").append(string);
-
-
         }
 
         checkSelected();
@@ -140,17 +135,11 @@ $(function () {
             // Remove Selected Dates
             $(".selected_dates-add").on('click', function () {
                 $(this).parents(".selected_dates-content").hide();
-
             });
-
         } else {
             // $("#selected_dates-content-" + counter).fadeOut();
-
         }
-
     });
-
-
 
 
     function firstDayOffset(date) {
@@ -267,9 +256,14 @@ $(function () {
     function appendDataToCalendar(data)
     {
         $.each(data, function(key, groupDays){
-            $.each(groupDays, function(k, day){
-                $('#'+day.start_day).find('span').text(groupDays.length).addClass('added_sessions');
-            });
+            // $('#'+key).find('span').text(groupDays.length).addClass('added_sessions');
+            $('#'+key).append('<span class="day_avilable added_sessions">'+ groupDays.length+'</span>');
+
+            // $.each(groupDays, function(k, day){
+            //     // console.log(day.start_day +'-'+ groupDays.length);
+            //     $('#'+day.start_day).find('span').text(groupDays.length).addClass('added_sessions');
+            //     $('#2018-12-3').append('<span class="day_avilable added_sessions">'+ groupDays.length+'</span>');
+            // });
         });
     }
 

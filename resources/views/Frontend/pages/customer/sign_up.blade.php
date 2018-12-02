@@ -112,10 +112,12 @@
                                     <button class="button" type="submit">{{ trans('main.submit') }}</button>
                                 </aside>
                             {!! Form::close() !!}
+                            <div id="demo" style="height:100%;"></div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
         <!--=03=End Popup Sign In -->
     </div>
@@ -144,6 +146,71 @@
 
         $(function() {
             changeCountry($("#country_id"));
+            // getLocation();
         });
+    </script>
+
+    <script>
+        // var x = document.getElementById("demo");
+        // function getLocation() {
+        //     if (navigator.geolocation) {
+        //         navigator.geolocation.getCurrentPosition(showPosition);
+        //     } else {
+        //         x.innerHTML = "Geolocation is not supported by this browser.";
+        //     }
+        // }
+        // function showPosition(position) {
+        //     console.log(position);
+        //     x.innerHTML = "Latitude: " + position.coords.latitude +
+        //         "<br>Longitude: " + position.coords.longitude;
+        //     var myLatlng = new google.maps.LatLng(latcurr, longcurr);
+        //     return getCurrentAddress(myLatlng);
+        // }
+    </script>
+
+    <script>
+        // Note: This example requires that you consent to location sharing when
+        // prompted by your browser. If you see the error "The Geolocation service
+        // failed.", it means you probably did not give permission for the browser to
+        // locate you.
+        var map, infoWindow;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('demo'), {
+                center: {lat: -34.397, lng: 150.644},
+                zoom: 6
+            });
+            infoWindow = new google.maps.InfoWindow;
+
+            // Try HTML5 geolocation.
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent('Location found.');
+                    infoWindow.open(map);
+                    map.setCenter(pos);
+                }, function() {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
+        }
+
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ?
+                'Error: The Geolocation service failed.' :
+                'Error: Your browser doesn\'t support geolocation.');
+            infoWindow.open(map);
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?callback=initMap">
     </script>
 @stop
