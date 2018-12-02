@@ -1,5 +1,5 @@
-$mainColor: #044E80;
-$secondColor: #07A7E3;
+$mainColor: #044D7F;
+$secondColor: #0095D9;
 $borderRadius: 10px;
 $boxShadow: 0 3px 6px #124462;
 $overlay: rgba(7, 167, 226, 0.5);
@@ -135,6 +135,20 @@ a:hover {
     font-size: 14px;
   }
 
+  .custum_upload-button {
+    position: relative;
+    // span {
+    //   top: 0;
+    //   bottom: 0;
+    //   width: 100px;
+    //   position: absolute;
+    //   z-index: 9999;
+    //   height: 100%;
+    //   background-color: #f00;
+    //   display: block;
+    // // }
+  }
+
   .row {
     div:last-child {
       margin: 0;
@@ -240,6 +254,8 @@ a:hover {
     cursor: pointer;
   }
 }
+/*Start Custum Upload Button*/
+/*Start Custum Upload Button*/
 
 a,
 button,

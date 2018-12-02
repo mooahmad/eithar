@@ -40,7 +40,10 @@
                 <div class="logo">
                     <img src="{{ asset('public/Frontend/img/logo/logo.png') }}" alt="">
                 </div>
-                <h1> الرعاية التزام </h1>
+                <h1> دامك بخير
+                    <br>
+                    ايثار بخير
+                </h1>
                 <p> قريباً </p>
 
                 <div class="header_button-content">
@@ -50,17 +53,12 @@
 
                 <ul class="social_media list-unstyled">
                     <li> تواصل معنا </li>
-
                     <li> <a href="https://wa.me/966505998864" target="_blank" title="whatsapp " class="fab  fa-whatsapp"></a></li>
                     <li> <a href="https://twitter.com/EitharHomeCare" target="_blank" title="twitter " class="fab fa-twitter"></a></li>
                     <li> <a href="https://www.instagram.com/EitharHomeCare" target="_blank" title="instagram" class="fab fa-instagram"></a></li>
                     <li> <a href="tel:920010893" target="_blank" title="Phone Number" class="fas fa-phone"></a></li>
-
                 </ul>
-
-
                 <!-- End Head of Comming Soon-->
-
             </div>
         </div>
         <div class="down_icon">
@@ -359,7 +357,9 @@
             </aside>
             <div class="row">
                 <div class="col-sm-12 col-md-6 col-lg-4">
-                    <p class="paragraph_global">الرعاية التزام، وهذا ما نعد به دائما ملائناع يقودنا الشغف والإيمان لإحداث تغيير وتميز في الرعاية الطبية المنزلية . ونسعى دائما كي نكون القادة في تقديم الرعاية الصحية -التي تواكب رؤية 2030</p>
+                    <p class="paragraph_global">
+                        الرعاية التزام، وهذا ما نعد به دائما عملائنا يقودنا الشغف والإيمان لإحداث تغيير وتميز في الرعاية الطبية المنزلية . ونسعى دائما كي نكون القادة في تقديم الرعاية الصحية -التي تواكب رؤية 2030
+                    </p>
                 </div>
 
                 <div class="col-sm-12 col-md-6 col-lg-4">
