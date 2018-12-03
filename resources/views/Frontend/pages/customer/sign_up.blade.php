@@ -1,5 +1,21 @@
 @extends(FEL.'.master')
 
+@section('style')
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+@stop
 @section('content')
     <!--=02= Start Header Slider-->
     @include(FE.'.layouts.top_header')
@@ -92,10 +108,10 @@
                                     </div>
 
                                     <div class="col-sm-12 col-md-6">
-                                        {!! Form::text('address',old('address'),['placeholder'=>trans('main.address'),'required']) !!}
+                                        {!! Form::text('address',old('address'),['id'=>'address','placeholder'=>trans('main.address'),'required']) !!}
                                     </div>
                                     <div class="col-sm-12 col-md-6">
-                                        {!! Form::text('position',old('position'),['placeholder'=>trans('main.position'),'required']) !!}
+                                        {!! Form::text('position',old('position'),['id'=>'position','placeholder'=>trans('main.position'),'required']) !!}
                                     </div>
                                     <div class="col-sm-12 col-md-12">
                                         <div class="phone_number">
@@ -109,15 +125,13 @@
                                 </div>
                                 <!-- End List icon Registration -->
                                 <aside class="sign_button-content">
-                                    <button class="button" type="submit">{{ trans('main.submit') }}</button>
+                                    <button class="button" type="button" id="submit">{{ trans('main.submit') }}</button>
                                 </aside>
                             {!! Form::close() !!}
-                            <div id="demo" style="height:100%;"></div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
         <!--=03=End Popup Sign In -->
     </div>
@@ -151,35 +165,10 @@
     </script>
 
     <script>
-        // var x = document.getElementById("demo");
-        // function getLocation() {
-        //     if (navigator.geolocation) {
-        //         navigator.geolocation.getCurrentPosition(showPosition);
-        //     } else {
-        //         x.innerHTML = "Geolocation is not supported by this browser.";
-        //     }
-        // }
-        // function showPosition(position) {
-        //     console.log(position);
-        //     x.innerHTML = "Latitude: " + position.coords.latitude +
-        //         "<br>Longitude: " + position.coords.longitude;
-        //     var myLatlng = new google.maps.LatLng(latcurr, longcurr);
-        //     return getCurrentAddress(myLatlng);
-        // }
-    </script>
-
-    <script>
-        // Note: This example requires that you consent to location sharing when
-        // prompted by your browser. If you see the error "The Geolocation service
-        // failed.", it means you probably did not give permission for the browser to
-        // locate you.
-        var map, infoWindow;
+        var map, infoWindow,geocoder;
         function initMap() {
-            map = new google.maps.Map(document.getElementById('demo'), {
-                center: {lat: -34.397, lng: 150.644},
-                zoom: 6
-            });
             infoWindow = new google.maps.InfoWindow;
+            geocoder = new google.maps.Geocoder;
 
             // Try HTML5 geolocation.
             if (navigator.geolocation) {
@@ -188,11 +177,8 @@
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
                     };
-
-                    infoWindow.setPosition(pos);
-                    infoWindow.setContent('Location found.');
-                    infoWindow.open(map);
-                    map.setCenter(pos);
+                    $("#position").val(position.coords.latitude +','+position.coords.longitude);
+                    getLocation(pos);
                 }, function() {
                     handleLocationError(true, infoWindow, map.getCenter());
                 });
@@ -209,8 +195,23 @@
                 'Error: Your browser doesn\'t support geolocation.');
             infoWindow.open(map);
         }
+
+        function getLocation(location) {
+            geocoder.geocode({'location': location}, function(results, status) {
+                if (status === 'OK') {
+                    if (results[0]) {
+                        $("#address").val(results[0].formatted_address);
+                    } else {
+                        window.alert('No results found');
+                    }
+                } else {
+                    window.alert('Geocoder failed due to: ' + status);
+                }
+            });
+        }
     </script>
+
     <script async defer
-            src="https://maps.googleapis.com/maps/api/js?callback=initMap">
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrBse-5RbQCnVPcez1IadNvKUkNQwgudE&callback=initMap">
     </script>
 @stop
