@@ -266,7 +266,7 @@
 
                 <div class="col-sm-12  col-lg-4">
                     <aside class="about_us-img">
-                        <img src="{{ asset('public/Frontend/img/about-us1.png') }}" alt="About Us Bg">
+                        <img src="{{ asset('public/Frontend/img/vision.png') }}" alt="About Us Bg">
                     </aside>
                 </div>
 

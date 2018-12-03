@@ -5793,6 +5793,9 @@ th {
   padding: 50px;
   border-top-left-radius: 150px;
   border-bottom-right-radius: 150px; }
+  .aboutus_page-block2 .our_team-container .row {
+    display: flex;
+    flex-wrap: wrap-reverse; }
 
 /*Start Contact with us Content*/
 .contactus_section ul li {

@@ -2,6 +2,7 @@
 @import "componants/buttons.scss";
 @import "componants/keyframs.scss";
 @import "componants/slider-custum.scss";
+
 /**********/
 .about_us-page {
   section {
@@ -38,19 +39,24 @@
 
 .aboutus_page-block2 {
 
-  .home_page-title {
-  }
+  .home_page-title {}
 
   .our_team-container {
-  
+
     padding: 50px;
     border-top-left-radius: 150px;
     border-bottom-right-radius: 150px;
+
+    .row {
+
+      display: flex;
+      flex-wrap: wrap-reverse;
+    }
   }
 
-  .paragraph_global {
-  }
+  .paragraph_global {}
 }
+
 /*Start Contact with us Content*/
 .contactus_section {
   ul {
@@ -65,4 +71,5 @@
     }
   }
 }
+
 /*End Contact with us Content*/
