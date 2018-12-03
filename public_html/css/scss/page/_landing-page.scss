@@ -1,24 +1,29 @@
 @import "helpers/variables.scss";
 @import "componants/buttons.scss";
 @import "componants/keyframs.scss";
-@import "componants/slider-custum.scss"; /**********/
+@import "componants/slider-custum.scss";
+/**********/
 
 #services {
   .home_page-title {
-    font-size: 35px!important;
-    color: #044E80!important;
+    font-size: 35px !important;
+    color: #044E80 !important;
   }
 }
 
 .landing_page {
   .header {
     position: relative;
+
     @media (max-width: $lg) {
       height: 500px;
     }
+
     @media (min-width: $lg) {
       height: 100vh;
-    };
+    }
+
+    ;
 
     &:before {
       background-color: rgba(7, 167, 226, 0.8);
@@ -47,7 +52,8 @@
   h1 {
     font-size: 34px;
     line-height: 30px;
-    @media (min-width:$lg) {
+
+    @media (min-width: $lg) {
       margin: 40px 0;
       line-height: 46px
     }
@@ -63,7 +69,8 @@
       background-color: #fff;
       color: $secondColor;
       font-size: 20px;
-      @media (min-width:$lg) {
+
+      @media (min-width: $lg) {
         margin: 0 20px;
       }
 
@@ -96,6 +103,7 @@
   animation: down 1s linear infinite;
   cursor: pointer;
   @extend %transition;
+
   @media (max-width: $lg) {
     bottom: 0;
   }
