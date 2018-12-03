@@ -108,4 +108,5 @@ return [
     'country'                       => 'الدولة',
     'city'                          => 'المدينة',
     'position'                      => 'المكان',
+    'password_confirmation'         => 'أعد كتابة كلمة المرور',
 ];

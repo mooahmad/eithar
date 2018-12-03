@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers\Frontend\CustomerFront;
 
+use App\Helpers\Utilities;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Frontend\CustomerSignUpRequest;
+use App\Mail\Auth\VerifyEmailCode;
 use App\Models\City;
 use App\Models\Country;
+use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class SignUpFrontController extends Controller
@@ -23,12 +29,30 @@ class SignUpFrontController extends Controller
      */
     public function showCustomerSignUp()
     {
+        if (auth()->guard('customer-web')->check()) return redirect()->route('home');
+
         $data = [
             'gender'=>config('constants.gender_desc_'.LaravelLocalization::getCurrentLocale()),
             'countries'=>Country::all()->pluck('country_name_eng','id'),
             'cities'=>[],
         ];
         return view(FE.'.pages.customer.sign_up')->with($data);
+    }
+
+    public function saveCustomerSignUp(CustomerSignUpRequest $request)
+    {
+//        TODO create new customer
+        $customer = $this->updateORCreateCustomer(new Customer(),$request);
+        $customer = $this->uploadCustomerImage($customer,$request,'profile_picture_path','public/images/avatars');
+        $customer = $this->uploadCustomerImage($customer,$request,'nationality_id_picture','public/images/nationalities');
+//        TODO login and update last login date
+        Auth::guard('customer-web')->login($customer,true);
+        (new LoginFrontController())->updateCustomerLastLogin();
+
+//        TODO Send email to customer with verify code
+        Mail::to($customer->email)->send(new VerifyEmailCode($customer));
+
+        return redirect()->route('home');
     }
 
     /**
@@ -61,5 +85,50 @@ class SignUpFrontController extends Controller
                 ]
             );
         }
+    }
+
+    /**
+     * @param Customer $customer
+     * @param Request $request
+     * @param bool $isCreate
+     * @return Customer
+     */
+    public function updateORCreateCustomer(Customer $customer, Request $request, $isCreate = true)
+    {
+        $customer->first_name           = $request->input('first_name');
+        $customer->middle_name          = $request->input('middle_name');
+        $customer->last_name            = $request->input('last_name');
+        $customer->email                = $request->input('email');
+        $customer->mobile_number        = $request->input('mobile_number');
+        $customer->password             = bcrypt($request->input('password'));
+        $customer->gender               = $request->input('gender');
+        $customer->national_id          = $request->input('national_id');
+        $customer->country_id           = $request->input('country_id');
+        $customer->city_id              = $request->input('city_id');
+        $customer->position             = $request->input('position');
+        $customer->address              = $request->input('address');
+        $customer->about                = $request->input('about');
+        $customer->default_language     = LaravelLocalization::getCurrentLocale();
+
+        $customer->save();
+        if ($isCreate) {
+            $customer->email_code       = Utilities::quickRandom(4, true);
+            $customer->mobile_code      = Utilities::quickRandom(4, true);
+            $customer->eithar_id        = config('constants.CustomerEitharID').$customer->id;
+        }
+        $customer->save();
+        return $customer->refresh();
+    }
+
+    public function uploadCustomerImage($customer,Request $request,$image_name,$image_path)
+    {
+        if ($request->hasFile($image_name)){
+            $avatar = Utilities::UploadFile($request->file($image_name),$image_path);
+            if ($avatar){
+                $customer->{$image_name} = $avatar;
+                $customer->save();
+            }
+        }
+        return $customer;
     }
 }

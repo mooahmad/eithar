@@ -108,4 +108,5 @@ return [
     'country'                       => 'Country',
     'city'                          => 'City',
     'position'                      => 'Position',
+    'password_confirmation'         => 'Password Confirmation',
 ];

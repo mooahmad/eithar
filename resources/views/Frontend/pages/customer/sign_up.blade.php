@@ -52,80 +52,145 @@
                             {!! Form::open(['files' => true,'url'=>url()->route('customer_sign_up_post'),'class'=>'glopal_form']) !!}
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12 col-lg-6">
+                                        <label for="first_name">{{ trans('main.first_name') }}</label>
                                         {!! Form::text('first_name',old('first_name'),['placeholder'=>trans('main.first_name'),'required']) !!}
+                                        @if($errors->has('first_name'))
+                                            <span class="text-danger">{{ $errors->first('first_name') }}</span>
+                                        @endif
                                     </div>
 
                                     <div class="col-sm-12 col-md-12 col-lg-6">
+                                        <label for="middle_name">{{ trans('main.middle_name') }}</label>
                                         {!! Form::text('middle_name',old('middle_name'),['placeholder'=>trans('main.middle_name'),'required']) !!}
+                                        @if($errors->has('middle_name'))
+                                            <span class="text-danger">{{ $errors->first('middle_name') }}</span>
+                                        @endif
                                     </div>
                                     <div class="col-sm-12 col-md-12 ">
+                                        <label for="last_name">{{ trans('main.last_name') }}</label>
                                         {!! Form::text('last_name',old('last_name'),['placeholder'=>trans('main.last_name'),'required']) !!}
+                                        @if($errors->has('last_name'))
+                                            <span class="text-danger">{{ $errors->first('last_name') }}</span>
+                                        @endif
                                     </div>
 
                                     <div class="col-sm-12 col-md-12 col-lg-6">
+                                        <label for="password">{{ trans('main.password') }}</label>
+                                        {!! Form::password('password',old('password'),['placeholder'=>trans('main.password'),'required']) !!}
+                                        @if($errors->has('password'))
+                                            <span class="text-danger">{{ $errors->first('password') }}</span>
+                                        @endif
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-12 col-lg-6">
+                                        <label for="password_confirmation">{{ trans('main.password_confirmation') }}</label>
+                                        {!! Form::password('password_confirmation',old('password_confirmation'),['placeholder'=>trans('main.password_confirmation'),'required']) !!}
+                                        @if($errors->has('password_confirmation'))
+                                            <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
+                                        @endif
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-12 col-lg-6">
+                                        <label for="email">{{ trans('main.email') }}</label>
                                         {!! Form::text('email',old('email'),['placeholder'=>trans('main.email'),'required']) !!}
+                                        @if($errors->has('email'))
+                                            <span class="text-danger">{{ $errors->first('email') }}</span>
+                                        @endif
                                     </div>
 
                                     <div class="col-sm-12 col-md-12 col-lg-6">
                                         <div class="custum_select">
+                                            <label for="gender">{{ trans('main.gender') }}</label>
                                             {!! Form::select('gender',$gender,old('gender'),['placeholder'=>trans('main.gender'),'required']) !!}
+                                            @if($errors->has('gender'))
+                                                <span class="text-danger">{{ $errors->first('gender') }}</span>
+                                            @endif
                                         </div>
                                     </div>
 
                                     <div class="col-sm-12">
+                                        <label for="mobile_number">{{ trans('main.mobile_number') }}</label>
                                         <div class="phone_number ">
                                             <aside class="phone_number-key"> <bdi> +966 </bdi> </aside>
                                             {!! Form::text('mobile_number',old('mobile_number'),['placeholder'=>trans('main.mobile_number'),'required']) !!}
+                                            @if($errors->has('mobile_number'))
+                                                <span class="text-danger">{{ $errors->first('mobile_number') }}</span>
+                                            @endif
                                         </div>
-
                                     </div>
 
                                     <div class="col-sm-12 col-md-12 col-lg-12">
+                                        <label for="national_id">{{ trans('main.national_id') }}</label>
                                         {!! Form::text('national_id',old('national_id'),['placeholder'=>trans('main.national_id'),'required']) !!}
+                                        @if($errors->has('national_id'))
+                                            <span class="text-danger">{{ $errors->first('national_id') }}</span>
+                                        @endif
                                     </div>
 
                                     <div class="col-sm-12 col-md-12 col-lg-12">
-                                        <div class="phone_number">
-                                            <aside class="phone_number-key">{{ trans('main.nationality_id_picture') }}</aside>
-                                            {!! Form::file('nationality_id_picture',old('nationality_id_picture'),['placeholder'=>trans('main.nationality_id_picture'),'required']) !!}
-                                        </div>
+                                        <label for="nationality_id_picture">{{ trans('main.nationality_id_picture') }}</label>
+                                        {!! Form::file('nationality_id_picture',old('nationality_id_picture'),['placeholder'=>trans('main.nationality_id_picture'),'required']) !!}
+                                        @if($errors->has('nationality_id_picture'))
+                                            <span class="text-danger">{{ $errors->first('nationality_id_picture') }}</span>
+                                        @endif
                                     </div>
 
                                     <div class="col-sm-12 col-md-12 col-lg-6">
+                                        <label for="country_id">{{ trans('main.country') }}</label>
                                         <div class="phone_number ">
                                             <div class="custum_select">
                                                 {!! Form::select('country_id',$countries,old('country_id'),['id'=>'country_id','required','onchange'=>'changeCountry(this);']) !!}
+                                                @if($errors->has('country_id'))
+                                                    <span class="text-danger">{{ $errors->first('country_id') }}</span>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="col-sm-12 col-md-12 col-lg-6">
+                                        <label for="city_id">{{ trans('main.city') }}</label>
                                         <div class="phone_number ">
                                             <div class="custum_select">
                                                 {!! Form::select('city_id',$cities,old('city_id'),['id'=>'city_id','placeholder'=>trans('main.city'),'required']) !!}
+                                                @if($errors->has('city_id'))
+                                                    <span class="text-danger">{{ $errors->first('city_id') }}</span>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="col-sm-12 col-md-6">
+                                        <label for="address">{{ trans('main.address') }}</label>
                                         {!! Form::text('address',old('address'),['id'=>'address','placeholder'=>trans('main.address'),'required']) !!}
+                                        @if($errors->has('address'))
+                                            <span class="text-danger">{{ $errors->first('address') }}</span>
+                                        @endif
                                     </div>
                                     <div class="col-sm-12 col-md-6">
-                                        {!! Form::text('position',old('position'),['id'=>'position','placeholder'=>trans('main.position'),'required']) !!}
+                                        <label for="position">{{ trans('main.position') }}</label>
+                                        {!! Form::text('position',old('position'),['id'=>'position','placeholder'=>trans('main.position'),'required','readonly']) !!}
+                                        @if($errors->has('position'))
+                                            <span class="text-danger">{{ $errors->first('position') }}</span>
+                                        @endif
                                     </div>
                                     <div class="col-sm-12 col-md-12">
-                                        <div class="phone_number">
-                                            <aside class="phone_number-key">{{ trans('main.profile_picture') }}</aside>
-                                            {!! Form::file('profile_picture_path',old('profile_picture_path'),['placeholder'=>trans('main.profile_picture'),'required']) !!}
-                                        </div>
+                                        <label for="profile_picture_path">{{ trans('main.profile_picture') }}</label>
+                                        {!! Form::file('profile_picture_path',old('profile_picture_path'),['placeholder'=>trans('main.profile_picture'),'required']) !!}
+                                        @if($errors->has('profile_picture_path'))
+                                            <span class="text-danger">{{ $errors->first('profile_picture_path') }}</span>
+                                        @endif
                                     </div>
                                     <div class="col-sm-12">
+                                        <label for="about">{{ trans('main.about') }}</label>
                                         {!! Form::textarea('about',old('about'),['cols'=>80,'rows'=>8,'placeholder'=>trans('main.about')]) !!}
+                                        @if($errors->has('about'))
+                                            <span class="text-danger">{{ $errors->first('about') }}</span>
+                                        @endif
                                     </div>
                                 </div>
                                 <!-- End List icon Registration -->
                                 <aside class="sign_button-content">
-                                    <button class="button" type="button" id="submit">{{ trans('main.submit') }}</button>
+                                    <button class="button" type="submit">{{ trans('main.submit') }}</button>
                                 </aside>
                             {!! Form::close() !!}
                         </div>
@@ -202,10 +267,10 @@
                     if (results[0]) {
                         $("#address").val(results[0].formatted_address);
                     } else {
-                        window.alert('No results found');
+                        window.console.log('No results found');
                     }
                 } else {
-                    window.alert('Geocoder failed due to: ' + status);
+                    window.console.log('Geocoder failed due to: ' + status);
                 }
             });
         }
