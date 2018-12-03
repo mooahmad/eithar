@@ -131,4 +131,12 @@ class SignUpFrontController extends Controller
         }
         return $customer;
     }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showCustomerVerifyCode()
+    {
+        return view(FE.'.pages.customer.verify_sent_code');
+    }
 }

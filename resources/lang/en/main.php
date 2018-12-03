@@ -109,4 +109,5 @@ return [
     'city'                          => 'City',
     'position'                      => 'Position',
     'password_confirmation'         => 'Password Confirmation',
+    'verify_sent_code'              => 'Verify Sent Code',
 ];

@@ -109,4 +109,5 @@ return [
     'city'                          => 'المدينة',
     'position'                      => 'المكان',
     'password_confirmation'         => 'أعد كتابة كلمة المرور',
+    'verify_sent_code'              => 'تأكيد رمز التفعيل',
 ];
