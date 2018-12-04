@@ -110,4 +110,7 @@ return [
     'position'                      => 'المكان',
     'password_confirmation'         => 'أعد كتابة كلمة المرور',
     'verify_sent_code'              => 'تأكيد رمز التفعيل',
+    'send_sms_verify_code'          => 'يرجي استخدام هذا الرمز: :code لتنشيط حسابك',
+    'verify_account_message'        => 'يرجى إدخال رمز التفعيل الذي أرسله إليك',
+    'mobile_code'                   => 'الرمز',
 ];

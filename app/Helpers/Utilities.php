@@ -255,4 +255,13 @@ class Utilities
         }
         return $vat;
     }
+
+    /**
+     * @param $mobile
+     * @return string
+     */
+    public static function AddCountryCodeToMobile($mobile)
+    {
+        return config('constants.MobileNumberStart').$mobile;
+    }
 }

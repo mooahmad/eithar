@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend\CustomerFront;
 
+use App\Helpers\Utilities;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\CustomerLoginRequest;
 use App\Models\Customer;
@@ -70,7 +71,9 @@ class LoginFrontController extends Controller
             $remember = false;
         }
 
-        if(!Auth::guard('customer-web')->attempt(['mobile_number'=>$request->input('mobile_number'),'password'=>$request->input('password')],$remember))
+        $mobile = Utilities::AddCountryCodeToMobile($request->input('mobile_number'));
+
+        if(!Auth::guard('customer-web')->attempt(['mobile_number'=>$mobile,'password'=>$request->input('password')],$remember))
         {
             $this->incrementLoginAttempts($request);
             session()->flash('error_login',trans('main.error_login'));

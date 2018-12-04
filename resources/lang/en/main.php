@@ -110,4 +110,7 @@ return [
     'position'                      => 'Position',
     'password_confirmation'         => 'Password Confirmation',
     'verify_sent_code'              => 'Verify Sent Code',
+    'send_sms_verify_code'          => 'Please use this code: :code to activate your account',
+    'verify_account_message'        => 'Please enter activation code that sent to you',
+    'mobile_code'                   => 'Code',
 ];

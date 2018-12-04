@@ -16,12 +16,6 @@
                         <!-- Modal body -->
                         <div class="modal-body">
                             <h2 class="title">{{ trans('main.register_now') }}</h2>
-                            @if(Session::has('error_login'))
-                                <div class="alert alert-danger">
-                                    <button class="close" data-close="alert"></button>
-                                    <span>{{ session()->get('error_login') }}</span>
-                                </div>
-                            @endif
                             @if(count($errors))
                                 <div class="alert alert-danger">
                                     <button class="close" data-close="alert"></button>
@@ -37,7 +31,7 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12 col-lg-6">
                                         <label for="first_name">{{ trans('main.first_name') }}</label>
-                                        {!! Form::text('first_name',old('first_name'),['placeholder'=>trans('main.first_name'),'required']) !!}
+                                        {!! Form::text('first_name',old('first_name'),['placeholder'=>trans('main.first_name'),'required','id'=>'first_name']) !!}
                                         @if($errors->has('first_name'))
                                             <span class="text-danger">{{ $errors->first('first_name') }}</span>
                                         @endif
@@ -45,14 +39,14 @@
 
                                     <div class="col-sm-12 col-md-12 col-lg-6">
                                         <label for="middle_name">{{ trans('main.middle_name') }}</label>
-                                        {!! Form::text('middle_name',old('middle_name'),['placeholder'=>trans('main.middle_name'),'required']) !!}
+                                        {!! Form::text('middle_name',old('middle_name'),['placeholder'=>trans('main.middle_name'),'required','id'=>'middle_name']) !!}
                                         @if($errors->has('middle_name'))
                                             <span class="text-danger">{{ $errors->first('middle_name') }}</span>
                                         @endif
                                     </div>
                                     <div class="col-sm-12 col-md-12 ">
                                         <label for="last_name">{{ trans('main.last_name') }}</label>
-                                        {!! Form::text('last_name',old('last_name'),['placeholder'=>trans('main.last_name'),'required']) !!}
+                                        {!! Form::text('last_name',old('last_name'),['placeholder'=>trans('main.last_name'),'required','id'=>'last_name']) !!}
                                         @if($errors->has('last_name'))
                                             <span class="text-danger">{{ $errors->first('last_name') }}</span>
                                         @endif
@@ -60,7 +54,7 @@
 
                                     <div class="col-sm-12 col-md-12 col-lg-6">
                                         <label for="password">{{ trans('main.password') }}</label>
-                                        {!! Form::password('password',old('password'),['placeholder'=>trans('main.password'),'required']) !!}
+                                        {!! Form::password('password',['placeholder'=>trans('main.password'),'required','id'=>'password']) !!}
                                         @if($errors->has('password'))
                                             <span class="text-danger">{{ $errors->first('password') }}</span>
                                         @endif
@@ -68,7 +62,7 @@
 
                                     <div class="col-sm-12 col-md-12 col-lg-6">
                                         <label for="password_confirmation">{{ trans('main.password_confirmation') }}</label>
-                                        {!! Form::password('password_confirmation',old('password_confirmation'),['placeholder'=>trans('main.password_confirmation'),'required']) !!}
+                                        {!! Form::password('password_confirmation',['placeholder'=>trans('main.password_confirmation'),'required','id'=>'password_confirmation']) !!}
                                         @if($errors->has('password_confirmation'))
                                             <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
                                         @endif
@@ -76,7 +70,7 @@
 
                                     <div class="col-sm-12 col-md-12 col-lg-6">
                                         <label for="email">{{ trans('main.email') }}</label>
-                                        {!! Form::text('email',old('email'),['placeholder'=>trans('main.email'),'required']) !!}
+                                        {!! Form::text('email',old('email'),['placeholder'=>trans('main.email'),'required','id'=>'email']) !!}
                                         @if($errors->has('email'))
                                             <span class="text-danger">{{ $errors->first('email') }}</span>
                                         @endif
@@ -85,7 +79,7 @@
                                     <div class="col-sm-12 col-md-12 col-lg-6">
                                         <div class="custum_select">
                                             <label for="gender">{{ trans('main.gender') }}</label>
-                                            {!! Form::select('gender',$gender,old('gender'),['placeholder'=>trans('main.gender'),'required']) !!}
+                                            {!! Form::select('gender',$gender,old('gender'),['placeholder'=>trans('main.gender'),'required','id'=>'gender']) !!}
                                             @if($errors->has('gender'))
                                                 <span class="text-danger">{{ $errors->first('gender') }}</span>
                                             @endif
@@ -96,7 +90,7 @@
                                         <label for="mobile_number">{{ trans('main.mobile_number') }}</label>
                                         <div class="phone_number ">
                                             <aside class="phone_number-key"> <bdi> +966 </bdi> </aside>
-                                            {!! Form::text('mobile_number',old('mobile_number'),['placeholder'=>trans('main.mobile_number'),'required']) !!}
+                                            {!! Form::text('mobile_number',old('mobile_number'),['placeholder'=>trans('main.mobile_number'),'required','id'=>'mobile_number']) !!}
                                             @if($errors->has('mobile_number'))
                                                 <span class="text-danger">{{ $errors->first('mobile_number') }}</span>
                                             @endif
@@ -105,7 +99,7 @@
 
                                     <div class="col-sm-12 col-md-12 col-lg-12">
                                         <label for="national_id">{{ trans('main.national_id') }}</label>
-                                        {!! Form::text('national_id',old('national_id'),['placeholder'=>trans('main.national_id'),'required']) !!}
+                                        {!! Form::text('national_id',old('national_id'),['placeholder'=>trans('main.national_id'),'required','id'=>'national_id']) !!}
                                         @if($errors->has('national_id'))
                                             <span class="text-danger">{{ $errors->first('national_id') }}</span>
                                         @endif
@@ -113,7 +107,7 @@
 
                                     <div class="col-sm-12 col-md-12 col-lg-12">
                                         <label for="nationality_id_picture">{{ trans('main.nationality_id_picture') }}</label>
-                                        {!! Form::file('nationality_id_picture',old('nationality_id_picture'),['placeholder'=>trans('main.nationality_id_picture'),'required']) !!}
+                                        {!! Form::file('nationality_id_picture',old('nationality_id_picture'),['placeholder'=>trans('main.nationality_id_picture'),'required','id'=>'nationality_id_picture']) !!}
                                         @if($errors->has('nationality_id_picture'))
                                             <span class="text-danger">{{ $errors->first('nationality_id_picture') }}</span>
                                         @endif
@@ -159,14 +153,14 @@
                                     </div>
                                     <div class="col-sm-12 col-md-12">
                                         <label for="profile_picture_path">{{ trans('main.profile_picture') }}</label>
-                                        {!! Form::file('profile_picture_path',old('profile_picture_path'),['placeholder'=>trans('main.profile_picture'),'required']) !!}
+                                        {!! Form::file('profile_picture_path',old('profile_picture_path'),['placeholder'=>trans('main.profile_picture'),'required','id'=>'profile_picture_path']) !!}
                                         @if($errors->has('profile_picture_path'))
                                             <span class="text-danger">{{ $errors->first('profile_picture_path') }}</span>
                                         @endif
                                     </div>
                                     <div class="col-sm-12">
                                         <label for="about">{{ trans('main.about') }}</label>
-                                        {!! Form::textarea('about',old('about'),['cols'=>80,'rows'=>8,'placeholder'=>trans('main.about')]) !!}
+                                        {!! Form::textarea('about',old('about'),['cols'=>80,'rows'=>8,'placeholder'=>trans('main.about'),'id'=>'about']) !!}
                                         @if($errors->has('about'))
                                             <span class="text-danger">{{ $errors->first('about') }}</span>
                                         @endif

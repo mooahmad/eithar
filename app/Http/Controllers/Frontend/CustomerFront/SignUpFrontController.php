@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend\CustomerFront;
 use App\Helpers\Utilities;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\CustomerSignUpRequest;
+use App\Http\Services\Adminstrator\SendingSMSModule\ClassesReport\SendingSMSClass;
 use App\Mail\Auth\VerifyEmailCode;
 use App\Models\City;
 use App\Models\Country;
@@ -39,6 +40,11 @@ class SignUpFrontController extends Controller
         return view(FE.'.pages.customer.sign_up')->with($data);
     }
 
+    /**
+     * @param CustomerSignUpRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function saveCustomerSignUp(CustomerSignUpRequest $request)
     {
 //        TODO create new customer
@@ -52,7 +58,11 @@ class SignUpFrontController extends Controller
 //        TODO Send email to customer with verify code
         Mail::to($customer->email)->send(new VerifyEmailCode($customer));
 
-        return redirect()->route('home');
+//        TODO Send SMS to Customer To Active Account
+        $message = trans('main.send_sms_verify_code',['code'=>$customer->mobile_code]);
+        SendingSMSClass::sendSMS($message,[$customer->mobile_number]);
+
+        return redirect()->route('verify_sent_code',['id'=>$customer->id,'name'=>Utilities::beautyName($customer->full_name)]);
     }
 
     /**
@@ -99,7 +109,7 @@ class SignUpFrontController extends Controller
         $customer->middle_name          = $request->input('middle_name');
         $customer->last_name            = $request->input('last_name');
         $customer->email                = $request->input('email');
-        $customer->mobile_number        = $request->input('mobile_number');
+        $customer->mobile_number        = Utilities::AddCountryCodeToMobile($request->input('mobile_number'));
         $customer->password             = bcrypt($request->input('password'));
         $customer->gender               = $request->input('gender');
         $customer->national_id          = $request->input('national_id');
@@ -120,6 +130,13 @@ class SignUpFrontController extends Controller
         return $customer->refresh();
     }
 
+    /**
+     * @param $customer
+     * @param Request $request
+     * @param $image_name
+     * @param $image_path
+     * @return mixed
+     */
     public function uploadCustomerImage($customer,Request $request,$image_name,$image_path)
     {
         if ($request->hasFile($image_name)){
@@ -135,8 +152,12 @@ class SignUpFrontController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showCustomerVerifyCode()
+    public function showCustomerVerifyMobileCode(Request $request)
     {
-        return view(FE.'.pages.customer.verify_sent_code');
+        $customer = Customer::findOrFail($request->id);
+
+        if (!$customer) return redirect()->route('customer_sign_up');
+
+        return view(FE.'.pages.customer.verify_sent_code')->with(['id'=>$customer->id,'name'=>Utilities::beautyName($customer->full_name)]);
     }
 }

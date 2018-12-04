@@ -30,7 +30,8 @@ class SendingSMSClass
     /**
      * @param $message
      * @param $numbers
-     * @return mixed
+     * @return bool
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public static function sendSMS($message,$numbers)
     {
@@ -64,7 +65,7 @@ class SendingSMSClass
         ])->getBody();
 
         $api_response = json_decode($response,true);
-        return $api_response;
+//        return $api_response;
         return ($api_response['Code'] == config('constants.SMSSentSuccessfully')) ? true : false;
     }
 }

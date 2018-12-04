@@ -35,7 +35,8 @@ Route::group(['namespace' => FE], function () {
                 Route::get('sign-up', 'SignUpFrontController@showCustomerSignUp')->name('customer_sign_up');
                 Route::post('sign-up', 'SignUpFrontController@saveCustomerSignUp')->name('customer_sign_up_post');
                 Route::post('get-country-cities', 'SignUpFrontController@getCountryCities')->name('get_country_cities');
-                Route::get('verify-sent-code', 'SignUpFrontController@showCustomerVerifyCode')->name('verify_sent_code');
+                Route::get('/profile/{id}/{name}/activate-account', 'SignUpFrontController@showCustomerVerifyMobileCode')->name('verify_sent_code');
+                Route::post('/profile/{id}/{name}/activate-account', 'SignUpFrontController@activeCustomerVerifyMobileCode')->name('verify_sent_code_post');
 
                 Route::group(['middleware'=>'CustomerWebAuth'],function (){
                     Route::get('logout', 'LoginFrontController@logoutCustomer')->name('customer_logout');

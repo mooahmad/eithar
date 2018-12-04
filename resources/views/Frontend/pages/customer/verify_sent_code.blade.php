@@ -24,14 +24,15 @@
                                     <!-- Start Form content-->
                                     <div class="form_content">
                                         <h2 class="title">{{ trans('main.verify_sent_code') }} </h2>
-                                        <p> إذا لم يتم الوصول إلى رمز التفعيل في </p>
+                                        <p>{{ trans('main.verify_account_message') }}</p>
 
-                                        {!! Form::open(['files' => true,'url'=>url()->route('customer_sign_up_post'),'class'=>'glopal_form middel_form']) !!}
+                                        {!! Form::open(['url'=>url()->route('verify_sent_code_post',['id'=>$id,'name'=>$name]),'class'=>'glopal_form middel_form']) !!}
                                             <aside class="model_code-content">
-                                                <input type="number" name="" value="" maxlength="1">
-                                                <input type="number" name="" value="" maxlength="1">
-                                                <input type="number" name="" value="" maxlength="1">
-                                                <input type="number" name="" value="" maxlength="1">
+                                                {!! Form::text('mobile_code',old('mobile_code'),['placeholder'=>trans('main.mobile_code'),'required','id'=>'mobile_code']) !!}
+                                                {!! Form::hidden('customer_id',$id) !!}
+                                                @if($errors->has('mobile_code'))
+                                                    <span class="text-danger">{{ $errors->first('mobile_code') }}</span>
+                                                @endif
                                             </aside>
 
                                             <!-- End List icon Registration -->
