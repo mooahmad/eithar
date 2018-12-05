@@ -80,6 +80,14 @@ class LoginFrontController extends Controller
             return back();
         }
 
+        if (Auth::guard('customer-web')->user()->is_active == 0){
+            $this->incrementLoginAttempts($request);
+            session()->flash('error_login',trans('main.verify_account_message'));
+            $mobile_number = Auth::guard('customer-web')->user()->mobile_number;
+            Auth::guard('customer-web')->logout();
+            return redirect()->route('verify_sent_code',['mobile'=>$mobile_number]);
+        }
+
         $this->updateCustomerLastLogin();
 
         $request->session()->regenerate();
