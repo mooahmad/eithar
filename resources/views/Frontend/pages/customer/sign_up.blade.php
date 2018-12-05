@@ -168,7 +168,7 @@
                                 </div>
                                 <!-- End List icon Registration -->
                                 <aside class="sign_button-content">
-                                    <button class="button" type="submit">{{ trans('main.submit') }}</button>
+                                    <button class="button" type="submit">{{ trans('main.sign_up') }}</button>
                                 </aside>
                             {!! Form::close() !!}
                         </div>

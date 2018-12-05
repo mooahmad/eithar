@@ -4,7 +4,7 @@ namespace App\Http\Requests\Frontend;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CheckMobileCodeVerifyRequest extends FormRequest
+class CheckMobileNumberRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,7 @@ class CheckMobileCodeVerifyRequest extends FormRequest
     public function rules()
     {
         return [
-            'mobile_number'  => 'required',
-            'mobile_code'    => 'required|min:4',
+            'mobile_number'     => 'required'
         ];
     }
 }
