@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend\CustomerFront;
 
 use App\Helpers\Utilities;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Frontend\CheckMobileCodeVerifyRequest;
 use App\Http\Requests\Frontend\CustomerSignUpRequest;
 use App\Http\Services\Adminstrator\SendingSMSModule\ClassesReport\SendingSMSClass;
 use App\Mail\Auth\VerifyEmailCode;
@@ -51,9 +52,6 @@ class SignUpFrontController extends Controller
         $customer = $this->updateORCreateCustomer(new Customer(),$request);
         $customer = $this->uploadCustomerImage($customer,$request,'profile_picture_path','public/images/avatars');
         $customer = $this->uploadCustomerImage($customer,$request,'nationality_id_picture','public/images/nationalities');
-//        TODO login and update last login date
-        Auth::guard('customer-web')->login($customer,true);
-        (new LoginFrontController())->updateCustomerLastLogin();
 
 //        TODO Send email to customer with verify code
         Mail::to($customer->email)->send(new VerifyEmailCode($customer));
@@ -122,8 +120,9 @@ class SignUpFrontController extends Controller
 
         $customer->save();
         if ($isCreate) {
-            $customer->email_code       = Utilities::quickRandom(4, true);
-            $customer->mobile_code      = Utilities::quickRandom(4, true);
+            $code = Utilities::quickRandom(4, true);
+            $customer->email_code       = $code;
+            $customer->mobile_code      = $code;
             $customer->eithar_id        = config('constants.CustomerEitharID').$customer->id;
         }
         $customer->save();
@@ -159,5 +158,41 @@ class SignUpFrontController extends Controller
         if (!$customer) return redirect()->route('customer_sign_up');
 
         return view(FE.'.pages.customer.verify_sent_code')->with(['id'=>$customer->id,'name'=>Utilities::beautyName($customer->full_name)]);
+    }
+
+    public function activeCustomerVerifyMobileCode(CheckMobileCodeVerifyRequest $request)
+    {
+//        TODO check mobile_code for this customer
+        $customer = $this->checkCustomerSentVerifyCode($request->input('customer_id'),$request->input('mobile_code'));
+        if (!$customer){
+            session()->flash('error_message',trans('main.invalid_promo_code'));
+            return redirect()->back()->withInput();
+        }
+
+//        TODO login and update last login date
+        Auth::guard('customer-web')->login($customer,true);
+        (new LoginFrontController())->updateCustomerLastLogin();
+        return redirect()->route('home');
+    }
+
+    /**
+     * @param $customer_id
+     * @param $code
+     * @return mixed
+     */
+    public function checkCustomerSentVerifyCode($customer_id,$code)
+    {
+        $customer = Customer::where('id',$customer_id)->where('mobile_code',$code)->first();
+        if (!$customer) return null;
+
+        $customer->is_active = 1;
+        $customer->save();
+
+        return $customer;
+    }
+
+    public function resendCustomerVerifyCode(Request $request)
+    {
+        return $request->all();
     }
 }

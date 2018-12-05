@@ -113,4 +113,5 @@ return [
     'send_sms_verify_code'          => 'يرجي استخدام هذا الرمز: :code لتنشيط حسابك',
     'verify_account_message'        => 'يرجى إدخال رمز التفعيل الذي أرسله إليك',
     'mobile_code'                   => 'الرمز',
+    'resend'                        => 'اعادة ارسال',
 ];
