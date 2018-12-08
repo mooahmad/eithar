@@ -122,4 +122,9 @@ return [
     'resend_verify_code_message'    => 'Please enter your mobile number to receive verification code',
     'sign_up'                       => 'Sign Up',
     'invalid_mobile_number'         => 'Invalid Mobile Number',
+    'customer_reset_password'       => 'Customer Reset Password',
+    'reset_password_test'           => 'We just need to ID your mobile phone to register to re-send the link',
+    'did_you_forget_your_password'  => 'Did you forget your password?',
+    'forget_password_code'          => 'Forget Password Code',
+    'customer_reset_password_verify_code'=> 'Reset Password Verify Code',
 ];

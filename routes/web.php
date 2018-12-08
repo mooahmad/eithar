@@ -39,6 +39,10 @@ Route::group(['namespace' => FE], function () {
                 Route::post('activate-account', 'SignUpFrontController@activeCustomerVerifyMobileCode')->name('verify_sent_code_post');
                 Route::get('resend-verify-code', 'SignUpFrontController@resendCustomerVerifyCode')->name('resend_verify_code');
                 Route::post('resend-verify-code', 'SignUpFrontController@resendCustomerVerifyCodePost')->name('resend_verify_code_post');
+                Route::get('reset-password', 'ResetPasswordFrontController@showCustomerResetPassword')->name('customer_reset_password');
+                Route::post('reset-password', 'ResetPasswordFrontController@checkCustomerResetPassword')->name('customer_reset_password_post');
+                Route::get('verify-reset-password/{mobile}', 'ResetPasswordFrontController@showVerifyCustomerResetPassword')->name('customer_reset_password_verify_code');
+                Route::post('verify-reset-password', 'ResetPasswordFrontController@checkVerifyCustomerResetPassword')->name('customer_reset_password_verify_code_post');
 
                 Route::group(['middleware'=>'CustomerWebAuth'],function (){
                     Route::get('logout', 'LoginFrontController@logoutCustomer')->name('customer_logout');

@@ -122,4 +122,9 @@ return [
     'resend_verify_code_message'    => 'رجاء أدخل رقم هاتفك المحمول لاستقبال الرمز',
     'sign_up'                       => 'انشاء حساب',
     'invalid_mobile_number'         => 'رقم الهاتف غير صحيح',
+    'customer_reset_password'       => 'إعادة ضبط كلمة المرور',
+    'reset_password_test'           => 'نحن بحاجة فقط إلى معرف هاتفك المحمول الخاص بك التسجيل لإعادة إرسال حلقة الوصل',
+    'did_you_forget_your_password'  => 'هل نسيت كلمة المرور؟',
+    'forget_password_code'          => 'الرمز',
+    'customer_reset_password_verify_code'=> 'إعادة ضبط كلمة المرور',
 ];

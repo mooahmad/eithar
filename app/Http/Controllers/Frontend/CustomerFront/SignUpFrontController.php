@@ -148,9 +148,9 @@ class SignUpFrontController extends Controller
      */
     public function showCustomerVerifyMobileCode(Request $request)
     {
-        $customer = Customer::where('mobile_number',$request->mobile)->first();
+        $customer = $this->checkCustomerExistByMobile($request->mobile);
 
-        if (!$customer) return redirect()->route('customer_sign_up');
+        if (!$customer) return redirect()->route('customer_login');
 
         return view(FE.'.pages.customer.verify_sent_code')->with(['mobile'=>$customer->mobile_number]);
     }
