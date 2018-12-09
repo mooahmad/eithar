@@ -127,4 +127,6 @@ return [
     'did_you_forget_your_password'  => 'هل نسيت كلمة المرور؟',
     'forget_password_code'          => 'الرمز',
     'customer_reset_password_verify_code'=> 'إعادة ضبط كلمة المرور',
+    'password_new'                  => 'كلمة المرور الجديدة',
+    'password_confirmation_new'     => 'تأكيد كلمة المرور',
 ];

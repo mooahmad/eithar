@@ -18,23 +18,39 @@
                                     <!-- Start Form content-->
                                     <div class="form_content">
                                         <h2 class="title">{{ trans('main.verify_sent_code') }} </h2>
+                                        @if(Session::has('error_message'))
+                                            <div class="alert alert-danger">
+                                                <button class="close" data-close="alert"></button>
+                                                <span>{{ session()->get('error_message') }}</span>
+                                            </div>
+                                        @endif
                                         <p>{{ trans('main.verify_account_message') }}</p>
                                         {!! Form::open(['url'=>url()->route('customer_reset_password_verify_code_post'),'class'=>'glopal_form middel_form']) !!}
-                                            <div class="phone_number ">
-                                                <aside class="phone_number-key"> <bdi> +966 </bdi> </aside>
-                                                {!! Form::text('mobile_number',old('mobile_number'),['placeholder'=>trans('main.mobile_number'),'required']) !!}
-                                            </div>
-
                                             <aside class="model_code-content">
                                                 {!! Form::text('forget_password_code',old('forget_password_code'),['placeholder'=>trans('main.forget_password_code'),'required','id'=>'forget_password_code']) !!}
+                                                {!! Form::hidden('mobile_number',$mobile) !!}
                                             </aside>
                                             @if($errors->has('forget_password_code'))
                                                 <span class="text-danger">{{ $errors->first('forget_password_code') }}</span>
                                             @endif
 
+                                            <aside class="model_code-content">
+                                                {!! Form::password('password',['placeholder'=>trans('main.password_new'),'required','id'=>'password']) !!}
+                                            </aside>
+                                            @if($errors->has('password'))
+                                                <span class="text-danger">{{ $errors->first('password') }}</span>
+                                            @endif
+
+                                            <aside class="model_code-content">
+                                                {!! Form::password('password_confirmation',['placeholder'=>trans('main.password_confirmation'),'required','id'=>'password_confirmation_new']) !!}
+                                            </aside>
+                                            @if($errors->has('password_confirmation'))
+                                                <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
+                                            @endif
+
                                             <!-- End List icon Registration -->
                                             <aside class="sign_button-content">
-                                                <button class="button" type="submit"> {{ trans('main.active') }} </button>
+                                                <button class="button" type="submit"> {{ trans('main.send') }} </button>
                                             </aside>
 
                                         {!! Form::close() !!}

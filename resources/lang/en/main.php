@@ -127,4 +127,6 @@ return [
     'did_you_forget_your_password'  => 'Did you forget your password?',
     'forget_password_code'          => 'Forget Password Code',
     'customer_reset_password_verify_code'=> 'Reset Password Verify Code',
+    'password_new'                  => 'New Password',
+    'password_confirmation_new'     => 'Confirmation New Password',
 ];
