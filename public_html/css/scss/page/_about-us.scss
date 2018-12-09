@@ -2,6 +2,7 @@
 @import "componants/buttons.scss";
 @import "componants/keyframs.scss";
 @import "componants/slider-custum.scss";
+
 /**********/
 .about_us-page {
   section {
@@ -16,7 +17,7 @@
 
   .our_mission-block {
     h3 {
-      color: #EC0707;
+      color: $mainColor;
     }
 
     h4 {
@@ -37,23 +38,25 @@
 }
 
 .aboutus_page-block2 {
-  color: #fff;
 
-  .home_page-title {
-    color: #fff;
-  }
+  .home_page-title {}
 
   .our_team-container {
-    background-color: $secondColor;
+
     padding: 50px;
     border-top-left-radius: 150px;
     border-bottom-right-radius: 150px;
+
+    .row {
+
+      display: flex;
+      flex-wrap: wrap-reverse;
+    }
   }
 
-  .paragraph_global {
-    color: #fff;
-  }
+  .paragraph_global {}
 }
+
 /*Start Contact with us Content*/
 .contactus_section {
   ul {
@@ -68,4 +71,5 @@
     }
   }
 }
+
 /*End Contact with us Content*/
