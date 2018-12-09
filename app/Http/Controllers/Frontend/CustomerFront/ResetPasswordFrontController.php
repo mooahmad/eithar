@@ -65,6 +65,10 @@ class ResetPasswordFrontController extends Controller
         return view(FE.'.pages.customer.verify_reset_password_code')->with(['mobile'=>$request->mobile]);
     }
 
+    /**
+     * @param VerifyResetPasswordRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function checkVerifyCustomerResetPassword(VerifyResetPasswordRequest $request)
     {
 //        TODO check if customer exist with mobile and reset_code

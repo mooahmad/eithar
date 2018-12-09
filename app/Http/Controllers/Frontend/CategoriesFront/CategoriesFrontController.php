@@ -172,18 +172,18 @@ class CategoriesFrontController extends Controller
 
                                         <div class="rate_content">
                                             <aside>
-                                                <span>'.$num_views.'</span>
-                                                <img src="{{ asset(\'public/Frontend/img/icon/share.png\') }}" alt="">
+                                                <span>'.$num_likes.'</span>
+                                                <i class="far fa-heart"></i>
                                             </aside>
 
                                             <aside>
                                                 <span>'.$num_rating.'</span>
-                                                <img src="{{ asset(\'public/Frontend/img/icon/star.png\') }}" alt="">
+                                                <i class="far fa-star"></i>
                                             </aside>
 
                                             <aside>
-                                                <span>'.$num_likes.'</span>
-                                                <img src="{{ asset(\'public/Frontend/img/icon/like.png\') }}" alt="">
+                                                <span>'.$num_views.'</span>
+                                                <i class="far fa-eye"></i>
                                             </aside>
 
                                         </div>
