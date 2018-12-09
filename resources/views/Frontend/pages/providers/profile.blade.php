@@ -81,9 +81,10 @@
 @stop
 
 @section('js')
-    {{--<script>--}}
-        {{--var url = "{{ url()->route('get_subcategory_providers_list') }}";--}}
-        {{--var _token = "{{ csrf_token() }}";--}}
-    {{--</script>--}}
-    {{--<script src="{{ asset('public/Frontend/custom/get_providers.js') }}" type="text/javascript"></script>--}}
+    <script>
+        var url = "{{ url()->route('like_provider_transaction') }}";
+        var _token = "{{ csrf_token() }}";
+        var provider_id = "{{ $provider->id }}";
+    </script>
+    <script src="{{ asset('public/Frontend/custom/provider_transactions.js') }}" type="text/javascript"></script>
 @stop

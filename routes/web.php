@@ -62,6 +62,7 @@ Route::group(['namespace' => FE], function () {
                     Route::post('doctors/getCalendarDays','DoctorsCategoryController@getCalendarDays')->name('getCalendarDays');
                     Route::post('doctors/getAvailableSlots','DoctorsCategoryController@getAvailableSlots')->name('getAvailableSlots');
                     Route::post('doctors/checkPromoCode','DoctorsCategoryController@checkPromoCodeAndGetAmount')->name('checkPromoCode');
+                    Route::post('doctors/like','DoctorsCategoryController@likeProvider')->name('like_provider_transaction');
                 });
 
                 Route::get('lap','CategoriesFrontController@showLapSubCategories')->name('lap_category');

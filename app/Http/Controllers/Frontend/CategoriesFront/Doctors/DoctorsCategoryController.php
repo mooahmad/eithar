@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\BookAppointmentProviderRequest;
 use App\Http\Requests\Frontend\CheckPromoCodeRequest;
 use App\Http\Services\Adminstrator\InvoiceModule\ClassesInvoice\InvoiceClass;
+use App\Http\Services\WebApi\CommonTraits\Likes;
 use App\Http\Services\WebApi\CommonTraits\Views;
 use App\Listeners\PushNotificationEventListener;
 use App\Models\Category;
@@ -18,6 +19,7 @@ use App\Models\Questionnaire;
 use App\Models\ServiceBooking;
 use App\Models\ServiceBookingAnswers;
 use App\Models\ServiceBookingAppointment;
+use App\Models\TransactionsUsers;
 use App\Notifications\AppointmentConfirmed;
 use App\Notifications\AppointmentReminder;
 use Carbon\Carbon;
@@ -28,7 +30,7 @@ use Illuminate\Support\Facades\Validator;
 
 class DoctorsCategoryController extends Controller
 {
-    use Views;
+    use Views,Likes;
 
     /**
      * DoctorsCategoryController constructor.
@@ -396,6 +398,71 @@ class DoctorsCategoryController extends Controller
         if (strtotime($pushTypeData->send_at) > strtotime($now)) {
             \auth()->guard('customer-web')->user()->notify(new AppointmentReminder($pushTypeData));
         }
+    }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function likeProvider(Request $request)
+    {
+        if ($request->json()){
+            $data = [
+                'result' => false,
+                'action' => 'like',
+            ];
+
+            $customer = \auth()->guard('customer-web')->user();
+            $provider_id = $request->input('provider_id');
+            if ($provider_id && $customer){
+                if ($this->isLikedProvider($customer->id,$provider_id)){
+                    $data['result'] = true;
+                    return response()->json($data);
+                }
+                if ($this->like($provider_id,config('constants.transactionsTypes.provider'),'Like')){
+                    $data['result'] = true;
+                }
+            }
+            return response()->json($data);
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function unlikeProvider(Request $request)
+    {
+        if ($request->json()){
+            $data = [
+                'result' => false,
+                'action' => 'unlike',
+            ];
+
+            $customer = \auth()->guard('customer-web')->user();
+            $provider_id = $request->input('provider_id');
+            if ($provider_id && $customer){
+                if ($this->unlike($provider_id)){
+                    $data['result'] = true;
+                }
+            }
+            return response()->json($data);
+        }
+    }
+
+    /**
+     * @param $customer_id
+     * @param $provider_id
+     * @return bool
+     */
+    public function isLikedProvider($customer_id,$provider_id)
+    {
+        $is_liked = TransactionsUsers::where('user_id',$customer_id)
+                                ->where('service_provider_id',$provider_id)
+                                ->where('transaction_type',config('constants.transactions.like'))
+                                ->where('type',config('constants.transactionsTypes.provider'))
+                                ->first();
+        if ($is_liked) return true;
+        return false;
     }
 }

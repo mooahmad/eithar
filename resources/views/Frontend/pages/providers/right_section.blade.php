@@ -36,7 +36,7 @@
 
             <aside>
                 <span>{{ $provider->no_of_likes }}</span>
-                <i class="far fa-heart"></i>
+                <i class="far fa-heart LikeAction" data-action=""></i>
             </aside>
         </div>
 
