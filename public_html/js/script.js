@@ -51,7 +51,7 @@ $(function() {
   // Button Togell To Show and Hide Menu
   $(".navbar_button").click(function() {
     $(".navbar_overlay").fadeIn();
-    $(".navbar_menu").animate({
+    $(".menu_content").animate({
       left: 0 //Change
     }, 500);
 
@@ -190,5 +190,10 @@ $(function() {
     });
   });
   /*****End Preloder*****/
+      // Start Notificaion 
+      $(".notification_button").on('click', function () {
+        $(".notification_area-list").slideToggle();
+      });
+
 
 });

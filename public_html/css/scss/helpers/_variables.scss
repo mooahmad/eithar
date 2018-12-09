@@ -1,5 +1,6 @@
 $mainColor: #044D7F;
 $secondColor: #0095D9;
+$grayColor:#DDD;
 $borderRadius: 10px;
 $boxShadow: 0 3px 6px #124462;
 $overlay: rgba(7, 167, 226, 0.5);
@@ -18,6 +19,38 @@ $md: 768px;
 $lg: 992px;
 $xl: 1200px; /*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+
+  .select_your-tupe {
+    width: 100%;
+
+    aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+
+      .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px;
+
+        span {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .slect_Your-twon {
+    width: 100%;
+  }
+}
 .container {
   @media (min-width: $lg) {
     max-width: 1170px;
