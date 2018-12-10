@@ -114,7 +114,7 @@ class Utilities
     {
         $dayDates = [];
         for ($i = 0; $i < $numberOfWeeks; $i++) {
-            $date = Carbon::parse("next tuseday");
+            $date = Carbon::parse("next tuesday");
             $date->addWeek($i);
             $dayDate = $date->toDateString();
             dd($dayDate);
