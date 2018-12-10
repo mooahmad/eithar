@@ -124,6 +124,7 @@ class Utilities
         $dayDates = [];
         $todayOfWeek = $daysMaped[Carbon::now()->dayOfWeek];
         for ($i = 0; $i < $numberOfWeeks; $i++) {
+            dd($todayOfWeek . " * " . $day);
             if($todayOfWeek == $day)
             $date = Carbon::now();
             else
