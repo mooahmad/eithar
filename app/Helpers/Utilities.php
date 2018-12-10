@@ -114,9 +114,10 @@ class Utilities
     {
         $dayDates = [];
         for ($i = 0; $i < $numberOfWeeks; $i++) {
-            $date = Carbon::parse("next $day");
+            $date = Carbon::parse("next monday");
             $date->addWeek($i);
             $dayDate = $date->toDateString();
+            dd($dayDate);
             array_push($dayDates, $dayDate);
         }
         return $dayDates;
