@@ -270,7 +270,7 @@ class ProvidersController extends Controller
         foreach ($selectedDays as $selectedDay) {
             $allDates = array_merge($allDates, Utilities::getDayDatesOfWeeks($selectedDay, $numberOfWeeks));
         }
-        dd($allDates);
+        dd($selectedDays);
         foreach ($allDates as $dayDate) {
             $startDate = $dayDate . ' ' . $startTime . ':00';
             for ($i = 0; $i < $numberOfSessions; $i++) {
