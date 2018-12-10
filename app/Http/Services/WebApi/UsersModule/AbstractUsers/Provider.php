@@ -1003,14 +1003,12 @@ class Provider
                             $startDate = $calendar->start_date;
                             $startTime = Carbon::parse($calendar->start_date)->format('g:i A');
                             $endTime = Carbon::parse($calendar->end_date)->format('g:i A');
-                            $now = Carbon::now();
-                            $nowPlusHours = Carbon::now()->addHours(10);
+                            $nowPlusHours = Carbon::now()->addHours(3);
                             $afterStartDay = Carbon::parse($calendar->start_date);
-                            if (!($now <= $afterStartDay && $nowPlusHours >= $afterStartDay)) {
+                            if (!$nowPlusHours >= $afterStartDay) {
                                 $startDate = "Unknown";
                             }
                         }
-                        dd($startDate);
                         $payLoad = [
                             "id" => $serviceAppointment->id,
                             "service_type" => $service->type,
@@ -1032,10 +1030,9 @@ class Provider
                             $startDate = $calendar->start_date;
                             $startTime = Carbon::parse($calendar->start_date)->format('g:i A');
                             $endTime = Carbon::parse($calendar->end_date)->format('g:i A');
-                            $now = Carbon::now();
-                            $nowPlusHours = Carbon::now()->addHours(10);
+                            $nowPlusHours = Carbon::now()->addHours(3);
                             $afterStartDay = Carbon::parse($calendar->start_date);
-                            if (!($now <= $afterStartDay && $nowPlusHours >= $afterStartDay)) {
+                            if (!$nowPlusHours >= $afterStartDay) {
                                 $startDate = "Unknown";
                             }
                         }
@@ -1060,10 +1057,9 @@ class Provider
                         $startDate = $calendar->start_date;
                         $startTime = Carbon::parse($calendar->start_date)->format('g:i A');
                         $endTime = Carbon::parse($calendar->end_date)->format('g:i A');
-                        $now = Carbon::now();
-                        $nowPlusHours = Carbon::now()->addHours(10);
+                        $nowPlusHours = Carbon::now()->addHours(3);
                         $afterStartDay = Carbon::parse($calendar->start_date);
-                        if (!($now <= $afterStartDay && $nowPlusHours >= $afterStartDay)) {
+                        if (!$nowPlusHours >= $afterStartDay) {
                             $startDate = "Unknown";
                         }
                     }
