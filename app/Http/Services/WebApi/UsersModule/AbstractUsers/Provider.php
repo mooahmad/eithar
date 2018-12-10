@@ -63,7 +63,6 @@ class Provider
                     ->where('is_available', 1)
                     ->orderBy('start_date', 'asc')
                     ->first();
-                    dd(Carbon::now()->addHours(2)->format('Y-m-d H:m:s'));
                 if (!$date) {
                     $day = Carbon::today()->format('Y-m-d');
                 } else {

@@ -272,6 +272,7 @@ class ProvidersController extends Controller
         }
         foreach ($allDates as $dayDate) {
             $startDate = $dayDate . ' ' . $startTime . ':00';
+            dd($startDate);
             for ($i = 0; $i < $numberOfSessions; $i++) {
                 $endDate = Carbon::parse($startDate)->addMinutes($provider->visit_duration)->toDateTimeString();
                 if (strtotime($endDate) >= strtotime($dayDate . ' ' . '23:59:00'))
