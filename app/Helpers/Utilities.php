@@ -123,11 +123,14 @@ class Utilities
         ]; 
         $dayDates = [];
         $todayOfWeek = $daysMaped[Carbon::now()->dayOfWeek];
-        dd($todayOfWeek);
         for ($i = 0; $i < $numberOfWeeks; $i++) {
-            $date = Carbon::parse("next tuesday");
+            if($todayOfWeek == $day)
+            $date = Carbon::now();
+            else
+            $date = Carbon::parse("next $day");
             $date->addWeek($i);
             $dayDate = $date->toDateString();
+            dd($dayDate);
             array_push($dayDates, $dayDate);
         }
         return $dayDates;
