@@ -997,7 +997,7 @@ class Provider
                 if ($service != null) {
                     //provider
                     if ($service->type == 5) {
-                        dd("hi");
+                        dd($serviceAppointment->slot_id);
                         $calendar = ProvidersCalendar::find($serviceAppointment->slot_id);
                         $startDate = $startTime = $endTime = "Unknown";
                         if ($calendar) {
