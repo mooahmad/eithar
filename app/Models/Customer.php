@@ -34,6 +34,38 @@ class Customer extends Authenticatable
         'password', 'remember_token', 'email_code', 'mobile_code', 'deleted_at', 'created_at', 'updated_at'
     ];
 
+    /**
+     * @return array
+     */
+    public function attributesToArray()
+    {
+        $attributes = parent::attributesToArray();
+
+        foreach ($this->getMutatedAttributes() as $key) {
+            if ($this->hidden) {
+                if (in_array($key, $this->hidden)) continue;
+            }
+
+            if ($this->visible) {
+                if (!in_array($key, $this->visible)) continue;
+            }
+
+            if (!array_key_exists($key, $attributes)) {
+                $attributes[$key] = $this->mutateAttribute($key, null);
+            }
+        }
+
+        return $attributes;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMobileAttribute()
+    {
+        return str_after($this->mobile_number,config('constants.MobileNumberStart'));
+    }
+
     public function routeNotificationForMail($notification)
     {
         return $this->email;

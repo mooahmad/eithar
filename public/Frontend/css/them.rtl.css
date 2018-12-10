@@ -1,6 +1,28 @@
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
 @media (min-width: 992px) {
   .container {
     max-width: 1170px; } }
@@ -56,7 +78,7 @@ a:hover {
       margin-top: 30px; } }
   .glopal_form select {
     width: 100%;
-    color: #044E80;
+    color: #044D7F;
     cursor: pointer; }
   .glopal_form label {
     display: block;
@@ -65,7 +87,7 @@ a:hover {
   .glopal_form select:focus,
   .glopal_form textarea:focus {
     outline: none !important;
-    border-color: #07A7E3; }
+    border-color: #0095D9; }
   .glopal_form input,
   .glopal_form select,
   .glopal_form textarea {
@@ -197,7 +219,7 @@ body {
   top: 8px;
   right: auto;
   left: 8px;
-  color: #044E80; }
+  color: #044D7F; }
 
 /*06= Start Services Order*/
 /**Footer**/
@@ -230,6 +252,33 @@ footer .footer_subscribe button {
       right: -260px;
       left: auto;
       /*Change*/ } }
+
+@media (min-width: 992px) {
+  .login_area-content .login_button {
+    margin-right: 0;
+    margin-left: 50px; } }
+
+.notification_area .notification_area-list li a:before {
+  left: auto;
+  right: -10px; }
+
+@media (max-width: 768px) {
+  .profile_menu {
+    right: -300px;
+    left: auto; } }
+@media (max-width: 768px) {
+  .profile_menu.switch {
+    right: 0px;
+    left: auto; } }
+.profile_menu .show_menu {
+  left: -40px;
+  right: auto; }
+  .profile_menu .show_menu i {
+    transform: rotate(0deg); }
+  .profile_menu .show_menu.switch i {
+    transform: rotate(180deg); }
+.profile_menu .add_image .back_button:before {
+  transform: rotate(270deg); }
 
 /*****Font******/
 a,

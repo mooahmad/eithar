@@ -72,7 +72,11 @@ class SignUpFrontController extends Controller
                 $html='';
                 if (!empty($cities)){
                     foreach ($cities as $city) {
-                        $html .= '<option value="'.$city->id.'">'.$city->name.'</option>';
+                        $selected = '';
+                        if (auth()->guard('customer-web')->check() && auth()->guard('customer-web')->user()->city_id == $city->id){
+                            $selected = 'selected';
+                        }
+                        $html .= '<option value="'.$city->id.'" '.$selected.'>'.$city->name.'</option>';
                     }
                 }
                 return response()->json(

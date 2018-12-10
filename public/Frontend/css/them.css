@@ -3,6 +3,28 @@
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
 @media (min-width: 992px) {
   .container {
     max-width: 1170px; } }
@@ -49,7 +71,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -78,7 +100,7 @@ a:hover {
       margin-top: 30px; } }
   .glopal_form select {
     width: 100%;
-    color: #044E80;
+    color: #044D7F;
     cursor: pointer; }
   .glopal_form label {
     display: block;
@@ -87,7 +109,7 @@ a:hover {
   .glopal_form select:focus,
   .glopal_form textarea:focus {
     outline: none !important;
-    border-color: #07A7E3; }
+    border-color: #0095D9; }
   .glopal_form input,
   .glopal_form select,
   .glopal_form textarea {
@@ -184,6 +206,28 @@ th {
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
 @media (min-width: 992px) {
   .container {
     max-width: 1170px; } }
@@ -230,7 +274,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -259,7 +303,7 @@ a:hover {
       margin-top: 30px; } }
   .glopal_form select {
     width: 100%;
-    color: #044E80;
+    color: #044D7F;
     cursor: pointer; }
   .glopal_form label {
     display: block;
@@ -268,7 +312,7 @@ a:hover {
   .glopal_form select:focus,
   .glopal_form textarea:focus {
     outline: none !important;
-    border-color: #07A7E3; }
+    border-color: #0095D9; }
   .glopal_form input,
   .glopal_form select,
   .glopal_form textarea {
@@ -372,11 +416,11 @@ th {
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  background-color: #044E80;
+  background-color: #044D7F;
   border-radius: 10px;
   color: #fff; }
   .button:hover {
-    background-color: #07A7E3;
+    background-color: #0095D9;
     color: #fff; }
 
 .languge_button {
@@ -387,16 +431,16 @@ th {
   padding: 10px 15px;
   font-size: 14px;
   font-weight: 500;
-  background-color: #07A7E3;
+  background-color: #0095D9;
   border-radius: 10px;
   color: #fff; }
   .button-blue:hover {
     color: #fff;
-    background-color: #044E80; }
+    background-color: #044D7F; }
 
 .advanced_search-button,
 .our_student-button {
-  background-color: #07A7E3;
+  background-color: #0095D9;
   padding-right: 40px;
   position: relative;
   margin: 0 auto;
@@ -404,7 +448,7 @@ th {
   margin-top: 20px; }
   .advanced_search-button:hover,
   .our_student-button:hover {
-    background-color: #044E80; }
+    background-color: #044D7F; }
   .advanced_search-button:before,
   .our_student-button:before {
     content: "\f101";
@@ -412,14 +456,14 @@ th {
     right: 15px; }
 
 .glopal_form- {
-  background-color: #07A7E3;
+  background-color: #0095D9;
   padding-right: 40px;
   position: relative;
   margin: 0 auto;
   display: inline-block;
   margin-top: 20px; }
   .glopal_form-:hover {
-    background-color: #044E80; }
+    background-color: #044D7F; }
   .glopal_form-:before {
     content: "\f1d8";
     color: #fff;
@@ -443,15 +487,15 @@ th {
     width: 100%;
     z-index: -1;
     border-radius: 10px;
-    background-color: #07A7E3; } }
+    background-color: #0095D9; } }
 @media (min-width: 992px) {
   #menu_blog:hover:before {
-    background-color: #044E80; } }
+    background-color: #044D7F; } }
 
 /*Start Navigation*/
 .navigation {
   justify-content: space-between;
-  background-color: #044E80;
+  background-color: #044D7F;
   color: #fff;
   font-size: 14px;
   padding: 4px 0; }
@@ -471,14 +515,14 @@ th {
       line-height: 28px;
       padding: 0 5px;
       border-radius: 10px;
-      background-color: #07A7E3;
+      background-color: #0095D9;
       color: #fff;
       font-weight: 500;
       font-size: 18px; }
       .navigation .navigation_content .language:hover {
         box-shadow: 0 0 10px #fff; }
     .navigation .navigation_content .contact_button {
-      background-color: #07A7E3;
+      background-color: #0095D9;
       border-radius: 10px;
       padding: 0 8px;
       line-height: 30px;
@@ -502,6 +546,28 @@ th {
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
 @media (min-width: 992px) {
   .container {
     max-width: 1170px; } }
@@ -548,7 +614,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -577,7 +643,7 @@ a:hover {
       margin-top: 30px; } }
   .glopal_form select {
     width: 100%;
-    color: #044E80;
+    color: #044D7F;
     cursor: pointer; }
   .glopal_form label {
     display: block;
@@ -586,7 +652,7 @@ a:hover {
   .glopal_form select:focus,
   .glopal_form textarea:focus {
     outline: none !important;
-    border-color: #07A7E3; }
+    border-color: #0095D9; }
   .glopal_form input,
   .glopal_form select,
   .glopal_form textarea {
@@ -712,22 +778,16 @@ th {
   width: 100%; }
 
 .menu_content {
-  display: flex;
-  justify-content: space-between;
   border-radius: 10px; }
   @media (min-width: 992px) {
     .menu_content {
-      background-color: #fff; } }
+      background-color: #fff;
+      display: flex;
+      justify-content: space-between; } }
   @media (max-width: 992px) {
     .menu_content {
-      position: relative; } }
-  @media (max-width: 992px) {
-    .menu_content .languge_button {
-      position: absolute;
-      top: 200px;
-      z-index: 99999;
-      background-color: #fff;
-      color: #044E80; } }
+      position: relative;
+      height: 100vh; } }
 
 .navbar_brand {
   height: 50px; }
@@ -751,87 +811,93 @@ th {
       display: none; } }
 
 .navbar_menu {
+  line-height: 65px; }
+
+.menu_content {
   /*Menu For Descktop*/
   /*Menu For Mobile*/ }
   @media (min-width: 992px) {
-    .navbar_menu {
-      width: 800px;
-      line-height: 61px;
+    .menu_content {
+      display: flex;
+      width: 950px;
+      line-height: 25px;
       position: relative;
-      display: block;
+      /* display: block; */
       margin: 0 20px !important; } }
   @media (max-width: 992px) {
-    .navbar_menu {
+    .menu_content {
       width: 260px;
+      overflow-y: auto;
       height: 100vh;
       position: fixed;
       z-index: 9999;
-      right: -260px;
-      left: auto;
+      left: -260px;
+      right: auto;
       /*Change*/
       top: 0;
-      background-color: #044E80;
+      background-color: #044D7F;
       display: block; } }
-  .navbar_menu li {
+  .menu_content .navbar_menu li {
     position: relative;
+    display: inline;
     /**For Descktop*/
     /**For Mobile*/ }
-    .navbar_menu li:hover:before {
+    .menu_content .navbar_menu li:hover:before {
       /*Menu For Descktop*/ }
       @media (min-width: 992px) {
-        .navbar_menu li:hover:before {
+        .menu_content .navbar_menu li:hover:before {
           position: absolute;
           display: block;
           content: "";
-          background-color: #07A7E3;
+          background-color: #0095D9;
           width: 100%;
           height: 4px;
           bottom: 0; } }
-    .navbar_menu li.active a {
+    .menu_content .navbar_menu li.active a {
       /*Menu For Descktop*/ }
       @media (min-width: 992px) {
-        .navbar_menu li.active a {
-          color: #07A7E3; } }
-    .navbar_menu li.active:before {
+        .menu_content .navbar_menu li.active a {
+          color: #0095D9; } }
+    .menu_content .navbar_menu li.active:before {
       /*Menu For Descktop*/ }
       @media (min-width: 992px) {
-        .navbar_menu li.active:before {
+        .menu_content .navbar_menu li.active:before {
           position: absolute;
           display: block;
           content: "";
-          background-color: #07A7E3;
+          background-color: #0095D9;
           width: 100%;
           height: 4px;
           bottom: 0; } }
     @media (min-width: 992px) {
-      .navbar_menu li {
+      .menu_content .navbar_menu li {
         display: inline-block;
         position: relative;
         cursor: pointer; } }
     @media (max-width: 992px) {
-      .navbar_menu li {
+      .menu_content .navbar_menu li {
         display: block;
         position: relative;
         cursor: pointer;
         padding-right: 10px;
         /*Change*/ } }
-    .navbar_menu li a {
+    .menu_content .navbar_menu li a {
       font-size: 16px;
-      color: #044E80;
+      color: #044D7F;
       padding: 0 10px;
       /**For Descktop**/
       /**For Mobile**/ }
       @media (min-width: 992px) {
-        .navbar_menu li a:hover {
-          color: #07A7E3; } }
+        .menu_content .navbar_menu li a:hover {
+          color: #0095D9; } }
       @media (max-width: 992px) {
-        .navbar_menu li a {
+        .menu_content .navbar_menu li a {
           color: #fff;
           border-bottom: 1px solid rgba(255, 255, 255, 0.35);
           display: block;
           line-height: 45px; } }
       @media (max-width: 992px) {
-        .navbar_menu li a i {
+        .menu_content .navbar_menu li a i {
           position: absolute;
           right: 20px;
           /*Change*/
@@ -898,9 +964,9 @@ th {
   font-size: 22px;
   display: none;
   cursor: pointer;
-  color: #044E80; }
+  color: #044D7F; }
   .navbar_button:hover {
-    color: #07A7E3; }
+    color: #0095D9; }
   @media (max-width: 992px) {
     .navbar_button {
       display: block; } }
@@ -933,10 +999,181 @@ th {
       .head_page h1 {
         font-size: 22px; } }
 
+/*Start Logain Area*/
+.login_area-content .login_button {
+  display: inline-block; }
+  .login_area-content .login_button .avatar_img {
+    border: 1px solid #ccc;
+    display: inline-block; }
+  @media (min-width: 992px) {
+    .login_area-content .login_button span {
+      color: #044D7F; } }
+  .login_area-content .login_button span:hover {
+    color: #0095D9; }
+.login_area-content .languge {
+  background: #fff;
+  color: #044D7F; }
+  @media (min-width: 992px) {
+    .login_area-content .languge {
+      background-color: #044D7F;
+      color: #fff; } }
+  .login_area-content .languge:hover {
+    background-color: #0095D9; }
+
+@media (min-width: 992px) {
+  .login_area-content {
+    display: flex;
+    justify-content: center;
+    align-items: center; } }
+@media (max-width: 992px) {
+  .login_area-content {
+    padding: 0 14px; } }
+.login_area-content .creat_account {
+  height: 40px;
+  width: 160px;
+  text-align: center;
+  line-height: 40px;
+  background-color: transparent;
+  border: 1px solid #fff;
+  font-size: 16px;
+  padding: 0 20px; }
+  @media (max-width: 992px) {
+    .login_area-content .creat_account {
+      margin: 20px 0; } }
+.login_area-content .login_button {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  margin: 0 10px;
+  margin-left: 0; }
+  @media (min-width: 992px) {
+    .login_area-content .login_button {
+      margin-right: 50px; } }
+  .login_area-content .login_button .avatar_img {
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 50px;
+    background-color: #fff;
+    padding: 5px; }
+    .login_area-content .login_button .avatar_img i {
+      font-size: 35px;
+      color: #ccc;
+      display: block; }
+  .login_area-content .login_button span {
+    color: #044D7F;
+    margin: 0 5px; }
+    @media (max-width: 992px) {
+      .login_area-content .login_button span {
+        color: #fff; } }
+    .login_area-content .login_button span:hover {
+      color: #0095D9; }
+
+.notification_area {
+  position: relative; }
+  .notification_area .notification_button {
+    color: #044D7F;
+    font-size: 30px;
+    cursor: pointer; }
+    @media (max-width: 992px) {
+      .notification_area .notification_button {
+        color: #fff; } }
+    .notification_area .notification_button.new_notification {
+      position: relative; }
+      .notification_area .notification_button.new_notification:before {
+        position: absolute;
+        content: "";
+        height: 8px;
+        width: 8px;
+        border-radius: 100%;
+        background-color: #f00; }
+    @media (min-width: 992px) {
+      .notification_area .notification_button {
+        margin-right: 50px; } }
+    @media (max-width: 992px) {
+      .notification_area .notification_button {
+        margin: 10px; } }
+  .notification_area .notification_area-list {
+    display: none;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    background-color: #fff; }
+    .notification_area .notification_area-list li.title {
+      background: #EEEEEE;
+      padding: 20px;
+      width: 100%;
+      display: inline-block;
+      text-align: center; }
+      @media (min-width: 992px) {
+        .notification_area .notification_area-list li.title {
+          border-top-left-radius: 25px;
+          border-top-right-radius: 25px;
+          overflow-y: auto; } }
+      .notification_area .notification_area-list li.title span {
+        color: #044D7F; }
+    @media (min-width: 992px) {
+      .notification_area .notification_area-list {
+        width: 300px;
+        position: absolute;
+        right: 40%;
+        left: auto;
+        /*Change*/
+        border-radius: 25px;
+        box-shadow: 0 3px 90px rgba(0, 0, 0, 0.2); } }
+    .notification_area .notification_area-list li {
+      border-top: 1px solid #EEEEEE;
+      padding: 16px; }
+      .notification_area .notification_area-list li .notification-date {
+        color: #9195AA;
+        font-size: 12px; }
+      .notification_area .notification_area-list li a {
+        position: relative;
+        display: block;
+        padding: 0 14px;
+        font-size: 14px;
+        line-height: 26px; }
+        .notification_area .notification_area-list li a:before {
+          position: absolute;
+          content: "";
+          height: 10px;
+          width: 10px;
+          border-radius: 100%;
+          background: #EEEEEE;
+          top: 10px;
+          left: -10px;
+          right: auto;
+          /*Change*/ }
+      .notification_area .notification_area-list li.active a:before {
+        background: #f00; }
+
 /***Header Layout****/
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
 @media (min-width: 992px) {
   .container {
     max-width: 1170px; } }
@@ -983,7 +1220,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -1012,7 +1249,7 @@ a:hover {
       margin-top: 30px; } }
   .glopal_form select {
     width: 100%;
-    color: #044E80;
+    color: #044D7F;
     cursor: pointer; }
   .glopal_form label {
     display: block;
@@ -1021,7 +1258,7 @@ a:hover {
   .glopal_form select:focus,
   .glopal_form textarea:focus {
     outline: none !important;
-    border-color: #07A7E3; }
+    border-color: #0095D9; }
   .glopal_form input,
   .glopal_form select,
   .glopal_form textarea {
@@ -1157,6 +1394,28 @@ th {
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
 @media (min-width: 992px) {
   .container {
     max-width: 1170px; } }
@@ -1203,7 +1462,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -1232,7 +1491,7 @@ a:hover {
       margin-top: 30px; } }
   .glopal_form select {
     width: 100%;
-    color: #044E80;
+    color: #044D7F;
     cursor: pointer; }
   .glopal_form label {
     display: block;
@@ -1241,7 +1500,7 @@ a:hover {
   .glopal_form select:focus,
   .glopal_form textarea:focus {
     outline: none !important;
-    border-color: #07A7E3; }
+    border-color: #0095D9; }
   .glopal_form input,
   .glopal_form select,
   .glopal_form textarea {
@@ -1338,6 +1597,28 @@ th {
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
 @media (min-width: 992px) {
   .container {
     max-width: 1170px; } }
@@ -1384,7 +1665,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -1413,7 +1694,7 @@ a:hover {
       margin-top: 30px; } }
   .glopal_form select {
     width: 100%;
-    color: #044E80;
+    color: #044D7F;
     cursor: pointer; }
   .glopal_form label {
     display: block;
@@ -1422,7 +1703,7 @@ a:hover {
   .glopal_form select:focus,
   .glopal_form textarea:focus {
     outline: none !important;
-    border-color: #07A7E3; }
+    border-color: #0095D9; }
   .glopal_form input,
   .glopal_form select,
   .glopal_form textarea {
@@ -1526,11 +1807,11 @@ th {
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  background-color: #044E80;
+  background-color: #044D7F;
   border-radius: 10px;
   color: #fff; }
   .button:hover {
-    background-color: #07A7E3;
+    background-color: #0095D9;
     color: #fff; }
 
 .languge_button {
@@ -1541,16 +1822,16 @@ th {
   padding: 10px 15px;
   font-size: 14px;
   font-weight: 500;
-  background-color: #07A7E3;
+  background-color: #0095D9;
   border-radius: 10px;
   color: #fff; }
   .button-blue:hover {
     color: #fff;
-    background-color: #044E80; }
+    background-color: #044D7F; }
 
 .advanced_search-button,
 .our_student-button {
-  background-color: #07A7E3;
+  background-color: #0095D9;
   padding-right: 40px;
   position: relative;
   margin: 0 auto;
@@ -1558,7 +1839,7 @@ th {
   margin-top: 20px; }
   .advanced_search-button:hover,
   .our_student-button:hover {
-    background-color: #044E80; }
+    background-color: #044D7F; }
   .advanced_search-button:before,
   .our_student-button:before {
     content: "\f101";
@@ -1566,14 +1847,14 @@ th {
     right: 15px; }
 
 .glopal_form- {
-  background-color: #07A7E3;
+  background-color: #0095D9;
   padding-right: 40px;
   position: relative;
   margin: 0 auto;
   display: inline-block;
   margin-top: 20px; }
   .glopal_form-:hover {
-    background-color: #044E80; }
+    background-color: #044D7F; }
   .glopal_form-:before {
     content: "\f1d8";
     color: #fff;
@@ -1597,10 +1878,10 @@ th {
     width: 100%;
     z-index: -1;
     border-radius: 10px;
-    background-color: #07A7E3; } }
+    background-color: #0095D9; } }
 @media (min-width: 992px) {
   #menu_blog:hover:before {
-    background-color: #044E80; } }
+    background-color: #044D7F; } }
 
 /*Custum Slider Button**/
 .slider_custum_button .slick-arrow:focus {
@@ -1613,7 +1894,7 @@ th {
   line-height: 40px;
   text-align: center;
   background-color: #fff;
-  border: 1px solid #07A7E3;
+  border: 1px solid #0095D9;
   position: relative;
   cursor: pointer; }
 .slider_custum_button .slick-arrow {
@@ -1648,9 +1929,9 @@ th {
   .department_slider .slick-arrow:hover {
     background-color: transparent; }
 .department_slider .slick-arrow:hover:before {
-  color: #044E80; }
+  color: #044D7F; }
 .department_slider .slick-arrow:before {
-  color: #07A7E3;
+  color: #0095D9;
   font-size: 30px; }
 @media (max-width: 992px) {
   .department_slider .slick-prev {
@@ -1669,16 +1950,16 @@ th {
 /*Custum Slider Button Webiners**/
 .webinars_slider-js .slick-arrow {
   background-color: #fff;
-  border: 1px solid #07A7E3; }
+  border: 1px solid #0095D9; }
 .webinars_slider-js .slick-arrow {
   top: -70px; }
   @media (max-width: 576px) {
     .webinars_slider-js .slick-arrow {
       top: -100px; } }
 .webinars_slider-js .slick-arrow:before {
-  color: #07A7E3; }
+  color: #0095D9; }
 .webinars_slider-js .slick-arrow:hover {
-  background-color: #07A7E3; }
+  background-color: #0095D9; }
 .webinars_slider-js .slick-arrow:hover:before {
   color: #fff; }
 .webinars_slider-js .slick-prev {
@@ -1689,13 +1970,13 @@ th {
 /*Custum Slider Button Our Company**/
 .our_company-js .slick-arrow {
   background-color: #fff;
-  border: 1px solid #07A7E3; }
+  border: 1px solid #0095D9; }
 .our_company-js .slick-arrow {
   top: 45%; }
 .our_company-js .slick-arrow:before {
-  color: #07A7E3; }
+  color: #0095D9; }
 .our_company-js .slick-arrow:hover {
-  background-color: #07A7E3; }
+  background-color: #0095D9; }
 .our_company-js .slick-arrow:hover:before {
   color: #fff; }
 .our_company-js .slick-prev {
@@ -1723,7 +2004,7 @@ th {
       .slider_dots .slick-dots li button:focus {
         outline: none !important; }
   .slider_dots .slick-dots .slick-active button {
-    background-color: #044E80;
+    background-color: #044D7F;
     width: 20px; }
 
 /**Header Slider Dotes****/
@@ -1787,15 +2068,15 @@ th {
       border: 1px solid #ccc;
       margin: 0 8px 30px;
       min-width: 140px;
-      color: #044E80;
+      color: #044D7F;
       background-color: #fff; }
       .serach_subheader .serach_subheader-department .department_button:focus {
         outline: none; }
       .serach_subheader .serach_subheader-department .department_button:hover {
-        background-color: #044E80;
+        background-color: #044D7F;
         color: #fff; }
       .serach_subheader .serach_subheader-department .department_button.active {
-        background-color: #044E80;
+        background-color: #044D7F;
         color: #fff; }
   .serach_subheader .serach_subheader-searsh {
     position: relative; }
@@ -1805,13 +2086,13 @@ th {
       border-radius: 10px;
       border: 0;
       border: 1px solid #ccc;
-      color: #07A7E3; }
+      color: #0095D9; }
       .serach_subheader .serach_subheader-searsh input:focus {
         outline: none !important;
-        border-color: #044E80; }
+        border-color: #044D7F; }
     .serach_subheader .serach_subheader-searsh button {
       border: 0;
-      background-color: #044E80;
+      background-color: #044D7F;
       color: #fff;
       padding: 6px;
       position: absolute;
@@ -1826,7 +2107,7 @@ th {
       right: 4px;
       /*Change*/ }
       .serach_subheader .serach_subheader-searsh button:hover {
-        background-color: #07A7E3; }
+        background-color: #0095D9; }
     .serach_subheader .serach_subheader-searsh .serach_subheader-select {
       position: absolute;
       top: 10%;
@@ -1858,11 +2139,11 @@ th {
       margin: 0 auto; }
   .home_page-services .services_block {
     background-color: #fff;
-    border: 1px solid #044E80;
-    border-radius: 10px;
+    border: 1px solid #044D7F;
+    border-radius: 25px;
     padding: 20px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     position: relative;
     min-height: 326px;
     margin-bottom: 40px;
@@ -1871,24 +2152,24 @@ th {
     padding-left: 60px;
     /*Change*/ }
     .home_page-services .services_block:hover {
-      box-shadow: 0 0 25px 0 rgba(4, 78, 128, 0.3);
-      border: 1px solid transparent; }
+      box-shadow: 0 0 25px 0 rgba(4, 78, 128, 0.3); }
       .home_page-services .services_block:hover .button {
-        background-color: #07A7E3; }
+        background-color: #0095D9; }
       .home_page-services .services_block:hover h3 {
-        color: #07A7E3; }
+        color: #0095D9; }
       .home_page-services .services_block:hover .services_block-icon {
-        background-color: #07A7E3;
-        transform: scale(1.2); }
+        transform: scale(1.1); }
 
 .services_block-icon {
   height: 100px;
   width: 100px;
   border-radius: 100%;
-  border: 2px solid #ddd;
-  background-color: #044E80;
+  border: 1px solid #044D7F;
+  background-color: #fff;
+  padding: 10px;
   position: absolute;
   left: -15%;
+  top: 40px;
   /*Change*/ }
   .services_block-icon img {
     height: 100%;
@@ -1905,7 +2186,7 @@ th {
     position: absolute;
     top: 8px;
     right: 8px;
-    color: #044E80; }
+    color: #044D7F; }
 
 /*06= Start Services Order*/
 .department_slider .container {
@@ -1919,9 +2200,9 @@ th {
   border: 2px solid rgba(212, 212, 212, 0.35);
   cursor: pointer; }
   .department_slider .department_block:hover {
-    border: 2px solid #07A7E3; }
+    border: 2px solid #0095D9; }
   .department_slider .department_block.active {
-    border: 2px solid #07A7E3; }
+    border: 2px solid #0095D9; }
   .department_slider .department_block img {
     display: inline-block;
     max-height: 60px;
@@ -1960,7 +2241,7 @@ th {
       max-height: 100%;
       max-width: 100%; }
   .list_doctor .doctor_block .doctor_description {
-    background: #07A7E3;
+    background: #0095D9;
     padding: 10px 11px; }
     .list_doctor .doctor_block .doctor_description .name {
       color: #fff;
@@ -1987,6 +2268,28 @@ th {
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
 @media (min-width: 992px) {
   .container {
     max-width: 1170px; } }
@@ -2033,7 +2336,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -2062,7 +2365,7 @@ a:hover {
       margin-top: 30px; } }
   .glopal_form select {
     width: 100%;
-    color: #044E80;
+    color: #044D7F;
     cursor: pointer; }
   .glopal_form label {
     display: block;
@@ -2071,7 +2374,7 @@ a:hover {
   .glopal_form select:focus,
   .glopal_form textarea:focus {
     outline: none !important;
-    border-color: #07A7E3; }
+    border-color: #0095D9; }
   .glopal_form input,
   .glopal_form select,
   .glopal_form textarea {
@@ -2168,6 +2471,28 @@ th {
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
 @media (min-width: 992px) {
   .container {
     max-width: 1170px; } }
@@ -2214,7 +2539,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -2243,7 +2568,7 @@ a:hover {
       margin-top: 30px; } }
   .glopal_form select {
     width: 100%;
-    color: #044E80;
+    color: #044D7F;
     cursor: pointer; }
   .glopal_form label {
     display: block;
@@ -2252,7 +2577,7 @@ a:hover {
   .glopal_form select:focus,
   .glopal_form textarea:focus {
     outline: none !important;
-    border-color: #07A7E3; }
+    border-color: #0095D9; }
   .glopal_form input,
   .glopal_form select,
   .glopal_form textarea {
@@ -2356,11 +2681,11 @@ th {
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  background-color: #044E80;
+  background-color: #044D7F;
   border-radius: 10px;
   color: #fff; }
   .button:hover {
-    background-color: #07A7E3;
+    background-color: #0095D9;
     color: #fff; }
 
 .languge_button {
@@ -2371,16 +2696,16 @@ th {
   padding: 10px 15px;
   font-size: 14px;
   font-weight: 500;
-  background-color: #07A7E3;
+  background-color: #0095D9;
   border-radius: 10px;
   color: #fff; }
   .button-blue:hover {
     color: #fff;
-    background-color: #044E80; }
+    background-color: #044D7F; }
 
 .advanced_search-button,
 .our_student-button {
-  background-color: #07A7E3;
+  background-color: #0095D9;
   padding-right: 40px;
   position: relative;
   margin: 0 auto;
@@ -2388,7 +2713,7 @@ th {
   margin-top: 20px; }
   .advanced_search-button:hover,
   .our_student-button:hover {
-    background-color: #044E80; }
+    background-color: #044D7F; }
   .advanced_search-button:before,
   .our_student-button:before {
     content: "\f101";
@@ -2396,14 +2721,14 @@ th {
     right: 15px; }
 
 .glopal_form- {
-  background-color: #07A7E3;
+  background-color: #0095D9;
   padding-right: 40px;
   position: relative;
   margin: 0 auto;
   display: inline-block;
   margin-top: 20px; }
   .glopal_form-:hover {
-    background-color: #044E80; }
+    background-color: #044D7F; }
   .glopal_form-:before {
     content: "\f1d8";
     color: #fff;
@@ -2427,14 +2752,36 @@ th {
     width: 100%;
     z-index: -1;
     border-radius: 10px;
-    background-color: #07A7E3; } }
+    background-color: #0095D9; } }
 @media (min-width: 992px) {
   #menu_blog:hover:before {
-    background-color: #044E80; } }
+    background-color: #044D7F; } }
 
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
 @media (min-width: 992px) {
   .container {
     max-width: 1170px; } }
@@ -2481,7 +2828,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -2510,7 +2857,7 @@ a:hover {
       margin-top: 30px; } }
   .glopal_form select {
     width: 100%;
-    color: #044E80;
+    color: #044D7F;
     cursor: pointer; }
   .glopal_form label {
     display: block;
@@ -2519,7 +2866,7 @@ a:hover {
   .glopal_form select:focus,
   .glopal_form textarea:focus {
     outline: none !important;
-    border-color: #07A7E3; }
+    border-color: #0095D9; }
   .glopal_form input,
   .glopal_form select,
   .glopal_form textarea {
@@ -2657,7 +3004,7 @@ th {
   line-height: 40px;
   text-align: center;
   background-color: #fff;
-  border: 1px solid #07A7E3;
+  border: 1px solid #0095D9;
   position: relative;
   cursor: pointer; }
 .slider_custum_button .slick-arrow {
@@ -2692,9 +3039,9 @@ th {
   .department_slider .slick-arrow:hover {
     background-color: transparent; }
 .department_slider .slick-arrow:hover:before {
-  color: #044E80; }
+  color: #044D7F; }
 .department_slider .slick-arrow:before {
-  color: #07A7E3;
+  color: #0095D9;
   font-size: 30px; }
 @media (max-width: 992px) {
   .department_slider .slick-prev {
@@ -2713,16 +3060,16 @@ th {
 /*Custum Slider Button Webiners**/
 .webinars_slider-js .slick-arrow {
   background-color: #fff;
-  border: 1px solid #07A7E3; }
+  border: 1px solid #0095D9; }
 .webinars_slider-js .slick-arrow {
   top: -70px; }
   @media (max-width: 576px) {
     .webinars_slider-js .slick-arrow {
       top: -100px; } }
 .webinars_slider-js .slick-arrow:before {
-  color: #07A7E3; }
+  color: #0095D9; }
 .webinars_slider-js .slick-arrow:hover {
-  background-color: #07A7E3; }
+  background-color: #0095D9; }
 .webinars_slider-js .slick-arrow:hover:before {
   color: #fff; }
 .webinars_slider-js .slick-prev {
@@ -2733,13 +3080,13 @@ th {
 /*Custum Slider Button Our Company**/
 .our_company-js .slick-arrow {
   background-color: #fff;
-  border: 1px solid #07A7E3; }
+  border: 1px solid #0095D9; }
 .our_company-js .slick-arrow {
   top: 45%; }
 .our_company-js .slick-arrow:before {
-  color: #07A7E3; }
+  color: #0095D9; }
 .our_company-js .slick-arrow:hover {
-  background-color: #07A7E3; }
+  background-color: #0095D9; }
 .our_company-js .slick-arrow:hover:before {
   color: #fff; }
 .our_company-js .slick-prev {
@@ -2767,7 +3114,7 @@ th {
       .slider_dots .slick-dots li button:focus {
         outline: none !important; }
   .slider_dots .slick-dots .slick-active button {
-    background-color: #044E80;
+    background-color: #044D7F;
     width: 20px; }
 
 /**Header Slider Dotes****/
@@ -2867,7 +3214,7 @@ th {
 .doctor_description .title {
   font-size: 22px;
   margin: 0;
-  color: #07A7E3; }
+  color: #0095D9; }
 .doctor_description p {
   margin: 20px 0;
   font-size: 16px;
@@ -2888,10 +3235,10 @@ th {
   line-height: 50px;
   border-radius: 100%;
   text-align: center;
-  background-color: #07A7E3;
+  background-color: #0095D9;
   animation: move 1s linear infinite; }
   .doctor_description .doctor_video .btn:hover {
-    background-color: #044E80; }
+    background-color: #044D7F; }
 .doctor_description .doctor_video .modal-body {
   min-height: 250px; }
 
@@ -2907,6 +3254,28 @@ th {
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
 @media (min-width: 992px) {
   .container {
     max-width: 1170px; } }
@@ -2953,7 +3322,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -2982,7 +3351,7 @@ a:hover {
       margin-top: 30px; } }
   .glopal_form select {
     width: 100%;
-    color: #044E80;
+    color: #044D7F;
     cursor: pointer; }
   .glopal_form label {
     display: block;
@@ -2991,7 +3360,7 @@ a:hover {
   .glopal_form select:focus,
   .glopal_form textarea:focus {
     outline: none !important;
-    border-color: #07A7E3; }
+    border-color: #0095D9; }
   .glopal_form input,
   .glopal_form select,
   .glopal_form textarea {
@@ -3088,6 +3457,28 @@ th {
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
 @media (min-width: 992px) {
   .container {
     max-width: 1170px; } }
@@ -3134,7 +3525,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -3163,7 +3554,7 @@ a:hover {
       margin-top: 30px; } }
   .glopal_form select {
     width: 100%;
-    color: #044E80;
+    color: #044D7F;
     cursor: pointer; }
   .glopal_form label {
     display: block;
@@ -3172,7 +3563,7 @@ a:hover {
   .glopal_form select:focus,
   .glopal_form textarea:focus {
     outline: none !important;
-    border-color: #07A7E3; }
+    border-color: #0095D9; }
   .glopal_form input,
   .glopal_form select,
   .glopal_form textarea {
@@ -3276,11 +3667,11 @@ th {
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  background-color: #044E80;
+  background-color: #044D7F;
   border-radius: 10px;
   color: #fff; }
   .button:hover {
-    background-color: #07A7E3;
+    background-color: #0095D9;
     color: #fff; }
 
 .languge_button {
@@ -3291,16 +3682,16 @@ th {
   padding: 10px 15px;
   font-size: 14px;
   font-weight: 500;
-  background-color: #07A7E3;
+  background-color: #0095D9;
   border-radius: 10px;
   color: #fff; }
   .button-blue:hover {
     color: #fff;
-    background-color: #044E80; }
+    background-color: #044D7F; }
 
 .advanced_search-button,
 .our_student-button {
-  background-color: #07A7E3;
+  background-color: #0095D9;
   padding-right: 40px;
   position: relative;
   margin: 0 auto;
@@ -3308,7 +3699,7 @@ th {
   margin-top: 20px; }
   .advanced_search-button:hover,
   .our_student-button:hover {
-    background-color: #044E80; }
+    background-color: #044D7F; }
   .advanced_search-button:before,
   .our_student-button:before {
     content: "\f101";
@@ -3316,14 +3707,14 @@ th {
     right: 15px; }
 
 .glopal_form- {
-  background-color: #07A7E3;
+  background-color: #0095D9;
   padding-right: 40px;
   position: relative;
   margin: 0 auto;
   display: inline-block;
   margin-top: 20px; }
   .glopal_form-:hover {
-    background-color: #044E80; }
+    background-color: #044D7F; }
   .glopal_form-:before {
     content: "\f1d8";
     color: #fff;
@@ -3347,10 +3738,10 @@ th {
     width: 100%;
     z-index: -1;
     border-radius: 10px;
-    background-color: #07A7E3; } }
+    background-color: #0095D9; } }
 @media (min-width: 992px) {
   #menu_blog:hover:before {
-    background-color: #044E80; } }
+    background-color: #044D7F; } }
 
 /*Custum Slider Button**/
 .slider_custum_button .slick-arrow:focus {
@@ -3363,7 +3754,7 @@ th {
   line-height: 40px;
   text-align: center;
   background-color: #fff;
-  border: 1px solid #07A7E3;
+  border: 1px solid #0095D9;
   position: relative;
   cursor: pointer; }
 .slider_custum_button .slick-arrow {
@@ -3398,9 +3789,9 @@ th {
   .department_slider .slick-arrow:hover {
     background-color: transparent; }
 .department_slider .slick-arrow:hover:before {
-  color: #044E80; }
+  color: #044D7F; }
 .department_slider .slick-arrow:before {
-  color: #07A7E3;
+  color: #0095D9;
   font-size: 30px; }
 @media (max-width: 992px) {
   .department_slider .slick-prev {
@@ -3419,16 +3810,16 @@ th {
 /*Custum Slider Button Webiners**/
 .webinars_slider-js .slick-arrow {
   background-color: #fff;
-  border: 1px solid #07A7E3; }
+  border: 1px solid #0095D9; }
 .webinars_slider-js .slick-arrow {
   top: -70px; }
   @media (max-width: 576px) {
     .webinars_slider-js .slick-arrow {
       top: -100px; } }
 .webinars_slider-js .slick-arrow:before {
-  color: #07A7E3; }
+  color: #0095D9; }
 .webinars_slider-js .slick-arrow:hover {
-  background-color: #07A7E3; }
+  background-color: #0095D9; }
 .webinars_slider-js .slick-arrow:hover:before {
   color: #fff; }
 .webinars_slider-js .slick-prev {
@@ -3439,13 +3830,13 @@ th {
 /*Custum Slider Button Our Company**/
 .our_company-js .slick-arrow {
   background-color: #fff;
-  border: 1px solid #07A7E3; }
+  border: 1px solid #0095D9; }
 .our_company-js .slick-arrow {
   top: 45%; }
 .our_company-js .slick-arrow:before {
-  color: #07A7E3; }
+  color: #0095D9; }
 .our_company-js .slick-arrow:hover {
-  background-color: #07A7E3; }
+  background-color: #0095D9; }
 .our_company-js .slick-arrow:hover:before {
   color: #fff; }
 .our_company-js .slick-prev {
@@ -3473,7 +3864,7 @@ th {
       .slider_dots .slick-dots li button:focus {
         outline: none !important; }
   .slider_dots .slick-dots .slick-active button {
-    background-color: #044E80;
+    background-color: #044D7F;
     width: 20px; }
 
 /**Header Slider Dotes****/
@@ -3509,6 +3900,28 @@ th {
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
 @media (min-width: 992px) {
   .container {
     max-width: 1170px; } }
@@ -3555,7 +3968,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -3584,7 +3997,7 @@ a:hover {
       margin-top: 30px; } }
   .glopal_form select {
     width: 100%;
-    color: #044E80;
+    color: #044D7F;
     cursor: pointer; }
   .glopal_form label {
     display: block;
@@ -3593,7 +4006,7 @@ a:hover {
   .glopal_form select:focus,
   .glopal_form textarea:focus {
     outline: none !important;
-    border-color: #07A7E3; }
+    border-color: #0095D9; }
   .glopal_form input,
   .glopal_form select,
   .glopal_form textarea {
@@ -3694,7 +4107,7 @@ th {
   .clickable:hover {
     z-index: 3;
     cursor: pointer;
-    background: #07A7E3;
+    background: #0095D9;
     color: white; }
   .clickable .day_avilable {
     position: absolute;
@@ -3763,10 +4176,10 @@ textarea {
   cursor: pointer; }
 
 .colorRed {
-  color: #07A7E3; }
+  color: #0095D9; }
 
 .bgColorRed {
-  background-color: #07A7E3; }
+  background-color: #0095D9; }
 
 .bgColorDarkRed {
   background-color: #bc6969; }
@@ -3788,12 +4201,12 @@ textarea {
 
 #calender-wrapper {
   position: relative;
-  border: 6px solid #07A7E3;
+  border: 6px solid #0095D9;
   border-radius: 10px;
   overflow: hidden; }
 
 #calender-title {
-  background: #07A7E3;
+  background: #0095D9;
   color: white;
   font-size: 30pt;
   height: 60px; }
@@ -3853,7 +4266,7 @@ textarea {
   height: 685px;
   width: 98%;
   padding: 10px;
-  background: #07A7E3; }
+  background: #0095D9; }
 
 #booking-form p {
   margin: 20px 0 0;
@@ -3873,12 +4286,12 @@ textarea {
 #booking-form textarea,
 input {
   background: white;
-  color: #07A7E3;
+  color: #0095D9;
   font-family: "Baloo";
   font-size: 14pt; }
 
 #booking-form .width-3-4 {
-  border-right: 6px solid #07A7E3; }
+  border-right: 6px solid #0095D9; }
 
 .month {
   width: 77px;
@@ -3936,6 +4349,28 @@ input {
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
 @media (min-width: 992px) {
   .container {
     max-width: 1170px; } }
@@ -3982,7 +4417,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -4011,7 +4446,7 @@ a:hover {
       margin-top: 30px; } }
   .glopal_form select {
     width: 100%;
-    color: #044E80;
+    color: #044D7F;
     cursor: pointer; }
   .glopal_form label {
     display: block;
@@ -4020,7 +4455,7 @@ a:hover {
   .glopal_form select:focus,
   .glopal_form textarea:focus {
     outline: none !important;
-    border-color: #07A7E3; }
+    border-color: #0095D9; }
   .glopal_form input,
   .glopal_form select,
   .glopal_form textarea {
@@ -4171,6 +4606,28 @@ pre {
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
 @media (min-width: 992px) {
   .container {
     max-width: 1170px; } }
@@ -4217,7 +4674,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -4246,7 +4703,7 @@ a:hover {
       margin-top: 30px; } }
   .glopal_form select {
     width: 100%;
-    color: #044E80;
+    color: #044D7F;
     cursor: pointer; }
   .glopal_form label {
     display: block;
@@ -4255,7 +4712,7 @@ a:hover {
   .glopal_form select:focus,
   .glopal_form textarea:focus {
     outline: none !important;
-    border-color: #07A7E3; }
+    border-color: #0095D9; }
   .glopal_form input,
   .glopal_form select,
   .glopal_form textarea {
@@ -4356,7 +4813,7 @@ th {
   .clickable:hover {
     z-index: 3;
     cursor: pointer;
-    background: #07A7E3;
+    background: #0095D9;
     color: white; }
     .clickable:hover p {
       color: #080; }
@@ -4429,10 +4886,10 @@ textarea {
   cursor: pointer; }
 
 .colorRed {
-  color: #07A7E3; }
+  color: #0095D9; }
 
 .bgColorRed {
-  background-color: #07A7E3; }
+  background-color: #0095D9; }
 
 .bgColorDarkRed {
   background-color: #bc6969; }
@@ -4459,7 +4916,7 @@ textarea {
   overflow: hidden; }
 
 #calender-title {
-  background: #044E80;
+  background: #044D7F;
   color: white;
   font-size: 30pt;
   height: 60px; }
@@ -4519,7 +4976,7 @@ textarea {
   height: 685px;
   width: 98%;
   padding: 10px;
-  background: #07A7E3; }
+  background: #0095D9; }
 
 #booking-form p {
   margin: 20px 0 0;
@@ -4539,12 +4996,12 @@ textarea {
 #booking-form textarea,
 input {
   background: white;
-  color: #07A7E3;
+  color: #0095D9;
   font-family: "Baloo";
   font-size: 14pt; }
 
 #booking-form .width-3-4 {
-  border-right: 6px solid #07A7E3; }
+  border-right: 6px solid #0095D9; }
 
 .month {
   width: 14.28%;
@@ -4553,7 +5010,7 @@ input {
   line-height: 60px;
   transition: 0.4s; }
   .month.active .month-selector {
-    background: #07A7E3; }
+    background: #0095D9; }
     .month.active .month-selector p {
       color: #fff; }
   .month p {
@@ -4563,7 +5020,7 @@ input {
   width: 14.28%;
   text-align: center;
   font-size: 15px;
-  background: #07A7E3;
+  background: #0095D9;
   color: #fff;
   padding: 8px; }
 
@@ -4616,14 +5073,14 @@ input {
   color: #000;
   margin: 16px 0; }
   .calender_content .time span {
-    color: #044E80; }
+    color: #044D7F; }
 
 /*Start Available Dates*/
 .available_dates-list {
   margin: 20px 0;
   display: none; }
   .available_dates-list .available_dates-title {
-    color: #044E80;
+    color: #044D7F;
     font-size: 22px; }
   .available_dates-list ul .available_dates-content {
     display: flex;
@@ -4633,9 +5090,9 @@ input {
       width: 16px;
       border: none;
       cursor: pointer;
-      outline: #044E80; }
+      outline: #044D7F; }
     .available_dates-list ul .available_dates-content .available_dates-add label {
-      color: #07A7E3;
+      color: #0095D9;
       font-weight: 500;
       font-size: 14px; }
 
@@ -4644,7 +5101,7 @@ input {
 .menu_selected-dates {
   margin: 20px 0; }
   .menu_selected-dates .home_page-title {
-    color: #044E80;
+    color: #044D7F;
     font-size: 22px; }
   .menu_selected-dates .selected_dates-content {
     display: flex;
@@ -4679,11 +5136,11 @@ input {
   .your_map .open_your-map {
     margin: 0 5px;
     border: 0;
-    background-color: #07A7E3;
+    background-color: #0095D9;
     width: 40px;
     border-radius: 5px; }
     .your_map .open_your-map:hover {
-      background-color: #044E80; }
+      background-color: #044D7F; }
     .your_map .open_your-map i {
       color: #fff; }
 
@@ -4706,11 +5163,11 @@ input {
   .wizard .price .price_value {
     color: #fff;
     display: inline-block;
-    border: 1px solid #044E80;
+    border: 1px solid #044D7F;
     padding: 8px 20px;
     border-radius: 5px;
     font-size: 16px;
-    color: #044E80; }
+    color: #044D7F; }
   .wizard .tag_name {
     font-size: 14px;
     margin-bottom: 12px;
@@ -4736,7 +5193,7 @@ input {
       display: inline-block; }
   .wizard h3 {
     font-size: 18px;
-    color: #07A7E3;
+    color: #0095D9;
     margin: 0 0 20px; }
   .wizard textarea {
     border-radius: 10px;
@@ -4778,7 +5235,7 @@ input {
     .wizard .booking_content aside i {
       font-size: 30px;
       margin: 0 8px;
-      color: #07A7E3; }
+      color: #0095D9; }
   .wizard .table {
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 10px;
@@ -4786,7 +5243,7 @@ input {
     .wizard .table span {
       color: #f00;
       font-size: 16px;
-      color: #07A7E3; }
+      color: #0095D9; }
   .wizard .input_content input {
     width: 250px;
     padding: 0 4px;
@@ -4795,7 +5252,7 @@ input {
     height: 35px; }
     .wizard .input_content input:focus {
       outline: none !important;
-      border-color: #07A7E3; }
+      border-color: #0095D9; }
 
 /*End Wizard Custum*/
 .wizard {
@@ -4947,10 +5404,10 @@ span.round-tab:hover {
   align-content: flex-start; }
 .successful_confirmation .send_code {
   font-size: 18px;
-  color: #07A7E3;
+  color: #0095D9;
   margin-bottom: 30px; }
 .successful_confirmation .button {
-  background-color: #07A7E3;
+  background-color: #0095D9;
   padding: 10px;
   min-width: 120px; }
 
@@ -4958,6 +5415,28 @@ span.round-tab:hover {
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
 @media (min-width: 992px) {
   .container {
     max-width: 1170px; } }
@@ -5004,7 +5483,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -5033,7 +5512,7 @@ a:hover {
       margin-top: 30px; } }
   .glopal_form select {
     width: 100%;
-    color: #044E80;
+    color: #044D7F;
     cursor: pointer; }
   .glopal_form label {
     display: block;
@@ -5042,7 +5521,7 @@ a:hover {
   .glopal_form select:focus,
   .glopal_form textarea:focus {
     outline: none !important;
-    border-color: #07A7E3; }
+    border-color: #0095D9; }
   .glopal_form input,
   .glopal_form select,
   .glopal_form textarea {
@@ -5139,6 +5618,28 @@ th {
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
 @media (min-width: 992px) {
   .container {
     max-width: 1170px; } }
@@ -5185,7 +5686,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -5214,7 +5715,7 @@ a:hover {
       margin-top: 30px; } }
   .glopal_form select {
     width: 100%;
-    color: #044E80;
+    color: #044D7F;
     cursor: pointer; }
   .glopal_form label {
     display: block;
@@ -5223,7 +5724,7 @@ a:hover {
   .glopal_form select:focus,
   .glopal_form textarea:focus {
     outline: none !important;
-    border-color: #07A7E3; }
+    border-color: #0095D9; }
   .glopal_form input,
   .glopal_form select,
   .glopal_form textarea {
@@ -5327,11 +5828,11 @@ th {
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  background-color: #044E80;
+  background-color: #044D7F;
   border-radius: 10px;
   color: #fff; }
   .button:hover {
-    background-color: #07A7E3;
+    background-color: #0095D9;
     color: #fff; }
 
 .languge_button {
@@ -5342,16 +5843,16 @@ th {
   padding: 10px 15px;
   font-size: 14px;
   font-weight: 500;
-  background-color: #07A7E3;
+  background-color: #0095D9;
   border-radius: 10px;
   color: #fff; }
   .button-blue:hover {
     color: #fff;
-    background-color: #044E80; }
+    background-color: #044D7F; }
 
 .advanced_search-button,
 .our_student-button {
-  background-color: #07A7E3;
+  background-color: #0095D9;
   padding-right: 40px;
   position: relative;
   margin: 0 auto;
@@ -5359,7 +5860,7 @@ th {
   margin-top: 20px; }
   .advanced_search-button:hover,
   .our_student-button:hover {
-    background-color: #044E80; }
+    background-color: #044D7F; }
   .advanced_search-button:before,
   .our_student-button:before {
     content: "\f101";
@@ -5367,14 +5868,14 @@ th {
     right: 15px; }
 
 .glopal_form- {
-  background-color: #07A7E3;
+  background-color: #0095D9;
   padding-right: 40px;
   position: relative;
   margin: 0 auto;
   display: inline-block;
   margin-top: 20px; }
   .glopal_form-:hover {
-    background-color: #044E80; }
+    background-color: #044D7F; }
   .glopal_form-:before {
     content: "\f1d8";
     color: #fff;
@@ -5398,14 +5899,36 @@ th {
     width: 100%;
     z-index: -1;
     border-radius: 10px;
-    background-color: #07A7E3; } }
+    background-color: #0095D9; } }
 @media (min-width: 992px) {
   #menu_blog:hover:before {
-    background-color: #044E80; } }
+    background-color: #044D7F; } }
 
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
 @media (min-width: 992px) {
   .container {
     max-width: 1170px; } }
@@ -5452,7 +5975,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -5481,7 +6004,7 @@ a:hover {
       margin-top: 30px; } }
   .glopal_form select {
     width: 100%;
-    color: #044E80;
+    color: #044D7F;
     cursor: pointer; }
   .glopal_form label {
     display: block;
@@ -5490,7 +6013,7 @@ a:hover {
   .glopal_form select:focus,
   .glopal_form textarea:focus {
     outline: none !important;
-    border-color: #07A7E3; }
+    border-color: #0095D9; }
   .glopal_form input,
   .glopal_form select,
   .glopal_form textarea {
@@ -5628,7 +6151,7 @@ th {
   line-height: 40px;
   text-align: center;
   background-color: #fff;
-  border: 1px solid #07A7E3;
+  border: 1px solid #0095D9;
   position: relative;
   cursor: pointer; }
 .slider_custum_button .slick-arrow {
@@ -5663,9 +6186,9 @@ th {
   .department_slider .slick-arrow:hover {
     background-color: transparent; }
 .department_slider .slick-arrow:hover:before {
-  color: #044E80; }
+  color: #044D7F; }
 .department_slider .slick-arrow:before {
-  color: #07A7E3;
+  color: #0095D9;
   font-size: 30px; }
 @media (max-width: 992px) {
   .department_slider .slick-prev {
@@ -5684,16 +6207,16 @@ th {
 /*Custum Slider Button Webiners**/
 .webinars_slider-js .slick-arrow {
   background-color: #fff;
-  border: 1px solid #07A7E3; }
+  border: 1px solid #0095D9; }
 .webinars_slider-js .slick-arrow {
   top: -70px; }
   @media (max-width: 576px) {
     .webinars_slider-js .slick-arrow {
       top: -100px; } }
 .webinars_slider-js .slick-arrow:before {
-  color: #07A7E3; }
+  color: #0095D9; }
 .webinars_slider-js .slick-arrow:hover {
-  background-color: #07A7E3; }
+  background-color: #0095D9; }
 .webinars_slider-js .slick-arrow:hover:before {
   color: #fff; }
 .webinars_slider-js .slick-prev {
@@ -5704,13 +6227,13 @@ th {
 /*Custum Slider Button Our Company**/
 .our_company-js .slick-arrow {
   background-color: #fff;
-  border: 1px solid #07A7E3; }
+  border: 1px solid #0095D9; }
 .our_company-js .slick-arrow {
   top: 45%; }
 .our_company-js .slick-arrow:before {
-  color: #07A7E3; }
+  color: #0095D9; }
 .our_company-js .slick-arrow:hover {
-  background-color: #07A7E3; }
+  background-color: #0095D9; }
 .our_company-js .slick-arrow:hover:before {
   color: #fff; }
 .our_company-js .slick-prev {
@@ -5738,7 +6261,7 @@ th {
       .slider_dots .slick-dots li button:focus {
         outline: none !important; }
   .slider_dots .slick-dots .slick-active button {
-    background-color: #044E80;
+    background-color: #044D7F;
     width: 20px; }
 
 /**Header Slider Dotes****/
@@ -5776,11 +6299,11 @@ th {
   margin: 30px 0; }
 .about_us-page .home_page-title {
   font-size: 35px;
-  color: #044E80; }
+  color: #044D7F; }
 .about_us-page .our_mission-block h3 {
-  color: #EC0707; }
+  color: #044D7F; }
 .about_us-page .our_mission-block h4 {
-  color: #07A7E3; }
+  color: #0095D9; }
 .about_us-page .about_us-img {
   height: 300px;
   width: 100%; }
@@ -5789,17 +6312,13 @@ th {
     min-height: 300px;
     min-width: 300px; }
 
-.aboutus_page-block2 {
-  color: #fff; }
-  .aboutus_page-block2 .home_page-title {
-    color: #fff; }
-  .aboutus_page-block2 .our_team-container {
-    background-color: #07A7E3;
-    padding: 50px;
-    border-top-left-radius: 150px;
-    border-bottom-right-radius: 150px; }
-  .aboutus_page-block2 .paragraph_global {
-    color: #fff; }
+.aboutus_page-block2 .our_team-container {
+  padding: 50px;
+  border-top-left-radius: 150px;
+  border-bottom-right-radius: 150px; }
+  .aboutus_page-block2 .our_team-container .row {
+    display: flex;
+    flex-wrap: wrap-reverse; }
 
 /*Start Contact with us Content*/
 .contactus_section ul li {
@@ -5811,6 +6330,28 @@ th {
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
 @media (min-width: 992px) {
   .container {
     max-width: 1170px; } }
@@ -5857,7 +6398,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -5886,7 +6427,7 @@ a:hover {
       margin-top: 30px; } }
   .glopal_form select {
     width: 100%;
-    color: #044E80;
+    color: #044D7F;
     cursor: pointer; }
   .glopal_form label {
     display: block;
@@ -5895,7 +6436,7 @@ a:hover {
   .glopal_form select:focus,
   .glopal_form textarea:focus {
     outline: none !important;
-    border-color: #07A7E3; }
+    border-color: #0095D9; }
   .glopal_form input,
   .glopal_form select,
   .glopal_form textarea {
@@ -5992,6 +6533,28 @@ th {
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
 @media (min-width: 992px) {
   .container {
     max-width: 1170px; } }
@@ -6038,7 +6601,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -6067,7 +6630,7 @@ a:hover {
       margin-top: 30px; } }
   .glopal_form select {
     width: 100%;
-    color: #044E80;
+    color: #044D7F;
     cursor: pointer; }
   .glopal_form label {
     display: block;
@@ -6076,7 +6639,7 @@ a:hover {
   .glopal_form select:focus,
   .glopal_form textarea:focus {
     outline: none !important;
-    border-color: #07A7E3; }
+    border-color: #0095D9; }
   .glopal_form input,
   .glopal_form select,
   .glopal_form textarea {
@@ -6180,11 +6743,11 @@ th {
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  background-color: #044E80;
+  background-color: #044D7F;
   border-radius: 10px;
   color: #fff; }
   .button:hover {
-    background-color: #07A7E3;
+    background-color: #0095D9;
     color: #fff; }
 
 .languge_button {
@@ -6195,16 +6758,16 @@ th {
   padding: 10px 15px;
   font-size: 14px;
   font-weight: 500;
-  background-color: #07A7E3;
+  background-color: #0095D9;
   border-radius: 10px;
   color: #fff; }
   .button-blue:hover {
     color: #fff;
-    background-color: #044E80; }
+    background-color: #044D7F; }
 
 .advanced_search-button,
 .our_student-button {
-  background-color: #07A7E3;
+  background-color: #0095D9;
   padding-right: 40px;
   position: relative;
   margin: 0 auto;
@@ -6212,7 +6775,7 @@ th {
   margin-top: 20px; }
   .advanced_search-button:hover,
   .our_student-button:hover {
-    background-color: #044E80; }
+    background-color: #044D7F; }
   .advanced_search-button:before,
   .our_student-button:before {
     content: "\f101";
@@ -6220,14 +6783,14 @@ th {
     right: 15px; }
 
 .glopal_form- {
-  background-color: #07A7E3;
+  background-color: #0095D9;
   padding-right: 40px;
   position: relative;
   margin: 0 auto;
   display: inline-block;
   margin-top: 20px; }
   .glopal_form-:hover {
-    background-color: #044E80; }
+    background-color: #044D7F; }
   .glopal_form-:before {
     content: "\f1d8";
     color: #fff;
@@ -6251,14 +6814,36 @@ th {
     width: 100%;
     z-index: -1;
     border-radius: 10px;
-    background-color: #07A7E3; } }
+    background-color: #0095D9; } }
 @media (min-width: 992px) {
   #menu_blog:hover:before {
-    background-color: #044E80; } }
+    background-color: #044D7F; } }
 
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
 @media (min-width: 992px) {
   .container {
     max-width: 1170px; } }
@@ -6305,7 +6890,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -6334,7 +6919,7 @@ a:hover {
       margin-top: 30px; } }
   .glopal_form select {
     width: 100%;
-    color: #044E80;
+    color: #044D7F;
     cursor: pointer; }
   .glopal_form label {
     display: block;
@@ -6343,7 +6928,7 @@ a:hover {
   .glopal_form select:focus,
   .glopal_form textarea:focus {
     outline: none !important;
-    border-color: #07A7E3; }
+    border-color: #0095D9; }
   .glopal_form input,
   .glopal_form select,
   .glopal_form textarea {
@@ -6481,7 +7066,7 @@ th {
   line-height: 40px;
   text-align: center;
   background-color: #fff;
-  border: 1px solid #07A7E3;
+  border: 1px solid #0095D9;
   position: relative;
   cursor: pointer; }
 .slider_custum_button .slick-arrow {
@@ -6516,9 +7101,9 @@ th {
   .department_slider .slick-arrow:hover {
     background-color: transparent; }
 .department_slider .slick-arrow:hover:before {
-  color: #044E80; }
+  color: #044D7F; }
 .department_slider .slick-arrow:before {
-  color: #07A7E3;
+  color: #0095D9;
   font-size: 30px; }
 @media (max-width: 992px) {
   .department_slider .slick-prev {
@@ -6537,16 +7122,16 @@ th {
 /*Custum Slider Button Webiners**/
 .webinars_slider-js .slick-arrow {
   background-color: #fff;
-  border: 1px solid #07A7E3; }
+  border: 1px solid #0095D9; }
 .webinars_slider-js .slick-arrow {
   top: -70px; }
   @media (max-width: 576px) {
     .webinars_slider-js .slick-arrow {
       top: -100px; } }
 .webinars_slider-js .slick-arrow:before {
-  color: #07A7E3; }
+  color: #0095D9; }
 .webinars_slider-js .slick-arrow:hover {
-  background-color: #07A7E3; }
+  background-color: #0095D9; }
 .webinars_slider-js .slick-arrow:hover:before {
   color: #fff; }
 .webinars_slider-js .slick-prev {
@@ -6557,13 +7142,13 @@ th {
 /*Custum Slider Button Our Company**/
 .our_company-js .slick-arrow {
   background-color: #fff;
-  border: 1px solid #07A7E3; }
+  border: 1px solid #0095D9; }
 .our_company-js .slick-arrow {
   top: 45%; }
 .our_company-js .slick-arrow:before {
-  color: #07A7E3; }
+  color: #0095D9; }
 .our_company-js .slick-arrow:hover {
-  background-color: #07A7E3; }
+  background-color: #0095D9; }
 .our_company-js .slick-arrow:hover:before {
   color: #fff; }
 .our_company-js .slick-prev {
@@ -6591,7 +7176,7 @@ th {
       .slider_dots .slick-dots li button:focus {
         outline: none !important; }
   .slider_dots .slick-dots .slick-active button {
-    background-color: #044E80;
+    background-color: #044D7F;
     width: 20px; }
 
 /**Header Slider Dotes****/
@@ -6626,13 +7211,13 @@ th {
 
 /**********/
 h3 {
-  color: #07A7E3;
+  color: #0095D9;
   line-height: 30px;
   font-size: 22px; }
 
 h4 {
   font-size: 20px;
-  color: #044E80;
+  color: #044D7F;
   margin-top: 30px; }
 
 p {
@@ -6642,6 +7227,28 @@ p {
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
 @media (min-width: 992px) {
   .container {
     max-width: 1170px; } }
@@ -6688,7 +7295,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -6717,7 +7324,7 @@ a:hover {
       margin-top: 30px; } }
   .glopal_form select {
     width: 100%;
-    color: #044E80;
+    color: #044D7F;
     cursor: pointer; }
   .glopal_form label {
     display: block;
@@ -6726,7 +7333,7 @@ a:hover {
   .glopal_form select:focus,
   .glopal_form textarea:focus {
     outline: none !important;
-    border-color: #07A7E3; }
+    border-color: #0095D9; }
   .glopal_form input,
   .glopal_form select,
   .glopal_form textarea {
@@ -6823,6 +7430,28 @@ th {
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
 @media (min-width: 992px) {
   .container {
     max-width: 1170px; } }
@@ -6869,7 +7498,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -6898,7 +7527,7 @@ a:hover {
       margin-top: 30px; } }
   .glopal_form select {
     width: 100%;
-    color: #044E80;
+    color: #044D7F;
     cursor: pointer; }
   .glopal_form label {
     display: block;
@@ -6907,7 +7536,7 @@ a:hover {
   .glopal_form select:focus,
   .glopal_form textarea:focus {
     outline: none !important;
-    border-color: #07A7E3; }
+    border-color: #0095D9; }
   .glopal_form input,
   .glopal_form select,
   .glopal_form textarea {
@@ -7011,11 +7640,11 @@ th {
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  background-color: #044E80;
+  background-color: #044D7F;
   border-radius: 10px;
   color: #fff; }
   .button:hover {
-    background-color: #07A7E3;
+    background-color: #0095D9;
     color: #fff; }
 
 .languge_button {
@@ -7026,16 +7655,16 @@ th {
   padding: 10px 15px;
   font-size: 14px;
   font-weight: 500;
-  background-color: #07A7E3;
+  background-color: #0095D9;
   border-radius: 10px;
   color: #fff; }
   .button-blue:hover {
     color: #fff;
-    background-color: #044E80; }
+    background-color: #044D7F; }
 
 .advanced_search-button,
 .our_student-button {
-  background-color: #07A7E3;
+  background-color: #0095D9;
   padding-right: 40px;
   position: relative;
   margin: 0 auto;
@@ -7043,7 +7672,7 @@ th {
   margin-top: 20px; }
   .advanced_search-button:hover,
   .our_student-button:hover {
-    background-color: #044E80; }
+    background-color: #044D7F; }
   .advanced_search-button:before,
   .our_student-button:before {
     content: "\f101";
@@ -7051,14 +7680,14 @@ th {
     right: 15px; }
 
 .glopal_form- {
-  background-color: #07A7E3;
+  background-color: #0095D9;
   padding-right: 40px;
   position: relative;
   margin: 0 auto;
   display: inline-block;
   margin-top: 20px; }
   .glopal_form-:hover {
-    background-color: #044E80; }
+    background-color: #044D7F; }
   .glopal_form-:before {
     content: "\f1d8";
     color: #fff;
@@ -7082,14 +7711,36 @@ th {
     width: 100%;
     z-index: -1;
     border-radius: 10px;
-    background-color: #07A7E3; } }
+    background-color: #0095D9; } }
 @media (min-width: 992px) {
   #menu_blog:hover:before {
-    background-color: #044E80; } }
+    background-color: #044D7F; } }
 
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
 @media (min-width: 992px) {
   .container {
     max-width: 1170px; } }
@@ -7136,7 +7787,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -7165,7 +7816,7 @@ a:hover {
       margin-top: 30px; } }
   .glopal_form select {
     width: 100%;
-    color: #044E80;
+    color: #044D7F;
     cursor: pointer; }
   .glopal_form label {
     display: block;
@@ -7174,7 +7825,7 @@ a:hover {
   .glopal_form select:focus,
   .glopal_form textarea:focus {
     outline: none !important;
-    border-color: #07A7E3; }
+    border-color: #0095D9; }
   .glopal_form input,
   .glopal_form select,
   .glopal_form textarea {
@@ -7312,7 +7963,7 @@ th {
   line-height: 40px;
   text-align: center;
   background-color: #fff;
-  border: 1px solid #07A7E3;
+  border: 1px solid #0095D9;
   position: relative;
   cursor: pointer; }
 .slider_custum_button .slick-arrow {
@@ -7347,9 +7998,9 @@ th {
   .department_slider .slick-arrow:hover {
     background-color: transparent; }
 .department_slider .slick-arrow:hover:before {
-  color: #044E80; }
+  color: #044D7F; }
 .department_slider .slick-arrow:before {
-  color: #07A7E3;
+  color: #0095D9;
   font-size: 30px; }
 @media (max-width: 992px) {
   .department_slider .slick-prev {
@@ -7368,16 +8019,16 @@ th {
 /*Custum Slider Button Webiners**/
 .webinars_slider-js .slick-arrow {
   background-color: #fff;
-  border: 1px solid #07A7E3; }
+  border: 1px solid #0095D9; }
 .webinars_slider-js .slick-arrow {
   top: -70px; }
   @media (max-width: 576px) {
     .webinars_slider-js .slick-arrow {
       top: -100px; } }
 .webinars_slider-js .slick-arrow:before {
-  color: #07A7E3; }
+  color: #0095D9; }
 .webinars_slider-js .slick-arrow:hover {
-  background-color: #07A7E3; }
+  background-color: #0095D9; }
 .webinars_slider-js .slick-arrow:hover:before {
   color: #fff; }
 .webinars_slider-js .slick-prev {
@@ -7388,13 +8039,13 @@ th {
 /*Custum Slider Button Our Company**/
 .our_company-js .slick-arrow {
   background-color: #fff;
-  border: 1px solid #07A7E3; }
+  border: 1px solid #0095D9; }
 .our_company-js .slick-arrow {
   top: 45%; }
 .our_company-js .slick-arrow:before {
-  color: #07A7E3; }
+  color: #0095D9; }
 .our_company-js .slick-arrow:hover {
-  background-color: #07A7E3; }
+  background-color: #0095D9; }
 .our_company-js .slick-arrow:hover:before {
   color: #fff; }
 .our_company-js .slick-prev {
@@ -7422,7 +8073,7 @@ th {
       .slider_dots .slick-dots li button:focus {
         outline: none !important; }
   .slider_dots .slick-dots .slick-active button {
-    background-color: #044E80;
+    background-color: #044D7F;
     width: 20px; }
 
 /**Header Slider Dotes****/
@@ -7485,22 +8136,24 @@ th {
     .landing_header-content .logo img {
       height: 100%; }
   .landing_header-content h1 {
-    font-size: 34px; }
+    font-size: 34px;
+    line-height: 30px; }
     @media (min-width: 992px) {
       .landing_header-content h1 {
-        margin: 40px 0; } }
+        margin: 40px 0;
+        line-height: 46px; } }
   .landing_header-content p {
     font-size: 23px;
     margin-bottom: 30px; }
   .landing_header-content .header_button-content .button {
     background-color: #fff;
-    color: #07A7E3;
+    color: #0095D9;
     font-size: 20px; }
     @media (min-width: 992px) {
       .landing_header-content .header_button-content .button {
         margin: 0 20px; } }
     .landing_header-content .header_button-content .button:hover {
-      background-color: #044E80;
+      background-color: #044D7F;
       color: #fff; }
   .landing_header-content .social_media {
     margin-top: 30px; }
@@ -7528,6 +8181,28 @@ th {
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
 @media (min-width: 992px) {
   .container {
     max-width: 1170px; } }
@@ -7574,7 +8249,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -7603,7 +8278,7 @@ a:hover {
       margin-top: 30px; } }
   .glopal_form select {
     width: 100%;
-    color: #044E80;
+    color: #044D7F;
     cursor: pointer; }
   .glopal_form label {
     display: block;
@@ -7612,7 +8287,7 @@ a:hover {
   .glopal_form select:focus,
   .glopal_form textarea:focus {
     outline: none !important;
-    border-color: #07A7E3; }
+    border-color: #0095D9; }
   .glopal_form input,
   .glopal_form select,
   .glopal_form textarea {
@@ -7709,6 +8384,28 @@ th {
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
 @media (min-width: 992px) {
   .container {
     max-width: 1170px; } }
@@ -7755,7 +8452,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -7784,7 +8481,7 @@ a:hover {
       margin-top: 30px; } }
   .glopal_form select {
     width: 100%;
-    color: #044E80;
+    color: #044D7F;
     cursor: pointer; }
   .glopal_form label {
     display: block;
@@ -7793,7 +8490,7 @@ a:hover {
   .glopal_form select:focus,
   .glopal_form textarea:focus {
     outline: none !important;
-    border-color: #07A7E3; }
+    border-color: #0095D9; }
   .glopal_form input,
   .glopal_form select,
   .glopal_form textarea {
@@ -7897,11 +8594,11 @@ th {
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  background-color: #044E80;
+  background-color: #044D7F;
   border-radius: 10px;
   color: #fff; }
   .button:hover {
-    background-color: #07A7E3;
+    background-color: #0095D9;
     color: #fff; }
 
 .languge_button {
@@ -7912,16 +8609,16 @@ th {
   padding: 10px 15px;
   font-size: 14px;
   font-weight: 500;
-  background-color: #07A7E3;
+  background-color: #0095D9;
   border-radius: 10px;
   color: #fff; }
   .button-blue:hover {
     color: #fff;
-    background-color: #044E80; }
+    background-color: #044D7F; }
 
 .advanced_search-button,
 .our_student-button {
-  background-color: #07A7E3;
+  background-color: #0095D9;
   padding-right: 40px;
   position: relative;
   margin: 0 auto;
@@ -7929,7 +8626,7 @@ th {
   margin-top: 20px; }
   .advanced_search-button:hover,
   .our_student-button:hover {
-    background-color: #044E80; }
+    background-color: #044D7F; }
   .advanced_search-button:before,
   .our_student-button:before {
     content: "\f101";
@@ -7937,14 +8634,14 @@ th {
     right: 15px; }
 
 .glopal_form- {
-  background-color: #07A7E3;
+  background-color: #0095D9;
   padding-right: 40px;
   position: relative;
   margin: 0 auto;
   display: inline-block;
   margin-top: 20px; }
   .glopal_form-:hover {
-    background-color: #044E80; }
+    background-color: #044D7F; }
   .glopal_form-:before {
     content: "\f1d8";
     color: #fff;
@@ -7968,14 +8665,36 @@ th {
     width: 100%;
     z-index: -1;
     border-radius: 10px;
-    background-color: #07A7E3; } }
+    background-color: #0095D9; } }
 @media (min-width: 992px) {
   #menu_blog:hover:before {
-    background-color: #044E80; } }
+    background-color: #044D7F; } }
 
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
 @media (min-width: 992px) {
   .container {
     max-width: 1170px; } }
@@ -8022,7 +8741,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -8051,7 +8770,7 @@ a:hover {
       margin-top: 30px; } }
   .glopal_form select {
     width: 100%;
-    color: #044E80;
+    color: #044D7F;
     cursor: pointer; }
   .glopal_form label {
     display: block;
@@ -8060,7 +8779,7 @@ a:hover {
   .glopal_form select:focus,
   .glopal_form textarea:focus {
     outline: none !important;
-    border-color: #07A7E3; }
+    border-color: #0095D9; }
   .glopal_form input,
   .glopal_form select,
   .glopal_form textarea {
@@ -8198,7 +8917,7 @@ th {
   line-height: 40px;
   text-align: center;
   background-color: #fff;
-  border: 1px solid #07A7E3;
+  border: 1px solid #0095D9;
   position: relative;
   cursor: pointer; }
 .slider_custum_button .slick-arrow {
@@ -8233,9 +8952,9 @@ th {
   .department_slider .slick-arrow:hover {
     background-color: transparent; }
 .department_slider .slick-arrow:hover:before {
-  color: #044E80; }
+  color: #044D7F; }
 .department_slider .slick-arrow:before {
-  color: #07A7E3;
+  color: #0095D9;
   font-size: 30px; }
 @media (max-width: 992px) {
   .department_slider .slick-prev {
@@ -8254,16 +8973,16 @@ th {
 /*Custum Slider Button Webiners**/
 .webinars_slider-js .slick-arrow {
   background-color: #fff;
-  border: 1px solid #07A7E3; }
+  border: 1px solid #0095D9; }
 .webinars_slider-js .slick-arrow {
   top: -70px; }
   @media (max-width: 576px) {
     .webinars_slider-js .slick-arrow {
       top: -100px; } }
 .webinars_slider-js .slick-arrow:before {
-  color: #07A7E3; }
+  color: #0095D9; }
 .webinars_slider-js .slick-arrow:hover {
-  background-color: #07A7E3; }
+  background-color: #0095D9; }
 .webinars_slider-js .slick-arrow:hover:before {
   color: #fff; }
 .webinars_slider-js .slick-prev {
@@ -8274,13 +8993,13 @@ th {
 /*Custum Slider Button Our Company**/
 .our_company-js .slick-arrow {
   background-color: #fff;
-  border: 1px solid #07A7E3; }
+  border: 1px solid #0095D9; }
 .our_company-js .slick-arrow {
   top: 45%; }
 .our_company-js .slick-arrow:before {
-  color: #07A7E3; }
+  color: #0095D9; }
 .our_company-js .slick-arrow:hover {
-  background-color: #07A7E3; }
+  background-color: #0095D9; }
 .our_company-js .slick-arrow:hover:before {
   color: #fff; }
 .our_company-js .slick-prev {
@@ -8308,7 +9027,7 @@ th {
       .slider_dots .slick-dots li button:focus {
         outline: none !important; }
   .slider_dots .slick-dots .slick-active button {
-    background-color: #044E80;
+    background-color: #044D7F;
     width: 20px; }
 
 /**Header Slider Dotes****/
@@ -8380,7 +9099,7 @@ th {
     .registration_content .modal-content .modal-body .paragraph_link {
       color: #f00; }
       .registration_content .modal-content .modal-body .paragraph_link a {
-        color: #044E80; }
+        color: #044D7F; }
         .registration_content .modal-content .modal-body .paragraph_link a:hover {
           color: #f00; }
     .registration_content .modal-content .modal-body .sign_button-content {
@@ -8544,6 +9263,28 @@ th {
 /*Media Query*/
 /*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
 @media (min-width: 992px) {
   .container {
     max-width: 1170px; } }
@@ -8590,7 +9331,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .navbar_menu li:before, .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -8619,7 +9360,7 @@ a:hover {
       margin-top: 30px; } }
   .glopal_form select {
     width: 100%;
-    color: #044E80;
+    color: #044D7F;
     cursor: pointer; }
   .glopal_form label {
     display: block;
@@ -8628,7 +9369,1470 @@ a:hover {
   .glopal_form select:focus,
   .glopal_form textarea:focus {
     outline: none !important;
-    border-color: #07A7E3; }
+    border-color: #0095D9; }
+  .glopal_form input,
+  .glopal_form select,
+  .glopal_form textarea {
+    border: none;
+    border: 1px solid rgba(18, 68, 98, 0.23);
+    width: 100%;
+    border-radius: 10px;
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .custum_upload-button {
+    position: relative; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
+  .glopal_form textarea {
+    height: 120px; }
+  .glopal_form .button-blue {
+    border: none;
+    cursor: pointer; }
+
+.single_page-content {
+  padding: 50px 0; }
+
+/*Start Custume Select Button*/
+.custum_select {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  cursor: pointer; }
+  .custum_select:before {
+    display: block;
+    position: absolute;
+    content: "\f0dd";
+    font-family: 'Font Awesome\ 5 Free';
+    font-weight: 900;
+    font-size: 22px;
+    top: 2px;
+    z-index: 1;
+    color: #40446A;
+    right: 20px;
+    left: auto;
+    /*Change*/ }
+  .custum_select select {
+    height: 40px;
+    width: 100%;
+    padding: 0 14px;
+    z-index: 3;
+    position: relative;
+    background: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none; }
+
+/*End Custume Select Button*/
+/*****Font******/
+/****Start Font Face*******/
+/**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
+/*Start Custum Upload Button*/
+/*Start Custum Upload Button*/
+a,
+button,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+label,
+li,
+p,
+select,
+span,
+td,
+textarea,
+th {
+  font-family: 'Montserrat', sans-serif; }
+
+/*Media Query*/
+/*Box Shadow*/
+/***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 1170px; } }
+
+/*Glopal Style*/
+img {
+  max-width: 100%;
+  height: auto; }
+
+[data-src] {
+  -webkit-background-size: cover;
+  background-size: cover; }
+
+/********Glopal Class******/
+.home_page-title {
+  color: #333333;
+  font-size: 26px;
+  margin-bottom: 25px; }
+
+.paragraph_global {
+  color: #333333;
+  font-size: 16px;
+  line-height: 34px; }
+
+.home_page-section {
+  padding: 50px 0; }
+
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+.list_inline {
+  padding-left: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+  .list_inline li {
+    display: inline-block; }
+
+a,
+a:hover {
+  text-decoration: none; }
+
+.button, .button-blue, .advanced_search-button,
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+  transition: all ease-in-out 0.3s; }
+
+.head_page:before, .header_slider .header:before {
+  position: absolute;
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0; }
+
+.advanced_search-button:before,
+.our_student-button:before, .glopal_form-:before {
+  position: absolute;
+  display: block;
+  font-family: 'Font Awesome\ 5 Free';
+  font-weight: 900; }
+
+/*Start Glopal Form*/
+.glopal_form {
+  background: #fff;
+  padding: 30px 15px;
+  /*End Glopal Form*/ }
+  @media (max-width: 576px) {
+    .glopal_form {
+      margin-top: 30px; } }
+  .glopal_form select {
+    width: 100%;
+    color: #044D7F;
+    cursor: pointer; }
+  .glopal_form label {
+    display: block;
+    font-size: 12px; }
+  .glopal_form input:focus,
+  .glopal_form select:focus,
+  .glopal_form textarea:focus {
+    outline: none !important;
+    border-color: #0095D9; }
+  .glopal_form input,
+  .glopal_form select,
+  .glopal_form textarea {
+    border: none;
+    border: 1px solid rgba(18, 68, 98, 0.23);
+    width: 100%;
+    border-radius: 10px;
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .custum_upload-button {
+    position: relative; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
+  .glopal_form textarea {
+    height: 120px; }
+  .glopal_form .button-blue {
+    border: none;
+    cursor: pointer; }
+
+.single_page-content {
+  padding: 50px 0; }
+
+/*Start Custume Select Button*/
+.custum_select {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  cursor: pointer; }
+  .custum_select:before {
+    display: block;
+    position: absolute;
+    content: "\f0dd";
+    font-family: 'Font Awesome\ 5 Free';
+    font-weight: 900;
+    font-size: 22px;
+    top: 2px;
+    z-index: 1;
+    color: #40446A;
+    right: 20px;
+    left: auto;
+    /*Change*/ }
+  .custum_select select {
+    height: 40px;
+    width: 100%;
+    padding: 0 14px;
+    z-index: 3;
+    position: relative;
+    background: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none; }
+
+/*End Custume Select Button*/
+/*****Font******/
+/****Start Font Face*******/
+/**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
+/*Start Custum Upload Button*/
+/*Start Custum Upload Button*/
+a,
+button,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+label,
+li,
+p,
+select,
+span,
+td,
+textarea,
+th {
+  font-family: 'Montserrat', sans-serif; }
+
+.button:focus {
+  outline: none !important; }
+
+.button {
+  border: 0;
+  display: inline-block;
+  padding: 12px 50px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: #044D7F;
+  border-radius: 10px;
+  color: #fff; }
+  .button:hover {
+    background-color: #0095D9;
+    color: #fff; }
+
+.languge_button {
+  padding: 15px;
+  margin: 5px; }
+
+.button-blue {
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #0095D9;
+  border-radius: 10px;
+  color: #fff; }
+  .button-blue:hover {
+    color: #fff;
+    background-color: #044D7F; }
+
+.advanced_search-button,
+.our_student-button {
+  background-color: #0095D9;
+  padding-right: 40px;
+  position: relative;
+  margin: 0 auto;
+  display: inline-block;
+  margin-top: 20px; }
+  .advanced_search-button:hover,
+  .our_student-button:hover {
+    background-color: #044D7F; }
+  .advanced_search-button:before,
+  .our_student-button:before {
+    content: "\f101";
+    color: #fff;
+    right: 15px; }
+
+.glopal_form- {
+  background-color: #0095D9;
+  padding-right: 40px;
+  position: relative;
+  margin: 0 auto;
+  display: inline-block;
+  margin-top: 20px; }
+  .glopal_form-:hover {
+    background-color: #044D7F; }
+  .glopal_form-:before {
+    content: "\f1d8";
+    color: #fff;
+    right: 15px; }
+
+/*****Blog Button****/
+@media (min-width: 992px) {
+  #menu_blog {
+    position: relative;
+    z-index: 9;
+    text-align: center;
+    color: #fff; } }
+@media (min-width: 992px) {
+  #menu_blog:before {
+    content: "";
+    top: -9px;
+    bottom: -9px;
+    right: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+    border-radius: 10px;
+    background-color: #0095D9; } }
+@media (min-width: 992px) {
+  #menu_blog:hover:before {
+    background-color: #044D7F; } }
+
+/**/
+/*Start Blog Page*/
+.ediating_profile .add_image {
+  text-align: center;
+  margin: 0 auto; }
+  .ediating_profile .add_image .profile_image {
+    margin: 0 auto;
+    height: 240px;
+    width: 240px;
+    line-height: 240px;
+    text-align: center;
+    border-radius: 100%;
+    background: #fff;
+    box-shadow: 0 48px 88px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px; }
+  .ediating_profile .add_image #upload_imag {
+    position: relative;
+    cursor: pointer; }
+  .ediating_profile .add_image input[type="file"] {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    cursor: pointer; }
+  .ediating_profile .add_image .button {
+    margin-top: 30px; }
+    .ediating_profile .add_image .button span {
+      margin: 0 4px; }
+@media (max-width: 768px) {
+  .ediating_profile .profile_form {
+    text-align: center;
+    margin-top: 30px; } }
+.ediating_profile .profile_form .form_title {
+  font-size: 24px;
+  color: #044D7F; }
+  .ediating_profile .profile_form .form_title label {
+    font-size: 12px; }
+.ediating_profile .profile_form .sub_title {
+  font-size: 22px;
+  color: #044D7F;
+  margin: 16px 0; }
+.ediating_profile .profile_form .button {
+  margin: 0 auto;
+  background: #000; }
+  .ediating_profile .profile_form .button:hover {
+    background: #0095D9; }
+
+/*Media Query*/
+/*Box Shadow*/
+/***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 1170px; } }
+
+/*Glopal Style*/
+img {
+  max-width: 100%;
+  height: auto; }
+
+[data-src] {
+  -webkit-background-size: cover;
+  background-size: cover; }
+
+/********Glopal Class******/
+.home_page-title {
+  color: #333333;
+  font-size: 26px;
+  margin-bottom: 25px; }
+
+.paragraph_global {
+  color: #333333;
+  font-size: 16px;
+  line-height: 34px; }
+
+.home_page-section {
+  padding: 50px 0; }
+
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+.list_inline {
+  padding-left: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+  .list_inline li {
+    display: inline-block; }
+
+a,
+a:hover {
+  text-decoration: none; }
+
+.button, .button-blue, .advanced_search-button,
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+  transition: all ease-in-out 0.3s; }
+
+.head_page:before, .header_slider .header:before {
+  position: absolute;
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0; }
+
+.advanced_search-button:before,
+.our_student-button:before, .glopal_form-:before {
+  position: absolute;
+  display: block;
+  font-family: 'Font Awesome\ 5 Free';
+  font-weight: 900; }
+
+/*Start Glopal Form*/
+.glopal_form {
+  background: #fff;
+  padding: 30px 15px;
+  /*End Glopal Form*/ }
+  @media (max-width: 576px) {
+    .glopal_form {
+      margin-top: 30px; } }
+  .glopal_form select {
+    width: 100%;
+    color: #044D7F;
+    cursor: pointer; }
+  .glopal_form label {
+    display: block;
+    font-size: 12px; }
+  .glopal_form input:focus,
+  .glopal_form select:focus,
+  .glopal_form textarea:focus {
+    outline: none !important;
+    border-color: #0095D9; }
+  .glopal_form input,
+  .glopal_form select,
+  .glopal_form textarea {
+    border: none;
+    border: 1px solid rgba(18, 68, 98, 0.23);
+    width: 100%;
+    border-radius: 10px;
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .custum_upload-button {
+    position: relative; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
+  .glopal_form textarea {
+    height: 120px; }
+  .glopal_form .button-blue {
+    border: none;
+    cursor: pointer; }
+
+.single_page-content {
+  padding: 50px 0; }
+
+/*Start Custume Select Button*/
+.custum_select {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  cursor: pointer; }
+  .custum_select:before {
+    display: block;
+    position: absolute;
+    content: "\f0dd";
+    font-family: 'Font Awesome\ 5 Free';
+    font-weight: 900;
+    font-size: 22px;
+    top: 2px;
+    z-index: 1;
+    color: #40446A;
+    right: 20px;
+    left: auto;
+    /*Change*/ }
+  .custum_select select {
+    height: 40px;
+    width: 100%;
+    padding: 0 14px;
+    z-index: 3;
+    position: relative;
+    background: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none; }
+
+/*End Custume Select Button*/
+/*****Font******/
+/****Start Font Face*******/
+/**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
+/*Start Custum Upload Button*/
+/*Start Custum Upload Button*/
+a,
+button,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+label,
+li,
+p,
+select,
+span,
+td,
+textarea,
+th {
+  font-family: 'Montserrat', sans-serif; }
+
+/*Media Query*/
+/*Box Shadow*/
+/***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 1170px; } }
+
+/*Glopal Style*/
+img {
+  max-width: 100%;
+  height: auto; }
+
+[data-src] {
+  -webkit-background-size: cover;
+  background-size: cover; }
+
+/********Glopal Class******/
+.home_page-title {
+  color: #333333;
+  font-size: 26px;
+  margin-bottom: 25px; }
+
+.paragraph_global {
+  color: #333333;
+  font-size: 16px;
+  line-height: 34px; }
+
+.home_page-section {
+  padding: 50px 0; }
+
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+.list_inline {
+  padding-left: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+  .list_inline li {
+    display: inline-block; }
+
+a,
+a:hover {
+  text-decoration: none; }
+
+.button, .button-blue, .advanced_search-button,
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+  transition: all ease-in-out 0.3s; }
+
+.head_page:before, .header_slider .header:before {
+  position: absolute;
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0; }
+
+.advanced_search-button:before,
+.our_student-button:before, .glopal_form-:before {
+  position: absolute;
+  display: block;
+  font-family: 'Font Awesome\ 5 Free';
+  font-weight: 900; }
+
+/*Start Glopal Form*/
+.glopal_form {
+  background: #fff;
+  padding: 30px 15px;
+  /*End Glopal Form*/ }
+  @media (max-width: 576px) {
+    .glopal_form {
+      margin-top: 30px; } }
+  .glopal_form select {
+    width: 100%;
+    color: #044D7F;
+    cursor: pointer; }
+  .glopal_form label {
+    display: block;
+    font-size: 12px; }
+  .glopal_form input:focus,
+  .glopal_form select:focus,
+  .glopal_form textarea:focus {
+    outline: none !important;
+    border-color: #0095D9; }
+  .glopal_form input,
+  .glopal_form select,
+  .glopal_form textarea {
+    border: none;
+    border: 1px solid rgba(18, 68, 98, 0.23);
+    width: 100%;
+    border-radius: 10px;
+    padding: 8px 0;
+    text-indent: 8px;
+    margin-bottom: 30px;
+    font-size: 14px; }
+  .glopal_form .custum_upload-button {
+    position: relative; }
+  .glopal_form .row div:last-child {
+    margin: 0; }
+  .glopal_form textarea {
+    height: 120px; }
+  .glopal_form .button-blue {
+    border: none;
+    cursor: pointer; }
+
+.single_page-content {
+  padding: 50px 0; }
+
+/*Start Custume Select Button*/
+.custum_select {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  cursor: pointer; }
+  .custum_select:before {
+    display: block;
+    position: absolute;
+    content: "\f0dd";
+    font-family: 'Font Awesome\ 5 Free';
+    font-weight: 900;
+    font-size: 22px;
+    top: 2px;
+    z-index: 1;
+    color: #40446A;
+    right: 20px;
+    left: auto;
+    /*Change*/ }
+  .custum_select select {
+    height: 40px;
+    width: 100%;
+    padding: 0 14px;
+    z-index: 3;
+    position: relative;
+    background: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none; }
+
+/*End Custume Select Button*/
+/*****Font******/
+/****Start Font Face*******/
+/**** End Font Face*******/
+.checkbox_button-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center; }
+  .checkbox_button-content span {
+    text-indent: 5px; }
+  .checkbox_button-content input {
+    margin: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer; }
+
+/*Start Custum Upload Button*/
+/*Start Custum Upload Button*/
+a,
+button,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+label,
+li,
+p,
+select,
+span,
+td,
+textarea,
+th {
+  font-family: 'Montserrat', sans-serif; }
+
+.button:focus {
+  outline: none !important; }
+
+.button {
+  border: 0;
+  display: inline-block;
+  padding: 12px 50px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: #044D7F;
+  border-radius: 10px;
+  color: #fff; }
+  .button:hover {
+    background-color: #0095D9;
+    color: #fff; }
+
+.languge_button {
+  padding: 15px;
+  margin: 5px; }
+
+.button-blue {
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #0095D9;
+  border-radius: 10px;
+  color: #fff; }
+  .button-blue:hover {
+    color: #fff;
+    background-color: #044D7F; }
+
+.advanced_search-button,
+.our_student-button {
+  background-color: #0095D9;
+  padding-right: 40px;
+  position: relative;
+  margin: 0 auto;
+  display: inline-block;
+  margin-top: 20px; }
+  .advanced_search-button:hover,
+  .our_student-button:hover {
+    background-color: #044D7F; }
+  .advanced_search-button:before,
+  .our_student-button:before {
+    content: "\f101";
+    color: #fff;
+    right: 15px; }
+
+.glopal_form- {
+  background-color: #0095D9;
+  padding-right: 40px;
+  position: relative;
+  margin: 0 auto;
+  display: inline-block;
+  margin-top: 20px; }
+  .glopal_form-:hover {
+    background-color: #044D7F; }
+  .glopal_form-:before {
+    content: "\f1d8";
+    color: #fff;
+    right: 15px; }
+
+/*****Blog Button****/
+@media (min-width: 992px) {
+  #menu_blog {
+    position: relative;
+    z-index: 9;
+    text-align: center;
+    color: #fff; } }
+@media (min-width: 992px) {
+  #menu_blog:before {
+    content: "";
+    top: -9px;
+    bottom: -9px;
+    right: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+    border-radius: 10px;
+    background-color: #0095D9; } }
+@media (min-width: 992px) {
+  #menu_blog:hover:before {
+    background-color: #044D7F; } }
+
+/*Custum Slider Button**/
+.slider_custum_button .slick-arrow:focus {
+  outline: none !important; }
+.slider_custum_button .slick-arrow {
+  font-size: 0;
+  border: 0;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  text-align: center;
+  background-color: #fff;
+  border: 1px solid #0095D9;
+  position: relative;
+  cursor: pointer; }
+.slider_custum_button .slick-arrow {
+  z-index: 9;
+  top: 30%;
+  position: absolute; }
+.slider_custum_button .slick-arrow:before {
+  position: absolute;
+  display: block;
+  color: #17112d;
+  font-size: 13px;
+  right: 15px;
+  font-family: 'Font Awesome\ 5 Free';
+  font-weight: 900; }
+.slider_custum_button .slick-arrow:hover {
+  background-color: #17112d; }
+.slider_custum_button .slick-arrow:hover:before {
+  color: #fff; }
+.slider_custum_button .slick-prev:before {
+  content: "\f053"; }
+.slider_custum_button .slick-next:before {
+  content: "\f054"; }
+.slider_custum_button .slick-prev {
+  left: 15px; }
+.slider_custum_button .slick-next {
+  right: 15px; }
+
+/*┘ìStart Providr Page*/
+.department_slider .slick-arrow {
+  background-color: transparent;
+  border: 1px solid transparent; }
+  .department_slider .slick-arrow:hover {
+    background-color: transparent; }
+.department_slider .slick-arrow:hover:before {
+  color: #044D7F; }
+.department_slider .slick-arrow:before {
+  color: #0095D9;
+  font-size: 30px; }
+@media (max-width: 992px) {
+  .department_slider .slick-prev {
+    left: 0; } }
+@media (min-width: 992px) {
+  .department_slider .slick-prev {
+    left: -30px; } }
+@media (max-width: 992px) {
+  .department_slider .slick-next {
+    right: 0; } }
+@media (min-width: 992px) {
+  .department_slider .slick-next {
+    right: -30px; } }
+
+/*End Providr Page*/
+/*Custum Slider Button Webiners**/
+.webinars_slider-js .slick-arrow {
+  background-color: #fff;
+  border: 1px solid #0095D9; }
+.webinars_slider-js .slick-arrow {
+  top: -70px; }
+  @media (max-width: 576px) {
+    .webinars_slider-js .slick-arrow {
+      top: -100px; } }
+.webinars_slider-js .slick-arrow:before {
+  color: #0095D9; }
+.webinars_slider-js .slick-arrow:hover {
+  background-color: #0095D9; }
+.webinars_slider-js .slick-arrow:hover:before {
+  color: #fff; }
+.webinars_slider-js .slick-prev {
+  left: 15px; }
+.webinars_slider-js .slick-next {
+  right: 15px; }
+
+/*Custum Slider Button Our Company**/
+.our_company-js .slick-arrow {
+  background-color: #fff;
+  border: 1px solid #0095D9; }
+.our_company-js .slick-arrow {
+  top: 45%; }
+.our_company-js .slick-arrow:before {
+  color: #0095D9; }
+.our_company-js .slick-arrow:hover {
+  background-color: #0095D9; }
+.our_company-js .slick-arrow:hover:before {
+  color: #fff; }
+.our_company-js .slick-prev {
+  left: 10px; }
+.our_company-js .slick-next {
+  right: 10px; }
+
+/*********Slider Style For Single Page Slider************/
+.slider_dots .slick-dots {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+  .slider_dots .slick-dots li {
+    display: inline-block;
+    cursor: pointer; }
+    .slider_dots .slick-dots li button {
+      font-size: 0;
+      border: 0;
+      height: 3px;
+      width: 15px;
+      background-color: #ccc;
+      margin: 0 3px;
+      cursor: pointer;
+      border-radius: 100px; }
+      .slider_dots .slick-dots li button:focus {
+        outline: none !important; }
+  .slider_dots .slick-dots .slick-active button {
+    background-color: #044D7F;
+    width: 20px; }
+
+/**Header Slider Dotes****/
+.header_slider .slick-dots {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  bottom: 100px;
+  position: relative; }
+  @media (min-width: 992px) {
+    .header_slider .slick-dots {
+      bottom: 300px; } }
+  .header_slider .slick-dots li {
+    display: inline-block;
+    cursor: pointer; }
+    .header_slider .slick-dots li button {
+      font-size: 0;
+      border: 0;
+      height: 12px;
+      width: 12px;
+      margin: 0 10px;
+      cursor: pointer;
+      border-radius: 100%;
+      background-color: #fff; }
+      .header_slider .slick-dots li button:focus {
+        outline: none !important; }
+  .header_slider .slick-dots .slick-active button {
+    width: 20px;
+    border-radius: 3px;
+    width: 30px; }
+
+/***********/
+.profile_menu {
+  background: #eee;
+  padding: 40px 20px;
+  z-index: 9;
+  max-width: 300px; }
+  @media (min-width: 768px) {
+    .profile_menu {
+      position: relative; } }
+  @media (max-width: 768px) {
+    .profile_menu {
+      left: -300px;
+      right: auto;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      bottom: 0; } }
+  @media (max-width: 768px) {
+    .profile_menu.switch {
+      left: 0px;
+      right: auto;
+      position: fixed;
+      z-index: 99;
+      top: 0;
+      bottom: 0;
+      overflow-y: auto; } }
+  .profile_menu .show_menu {
+    height: 60px;
+    width: 60px;
+    line-height: 60px;
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    border-radius: 100%;
+    background: #eee;
+    position: absolute;
+    right: -30px;
+    left: auto;
+    display: none;
+    /*Change*/
+    top: 50%;
+    cursor: pointer; }
+    @media (max-width: 768px) {
+      .profile_menu .show_menu {
+        display: block; } }
+    .profile_menu .show_menu.switch i {
+      transform: rotate(0deg); }
+    .profile_menu .show_menu i {
+      color: #f00;
+      transform: rotate(180deg); }
+  .profile_menu .add_image {
+    text-align: center; }
+    .profile_menu .add_image .profile_image {
+      margin: 0 auto;
+      height: 80px;
+      width: 80px;
+      line-height: 80px;
+      text-align: center;
+      border-radius: 100%;
+      background: #fff;
+      margin-bottom: 30px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2); }
+    .profile_menu .add_image .user_name {
+      font-size: 18px;
+      color: #044D7F;
+      margin: 0; }
+    .profile_menu .add_image .user_email {
+      font-size: 16px;
+      color: #9195AA;
+      margin-top: 16px; }
+    .profile_menu .add_image .button {
+      margin: 0 16px;
+      padding: 10px 16px; }
+      .profile_menu .add_image .button span {
+        margin: 0 8px;
+        display: inline-block; }
+    .profile_menu .add_image .back_button {
+      height: 40px;
+      width: 40px;
+      line-height: 40px;
+      text-align: center;
+      border: 2px solid #f00;
+      border-radius: 100%;
+      margin: 20px 0; }
+      .profile_menu .add_image .back_button:before {
+        color: #f00;
+        transform: rotate(90deg);
+        display: block; }
+      .profile_menu .add_image .back_button:hover {
+        border: 2px solid #0095D9; }
+        .profile_menu .add_image .back_button:hover:before {
+          color: #0095D9; }
+  .profile_menu .menu_list li {
+    padding: 10px 16px;
+    display: inline-block;
+    min-width: 260px;
+    margin: 6px 0;
+    border-radius: 80px;
+    cursor: pointer; }
+    .profile_menu .menu_list li.active {
+      background: #fff; }
+    .profile_menu .menu_list li:hover {
+      background: #fff; }
+    .profile_menu .menu_list li img {
+      margin: 0 8px; }
+    .profile_menu .menu_list li span {
+      font-size: 18px;
+      color: #000; }
+
+#wallt > section:not(:first-child) {
+  display: none; }
+#wallt .wallt_buttons {
+  display: flex;
+  justify-content: space-around; }
+
+.current_balance {
+  text-align: center; }
+  .current_balance .current_balance-cicle {
+    padding-top: 80px;
+    margin: 30px auto;
+    text-align: center;
+    height: 300px;
+    width: 300px;
+    border: 1px solid #044D7F;
+    border-radius: 100%;
+    vertical-align: middle; }
+    .current_balance .current_balance-cicle #balance {
+      font-size: 55px;
+      color: #044D7F; }
+    .current_balance .current_balance-cicle p {
+      font-size: 24px;
+      color: #000; }
+
+.charge_balance .charge_balance-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  height: 200px; }
+  @media (min-width: 768px) {
+    .charge_balance .charge_balance-form {
+      height: 400px; } }
+  .charge_balance .charge_balance-form input {
+    border-bottom: 2px solid #000;
+    margin: 0 20px; }
+    .charge_balance .charge_balance-form input:focus {
+      outline: none !important; }
+
+.payment_way .walt_progress {
+  text-align: center;
+  margin-top: 80px; }
+  @media (max-width: 576px) {
+    .payment_way .walt_progress {
+      display: none; } }
+  .payment_way .walt_progress li {
+    display: inline;
+    text-align: center;
+    margin: 0 30px; }
+    .payment_way .walt_progress li.selected_point span:before {
+      box-shadow: 0 0 0 30px #DDD; }
+    .payment_way .walt_progress li span {
+      position: relative;
+      display: inline-block;
+      color: #044D7F;
+      font-size: 18px; }
+      .payment_way .walt_progress li span:before {
+        position: absolute;
+        content: "";
+        display: block;
+        height: 15px;
+        width: 15px;
+        border-radius: 100%;
+        background-color: #044D7F;
+        top: -60px;
+        right: 50%;
+        margin-right: -8px; }
+
+.chose_payment-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap; }
+  @media (min-width: 992px) {
+    .chose_payment-content {
+      margin: 60px 0; } }
+  .chose_payment-content .payment_block {
+    min-width: 320px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 0 10px #DDD;
+    padding: 16px;
+    margin: 15px;
+    min-height: 120px; }
+    @media (max-width: 768px) {
+      .chose_payment-content .payment_block {
+        width: 100%; } }
+    .chose_payment-content .payment_block.add_new {
+      background-color: #DDD; }
+      .chose_payment-content .payment_block.add_new span {
+        margin: 0 6px; }
+    .chose_payment-content .payment_block:hover {
+      box-shadow: 0 0 40px #DDD; }
+    .chose_payment-content .payment_block img {
+      max-height: 60px;
+      display: block; }
+    .chose_payment-content .payment_block span {
+      color: #000;
+      display: inline-block;
+      margin-top: 20px; }
+
+.my-account {
+  min-height: 500px; }
+  .my-account .all_tabs > div:not(:first-child) {
+    display: none; }
+  .my-account section {
+    padding: 50px 0; }
+    .my-account section .all_tabs-title {
+      text-align: center;
+      color: #f00;
+      font-size: 30px; }
+    .my-account section .myaccount_empty-blok {
+      text-align: center;
+      margin: 30px 0; }
+      .my-account section .myaccount_empty-blok .add_button {
+        display: inline-block;
+        height: 80px;
+        width: 80px;
+        line-height: 80px;
+        text-align: center;
+        border: 3px solid #000;
+        border-radius: 80px; }
+        .my-account section .myaccount_empty-blok .add_button i {
+          color: #000; }
+      .my-account section .myaccount_empty-blok p {
+        margin-top: 20px;
+        color: #9195AA; }
+        .my-account section .myaccount_empty-blok p:before {
+          color: #044D7F; }
+    .my-account section .article_description {
+      padding: 20px;
+      margin: 30px 0;
+      border: 1px solid #DDD;
+      border-radius: 15px; }
+      .my-account section .article_description h3 {
+        font-size: 20px; }
+      .my-account section .article_description p {
+        font-size: 14px; }
+      .my-account section .article_description .flowers_list li:first-child span, .my-account section .article_description .flowers_list li:first-child i {
+        color: #f00; }
+
+.add_question-button {
+  text-align: center; }
+  .add_question-button .button {
+    background-color: #000; }
+    .add_question-button .button:hover {
+      background-color: #f00; }
+    .add_question-button .button i {
+      height: 30px;
+      width: 30px;
+      line-height: 30px;
+      text-align: center;
+      border: 1px solid #fff;
+      border-radius: 100%;
+      color: #fff;
+      display: inline-block;
+      margin: 0 6px; }
+
+.add_question-section {
+  display: none; }
+
+.articl_block .row {
+  margin: 40px 0; }
+
+/*Satrt Meating */
+/*Media Query*/
+/*Box Shadow*/
+/***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .select_content-area .select_your-tupe {
+    width: 100%; }
+    .select_content-area .select_your-tupe aside {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+      .select_content-area .select_your-tupe aside .select_type-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 30px; }
+        .select_content-area .select_your-tupe aside .select_type-content span {
+          display: block; }
+  .select_content-area .slect_Your-twon {
+    width: 100%; }
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 1170px; } }
+
+/*Glopal Style*/
+img {
+  max-width: 100%;
+  height: auto; }
+
+[data-src] {
+  -webkit-background-size: cover;
+  background-size: cover; }
+
+/********Glopal Class******/
+.home_page-title {
+  color: #333333;
+  font-size: 26px;
+  margin-bottom: 25px; }
+
+.paragraph_global {
+  color: #333333;
+  font-size: 16px;
+  line-height: 34px; }
+
+.home_page-section {
+  padding: 50px 0; }
+
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+.list_inline {
+  padding-left: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+  .list_inline li {
+    display: inline-block; }
+
+a,
+a:hover {
+  text-decoration: none; }
+
+.button, .button-blue, .advanced_search-button,
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+  transition: all ease-in-out 0.3s; }
+
+.head_page:before, .header_slider .header:before {
+  position: absolute;
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0; }
+
+.advanced_search-button:before,
+.our_student-button:before, .glopal_form-:before {
+  position: absolute;
+  display: block;
+  font-family: 'Font Awesome\ 5 Free';
+  font-weight: 900; }
+
+/*Start Glopal Form*/
+.glopal_form {
+  background: #fff;
+  padding: 30px 15px;
+  /*End Glopal Form*/ }
+  @media (max-width: 576px) {
+    .glopal_form {
+      margin-top: 30px; } }
+  .glopal_form select {
+    width: 100%;
+    color: #044D7F;
+    cursor: pointer; }
+  .glopal_form label {
+    display: block;
+    font-size: 12px; }
+  .glopal_form input:focus,
+  .glopal_form select:focus,
+  .glopal_form textarea:focus {
+    outline: none !important;
+    border-color: #0095D9; }
   .glopal_form input,
   .glopal_form select,
   .glopal_form textarea {
@@ -8769,7 +10973,7 @@ footer {
       padding: 8px 15px;
       border-radius: 10px;
       border: 0;
-      color: #07A7E3; }
+      color: #0095D9; }
       footer .footer_subscribe input:focus {
         outline: none !important; }
     footer .footer_subscribe button {
@@ -8780,14 +10984,14 @@ footer {
       width: 80px;
       border: 0;
       cursor: pointer;
-      background-color: #044E80;
+      background-color: #044D7F;
       color: #fff;
       border-bottom-right-radius: 10px;
       /*Change*/
       border-top-right-radius: 10px;
       /*Change*/ }
       footer .footer_subscribe button:hover {
-        background-color: #07A7E3; }
+        background-color: #0095D9; }
   footer ul li {
     padding: 6px 0;
     color: #fff;
@@ -8799,7 +11003,7 @@ footer {
       color: #fff;
       font-size: 16px; }
       footer ul li a:hover {
-        color: #07A7E3; }
+        color: #0095D9; }
 
 .important_link ul li {
   display: block; }
@@ -8815,7 +11019,7 @@ footer {
     font-size: 14px;
     font-size: 18px; }
     .social_media li a:hover {
-      color: #f00; }
+      color: #044D7F; }
 
 /***Start Button Go Up**/
 .go_up {
@@ -8823,7 +11027,7 @@ footer {
   z-index: 999;
   bottom: 30px;
   left: 30px;
-  background-color: #07A7E3;
+  background-color: #0095D9;
   height: 30px;
   width: 30px;
   line-height: 35px;
@@ -8836,7 +11040,7 @@ footer {
       left: 15px; } }
   .go_up:hover {
     box-shadow: 0 0 5px #fff;
-    background-color: #044E80; }
+    background-color: #044D7F; }
 
 /**Start Copyright Section**/
 .copyright {
@@ -8859,7 +11063,7 @@ footer {
       color: #fff;
       @extent %transition; }
       .copyright .copyright_content a:hover {
-        color: #07A7E3; }
+        color: #0095D9; }
 
 .copyright_new {
   margin-top: 30px;

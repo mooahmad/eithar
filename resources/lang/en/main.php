@@ -129,4 +129,9 @@ return [
     'customer_reset_password_verify_code'=> 'Reset Password Verify Code',
     'password_new'                  => 'New Password',
     'password_confirmation_new'     => 'Confirmation New Password',
+    'customer_show_update_profile'  => 'Update Profile',
+    'update_information'            => 'Update Information',
+    'update'                        => 'Update',
+    'save'                          => 'Save',
+    'change_password'               => 'Change Password',
 ];

@@ -129,4 +129,9 @@ return [
     'customer_reset_password_verify_code'=> 'إعادة ضبط كلمة المرور',
     'password_new'                  => 'كلمة المرور الجديدة',
     'password_confirmation_new'     => 'تأكيد كلمة المرور',
+    'customer_show_update_profile'  => 'تعديل البيانات',
+    'update_information'            => 'تعديل البيانات',
+    'update'                        => 'تعديل',
+    'save'                          => 'حفظ',
+    'change_password'               => 'تعديل كلمة المرور',
 ];
