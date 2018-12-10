@@ -112,8 +112,17 @@ class Utilities
 
     public static function getDayDatesOfWeeks($day = "monday", $numberOfWeeks = 0)
     {
+        $daysMaped = [
+            1 => "monday",
+            2 => "tuesday",
+            3 => "wednesday",
+            4 => "thursday",
+            5 => "friday",
+            6 => "saturday",
+            7 => "sunday"
+        ]; 
         $dayDates = [];
-        $todayOfWeek = strtolower(Carbon::now()->englishDayOfWeek);
+        $todayOfWeek = $daysMaped[Carbon::now()->dayOfWeek];
         dd($to);
         for ($i = 0; $i < $numberOfWeeks; $i++) {
             $date = Carbon::parse("next tuesday");
