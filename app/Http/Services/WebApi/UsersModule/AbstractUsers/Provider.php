@@ -997,7 +997,6 @@ class Provider
                 if ($service != null) {
                     //provider
                     if ($service->type == 5) {
-                        dd($serviceAppointment->slot_id);
                         $calendar = ProvidersCalendar::find($serviceAppointment->slot_id);
                         $startDate = $startTime = $endTime = "Unknown";
                         if ($calendar) {
@@ -1011,6 +1010,7 @@ class Provider
                                 $startDate = "Unknown";
                             }
                         }
+                        dd($startDate);
                         $payLoad = [
                             "id" => $serviceAppointment->id,
                             "service_type" => $service->type,
