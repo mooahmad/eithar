@@ -99,4 +99,13 @@ class Service extends Model
     {
         return Utilities::getFileUrl($value, null, 'local', false);
     }
+
+    public function getExpiryDateAttribute()
+    {
+        if (isset(request()->headers->all()['time-zone'])) {
+            return Carbon::parse($this->attributes["expiry_date"])->timezone(request()->headers->all()['time-zone'][0])->format('Y-m-d H:m:s');
+        } else {
+            return $this->attributes["expiry_date"];
+        }
+    }
 }

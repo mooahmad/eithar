@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\ModelDateTimeAccessors;
+use App\Traits\ModelStartEndTimeAccessors;
 
 class PromoCode extends Model
 {
-    use SoftDeletes, ModelDateTimeAccessors;
+    use SoftDeletes, ModelDateTimeAccessors, ModelStartEndTimeAccessors;
 
     public $timestamps = true;
     protected $table = 'promo_codes';

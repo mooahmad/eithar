@@ -59,4 +59,13 @@ class Invoice extends Model
     {
         return $this->belongsTo(Provider::class,'provider_id','id');
     }
+
+    public function getInvoiceDateAttribute()
+    {
+        if (isset(request()->headers->all()['time-zone'])) {
+            return Carbon::parse($this->attributes["invoice_date"])->timezone(request()->headers->all()['time-zone'][0])->format('Y-m-d H:m:s');
+        } else {
+            return $this->attributes["invoice_date"];
+        }
+    }
 }

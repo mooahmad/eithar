@@ -74,4 +74,13 @@ class User extends Authenticatable implements CanResetPassword
     {
         return $this->belongsToMany(Role::class,  'users_roles', 'user_id', 'role_id');
     }
+
+    public function getLastLoginDateAttribute()
+    {
+        if (isset(request()->headers->all()['time-zone'])) {
+            return Carbon::parse($this->attributes["last_login_date"])->timezone(request()->headers->all()['time-zone'][0])->format('Y-m-d H:m:s');
+        } else {
+            return $this->attributes["last_login_date"];
+        }
+    }
 }

@@ -3,14 +3,13 @@
 namespace App\Models;
 
 use App\Helpers\Utilities;
+use App\Traits\ModelDateTimeAccessors;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\App;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use SMartins\PassportMultiauth\HasMultiAuthApiTokens;
-use App\Traits\ModelDateTimeAccessors;
 
 class Provider extends Authenticatable
 {
@@ -21,27 +20,29 @@ class Provider extends Authenticatable
     protected $dateFormat = 'Y-m-d H:m:s';
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
     protected $hidden = [
-        'password', 'remember_token', 'email_code', 'mobile_code', 'deleted_at', 'created_at', 'updated_at'
+        'password', 'remember_token', 'email_code', 'mobile_code', 'deleted_at', 'created_at', 'updated_at',
     ];
 
     public function attributesToArray()
     {
         $attributes = parent::attributesToArray();
 
-        foreach ($this->getMutatedAttributes() as $key)
-        {
-            if ($this->hidden)
-            {
-                if (in_array($key, $this->hidden)) continue;
+        foreach ($this->getMutatedAttributes() as $key) {
+            if ($this->hidden) {
+                if (in_array($key, $this->hidden)) {
+                    continue;
+                }
+
             }
 
-            if($this->visible)
-            {
-                if (!in_array($key, $this->visible)) continue;
+            if ($this->visible) {
+                if (!in_array($key, $this->visible)) {
+                    continue;
+                }
+
             }
 
-            if (!array_key_exists($key, $attributes))
-            {
+            if (!array_key_exists($key, $attributes)) {
                 $attributes[$key] = $this->mutateAttribute($key, null);
             }
         }
@@ -51,63 +52,77 @@ class Provider extends Authenticatable
 
     public function getTitleAttribute()
     {
-        if(App::isLocale('en'))
+        if (App::isLocale('en')) {
             return $this->title_en;
-        else
+        } else {
             return $this->title_ar;
+        }
+
     }
 
     public function getFirstNameAttribute()
     {
-        if(App::isLocale('en'))
+        if (App::isLocale('en')) {
             return $this->first_name_en;
-        else
+        } else {
             return $this->first_name_ar;
+        }
+
     }
 
     public function getLastNameAttribute()
     {
-        if(App::isLocale('en'))
+        if (App::isLocale('en')) {
             return $this->last_name_en;
-        else
+        } else {
             return $this->last_name_ar;
+        }
+
     }
 
     public function getSpecialityAreaAttribute()
     {
-        if(App::isLocale('en'))
+        if (App::isLocale('en')) {
             return $this->speciality_area_en;
-        else
+        } else {
             return $this->speciality_area_ar;
+        }
+
     }
 
     public function getAboutAttribute()
     {
-        if(App::isLocale('en'))
+        if (App::isLocale('en')) {
             return $this->about_en;
-        else
+        } else {
             return $this->about_ar;
+        }
+
     }
 
     public function getExperienceAttribute()
     {
-        if(App::isLocale('en'))
+        if (App::isLocale('en')) {
             return $this->experience_en;
-        else
+        } else {
             return $this->experience_ar;
+        }
+
     }
 
     public function getEducationAttribute()
     {
-        if(App::isLocale('en'))
+        if (App::isLocale('en')) {
             return $this->education_en;
-        else
+        } else {
             return $this->education_ar;
+        }
+
     }
 
     public function getProfilePicturePathAttribute($value)
     {
-     return Utilities::getFileUrl($value, null, 'local', false);
+        return Utilities::getFileUrl($value, null, 'local', false);
     }
 
     public function services()
@@ -131,7 +146,7 @@ class Provider extends Authenticatable
      */
     public function scopeGetActiveProviders()
     {
-        return $this->where('is_active',config('constants.provider.active'))->where('contract_expiry_date','>=',Carbon::now());
+        return $this->where('is_active', config('constants.provider.active'))->where('contract_expiry_date', '>=', Carbon::now());
     }
 
     /**
@@ -139,7 +154,7 @@ class Provider extends Authenticatable
      */
     public function scopeGetServiceProviders()
     {
-        return $this->where('is_doctor',config('constants.provider.service_doctor'));
+        return $this->where('is_doctor', config('constants.provider.service_doctor'));
     }
 
     /**
@@ -148,10 +163,12 @@ class Provider extends Authenticatable
      */
     public function getFullNameAttribute()
     {
-        if (App::isLocale('en'))
+        if (App::isLocale('en')) {
             return "{$this->title_en} {$this->first_name_en} {$this->last_name_en}";
-        else
+        } else {
             return "{$this->title_ar} {$this->first_name_ar} {$this->last_name_ar}";
+        }
+
     }
 
     public function pushNotification()
@@ -162,5 +179,32 @@ class Provider extends Authenticatable
     public function servicesBookings()
     {
         return $this->hasMany('App\Models\ServiceBooking', 'provider_id_assigned_by_admin', 'id');
+    }
+
+    public function getContractStartDateAttribute()
+    {
+        if (isset(request()->headers->all()['time-zone'])) {
+            return Carbon::parse($this->attributes["contract_start_date"])->timezone(request()->headers->all()['time-zone'][0])->format('Y-m-d H:m:s');
+        } else {
+            return $this->attributes["contract_start_date"];
+        }
+    }
+
+    public function getContractExpiryDateAttribute()
+    {
+        if (isset(request()->headers->all()['time-zone'])) {
+            return Carbon::parse($this->attributes["contract_expiry_date"])->timezone(request()->headers->all()['time-zone'][0])->format('Y-m-d H:m:s');
+        } else {
+            return $this->attributes["contract_expiry_date"];
+        }
+    }
+
+    public function getLastLoginDateAttribute()
+    {
+        if (isset(request()->headers->all()['time-zone'])) {
+            return Carbon::parse($this->attributes["last_login_date"])->timezone(request()->headers->all()['time-zone'][0])->format('Y-m-d H:m:s');
+        } else {
+            return $this->attributes["last_login_date"];
+        }
     }
 }
