@@ -1,6 +1,8 @@
 <?php
 namespace App\Traits;
 
+use Carbon\Carbon;
+
 trait ModelStartEndTimeAccessors
 {
     public function getStartDateAttribute()
