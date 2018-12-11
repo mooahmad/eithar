@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\App;
+use App\Traits\ModelDateTimeAccessors;
 
 class MedicalReports extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, ModelDateTimeAccessors;
     public $timestamps = true;
     protected $table = 'medical_reports';
     protected $dateFormat = 'Y-m-d H:m:s';

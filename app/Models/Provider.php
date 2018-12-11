@@ -10,10 +10,11 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\App;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use SMartins\PassportMultiauth\HasMultiAuthApiTokens;
+use App\Traits\ModelDateTimeAccessors;
 
 class Provider extends Authenticatable
 {
-    use SoftDeletes, Notifiable, HasMultiAuthApiTokens;
+    use SoftDeletes, Notifiable, HasMultiAuthApiTokens, ModelDateTimeAccessors;
 
     public $timestamps = true;
     protected $table = 'providers';

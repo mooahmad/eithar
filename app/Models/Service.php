@@ -6,10 +6,11 @@ use App\Helpers\Utilities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\App;
+use App\Traits\ModelDateTimeAccessors;
 
 class Service extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, ModelDateTimeAccessors;
 
     public    $timestamps = true;
     protected $table      = 'services';

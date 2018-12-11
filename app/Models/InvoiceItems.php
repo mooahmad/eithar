@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Traits\ModelDateTimeAccessors;
 
 class InvoiceItems extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, ModelDateTimeAccessors;
 
     protected $table = 'invoice_items';
 

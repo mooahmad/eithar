@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Traits\ModelDateTimeAccessors;
+use App\Traits\ModelStartEndTimeAccessors;
 
 class ProvidersCalendar extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, ModelDateTimeAccessors, ModelStartEndTimeAccessors;
 
     public $timestamps = true;
     protected $table = 'providers_calendars';

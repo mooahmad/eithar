@@ -8,6 +8,7 @@ use App\Events\SendSMSEvent;
 use function foo\func;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Events\UserTransactionsEvent;
 
 class Kernel extends ConsoleKernel
 {
@@ -33,6 +34,9 @@ class Kernel extends ConsoleKernel
             event(new SendEmailsEvent());
 
             event(new SendSMSEvent());
+
+            event(new UserTransactionsEvent());
+
     }
 
     /**

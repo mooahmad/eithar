@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use App\LapCalendar;
+use App\Traits\ModelDateTimeAccessors;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ServiceBookingAppointment extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, ModelDateTimeAccessors;
 
     public $timestamps = true;
     protected $table = 'service_booking_appointments';

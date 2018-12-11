@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
+use App\Traits\ModelDateTimeAccessors;
 
 class User extends Authenticatable implements CanResetPassword
 {
-    use Notifiable, HasApiTokens, SoftDeletes, \Illuminate\Auth\Passwords\CanResetPassword;
+    use ModelDateTimeAccessors, Notifiable, HasApiTokens, SoftDeletes, \Illuminate\Auth\Passwords\CanResetPassword;
 
     protected $dateFormat = 'Y-m-d H:m:s';
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
