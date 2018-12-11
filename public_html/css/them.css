@@ -5,23 +5,23 @@
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -36,7 +36,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -71,7 +72,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -98,6 +99,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -119,7 +122,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -208,23 +210,23 @@ th {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -239,7 +241,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -274,7 +277,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -301,6 +304,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -322,7 +327,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -548,23 +552,23 @@ th {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -579,7 +583,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -614,7 +619,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -641,6 +646,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -662,7 +669,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -1154,23 +1160,23 @@ th {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -1185,7 +1191,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -1220,7 +1227,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -1247,6 +1254,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -1268,7 +1277,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -1396,23 +1404,23 @@ th {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -1427,7 +1435,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -1462,7 +1471,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -1489,6 +1498,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -1510,7 +1521,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -1599,23 +1609,23 @@ th {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -1630,7 +1640,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -1665,7 +1676,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -1692,6 +1703,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -1713,7 +1726,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -2270,23 +2282,23 @@ th {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -2301,7 +2313,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -2336,7 +2349,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -2363,6 +2376,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -2384,7 +2399,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -2473,23 +2487,23 @@ th {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -2504,7 +2518,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -2539,7 +2554,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -2566,6 +2581,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -2587,7 +2604,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -2762,23 +2778,23 @@ th {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -2793,7 +2809,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -2828,7 +2845,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -2855,6 +2872,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -2876,7 +2895,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -3176,8 +3194,7 @@ th {
       .doctor_info-block .doctor_info-description .rate_content aside {
         cursor: pointer; }
         .doctor_info-block .doctor_info-description .rate_content aside span {
-          color: #7D7D7D;
-          margin: 0 8px; }
+          color: #7D7D7D; }
         .doctor_info-block .doctor_info-description .rate_content aside i {
           font-size: 20px;
           color: #a5a5a5; }
@@ -3256,23 +3273,23 @@ th {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -3287,7 +3304,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -3322,7 +3340,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -3349,6 +3367,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -3370,7 +3390,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -3459,23 +3478,23 @@ th {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -3490,7 +3509,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -3525,7 +3545,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -3552,6 +3572,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -3573,7 +3595,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -3902,23 +3923,23 @@ th {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -3933,7 +3954,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -3968,7 +3990,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -3995,6 +4017,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -4016,7 +4040,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -4351,23 +4374,23 @@ input {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -4382,7 +4405,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -4417,7 +4441,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -4444,6 +4468,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -4465,7 +4491,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -4608,23 +4633,23 @@ pre {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -4639,7 +4664,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -4674,7 +4700,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -4701,6 +4727,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -4722,7 +4750,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -5417,23 +5444,23 @@ span.round-tab:hover {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -5448,7 +5475,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -5483,7 +5511,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -5510,6 +5538,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -5531,7 +5561,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -5620,23 +5649,23 @@ th {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -5651,7 +5680,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -5686,7 +5716,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -5713,6 +5743,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -5734,7 +5766,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -5909,23 +5940,23 @@ th {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -5940,7 +5971,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -5975,7 +6007,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -6002,6 +6034,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -6023,7 +6057,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -6332,23 +6365,23 @@ th {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -6363,7 +6396,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -6398,7 +6432,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -6425,6 +6459,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -6446,7 +6482,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -6535,23 +6570,23 @@ th {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -6566,7 +6601,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -6601,7 +6637,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -6628,6 +6664,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -6649,7 +6687,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -6824,23 +6861,23 @@ th {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -6855,7 +6892,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -6890,7 +6928,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -6917,6 +6955,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -6938,7 +6978,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -7229,23 +7268,23 @@ p {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -7260,7 +7299,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -7295,7 +7335,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -7322,6 +7362,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -7343,7 +7385,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -7432,23 +7473,23 @@ th {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -7463,7 +7504,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -7498,7 +7540,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -7525,6 +7567,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -7546,7 +7590,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -7721,23 +7764,23 @@ th {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -7752,7 +7795,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -7787,7 +7831,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -7814,6 +7858,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -7835,7 +7881,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -8183,23 +8228,23 @@ th {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -8214,7 +8259,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -8249,7 +8295,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -8276,6 +8322,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -8297,7 +8345,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -8386,23 +8433,23 @@ th {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -8417,7 +8464,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -8452,7 +8500,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -8479,6 +8527,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -8500,7 +8550,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -8675,23 +8724,23 @@ th {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -8706,7 +8755,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -8741,7 +8791,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -8768,6 +8818,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -8789,7 +8841,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -9265,23 +9316,23 @@ th {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -9296,7 +9347,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -9331,7 +9383,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -9358,6 +9410,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -9379,7 +9433,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -9468,23 +9521,23 @@ th {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -9499,7 +9552,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -9534,7 +9588,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -9561,6 +9615,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -9582,7 +9638,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -9754,6 +9809,22 @@ th {
 
 /**/
 /*Start Blog Page*/
+#upload_imag {
+  position: relative;
+  cursor: pointer; }
+  #upload_imag input[type="file"] {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    cursor: pointer; }
+  #upload_imag span {
+    margin: 0 4px; }
+
 .ediating_profile .add_image {
   text-align: center;
   margin: 0 auto; }
@@ -9767,26 +9838,10 @@ th {
     background: #fff;
     box-shadow: 0 48px 88px rgba(0, 0, 0, 0.2);
     margin-bottom: 30px; }
-  .ediating_profile .add_image #upload_imag {
-    position: relative;
-    cursor: pointer; }
-  .ediating_profile .add_image input[type="file"] {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    opacity: 0;
-    cursor: pointer; }
   .ediating_profile .add_image .button {
     margin-top: 30px; }
-    .ediating_profile .add_image .button span {
-      margin: 0 4px; }
 @media (max-width: 768px) {
   .ediating_profile .profile_form {
-    text-align: center;
     margin-top: 30px; } }
 .ediating_profile .profile_form .form_title {
   font-size: 24px;
@@ -9798,8 +9853,7 @@ th {
   color: #044D7F;
   margin: 16px 0; }
 .ediating_profile .profile_form .button {
-  margin: 0 auto;
-  background: #000; }
+  margin: 0 auto; }
   .ediating_profile .profile_form .button:hover {
     background: #0095D9; }
 
@@ -9808,23 +9862,23 @@ th {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -9839,7 +9893,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -9874,7 +9929,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -9901,6 +9956,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -9922,7 +9979,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -10011,23 +10067,23 @@ th {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -10042,7 +10098,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -10077,7 +10134,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -10104,6 +10161,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -10125,7 +10184,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
@@ -10452,7 +10510,7 @@ th {
 /***********/
 .profile_menu {
   background: #eee;
-  padding: 40px 20px;
+  padding: 40px 6px;
   z-index: 9;
   max-width: 300px; }
   @media (min-width: 768px) {
@@ -10524,22 +10582,6 @@ th {
       .profile_menu .add_image .button span {
         margin: 0 8px;
         display: inline-block; }
-    .profile_menu .add_image .back_button {
-      height: 40px;
-      width: 40px;
-      line-height: 40px;
-      text-align: center;
-      border: 2px solid #f00;
-      border-radius: 100%;
-      margin: 20px 0; }
-      .profile_menu .add_image .back_button:before {
-        color: #f00;
-        transform: rotate(90deg);
-        display: block; }
-      .profile_menu .add_image .back_button:hover {
-        border: 2px solid #0095D9; }
-        .profile_menu .add_image .back_button:hover:before {
-          color: #0095D9; }
   .profile_menu .menu_list li {
     padding: 10px 16px;
     display: inline-block;
@@ -10553,9 +10595,30 @@ th {
       background: #fff; }
     .profile_menu .menu_list li img {
       margin: 0 8px; }
+    .profile_menu .menu_list li i {
+      color: #0095D9;
+      font-size: 20px;
+      margin: 0 4px; }
     .profile_menu .menu_list li span {
-      font-size: 18px;
+      font-size: 14px;
       color: #000; }
+
+.back_button {
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  text-align: center;
+  border: 2px solid #f00;
+  border-radius: 100%;
+  margin: 20px 0; }
+  .back_button:before {
+    color: #f00;
+    transform: rotate(90deg);
+    display: block; }
+  .back_button:hover {
+    border: 2px solid #0095D9; }
+    .back_button:hover:before {
+      color: #0095D9; }
 
 #wallt > section:not(:first-child) {
   display: none; }
@@ -10728,23 +10791,23 @@ th {
 /***Container Widt***/
 .select_content-area {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   align-content: center; }
-  .select_content-area .select_your-tupe {
-    width: 100%; }
-    .select_content-area .select_your-tupe aside {
-      width: 100%;
-      display: flex;
-      justify-content: space-around; }
-      .select_content-area .select_your-tupe aside .select_type-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        margin-bottom: 30px; }
-        .select_content-area .select_your-tupe aside .select_type-content span {
-          display: block; }
+  .select_content-area .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px; }
+    .select_content-area .select_type-content input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px; }
+    .select_content-area .select_type-content span {
+      display: block; }
   .select_content-area .slect_Your-twon {
     width: 100%; }
 
@@ -10759,7 +10822,8 @@ img {
 
 [data-src] {
   -webkit-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 /********Glopal Class******/
 .home_page-title {
@@ -10794,7 +10858,7 @@ a:hover {
   text-decoration: none; }
 
 .button, .button-blue, .advanced_search-button,
-.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .add_image .back_button, .profile_menu .add_image .back_button:before, .profile_menu .menu_list li, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
+.our_student-button, .glopal_form-, .navigation .navigation_content .language, .menu_content .navbar_menu li:before, .menu_content .navbar_menu li a, .navbar_button, .navbar_button i, .webinars_slider-js .slick-arrow, .webinars_slider-js .slick-arrow:before, .our_company-js .slick-arrow, .our_company-js .slick-arrow:before, .serach_subheader .serach_subheader-department .department_button, .serach_subheader .serach_subheader-searsh button, .home_page-services .services_block, .services_block-icon, .department_slider .department_block, .list_doctor .doctor_block .doctor_img:before, .list_doctor .doctor_block .doctor_img .more_details, .doctor_description .doctor_video .btn, .your_map .open_your-map, .down_icon, .registration_content .modal-content .modal-body .paragraph_link a, .modal-footer span, #creat_account .modal-body .list_registration-with li a, #sign_in .modal-body .sign_with-social ul li, .profile_menu .menu_list li, .back_button, .back_button:before, footer .footer_subscribe button, footer ul li a, .social_media li a, .go_up {
   transition: all ease-in-out 0.3s; }
 
 .head_page:before, .header_slider .header:before {
@@ -10821,6 +10885,8 @@ a:hover {
   @media (max-width: 576px) {
     .glopal_form {
       margin-top: 30px; } }
+  .glopal_form > div {
+    margin-bottom: 30px; }
   .glopal_form select {
     width: 100%;
     color: #044D7F;
@@ -10842,7 +10908,6 @@ a:hover {
     border-radius: 10px;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
     font-size: 14px; }
   .glopal_form .custum_upload-button {
     position: relative; }
