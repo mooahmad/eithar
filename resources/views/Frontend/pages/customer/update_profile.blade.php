@@ -8,7 +8,7 @@
     <div class="single_page-content ediating_profile">
         <!-- Satrt My Aaccount Pages-->
         <div class="container">
-            {!! Form::model($customer,['files' => true,'url'=>url()->route('customer_update_profile_post')]) !!}
+            {!! Form::model($customer,['files' => true,'url'=>url()->route('customer_update_profile_post',['id'=>$customer->id,'name'=>\App\Helpers\Utilities::beautyName($customer->full_name)])]) !!}
                 <div class="row">
                     <div class="col-sm-12 col-lg-4">
                         <div class="add_image">
@@ -79,7 +79,7 @@
                                     <aside class="slect_Your-twon">
                                         <label for="gender">{{ trans('main.gender') }}</label>
                                         <div class="custum_select">
-                                            {!! Form::select('gender',$gender,old('gender'),['placeholder'=>trans('main.gender'),'required','id'=>'gender']) !!}
+                                            {!! Form::select('gender',$gender,old('gender'),['required','id'=>'gender']) !!}
                                             @if($errors->has('gender'))
                                                 <span class="text-danger">{{ $errors->first('gender') }}</span>
                                             @endif
@@ -161,24 +161,24 @@
                                     @endif
                                 </div>
 
-                                <div class="col-sm-12">
-                                    <h3 class="sub_title">{{ trans('main.change_password') }}</h3>
-                                </div>
-                                <div class="col-sm-12 col-md-12 col-lg-6">
-                                    <label for="password">{{ trans('main.password') }}</label>
-                                    {!! Form::password('password',['placeholder'=>trans('main.password'),'id'=>'password']) !!}
-                                    @if($errors->has('password'))
-                                        <span class="text-danger">{{ $errors->first('password') }}</span>
-                                    @endif
-                                </div>
+                                {{--<div class="col-sm-12">--}}
+                                    {{--<h3 class="sub_title">{{ trans('main.change_password') }}</h3>--}}
+                                {{--</div>--}}
+                                {{--<div class="col-sm-12 col-md-12 col-lg-6">--}}
+                                    {{--<label for="password">{{ trans('main.password') }}</label>--}}
+                                    {{--{!! Form::password('password',['placeholder'=>trans('main.password'),'id'=>'password']) !!}--}}
+                                    {{--@if($errors->has('password'))--}}
+                                        {{--<span class="text-danger">{{ $errors->first('password') }}</span>--}}
+                                    {{--@endif--}}
+                                {{--</div>--}}
 
-                                <div class="col-sm-12 col-md-12 col-lg-6">
-                                    <label for="password_confirmation">{{ trans('main.password_confirmation') }}</label>
-                                    {!! Form::password('password_confirmation',['placeholder'=>trans('main.password_confirmation'),'id'=>'password_confirmation']) !!}
-                                    @if($errors->has('password_confirmation'))
-                                        <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
-                                    @endif
-                                </div>
+                                {{--<div class="col-sm-12 col-md-12 col-lg-6">--}}
+                                    {{--<label for="password_confirmation">{{ trans('main.password_confirmation') }}</label>--}}
+                                    {{--{!! Form::password('password_confirmation',['placeholder'=>trans('main.password_confirmation'),'id'=>'password_confirmation']) !!}--}}
+                                    {{--@if($errors->has('password_confirmation'))--}}
+                                        {{--<span class="text-danger">{{ $errors->first('password_confirmation') }}</span>--}}
+                                    {{--@endif--}}
+                                {{--</div>--}}
                                 <button class="button" type="submit">{{ trans('main.update') }}</button>
                             </div>
                         </div>

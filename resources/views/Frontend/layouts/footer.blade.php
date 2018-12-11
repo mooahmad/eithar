@@ -63,6 +63,37 @@
         <span class="go_up go_up-js fas fa-sort-up"> </span>
         <!--End Button Go up-->
 
+        <!--=05=Start Popup accepted_code-->
+        <div class="sucsess_code">
+            <div class="container">
+                <!-- The Modal -->
+                <div class="modal fade" id="success_message">
+                    <div class="modal-dialog ">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <button class="close fas fa-times" type="button" data-dismiss="modal"> </button>
+                            </div>
+                            <!-- Modal body -->
+                            <div class="modal-body model_code">
+                                <!-- Start Form content-->
+                                <div class="form_content">
+                                    @if(Session::has('success_message'))
+                                        <p>{{ session()->get('success_message') }}</p>
+                                    @endif
+                                </div>
+                                <!-- End  Form content-->
+                                <aside class="form_man">
+                                    <img src="{{ asset('public/Frontend/img/sucsess_code.png') }}" alt="{{ trans('main.site_name') }}">
+                                </aside>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--=05 Send Code accepted_code -->
+
         <script src="{{ asset('public/Frontend/js/jquery-1.12.1.min.js') }}"></script>
         <script src="{{ asset('public/Frontend/js/popper.min.js') }}"></script>
         <script src="{{ asset('public/Frontend/js/bootstrap.min.js') }}"></script>
@@ -73,5 +104,10 @@
             <script src="{{ asset('public/Frontend/js/script.js') }}"></script>
         @endif
         @yield('js')
+        @if(Session::has('success_message'))
+            <script>
+                $('#success_message').modal('show');
+            </script>
+        @endif
     </body>
 </html>

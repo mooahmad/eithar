@@ -134,4 +134,5 @@ return [
     'update'                        => 'Update',
     'save'                          => 'Save',
     'change_password'               => 'Change Password',
+    'success_message'               => 'Operation Completed Successfully',
 ];

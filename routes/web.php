@@ -46,7 +46,7 @@ Route::group(['namespace' => FE], function () {
                 Route::group(['middleware'=>'CustomerWebAuth'],function (){
                     Route::get('logout', 'LoginFrontController@logoutCustomer')->name('customer_logout');
                     Route::get('profile/update/{id}/{name}', 'UpdateCustomerProfileController@showUpdateCustomerProfile')->name('customer_show_update_profile');
-                    Route::post('profile/update', 'UpdateCustomerProfileController@storeUpdateCustomerProfile')->name('customer_update_profile_post');
+                    Route::post('profile/update/{id}/{name}', 'UpdateCustomerProfileController@storeUpdateCustomerProfile')->name('customer_update_profile_post');
                 });
 
             });

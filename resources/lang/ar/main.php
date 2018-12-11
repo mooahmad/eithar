@@ -134,4 +134,5 @@ return [
     'update'                        => 'تعديل',
     'save'                          => 'حفظ',
     'change_password'               => 'تعديل كلمة المرور',
+    'success_message'               => 'تمت العملية بنجاح',
 ];
