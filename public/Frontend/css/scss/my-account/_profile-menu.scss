@@ -1,7 +1,7 @@
 // Start Profile Menue 
 .profile_menu {
     background: #eee;
-    padding: 40px 20px;
+    padding: 40px 6px;
     // min-height: 30px;
     
      z-index: 9;
@@ -101,30 +101,7 @@
                 display: inline-block;
             }
         }
-        .back_button {
-            height: 40px;
-            width: 40px;
-            line-height: 40px;
-            text-align: center;
-            border: 2px solid $redColor;
-            border-radius: 100%;
-
-            @extend %transition;
-            margin: 20px 0;
-            &:before {
-                @extend %transition;
-                color: $redColor;
-                transform: rotate(90deg);
-                display: block;
-            }
-            &:hover {
-                border: 2px solid $secondColor;
-
-                &:before {
-                    color: $secondColor;
-                }
-            }
-        }
+        
     } // Start Menu List
     .menu_list {
         li {
@@ -145,12 +122,44 @@
             img {
                 margin: 0 8px;
             }
+            i{
+                color:$secondColor;
+                font-size: 20px;
+                margin: 0 4px;
+            }
             span {
-                font-size: 18px;
+                font-size: 14px;
                 color: $darkColor;
             }
         }
     } // End Menu List
 }
 
+
+.back_button {
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    text-align: center;
+    border: 2px solid $redColor;
+    border-radius: 100%;
+
+    @extend %transition;
+    margin: 20px 0;
+
+    &:before {
+        @extend %transition;
+        color: $redColor;
+        transform: rotate(90deg);
+        display: block;
+    }
+
+    &:hover {
+        border: 2px solid $secondColor;
+
+        &:before {
+            color: $secondColor;
+        }
+    }
+}
 // End Profile Menue
