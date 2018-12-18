@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="rtl">
+<html lang="en" dir="ltr">
 
 <head>
   <meta charset="utf-8">
@@ -9,11 +9,11 @@
 
   <link rel="stylesheet" href="css/fontawesome-all.css" />
   <link rel="stylesheet" href="css/bootstrap.min.css" />
-  <link rel="stylesheet" href="css/bootstrap-rtl.min.css" />
+  <!-- <link rel="stylesheet" href="css/bootstrap-rtl.min.css" /> -->
   <link rel="stylesheet" href="css/slick.css" />
 
   <link rel="stylesheet" href="css/them.css" />
-  <link rel="stylesheet" href="css/them.rtl.css" />
+  <!-- <link rel="stylesheet" href="css/them.rtl.css" /> -->
 
   <!--Fonts-->
   <link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
@@ -29,43 +29,89 @@
 <body>
 
 
-  <!--=01= Start Navbar-->
-  <nav class="navbar">
-    <div class="container">
-      <div class=" navbar_content">
-        <a class="navbar_brand" href="index.html">
-                    <img src="img/logo/logoColor.png" class="logo_color">
-                    <img src="img/logo/logo.png" class="logo_white">
-                </a>
+<!--=01= Start Navbar-->
+<nav class="navbar">
+  <div class="container">
+    <div class=" navbar_content">
+      <a class="navbar_brand" href="index.html">
+        <img src="img/logo/logoColor.png" class="logo_color">
+        <img src="img/logo/logo.png" class="logo_white">
+      </a>
 
 
-        <!--Start Navbar Menu-->
-        <div class="navbar_overlay">
+      <!--Start Navbar Menu-->
+      <div class="navbar_overlay">
 
-          <div class="menu_content">
-            <ul class="navbar_menu list-unstyled ">
-              <li><a href="#" title="Home">الرئيسية</a></li>
-              <li><a href="#" title="Home">من نحن</a></li>
-              <li><a href="#" title="Home">خدماتنا</a></li>
-              <li><a href="#" title=""> اتصل بنا </a></li>
+        <div class="menu_content">
+          <ul class="navbar_menu list-unstyled ">
+            <li><a href="#" title="Home">
+                Home
+              </a></li>
+            <li><a href="#" title="Home">
+                About us
+              </a></li>
+            <li><a href="#" title="Home">
+                Our services
+              </a></li>
+            <li><a href="#" title=""> Contact us </a></li>
 
-            </ul>
+          </ul>
 
-            <a href="#" class="languge_button button">النسخة الانجليزية</a>
+          <!-- Start Notification Area-->
+          <div class="login_area-content">
+            <!-- Start Notification Area-->
+            <div class="notification_area ">
+              <aside class="notification_button new_notification "> <i class="far fa-bell"></i></aside>
+              <ul class="notification_area-list">
+                <li class="title"><span>الاشعارات</span></li>
+                <!-- Notification List   -->
+                <li><span class="notification-date">الأربعاء 25 سبتمبر . 2:30 مساء</span><a href="">اكمل شراء دوره
+                    "التشوهات
+                    الفكريه" واحصل %علي خصم 25</a></li>
+                <!-- Notification List-->
+                <!-- Notification List   -->
+                <li><span class="notification-date">الأربعاء 25 سبتمبر . 2:30 مساء</span><a href="">اكمل شراء دوره
+                    "التشوهات
+                    الفكريه" واحصل %علي خصم 25</a></li>
+                <!-- Notification List-->
+                <!-- Notification List   -->
+                <li><span class="notification-date">الأربعاء 25 سبتمبر . 2:30 مساء</span><a href="">اكمل شراء دوره
+                    "التشوهات
+                    الفكريه" واحصل %علي خصم 25</a></li>
+                <!-- Notification List-->
+                <!-- Notification List   -->
+                <li class="active"><span class="notification-date">الأربعاء 25 سبتمبر . 2:30 مساء</span><a href="">اكمل
+                    شراء دوره
+                    "التشوهات الفكريه" واحصل %علي خصم 25</a></li>
+                <!-- Notification List-->
+              </ul>
+            </div>
+            <!-- Start Notification Area--><a class="login_button" href="#">
+              <aside class="avatar_img"><i class="fas fa-user-tie"></i></aside><span data-toggle="modal" data-target="#sign_in">
+                Logn in
+              </span>
+              <a href="#" class="languge_button button languge">
+                النسخة العربية
+              </a>
           </div>
-        </div>
-        <!--End Navbar Menu-->
 
 
-        <!--Navbar Button-->
-        <div class="navbar_button">
-          <i class="fas fa-bars"></i>
         </div>
       </div>
+      <!--End Navbar Menu-->
 
+
+      <!--Navbar Button-->
+      <div class="navbar_button">
+        <i class="fas fa-bars"></i>
+      </div>
     </div>
-  </nav>
-  <!--=01= Start Navbar-->
+
+  </div>
+</nav>
+<!--=01= Start Navbar-->
+
+
   <!--=02= Start Header Slider-->
   <div class="header_slider single_page-head  ">
     <div class="header" data-src="img/bg/bg-header1.png">
@@ -74,42 +120,6 @@
   </div>
   <!--=02= End Header Slider-->
 
-  <!--=03= Start Search Subheader-->
-  <div class="serach_subheader">
-    <div class="container">
-      <div class="serach_subheader-content">
-        <form>
-          <aside class="serach_subheader-department">
-            <input type="button" class="department_button" value=" رعاية اولادي">
-            <input type="button" class="department_button" value="ممرضات ">
-            <input type="button" class="department_button" value="علاج طبيعي ">
-            <input type="button" class="department_button" value=" المـــعامل">
-            <input type="button" class="department_button" value="الأطباء ">
-                    </aside>
-            <aside class="serach_subheader-searsh">
-              <button type="submit" class="fas fa-search"></button>
-              <input type="text" placeholder="بحث">
-              <div class="serach_subheader-select">
-                <select>
-                        <option> دكتور</option>
-                        <option> دكتور</option>
-                        <option> دكتور</option>
-                        </select>
-
-                <select>
-                        <option> دكتور</option>
-                        <option> دكتور</option>
-                        <option> دكتور</option>
-                        </select>
-              </div>
-
-            </aside>
-        </form>
-      </div>
-    </div>
-
-  </div>
-  <!--=03= End Search Subheader-->
 
   <!-- Start Single Page -->
   <div class="single_page-content">
@@ -117,14 +127,6 @@
   </div>
 
   <!-- End Single Page -->
-
-
-
-
-
-
-
-
 
 
   <!--Start Footer -->
@@ -220,8 +222,8 @@
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/slick.js"></script>
-  <!--    <script src="js/script.js"></script>-->
-  <script src="js/script-rtl.js"></script>
+     <script src="js/script.js"></script>
+  <!-- <script src="js/script-rtl.js"></script> -->
 
 </body>
 

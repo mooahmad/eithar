@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\Utilities;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
@@ -35,6 +36,38 @@ class Customer extends Authenticatable
         'password', 'remember_token', 'email_code', 'mobile_code', 'deleted_at', 'created_at', 'updated_at'
     ];
 
+    /**
+     * @return array
+     */
+    public function attributesToArray()
+    {
+        $attributes = parent::attributesToArray();
+
+        foreach ($this->getMutatedAttributes() as $key) {
+            if ($this->hidden) {
+                if (in_array($key, $this->hidden)) continue;
+            }
+
+            if ($this->visible) {
+                if (!in_array($key, $this->visible)) continue;
+            }
+
+            if (!array_key_exists($key, $attributes)) {
+                $attributes[$key] = $this->mutateAttribute($key, null);
+            }
+        }
+
+        return $attributes;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMobileAttribute()
+    {
+        return str_after($this->mobile_number,config('constants.MobileNumberStart'));
+    }
+
     public function routeNotificationForMail($notification)
     {
         return $this->email;
@@ -50,12 +83,17 @@ class Customer extends Authenticatable
     }
 
     /**
-     * return customer full name with nationality ID
+     * return customer full name
      * @return string
      */
     public function getFullNameAttribute()
     {
         return "{$this->first_name} {$this->middle_name} {$this->last_name}";
+    }
+
+    public function getProfileImageAttribute()
+    {
+        return Utilities::getFileUrl($this->profile_picture_path);
     }
 
     /**
@@ -82,5 +120,13 @@ class Customer extends Authenticatable
     public function pushNotification()
     {
         return $this->hasOne('App\Models\PushNotification', 'customer_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function family_members()
+    {
+        return $this->hasMany(FamilyMember::class,'user_parent_id','id');
     }
 }

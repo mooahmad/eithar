@@ -207,4 +207,22 @@ class Provider extends Authenticatable
             return $this->attributes["last_login_date"];
         }
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function ratings()
+    {
+        return $this->hasMany(TransactionsUsers::class,'service_provider_id','id')
+            ->where('type',config('constants.transactionsTypes.provider'))
+            ->where('transaction_type',config('constants.transactions.rate'));
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function currency()
+    {
+        return $this->belongsTo(Currency::class,'currency_id','id');
+    }
 }

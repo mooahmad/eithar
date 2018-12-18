@@ -1,0 +1,157 @@
+//Start Wallt
+
+#wallt {
+  & > section:not(:first-child) {
+    display: none;
+  }
+
+  .wallt_buttons {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+// Start Currenrt Bualance
+
+.current_balance {
+  text-align: center;
+
+  .current_balance-cicle {
+    padding-top: 80px;
+    margin: 30px auto;
+    text-align: center;
+    height: 300px;
+    width: 300px;
+    border: 1px solid $mainColor;
+    border-radius: 100%;
+    vertical-align: middle;
+
+    #balance {
+      font-size: 55px;
+      color: $mainColor;
+    }
+
+    p {
+      font-size: 24px;
+      color: $darkColor;
+    }
+  }
+}
+// End Currenrt Bualance
+// Start charge Bualance
+
+.charge_balance {
+  .charge_balance-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 200px;
+    @media (min-width:$md) {
+      height: 400px;
+    }
+
+    input {
+      border-bottom: 2px solid $darkColor;
+      margin: 0 20px;
+
+      &:focus {
+        outline: none!important;
+      }
+    }
+  }
+}
+// Start charge Bualance
+//Start Section of payment_wayd
+
+.payment_way {
+  .walt_progress {
+    text-align: center;
+    margin-top: 80px;
+    @media (max-width:$sm) {
+      display: none;
+    }
+
+    li {
+      display: inline;
+      text-align: center;
+      margin: 0 30px;
+
+      &.selected_point {
+        span {
+          &:before {
+            box-shadow: 0 0 0 30px $grayColor;
+          }
+        }
+      }
+
+      span {
+        position: relative;
+        display: inline-block;
+        color: $mainColor;
+        font-size: 18px;
+
+        &:before {
+          position: absolute;
+          content: "";
+          display: block;
+          height: 15px;
+          width: 15px;
+          border-radius: 100%;
+          background-color: $mainColor;
+          top: -60px;
+          right: 50%;
+          margin-right: -8px;
+        }
+      }
+    }
+  }
+}
+
+.chose_payment-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  @media (min-width:$lg) {
+    margin: 60px 0;
+  }
+
+  .payment_block {
+    min-width: 320px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 0 10px $grayColor;
+    padding: 16px;
+    margin: 15px;
+    min-height: 120px;
+    @media (max-width:$md) {
+      width: 100%;
+    }
+
+    &.add_new {
+      background-color: $grayColor;
+
+      span {
+        margin: 0 6px;
+      }
+    }
+
+    &:hover {
+      box-shadow: 0 0 40px $grayColor;
+    }
+
+    img {
+      max-height: 60px;
+      display: block;
+    }
+
+    span {
+      color: $darkColor;
+      display: inline-block;
+      margin-top: 20px;
+    }
+  }
+}
+//End Section of payment_way
+//End Wallt

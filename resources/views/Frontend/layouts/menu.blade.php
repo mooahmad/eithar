@@ -17,11 +17,63 @@
                         <li><a href="{{ url()->route('home') }}" title="{{ trans('main.contact_us') }}">{{ trans('main.contact_us') }}</a></li>
                     </ul>
 
-                    @if(LaravelLocalization::getCurrentLocale() == 'ar')
-                        <a rel="alternate" hreflang="en" href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}" class="languge_button button">النسخة الانجليزية</a>
+                    <!-- Start Notification Area-->
+                    <div class="login_area-content">
+                        <!-- Start Notification Area-->
+                        <div class="notification_area ">
+                            <aside class="notification_button new_notification ">
+                                <i class="far fa-bell"></i>
+                            </aside>
+                            <ul class="notification_area-list">
+                                <li class="title"><span>الاشعارات</span></li>
+                                <!-- Notification List   -->
+                                <li><span class="notification-date">الأربعاء 25 سبتمبر . 2:30 مساء</span><a href="">اكمل شراء دوره
+                                        "التشوهات
+                                        الفكريه" واحصل %علي خصم 25</a>
+                                </li>
+                                <!-- Notification List-->
+                                <!-- Notification List   -->
+                                <li><span class="notification-date">الأربعاء 25 سبتمبر . 2:30 مساء</span><a href="">اكمل شراء دوره
+                                        "التشوهات
+                                        الفكريه" واحصل %علي خصم 25</a></li>
+                                <!-- Notification List-->
+                                <!-- Notification List   -->
+                                <li><span class="notification-date">الأربعاء 25 سبتمبر . 2:30 مساء</span><a href="">اكمل شراء دوره
+                                        "التشوهات
+                                        الفكريه" واحصل %علي خصم 25</a></li>
+                                <!-- Notification List-->
+                                <!-- Notification List   -->
+                                <li class="active"><span class="notification-date">الأربعاء 25 سبتمبر . 2:30 مساء</span><a href="">اكمل
+                                        شراء دوره
+                                        "التشوهات الفكريه" واحصل %علي خصم 25</a></li>
+                                <!-- Notification List-->
+                            </ul>
+                        </div>
+                        <!-- End Notification Area-->
+
+                        @if(auth()->guard('customer-web')->check())
+{{--                            <li><a href="{{ url()->route('customer_logout') }}" title="{{ trans('main.logout') }}">{{ trans('main.logout') }}</a></li>--}}
+                            <a class="login_button" href="{{ url()->route('show_customer_profile',['id'=>auth()->guard('customer-web')->user()->id,'name'=>\App\Helpers\Utilities::beautyName(auth()->guard('customer-web')->user()->full_name)]) }}">
+                                <aside class="avatar_img">
+                                    <i class="fas fa-user-tie"></i>
+                                </aside>
+                            </a>
+                            <span>{{ auth()->guard('customer-web')->user()->first_name }}</span>
                         @else
-                        <a rel="alternate" hreflang="ar" href="{{ LaravelLocalization::getLocalizedURL('ar', null, [], true) }}" class="languge_button button">النسخة العربية</a>
-                    @endif
+                            <a class="login_button" href="{{ url()->route('customer_login') }}">
+                                <aside class="avatar_img">
+                                    <i class="fas fa-user-tie"></i>
+                                </aside>
+                            </a>
+                            <span>{{ trans('main.login') }}</span>
+                        @endif
+
+                        @if(LaravelLocalization::getCurrentLocale() == 'ar')
+                            <a rel="alternate" hreflang="en" href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}" class="languge_button button languge">النسخة الانجليزية</a>
+                        @else
+                            <a rel="alternate" hreflang="ar" href="{{ LaravelLocalization::getLocalizedURL('ar', null, [], true) }}" class="languge_button button languge">النسخة العربية</a>
+                        @endif
+                    </div>
                 </div>
             </div>
             <!--End Navbar Menu-->

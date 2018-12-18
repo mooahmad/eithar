@@ -22,6 +22,16 @@ return [
         1 => "Male",
         2 => "Female",
     ],
+    "gender_desc_en" => [
+        0 => "None",
+        1 => "Male",
+        2 => "Female",
+    ],
+    "gender_desc_ar" => [
+        0 => "لا شئ",
+        1 => "ذكر",
+        2 => "أنثي",
+    ],
     "customerMemberRelations" => [
         "father" => 1,
         "mother" => 2,
@@ -220,6 +230,7 @@ return [
         'approved'=>2,
     ],
     'DefaultPassword'=>'secret',
+    'MobileNumberStart'=>'966',
     'CustomerEitharID'=>'ETHR-0000',
     'invoice_paid'=>[
         'paid'=>1,
@@ -227,5 +238,13 @@ return [
     ],
     'customer_message_cloud' => 'AAAAAldQN2A:APA91bE_JM-ZP2LgFXflnT5oG1gINc6ZUdEpkywNUjhZ_sdc402aJFVUCqQWJwug2umLX0-mfTUILaG-BfXBJ150GcxPFICS0qhTxn7gUvWDvaZTDDcNFSOcKs6p-vSZtDrFHeNV5oS3',
     'provider_message_cloud' => 'AAAAyUDBn-A:APA91bE6U2AdfemfC-LjLNZ1DZpWXYlm0LLoSSdrLltePvh-1mWQ9VmD6xo7EHx_yQgPPR3K0SP6dauwTv6o_8zCVVHZV7J43qAx24vW-eiwI8GaEQEBzcBYc-N-8i37bZVM9CaBR_fm',
-    'paggination_items_per_page' => 20
+    'paggination_items_per_page' => 20,
+    'monthNames_en' => ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ],
+    'monthNames_ar' => ["يناير", "فبراير", "مارس", "ابريل", "مايو", "يونيو",
+        "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"
+    ],
+    'dayNames_en' => ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat","Sun"],
+    'dayNames_ar' => ["الأثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت","الأحد"],
 ];

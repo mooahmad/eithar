@@ -1,0 +1,108 @@
+@import "helpers/variables.scss";
+@import "componants/buttons.scss";
+@import "componants/slider-custum.scss"; /***********/
+ @import "my-account/profile-menu.scss";
+ @import "my-account/wallt.scss";
+// /**/
+.my-account{
+    // position: relative;
+    min-height: 500px;
+    .all_tabs {
+        & > div:not(:first-child) {
+            display: none;
+        }
+    }
+
+    section{
+        padding: 50px 0;
+        .all_tabs-title{
+            text-align: center;
+            color: $redColor;
+            font-size: 30px;
+
+        }
+        .myaccount_empty-blok{
+            text-align: center;
+            margin: 30px 0;
+            .add_button{
+                display: inline-block;
+                height: 80px;
+                width: 80px;
+                line-height: 80px;
+                text-align: center;
+                border: 3px solid $darkColor;
+                border-radius: 80px;
+                i{
+                    color: $darkColor;
+                }
+            }
+            p{
+                margin-top: 20px;
+                color: #9195AA;
+                &:before{
+                    color: $mainColor;
+                }
+            }
+        }
+        .article_description{
+            padding: 20px;
+            margin: 30px 0;
+            border: 1px solid $grayColor;
+            border-radius: 15px;
+            h3{
+                font-size: 20px;
+            }
+            p{
+                font-size: 14px;
+            }
+            .flowers_list{
+                li{
+                    &:first-child{
+
+                        span,i{
+                            color: $redColor;
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
+
+}
+// Start Question Tab
+.add_question-button{
+    text-align: center;
+
+    .button{
+        background-color: $darkColor;
+        &:hover{
+            background-color: $redColor;
+        }
+        
+    i{
+        height: 30px;
+        width: 30px;
+        line-height: 30px;
+        text-align: center;
+        border: 1px solid #fff;
+        border-radius: 100%;
+        color: #fff;
+        display: inline-block;
+        margin: 0 6px;
+    }
+    }
+
+}
+.add_question-section{
+    display: none
+}
+
+// End Question Tab
+.articl_block{
+    .row{
+        margin: 40px 0;
+    }
+    
+}
+/*Satrt Meating */

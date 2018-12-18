@@ -201,4 +201,80 @@ class Utilities
         return redirect($redirect_to);
     }
 
+    /**
+     * @param $name
+     * @return mixed
+     */
+    public static function beautyName($name)
+    {
+        return str_replace(' ','-',$name);
+    }
+
+    /**
+     * @param null $share_title
+     * @param null $share_description
+     * @param null $share_image
+     */
+    public static function setMetaTagsAttributes($share_title=null,$share_description=null,$share_image=null)
+    {
+        session()->flash('share_title',$share_title);
+        session()->flash('share_description',strip_tags(str_limit($share_description,200)));
+        session()->flash('share_image',$share_image);
+    }
+
+    /**
+     * @param $number_views
+     * @return string
+     */
+    public static function stars($number_views)
+    {
+        $whole = floor($number_views);
+        $fraction = $number_views - $whole;
+
+        $decimal=0;
+        if($fraction < .25){
+            $decimal=0;
+        }elseif($fraction >= .25 && $fraction < .75){
+            $decimal=.50;
+        }elseif($fraction >= .75){
+            $decimal=1;
+        }
+        $r = $whole + $decimal;
+
+        //As we sometimes round up, we split again
+        $stars="";
+        $newwhole = floor($r);
+        $fraction = $r - $newwhole;
+
+        for($s=1;$s<=$newwhole;$s++){
+            $stars .= '<li> <i class="fa fa-star fa-fw"></i> </li>';
+        }
+        if($fraction==.5){
+            $stars .= '<li> <i class="fa fa-star-half fa-fw"></i> </li>';
+        }
+        return $stars;
+    }
+
+    /**
+     * @return \Illuminate\Config\Repository|int|mixed
+     */
+    public static function GetCustomerVAT()
+    {
+        $vat = 0;
+        if (auth()->guard('customer-web')->check()){
+            if (auth()->guard('customer-web')->user()->is_saudi_nationality == 0){
+                $vat = config('constants.vat_percentage');
+            }
+        }
+        return $vat;
+    }
+
+    /**
+     * @param $mobile
+     * @return string
+     */
+    public static function AddCountryCodeToMobile($mobile)
+    {
+        return config('constants.MobileNumberStart').$mobile;
+    }
 }

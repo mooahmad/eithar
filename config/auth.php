@@ -55,6 +55,11 @@ return [
             'driver' => 'session',
             'provider' => 'provider-web',
         ],
+
+        'customer-web' => [
+            'driver' => 'session',
+            'provider' => 'customer-web',
+        ],
     ],
 
     /*
@@ -93,6 +98,11 @@ return [
         'provider-web' => [
             'driver' => 'eloquent',
             'model' => \App\Models\Provider::class,
+        ],
+
+        'customer-web' => [
+            'driver' => 'eloquent',
+            'model' => \App\Models\Customer::class,
         ],
     ],
 

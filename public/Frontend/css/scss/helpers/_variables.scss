@@ -1,5 +1,6 @@
 $mainColor: #044D7F;
 $secondColor: #0095D9;
+$grayColor:#DDD;
 $borderRadius: 10px;
 $boxShadow: 0 3px 6px #124462;
 $overlay: rgba(7, 167, 226, 0.5);
@@ -12,17 +13,58 @@ $linkedin: #00a0dc;
 $google: #ea4335;
 $istagram: #e1306c;
 $whats: #25d366;
-$lineHeight: 26px; /*Media Query*/
+$lineHeight: 26px;
+/*Media Query*/
 $sm: 576px;
 $md: 768px;
 $lg: 992px;
-$xl: 1200px; /*Box Shadow*/
+$xl: 1200px;
+
+/*Box Shadow*/
 /***Container Widt***/
+.select_content-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+
+
+
+
+
+  .select_type-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 30px;
+
+    input {
+      height: 15px;
+      width: 15px;
+      background-color: #000;
+      cursor: pointer;
+      margin: 0 4px;
+    }
+
+    span {
+      display: block;
+    }
+
+
+  }
+
+  .slect_Your-twon {
+    width: 100%;
+  }
+}
+
 .container {
   @media (min-width: $lg) {
     max-width: 1170px;
   }
 }
+
 /*Glopal Style*/
 
 img {
@@ -33,7 +75,9 @@ img {
 [data-src] {
   -webkit-background-size: cover;
   background-size: cover;
+  background-repeat: no-repeat;
 }
+
 /********Glopal Class******/
 
 .home_page-title {
@@ -95,13 +139,19 @@ a:hover {
   font-family: 'Font Awesome\ 5 Free';
   font-weight: 900;
 }
+
 /*Start Glopal Form*/
 
 .glopal_form {
   background: #fff;
   padding: 30px 15px;
+
   @media (max-width: $sm) {
     margin-top: 30px;
+  }
+
+  >div {
+    margin-bottom: 30px;
   }
 
   select {
@@ -131,7 +181,7 @@ a:hover {
     border-radius: $borderRadius;
     padding: 8px 0;
     text-indent: 8px;
-    margin-bottom: 30px;
+
     font-size: 14px;
   }
 
@@ -163,13 +213,16 @@ a:hover {
     border: none;
     cursor: pointer;
   }
+
   /*End Glopal Form*/
 }
+
 // Start Single Page style
 
 .single_page-content {
   padding: 50px 0;
 }
+
 /*Start Custume Select Button*/
 .custum_select {
   width: 100%;
@@ -205,6 +258,7 @@ a:hover {
     appearance: none;
   }
 }
+
 /*End Custume Select Button*/
 /*****Font******/
 /****Start Font Face*******/
@@ -254,6 +308,7 @@ a:hover {
     cursor: pointer;
   }
 }
+
 /*Start Custum Upload Button*/
 /*Start Custum Upload Button*/
 

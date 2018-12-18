@@ -90,8 +90,8 @@
                         <aside class="services_block-paragraph">
                             <h3>{{ trans('main.doctors') }}</h3>
                             <p class="paragraph_global">{{ trans('main.doctors_desc') }}</p>
-{{--                            <a href="{{ url()->route('doctors_category') }}" class="button">{{ trans('main.more') }}</a>--}}
-                            <a href="#" class="button">{{ trans('main.more') }}</a>
+                            <a href="{{ url()->route('doctors_category') }}" class="button">{{ trans('main.more') }}</a>
+                            {{--<a href="#" class="button">{{ trans('main.more') }}</a>--}}
                         </aside>
                     </div>
                 </div>
@@ -164,4 +164,44 @@
         </div>
     </section>
     <!--=05= End Services-->
+
+    <!--=05=Start Popup accepted_code-->
+    <div class="sucsess_code">
+        <div class="container">
+            <!-- The Modal -->
+            <div class="modal fade" id="sucsess_code">
+                <div class="modal-dialog ">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <button class="close fas fa-times" type="button" data-dismiss="modal"> </button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body model_code">
+                            <!-- Start Form content-->
+                            <div class="form_content">
+                                @if(Session::has('account_activate'))
+                                    <p>{{ session()->get('account_activate') }}</p>
+                                @endif
+                            </div>
+                            <!-- End  Form content-->
+                            <aside class="form_man">
+                                <img src="{{ asset('public/Frontend/img/sucsess_code.png') }}" alt="{{ trans('main.site_name') }}">
+                            </aside>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--=05 Send Code accepted_code -->
+@stop
+
+@section('js')
+    @if(Session::has('account_activate'))
+        <script>
+            $('#sucsess_code').modal('show');
+        </script>
+    @endif
 @stop
