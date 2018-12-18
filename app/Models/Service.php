@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\App;
 use App\Traits\ModelDateTimeAccessors;
+use Carbon\Carbon;
 
 class Service extends Model
 {
