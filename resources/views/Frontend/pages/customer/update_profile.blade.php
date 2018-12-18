@@ -186,7 +186,7 @@
                 </div>
             {!! Form::close() !!}
         </div>
-        <!-- End My Aaccount Pages-->
+        <!-- End My Account Pages-->
     </div>
     <!-- End Single Page -->
 @stop

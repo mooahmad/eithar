@@ -58,6 +58,6 @@ class UpdateCustomerProfileController extends Controller
             $customer = $this->Customer_Services->uploadCustomerImage($customer,$request,'nationality_id_picture','public/images/nationalities');
         }
         session()->flash('success_message',trans('main.success_message'));
-        return redirect()->route('customer_show_update_profile',['id'=>$customer->id,'name'=>Utilities::beautyName($customer->full_name)]);
+        return redirect()->route('show_customer_profile',['id'=>$customer->id,'name'=>Utilities::beautyName($customer->full_name)]);
     }
 }

@@ -11,7 +11,7 @@ function changeCountry(event) {
             }
         },
         error: function (data) {
-            alert('something went wrong.');
+            console.log('something went wrong.');
         }
     });
 }

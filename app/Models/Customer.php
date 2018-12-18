@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\Utilities;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
@@ -87,6 +88,11 @@ class Customer extends Authenticatable
     public function getFullNameAttribute()
     {
         return "{$this->first_name} {$this->middle_name} {$this->last_name}";
+    }
+
+    public function getProfileImageAttribute()
+    {
+        return Utilities::getFileUrl($this->profile_picture_path);
     }
 
     /**

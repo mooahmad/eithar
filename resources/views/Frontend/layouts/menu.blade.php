@@ -53,7 +53,7 @@
 
                         @if(auth()->guard('customer-web')->check())
 {{--                            <li><a href="{{ url()->route('customer_logout') }}" title="{{ trans('main.logout') }}">{{ trans('main.logout') }}</a></li>--}}
-                            <a class="login_button" href="{{ url()->route('customer_show_update_profile',['id'=>auth()->guard('customer-web')->user()->id,'name'=>\App\Helpers\Utilities::beautyName(auth()->guard('customer-web')->user()->full_name)]) }}">
+                            <a class="login_button" href="{{ url()->route('show_customer_profile',['id'=>auth()->guard('customer-web')->user()->id,'name'=>\App\Helpers\Utilities::beautyName(auth()->guard('customer-web')->user()->full_name)]) }}">
                                 <aside class="avatar_img">
                                     <i class="fas fa-user-tie"></i>
                                 </aside>
