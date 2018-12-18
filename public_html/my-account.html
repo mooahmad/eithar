@@ -1,568 +1,773 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Either </title>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Either </title>
 
-  <link rel="stylesheet" href="css/fontawesome-all.css" />
-  <link rel="stylesheet" href="css/bootstrap.min.css" />
-  <!-- <link rel="stylesheet" href="css/bootstrap-rtl.min.css" /> -->
-  <link rel="stylesheet" href="css/slick.css" />
+    <link rel="stylesheet" href="css/fontawesome-all.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <!-- <link rel="stylesheet" href="css/bootstrap-rtl.min.css" /> -->
+    <link rel="stylesheet" href="css/slick.css" />
 
-  <link rel="stylesheet" href="css/them.css" />
-  <!-- <link rel="stylesheet" href="css/them.rtl.css" /> -->
+    <link rel="stylesheet" href="css/them.css" />
+    <!-- <link rel="stylesheet" href="css/them.rtl.css" /> -->
 
-  <!--Fonts-->
-  <link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <!--Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
-  <!--[if lt IE 9]>
+    <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-</head>
+  </head>
 
-<body>
+  <body>
 
+    <!--=01= Start Navbar-->
+    <nav class="navbar">
+      <div class="container">
+        <div class=" navbar_content">
+          <a class="navbar_brand" href="index.html">
+            <img src="img/logo/logoColor.png" class="logo_color">
+            <img src="img/logo/logo.png" class="logo_white">
+          </a>
 
-<!--=01= Start Navbar-->
-<nav class="navbar">
-  <div class="container">
-    <div class=" navbar_content">
-      <a class="navbar_brand" href="index.html">
-        <img src="img/logo/logoColor.png" class="logo_color">
-        <img src="img/logo/logo.png" class="logo_white">
-      </a>
+          <!--Start Navbar Menu-->
+          <div class="navbar_overlay">
 
+            <div class="menu_content">
+              <ul class="navbar_menu list-unstyled ">
+                <li><a href="#" title="Home">
+                    Home
+                  </a></li>
+                <li><a href="#" title="Home">
+                    About us
+                  </a></li>
+                <li><a href="#" title="Home">
+                    Our services
+                  </a></li>
+                <li><a href="#" title=""> Contact us </a></li>
 
-      <!--Start Navbar Menu-->
-      <div class="navbar_overlay">
-
-        <div class="menu_content">
-          <ul class="navbar_menu list-unstyled ">
-            <li><a href="#" title="Home">
-                Home
-              </a></li>
-            <li><a href="#" title="Home">
-                About us
-              </a></li>
-            <li><a href="#" title="Home">
-                Our services
-              </a></li>
-            <li><a href="#" title=""> Contact us </a></li>
-
-          </ul>
-
-          <!-- Start Notification Area-->
-          <div class="login_area-content">
-            <!-- Start Notification Area-->
-            <div class="notification_area ">
-              <aside class="notification_button new_notification "> <i class="far fa-bell"></i></aside>
-              <ul class="notification_area-list">
-                <li class="title"><span>الاشعارات</span></li>
-                <!-- Notification List   -->
-                <li><span class="notification-date">الأربعاء 25 سبتمبر . 2:30 مساء</span><a href="">اكمل شراء دوره
-                    "التشوهات
-                    الفكريه" واحصل %علي خصم 25</a></li>
-                <!-- Notification List-->
-                <!-- Notification List   -->
-                <li><span class="notification-date">الأربعاء 25 سبتمبر . 2:30 مساء</span><a href="">اكمل شراء دوره
-                    "التشوهات
-                    الفكريه" واحصل %علي خصم 25</a></li>
-                <!-- Notification List-->
-                <!-- Notification List   -->
-                <li><span class="notification-date">الأربعاء 25 سبتمبر . 2:30 مساء</span><a href="">اكمل شراء دوره
-                    "التشوهات
-                    الفكريه" واحصل %علي خصم 25</a></li>
-                <!-- Notification List-->
-                <!-- Notification List   -->
-                <li class="active"><span class="notification-date">الأربعاء 25 سبتمبر . 2:30 مساء</span><a href="">اكمل
-                    شراء دوره
-                    "التشوهات الفكريه" واحصل %علي خصم 25</a></li>
-                <!-- Notification List-->
               </ul>
+
+              <!-- Start Notification Area-->
+              <div class="login_area-content">
+                <!-- Start Notification Area-->
+                <div class="notification_area ">
+                  <aside class="notification_button new_notification "> <i class="far fa-bell"></i></aside>
+                  <ul class="notification_area-list">
+                    <li class="title"><span>الاشعارات</span></li>
+                    <!-- Notification List   -->
+                    <li><span class="notification-date">الأربعاء 25 سبتمبر . 2:30 مساء</span><a href="">اكمل شراء دوره
+                        "التشوهات
+                        الفكريه" واحصل %علي خصم 25</a></li>
+                    <!-- Notification List-->
+                    <!-- Notification List   -->
+                    <li><span class="notification-date">الأربعاء 25 سبتمبر . 2:30 مساء</span><a href="">اكمل شراء دوره
+                        "التشوهات
+                        الفكريه" واحصل %علي خصم 25</a></li>
+                    <!-- Notification List-->
+                    <!-- Notification List   -->
+                    <li><span class="notification-date">الأربعاء 25 سبتمبر . 2:30 مساء</span><a href="">اكمل شراء دوره
+                        "التشوهات
+                        الفكريه" واحصل %علي خصم 25</a></li>
+                    <!-- Notification List-->
+                    <!-- Notification List   -->
+                    <li class="active"><span class="notification-date">الأربعاء 25 سبتمبر . 2:30 مساء</span><a href="">اكمل
+                        شراء دوره
+                        "التشوهات الفكريه" واحصل %علي خصم 25</a></li>
+                    <!-- Notification List-->
+                  </ul>
+                </div>
+                <!-- Start Notification Area--><a class="login_button" href="#">
+                  <aside class="avatar_img"><i class="fas fa-user-tie"></i></aside><span data-toggle="modal"
+                    data-target="#sign_in">
+                    Logn in
+                  </span>
+                  <a href="#" class="languge_button button languge">
+                    النسخة العربية
+                  </a>
+              </div>
+
+
             </div>
-            <!-- Start Notification Area--><a class="login_button" href="#">
-              <aside class="avatar_img"><i class="fas fa-user-tie"></i></aside><span data-toggle="modal" data-target="#sign_in">
-                Logn in
-              </span>
-              <a href="#" class="languge_button button languge">
-                النسخة العربية
-              </a>
           </div>
+          <!--End Navbar Menu-->
 
 
-        </div>
-      </div>
-      <!--End Navbar Menu-->
-
-
-      <!--Navbar Button-->
-      <div class="navbar_button">
-        <i class="fas fa-bars"></i>
-      </div>
-    </div>
-
-  </div>
-</nav>
-<!--=01= Start Navbar-->
-
-
-  <!--=02= Start Header Slider-->
-  <div class="header_slider single_page-head  ">
-    <div class="header" data-src="img/bg/bg-header1.png">
-
-    </div>
-  </div>
-  <!--=02= End Header Slider-->
-
-
-  <!-- Start Single Page -->
-  <div class="single_page-content">
-
-<div class=" my-account">
-  <div class="container-fluid">
-    <div class="row">
-      <!-- Start Profile Menue-->
-      <div class="col-sm-12 col-md-6 col-lg-3">
-        <div class="profile_menu">
-          <aside class="show_menu"><i class="fas fa-chevron-left"></i></aside>
-          <div class="add_image">
-            <aside class="profile_image"><img src="img/icon/avatar-sm.png"></aside>
-            <h4 class="user_name">محمد سراج الدين</h4>
-            <h5 class="user_email">mohamed.20@gmail.com</h5>
-            <aside class="profile_button-content"><a class="button" href="#"> <i class="fas fa-upload"> </i><span>تعديل
-                  البيانات</span></a><a class="back_button fas fa-upload" href="#"></a></aside>
-          </div>
-          <div class="profile_menu-list">
-            <ul class="menu_list list-unstyled">
-              <li data-id="#meating"><img src="img/icon/meating.png" alt="Meating"><span>اجتماعات قادمة</span></li>
-              <li data-id="#wallt"><img src="img/icon/walled.png" alt="Meating"><span> محفظه الرصيد</span></li>
-              <li data-id="#favorite"><img src="img/icon/favorit.png" alt="Meating"><span> قائمه المفضله</span></li>
-              <li data-id="#book_mark"><img src="img/icon/book-mark.png" alt="Meating"><span> قائمه المراجع</span></li>
-              <li data-id="#question"><img src="img/icon/question.png" alt="Meating"><span> اسئلتي</span></li>
-            </ul>
+          <!--Navbar Button-->
+          <div class="navbar_button">
+            <i class="fas fa-bars"></i>
           </div>
         </div>
+
       </div>
-      <!-- End Profile Menue-->
-      <div class="col-sm-12 col-md-6 col-lg-9">
-        <div class="container">
-          <div class="all_tabs">
-            <!-- Start Meating-->
-            <div id="meating">
-              <!-- Start Speacial Seation-->
-              <section class="speacial_section">
-                <h3 class="all_tabs-title">جلسات خاصة</h3>
-                <div class="list_coaches">
-                  <div class="container">
-                    <div class="row">
-                      <!--Start Block -->
-                      <div class="col-sm-12 col-md-6 col-lg-4">
-                        <div class="coach_block" data-src="img/avatar_coach.png">
-                          <div class="coach_block-description">
-                            <h3>Life Coatch</h3>
-                            <h4>18 /9 /2018</h4>
-                            <h5>علاقات زوجية</h5><a class="button" href="#">ابدأ الان</a>
-                          </div>
-                        </div>
-                      </div>
-                      <!--End Block -->
-                      <!--Start Block -->
-                      <div class="col-sm-12 col-md-6 col-lg-4">
-                        <div class="coach_block" data-src="img/bg/consult1.png">
-                          <div class="coach_block-description">
-                            <h3>Life Coatch</h3>
-                            <h4>18 /9 /2018</h4>
-                            <h5>علاقات زوجية</h5><a class="button" href="#">ابدأ الان</a>
-                          </div>
-                        </div>
-                      </div>
-                      <!--End Block-->
-                      <!--Start Block -->
-                      <div class="col-sm-12 col-md-6 col-lg-4">
-                        <div class="coach_block" data-src="img/bg/consult1.png">
-                          <div class="coach_block-description">
-                            <h3>Life Coatch</h3>
-                            <h4>18 /9 /2018</h4>
-                            <h5>علاقات زوجية</h5><a class="button" href="#">ابدأ الان</a>
-                          </div>
-                        </div>
-                      </div>
-                      <!--End Block-->
-                    </div>
-                  </div>
+    </nav>
+    <!--=01= Start Navbar-->
+
+
+    <!--=02= Start Header Slider-->
+    <div class="header_slider single_page-head  ">
+      <div class="header" data-src="img/bg/bg-header1.png">
+
+      </div>
+    </div>
+    <!--=02= End Header Slider-->
+
+
+    <!-- Start Single Page -->
+    <div class="single_page-content">
+
+      <div class=" my-account">
+        <div class="container-fluid">
+          <div class="row">
+            <!-- Start Profile Menue-->
+            <div class="col-sm-12 col-md-4 col-lg-3">
+              <div class="profile_menu">
+                <aside class="show_menu"><i class="fas fa-chevron-left"></i></aside>
+                <div class="add_image">
+                  <aside class="profile_image" data-src="img/icon/avatar.png"><img></aside>
+                  <h4 class="user_name">محمد سراج الدين</h4>
+                  <h5 class="user_email">mohamed.20@gmail.com</h5>
+
                 </div>
-              </section>
-              <!-- End Speacial Seation-->
-              <!-- Start Programing -->
-              <section class="programing_subscribe">
-                <h3 class="all_tabs-title">جلسات خاصة</h3>
-                <div class="list_cources-content">
-                  <div class="container">
-                    <div class="row">
-                      <!--Start Block -->
-                      <div class="col-sm-12 col-md-6 col-lg-4">
-                        <div class="coach_block" data-src="img/bg/consult1.png">
-                          <div class="coach_block-description">
-                            <h3>Life Coatch</h3>
-                            <h4>18 /9 /2018</h4>
-                            <h5>علاقات زوجية</h5><a class="button" href="#">ابدأ الان</a>
-                          </div>
-                        </div>
-                      </div>
-                      <!--End Block-->
-                    </div>
-                  </div>
-                </div>
-              </section>
-              <!-- End Programing-->
-              <!-- Start Packedg Subscrib-->
-              <section class="pakedge_subscribe">
-                <h3 class="all_tabs-title"> دورات تدريبية</h3>
-                <div class="container">
-                  <div class="row">
-                    <!-- Start Blok-->
-                    <div class="col-sm-12">
-                      <div class="myaccount_empty-blok"><a class="fas fa-plus add_button" href="#"></a>
-                        <p>لا يوجد لديك دورات تدريبيه, <a href="#"> اضف الان</a></p>
-                      </div>
-                    </div>
-                    <!-- End Blok-->
-                  </div>
-                </div>
-              </section>
-              <!-- End  Packedg Subscrib-->
-              <!-- Start Packedg Subscrib-->
-              <section class="pakedge_subscribe">
-                <h3 class="all_tabs-title"> دورات تدريبية</h3>
-                <div class="container">
-                  <div class="row">
-                    <!-- Start Blok-->
-                    <div class="col-sm-12">
-                      <div class="myaccount_empty-blok"><a class="fas fa-plus add_button" href="#"></a>
-                        <p>لا يوجد لديك دورات تدريبيه, <a href="#"> اضف الان</a></p>
-                      </div>
-                    </div>
-                    <!-- End Blok-->
-                  </div>
-                </div>
-              </section>
-              <!-- End  Packedg Subscrib-->
-            </div>
-            <!-- End Meating-->
-            <!-- Start Wallt-->
-            <div class="container" id="wallt">
-              <!--Start Section of current balance-->
-              <section class="current_balance">
-                <h3 class="all_tabs-title">الرصيد الحالي</h3>
-                <aside class="current_balance-cicle"><span id="balance">1445.25</span>
-                  <p class="currency">جنية مصرى</p>
-                </aside>
-                <!-- Strat Wallt Buttons-->
-                <aside class="wallt_buttons">
-                  <button class="button next-js">اعاده شحن الرصيد</button>
-                </aside>
-                <!-- End Wallt Buttons-->
-              </section>
-              <!--End Section of current balance-->
-              <!--Start Section of current balance-->
-              <section class="charge_balance">
-                <h3 class="all_tabs-title">ادخل القيمه المراد شحنها</h3>
-                <form class="charge_balance-form" action="">
-                  <input type="number"><span>جنية مصرى</span>
-                </form>
-                <!-- Strat Wallt Buttons-->
-                <aside class="wallt_buttons">
-                  <button class="button next-js">متابعة</button>
-                  <button class="button prev-js">رجوع</button>
-                </aside>
-                <!-- End Wallt Buttons-->
-              </section>
-              <!--End Section of current balance-->
-              <!--Start Section of payment_way-->
-              <section class="payment_way">
-                <ul class="walt_progress">
-                  <li><span>الطلب </span></li>
-                  <li class="selected_point"><span>اختيار وسيلة الدفع</span></li>
-                  <li><span>الدفع</span></li>
-                </ul>
-                <!--Start Chose Pay Way-->
-                <div class="chose_payment-content"><a class="payment_block" href="#"><img src="img/master_card.png"><span>Mohamed-ahmed@consultrust.com
-                    </span></a><a class="payment_block" href="#"><img src="img/visa.png"><span>Mohamed-ahmed@consultrust.com
-                    </span></a><a class="payment_block" href="#">
-                    <h3>المحفظة</h3><span>الرصيد الحالى 2548 جنية </span>
-                  </a><a class="payment_block add_new" href="#"><i class="fas fa-plus"></i><span>اضف وسيله دفع جديده
-                    </span></a></div>
-                <!--End Chose Pay Way-->
-                <!-- Strat Wallt Buttons-->
-                <aside class="wallt_buttons">
-                  <button class="button ">دفع</button>
-                  <button class="button prev-js">رجوع</button>
-                </aside>
-                <!-- End Wallt Buttons-->
-              </section>
-              <!--End Section of current balance-->
-            </div>
-            <!-- End Wallt-->
-            <!-- Start favorite-->
-            <div id="favorite">
-              <!-- Start Speacial Seation-->
-              <section class="speacial_section">
-                <h3 class="all_tabs-title">دورات تدريبيه</h3>
-                <!-- Start List of Coaches-->
-                <div class="list_cources-content">
-                  <div class="container">
-                    <div class="row">
-                      <!--Start Block -->
-                      <div class="col-sm-12 col-md-6 col-lg-6">
-                        <div class="coach_block" data-src="img/bg/cources1.png">
-                          <div class="coach_block-description">
-                            <h3>Detox Your Mind – التشوهات الفكريه</h3>
-                            <h6>Life Coaching</h6>
-                            <h4>Friday, October 19, 2018 , 21:00 PM</h4>
-                            <h5>ثمن الجلسه فى الساعه االواحدة </h5><span>600 جنية</span>
-                            <aside class="button_content"><a class="button" href="#">التفاصيل</a><a class="button" href="#">اشترك
-                                الان</a></aside>
-                          </div>
-                        </div>
-                      </div>
-                      <!--End Block -->
-                      <!--Start Block -->
-                      <div class="col-sm-12 col-md-6 col-lg-6">
-                        <div class="coach_block" data-src="img/bg/cources1.png">
-                          <div class="coach_block-description">
-                            <h3>Detox Your Mind – التشوهات الفكريه</h3>
-                            <h6>Life Coaching</h6>
-                            <h4>Friday, October 19, 2018 , 21:00 PM</h4>
-                            <h5>ثمن الجلسه فى الساعه االواحدة </h5><span>600 جنية</span>
-                            <aside class="button_content"><a class="button" href="#">التفاصيل</a><a class="button" href="#">اشترك
-                                الان</a></aside>
-                          </div>
-                        </div>
-                      </div>
-                      <!--End Block -->
-                      <!--Start Block -->
-                      <div class="col-sm-12 col-md-6 col-lg-6">
-                        <div class="coach_block" data-src="img/bg/cources1.png">
-                          <div class="coach_block-description">
-                            <h3>Detox Your Mind – التشوهات الفكريه</h3>
-                            <h6>Life Coaching</h6>
-                            <h4>Friday, October 19, 2018 , 21:00 PM</h4>
-                            <h5>ثمن الجلسه فى الساعه االواحدة </h5><span>600 جنية</span>
-                            <aside class="button_content"><a class="button" href="#">التفاصيل</a><a class="button" href="#">اشترك
-                                الان</a></aside>
-                          </div>
-                        </div>
-                      </div>
-                      <!--End Block -->
-                    </div>
-                  </div>
-                </div>
-              </section>
-              <!-- End Speacial Seation -->
-              <!-- Start Speacial Seation -->
-              <section class="speacial_section ">
-                <h3 class="all_tabs-title">مقالات
-                  <!-- Satrt Articl Block-->
-                </h3>
-              </section>
-              <div class="articl_block">
-                <div class="row">
-                  <!--Start Articl Image-->
-                  <div class="col-sm-12 col-lg-6 col-xl-3">
-                    <aside class="article_image" data-src="img/bg/category3.png"></aside>
-                  </div>
-                  <!--End Articl Image -->
-                  <!--Start Article Description -->
-                  <div class="col-sm-12 col-lg-6 col-xl-6">
-                    <div class="article_description">
-                      <h3 class="article_title"> <a href="#">متي يبدء التخطيط المهني ودور الأسرة والمدرسة فيه</a></h3>
-                      <p class="paragraph_global">أنسب وقت يبدء فيه الطالب وضع خطة مهنية وهو عنده 15 سنه - تقريبا 3
-                        أعدادي أو أولي ثانوي - وده لأن كل قرار ابتداء في المرحلة بيؤثر في تشكيل وتوجيه مسارنا المهني
-                        علي مدار حياتنا. في أوروبا والدور المتقدمة :D عشان #مراكز_التوجيه_المهني في #المدارس تساعد
-                        الطلاب علي أتخاذ قرار مهني بتشجع الطلاب علي تطو...</p>
-                      <!-- ٍStart Flowers details-->
-                      <ul class="list_inline flowers_list">
-                        <li><i class="fas fa-newspaper"></i><span>مقالة</span></li>
-                        <li><i class="far fa-clock"> </i><span>نشر فى 18 /11 /2019 </span></li>
-                        <li><i class="fas fa-bars"></i><span>Career Coaching</span></li>
-                      </ul>
-                      <!-- End Flowers details       -->
-                    </div>
-                  </div>
-                  <!--End Article Description-->
-                  <!-- Start Articls Subscribtion-->
-                  <div class="col-sm-12 col-xl-3">
-                    <div class="articls_subscription">
-                      <ul class="favorite_buttons">
-                        <li><i class="far fa-heart"></i></li>
-                        <li><i class="far fa-bookmark"> </i></li>
-                      </ul>
-                      <div class="articl_writer-content">
-                        <p>ايه أحمد حجازى</p>
-                        <aside> <img src="img/bg/consult2.png"></aside>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End Articls Subscribtion-->
-                </div>
-                <div class="row">
-                  <!--Start Articl Image-->
-                  <div class="col-sm-12 col-lg-6 col-xl-3">
-                    <aside class="article_image" data-src="img/bg/category3.png"></aside>
-                  </div>
-                  <!--End Articl Image -->
-                  <!--Start Article Description -->
-                  <div class="col-sm-12 col-lg-6 col-xl-6">
-                    <div class="article_description">
-                      <h3 class="article_title"> <a href="#">متي يبدء التخطيط المهني ودور الأسرة والمدرسة فيه</a></h3>
-                      <p class="paragraph_global">أنسب وقت يبدء فيه الطالب وضع خطة مهنية وهو عنده 15 سنه - تقريبا 3
-                        أعدادي أو أولي ثانوي - وده لأن كل قرار ابتداء في المرحلة بيؤثر في تشكيل وتوجيه مسارنا المهني
-                        علي مدار حياتنا. في أوروبا والدور المتقدمة :D عشان #مراكز_التوجيه_المهني في #المدارس تساعد
-                        الطلاب علي أتخاذ قرار مهني بتشجع الطلاب علي تطو...</p>
-                      <!-- ٍStart Flowers details-->
-                      <ul class="list_inline flowers_list">
-                        <li><i class="fas fa-newspaper"></i><span>مقالة</span></li>
-                        <li><i class="far fa-clock"> </i><span>نشر فى 18 /11 /2019 </span></li>
-                        <li><i class="fas fa-bars"></i><span>Career Coaching</span></li>
-                      </ul>
-                      <!-- End Flowers details       -->
-                    </div>
-                  </div>
-                  <!--End Article Description-->
-                  <!-- Start Articls Subscribtion-->
-                  <div class="col-sm-12 col-xl-3">
-                    <div class="articls_subscription">
-                      <ul class="favorite_buttons">
-                        <li><i class="far fa-heart"></i></li>
-                        <li><i class="far fa-bookmark"> </i></li>
-                      </ul>
-                      <div class="articl_writer-content">
-                        <p>ايه أحمد حجازى</p>
-                        <aside> <img src="img/bg/consult2.png"></aside>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End Articls Subscribtion-->
+                <div class="profile_menu-list">
+                  <ul class="menu_list list-unstyled">
+                    <!---Update Profile-->
+                    <li data-id="#ediat_profile">
+                      <a href="#">
+                        <i class="fas fa-user-edit"></i>
+                        <span> Update and Show Profile </span>
+                      </a>
+                    </li>
+                    <!---Update Profile-->
+
+
+                    <!---Change Password-->
+                    <li data-id="#reseat_password">
+                      <a href="#">
+                        <i class="fas fa-unlock"></i>
+                        <span>Reset Password </span>
+                      </a>
+                    </li>
+                    <!---Change Password-->
+
+                    <li data-id="#meating">
+                      <a href="#">
+                        <i class="fas fa-hand-holding-heart"></i>
+                        <span> upcoming meeting</span>
+                      </a>
+                    </li>
+
+
+                    <li data-id="#meating">
+                      <a href="#">
+                        <i class="fas fa-hand-holding-heart"></i>
+                        <span> Old Meeting</span>
+                      </a>
+                    </li>
+
+                    <li data-id="#wallt">
+                      <a href="#">
+                        <i class="fas fa-file-medical-alt"></i>
+                        <span> Medical Reports </span>
+                      </a>
+
+                    </li>
+                    <li data-id="#favorite">
+                      <a href="#">
+                        <i class="fas fa-bookmark"></i>
+                        <span> Bookmark </span>
+                      </a>
+                    </li>
+
+                    <li data-id="#book_mark">
+                      <a href="#">
+                        <i class="fas fa-briefcase-medical"></i>
+                        <span> meeting detials </span>
+                      </a>
+
+
+                    </li>
+                    <li data-id="#question">
+                      <a href="#">
+                        <i class="fas fa-question"></i>
+                        <span> Question</span>
+                      </a>
+                    </li>
+
+                    <li data-id="#sign_up">
+                      <a href="#">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span> Sign up</span>
+                      </a>
+                    </li>
+
+
+
+
+                  </ul>
                 </div>
               </div>
-              <!-- End  Articl Block -->
-              <!-- End Speacial Seation                -->
             </div>
-            <!-- End BookMark-->
-            <!-- End favorite-->
-            <!-- Start Question-->
-            <div id="question">
-              <!-- Start Button Add Question -->
-              <section class="add_question-button">
-                <button class="button"><i class="fas fa-plus"> </i><span>أضف سؤال</span></button>
-              </section>
-              <!-- End Button Add Question -->
-              <!-- Start Section Add Question -->
-              <section class="add_question-section">
-                <h3 class="all_tabs-title">أضف سؤال</h3>
-                <form class="row glopal_form" action="">
-                  <!-- Start Input-->
-                  <div class="col-sm-12 col-md-6">
-                    <input type="text" placeholder="عنوان السؤال">
-                  </div>
-                  <!-- End Input-->
-                  <!-- Start Input-->
-                  <div class="col-sm-12 col-md-6">
-                    <div class="custum_select">
-                      <select>
-                        <option>حدد نوع السؤال</option>
-                        <option>استشارت اسرية وعلمية</option>
-                        <option>تربية أطفال </option>
-                        <option>علاقات زوجية</option>
-                      </select>
+            <!-- End Profile Menue-->
+            <div class="col-sm-12 col-md-8 col-lg-9">
+              <div class="">
+                <div class="all_tabs">
+                  <!--Start Ediate Profile-->
+                  <div id="ediat_profile">
+
+                    <!-- Start Single Page -->
+                    <div class="single_page-content ediating_profile">
+
+                      <!-- Satrt My Aaccount Pages-->
+                      <div class="">
+                        <form>
+                          <div class="row">
+
+                            <div class="col-sm-12 ">
+                              <div class="profile_form">
+                                <h2 class="form_title">تعديل البيانات</h2>
+                                <div class="glopal_form row" get="post">
+                                  <div class="col-sm-12 col-md-6 col-lg-4">
+                                    <label for="">الاسم الأول </label>
+                                    <input type="text" placholder="" value="">
+                                  </div>
+                                  <div class="col-sm-12 col-md-6 col-lg-4">
+                                    <label for=""> الإسم الثانى</label>
+                                    <input type="text" placholder="" value="">
+                                  </div>
+                                  <div class="col-sm-12 col-md-6 col-lg-4">
+                                    <label for="">البريد الإلكترونى</label>
+                                    <input type="text" placholder="" value="">
+                                  </div>
+                                  <div class="col-sm-12 col-md-6 col-lg-4">
+                                    <label for="">اسم المستخدم</label>
+                                    <input type="text" placholder="اسم المستخدم" value="">
+                                  </div>
+                                  <div class="col-sm-12 col-md-6 col-lg-4">
+                                    <label for="">رقم الهاتف</label>
+                                    <input type="text" placholder="" value="">
+                                  </div>
+
+                                  <div class="col-sm-12 col-md-6 col-lg-3">
+                                    <aside class="slect_Your-twon">
+                                      <label>البلد</label>
+                                      <div class="custum_select">
+                                        <select>
+                                          <option value="">اختر دولتك</option>
+                                          <option value="">مصر</option>
+                                          <option value="">اليمن </option>
+                                          <option value=""> قطر</option>
+                                        </select>
+                                      </div>
+                                    </aside>
+                                  </div>
+
+                                  <div class="col-xs-6 col-md-6 col-lg-2">
+                                    <label for="">النوع </label>
+                                    <div class="select_content-area">
+                                      <div class="select_type-content">
+                                        <input type="radio" name="select" value="Woman"><span>أنثى </span>
+                                      </div>
+                                      <div class="select_type-content">
+                                        <input type="radio" name="select" value="Man"><span>ذكر </span>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="col-xs-6 col-md-6 col-lg-3">
+                                    <label> ارفاق الصورة </label>
+                                    <lable class="button" id="upload_imag" type="file"> <i class="fas fa-upload"> </i><span>ارفع
+                                        الصورة</span>
+                                      <input type="file" id="File">
+                                    </lable>
+                                  </div>
+
+                                  <div class="col-sm-12">
+                                    <button class="button" type="submit">حفظ </button>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <!-- End My Aaccount Pages-->
                     </div>
+
+                    <!-- End Single Page -->
                   </div>
-                  <!-- End Input-->
-                  <!-- Start Input-->
-                  <div class="col-sm-12 ">
-                    <textarea placeholder="تفاصيل  السؤال"></textarea>
+
+                  <!-- Start Meating-->
+                  <div id="meating">
+                    <!-- Start Speacial Seation-->
+                    <section class="speacial_section">
+                      <h3 class="all_tabs-title">جلسات خاصة</h3>
+                      <div class="list_coaches">
+                        <div class="">
+                          <div class="row">
+                            <!--Start Block -->
+                            <div class="col-sm-12 col-md-6 col-lg-4">
+                              <div class="coach_block" data-src="img/avatar_coach.png">
+                                <div class="coach_block-description">
+                                  <h3>Life Coatch</h3>
+                                  <h4>18 /9 /2018</h4>
+                                  <h5>علاقات زوجية</h5><a class="button" href="#">ابدأ الان</a>
+                                </div>
+                              </div>
+                            </div>
+                            <!--End Block -->
+                            <!--Start Block -->
+                            <div class="col-sm-12 col-md-6 col-lg-4">
+                              <div class="coach_block" data-src="img/bg/consult1.png">
+                                <div class="coach_block-description">
+                                  <h3>Life Coatch</h3>
+                                  <h4>18 /9 /2018</h4>
+                                  <h5>علاقات زوجية</h5><a class="button" href="#">ابدأ الان</a>
+                                </div>
+                              </div>
+                            </div>
+                            <!--End Block-->
+                            <!--Start Block -->
+                            <div class="col-sm-12 col-md-6 col-lg-4">
+                              <div class="coach_block" data-src="img/bg/consult1.png">
+                                <div class="coach_block-description">
+                                  <h3>Life Coatch</h3>
+                                  <h4>18 /9 /2018</h4>
+                                  <h5>علاقات زوجية</h5><a class="button" href="#">ابدأ الان</a>
+                                </div>
+                              </div>
+                            </div>
+                            <!--End Block-->
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                    <!-- End Speacial Seation-->
+                    <!-- Start Programing -->
+                    <section class="programing_subscribe">
+                      <h3 class="all_tabs-title">جلسات خاصة</h3>
+                      <div class="list_cources-content">
+                        <div class="">
+                          <div class="row">
+                            <!--Start Block -->
+                            <div class="col-sm-12 col-md-6 col-lg-4">
+                              <div class="coach_block" data-src="img/bg/consult1.png">
+                                <div class="coach_block-description">
+                                  <h3>Life Coatch</h3>
+                                  <h4>18 /9 /2018</h4>
+                                  <h5>علاقات زوجية</h5><a class="button" href="#">ابدأ الان</a>
+                                </div>
+                              </div>
+                            </div>
+                            <!--End Block-->
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                    <!-- End Programing-->
+                    <!-- Start Packedg Subscrib-->
+                    <section class="pakedge_subscribe">
+                      <h3 class="all_tabs-title"> دورات تدريبية</h3>
+                      <div class="">
+                        <div class="row">
+                          <!-- Start Blok-->
+                          <div class="col-sm-12">
+                            <div class="myaccount_empty-blok"><a class="fas fa-plus add_button" href="#"></a>
+                              <p>لا يوجد لديك دورات تدريبيه, <a href="#"> اضف الان</a></p>
+                            </div>
+                          </div>
+                          <!-- End Blok-->
+                        </div>
+                      </div>
+                    </section>
+                    <!-- End  Packedg Subscrib-->
+                    <!-- Start Packedg Subscrib-->
+                    <section class="pakedge_subscribe">
+                      <h3 class="all_tabs-title"> دورات تدريبية</h3>
+                      <div class="
+                      ">
+                        <div class="row">
+                          <!-- Start Blok-->
+                          <div class="col-sm-12">
+                            <div class="myaccount_empty-blok"><a class="fas fa-plus add_button" href="#"></a>
+                              <p>لا يوجد لديك دورات تدريبيه, <a href="#"> اضف الان</a></p>
+                            </div>
+                          </div>
+                          <!-- End Blok-->
+                        </div>
+                      </div>
+                    </section>
+                    <!-- End  Packedg Subscrib-->
                   </div>
-                  <!-- End Input-->
-                  <!-- Start Input-->
-                  <div class="col-sm-12 ">
-                    <button class="button" type="submit">انشر سؤالك</button>
+                  <!-- End Meating-->
+                  <!-- Start Wallt-->
+                  <div class="" id="wallt">
+                    <!--Start Section of current balance-->
+                    <section class="current_balance">
+                      <h3 class="all_tabs-title">الرصيد الحالي</h3>
+                      <aside class="current_balance-cicle"><span id="balance">1445.25</span>
+                        <p class="currency">جنية مصرى</p>
+                      </aside>
+                      <!-- Strat Wallt Buttons-->
+                      <aside class="wallt_buttons">
+                        <button class="button next-js">اعاده شحن الرصيد</button>
+                      </aside>
+                      <!-- End Wallt Buttons-->
+                    </section>
+                    <!--End Section of current balance-->
+                    <!--Start Section of current balance-->
+                    <section class="charge_balance">
+                      <h3 class="all_tabs-title">ادخل القيمه المراد شحنها</h3>
+                      <form class="charge_balance-form" action="">
+                        <input type="number"><span>جنية مصرى</span>
+                      </form>
+                      <!-- Strat Wallt Buttons-->
+                      <aside class="wallt_buttons">
+                        <button class="button next-js">متابعة</button>
+                        <button class="button prev-js">رجوع</button>
+                      </aside>
+                      <!-- End Wallt Buttons-->
+                    </section>
+                    <!--End Section of current balance-->
+                    <!--Start Section of payment_way-->
+                    <section class="payment_way">
+                      <ul class="walt_progress">
+                        <li><span>الطلب </span></li>
+                        <li class="selected_point"><span>اختيار وسيلة الدفع</span></li>
+                        <li><span>الدفع</span></li>
+                      </ul>
+                      <!--Start Chose Pay Way-->
+                      <div class="chose_payment-content"><a class="payment_block" href="#"><img src="img/master_card.png"><span>Mohamed-ahmed@consultrust.com
+                          </span></a><a class="payment_block" href="#"><img src="img/visa.png"><span>Mohamed-ahmed@consultrust.com
+                          </span></a><a class="payment_block" href="#">
+                          <h3>المحفظة</h3><span>الرصيد الحالى 2548 جنية </span>
+                        </a><a class="payment_block add_new" href="#"><i class="fas fa-plus"></i><span>اضف وسيله دفع
+                            جديده
+                          </span></a></div>
+                      <!--End Chose Pay Way-->
+                      <!-- Strat Wallt Buttons-->
+                      <aside class="wallt_buttons">
+                        <button class="button ">دفع</button>
+                        <button class="button prev-js">رجوع</button>
+                      </aside>
+                      <!-- End Wallt Buttons-->
+                    </section>
+                    <!--End Section of current balance-->
                   </div>
-                  <!-- End Input-->
-                </form>
-              </section>
-              <!-- End Section Add Question -->
-              <!-- Start Question Details-->
-              <section class="question_details">
-                <h3 class="all_tabs-title"> أسئلتك السابقه</h3>
-                <!--Start Article Description -->
-                <div class="article_description">
-                  <h3 class="article_title"> <a href="#">متي يبدء التخطيط المهني ودور الأسرة والمدرسة فيه</a></h3>
-                  <p class="paragraph_global">أنسب وقت يبدء فيه الطالب وضع خطة مهنية وهو عنده 15 سنه - تقريبا 3 أعدادي
-                    أو أولي ثانوي - وده لأن كل قرار ابتداء في المرحلة بيؤثر في تشكيل وتوجيه مسارنا المهني علي مدار
-                    حياتنا. في أوروبا والدور المتقدمة :D عشان #مراكز_التوجيه_المهني في #المدارس تساعد الطلاب علي أتخاذ
-                    قرار مهني بتشجع الطلاب علي تطو...</p>
-                  <!-- ٍStart Flowers details-->
-                  <ul class="list_inline flowers_list">
-                    <li><i class="fas fa-newspaper"></i><span>سؤال</span></li>
-                    <li><i class="far fa-clock"> </i><span>نشر فى 18 /11 /2019 </span></li>
-                    <li><i class="fas fa-bars"></i><span>Career Coaching</span></li>
-                  </ul>
-                  <!-- End Flowers details       -->
-                </div>
-                <!--End Article Description//Start Article Description 
+                  <!-- End Wallt-->
+                  <!-- Start favorite-->
+                  <div id="favorite">
+                    <!-- Start Speacial Seation-->
+                    <section class="speacial_section">
+                      <h3 class="all_tabs-title">دورات تدريبيه</h3>
+                      <!-- Start List of Coaches-->
+                      <div class="list_cources-content">
+                        <div class="">
+                          <div class="row">
+                            <!--Start Block -->
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                              <div class="coach_block" data-src="img/bg/cources1.png">
+                                <div class="coach_block-description">
+                                  <h3>Detox Your Mind – التشوهات الفكريه</h3>
+                                  <h6>Life Coaching</h6>
+                                  <h4>Friday, October 19, 2018 , 21:00 PM</h4>
+                                  <h5>ثمن الجلسه فى الساعه االواحدة </h5><span>600 جنية</span>
+                                  <aside class="button_content"><a class="button" href="#">التفاصيل</a><a class="button"
+                                      href="#">اشترك
+                                      الان</a></aside>
+                                </div>
+                              </div>
+                            </div>
+                            <!--End Block -->
+                            <!--Start Block -->
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                              <div class="coach_block" data-src="img/bg/cources1.png">
+                                <div class="coach_block-description">
+                                  <h3>Detox Your Mind – التشوهات الفكريه</h3>
+                                  <h6>Life Coaching</h6>
+                                  <h4>Friday, October 19, 2018 , 21:00 PM</h4>
+                                  <h5>ثمن الجلسه فى الساعه االواحدة </h5><span>600 جنية</span>
+                                  <aside class="button_content"><a class="button" href="#">التفاصيل</a><a class="button"
+                                      href="#">اشترك
+                                      الان</a></aside>
+                                </div>
+                              </div>
+                            </div>
+                            <!--End Block -->
+                            <!--Start Block -->
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                              <div class="coach_block" data-src="img/bg/cources1.png">
+                                <div class="coach_block-description">
+                                  <h3>Detox Your Mind – التشوهات الفكريه</h3>
+                                  <h6>Life Coaching</h6>
+                                  <h4>Friday, October 19, 2018 , 21:00 PM</h4>
+                                  <h5>ثمن الجلسه فى الساعه االواحدة </h5><span>600 جنية</span>
+                                  <aside class="button_content"><a class="button" href="#">التفاصيل</a><a class="button"
+                                      href="#">اشترك
+                                      الان</a></aside>
+                                </div>
+                              </div>
+                            </div>
+                            <!--End Block -->
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                    <!-- End Speacial Seation -->
+                    <!-- Start Speacial Seation -->
+                    <section class="speacial_section ">
+                      <h3 class="all_tabs-title">مقالات
+                        <!-- Satrt Articl Block-->
+                      </h3>
+                    </section>
+                    <div class="articl_block">
+                      <div class="row">
+                        <!--Start Articl Image-->
+                        <div class="col-sm-12 col-lg-6 col-xl-3">
+                          <aside class="article_image" data-src="img/bg/category3.png"></aside>
+                        </div>
+                        <!--End Articl Image -->
+                        <!--Start Article Description -->
+                        <div class="col-sm-12 col-lg-6 col-xl-6">
+                          <div class="article_description">
+                            <h3 class="article_title"> <a href="#">متي يبدء التخطيط المهني ودور الأسرة والمدرسة فيه</a></h3>
+                            <p class="paragraph_global">أنسب وقت يبدء فيه الطالب وضع خطة مهنية وهو عنده 15 سنه - تقريبا
+                              3
+                              أعدادي أو أولي ثانوي - وده لأن كل قرار ابتداء في المرحلة بيؤثر في تشكيل وتوجيه مسارنا
+                              المهني
+                              علي مدار حياتنا. في أوروبا والدور المتقدمة :D عشان #مراكز_التوجيه_المهني في #المدارس
+                              تساعد
+                              الطلاب علي أتخاذ قرار مهني بتشجع الطلاب علي تطو...</p>
+                            <!-- ٍStart Flowers details-->
+                            <ul class="list_inline flowers_list">
+                              <li><i class="fas fa-newspaper"></i><span>مقالة</span></li>
+                              <li><i class="far fa-clock"> </i><span>نشر فى 18 /11 /2019 </span></li>
+                              <li><i class="fas fa-bars"></i><span>Career Coaching</span></li>
+                            </ul>
+                            <!-- End Flowers details       -->
+                          </div>
+                        </div>
+                        <!--End Article Description-->
+                        <!-- Start Articls Subscribtion-->
+                        <div class="col-sm-12 col-xl-3">
+                          <div class="articls_subscription">
+                            <ul class="favorite_buttons">
+                              <li><i class="far fa-heart"></i></li>
+                              <li><i class="far fa-bookmark"> </i></li>
+                            </ul>
+                            <div class="articl_writer-content">
+                              <p>ايه أحمد حجازى</p>
+                              <aside> <img src="img/bg/consult2.png"></aside>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- End Articls Subscribtion-->
+                      </div>
+                      <div class="row">
+                        <!--Start Articl Image-->
+                        <div class="col-sm-12 col-lg-6 col-xl-3">
+                          <aside class="article_image" data-src="img/bg/category3.png"></aside>
+                        </div>
+                        <!--End Articl Image -->
+                        <!--Start Article Description -->
+                        <div class="col-sm-12 col-lg-6 col-xl-6">
+                          <div class="article_description">
+                            <h3 class="article_title"> <a href="#">متي يبدء التخطيط المهني ودور الأسرة والمدرسة فيه</a></h3>
+                            <p class="paragraph_global">أنسب وقت يبدء فيه الطالب وضع خطة مهنية وهو عنده 15 سنه - تقريبا
+                              3
+                              أعدادي أو أولي ثانوي - وده لأن كل قرار ابتداء في المرحلة بيؤثر في تشكيل وتوجيه مسارنا
+                              المهني
+                              علي مدار حياتنا. في أوروبا والدور المتقدمة :D عشان #مراكز_التوجيه_المهني في #المدارس
+                              تساعد
+                              الطلاب علي أتخاذ قرار مهني بتشجع الطلاب علي تطو...</p>
+                            <!-- ٍStart Flowers details-->
+                            <ul class="list_inline flowers_list">
+                              <li><i class="fas fa-newspaper"></i><span>مقالة</span></li>
+                              <li><i class="far fa-clock"> </i><span>نشر فى 18 /11 /2019 </span></li>
+                              <li><i class="fas fa-bars"></i><span>Career Coaching</span></li>
+                            </ul>
+                            <!-- End Flowers details       -->
+                          </div>
+                        </div>
+                        <!--End Article Description-->
+                        <!-- Start Articls Subscribtion-->
+                        <div class="col-sm-12 col-xl-3">
+                          <div class="articls_subscription">
+                            <ul class="favorite_buttons">
+                              <li><i class="far fa-heart"></i></li>
+                              <li><i class="far fa-bookmark"> </i></li>
+                            </ul>
+                            <div class="articl_writer-content">
+                              <p>ايه أحمد حجازى</p>
+                              <aside> <img src="img/bg/consult2.png"></aside>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- End Articls Subscribtion-->
+                      </div>
+                    </div>
+                    <!-- End  Articl Block -->
+                    <!-- End Speacial Seation                -->
+                  </div>
+                  <!-- End BookMark-->
+                  <!-- End favorite-->
+                  <div id="reseat_password">
+
+                    <form>
+                      <div class="row">
+
+                        <div class="col-sm-12 ">
+                          <div class="profile_form">
+                            <h2 class="form_title">تغيير كلمة السر</h2>
+                            <div class="glopal_form row" get="post">
+
+                              <!--Start Change Password-->
+
+                              <div class="col-sm-12 col-lg-6"> <label for="">كلمة السر القديمة </label> <input type="password"
+                                  placholder="اسم المستخدم" value="">
+                              </div>
+                              <div class="col-sm-12 col-lg-6"> <label for="">كلمة السر الجديدة</label> <input type="password"
+                                  placholder="" value="">
+                              </div>
+                              <!--End Change Password-->
+
+                              <button class="button" type="submit">حفظ </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+
+
+
+                  </div>
+                  <!-- Start Question-->
+                  <div id="question">
+                    <!-- Start Button Add Question -->
+                    <section class="add_question-button">
+                      <button class="button"><i class="fas fa-plus"> </i><span>أضف سؤال</span></button>
+                    </section>
+                    <!-- End Button Add Question -->
+                    <!-- Start Section Add Question -->
+                    <section class="add_question-section">
+                      <h3 class="all_tabs-title">أضف سؤال</h3>
+                      <form class="row glopal_form" action="">
+                        <!-- Start Input-->
+                        <div class="col-sm-12 col-md-6">
+                          <input type="text" placeholder="عنوان السؤال">
+                        </div>
+                        <!-- End Input-->
+                        <!-- Start Input-->
+                        <div class="col-sm-12 col-md-6">
+                          <div class="custum_select">
+                            <select>
+                              <option>حدد نوع السؤال</option>
+                              <option>استشارت اسرية وعلمية</option>
+                              <option>تربية أطفال </option>
+                              <option>علاقات زوجية</option>
+                            </select>
+                          </div>
+                        </div>
+                        <!-- End Input-->
+                        <!-- Start Input-->
+                        <div class="col-sm-12 ">
+                          <textarea placeholder="تفاصيل  السؤال"></textarea>
+                        </div>
+                        <!-- End Input-->
+                        <!-- Start Input-->
+                        <div class="col-sm-12 ">
+                          <button class="button" type="submit">انشر سؤالك</button>
+                        </div>
+                        <!-- End Input-->
+                      </form>
+                    </section>
+                    <!-- End Section Add Question -->
+                    <!-- Start Question Details-->
+                    <section class="question_details">
+                      <h3 class="all_tabs-title"> أسئلتك السابقه</h3>
+                      <!--Start Article Description -->
+                      <div class="article_description">
+                        <h3 class="article_title"> <a href="#">متي يبدء التخطيط المهني ودور الأسرة والمدرسة فيه</a></h3>
+                        <p class="paragraph_global">أنسب وقت يبدء فيه الطالب وضع خطة مهنية وهو عنده 15 سنه - تقريبا 3
+                          أعدادي
+                          أو أولي ثانوي - وده لأن كل قرار ابتداء في المرحلة بيؤثر في تشكيل وتوجيه مسارنا المهني علي
+                          مدار
+                          حياتنا. في أوروبا والدور المتقدمة :D عشان #مراكز_التوجيه_المهني في #المدارس تساعد الطلاب علي
+                          أتخاذ
+                          قرار مهني بتشجع الطلاب علي تطو...</p>
+                        <!-- ٍStart Flowers details-->
+                        <ul class="list_inline flowers_list">
+                          <li><i class="fas fa-newspaper"></i><span>سؤال</span></li>
+                          <li><i class="far fa-clock"> </i><span>نشر فى 18 /11 /2019 </span></li>
+                          <li><i class="fas fa-bars"></i><span>Career Coaching</span></li>
+                        </ul>
+                        <!-- End Flowers details       -->
+                      </div>
+                      <!--End Article Description//Start Article Description 
                     -->
-                <div class="article_description">
-                  <h3 class="article_title"> <a href="#">متي يبدء التخطيط المهني ودور الأسرة والمدرسة فيه</a></h3>
-                  <p class="paragraph_global">أنسب وقت يبدء فيه الطالب وضع خطة مهنية وهو عنده 15 سنه - تقريبا 3 أعدادي
-                    أو أولي ثانوي - وده لأن كل قرار ابتداء في المرحلة بيؤثر في تشكيل وتوجيه مسارنا المهني علي مدار
-                    حياتنا. في أوروبا والدور المتقدمة :D عشان #مراكز_التوجيه_المهني في #المدارس تساعد الطلاب علي أتخاذ
-                    قرار مهني بتشجع الطلاب علي تطو...</p>
-                  <!-- ٍStart Flowers details-->
-                  <ul class="list_inline flowers_list">
-                    <li><i class="fas fa-newspaper"></i><span>سؤال</span></li>
-                    <li><i class="far fa-clock"> </i><span>نشر فى 18 /11 /2019 </span></li>
-                    <li><i class="fas fa-bars"></i><span>Career Coaching</span></li>
-                  </ul>
-                  <!-- End Flowers details       -->
+                      <div class="article_description">
+                        <h3 class="article_title"> <a href="#">متي يبدء التخطيط المهني ودور الأسرة والمدرسة فيه</a></h3>
+                        <p class="paragraph_global">أنسب وقت يبدء فيه الطالب وضع خطة مهنية وهو عنده 15 سنه - تقريبا 3
+                          أعدادي
+                          أو أولي ثانوي - وده لأن كل قرار ابتداء في المرحلة بيؤثر في تشكيل وتوجيه مسارنا المهني علي
+                          مدار
+                          حياتنا. في أوروبا والدور المتقدمة :D عشان #مراكز_التوجيه_المهني في #المدارس تساعد الطلاب علي
+                          أتخاذ
+                          قرار مهني بتشجع الطلاب علي تطو...</p>
+                        <!-- ٍStart Flowers details-->
+                        <ul class="list_inline flowers_list">
+                          <li><i class="fas fa-newspaper"></i><span>سؤال</span></li>
+                          <li><i class="far fa-clock"> </i><span>نشر فى 18 /11 /2019 </span></li>
+                          <li><i class="fas fa-bars"></i><span>Career Coaching</span></li>
+                        </ul>
+                        <!-- End Flowers details       -->
+                      </div>
+                      <!--End Article Description-->
+                    </section>
+                    <!-- End Question Details-->
+                  </div>
+                  <!-- End Question-->
                 </div>
-                <!--End Article Description-->
-              </section>
-              <!-- End Question Details-->
+              </div>
             </div>
-            <!-- End Question-->
           </div>
         </div>
       </div>
+
     </div>
-  </div>
-</div>
 
-  </div>
-
-  <!-- End Single Page -->
+    <!-- End Single Page -->
 
 
-  <!--Start Footer -->
-  <footer>
+    <!--Start Footer -->
+    <footer>
 
-    <div class="footer_overlay">
+      <div class="footer_overlay">
 
-      <div class="container">
-        <aside class="footer_logo">
-          <img src="img/logo/logo.png">
-                </aside>
+        <div class="container">
+          <aside class="footer_logo">
+            <img src="img/logo/logo.png">
+          </aside>
           <div class="row">
             <div class="col-sm-12 col-md-6 col-lg-4">
               <p class="paragraph_global">
-                لوريم إيبسوم(Lorem Ipsum) هو ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر. كان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة برص مجموعة من الأحرف
-                بشكل عشوائي أخذتها من نص، لتكوّن كتيّب بمثابة دليل أو مرجع شكلي لهذه الأحرف. خمسة قرون من الزمن لم تقضي على هذا النص، بل انه حتى صار مستخدماً وبشكله الأصلي في الطباعة والتنضيد الإلكتروني. انتشر بشكل كبير في ستينيّات هذا القرن مع
-                إصدار رقائق "ليتراسيت" (Letraset) البلاستيكية تحوي مقاطع من هذا النص، وعاد لينتشر مرة أخرى مؤخراَ مع ظهور برامج النشر الإلكتروني مثل "ألدوس بايج مايكر" (Aldus PageMaker) والتي حوت أيضاً على نسخ من نص لوريم إيبسوم
+                لوريم إيبسوم(Lorem Ipsum) هو ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات
+                المطابع ودور النشر. كان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة
+                مجهولة برص مجموعة من الأحرف
+                بشكل عشوائي أخذتها من نص، لتكوّن كتيّب بمثابة دليل أو مرجع شكلي لهذه الأحرف. خمسة قرون من الزمن لم تقضي
+                على هذا النص، بل انه حتى صار مستخدماً وبشكله الأصلي في الطباعة والتنضيد الإلكتروني. انتشر بشكل كبير في
+                ستينيّات هذا القرن مع
+                إصدار رقائق "ليتراسيت" (Letraset) البلاستيكية تحوي مقاطع من هذا النص، وعاد لينتشر مرة أخرى مؤخراَ مع
+                ظهور برامج النشر الإلكتروني مثل "ألدوس بايج مايكر" (Aldus PageMaker) والتي حوت أيضاً على نسخ من نص
+                لوريم إيبسوم
               </p>
             </div>
 
@@ -602,25 +807,25 @@
               <span> جميع الحقوق محفوظة ايثــار © 2018</span>
             </div>
           </div>
+        </div>
+
       </div>
 
-    </div>
+
+
+    </footer>
+    <!-- End Footer -->
 
 
 
-  </footer>
-  <!-- End Footer -->
+    <!--Start Button Go up-->
+    <span class="go_up go_up-js fas fa-sort-up"> </span>
+    <!--End Button Go up-->
+    <!--=14= Start Copyright Section -->
 
 
 
-  <!--Start Button Go up-->
-  <span class="go_up go_up-js fas fa-sort-up"> </span>
-  <!--End Button Go up-->
-  <!--=14= Start Copyright Section -->
-
-
-
-  <!--
+    <!--
 <section class="copyright">
     <div class="container">
         <div class="copyright_content">
@@ -633,18 +838,18 @@
 </section>
 -->
 
-  <!--=14= End Copyright Section -->
+    <!--=14= End Copyright Section -->
 
 
 
-  <script src="js/jquery-1.12.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/slick.js"></script>
-     <script src="js/script.js"></script>
-<script src="js/my-account.js"></script>
-  <!-- <script src="js/script-rtl.js"></script> -->
+    <script src="js/jquery-1.12.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/slick.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/my-account.js"></script>
+    <!-- <script src="js/script-rtl.js"></script> -->
 
-</body>
+  </body>
 
 </html>
