@@ -37,6 +37,7 @@ Route::group(['namespace' => FE], function () {
                 Route::post('sign-up', 'SignUpFrontController@saveCustomerSignUp')->name('customer_sign_up_post');
                 Route::post('get-country-cities', 'SignUpFrontController@getCountryCities')->name('get_country_cities');
                 Route::get('activate-account/{mobile}', 'SignUpFrontController@showCustomerVerifyMobileCode')->name('verify_sent_code');
+                Route::post('activate-account/{mobile}', 'SignUpFrontController@activeCustomerVerifyMobileCode')->name('verify_sent_code_post');
                 Route::get('resend-verify-code', 'SignUpFrontController@resendCustomerVerifyCode')->name('resend_verify_code');
                 Route::post('resend-verify-code', 'SignUpFrontController@resendCustomerVerifyCodePost')->name('resend_verify_code_post');
                 Route::get('reset-password', 'ResetPasswordFrontController@showCustomerResetPassword')->name('customer_reset_password');
