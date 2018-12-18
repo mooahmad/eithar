@@ -13,7 +13,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 class UpdateCustomerProfileController extends Controller
 {
     protected $Customer_Services;
-    
+
     /**
      * UpdateCustomerProfileController constructor.
      */
