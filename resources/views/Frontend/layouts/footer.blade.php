@@ -64,34 +64,65 @@
         <!--End Button Go up-->
 
         <!--=05=Start Popup accepted_code-->
-        <div class="sucsess_code">
-            <div class="container">
-                <!-- The Modal -->
-                <div class="modal fade" id="success_message">
-                    <div class="modal-dialog ">
-                        <div class="modal-content">
-                            <!-- Modal Header -->
-                            <div class="modal-header">
-                                <button class="close fas fa-times" type="button" data-dismiss="modal"> </button>
-                            </div>
-                            <!-- Modal body -->
-                            <div class="modal-body model_code">
-                                <!-- Start Form content-->
-                                <div class="form_content">
-                                    @if(Session::has('success_message'))
-                                        <p>{{ session()->get('success_message') }}</p>
-                                    @endif
+        @if(Session::has('success_message'))
+            <div class="sucsess_code">
+                <div class="container">
+                    <!-- The Modal -->
+                    <div class="modal fade" id="success_message">
+                        <div class="modal-dialog ">
+                            <div class="modal-content">
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <button class="close fas fa-times" type="button" data-dismiss="modal"> </button>
                                 </div>
-                                <!-- End  Form content-->
-                                <aside class="form_man">
-                                    <img src="{{ asset('public/Frontend/img/sucsess_code.png') }}" alt="{{ trans('main.site_name') }}">
-                                </aside>
+                                <!-- Modal body -->
+                                <div class="modal-body model_code">
+                                    <!-- Start Form content-->
+                                    <div class="form_content">
+                                        <p>{{ session()->get('success_message') }}</p>
+                                    </div>
+                                    <!-- End  Form content-->
+                                    <aside class="form_man">
+                                        <img src="{{ asset('public/Frontend/img/sucsess_code.png') }}" alt="{{ trans('main.site_name') }}">
+                                    </aside>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endif
+        <!--=05 Send Code accepted_code -->
+
+        <!--=05=Start Popup accepted_code-->
+        @if(Session::has('error_message'))
+            <div class="wrrong_code">
+                <div class="container">
+                    <!-- The Modal -->
+                    <div class="modal fade" id="wrong_code">
+                        <div class="modal-dialog ">
+                            <div class="modal-content">
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <button class="close fas fa-times" type="button" data-dismiss="modal"> </button>
+                                </div>
+                                <!-- Modal body -->
+                                <div class="modal-body model_code">
+                                    <!-- Start Form content-->
+                                    <div class="form_content">
+                                        <p>{{ session()->get('error_message') }}</p>
+                                    </div>
+                                    <!-- End  Form content-->
+                                    <aside class="form_man">
+                                        <img src="{{ asset('public/Frontend/img/wrrong_code.png') }}" alt="{{trans('main.site_name')}}">
+                                    </aside>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
         <!--=05 Send Code accepted_code -->
 
         <script src="{{ asset('public/Frontend/js/jquery-1.12.1.min.js') }}"></script>
@@ -107,6 +138,11 @@
         @if(Session::has('success_message'))
             <script>
                 $('#success_message').modal('show');
+            </script>
+        @endif
+        @if(Session::has('error_message'))
+            <script>
+                $('#wrong_code').modal('show');
             </script>
         @endif
     </body>

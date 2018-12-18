@@ -12,6 +12,7 @@ use App\Helpers\Utilities;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class CustomerAuthServices extends Controller
@@ -88,5 +89,32 @@ class CustomerAuthServices extends Controller
             }
         }
         return $customer;
+    }
+
+    /**
+     * @param $old_password
+     * @param $new_password
+     * @return bool
+     */
+    public function changeCustomerPassword($old_password,$new_password){
+        if (Hash::check($old_password,auth()->guard('customer-web')->user()->password)){
+            if ($this->changeLoginCustomerPassword($new_password)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @param $password
+     * @return bool
+     */
+    protected function changeLoginCustomerPassword($password){
+        if (auth()->guard('customer-web')->user()->update([
+            'password'=>bcrypt($password)
+        ])){
+            return true;
+        }
+        return false;
     }
 }

@@ -34,7 +34,7 @@
                                     <li data-id="#ForgotPassword">
                                         <a href="#">
                                             <i class="fas fa-unlock"></i>
-                                            <span>Reset Password </span>
+                                            <span>{{ trans('main.change_password') }}</span>
                                         </a>
                                     </li>
                                     <!---Change Password-->
@@ -86,11 +86,21 @@
                             </div>
                         </div>
                     </div>
-                    <!-- End Profile Menue-->
+                    <!-- End Profile Menu-->
                     <div class="col-sm-12 col-md-8 col-lg-9">
                         <div class="">
+                            @if(count($errors))
+                                <div class="alert alert-danger">
+                                    <button class="close" data-close="alert"></button>
+                                    <ul>
+                                        @foreach($errors->all() as $error)
+                                            <li>{{$error}}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <div class="all_tabs">
-                                <!--Start Ediate Profile-->
+                                <!--Start Edit Profile-->
                                 <div id="EditProfile">
                                     <!-- Start Single Page -->
                                     <div class="single_page-content ediating_profile">
@@ -101,16 +111,6 @@
                                                     <div class="col-sm-12 ">
                                                         <div class="profile_form">
                                                             <h2 class="form_title">{{ trans('main.update_information') }}</h2>
-                                                            @if(count($errors))
-                                                                <div class="alert alert-danger">
-                                                                    <button class="close" data-close="alert"></button>
-                                                                    <ul>
-                                                                        @foreach($errors->all() as $error)
-                                                                            <li>{{$error}}</li>
-                                                                        @endforeach
-                                                                    </ul>
-                                                                </div>
-                                                            @endif
                                                             <div class="glopal_form row" get="post">
                                                                 <div class="col-sm-12 col-md-6 col-lg-4">
                                                                     <label for="first_name">{{ trans('main.first_name') }}</label>
@@ -256,11 +256,10 @@
                                         </div>
                                         <!-- End My Account Pages-->
                                     </div>
-
                                     <!-- End Single Page -->
                                 </div>
 
-                                <!-- Start Meating-->
+                                <!-- Start Meeting-->
                                 <div id="meating">
                                     <!-- Start Speacial Seation-->
                                     <section class="speacial_section">
@@ -362,7 +361,7 @@
                                     </section>
                                     <!-- End  Packedg Subscrib-->
                                 </div>
-                                <!-- End Meating-->
+                                <!-- End Meeting-->
 
                                 <!-- Start favorite-->
                                 <div id="favorite">
@@ -522,31 +521,42 @@
 
                                 <!-- End favorite-->
                                 <div id="ForgotPassword">
-
-                                    <form>
+                                    {!! Form::open(['url'=>url()->route('customer_update_password_post')]) !!}
                                         <div class="row">
-
                                             <div class="col-sm-12 ">
                                                 <div class="profile_form">
-                                                    <h2 class="form_title">تغيير كلمة السر</h2>
-                                                    <div class="glopal_form row" get="post">
-
-                                                        <!--Start Change Password-->
-
-                                                        <div class="col-sm-12 col-lg-6"> <label for="">كلمة السر القديمة </label> <input type="password"
-                                                                                                                                         placholder="اسم المستخدم" value="">
+                                                    <h2 class="form_title">{{ trans('main.change_password') }}</h2>
+                                                    <div class="glopal_form row">
+                                                       <div class="col-sm-12 col-md-4 col-lg-4">
+                                                            <label for="old_password">{{ trans('main.old_password') }}</label>
+                                                            {!! Form::password('old_password',['placeholder'=>trans('main.old_password'),'id'=>'old_password','required']) !!}
+                                                            @if($errors->has('old_password'))
+                                                            <span class="text-danger">{{ $errors->first('old_password') }}</span>
+                                                            @endif
                                                         </div>
-                                                        <div class="col-sm-12 col-lg-6"> <label for="">كلمة السر الجديدة</label> <input type="password"
-                                                                                                                                        placholder="" value="">
-                                                        </div>
-                                                        <!--End Change Password-->
 
-                                                        <button class="button" type="submit">حفظ </button>
+                                                        <div class="col-sm-12 col-md-4 col-lg-4">
+                                                            <label for="password">{{ trans('main.password') }}</label>
+                                                            {!! Form::password('password',['placeholder'=>trans('main.password'),'id'=>'password','required']) !!}
+                                                            @if($errors->has('password'))
+                                                            <span class="text-danger">{{ $errors->first('password') }}</span>
+                                                            @endif
+                                                        </div>
+
+                                                        <div class="col-sm-12 col-md-4 col-lg-4">
+                                                            <label for="password_confirmation">{{ trans('main.password_confirmation') }}</label>
+                                                            {!! Form::password('password_confirmation',['placeholder'=>trans('main.password_confirmation'),'id'=>'password_confirmation','required']) !!}
+                                                            @if($errors->has('password_confirmation'))
+                                                            <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
+                                                            @endif
+                                                        </div>
+
+                                                        <button class="button" type="submit">{{ trans('main.update') }} </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>
+                                    {!! Form::close() !!}
 
 
 

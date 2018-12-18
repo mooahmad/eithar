@@ -136,4 +136,5 @@ return [
     'change_password'               => 'تعديل كلمة المرور',
     'success_message'               => 'تمت العملية بنجاح',
     'show_customer_profile'         => 'حساب المستخدم',
+    'old_password'                  => 'كلمة المرور القديمة',
 ];

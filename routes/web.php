@@ -48,6 +48,7 @@ Route::group(['namespace' => FE], function () {
                     Route::get('profile/show/{id}/{name}', 'ProfileCustomerController@index')->name('show_customer_profile');
                     Route::get('profile/update/{id}/{name}', 'UpdateCustomerProfileController@showUpdateCustomerProfile')->name('customer_show_update_profile');
                     Route::post('profile/update/{id}/{name}', 'UpdateCustomerProfileController@storeUpdateCustomerProfile')->name('customer_update_profile_post');
+                    Route::post('profile/update/password', 'UpdateCustomerProfileController@storeUpdateCustomerPassword')->name('customer_update_password_post');
                 });
 
             });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend\CustomerFront;
 
 use App\Helpers\Utilities;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Frontend\CustomerChangePasswordRequest;
 use App\Http\Requests\Frontend\CustomerUpdateProfileRequest;
 use App\Http\Services\Frontend\CustomerServices\CustomerAuthServices;
 use App\Models\Country;
@@ -58,6 +59,22 @@ class UpdateCustomerProfileController extends Controller
             $customer = $this->Customer_Services->uploadCustomerImage($customer,$request,'nationality_id_picture','public/images/nationalities');
         }
         session()->flash('success_message',trans('main.success_message'));
+        return redirect()->route('show_customer_profile',['id'=>$customer->id,'name'=>Utilities::beautyName($customer->full_name)]);
+    }
+
+    /**
+     * @param CustomerChangePasswordRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function storeUpdateCustomerPassword(CustomerChangePasswordRequest $request)
+    {
+        $customer = auth()->guard('customer-web')->user();
+
+        if ($this->Customer_Services->changeCustomerPassword($request->input('old_password'),$request->input('password'))){
+            session()->flash('success_message',trans('main.success_message'));
+        }else{
+            session()->flash('error_message',trans('main.error_message'));
+        }
         return redirect()->route('show_customer_profile',['id'=>$customer->id,'name'=>Utilities::beautyName($customer->full_name)]);
     }
 }
