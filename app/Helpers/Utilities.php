@@ -264,4 +264,53 @@ class Utilities
     {
         return config('constants.MobileNumberStart').$mobile;
     }
+
+    /**
+     * @return array
+     */
+    public static function GetCustomerInfoByIp(){
+        $client  = @$_SERVER['HTTP_CLIENT_IP'];
+        $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+        $remote  = @$_SERVER['REMOTE_ADDR'];
+        $result  = [
+            'country'=>'',
+            'city'=>'',
+            'ip'=>'',
+            'region'=>'',
+            'country_code'=>'',
+            'currency_code'=>'',
+            'currency_symbol'=>'',
+            'currency_converter'=>'',
+            'timezone'=>config('app.timezone'),
+            'latitude'=>'',
+            'longitude'=>'',
+        ];
+        if(filter_var($client, FILTER_VALIDATE_IP)){
+            $ip = $client;
+        }elseif(filter_var($forward, FILTER_VALIDATE_IP)){
+            $ip = $forward;
+        }else{
+            $ip = $remote;
+        }
+        $except_ips = ['localhost','127.0.0.1','::1'];
+//          $ip = '156.222.135.29';
+        if(! in_array($ip,$except_ips)){
+            $ip_data = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=".$ip));
+            if($ip_data && $ip_data->geoplugin_countryName != null && $ip_data->geoplugin_status == 200)
+            {
+                $result['ip'] = $ip_data->geoplugin_request;
+                $result['country'] = $ip_data->geoplugin_countryName;
+                $result['city'] = $ip_data->geoplugin_city;
+                $result['region'] = $ip_data->geoplugin_region;
+                $result['country_code'] = $ip_data->geoplugin_countryCode;
+                $result['currency_code'] = $ip_data->geoplugin_currencyCode;
+                $result['currency_symbol'] = $ip_data->geoplugin_currencySymbol_UTF8;
+                $result['currency_converter'] = $ip_data->geoplugin_currencyConverter;
+                $result['timezone'] = $ip_data->geoplugin_timezone;
+                $result['latitude'] = $ip_data->geoplugin_latitude;
+                $result['longitude'] = $ip_data->geoplugin_longitude;
+            }
+        }
+        return $result;
+    }
 }
