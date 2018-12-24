@@ -32,12 +32,14 @@ class DoctorsCategoryController extends Controller
 {
     use Views,Likes;
 
+    protected $customer_ip_info;
+
     /**
      * DoctorsCategoryController constructor.
      */
     public function __construct()
     {
-        //
+        $this->customer_ip_info = Utilities::GetCustomerInfoByIp();
     }
 
     /**
@@ -93,6 +95,7 @@ class DoctorsCategoryController extends Controller
             'subcategory'=>$subcategory,
             'family_members'=>$family_members,
             'questionnaire'=>$questionnaire->groupBy(['pagination']),
+            'customer_ip_info'=>$this->customer_ip_info,
         ];
         return view(FE.'.pages.providers.calendar_questionnaire')->with($data);
     }
@@ -105,6 +108,10 @@ class DoctorsCategoryController extends Controller
         return Provider::GetActiveProviders()->find($provider_id);
     }
 
+    /**
+     * @param BookAppointmentProviderRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function book(BookAppointmentProviderRequest $request)
     {
 //        return $request->all();
@@ -202,7 +209,7 @@ class DoctorsCategoryController extends Controller
         $html = '';
         $appointment = '';
         foreach ($slots as $slot){
-            $appointment = Carbon::parse($slot->start_date)->format("H:i") . ' : ' . Carbon::parse($slot->end_date)->format("H:i");
+            $appointment = Carbon::parse($slot->start_date)->setTimezone($this->customer_ip_info['timezone'])->format("H:i") . ' : ' . Carbon::parse($slot->end_date)->format("H:i");
             $html.='
                 <li class="available_dates-content">
                     <aside class="available_dates-details">

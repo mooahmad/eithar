@@ -19,12 +19,15 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class SignUpFrontController extends Controller
 {
+    protected $customer_ip_info;
+
     /**
      * SignUpFrontController constructor.
      */
     public function __construct()
     {
         $this->middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']);
+        $this->customer_ip_info = Utilities::GetCustomerInfoByIp();
     }
 
     /**
@@ -33,11 +36,15 @@ class SignUpFrontController extends Controller
     public function showCustomerSignUp()
     {
         if (auth()->guard('customer-web')->check()) return redirect()->route('home');
-
+        $position ='';
+        if ($this->customer_ip_info['latitude'] && $this->customer_ip_info['longitude']){
+            $position = $this->customer_ip_info['latitude'].','.$this->customer_ip_info['longitude'];
+        }
         $data = [
             'gender'=>config('constants.gender_desc_'.LaravelLocalization::getCurrentLocale()),
             'countries'=>Country::all()->pluck('country_name_eng','id'),
             'cities'=>[],
+            'position'=>$position,
         ];
         return view(FE.'.pages.customer.sign_up')->with($data);
     }

@@ -146,7 +146,7 @@
                                     </div>
                                     <div class="col-sm-12 col-md-6">
                                         <label for="position">{{ trans('main.position') }}</label>
-                                        {!! Form::text('position',old('position'),['id'=>'position','placeholder'=>trans('main.position'),'required','readonly']) !!}
+                                        {!! Form::text('position',old('position'),['id'=>'position','placeholder'=>trans('main.position'),'required']) !!}
                                         @if($errors->has('position'))
                                             <span class="text-danger">{{ $errors->first('position') }}</span>
                                         @endif
@@ -201,7 +201,11 @@
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
                     };
-                    $("#position").val(position.coords.latitude +','+position.coords.longitude);
+                    if (position.coords.latitude && position.coords.longitude){
+                        $("#position").val(position.coords.latitude +','+position.coords.longitude);
+                    }else {
+                        $("#position").val("{{$position}}");
+                    }
                     getLocation(pos);
                 }, function() {
                     handleLocationError(true, infoWindow, map.getCenter());

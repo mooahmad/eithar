@@ -30,6 +30,7 @@ class ProfileCustomerController extends Controller
             session()->flash('error_message',trans('main.error_message'));
             return redirect()->route('customer_login');
         }
+//        return auth()->guard('customer-web')->user()->notifications;
 
         $data = [
             'customer'=>auth()->guard('customer-web')->user(),

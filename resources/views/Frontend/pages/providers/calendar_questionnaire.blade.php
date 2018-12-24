@@ -65,7 +65,7 @@
                                         <div class="col-sm-12  col-lg-7">
                                             <!-- Start Custom Calender-->
                                             <div class="calender_content block">
-                                                <h6 class="time">{{ trans('main.timezone') }} <span>( {{ trans('main.KSA') }} )</span></h6>
+                                                <h6 class="time">{{ trans('main.timezone') }} <span>( {{ ($customer_ip_info['country']) ? $customer_ip_info['country'] : 'UTC' }} )</span></h6>
                                                 <div id="calender-wrapper">
                                                     <div class="disable-select flex row center-v around" id="calender-title">
                                                         <div class="flex row center-vh" id="left"><span class="arrow"><</span></div>
@@ -133,43 +133,6 @@
             </div>
         </div>
         <!--=01= Send Code confirmation_code -->
-
-        <!--=02=Start Popup successful_confirmatione-->
-        <div class="successful_confirmation">
-            <div class="container">
-                <!-- The Modal -->
-                <div class="modal fade" id="successful_confirmation">
-                    <div class="modal-dialog ">
-                        <div class="modal-content">
-                            <!-- Modal Header -->
-                            <div class="modal-header">
-                                <button class="close fas fa-times" type="button" data-dismiss="modal"> </button>
-                            </div>
-                            <!-- Modal body -->
-                            <div class="modal-body model_code">
-                                <!-- Start Form content-->
-                                <div class="form_content">
-                                    <form class="glopal_form middel_form">
-                                        @if(session()->has('success_message'))
-                                            <h5 class="send_code">{{ session()->get('success_message') }}</h5>
-                                        @endif
-                                        <!-- End List icon Registration -->
-                                        {{--<aside class="sign_button-content">--}}
-                                            {{--<button class="button" type="submit"> تم التأكيد بنجاح</button>--}}
-                                        {{--</aside>--}}
-                                    </form>
-                                </div>
-                                <!-- End  Form content-->
-                                <aside class="form_man">
-                                    <img src="{{ asset('public/Frontend/img/successful_code.png') }}" alt="{{ trans('main.site_name') }}">
-                                </aside>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--=02= Send Code successful_confirmation -->
     @endif
 @stop
 
@@ -193,9 +156,4 @@
             format: "yyyy-mm-dd"
         });
     </script>
-    @if(session()->has('success_message'))
-        <script>
-            $('#successful_confirmation').modal('show');
-        </script>
-    @endif
 @stop
