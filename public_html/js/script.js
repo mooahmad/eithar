@@ -194,6 +194,20 @@ $(function() {
       $(".notification_button").on('click', function () {
         $(".notification_area-list").slideToggle();
       });
-
-
 });
+
+
+
+  /**Pakege Page js**/
+  // Toggle Class active
+  $(".packeg_visit li:first-child").addClass("active");
+  $(".packeg_visit li").click(function () {
+    $(this).addClass("active");
+    $(this).siblings().removeClass("active");
+
+    //  Hide All Content
+    $(" .all_visites > div").hide();
+
+    //Show Dive With This Link
+    $('.' + $(this).data('class')).fadeIn(1000);
+  });
