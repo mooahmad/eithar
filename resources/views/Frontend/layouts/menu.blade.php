@@ -19,6 +19,7 @@
 
                     <!-- Start Notification Area-->
                     <div class="login_area-content">
+                    @if(auth()->guard('customer-web')->check())
                         <!-- Start Notification Area-->
                         <div class="notification_area ">
                             <aside class="notification_button new_notification ">
@@ -50,9 +51,6 @@
                             </ul>
                         </div>
                         <!-- End Notification Area-->
-
-                        @if(auth()->guard('customer-web')->check())
-{{--                            <li><a href="{{ url()->route('customer_logout') }}" title="{{ trans('main.logout') }}">{{ trans('main.logout') }}</a></li>--}}
                             <a class="login_button" href="{{ url()->route('show_customer_profile',['id'=>auth()->guard('customer-web')->user()->id,'name'=>\App\Helpers\Utilities::beautyName(auth()->guard('customer-web')->user()->full_name)]) }}">
                                 <aside class="avatar_img">
                                     <i class="fas fa-user-tie"></i>
@@ -61,11 +59,11 @@
                             <span>{{ auth()->guard('customer-web')->user()->first_name }}</span>
                         @else
                             <a class="login_button" href="{{ url()->route('customer_login') }}">
-                                <aside class="avatar_img">
-                                    <i class="fas fa-user-tie"></i>
-                                </aside>
+                                {{--<aside class="avatar_img">--}}
+                                    {{--<i class="fas fa-user-tie"></i>--}}
+                                {{--</aside>--}}
+                                <span>{{ trans('main.login') }}</span>
                             </a>
-                            <span>{{ trans('main.login') }}</span>
                         @endif
 
                         @if(LaravelLocalization::getCurrentLocale() == 'ar')
