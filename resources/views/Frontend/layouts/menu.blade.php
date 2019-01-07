@@ -21,7 +21,7 @@
                     <div class="login_area-content">
                     @if(auth()->guard('customer-web')->check())
                         <!-- Start Notification Area-->
-                        <div class="notification_area ">
+                        <div class="notification_area">
                             <aside class="notification_button new_notification ">
                                 <i class="far fa-bell"></i>
                             </aside>
