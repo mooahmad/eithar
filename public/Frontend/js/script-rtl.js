@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
 
   'use strict';
 
@@ -6,11 +6,11 @@ $(function() {
   //Togell Active Class in Menu
   $(".navbar_menu li:first-child").addClass("active");
 
-  $(".navbar_menu li").click(function() {
+  $(".navbar_menu li").click(function () {
     $(this).addClass("active").siblings().removeClass("active");
   });
   // Fixed navbar
-  $(window).scroll(function() {
+  $(window).scroll(function () {
     if ($(window).scrollTop() >= 80) {
       $(".navbar").addClass("fixed");
 
@@ -25,15 +25,15 @@ $(function() {
   if ($(window).width() >= 992) {
 
 
-    $(".dropdown_link ,.dropdown_link-inside ").mouseenter(function() {
+    $(".dropdown_link ,.dropdown_link-inside ").mouseenter(function () {
       $(this).children(".navbar_dropdown-menu").slideDown(800);
     });
 
-    $(".dropdown_link ,.dropdown_link-inside ").mouseleave(function() {
+    $(".dropdown_link ,.dropdown_link-inside ").mouseleave(function () {
       $(this).children(".navbar_dropdown-menu").slideUp("fast");
     });
 
-    $(".dropdown_link-inside").click(function() {
+    $(".dropdown_link-inside").click(function () {
       $(this).children(".navbar_dropdown-menu").slideToggle();
 
     });
@@ -42,7 +42,7 @@ $(function() {
 
   // Menu Fore Mobile
   if ($(window).width() <= 992) {
-    $(".dropdown_link ,.dropdown_link-inside ").click(function() {
+    $(".dropdown_link ,.dropdown_link-inside ").click(function () {
       $(this).children(".navbar_dropdown-menu").slideToggle();
     });
 
@@ -50,7 +50,7 @@ $(function() {
   }
 
   // Button Togell To Show and Hide Menu
-  $(".navbar_button").click(function() {
+  $(".navbar_button").click(function () {
     $(".navbar_overlay").fadeIn();
     $(".menu_content").animate({
       right: 0 //Change
@@ -59,34 +59,34 @@ $(function() {
   });
 
   // Overlay Click To  Hide Menu
-  $(".navbar_overlay").click(function() {
+  $(".navbar_overlay").click(function () {
     $(this).fadeOut("slow");
     $(".navbar_overlay").animate({
       left: -260 //Change
     }, 500);
 
   });
-  $(" .navbar_overlay").children().click(function(e) {
+  $(" .navbar_overlay").children().click(function (e) {
     e.stopPropagation();
   });
 
 
   // Hiden Menu in Mobile By Using Esc Button
-  $(document).keydown(function(e) {
+  $(document).keydown(function (e) {
     if (e.keyCode == 27)
       $(".navbar_overlay").fadeOut("slow");
   });
 
 
   // =03= Start Search Subheader
-  $(".department_button").click(function() {
+  $(".department_button").click(function () {
     $(this).addClass("active").siblings().removeClass("active");
   });
   // =03= End Search Subheader
 
 
   /*======= Backgrounds ======*/
-  $("[data-src]").each(function() {
+  $("[data-src]").each(function () {
     var backgroundImage = $(this).attr("data-src");
     $(this).css("background-image", "url(" + backgroundImage + ")");
   });
@@ -115,16 +115,31 @@ $(function() {
 
   /**Start Provider Doctor **/
   // Toggle Class active
-  $(".department_slider div[class*='col']").click(function() {
+  $(".department_slider div[class*='col']").click(function () {
     $(".department_slider div").removeClass("active");
     $(this).children(".department_block").addClass("active");
 
 
   });
 
-  $(" .department_block").click(function() {
+  $(" .department_block").click(function () {
     //  Hide All Content
     $(" .all_tabs > div").hide();
+
+    //Show Dive With This Link
+    $('.' + $(this).data('class')).fadeIn(1000);
+  });
+
+
+  /**Pakege Page js**/
+  // Toggle Class active
+  $(".packeg_visit li:first-child").addClass("active");
+  $(".packeg_visit li").click(function () {
+    $(this).addClass("active");
+    $(this).siblings().removeClass("active");
+
+    //  Hide All Content
+    $(" .all_visites > div").hide();
 
     //Show Dive With This Link
     $('.' + $(this).data('class')).fadeIn(1000);
@@ -170,7 +185,7 @@ $(function() {
 
 
   //Button Go to Top Hidden and Show
-  $(window).scroll(function() {
+  $(window).scroll(function () {
 
 
     var buttonUp = $(".go_up-js");
@@ -186,14 +201,14 @@ $(function() {
   });
 
   //Button Click To Scroll to top
-  $(".go_up-js").on('click', function() {
+  $(".go_up-js").on('click', function () {
     $('html,body').animate({
       scrollTop: 0
     }, 1000)
   });
 
   //Button Click To Scroll to Down
-  $(".down_icon").on('click', function() {
+  $(".down_icon").on('click', function () {
     $('html,body').animate({
       scrollTop: 600
     }, 1000)
@@ -203,7 +218,7 @@ $(function() {
   // $(".rate_content .fa-heart,.rate_content .fa-star").click(function() {
   //   $(this).toggleClass("active");
   // });
-  $(".rate_content .fa-share-square").click(function() {
+  $(".rate_content .fa-share-square").click(function () {
     $(".social_media-content").slideToggle();
   });
   /*End Profile Doctor */
@@ -211,8 +226,8 @@ $(function() {
 
   /*****Start Preloder*****/
   //For Loading Function
-  $(window).on('load', function() {
-    $(".loading-bg").fadeOut(2000, function() {
+  $(window).on('load', function () {
+    $(".loading-bg").fadeOut(2000, function () {
       $("body").css('overflow', 'auto')
     });
   });
@@ -236,7 +251,7 @@ $(function() {
   var bookedDates = [];
   var selectedDates = [];
 
-  Date.prototype.addDays = function(days) {
+  Date.prototype.addDays = function (days) {
     var dat = new Date(this.valueOf())
     dat.setDate(dat.getDate() + days);
     return dat;
@@ -281,7 +296,7 @@ $(function() {
       var string = "<div class='month'><div id='" + dayNames[day] + "-" + i + "-" + monthNames[currentMonth] + "-" + currentYear + "'class='month-selector flex center-vh clickable' onclick='monthClick(this)'><p>" + i + "</p><span class='day_avilable '>5</span></div></div>";
       $("#calender-content").append(string);
       // My Cutum Code
-      $(".day_avilable").parent().click(function() {
+      $(".day_avilable").parent().click(function () {
         // $(this).hide();
       });
 
@@ -381,12 +396,12 @@ $(function() {
     return null;
   }
 
-  $(function() {
+  $(function () {
     displayCalender(currentMonth)
     $("#date").append(new Date);
   });
 
-  $("#left").on("click", function() {
+  $("#left").on("click", function () {
     if (currentMonth > 0)
       currentMonth -= 1;
     else {
@@ -395,7 +410,7 @@ $(function() {
     }
     displayCalender();
   });
-  $("#right").on("click", function() {
+  $("#right").on("click", function () {
     if (currentMonth < 11)
       currentMonth += 1;
     else {
@@ -405,7 +420,7 @@ $(function() {
     displayCalender();
   });
 
-  $("#remove-booking").on("click", function() {
+  $("#remove-booking").on("click", function () {
     if (selectedDates != null && selectedDates.length > 0) {
       bookingSteps += 1;
 
@@ -421,7 +436,7 @@ $(function() {
   $('.nav-tabs > li a[title]').tooltip();
 
   //Wizard
-  $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+  $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
 
     var $target = $(e.target);
 
@@ -430,14 +445,14 @@ $(function() {
     }
   });
 
-  $(".next-step").click(function(e) {
+  $(".next-step").click(function (e) {
 
     var $active = $('.wizard .nav-tabs li.active');
     $active.next().removeClass('disabled');
     nextTab($active);
 
   });
-  $(".prev-step").click(function(e) {
+  $(".prev-step").click(function (e) {
 
     var $active = $('.wizard .nav-tabs li.active');
     prevTab($active);
@@ -455,10 +470,10 @@ $(function() {
   /***End Wizured Form for Booking***/
   /****/
 
-      // Start Notificaion 
-      $(".notification_button").on('click', function () {
-        $(".notification_area-list").slideToggle();
-      });
+  // Start Notificaion 
+  $(".notification_button").on('click', function () {
+    $(".notification_area-list").slideToggle();
+  });
 
 
 });
