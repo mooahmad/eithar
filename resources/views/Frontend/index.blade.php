@@ -122,8 +122,7 @@
                         <aside class="services_block-paragraph">
                             <h3>{{ trans('main.nurse') }}</h3>
                             <p class="paragraph_global">{{ trans('main.nurse_desc') }} </p>
-{{--                            <a href="{{ url()->route('nurse_category') }}" class="button">{{ trans('main.more') }}</a>--}}
-                            <a href="#" class="button">{{ trans('main.more') }}</a>
+                            <a href="{{ url()->route('nurse_category') }}" class="button">{{ trans('main.more') }}</a>
                         </aside>
                     </div>
                 </div>

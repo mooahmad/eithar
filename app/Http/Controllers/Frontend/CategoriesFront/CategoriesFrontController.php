@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend\CategoriesFront;
 
 use App\Helpers\Utilities;
 use App\Http\Controllers\Controller;
+use App\Http\Services\Frontend\CategoriesServices\ParentCategoryService;
 use App\Models\Category;
 use App\Models\Provider;
 use App\Models\Service;
@@ -11,9 +12,11 @@ use Illuminate\Http\Request;
 
 class CategoriesFrontController extends Controller
 {
+    protected $ParentService;
+
     public function __construct()
     {
-
+        $this->ParentService = new ParentCategoryService();
     }
 
     /**
@@ -41,14 +44,23 @@ class CategoriesFrontController extends Controller
         return 'Physiotherapy';
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function showNurseSubCategories()
     {
-        return 'Nurse';
+        $category = $this->ParentService->getParentCategory(config('constants.categories.Nursing'));
+        if (!$category) return redirect()->route('home');
+        $data = [
+            'main_categories'=>Category::GetParentCategories()->get(),
+            'sub_categories'=>$category->categories,
+        ];
+        return view(FE.'.pages.categories.global_categories.index')->with($data);
     }
 
     public function showWomenSubCategories()
     {
-        return 'Women';
+        return 'MotherAndChildCare';
     }
 
     public function showSubCategories(Category $category)
@@ -193,5 +205,36 @@ class CategoriesFrontController extends Controller
         }
         $html_list .= '</div></div></div>';
         return $html_list;
+    }
+
+    public function getSubCategoryGlobalServicesList(Request $request){
+        if ($request->ajax()){
+            $subcategory = Category::findOrFail($request->input('subcategory_id'));
+            $data = [
+                'result'=>false,
+                'list'=>'',
+                'id'=>''
+            ];
+
+            if (empty($subcategory)){
+                return response($data);
+            }
+
+            //get subcategory one time visit services
+            $one_time_visit_services = $this->ParentService->getSubcategoryServices($subcategory->id,1);
+
+            //get subcategory packages services
+            $packages_services = $this->ParentService->getSubcategoryServices($subcategory->id,2);
+
+            if (count($packages_services)){
+                $html = $this->buildHTMLProviderList($packages_services,$subcategory);
+                $data = [
+                    'result'=>true,
+                    'list'=>$html,
+                    'id'=>$subcategory->id
+                ];
+            }
+            return response($data);
+        }
     }
 }

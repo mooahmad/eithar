@@ -28,7 +28,7 @@ return [
     'doctors'                       => 'General Practitioner',
     'lap_category'                  => 'Laboratory Category',
     'lap'                           => 'Laboratory services',
-    'nurse_category'                => 'Nurse Category',
+    'nurse_category'                => 'Nursing Services',
     'nurse'                         => 'Nursing Services',
     'physiotherapy'                 => 'Physiotherapy',
     'physiotherapy_category'        => 'Physiotherapy Category',
