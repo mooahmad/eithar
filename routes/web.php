@@ -75,6 +75,9 @@ Route::group(['namespace' => FE], function () {
                 Route::get('women','CategoriesFrontController@showWomenSubCategories')->name('women_category');
                 Route::post('subcategory-providers-list','CategoriesFrontController@getSubCategoryProvidersList')->name('get_subcategory_providers_list');
                 Route::post('subcategory-global-services-list','CategoriesFrontController@getSubCategoryGlobalServicesList')->name('get_subcategory_global_services_list');
+                Route::group(['namespace'=>'GlobalServices'],function (){
+                    Route::get('nursing/{subcategory_id}/{subcategory_name}/service/{service_id}/{service_name}','NursingCategoryController@showServiceProfile')->name('service_profile');
+                });
 
             });
 //            Route::get('categories/{category}/{name}', 'CategoriesFrontController@showSubCategories')->name('show-subcategories');

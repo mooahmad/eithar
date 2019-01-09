@@ -212,8 +212,9 @@ class CategoriesFrontController extends Controller
             $subcategory = Category::findOrFail($request->input('subcategory_id'));
             $data = [
                 'result'=>false,
-                'list'=>'',
-                'id'=>''
+                'id'=>'',
+                'package_list'=>'',
+                'one_time_visit_list'=>'',
             ];
 
             if (empty($subcategory)){
@@ -226,14 +227,14 @@ class CategoriesFrontController extends Controller
             //get subcategory packages services
             $packages_services = $this->ParentService->getSubcategoryServices($subcategory->id,2);
 
-            if (count($packages_services)){
-                $html = $this->buildHTMLProviderList($packages_services,$subcategory);
-                $data = [
-                    'result'=>true,
-                    'list'=>$html,
-                    'id'=>$subcategory->id
-                ];
+            if (count($packages_services)) {
+                $data['package_list'] = $this->ParentService->buildHTMLSubCategoryGlobalServicesList($packages_services, $subcategory);
             }
+            if (count($one_time_visit_services)){
+                $data['one_time_visit_list'] = $this->ParentService->buildHTMLSubCategoryGlobalServicesList($one_time_visit_services,$subcategory);
+            }
+            $data['result']=true;
+            $data['id']=$subcategory->id;
             return response($data);
         }
     }

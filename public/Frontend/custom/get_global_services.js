@@ -12,8 +12,10 @@ $(document).ready(function () {
             success: function (data) {
                 if (data.result){
                     //append html to dev and active it
-                    $('#GlobalServicesList').empty();
-                    $('#GlobalServicesList').html(data.list);
+                    $('#OneTimeVisitServices').empty();
+                    $('#OneTimeVisitServices').html(data.one_time_visit_list);
+                    $('#PackageServices').empty();
+                    $('#PackageServices').html(data.package_list);
                 }
             },
             error: function (data) {

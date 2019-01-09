@@ -38,7 +38,7 @@
                         </ul>
 
                         <div class="all_visites">
-                            <div class="row packge">
+                            <div id="PackageServices" class="row packge">
                                 <!-- Start Doctor Block-->
                                 <div class="col-sm-12 col-md-6 col-lg-3">
                                     <div class="doctor_block ">
@@ -76,7 +76,7 @@
                                 <!-- End Doctor Block-->
                             </div>
 
-                            <div class="row one_visite">
+                            <div id="OneTimeVisitServices" class="row one_visite">
                                 <!-- Start Doctor Block-->
                                 <div class="col-sm-12 col-md-6 col-lg-3">
                                     <div class="doctor_block ">
