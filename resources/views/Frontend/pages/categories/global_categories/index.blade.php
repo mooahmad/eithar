@@ -29,90 +29,18 @@
         @endisset
 
         <!-- Start All Tabs of packages and one time visit -->
-            <div class="list_doctor depart1">
-                <div class="all_tabs">
+            <div class="all_tabs">
+                <div class="list_doctor">
                     <div class="container">
                         <ul class="packeg_visit">
-                            <li data-class="one_visite"> زيارة واحدة</li>
-                            <li data-class="packge"> مجموعة زيارات </li>
+                            <li data-class="one_visite">{{ trans('main.one_time_visit') }}</li>
+                            <li data-class="packge">{{ trans('main.package') }}</li>
                         </ul>
 
                         <div class="all_visites">
-                            <div id="PackageServices" class="row packge">
-                                <!-- Start Doctor Block-->
-                                <div class="col-sm-12 col-md-6 col-lg-3">
-                                    <div class="doctor_block ">
-                                        <a href="#" class="doctor_img">
-                                            <span class="more_details"> التفاصيل</span>
-                                            <img src="{{ asset('public/Frontend/img/doctor.png') }}" alt="">
-                                        </a>
-                                        <div class="doctor_description">
-                                            <aside class="name">
-                                                <h2> د/ حسناء محمد ابو تريكة
-                                                </h2>
-                                                <span> مسالك بولية</span>
-                                            </aside>
+                            <div id="PackageServices" class="row packge"></div>
 
-                                            <div class="rate_content">
-                                                <aside>
-                                                    <span> 50</span>
-                                                    <i class="far fa-share-square"></i>
-                                                </aside>
-
-                                                <aside>
-                                                    <span> 50</span>
-                                                    <i class="far fa-star"></i>
-                                                </aside>
-
-                                                <aside>
-                                                    <span> 50</span>
-                                                    <i class="far fa-heart"></i>
-                                                </aside>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Doctor Block-->
-                            </div>
-
-                            <div id="OneTimeVisitServices" class="row one_visite">
-                                <!-- Start Doctor Block-->
-                                <div class="col-sm-12 col-md-6 col-lg-3">
-                                    <div class="doctor_block ">
-                                        <a href="#" class="doctor_img">
-                                            <span class="more_details"> التفاصيل</span>
-                                            <img src="{{ asset('public/Frontend/img/doctor.png') }}" alt="">
-                                        </a>
-                                        <div class="doctor_description">
-                                            <aside class="name">
-                                                <h2> د/ حسناء محمد ابو تريكة
-                                                </h2>
-                                                <span> مسالك بولية</span>
-                                            </aside>
-
-                                            <div class="rate_content">
-                                                <aside>
-                                                    <span> 50</span>
-                                                    <i class="far fa-share-square"></i>
-                                                </aside>
-
-                                                <aside>
-                                                    <span> 50</span>
-                                                    <i class="far fa-star"></i>
-                                                </aside>
-
-                                                <aside>
-                                                    <span> 50</span>
-                                                    <i class="far fa-heart"></i>
-                                                </aside>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Doctor Block-->
-                            </div>
+                            <div id="OneTimeVisitServices" class="row one_visite"></div>
                         </div>
                     </div>
                 </div>

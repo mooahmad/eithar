@@ -16,6 +16,7 @@ $(document).ready(function () {
                     $('#OneTimeVisitServices').html(data.one_time_visit_list);
                     $('#PackageServices').empty();
                     $('#PackageServices').html(data.package_list);
+                    $(".list_doctor").show();
                 }
             },
             error: function (data) {

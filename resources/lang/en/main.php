@@ -137,4 +137,6 @@ return [
     'success_message'               => 'Operation Completed Successfully',
     'show_customer_profile'         => 'Customer Profile',
     'old_password'                  => 'Old Password',
+    'one_time_visit'                => 'One Time Visit',
+    'package'                       => 'Package',
 ];
