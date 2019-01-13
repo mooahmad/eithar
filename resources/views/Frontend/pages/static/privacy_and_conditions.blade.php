@@ -181,7 +181,7 @@
                     of you. For example, a doctor treating you for a broken leg may need to ask another doctor if you have diabetes because diabetes may slow the leg’s healing process. This may involve talking to doctors and others not employed by us. We also
                     may disclose your health information to people outside Eithar who may be involved in your health care, such as treating doctors, home care providers, pharmacies, drug or medical device experts, and family members.
                 </p>
-                <h4>Paymen</h4>
+                <h4>Payment</h4>
                 <p>
                     We may use and disclose your health information so that the health care you receive can be billed and paid for by you, your insurance company, or another third party. For example, we may give information about surgery you had here to your
                     health plan so it will pay us or reimburse you for the surgery. We may also tell your
@@ -215,7 +215,7 @@
                 </p>
                 <h4>Health-Related Services</h4>
                 <p>
-                    We may use and disclose health information about you to send you mailings about health-related products and services available at Eitha
+                    We may use and disclose health information about you to send you mailings about health-related products and services available at Eithar
                 </p>
                 <h4> Patient Information Directories</h4>
 
