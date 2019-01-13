@@ -137,4 +137,6 @@ return [
     'success_message'               => 'تمت العملية بنجاح',
     'show_customer_profile'         => 'حساب المستخدم',
     'old_password'                  => 'كلمة المرور القديمة',
+    'one_time_visit'                => 'زيارة واحدة',
+    'package'                       => 'مجموعة زيارات',
 ];

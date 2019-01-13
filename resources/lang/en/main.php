@@ -28,7 +28,7 @@ return [
     'doctors'                       => 'General Practitioner',
     'lap_category'                  => 'Laboratory Category',
     'lap'                           => 'Laboratory services',
-    'nurse_category'                => 'Nurse Category',
+    'nurse_category'                => 'Nursing Services',
     'nurse'                         => 'Nursing Services',
     'physiotherapy'                 => 'Physiotherapy',
     'physiotherapy_category'        => 'Physiotherapy Category',
@@ -137,4 +137,6 @@ return [
     'success_message'               => 'Operation Completed Successfully',
     'show_customer_profile'         => 'Customer Profile',
     'old_password'                  => 'Old Password',
+    'one_time_visit'                => 'One Time Visit',
+    'package'                       => 'Package',
 ];

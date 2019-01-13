@@ -21,16 +21,43 @@ $lg: 992px;
 $xl: 1200px;
 
 /*Box Shadow*/
+.packeg_visit {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin: 20px auto;
+  padding: 3px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+  li {
+    display: inline-block;
+    padding: 6px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    background: rgb(240, 239, 239);
+    margin: 0 2px;
+
+    &.active {
+      background: $secondColor;
+      color: rgb(233, 227, 227);
+
+    }
+  }
+}
+
+.all_visites>div:not(:first-child) {
+  display: none;
+}
+
 /***Container Widt***/
 .select_content-area {
   display: flex;
   justify-content: space-between;
   align-items: center;
   align-content: center;
-
-
-
-
 
   .select_type-content {
     display: flex;

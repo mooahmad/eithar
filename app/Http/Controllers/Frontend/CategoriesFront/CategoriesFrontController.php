@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend\CategoriesFront;
 
 use App\Helpers\Utilities;
 use App\Http\Controllers\Controller;
+use App\Http\Services\Frontend\CategoriesServices\ParentCategoryService;
 use App\Models\Category;
 use App\Models\Provider;
 use App\Models\Service;
@@ -11,9 +12,11 @@ use Illuminate\Http\Request;
 
 class CategoriesFrontController extends Controller
 {
+    protected $ParentService;
+
     public function __construct()
     {
-
+        $this->ParentService = new ParentCategoryService();
     }
 
     /**
@@ -36,19 +39,46 @@ class CategoriesFrontController extends Controller
         return 'Lap';
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function showPhysiotherapySubCategories()
     {
-        return 'Physiotherapy';
+        $category = $this->ParentService->getParentCategory(config('constants.categories.Physiotherapy'));
+        if (!$category) return redirect()->route('home');
+        $data = [
+            'main_categories'=>Category::GetParentCategories()->get(),
+            'sub_categories'=>$category->categories,
+        ];
+        return view(FE.'.pages.categories.global_categories.index')->with($data);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function showNurseSubCategories()
     {
-        return 'Nurse';
+        $category = $this->ParentService->getParentCategory(config('constants.categories.Nursing'));
+        if (!$category) return redirect()->route('home');
+        $data = [
+            'main_categories'=>Category::GetParentCategories()->get(),
+            'sub_categories'=>$category->categories,
+        ];
+        return view(FE.'.pages.categories.global_categories.index')->with($data);
     }
 
-    public function showWomenSubCategories()
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
+    public function showMotherAndChildCareSubCategories()
     {
-        return 'Women';
+        $category = $this->ParentService->getParentCategory(config('constants.categories.WomanAndChild'));
+        if (!$category) return redirect()->route('home');
+        $data = [
+            'main_categories'=>Category::GetParentCategories()->get(),
+            'sub_categories'=>$category->categories,
+        ];
+        return view(FE.'.pages.categories.global_categories.index')->with($data);
     }
 
     public function showSubCategories(Category $category)
@@ -193,5 +223,37 @@ class CategoriesFrontController extends Controller
         }
         $html_list .= '</div></div></div>';
         return $html_list;
+    }
+
+    public function getSubCategoryGlobalServicesList(Request $request){
+        if ($request->ajax()){
+            $subcategory = Category::findOrFail($request->input('subcategory_id'));
+            $data = [
+                'result'=>false,
+                'id'=>'',
+                'package_list'=>'',
+                'one_time_visit_list'=>'',
+            ];
+
+            if (empty($subcategory)){
+                return response($data);
+            }
+
+            //get subcategory one time visit services
+            $one_time_visit_services = $this->ParentService->getSubcategoryServices($subcategory->id,1);
+
+            //get subcategory packages services
+            $packages_services = $this->ParentService->getSubcategoryServices($subcategory->id,2);
+
+            if (count($packages_services)) {
+                $data['package_list'] = $this->ParentService->buildHTMLSubCategoryGlobalServicesList($packages_services, $subcategory);
+            }
+            if (count($one_time_visit_services)){
+                $data['one_time_visit_list'] = $this->ParentService->buildHTMLSubCategoryGlobalServicesList($one_time_visit_services,$subcategory);
+            }
+            $data['result']=true;
+            $data['id']=$subcategory->id;
+            return response($data);
+        }
     }
 }
