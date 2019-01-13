@@ -45,6 +45,11 @@ class ParentCategoryService extends Controller
         return $services = $query->get();
     }
 
+    /**
+     * @param $services
+     * @param $subcategory
+     * @return string
+     */
     public function buildHTMLSubCategoryGlobalServicesList($services,$subcategory)
     {
         $html_list = '';

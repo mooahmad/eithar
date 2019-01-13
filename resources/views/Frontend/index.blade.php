@@ -137,8 +137,7 @@
                         <aside class="services_block-paragraph">
                             <h3>{{ trans('main.physiotherapy') }}</h3>
                             <p class="paragraph_global">{{ trans('main.physiotherapy_desc') }}</p>
-{{--                            <a href="{{ url()->route('physiotherapy_category') }}" class="button">{{ trans('main.more') }}</a>--}}
-                            <a href="#" class="button">{{ trans('main.more') }}</a>
+                            <a href="{{ url()->route('physiotherapy_category') }}" class="button">{{ trans('main.more') }}</a>
                         </aside>
                     </div>
                 </div>

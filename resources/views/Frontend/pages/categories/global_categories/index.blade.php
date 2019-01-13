@@ -38,9 +38,9 @@
                         </ul>
 
                         <div class="all_visites">
-                            <div id="PackageServices" class="row packge"></div>
-
                             <div id="OneTimeVisitServices" class="row one_visite"></div>
+
+                            <div id="PackageServices" class="row packge"></div>
                         </div>
                     </div>
                 </div>

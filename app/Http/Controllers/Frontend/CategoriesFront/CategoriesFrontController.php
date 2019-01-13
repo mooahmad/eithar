@@ -41,7 +41,13 @@ class CategoriesFrontController extends Controller
 
     public function showPhysiotherapySubCategories()
     {
-        return 'Physiotherapy';
+        $category = $this->ParentService->getParentCategory(config('constants.categories.Physiotherapy'));
+        if (!$category) return redirect()->route('home');
+        $data = [
+            'main_categories'=>Category::GetParentCategories()->get(),
+            'sub_categories'=>$category->categories,
+        ];
+        return view(FE.'.pages.categories.global_categories.index')->with($data);
     }
 
     /**

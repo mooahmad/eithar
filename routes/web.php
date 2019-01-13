@@ -69,8 +69,9 @@ Route::group(['namespace' => FE], function () {
                     Route::post('doctors/like','DoctorsCategoryController@likeProvider')->name('like_provider_transaction');
                 });
 
-                Route::get('nursing','CategoriesFrontController@showNurseSubCategories')->name('nurse_category');
                 Route::get('lap','CategoriesFrontController@showLapSubCategories')->name('lap_category');
+
+                Route::get('nursing','CategoriesFrontController@showNurseSubCategories')->name('nurse_category');
                 Route::get('physiotherapy','CategoriesFrontController@showPhysiotherapySubCategories')->name('physiotherapy_category');
                 Route::get('women','CategoriesFrontController@showWomenSubCategories')->name('women_category');
                 Route::post('subcategory-providers-list','CategoriesFrontController@getSubCategoryProvidersList')->name('get_subcategory_providers_list');
