@@ -73,7 +73,7 @@ Route::group(['namespace' => FE], function () {
 
                 Route::get('nursing','CategoriesFrontController@showNurseSubCategories')->name('nurse_category');
                 Route::get('physiotherapy','CategoriesFrontController@showPhysiotherapySubCategories')->name('physiotherapy_category');
-                Route::get('women','CategoriesFrontController@showWomenSubCategories')->name('women_category');
+                Route::get('mother-and-child-care','CategoriesFrontController@showMotherAndChildCareSubCategories')->name('women_category');
                 Route::post('subcategory-providers-list','CategoriesFrontController@getSubCategoryProvidersList')->name('get_subcategory_providers_list');
                 Route::post('subcategory-global-services-list','CategoriesFrontController@getSubCategoryGlobalServicesList')->name('get_subcategory_global_services_list');
                 Route::group(['namespace'=>'GlobalServices'],function (){

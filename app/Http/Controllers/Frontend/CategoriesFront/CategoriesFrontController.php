@@ -39,6 +39,9 @@ class CategoriesFrontController extends Controller
         return 'Lap';
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function showPhysiotherapySubCategories()
     {
         $category = $this->ParentService->getParentCategory(config('constants.categories.Physiotherapy'));
@@ -64,9 +67,18 @@ class CategoriesFrontController extends Controller
         return view(FE.'.pages.categories.global_categories.index')->with($data);
     }
 
-    public function showWomenSubCategories()
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
+    public function showMotherAndChildCareSubCategories()
     {
-        return 'MotherAndChildCare';
+        $category = $this->ParentService->getParentCategory(config('constants.categories.WomanAndChild'));
+        if (!$category) return redirect()->route('home');
+        $data = [
+            'main_categories'=>Category::GetParentCategories()->get(),
+            'sub_categories'=>$category->categories,
+        ];
+        return view(FE.'.pages.categories.global_categories.index')->with($data);
     }
 
     public function showSubCategories(Category $category)
