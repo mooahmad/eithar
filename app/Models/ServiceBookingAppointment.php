@@ -25,16 +25,16 @@ class ServiceBookingAppointment extends Model
 
     public function lapCalendar()
     {
-        return $this->hasMany('App\Models\LapCalendar', 'slot_id', 'id');
+        return $this->belongsTo('App\Models\LapCalendar', 'slot_id', 'id');
     }
 
     public function providerCalendar()
     {
-        return $this->hasMany('App\Models\ProvidersCalendar', 'slot_id', 'id');
+        return $this->belongsTo('App\Models\ProvidersCalendar', 'slot_id', 'id');
     }
 
     public function serviceCalendar()
     {
-        return $this->hasMany('App\Models\ServicesCalendar', 'slot_id', 'id');
+        return $this->belongsTo('App\Models\ServicesCalendar', 'slot_id', 'id');
     }
 }
