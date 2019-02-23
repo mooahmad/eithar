@@ -80,7 +80,7 @@ class BookingServicesController extends Controller
                 return $item->first_name . ' ' . $item->middle_name . ' ' . $item->last_name;
             })
             ->editColumn('created_at', function ($item) {
-                return Carbon::parse($item->created_at)->format('Y-m-d h:i A');
+                return $item->created_at->format('Y-m-d h:i A');
             })
             ->filterColumn('created_at', function ($query, $keyword) {
                 $query->whereRaw("DATE_FORMAT(service_bookings.created_at,'%m/%d/%Y') like ?", ["%$keyword%"]);

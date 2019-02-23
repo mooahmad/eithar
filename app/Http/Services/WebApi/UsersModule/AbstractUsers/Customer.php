@@ -285,11 +285,12 @@ class Customer
         $finalAppointments = [];
         $page -= 1;
         $servicesBookingsMaxPages = ceil(Auth::user()->load(['servicesBooking.service_appointments' => function ($query) {
-            $query->orderByRaw('service_booking_appointments.created_at DESC');
-        }])->servicesBooking()->count()/config('constants.paggination_items_per_page'));
+                $query->orderByRaw('service_booking_appointments.created_at DESC');
+            }])->servicesBooking()->count() / config('constants.paggination_items_per_page'));
         $servicesBookings = Auth::user()->load(['servicesBooking.service_appointments' => function ($query) {
             $query->orderByRaw('service_booking_appointments.created_at DESC');
         }])->servicesBooking()->skip($page * config('constants.paggination_items_per_page'))->take(config('constants.paggination_items_per_page'))->get();
+        dd($servicesBookings);
         foreach ($servicesBookings as $servicesBooking) {
             $service = null;
             $serviceBookingLaps = null;
@@ -390,8 +391,8 @@ class Customer
         $vat = ($customer->is_saudi_nationality) ? 0 : config('constants.vat_percentage');
         $totalBeforeTax = 0;
         $serviceBooking = ServiceBooking::find($appointment->service_booking_id);
-        if($serviceBooking->family_member_id)
-        $customer->position = CustomerModel::find($serviceBooking->family_member_id)->position;
+        if ($serviceBooking->family_member_id)
+            $customer->position = CustomerModel::find($serviceBooking->family_member_id)->position;
         $promoCode = ($serviceBooking->promo_code != null) ? $serviceBooking->promo_code->code : "";
         $currency = $serviceBooking->currency->name_eng;
         $total = $serviceBooking->price;
@@ -406,7 +407,7 @@ class Customer
                     "visit_duration" => $provider->visit_duration,
                     "price" => $provider->price,
                     "service_type" => 5
-                 ];
+                ];
                 $services [] = $service;
                 $totalBeforeTax = $provider->price;
             }
@@ -421,7 +422,7 @@ class Customer
                     "visit_duration" => $service->visit_duration,
                     "price" => $service->price,
                     "service_type" => $serviceType
-                 ];
+                ];
                 $services [] = $service;
                 $totalBeforeTax = $service->price;
             }
@@ -438,7 +439,7 @@ class Customer
                         "visit_duration" => $serviceLap->visit_duration,
                         "price" => $serviceLap->price,
                         "service_type" => $serviceType
-                     ];
+                    ];
                     $services [] = $service;
                     $totalBeforeTax += $serviceLap->price;
                 }
@@ -482,9 +483,9 @@ class Customer
     public function getCustomerNotifications(Request $request, $page = 1)
     {
         $page -= 1;
-        $notificationsMaxPages = ceil(Auth::user()->notifications()->where('is_pushed', 1)->count()/config('constants.paggination_items_per_page'));
+        $notificationsMaxPages = ceil(Auth::user()->notifications()->where('is_pushed', 1)->count() / config('constants.paggination_items_per_page'));
         $notifications = Auth::user()->notifications()->where('is_pushed', 1)
-        ->skip($page * config('constants.paggination_items_per_page'))->take(config('constants.paggination_items_per_page'))->get();
+            ->skip($page * config('constants.paggination_items_per_page'))->take(config('constants.paggination_items_per_page'))->get();
         $returnNotifications = [];
         foreach ($notifications as $notification) {
             $notificationData = json_decode(json_encode($notification->data));
