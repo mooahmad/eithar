@@ -290,7 +290,6 @@ class Customer
         $servicesBookings = Auth::user()->load(['servicesBooking.service_appointments' => function ($query) {
             $query->orderByRaw('service_booking_appointments.created_at DESC');
         }])->servicesBooking()->skip($page * config('constants.paggination_items_per_page'))->take(config('constants.paggination_items_per_page'))->get();
-        dd(Auth::user()->servicesBooking()->where('id', 51)->with(['service_appointments'])->get());
         foreach ($servicesBookings as $servicesBooking) {
             $service = null;
             $serviceBookingLaps = null;
@@ -311,6 +310,8 @@ class Customer
                         $calendar = ProvidersCalendar::find($serviceAppointment->slot_id);
                         $startDate = $startTime = "Unknown";
                         $upComming = 0;
+                        if ($serviceAppointment->slot_id == 55)
+                            dd($calendar);
                         if ($calendar) {
                             $upComming = (Carbon::now() > Carbon::parse($calendar->start_date)) ? 0 : 1;
                             $startDate = $calendar->start_date;
