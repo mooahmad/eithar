@@ -299,19 +299,20 @@ class Customer
             } elseif ($serviceId == null && $servicesBooking->provider_id != null) {
                 $service = $servicesBooking->provider;
                 $service->type = 5;
+
             } else {
                 $serviceBookingLaps = ServiceBookingLap::with('service')->where('service_booking_id', $servicesBooking->id)->get();
             }
             $serviceAppointments = $servicesBooking->service_appointments;
             foreach ($serviceAppointments as $serviceAppointment) {
+                if ($serviceAppointment->slot_id == 55)
+                    dd($service->type);
                 if ($service != null) {
                     //provider
                     if ($service->type == 5) {
                         $calendar = ProvidersCalendar::find($serviceAppointment->slot_id);
                         $startDate = $startTime = "Unknown";
                         $upComming = 0;
-                        if ($serviceAppointment->slot_id == 55)
-                            dd($calendar);
                         if ($calendar) {
                             $upComming = (Carbon::now() > Carbon::parse($calendar->start_date)) ? 0 : 1;
                             $startDate = $calendar->start_date;
