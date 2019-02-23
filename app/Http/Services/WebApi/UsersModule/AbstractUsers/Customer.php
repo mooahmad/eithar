@@ -287,12 +287,13 @@ class Customer
         $servicesBookingsMaxPages = ceil(Auth::user()->load(['servicesBooking.service_appointments' => function ($query) {
                 $query->orderByRaw('service_booking_appointments.created_at DESC');
             }])->servicesBooking()->count() / config('constants.paggination_items_per_page'));
+        dd(Auth::user()->load(['servicesBooking.service_appointments' => function ($query) {
+            $query->orderByRaw('service_booking_appointments.created_at DESC');
+        }])->servicesBooking()->count());
         $servicesBookings = Auth::user()->load(['servicesBooking.service_appointments' => function ($query) {
             $query->orderByRaw('service_booking_appointments.created_at DESC');
         }])->servicesBooking()->skip($page * config('constants.paggination_items_per_page'))->take(config('constants.paggination_items_per_page'))->get();
         foreach ($servicesBookings as $servicesBooking) {
-            if ($servicesBooking->id == 51)
-                dd($servicesBooking->service_appointments);
             $service = null;
             $serviceBookingLaps = null;
             $serviceId = $servicesBooking->service_id;
