@@ -311,8 +311,7 @@ class Customer
                         $calendar = ProvidersCalendar::find($serviceAppointment->slot_id);
                         $startDate = $startTime = "Unknown";
                         $upComming = 0;
-                        if ($serviceAppointment->id == 55)
-                            dd($calendar);
+                        dd($serviceAppointment);
                         if ($calendar) {
                             $upComming = (Carbon::now() > Carbon::parse($calendar->start_date)) ? 0 : 1;
                             $startDate = $calendar->start_date;
