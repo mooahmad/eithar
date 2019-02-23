@@ -291,6 +291,8 @@ class Customer
             $query->orderByRaw('service_booking_appointments.created_at DESC');
         }])->servicesBooking()->skip($page * config('constants.paggination_items_per_page'))->take(config('constants.paggination_items_per_page'))->get();
         foreach ($servicesBookings as $servicesBooking) {
+            if ($servicesBooking->id == 51)
+                dd($servicesBooking->service_appointments);
             $service = null;
             $serviceBookingLaps = null;
             $serviceId = $servicesBooking->service_id;
@@ -305,8 +307,6 @@ class Customer
             }
             $serviceAppointments = $servicesBooking->service_appointments;
             foreach ($serviceAppointments as $serviceAppointment) {
-                if($serviceAppointment->id == 55)
-                    dd($service->type);
                 if ($service != null) {
                     //provider
                     if ($service->type == 5) {
