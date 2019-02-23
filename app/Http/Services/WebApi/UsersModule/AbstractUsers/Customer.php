@@ -286,14 +286,14 @@ class Customer
         $page -= 1;
         $servicesBookingsMaxPages = ceil(Auth::user()->load(['servicesBooking.service_appointments' => function ($query) {
                 $query->where(function ($query) {
-                    $query->whereHas(['lapCalendar']);
+                    $query->whereRaw('service_bookings.is_lap = 1')->whereHas('lapCalendar');
                 })
-//                    ->orWhere(function ($query) {
-//                        $query->whereRaw('service_bookings.service_id = Null && service_bookings.provider_id <> Null')->whereHas(['providerCalendar']);
-//                    })
-//                    ->orWhere(function ($query) {
-//                        $query->whereRaw('service_bookings.service_id <> Null')->whereHas(['serviceCalendar']);
-//                    })
+                    ->orWhere(function ($query) {
+                        $query->whereRaw('service_bookings.service_id = Null && service_bookings.provider_id <> Null')->whereHas('providerCalendar');
+                    })
+                    ->orWhere(function ($query) {
+                        $query->whereRaw('service_bookings.service_id <> Null')->whereHas('serviceCalendar');
+                    })
                     ->orderByRaw('service_booking_appointments.created_at DESC');
             }])->servicesBooking()->count() / config('constants.paggination_items_per_page'));
         $servicesBookings = Auth::user()->load(['servicesBooking.service_appointments' => function ($query) {
