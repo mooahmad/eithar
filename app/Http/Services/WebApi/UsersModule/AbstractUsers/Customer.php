@@ -301,8 +301,22 @@ class Customer
                         ->orderByRaw('service_booking_appointments.created_at DESC');
                 }]);
             }])->servicesBooking()->count() / config('constants.paggination_items_per_page'));
-        $servicesBookings = Auth::user()->load(['servicesBooking.service_appointments' => function ($query) {
-            $query->orderByRaw('service_booking_appointments.created_at DESC');
+        $servicesBookings = Auth::user()->load(['servicesBooking' => function ($parentQuery) {
+            $parentQuery->with(['service_appointments' => function ($query) use ($parentQuery) {
+                $query->where(function ($query) use ($parentQuery) {
+                    $parentQuery->whereRaw('service_bookings.is_lap = 1');
+                    $query->whereHas('lapCalendar');
+                })
+                    ->orWhere(function ($query) use ($parentQuery) {
+                        $parentQuery->whereRaw('service_bookings.service_id = Null && service_bookings.provider_id <> Null');
+                        $query->whereHas('providerCalendar');
+                    })
+                    ->orWhere(function ($query) use ($parentQuery) {
+                        $parentQuery->whereRaw('service_bookings.service_id <> Null');
+                        $query->whereHas('serviceCalendar');
+                    })
+                    ->orderByRaw('service_booking_appointments.created_at DESC');
+            }]);
         }])->servicesBooking()->skip($page * config('constants.paggination_items_per_page'))->take(config('constants.paggination_items_per_page'))->get();
         foreach ($servicesBookings as $servicesBooking) {
             $service = null;
