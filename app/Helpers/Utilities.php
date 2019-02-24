@@ -112,6 +112,8 @@ class Utilities
 
     public static function getDayDatesOfWeeks($day = "monday", $numberOfWeeks = 0)
     {
+        Carbon::setWeekStartsAt(Carbon::MONDAY);
+        Carbon::setWeekEndsAt(Carbon::SUNDAY);
         $daysMaped = [
             1 => "monday",
             2 => "tuesday",
@@ -119,7 +121,7 @@ class Utilities
             4 => "thursday",
             5 => "friday",
             6 => "saturday",
-            7 => "sunday"
+            0 => "sunday"
         ]; 
         $dayDates = [];
         $todayOfWeek = $daysMaped[Carbon::now()->dayOfWeek];
