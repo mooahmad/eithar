@@ -145,8 +145,7 @@ class Services implements IService
         if (!empty($bookedSlotsIds) && $bookedSlotsIds[0] != null) {
             $lapCalendars->whereRaw("lap_calendars.id NOT IN (" . implode(',', $bookedSlotsIds) . ")");
         }
-
-        $lapCalendars->get();
+        $lapCalendars = $lapCalendars->get();
         $lapCalendar = ApiHelpers::reBuildCalendar($day, $lapCalendars);
         return Utilities::getValidationError(config('constants.responseStatus.success'),
             new MessageBag([
@@ -545,8 +544,8 @@ class Services implements IService
         $status = $request->input('status');
         if ($invoice_item_id > 0 && in_array($status, [config('constants.items.pending'), config('constants.items.approved')])) {
             $invoice_item = InvoiceItems::withTrashed()
-            ->where('id', $invoice_item_id)
-            ->get()->first();
+                ->where('id', $invoice_item_id)
+                ->get()->first();
             $invoice_item->status = $status;
             $invoice_item->save();
 
