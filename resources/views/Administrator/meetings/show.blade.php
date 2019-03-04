@@ -12,7 +12,7 @@
                 <div class="col-xs-6 invoice-logo-space">
                     <img src="{{ asset('public/assets/layouts/layout/img/logo.png') }}" class="img-responsive" alt="" /> </div>
                 <div class="col-xs-6">
-                    <p> #{{ $booking->id }} / {{ $booking->created_at->format('l j F Y h:i A') }}
+                    <p> #{{ $booking->id }} / {{ \Carbon\Carbon::parse($booking->created_at)->format('l-j-F-Y / h:i A') }}
                         <strong class="text-info">{{ $booking->status_desc }}</strong>
                     </p>
                 </div>

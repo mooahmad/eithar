@@ -342,7 +342,7 @@ Route::group(['prefix' => AD], function () {
         Route::get('meetings/inprogress', 'BookingServicesController@index')->name('meetings');
         Route::get('meetings/confirmed', 'BookingServicesController@index')->name('meetings');
         Route::get('meetings/approve_unlock/{id}', 'BookingServicesController@approveUnlock')->name('approve-unlock');
-        Route::get('get-meetings-Dat    atable', 'BookingServicesController@getBookingServicesDataTable')->name('get-meetings-Datatable');
+        Route::get('get-meetings-Datatable', 'BookingServicesController@getBookingServicesDataTable')->name('get-meetings-Datatable');
         Route::get('meetings/{booking}', 'BookingServicesController@show')->name('show-meeting-details');
         Route::post('meetings/{booking}/assign-provider', 'BookingServicesController@assignProviderToMeeting')->name('assign-provider-to-meeting');
     });
