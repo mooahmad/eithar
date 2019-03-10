@@ -385,7 +385,7 @@ class InvoicesController extends Controller
                 return $item->first_name . ' ' . $item->middle_name . ' ' . $item->last_name;
             })
             ->editColumn('invoice_date', function ($item) {
-                return $item->invoice_date->format('Y-m-d h:i A');
+                return Carbon::parse($item->invoice_date)->format('Y-m-d h:i A');
             })
             ->editColumn('amount_original', function ($item) {
                 return $item->amount_original . ' ' . $item->name_eng;
