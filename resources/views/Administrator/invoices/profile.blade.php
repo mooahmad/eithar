@@ -12,7 +12,7 @@
                 <div class="col-xs-6 invoice-logo-space">
                     <img src="{{ asset('public/assets/layouts/layout/img/logo.png') }}" class="img-responsive" alt="" /> </div>
                 <div class="col-xs-6">
-                    <p> ID => {{ $invoice->invoice_code }} <span class="fa fa-calendar"> {{ $invoice->invoice_date->format('l j F Y h:i A') }}</span></p>
+                    <p> ID => {{ $invoice->invoice_code }} <span class="fa fa-calendar">{{ \Carbon\Carbon::parse($invoice->invoice_date)->format('l-j-F-Y / h:i A') }}</span></p>
                 </div>
             </div>
             <hr/>
