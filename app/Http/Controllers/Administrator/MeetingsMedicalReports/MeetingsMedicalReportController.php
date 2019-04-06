@@ -42,10 +42,12 @@ class MeetingsMedicalReportController extends Controller
             return response()->view('errors.403', [], 403);
         }
         $reports = [];
-        $availableReports = (new Provider())->getBookingAvailableReports(null, $id)->errorMessages->get('reports');
+//        $availableReports = (new Provider())->getBookingAvailableReports(null, $id)->errorMessages->get('reports');
+        $availableReports = (new Provider())->getBookingAvailableReports(null, $id)->errorMessages->getMessages()['reports'];
         foreach ($availableReports as $availableReport) {
-            $availableReport = json_decode($availableReport);
-            $reports[$availableReport->id] = $availableReport->original_name;
+//            $availableReport = json_decode($availableReport);
+//            $reports[$availableReport->id] = $availableReport->original_name;
+            $reports[$availableReport['id']] = $availableReport['title'];
         }
         $data = [
             'meetingId' => $id,
