@@ -55,7 +55,7 @@ function datatable() {
             {data: 'full_name', name: 'customers.first_name'},
             {data: 'national_id', name: 'customers.national_id'},
             {data: 'mobile_number', name: 'customers.mobile_number'},
-            {data: 'country', name: 'customers.country'},
+            {data: 'country', name: 'customers.email'},
             {
                 searchable: false,
                 orderable: false,
