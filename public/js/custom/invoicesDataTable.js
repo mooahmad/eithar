@@ -34,7 +34,7 @@ function datatable() {
         },
         columns: [
             {data: 'id', name: 'invoices.id'},
-            {data: 'full_name', name: 'invoices.full_name'},
+            {data: 'full_name', name: 'customers.first_name'},
             {data: 'national_id', name: 'customers.national_id'},
             {data: 'eithar_id', name: 'customers.eithar_id'},
             {data: 'invoice_code', name: 'invoices.invoice_code'},
