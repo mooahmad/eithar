@@ -318,31 +318,31 @@
                 <li>
                     @if(auth()->user())
                         <a href="{{ url()->route('show_providers') }}">
-                            <i class="icon-user"></i> My Providers
+                            <i class="icon-users"></i> My Providers
                         </a>
                     @else
                         <a href="{{ url()->route('showProviderCalendar',[auth()->guard('provider-web')->user()->id]) }}">
-                            <i class="icon-user"></i> My Calendar
+                            <i class="icon-calendar"></i> My Calendar
                         </a>
                     @endif
                 </li>
-                <li>
-                    <a href="app_inbox.html">
-                        <i class="icon-envelope-open"></i> My Inbox
-                        <span class="badge badge-danger"> 3 </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="app_todo.html">
-                        <i class="icon-rocket"></i> My Tasks
-                        <span class="badge badge-success"> 7 </span>
-                    </a>
-                </li>
-                <li class="divider"> </li>
-                <li>
-                    <a href="page_user_lock_1.html">
-                        <i class="icon-lock"></i> Lock Screen </a>
-                </li>
+                {{--<li>--}}
+                    {{--<a href="app_inbox.html">--}}
+                        {{--<i class="icon-envelope-open"></i> My Inbox--}}
+                        {{--<span class="badge badge-danger"> 3 </span>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
+                {{--<li>--}}
+                    {{--<a href="app_todo.html">--}}
+                        {{--<i class="icon-rocket"></i> My Tasks--}}
+                        {{--<span class="badge badge-success"> 7 </span>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
+                {{--<li class="divider"> </li>--}}
+                {{--<li>--}}
+                    {{--<a href="page_user_lock_1.html">--}}
+                        {{--<i class="icon-lock"></i> Lock Screen </a>--}}
+                {{--</li>--}}
                 <li>
                     @if(auth()->user())
                         <a href="{{ url()->route('Logout') }}">
