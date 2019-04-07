@@ -111,7 +111,7 @@ class BookingServicesController extends Controller
                     $medicalReportsURL = route('showMeetingReport', [$item->id]);
                     $addMedicalReportURL = route('createMeetingReport', [$item->id]);
                     $URLs[] = ['link' => $medicalReportsURL, 'icon' => 'list'];
-                    $URLs[] = ['link' => $addMedicalReportURL, 'icon' => 'plus', 'color' => 'blue'];
+//                    $URLs[] = ['link' => $addMedicalReportURL, 'icon' => 'plus', 'color' => 'blue'];
                 }
                 return View::make('Administrator.widgets.advancedActions', ['URLs' => $URLs]);
             })
