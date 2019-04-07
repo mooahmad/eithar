@@ -326,7 +326,7 @@
             @can('medical_report.view', new \App\Models\MedicalReports())
                 <li class="nav-item start {{ (Request::segment(2)=='medical_reports') ? 'active' :'' }}">
                     <a href="javascript:;" class="nav-link nav-toggle">
-                        <i class="fa fa-user-secret"></i>
+                        <i class="fa fa-file-pdf-o"></i>
                         <span class="title">{{ trans('admin.medical_reports') }}</span>
                         <span class="selected"></span>
                         <span class="arrow {{ (Request::segment(2)=='medical_reports') ? 'open' :'' }}"></span>
@@ -358,7 +358,7 @@
                         @can('drivers.view', new \App\Models\Driver())
                         <li class="nav-item start {{ (Request::segment(2)=='drivers') ? 'active' :'' }}">
                             <a href="javascript:;" class="nav-link nav-toggle">
-                                <i class="fa fa-user-secret"></i>
+                                <i class="fa fa-car"></i>
                                 <span class="title">{{ trans('admin.drivers') }}</span>
                                 <span class="selected"></span>
                                 <span class="arrow {{ (Request::segment(2)=='drivers') ? 'open' :'' }}"></span>
@@ -384,7 +384,7 @@
             @can('settings.view', new \App\Models\Settings())
             <li class="nav-item start {{ (Request::segment(2)=='joinus') ? 'active' :'' }}">
                 <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="fa fa-user-secret"></i>
+                    <i class="fa fa-envelope-o"></i>
                     <span class="title">{{ trans('admin.joinus') }}</span>
                     <span class="selected"></span>
                     <span class="arrow {{ (Request::segment(2)=='joinus') ? 'open' :'' }}"></span>
@@ -404,7 +404,7 @@
             @can('settings.view', new \App\Models\Settings())
                 <li class="nav-item start {{ (Request::segment(2)=='settings') ? 'active' :'' }}">
                     <a href="javascript:;" class="nav-link nav-toggle">
-                        <i class="fa fa-user-secret"></i>
+                        <i class="fa fa-lock"></i>
                         <span class="title">{{ trans('admin.settings') }}</span>
                         <span class="selected"></span>
                         <span class="arrow {{ (Request::segment(2)=='settings') ? 'open' :'' }}"></span>
