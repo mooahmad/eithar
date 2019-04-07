@@ -215,6 +215,7 @@ class Customer
                     "message" => trans('errors.wrongCode')
                 ]));
         $customer->email_verified = 1;
+        $customer->is_active = 1;
         $customer->save();
         return Utilities::getValidationError(config('constants.responseStatus.success'), new MessageBag([]));
     }
