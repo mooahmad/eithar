@@ -1,6 +1,6 @@
 <!-- start navbar -->
 <header>
-    <div class="top-nav ">
+    <div class="top-nav @if(url()->current() !== url()->route('home')) w-bg @endif">
         <div class="sign">
             <div class="login">
                 <!-- Button trigger modal -->
@@ -15,9 +15,9 @@
         <div class="lang">
             <i class="fas fa-globe-africa"></i>
             @if(LaravelLocalization::getCurrentLocale() == 'ar')
-                <a href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}" class="languge_button button languge">EN</a>
+                <a rel="alternate" hreflang="en" href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}" class="languge_button button languge">EN</a>
             @else
-                <a href="{{ LaravelLocalization::getLocalizedURL('ar', null, [], true) }}" class="languge_button button languge">AR</a>
+                <a rel="alternate" hreflang="ar" href="{{ LaravelLocalization::getLocalizedURL('ar', null, [], true) }}" class="languge_button button languge">AR</a>
             @endif
         </div>
 
@@ -65,14 +65,16 @@
         </div>
     </div>
 
-    <nav class="navbar  navbar-expand-lg navbar-light bg-light ">
+    <nav class="navbar  navbar-expand-lg navbar-light bg-light @if(url()->current() !== url()->route('home')) w-bg @endif">
         <div class="container">
             <!--white background-->
-            <a class="navbar-brand  d-md-block d-lg-none" href="{{ url()->route('home') }}">
+            <a class="navbar-brand @if(url()->current() == url()->route('home')) d-md-block d-lg-none @endif" href="{{ url()->route('home') }}">
                 <img src="{{ asset('public/NewFront/images/b-logo.png') }}">
             </a>
             <!--dark background-->
-            <a class="navbar-brand d-none d-md-block" href="{{ url()->route('home') }}"><img src="{{ asset('public/NewFront/images/logo.png') }}"></a>
+            @if(url()->current() == url()->route('home'))
+                <a class="navbar-brand d-none d-md-block" href="{{ url()->route('home') }}"><img src="{{ asset('public/NewFront/images/logo.png') }}"></a>
+            @endif
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -83,7 +85,7 @@
                         <a class="nav-link active" href="{{ url()->route('home') }}">الرئيسية</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#features">عن ايثار</a>
+                        <a class="nav-link" href="{{ url()->route('about_us') }}">عن ايثار</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#contact-us">الخدمات </a>
@@ -104,7 +106,7 @@
                         <a class="nav-link" href="#contact-us">حجز موعد</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact-us">اتصل بنا</a>
+                        <a class="nav-link" href="{{ url()->route('contact_us') }}">اتصل بنا</a>
                     </li>
                 </ul>
             </div>

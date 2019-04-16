@@ -24,8 +24,9 @@ define('DRV', 'Administrator\Drivers');
 /*-------------------------------------
 ----------- New Frontend Routes -----------
 -------------------------------------*/
-Route::group(['namespace'=>NFE],function (){
-    Route::group(['middleware'=>['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],'prefix' => LaravelLocalization::setLocale()], function (){
+
+Route::group(['namespace' => NFE], function () {
+    Route::group(['middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ],'prefix' => LaravelLocalization::setLocale()], function () {
         Route::get('/', 'NewFrontController@index')->name('home');
         Route::get('about-us', 'NewFrontController@AboutUs')->name('about_us');
         Route::get('contact-us', 'NewFrontController@ContactUs')->name('contact_us');
