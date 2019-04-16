@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'Helvetica Neue W23 for SKY Reg';
+    src: url('HelveticaNeueW23forSKY-Reg.eot');
+    src: url('HelveticaNeueW23forSKY-Reg.eot?#iefix') format('embedded-opentype'),
+        url('HelveticaNeueW23forSKY-Reg.woff2') format('woff2'),
+        url('HelveticaNeueW23forSKY-Reg.woff') format('woff'),
+        url('HelveticaNeueW23forSKY-Reg.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+

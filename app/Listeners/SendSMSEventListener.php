@@ -56,7 +56,14 @@ class SendSMSEventListener
         $model->notifications()->where('is_smsed', 0)->latest()->get()->each(function ($notification) use ($now, $model) {
             $data = json_decode(json_encode($notification->data));
             if (strtotime($data->send_at) <= strtotime($now)) {
-                $message  = $data->{'title_'.$data->lang} .'-'.$data->{'desc_'.$data->lang};
+                if ($data->lang == 'en'){
+                    $desc  = $data->desc_en;
+                    $title = $data->title_en;
+                }else{
+                    $desc  = $data->desc_ar;
+                    $title = $data->title_ar;
+                }
+                $message  = $title .'-'.$desc;
                 $numbers = [$model->mobile_number];
                 if (SendingSMSClass::sendSMS($message,$numbers)) {
                     $notification->is_smsed = 1;

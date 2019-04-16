@@ -59,16 +59,22 @@ class PushNotificationEventListener
                 if (isset($data->service_type)) {
                     $details['service_type'] = $data->service_type;
                 }
-
+                if ($data->lang == 'en'){
+                    $desc  = $data->desc_en;
+                    $title = $data->title_en;
+                }else{
+                    $desc  = $data->desc_ar;
+                    $title = $data->title_ar;
+                }
                 if (isset($data->appointment_date)) {
                     $day = Carbon::parse($data->appointment_date)->format('Y-m-d');
                     $time = Carbon::parse($data->appointment_date)->format('g:i A');
-                    $data->{'desc_' . $data->lang} = str_replace('@day', $day, $data->{'desc_' . $data->lang});
-                    $data->{'desc_' . $data->lang} = str_replace('@time', $time, $data->{'desc_' . $data->lang});
+                    $desc = str_replace('@day', $day, $desc);
+                    $desc = str_replace('@time', $time, $desc);
                 }
                 if ($model->pushNotification) {
                     $tokens[] = $model->pushNotification->token;
-                    $pushData = Utilities::buildNotification($data->{'title_' . $data->lang}, $data->{'desc_' . $data->lang}, 0, $details);
+                    $pushData = Utilities::buildNotification($title, $desc, 0, $details);
                     Utilities::pushNotification($serverCloudKey, $tokens, $pushData);
                     $notification->is_pushed = 1;
                     $notification->save();

@@ -5,6 +5,8 @@ define('AD', 'Administrator');
 define('ADN', 'Administrator\UsersModule');
 define('FEL', 'Frontend/layouts');
 define('FE', 'Frontend');
+define('NFE', 'NewFront');
+define('NFEL', 'NewFront/layouts');
 define('CATN', 'Administrator\Categories');
 define('SRVN', 'Administrator\Services');
 define('PRON', 'Administrator\Providers');
@@ -19,73 +21,83 @@ define('SET', 'Administrator\Settings');
 define('JUS', 'Administrator\Joinus');
 define('DRV', 'Administrator\Drivers');
 
-
 /*-------------------------------------
------------ Frontend Routes -----------
+----------- New Frontend Routes -----------
 -------------------------------------*/
-Route::group(['namespace' => FE], function () {
-    Route::group(['middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ],'prefix' => LaravelLocalization::setLocale()], function () {
-        Route::get('/', 'FrontendController@index')->name('home');
-        Route::get('about-us', 'FrontendController@AboutUs')->name('about_us');
-        Route::get('privacy-and-conditions', 'FrontendController@PrivacyAndConditions')->name('privacy_and_conditions');
-
-        Route::group(['namespace'=>'CustomerFront'],function (){
-            Route::group(['prefix'=>'customer'], function (){
-                Route::get('login', 'LoginFrontController@showCustomerLogin')->name('customer_login');
-                Route::post('login', 'LoginFrontController@customerLogin')->name('customer_login_post');
-                Route::get('sign-up', 'SignUpFrontController@showCustomerSignUp')->name('customer_sign_up');
-                Route::post('sign-up', 'SignUpFrontController@saveCustomerSignUp')->name('customer_sign_up_post');
-                Route::post('get-country-cities', 'SignUpFrontController@getCountryCities')->name('get_country_cities');
-                Route::get('activate-account/{mobile}', 'SignUpFrontController@showCustomerVerifyMobileCode')->name('verify_sent_code');
-                Route::post('activate-account/{mobile}', 'SignUpFrontController@activeCustomerVerifyMobileCode')->name('verify_sent_code_post');
-                Route::get('resend-verify-code', 'SignUpFrontController@resendCustomerVerifyCode')->name('resend_verify_code');
-                Route::post('resend-verify-code', 'SignUpFrontController@resendCustomerVerifyCodePost')->name('resend_verify_code_post');
-                Route::get('reset-password', 'ResetPasswordFrontController@showCustomerResetPassword')->name('customer_reset_password');
-                Route::post('reset-password', 'ResetPasswordFrontController@checkCustomerResetPassword')->name('customer_reset_password_post');
-                Route::get('verify-reset-password/{mobile}', 'ResetPasswordFrontController@showVerifyCustomerResetPassword')->name('customer_reset_password_verify_code');
-                Route::post('verify-reset-password', 'ResetPasswordFrontController@checkVerifyCustomerResetPassword')->name('customer_reset_password_verify_code_post');
-
-                Route::group(['middleware'=>'CustomerWebAuth'],function (){
-                    Route::get('logout', 'LoginFrontController@logoutCustomer')->name('customer_logout');
-                    Route::get('profile/show/{id}/{name}', 'ProfileCustomerController@index')->name('show_customer_profile');
-                    Route::get('profile/update/{id}/{name}', 'UpdateCustomerProfileController@showUpdateCustomerProfile')->name('customer_show_update_profile');
-                    Route::post('profile/update/{id}/{name}', 'UpdateCustomerProfileController@storeUpdateCustomerProfile')->name('customer_update_profile_post');
-                    Route::post('profile/update/password', 'UpdateCustomerProfileController@storeUpdateCustomerPassword')->name('customer_update_password_post');
-                });
-
-            });
-        });
-
-        Route::group(['namespace'=>'CategoriesFront'],function (){
-            Route::group(['prefix'=>'categories'], function (){
-
-                Route::get('doctors','CategoriesFrontController@showDoctorsSubCategories')->name('doctors_category');
-                Route::group(['namespace'=>'Doctors'],function (){
-                    Route::get('doctors/{subcategory_id}/{subcategory_name}/doctor/{provider_id}/{provider_name}','DoctorsCategoryController@showDoctorProfile')->name('doctor_profile');
-                    Route::get('doctors/{subcategory_id}/{subcategory_name}/doctor/{provider_id}/{provider_name}/book','DoctorsCategoryController@showDoctorQuestionnaireCalendar')->name('doctor_booking_meeting');
-                    Route::post('doctors/book-provider-meeting','DoctorsCategoryController@book')->name('book_provider_meeting');
-                    Route::post('doctors/getCalendarDays','DoctorsCategoryController@getCalendarDays')->name('getCalendarDays');
-                    Route::post('doctors/getAvailableSlots','DoctorsCategoryController@getAvailableSlots')->name('getAvailableSlots');
-                    Route::post('doctors/checkPromoCode','DoctorsCategoryController@checkPromoCodeAndGetAmount')->name('checkPromoCode');
-                    Route::post('doctors/like','DoctorsCategoryController@likeProvider')->name('like_provider_transaction');
-                });
-
-                Route::get('lap','CategoriesFrontController@showLapSubCategories')->name('lap_category');
-
-                Route::get('nursing','CategoriesFrontController@showNurseSubCategories')->name('nurse_category');
-                Route::get('physiotherapy','CategoriesFrontController@showPhysiotherapySubCategories')->name('physiotherapy_category');
-                Route::get('mother-and-child-care','CategoriesFrontController@showMotherAndChildCareSubCategories')->name('women_category');
-                Route::post('subcategory-providers-list','CategoriesFrontController@getSubCategoryProvidersList')->name('get_subcategory_providers_list');
-                Route::post('subcategory-global-services-list','CategoriesFrontController@getSubCategoryGlobalServicesList')->name('get_subcategory_global_services_list');
-                Route::group(['namespace'=>'GlobalServices'],function (){
-                    Route::get('nursing/{subcategory_id}/{subcategory_name}/service/{service_id}/{service_name}','NursingCategoryController@showServiceProfile')->name('service_profile');
-                });
-
-            });
-//            Route::get('categories/{category}/{name}', 'CategoriesFrontController@showSubCategories')->name('show-subcategories');
-        });
+Route::group(['namespace'=>NFE],function (){
+    Route::group(['middleware'=>['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],'prefix' => LaravelLocalization::setLocale()], function (){
+        Route::get('/', 'NewFrontController@index')->name('home');
+        Route::get('about-us', 'NewFrontController@AboutUs')->name('about_us');
+        Route::get('contact-us', 'NewFrontController@ContactUs')->name('contact_us');
     });
 });
+
+/*-------------------------------------
+----------- Old Frontend Routes -----------
+-------------------------------------*/
+//Route::group(['namespace' => FE], function () {
+//    Route::group(['middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ],'prefix' => LaravelLocalization::setLocale()], function () {
+//        Route::get('/', 'FrontendController@index')->name('home');
+//        Route::get('about-us', 'FrontendController@AboutUs')->name('about_us');
+//        Route::get('privacy-and-conditions', 'FrontendController@PrivacyAndConditions')->name('privacy_and_conditions');
+//
+//        Route::group(['namespace'=>'CustomerFront'],function (){
+//            Route::group(['prefix'=>'customer'], function (){
+//                Route::get('login', 'LoginFrontController@showCustomerLogin')->name('customer_login');
+//                Route::post('login', 'LoginFrontController@customerLogin')->name('customer_login_post');
+//                Route::get('sign-up', 'SignUpFrontController@showCustomerSignUp')->name('customer_sign_up');
+//                Route::post('sign-up', 'SignUpFrontController@saveCustomerSignUp')->name('customer_sign_up_post');
+//                Route::post('get-country-cities', 'SignUpFrontController@getCountryCities')->name('get_country_cities');
+//                Route::get('activate-account/{mobile}', 'SignUpFrontController@showCustomerVerifyMobileCode')->name('verify_sent_code');
+//                Route::post('activate-account/{mobile}', 'SignUpFrontController@activeCustomerVerifyMobileCode')->name('verify_sent_code_post');
+//                Route::get('resend-verify-code', 'SignUpFrontController@resendCustomerVerifyCode')->name('resend_verify_code');
+//                Route::post('resend-verify-code', 'SignUpFrontController@resendCustomerVerifyCodePost')->name('resend_verify_code_post');
+//                Route::get('reset-password', 'ResetPasswordFrontController@showCustomerResetPassword')->name('customer_reset_password');
+//                Route::post('reset-password', 'ResetPasswordFrontController@checkCustomerResetPassword')->name('customer_reset_password_post');
+//                Route::get('verify-reset-password/{mobile}', 'ResetPasswordFrontController@showVerifyCustomerResetPassword')->name('customer_reset_password_verify_code');
+//                Route::post('verify-reset-password', 'ResetPasswordFrontController@checkVerifyCustomerResetPassword')->name('customer_reset_password_verify_code_post');
+//
+//                Route::group(['middleware'=>'CustomerWebAuth'],function (){
+//                    Route::get('logout', 'LoginFrontController@logoutCustomer')->name('customer_logout');
+//                    Route::get('profile/show/{id}/{name}', 'ProfileCustomerController@index')->name('show_customer_profile');
+//                    Route::get('profile/update/{id}/{name}', 'UpdateCustomerProfileController@showUpdateCustomerProfile')->name('customer_show_update_profile');
+//                    Route::post('profile/update/{id}/{name}', 'UpdateCustomerProfileController@storeUpdateCustomerProfile')->name('customer_update_profile_post');
+//                    Route::post('profile/update/password', 'UpdateCustomerProfileController@storeUpdateCustomerPassword')->name('customer_update_password_post');
+//                });
+//
+//            });
+//        });
+//
+//        Route::group(['namespace'=>'CategoriesFront'],function (){
+//            Route::group(['prefix'=>'categories'], function (){
+//
+//                Route::get('doctors','CategoriesFrontController@showDoctorsSubCategories')->name('doctors_category');
+//                Route::group(['namespace'=>'Doctors'],function (){
+//                    Route::get('doctors/{subcategory_id}/{subcategory_name}/doctor/{provider_id}/{provider_name}','DoctorsCategoryController@showDoctorProfile')->name('doctor_profile');
+//                    Route::get('doctors/{subcategory_id}/{subcategory_name}/doctor/{provider_id}/{provider_name}/book','DoctorsCategoryController@showDoctorQuestionnaireCalendar')->name('doctor_booking_meeting');
+//                    Route::post('doctors/book-provider-meeting','DoctorsCategoryController@book')->name('book_provider_meeting');
+//                    Route::post('doctors/getCalendarDays','DoctorsCategoryController@getCalendarDays')->name('getCalendarDays');
+//                    Route::post('doctors/getAvailableSlots','DoctorsCategoryController@getAvailableSlots')->name('getAvailableSlots');
+//                    Route::post('doctors/checkPromoCode','DoctorsCategoryController@checkPromoCodeAndGetAmount')->name('checkPromoCode');
+//                    Route::post('doctors/like','DoctorsCategoryController@likeProvider')->name('like_provider_transaction');
+//                });
+//
+//                Route::get('lap','CategoriesFrontController@showLapSubCategories')->name('lap_category');
+//
+//                Route::get('nursing','CategoriesFrontController@showNurseSubCategories')->name('nurse_category');
+//                Route::get('physiotherapy','CategoriesFrontController@showPhysiotherapySubCategories')->name('physiotherapy_category');
+//                Route::get('mother-and-child-care','CategoriesFrontController@showMotherAndChildCareSubCategories')->name('women_category');
+//                Route::post('subcategory-providers-list','CategoriesFrontController@getSubCategoryProvidersList')->name('get_subcategory_providers_list');
+//                Route::post('subcategory-global-services-list','CategoriesFrontController@getSubCategoryGlobalServicesList')->name('get_subcategory_global_services_list');
+//                Route::group(['namespace'=>'GlobalServices'],function (){
+//                    Route::get('nursing/{subcategory_id}/{subcategory_name}/service/{service_id}/{service_name}','NursingCategoryController@showServiceProfile')->name('service_profile');
+//                });
+//
+//            });
+////            Route::get('categories/{category}/{name}', 'CategoriesFrontController@showSubCategories')->name('show-subcategories');
+//        });
+//    });
+//});
 
 Auth::routes();
 Route::group(['namespace' => 'Auth'], function () {
