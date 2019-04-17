@@ -139,4 +139,8 @@ return [
     'old_password'                  => 'Old Password',
     'one_time_visit'                => 'One Time Visit',
     'package'                       => 'Package',
+    'name'                          => 'Name',
+    'phone_number'                  => 'Phone Number',
+    'your_message'                  => 'Your Message',
+    'contact_success'               => 'Your message sent successfully',
 ];

@@ -30,6 +30,7 @@ Route::group(['namespace' => NFE], function () {
         Route::get('/', 'NewFrontController@index')->name('home');
         Route::get('about-us', 'NewFrontController@AboutUs')->name('about_us');
         Route::get('contact-us', 'NewFrontController@ContactUs')->name('contact_us');
+        Route::post('contact-us', 'NewFrontController@SaveContactUs')->name('save_contact_us');
     });
 });
 

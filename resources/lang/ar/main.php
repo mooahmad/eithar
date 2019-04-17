@@ -139,4 +139,8 @@ return [
     'old_password'                  => 'كلمة المرور القديمة',
     'one_time_visit'                => 'زيارة واحدة',
     'package'                       => 'مجموعة زيارات',
+    'name'                          => 'الأسم',
+    'phone_number'                  => 'رقم الهاتف',
+    'your_message'                  => 'رسالتك',
+    'contact_success'               => 'تم ارسال الرسالة بنجاح',
 ];

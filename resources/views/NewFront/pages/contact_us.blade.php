@@ -22,25 +22,47 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-6">
-                    <form>
-                        <label><strong>الاسم</strong></label>
-                        <div class="form-group">
-                            <input type="text" class="form-control">
+                    @if(session()->has('contact_success'))
+                        <div class="alert alert-success">
+                            <button class="close" data-close="alert"></button> {{ session()->get('contact_success') }}
                         </div>
-                        <label><strong>البريد الالكتروني</strong></label>
+                    @endif
+                    {!! Form::open(['method'=>'POST','url'=>url()->route('save_contact_us')]) !!}
+
+                        <label for="#name"><strong>{{ trans('main.name') }}</strong></label>
                         <div class="form-group">
-                            <input type="email" class="form-control">
+                            {{ Form::text('name',old('name'),['id'=>'name','class'=>'form-control','placeholder'=>trans('main.name'),'required'=>'required']) }}
+                            @if($errors->has('name'))
+                                <p class="text-danger">{{ $errors->first('name') }}</p>
+                            @endif
                         </div>
-                        <label><strong>رقم الهاتف</strong></label>
+
+                        <label for="#email"><strong>{{ trans('main.email') }}</strong></label>
                         <div class="form-group">
-                            <input type="number" class="form-control">
+                            {{ Form::text('email',old('email'),['id'=>'email','class'=>'form-control','placeholder'=>trans('main.email'),'required'=>'required']) }}
+                            @if($errors->has('email'))
+                                <p class="text-danger">{{ $errors->first('email') }}</p>
+                            @endif
                         </div>
-                        <label><strong>الرساله</strong></label>
+
+                        <label for="#phone_number"><strong>{{ trans('main.phone_number') }}</strong></label>
                         <div class="form-group">
-                            <textarea rows="6" class="form-control"></textarea>
+                            {{ Form::text('phone_number',old('phone_number'),['id'=>'phone_number','class'=>'form-control','placeholder'=>trans('main.phone_number'),'required'=>'required']) }}
+                            @if($errors->has('phone_number'))
+                                <p class="text-danger">{{ $errors->first('phone_number') }}</p>
+                            @endif
                         </div>
+
+                        <label for="#comment"><strong>{{ trans('main.your_message') }}</strong></label>
+                        <div class="form-group">
+                            {!! Form::textarea('message',old('message'),['id'=>'comment','rows'=>5,'class'=>'form-control','placeholder'=>trans('main.your_message')]) !!}
+                            @if($errors->has('message'))
+                                <p class="text-danger">{{ $errors->first('message') }}</p>
+                            @endif
+                        </div>
+
                         <button class="btn btn-main">أرسال</button>
-                    </form>
+                    {!! Form::close() !!}
                 </div>
                 <div class="col-sm-12 offset-md-1 col-md-5 ">
                     <ul class="contact-info list-unstyled">
