@@ -51,6 +51,10 @@ function datatable() {
             {data: 'id', name: 'join_us.id'},
             {data: 'full_name', name: 'join_us.full_name'},
             {data: 'email', name: 'join_us.email'},
+            {data: 'mobile_number', name: 'join_us.mobile_number'},
+            {data: 'national_id', name: 'join_us.national_id'},
+            {data: 'speciality', name: 'join_us.speciality'},
+            // {data: 'city_id', name: 'join_us.city_id'},
             // {
             //     searchable: false,
             //     orderable: false,

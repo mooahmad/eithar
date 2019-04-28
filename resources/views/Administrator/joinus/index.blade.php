@@ -22,6 +22,10 @@
                                 <th>{{ trans('admin.id') }}</th>
                                 <th>{{ trans('admin.name') }}</th>
                                 <th>{{ trans('admin.email') }}</th>
+                                <th>Mobile</th>
+                                <th>National ID</th>
+                                <th>Specialty</th>
+{{--                                <th>City</th>--}}
                             </tr>
                             </thead>
                             <tbody>
