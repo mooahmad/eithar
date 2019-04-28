@@ -14,4 +14,12 @@ class JoinUs extends Model
     protected $table      = 'join_us';
     protected $dateFormat = 'Y-m-d H:m:s';
     protected $dates      = ['created_at', 'updated_at', 'deleted_at'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function country()
+    {
+        return $this->belongsTo(Country::class,'city_id','id');
+    }
 }

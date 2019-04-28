@@ -87,6 +87,9 @@ class JoinusController extends Controller
             ->addColumn('actions', function ($category) {
                     return "";
             })
+            ->addColumn('city_id',function ($item){
+                return $item->country->country_name_eng;
+            })
             ->rawColumns(['actions'])
             ->make(true);
         return $dataTable;

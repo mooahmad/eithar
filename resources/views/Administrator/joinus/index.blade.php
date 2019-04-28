@@ -25,7 +25,7 @@
                                 <th>Mobile</th>
                                 <th>National ID</th>
                                 <th>Specialty</th>
-{{--                                <th>City</th>--}}
+                                <th>Country</th>
                             </tr>
                             </thead>
                             <tbody>

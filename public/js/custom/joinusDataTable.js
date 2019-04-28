@@ -54,7 +54,7 @@ function datatable() {
             {data: 'mobile_number', name: 'join_us.mobile_number'},
             {data: 'national_id', name: 'join_us.national_id'},
             {data: 'speciality', name: 'join_us.speciality'},
-            // {data: 'city_id', name: 'join_us.city_id'},
+            {data: 'city_id', name: 'join_us.city_id'},
             // {
             //     searchable: false,
             //     orderable: false,
