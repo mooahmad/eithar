@@ -398,8 +398,8 @@ class Customer
                 }
             }
         }
-        $upCommingAppointments = collect($upCommingAppointments)->sortBy('start_date')->values()->all();
-        $passedAppointments = collect($passedAppointments)->sortBy('start_date')->reverse()->values()->all();
+        $upCommingAppointments = collect($upCommingAppointments)->sortByDesc('start_date')->values()->all();
+        $passedAppointments = collect($passedAppointments)->sortByDesc('start_date')->reverse()->values()->all();
         $appointments = collect(array_merge($upCommingAppointments, $passedAppointments));
         $appointments->each(function ($appointment) use (&$finalAppointments) {
             $appointment["start_date"] = Carbon::parse($appointment["start_date"])->format('l jS \\of F Y');
