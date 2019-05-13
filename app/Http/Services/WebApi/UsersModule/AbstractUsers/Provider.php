@@ -385,7 +385,7 @@ class Provider
                 $query->join('customers', 'service_bookings.customer_id', 'customers.id')->whereRaw("customers.eithar_id = '$eitharId'");
             }
             $query->orderByRaw('service_booking_appointments.created_at DESC');
-        }])->servicesBookings()->skip($page * config('constants.paggination_items_per_page'))->take(config('constants.paggination_items_per_page'))->get();
+        }])->servicesBookings()->orderBy('created_at','DESC')->skip($page * config('constants.paggination_items_per_page'))->take(config('constants.paggination_items_per_page'))->get();
         foreach ($servicesBookings as $servicesBooking) {
             $service = null;
             $serviceBookingLaps = null;
