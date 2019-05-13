@@ -71,10 +71,10 @@ class BookingServicesController extends Controller
         $items->leftjoin('services', 'service_bookings.service_id', 'services.id')
             ->join('customers', 'service_bookings.customer_id', 'customers.id')
             ->join('currencies', 'service_bookings.currency_id', 'currencies.id')
-            ->select(['service_bookings.id', 'service_bookings.status', 'service_bookings.unlock_request', 'service_bookings.price', 'service_bookings.status_desc', 'service_bookings.created_at', 'services.name_en', 'customers.first_name', 'customers.middle_name', 'customers.last_name', 'customers.eithar_id', 'customers.national_id', 'customers.mobile_number', 'currencies.name_eng']);
+            ->select(['service_bookings.id', 'service_bookings.status','service_bookings.provider_id', 'service_bookings.unlock_request', 'service_bookings.price', 'service_bookings.status_desc', 'service_bookings.created_at', 'services.name_en', 'customers.first_name', 'customers.middle_name', 'customers.last_name', 'customers.eithar_id', 'customers.national_id', 'customers.mobile_number', 'currencies.name_eng']);
         $dataTable = DataTables::of($items)
             ->editColumn('name_en', function ($item) {
-                return ($item->name_en) ? $item->name_en : 'Lab Service';
+                return ($item->name_en) ? $item->name_en : ($item->provider_id)? Provider::find($item->provider_id)->full_name : 'Provider';
             })
             ->editColumn('full_name', function ($item) {
                 return $item->first_name . ' ' . $item->middle_name . ' ' . $item->last_name;
