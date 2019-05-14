@@ -19,7 +19,8 @@ class PromoCodesPolicy
      */
     public function view(User $user, PromoCode $model)
     {
-        return $user->user_type === config('constants.userTypes.superAdmin');
+        if ($user->user_type === config('constants.userTypes.superAdmin')) return true;
+	    return false;
     }
 
     /**
@@ -30,7 +31,8 @@ class PromoCodesPolicy
      */
     public function create(User $user)
     {
-        return $user->user_type === config('constants.userTypes.superAdmin');
+        if ($user->user_type === config('constants.userTypes.superAdmin')) return true;
+	    return false;
     }
 
     /**
@@ -42,7 +44,8 @@ class PromoCodesPolicy
      */
     public function update(User $user, PromoCode $model)
     {
-        return $user->user_type === config('constants.userTypes.superAdmin');
+        if ($user->user_type === config('constants.userTypes.superAdmin')) return true;
+	    return false;
     }
 
     /**
@@ -54,7 +57,8 @@ class PromoCodesPolicy
      */
     public function delete(User $user, PromoCode $model)
     {
-        return $user->user_type === config('constants.userTypes.superAdmin');
+        if ($user->user_type === config('constants.userTypes.superAdmin')) return true;
+	    return false;
     }
 
     /**
@@ -66,7 +70,8 @@ class PromoCodesPolicy
      */
     public function restore(User $user, PromoCode $model)
     {
-        return $user->user_type === config('constants.userTypes.superAdmin');
+        if ($user->user_type === config('constants.userTypes.superAdmin')) return true;
+	    return false;
     }
 
     /**
@@ -78,6 +83,7 @@ class PromoCodesPolicy
      */
     public function forceDelete(User $user, PromoCode $model)
     {
-        return $user->user_type === config('constants.userTypes.superAdmin');
+        if ($user->user_type === config('constants.userTypes.superAdmin')) return true;
+	    return false;
     }
 }

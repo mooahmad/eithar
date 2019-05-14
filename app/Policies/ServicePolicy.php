@@ -19,7 +19,8 @@ class ServicePolicy
      */
     public function view(User $user, Service $model)
     {
-        return $user->user_type === config('constants.userTypes.superAdmin');
+	    if ($user->user_type === config('constants.userTypes.superAdmin')) return true;
+	    return false;
     }
 
     /**
@@ -30,7 +31,8 @@ class ServicePolicy
      */
     public function create(User $user)
     {
-        return $user->user_type === config('constants.userTypes.superAdmin');
+	    if ($user->user_type === config('constants.userTypes.superAdmin')) return true;
+	    return false;
     }
 
     /**
@@ -42,7 +44,8 @@ class ServicePolicy
      */
     public function update(User $user, Service $model)
     {
-        return $user->user_type === config('constants.userTypes.superAdmin');
+	    if ($user->user_type === config('constants.userTypes.superAdmin')) return true;
+	    return false;
     }
 
     /**
@@ -54,7 +57,8 @@ class ServicePolicy
      */
     public function delete(User $user, Service $model)
     {
-        return $user->user_type === config('constants.userTypes.superAdmin');
+	    if ($user->user_type === config('constants.userTypes.superAdmin')) return true;
+	    return false;
     }
 
     /**
@@ -66,7 +70,8 @@ class ServicePolicy
      */
     public function restore(User $user, Service $model)
     {
-        return $user->user_type === config('constants.userTypes.superAdmin');
+	    if ($user->user_type === config('constants.userTypes.superAdmin')) return true;
+	    return false;
     }
 
     /**
@@ -78,6 +83,7 @@ class ServicePolicy
      */
     public function forceDelete(User $user, Service $model)
     {
-        return $user->user_type === config('constants.userTypes.superAdmin');
+	    if ($user->user_type === config('constants.userTypes.superAdmin')) return true;
+	    return false;
     }
 }

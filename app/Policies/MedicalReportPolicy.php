@@ -19,7 +19,8 @@ class MedicalReportPolicy
      */
     public function view(User $user, MedicalReports $model)
     {
-        return $user->user_type === config('constants.userTypes.superAdmin');
+        if ($user->user_type === config('constants.userTypes.superAdmin')) return true;
+	    return false;
     }
 
     /**
@@ -30,7 +31,8 @@ class MedicalReportPolicy
      */
     public function create(User $user)
     {
-        return $user->user_type === config('constants.userTypes.superAdmin');
+        if ($user->user_type === config('constants.userTypes.superAdmin')) return true;
+	    return false;
     }
 
     /**
@@ -42,7 +44,8 @@ class MedicalReportPolicy
      */
     public function update(User $user, MedicalReports $model)
     {
-        return $user->user_type === config('constants.userTypes.superAdmin');
+        if ($user->user_type === config('constants.userTypes.superAdmin')) return true;
+	    return false;
     }
 
     /**
@@ -54,7 +57,8 @@ class MedicalReportPolicy
      */
     public function delete(User $user, MedicalReports $model)
     {
-        return $user->user_type === config('constants.userTypes.superAdmin');
+        if ($user->user_type === config('constants.userTypes.superAdmin')) return true;
+	    return false;
     }
 
     /**
@@ -66,7 +70,8 @@ class MedicalReportPolicy
      */
     public function restore(User $user, MedicalReports $model)
     {
-        return $user->user_type === config('constants.userTypes.superAdmin');
+        if ($user->user_type === config('constants.userTypes.superAdmin')) return true;
+	    return false;
     }
 
     /**
@@ -78,6 +83,7 @@ class MedicalReportPolicy
      */
     public function forceDelete(User $user, MedicalReports $model)
     {
-        return $user->user_type === config('constants.userTypes.superAdmin');
+        if ($user->user_type === config('constants.userTypes.superAdmin')) return true;
+	    return false;
     }
 }

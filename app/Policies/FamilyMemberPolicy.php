@@ -19,7 +19,8 @@ class FamilyMemberPolicy
      */
     public function view(User $user)
     {
-        return $user->user_type === config('constants.userTypes.customerService');
+	    if ($user->user_type === config('constants.userTypes.customerService')) return true;
+	    return false;
     }
 
     /**
@@ -30,7 +31,8 @@ class FamilyMemberPolicy
      */
     public function create(User $user)
     {
-        return $user->user_type === config('constants.userTypes.customerService');
+	    if ($user->user_type === config('constants.userTypes.customerService')) return true;
+	    return false;
     }
 
     /**
@@ -42,7 +44,8 @@ class FamilyMemberPolicy
      */
     public function update(User $user)
     {
-        return $user->user_type === config('constants.userTypes.customerService');
+	    if ($user->user_type === config('constants.userTypes.customerService')) return true;
+	    return false;
     }
 
     /**
@@ -54,7 +57,8 @@ class FamilyMemberPolicy
      */
     public function delete(User $user)
     {
-        return $user->user_type === config('constants.userTypes.customerService');
+	    if ($user->user_type === config('constants.userTypes.customerService')) return true;
+	    return false;
     }
 
     /**
@@ -66,7 +70,8 @@ class FamilyMemberPolicy
      */
     public function restore(User $user)
     {
-        return $user->user_type === config('constants.userTypes.customerService');
+	    if ($user->user_type === config('constants.userTypes.customerService')) return true;
+	    return false;
     }
 
     /**
@@ -78,6 +83,7 @@ class FamilyMemberPolicy
      */
     public function forceDelete(User $user)
     {
-        return $user->user_type === config('constants.userTypes.customerService');
+	    if ($user->user_type === config('constants.userTypes.customerService')) return true;
+	    return false;
     }
 }

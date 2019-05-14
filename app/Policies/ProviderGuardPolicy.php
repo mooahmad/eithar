@@ -19,8 +19,8 @@ class ProviderGuardPolicy
      */
     public function view(Provider $provider)
     {
-//        dd(Auth::user());
-        return Auth::guard('provider-web')->user()->id === $provider->id;
+	    if (Auth::guard('provider-web')->user()->id === $provider->id) return true;
+	    return false;
     }
 
     /**
@@ -31,7 +31,8 @@ class ProviderGuardPolicy
      */
     public function create(Provider $provider)
     {
-        return Auth::guard('provider-web')->user()->id === $provider->id;
+	    if (Auth::guard('provider-web')->user()->id === $provider->id) return true;
+	    return false;
     }
 
     /**
@@ -42,7 +43,8 @@ class ProviderGuardPolicy
      */
     public function update(Provider $provider)
     {
-        return Auth::guard('provider-web')->user()->id === $provider->id;
+	    if (Auth::guard('provider-web')->user()->id === $provider->id) return true;
+	    return false;
     }
 
     /**
@@ -53,7 +55,8 @@ class ProviderGuardPolicy
      */
     public function delete(Provider $provider)
     {
-        return Auth::guard('provider-web')->user()->id === $provider->id;
+	    if (Auth::guard('provider-web')->user()->id === $provider->id) return true;
+	    return false;
     }
 
     /**
@@ -64,7 +67,8 @@ class ProviderGuardPolicy
      */
     public function restore(Provider $provider)
     {
-        return Auth::guard('provider-web')->user()->id === $provider->id;
+	    if (Auth::guard('provider-web')->user()->id === $provider->id) return true;
+	    return false;
     }
 
     /**
@@ -75,6 +79,7 @@ class ProviderGuardPolicy
      */
     public function forceDelete(Provider $provider)
     {
-        return Auth::guard('provider-web')->user()->id === $provider->id;
+	    if (Auth::guard('provider-web')->user()->id === $provider->id) return true;
+	    return false;
     }
 }
