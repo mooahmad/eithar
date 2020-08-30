@@ -1,0 +1,180 @@
+@import "helpers/variables.scss";
+
+/**Start Arabic Menu**/
+body {
+  text-align: right !important;
+}
+
+/*=03= Start Search Subheader*/
+.serach_subheader {
+  .serach_subheader-searsh {
+    button {
+      border-radius: $borderRadius 0 0 $borderRadius;
+      /*change*/
+      right: auto;
+      left: 4px;
+      /*Change*/
+    }
+
+    .serach_subheader-select {
+      right: auto;
+      left: 50px;
+      /*change*/
+    }
+  }
+}
+
+/*=03= Start Search Subheader*/
+/*05=Start Services*/
+.home_page-services {
+  .services_block {
+    margin-right: 50px;
+    margin-left: auto;
+    /*Change*/
+    padding-right: 60px;
+    padding-left: 20px;
+    /*Change*/
+  }
+}
+
+.services_block-icon {
+  right: -15%;
+  left: auto;
+  /*Change*/
+}
+
+/*05=End Services*/
+/*06= Start Services Oorder*/
+.services_order {
+  .location {
+    i {
+      position: absolute;
+      top: 8px;
+      right: auto;
+      left: 8px;
+      color: $mainColor;
+    }
+  }
+}
+
+/*06= Start Services Order*/
+/**Footer**/
+footer {
+  .footer_subscribe {
+    button {
+      right: auto;
+      left: 2px;
+      border-bottom-left-radius: $borderRadius;
+      /*Change*/
+      border-top-left-radius: $borderRadius;
+      /*Change*/
+    }
+  }
+}
+
+/*05=End Services*/
+/*Start Booking Doctor*/
+
+.wizard .checkbox_input {
+  margin-left: 12px;
+  margin-right: 0;
+}
+
+/*End Booking Doctor*/
+/*Start Custume Select Button*/
+.custum_select {
+  &:before {
+    left: 20px;
+    right: auto;
+    /*Change*/
+  }
+}
+
+/*Start Menue*/
+.navbar_menu {
+
+  /*Menu For Mobile*/
+  @media (max-width: $lg) {
+    right: -260px;
+    left: auto;
+    /*Change*/
+  }
+}
+
+.login_area-content .login_button {
+  @media (min-width: $lg) {
+    margin-right: 0;
+    margin-left: 50px;
+  }
+}
+
+.notification_area .notification_area-list li a:before {
+  left: auto;
+  right: -10px;
+}
+
+
+// Start Profile Menue 
+.profile_menu {
+
+  // on Mobile
+  @media (max-width: $md) {
+    right: -300px;
+    left: auto;
+  }
+
+  // Open Profile Menu on Mobile
+  &.switch {
+    @media (max-width: $md) {
+      right: 0px;
+      left: auto;
+    }
+  }
+
+  .show_menu {
+
+    left: -40px;
+    right: auto;
+
+    i {
+      transform: rotate(0deg)
+    }
+
+    &.switch {
+      i {
+        transform: rotate(180deg)
+      }
+    }
+  }
+
+  .add_image {
+    .back_button {
+      &:before {
+        transform: rotate(270deg);
+      }
+    }
+  }
+
+  // Start Menu List
+}
+
+/*****Font******/
+a,
+button,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+label,
+li,
+p,
+select,
+span,
+td,
+textarea,
+th {
+  font-family: 'Cairo', sans-serif;
+}

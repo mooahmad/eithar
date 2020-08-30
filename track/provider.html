@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>provider</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+<script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
+<script>
+    function initMap() {
+        chicago = new google.maps.LatLng(29.959888, 31.507266);
+        var mapOptions = {
+            zoom: 7,
+            center: chicago
+        }
+        var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        google.maps.event.addListener(map, 'click', function (event) {
+            placeMarker(event.latLng);
+        });
+
+        function placeMarker(location) {
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+            serverConnection.emit('sending-provider-location', 14, location, (data) => {
+                console.log(data);
+            });
+        }
+    }
+</script>
+<script src="node_modules/socket.io-client/dist/socket.io.js"></script>
+<script>
+    var bookingId = 14;
+    const serverConnection = io('ws://13.57.87.177:9090', {
+        transports: ['websocket']
+    });
+    // on connecting to server display connected then ask to join room
+    serverConnection.on('connect', () => {
+        console.log('connected to server');
+        serverConnection.emit('joining', bookingId, (data) => {
+            console.log(data);
+        });
+        // if any message sent to the room
+        serverConnection.on('toEveryOneOnRoom', (data) => {
+            console.log(data);
+        });
+        // if any message sent to the server
+        serverConnection.on('toEveryOneOnServer', (data) => {
+            console.log(data);
+        });
+    });
+    serverConnection.on('error', (error) => {
+        console.log(error);
+    });
+    // on disconnecting try to reconnect manually (not it reconnects automatic this code just for making sure)
+    serverConnection.on('disconnect', (reason) => {
+        if (reason === 'io server disconnect') {
+            // the disconnection was initiated by the server, you need to reconnect manually
+            socket.connect();
+        }
+        // else the socket will automatically try to reconnect
+    });
+    serverConnection.on('reconnect', (attemptNumber) => {
+        console.log('trying to reconnect number: ' + attemptNumber);
+    });
+    serverConnection.on('reconnect_failed', () => {
+        console.log('trying to reconnect failed');
+    });
+</script>
+</body>
+</html>

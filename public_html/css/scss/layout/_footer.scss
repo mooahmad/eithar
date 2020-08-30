@@ -1,0 +1,221 @@
+@import "helpers/variables.scss";
+
+footer {
+  overflow: hidden;
+
+  .footer_overlay {
+    background-color: #044E80;
+    padding: 40px 0;
+    @media (min-width: $lg) {
+      border-radius: 85% 85% 0 0/ 30%;
+      position: relative;
+      right: -65px;
+      width: 110%;
+      left: -65px;
+    }
+
+    div[class*="col"] {
+      @media (max-width: $md) {
+        margin-bottom: 40px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+  @media (max-width: $lg) {
+    text-align: center;
+  }
+
+  .footer_logo {
+    height: 150px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 40px;
+
+    img {
+      max-height: 100%;
+      max-width: 100%;
+    }
+  }
+
+  h2 {
+    font-size: 18px;
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: 25px;
+  }
+
+  .paragraph_global {
+    max-height: 205px;
+    overflow: hidden;
+    color: #fff;
+    line-height: 26px;
+    font-size: 16px;
+  }
+
+  .footer_subscribe {
+    position: relative;
+    margin-bottom: 30px;
+
+    input {
+      width: 100%;
+      padding: 8px 15px;
+      border-radius: $borderRadius;
+      border: 0;
+      color: $secondColor;
+
+      &:focus {
+        outline: none !important;
+      }
+    }
+
+    button {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      height: 90%;
+      width: 80px;
+      border: 0;
+      cursor: pointer;
+      background-color: $mainColor;
+      @extend %transition;
+      color: #fff;
+      border-bottom-right-radius: $borderRadius;
+      /*Change*/
+      border-top-right-radius: $borderRadius;
+      /*Change*/
+      &:hover {
+        background-color: $secondColor;
+      }
+    }
+  }
+
+  ul {
+    li {
+      padding: 6px 0;
+      color: #fff;
+      display: block;
+
+      bdi {
+        color: #fff;
+        font-size: 18px;
+      }
+
+      a {
+        color: #fff;
+        @extend %transition;
+        font-size: 16px;
+
+        &:hover {
+          color: $secondColor;
+        }
+      }
+    }
+  }
+}
+
+.important_link {
+  ul {
+    li {
+      display: block;
+
+      a {
+        color: #fff!important;
+      }
+    }
+  }
+}
+
+.social_media {
+  li {
+    display: inline-block;
+    padding: 0 3px;
+
+    a {
+      //            height: 40px;
+      //            width: 40px;
+      //            line-height: 40px;
+      text-align: center;
+      border-radius: 100%; //            background-color: #093550;
+      @extend %transition;
+      font-size: 14px;
+      font-size: 18px;
+
+      &:hover {
+        //                background-color: $secondColor;
+        color: $mainColor;
+      }
+    }
+  }
+}
+/***Start Button Go Up**/
+
+.go_up {
+  position: fixed;
+  z-index: 999;
+  bottom: 30px;
+  left: 30px;
+  background-color: $secondColor;
+  height: 30px;
+  width: 30px;
+  line-height: 35px;
+  text-align: center;
+  border-radius: 2px;
+  color: #fff;
+  @extend %transition;
+  cursor: pointer;
+  @media (max-width: $md) {
+    left: 15px;
+  }
+
+  &:hover {
+    box-shadow: 0 0 5px #fff;
+    background-color: $mainColor;
+  }
+}
+/**Start Copyright Section**/
+
+.copyright {
+  padding: 10px 0;
+  background-color: #093550;
+
+  .copyright_content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    @media (max-width: $md) {
+      display: block;
+      text-align: center;
+    }
+
+    span {
+      color: #fff;
+      font-size: 14px;
+      margin: 5px 0;
+      display: block;
+    }
+
+    a {
+      color: #fff;
+      @extent %transition;
+
+      &:hover {
+        color: $secondColor;
+      }
+    }
+  }
+}
+
+.copyright_new {
+  margin-top: 30px;
+  text-align: center;
+
+  span {
+    color: #fff;
+    margin-top: 30px;
+    display: inline-block;
+  }
+}
+/**End Copyright Section**/

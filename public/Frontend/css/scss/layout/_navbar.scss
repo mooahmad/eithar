@@ -1,0 +1,600 @@
+@import "helpers/variables.scss";
+/**Start Navbar**/
+
+.navbar {
+  &.fixed {
+    position: fixed;
+    top: -8px;
+    background-color: #fff;
+    box-shadow: 0 5px 20px 0 rgba(4, 78, 128, 0.3);
+    padding: 20px 0 0;
+
+    .logo_color {
+      display: block;
+    }
+
+    .logo_white {
+      display: none;
+    }
+
+    .navbar_content {}
+  }
+
+  @media (min-width: $lg) {
+    top: 80px;
+  }
+
+  margin-top: 0;
+  position: absolute;
+  z-index: 99;
+  right: 0;
+  left: 0;
+  top: 0;
+
+  .container {}
+}
+
+// Change Logo Color and White
+
+.logo_color {
+  display: none;
+}
+
+.navbar_content {
+  // line-height: 100px;
+  display: flex;
+  // padding: 0 10px;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.menu_content {
+
+  border-radius: $borderRadius;
+
+  @media (min-width: $lg) {
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media (max-width:$lg) {
+    position: relative;
+    height: 100vh;
+  }
+
+
+}
+
+
+.navbar_brand {
+  height: 50px;
+
+  img {
+    max-height: 100%;
+    max-width: 100%;
+  }
+}
+
+.navbar_overlay {
+  display: block;
+
+  @media (max-width: $lg) {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.52);
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none;
+  }
+}
+
+.navbar_menu {
+  line-height: 65px;
+}
+
+.menu_content {
+
+  /*Menu For Descktop*/
+  @media (min-width: $lg) {
+    display: flex;
+    width: 950px;
+    line-height: 25px;
+    position: relative;
+    /* display: block; */
+    margin: 0 20px !important;
+  }
+
+  /*Menu For Mobile*/
+  @media (max-width: $lg) {
+    width: 260px;
+    overflow-y: auto;
+    height: 100vh;
+    position: fixed;
+    z-index: 9999;
+    left: -260px;
+    right: auto;
+    /*Change*/
+    top: 0;
+    background-color: $mainColor;
+    display: block;
+  }
+.navbar_menu{
+  li {
+    position: relative;
+    display: inline;
+
+    &:before {
+      @extend %transition;
+    }
+
+    &:hover {
+      &:before {
+
+        /*Menu For Descktop*/
+        @media (min-width: $lg) {
+          position: absolute;
+          display: block;
+          content: "";
+          background-color: $secondColor;
+          width: 100%;
+          height: 4px;
+          bottom: 0;
+        }
+      }
+    }
+
+    &.active {
+      a {
+
+        /*Menu For Descktop*/
+        @media (min-width: $lg) {
+          color: $secondColor;
+        }
+      }
+
+      &:before {
+
+        /*Menu For Descktop*/
+        @media (min-width: $lg) {
+          position: absolute;
+          display: block;
+          content: "";
+          background-color: $secondColor;
+          width: 100%;
+          height: 4px;
+          bottom: 0;
+        }
+      }
+    }
+
+    /**For Descktop*/
+    @media (min-width: $lg) {
+      display: inline-block;
+      position: relative;
+      cursor: pointer;
+    }
+
+    /**For Mobile*/
+    @media (max-width: $lg) {
+      display: block;
+      position: relative;
+      cursor: pointer;
+      padding-right: 10px;
+      /*Change*/
+    }
+
+    a {
+      font-size: 16px;
+      color: $mainColor;
+      @extend %transition;
+      padding: 0 10px;
+
+      /**For Descktop**/
+      @media (min-width: $lg) {
+        &:hover {
+          color: $secondColor;
+        }
+      }
+
+      /**For Mobile**/
+      @media (max-width: $lg) {
+        color: #fff;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+        display: block;
+        line-height: 45px;
+      }
+
+      i {
+        @media (max-width: $lg) {
+          position: absolute;
+          right: 20px;
+          /*Change*/
+          top: 10px;
+        }
+      }
+    }
+  }
+  }
+}
+
+/**End Dropdown link**/
+/***Start navbar_dropdown**/
+
+.navbar_dropdown-menu {
+
+  /*Dropdown Menu For Descktop*/
+  @media (min-width: $lg) {
+    display: none;
+    line-height: 24px;
+    position: absolute;
+    top: 80px;
+    z-index: 99;
+    background: #fff;
+    box-shadow: 0 0 3px rgba(18, 68, 98, 0.2);
+    border-radius: $borderRadius;
+    padding: 0;
+    width: 200px;
+  }
+
+  /*Dropdown Menu For Mobile*/
+  @media (max-width:$lg) {
+    padding: 0;
+    line-height: 24px;
+    width: 100%;
+  }
+
+  li {
+
+    /*Dropdown Menu =Li=  For Mobile*/
+    @media (min-width: $lg) {
+      display: block;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      padding: 5px 0;
+
+      &:last-child {
+        border: 0;
+      }
+    }
+
+    a {
+      font-size: 14px;
+      padding-left: 10px;
+      margin-bottom: 6px;
+      display: block;
+    }
+  }
+}
+
+.dropdown_link-inside .navbar_dropdown-menu {
+  top: 0;
+  left: 100%;
+  /*Change*/
+}
+
+.navbar_dropdown-menu {
+  i {
+    @media (min-width: $lg) {
+      transform: rotate(-90deg);
+    }
+  }
+}
+
+.dropdown_link-inside i {
+  position: absolute;
+  right: 10px;
+  top: 15px;
+}
+
+.dropdown_link i {
+  padding-left: 8px;
+}
+
+/***End navbar_dropdown**/
+/****Button***/
+
+.navbar_button {
+  line-height: 100px;
+  font-size: 22px;
+  display: none;
+  cursor: pointer;
+  color: $mainColor;
+  @extend %transition;
+
+  &:hover {
+    color: $secondColor;
+  }
+
+  @media (max-width: $lg) {
+    display: block;
+  }
+
+  i {
+    font-size: 30px;
+    padding: 15px;
+    box-shadow: 0 0 1px #124462;
+    border-radius: 10px;
+    @extend %transition;
+
+    &:hover {
+      box-shadow: 0 0 8px #124462;
+    }
+  }
+}
+
+/**End Navbar**/
+/****Head of All Pages******/
+
+.head_page {
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  &:before {
+    @extend %overlay;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  h1 {
+    position: relative;
+    z-index: 3;
+    color: #fff;
+    font-size: 26px;
+    font-weight: 500;
+    margin: 0;
+
+    @media (min-width: $md) {
+      font-size: 22px;
+    }
+  }
+}
+
+/*Start Logain Area*/
+
+.login_area-content {
+
+  .login_button {
+    display: inline-block;
+
+    .avatar_img {
+      border: 1px solid #ccc;
+      display: inline-block;
+    }
+
+    span {
+
+      @media (min-width: $lg) {
+        color: $mainColor;
+      }
+
+      &:hover {
+        color: $secondColor;
+      }
+    }
+  }
+
+  .languge {
+    @media (min-width: $lg) {
+      background-color: $mainColor;
+      color: #fff;
+    }
+background: #fff;
+color: $mainColor;
+    &:hover {
+      background-color: $secondColor;
+    }
+  }
+}
+
+// login_area-content
+.login_area-content {
+  @media (min-width: $lg) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  @media (max-width:$lg){
+    padding: 0 14px;
+  }
+
+  .creat_account {
+    height: 40px;
+    width: 160px;
+    text-align: center;
+    line-height: 40px;
+    background-color: transparent;
+    border: 1px solid #fff;
+    font-size: 16px;
+    padding: 0 20px;
+
+    @media (max-width: $lg) {
+      margin: 20px 0;
+    }
+  }
+
+  .login_button {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    margin: 0 10px;
+
+    @media (min-width: $lg) {
+      margin-right: 50px;
+    }
+
+    margin-left: 0;
+
+
+    .avatar_img {
+      height: 50px;
+      width: 50px;
+      border-radius: 100%;
+      text-align: center;
+      line-height: 50px;
+      background-color: #fff;
+      padding: 5px;
+
+      i {
+        font-size: 35px;
+        color: #ccc;
+        display: block;
+      }
+    }
+
+    span {
+      color: $mainColor;
+      margin: 0 5px;
+
+      @media (max-width: $lg) {
+        color: #fff;
+      }
+
+      &:hover {
+        color: $secondColor;
+      }
+    }
+  }
+
+
+}
+
+// Start Notification Area
+.notification_area {
+  position: relative;
+
+  .notification_button {
+    color: $mainColor;
+    @media (max-width:$lg){
+      color: #fff;
+    }
+    font-size: 30px;
+    cursor: pointer;
+
+    &.new_notification {
+      position: relative;
+
+      &:before {
+        position: absolute;
+        content: "";
+        height: 8px;
+        width: 8px;
+        border-radius: 100%;
+        background-color: $redColor;
+      }
+    }
+
+    @media (min-width:$lg) {
+      margin-right: 50px;
+    }
+
+    @media (max-width:$lg) {
+      margin: 10px;
+    }
+  }
+
+  .notification_area-list {
+    display: none;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    background-color: #fff; // Start List Title
+
+    li.title {
+      background: #EEEEEE;
+      padding: 20px;
+      width: 100%;
+      display: inline-block;
+
+      text-align: center; // TitleFor Desck Top
+
+      @media (min-width: $lg) {
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+        overflow-y: auto;
+      }
+
+      // Title For Mobill
+      @media (max-width:$lg) {}
+
+
+      span {
+        color: $mainColor;
+      }
+    }
+
+    // End List Title
+    // List Area For Desck Top
+    @media (min-width:$lg) {
+      width: 300px;
+      position: absolute;
+      right: 40%;
+      left: auto;
+      /*Change*/
+      border-radius: 25px;
+      box-shadow: 0 3px 90px rgba(0, 0, 0, 0.2);
+
+
+    }
+
+    // List Area For Mobill
+    @media (max-width:$lg) {}
+
+    // Start All List inside List Area
+    li {
+      border-top: 1px solid #EEEEEE;
+      padding: 16px;
+
+      .notification-date {
+        color: #9195AA;
+        font-size: 12px;
+      }
+
+      a {
+        position: relative;
+        display: block;
+        padding: 0 14px;
+        font-size: 14px;
+        line-height: 26px;
+
+        &:before {
+          position: absolute;
+          content: "";
+          height: 10px;
+          width: 10px;
+          border-radius: 100%;
+          background: #EEEEEE;
+          top: 10px;
+          left: -10px;
+          right: auto;
+
+          /*Change*/
+        }
+
+
+
+      }
+
+      // New Notification 
+      &.active {
+        a {
+          &:before {
+            background: $redColor;
+          }
+        }
+
+      }
+
+    }
+
+    // Start All List inside List Area
+  }
+}
+
+// End Notification Area

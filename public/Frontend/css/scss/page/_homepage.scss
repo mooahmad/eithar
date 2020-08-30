@@ -1,0 +1,223 @@
+@import "helpers/variables.scss";
+@import "componants/buttons.scss";
+@import "componants/slider-custum.scss"; /**********/
+/*02= Start Header Search Subheader*/
+/*02=End Header Search Subheader*/
+/*=03= Start Search Subheader*/
+
+.serach_subheader {
+  @media (min-width: $lg) {
+    margin-top: -180px;
+  }
+  position: relative;
+  z-index: 9;
+
+  .serach_subheader-content {
+    background-color: #fff;
+    border-radius: $borderRadius;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .serach_subheader-department {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+    .department_button {
+      border: 0;
+      cursor: pointer;
+      border-radius: $borderRadius;
+      padding: 4px 8px;
+      border: 1px solid #ccc;
+      margin: 0 8px 30px;
+      min-width: 140px;
+      color: $mainColor;
+      background-color: #fff;
+      @extend %transition;
+
+      &:focus {
+        outline: none;
+      }
+
+      &:hover {
+        background-color: $mainColor;
+        color: #fff;
+      }
+
+      &.active {
+        background-color: $mainColor;
+        color: #fff;
+      }
+    }
+  }
+
+  .serach_subheader-searsh {
+    position: relative;
+
+    input {
+      width: 100%;
+      padding: 6px 15px;
+      border-radius: $borderRadius;
+      border: 0;
+      border: 1px solid #ccc;
+      color: $secondColor;
+
+      &:focus {
+        outline: none !important;
+        border-color: $mainColor;
+      }
+    }
+
+    button {
+      border: 0;
+      background-color: $mainColor;
+      color: #fff;
+      padding: 6px;
+      position: absolute;
+      height: 80%;
+      min-width: 40px;
+      text-align: center;
+      top: 4px;
+      cursor: pointer;
+      padding: 0 6px;
+      border-radius: $borderRadius;
+      /*change*/
+      right: 4px;
+      /*Change*/
+      @extend %transition;
+
+      &:hover {
+        background-color: $secondColor;
+      }
+    }
+
+    .serach_subheader-select {
+      position: absolute;
+      top: 10%; //            height: 100%;
+      right: 50px;
+      /*change*/
+      select {
+        &:focus {
+          outline: none !important;
+        }
+        margin: 0 8px;
+        cursor: pointer;
+        border: none;
+        min-width: 100px;
+
+        option {}
+      }
+    }
+  }
+}
+/*=03= Start Search Subheader*/
+/*04=Start About Us*/
+
+.home-page-aboutus {}
+/*04=End About Us*/
+/*05=Start Services*/
+
+.home_page-services {
+  padding: 50pz 0 20px;
+  overflow: hidden;
+  background-color: #F9F9F9;
+
+  .services_title {
+    text-align: center;
+    margin-bottom: 30px;
+
+    home_pgage-title {
+      margin-bottom: 0;
+    }
+
+    p {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+  }
+
+  .row {
+    // display: flex;
+    // justify-content: center;
+  }
+
+  .services_block {
+    background-color: #fff;
+    border: 1px solid $mainColor;
+    border-radius: 25px;
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    min-height: 326px;
+    margin-bottom: 40px;
+    margin-left: 50px;
+    /*Change*/
+    padding-left: 60px;
+    /*Change*/
+    @extend %transition;
+
+    &:hover {
+      //            transform: scale(1.1);
+      box-shadow: 0 0 25px 0 rgba(4, 78, 128, 0.3);
+      // border: 1px solid transparent;
+
+      .button {
+        background-color: $secondColor;
+      }
+
+      h3 {
+        color: $secondColor;
+      }
+
+      .services_block-icon {
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+.services_block-icon {
+  height: 100px;
+  width: 100px;
+  border-radius: 100%;
+  border: 1px solid $mainColor;
+  background-color: #fff;
+  padding: 10px;
+  position: absolute;
+  left: -15%;
+  top:40px;
+  @extend %transition;
+  /*Change*/
+  img {
+    height: 100%;
+    width: 100%;
+  }
+}
+/*05=End Services*/
+/*06= Start Services Oorder*/
+
+.services_order {
+  .services_order-img {
+    @media(max-width: $lg) {
+      margin-top: 30px;
+    }
+  }
+
+  .location {
+    position: relative;
+
+    i {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      color: $mainColor;
+    }
+  }
+}
+/*06= Start Services Order*/

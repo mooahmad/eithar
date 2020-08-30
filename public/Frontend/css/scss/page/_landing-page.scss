@@ -1,0 +1,120 @@
+@import "helpers/variables.scss";
+@import "componants/buttons.scss";
+@import "componants/keyframs.scss";
+@import "componants/slider-custum.scss";
+/**********/
+
+#services {
+  .home_page-title {
+    font-size: 35px !important;
+    color: #044E80 !important;
+  }
+}
+
+.landing_page {
+  .header {
+    position: relative;
+
+    @media (max-width: $lg) {
+      height: 500px;
+    }
+
+    @media (min-width: $lg) {
+      height: 100vh;
+    }
+
+    ;
+
+    &:before {
+      background-color: rgba(7, 167, 226, 0.8);
+    }
+  }
+}
+
+.landing_header-content {
+  text-align: center;
+  position: relative;
+  z-index: 9;
+  color: #fff;
+  padding-top: 50px;
+
+  .logo {
+    height: 100px;
+    width: 100%;
+    margin-bottom: 50px;
+    display: block;
+
+    img {
+      height: 100%;
+    }
+  }
+
+  h1 {
+    font-size: 34px;
+    line-height: 30px;
+
+    @media (min-width: $lg) {
+      margin: 40px 0;
+      line-height: 46px
+    }
+  }
+
+  p {
+    font-size: 23px;
+    margin-bottom: 30px;
+  }
+
+  .header_button-content {
+    .button {
+      background-color: #fff;
+      color: $secondColor;
+      font-size: 20px;
+
+      @media (min-width: $lg) {
+        margin: 0 20px;
+      }
+
+      &:hover {
+        background-color: $mainColor;
+        color: #fff;
+      }
+    }
+  }
+
+  .social_media {
+    margin-top: 30px;
+
+    li {
+      font-size: 20px;
+
+      a {
+        color: #fff;
+      }
+    }
+  }
+}
+
+.down_icon {
+  position: absolute;
+  bottom: 40px;
+  right: 50%;
+  z-index: 999;
+  color: #fff;
+  animation: down 1s linear infinite;
+  cursor: pointer;
+  @extend %transition;
+
+  @media (max-width: $lg) {
+    bottom: 0;
+  }
+
+  &:hover {
+    i {
+      font-size: 28px;
+    }
+  }
+
+  i {
+    font-size: 25px;
+  }
+}

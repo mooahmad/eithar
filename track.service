@@ -1,0 +1,19 @@
+[Unit]
+Description=track
+
+[Service]
+ExecStart=/var/www/html/eithar-administrator-and-api/track/server.js
+Restart=always
+User=nobody
+# Note Debian/Ubuntu uses 'nogroup', RHEL/Fedora uses 'nobody'
+Group=nogroup
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+WorkingDirectory=/var/www/html/eithar-administrator-and-api/track
+
+[Install]
+WantedBy=multi-user.target
+
+# to get log run => journalctl -u track -r -n 2
+# to enable service => systemctl enable track
+# to start service => systemctl start track
